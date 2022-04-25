@@ -16,6 +16,7 @@ public partial class Player : MonoBehaviour
 
     void Start()
     {
+        playerCamera = Camera.main;
         currentState.OnEnter(this, null);
     }
 

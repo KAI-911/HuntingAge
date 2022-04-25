@@ -4,7 +4,7 @@ using UnityEngine;
 
 public partial class Player
 {
-    public Camera playerCamera = null;    //プレイヤーを見るカメラ
+    private Camera playerCamera = null;    //プレイヤーを見るカメラ
     public GameObject avater = null;           //アバター
     public Animator Animator;               //アニメーションの制御用
     public CharacterController controller;             //プレイヤーの制御
