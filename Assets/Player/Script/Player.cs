@@ -81,8 +81,9 @@ public partial class Player : MonoBehaviour
             Quaternion lookRotation = Quaternion.LookRotation(rotateTarget);
             avater.transform.rotation = Quaternion.Lerp(lookRotation, avater.transform.rotation, turnSmoothing);
         }
-        //重力を加えて移動実行
+        //重力を加える
         moveDirection.y -= gravity * Time.deltaTime;
+        //移動実行
         controller.Move(moveDirection * Time.deltaTime);
     }
 

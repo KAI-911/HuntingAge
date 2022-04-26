@@ -8,10 +8,8 @@ public partial class Player
     {
         public override void OnEnter(Player owner, PlayerStateBase prevState)
         {
-            if (owner.jumpInterval > owner.jumpIntervalCount)
-            {
-                owner.ChangeState(prevState);
-            }
+            owner.lockAxisCamera.y_islocked = true;
+            owner.lockAxisCamera.lockPosition.y = owner.playerCamera.transform.position.y;
             float moveSpeed = owner.moveDirection.magnitude;
             owner.Animator.SetInteger("AniState", (int)AniState.Jump);
             //ˆÚ“®•ûŒü‚ğƒJƒƒ‰Šî€‚É’¼‚·
@@ -21,19 +19,17 @@ public partial class Player
             owner.moveDirection = Quaternion.Euler(0, owner.playerCamera.transform.rotation.eulerAngles.y, 0) * owner.moveDirection;
             owner.moveDirection *= moveSpeed;
             owner.moveDirection.y = owner.jumpSpeed;
-            //d—Í‚ğ‰Á‚¦‚é
-            owner.moveDirection.y -= owner.gravity * Time.deltaTime;
         }
         public override void OnUpdate(Player owner)
         {
             Debug.Log("JumpState");
             //d—Í‚ğ‰Á‚¦‚é
             owner.moveDirection.y -= owner.gravity * Time.deltaTime;
-
             owner.controller.Move(owner.moveDirection * Time.deltaTime);
         }
         public override void OnExit(Player owner, PlayerStateBase prevState)
         {
+            owner.lockAxisCamera.y_islocked = false;
             owner.jumpIntervalCount = 0;
         }
         public override void OnAnimetionEnd(Player owner, int _num)
