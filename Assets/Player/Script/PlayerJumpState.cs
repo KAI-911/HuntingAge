@@ -8,8 +8,6 @@ public partial class Player
     {
         public override void OnEnter(Player owner, PlayerStateBase prevState)
         {
-            owner.lockAxisCamera.y_islocked = true;
-            owner.lockAxisCamera.lockPosition.y = owner.playerCamera.transform.position.y;
             float moveSpeed = owner.moveDirection.magnitude;
             owner.Animator.SetInteger("AniState", (int)AniState.Jump);
             //ˆÚ“®•ûŒü‚ğƒJƒƒ‰Šî€‚É’¼‚·
@@ -29,7 +27,6 @@ public partial class Player
         }
         public override void OnExit(Player owner, PlayerStateBase prevState)
         {
-            owner.lockAxisCamera.y_islocked = false;
             owner.jumpIntervalCount = 0;
         }
         public override void OnAnimetionEnd(Player owner, int _num)

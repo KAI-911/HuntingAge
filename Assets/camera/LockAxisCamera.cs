@@ -21,6 +21,7 @@ public class LockAxisCamera : CinemachineExtension
             if (y_islocked) newPos.y = lockPosition.y;
             if (z_islocked) newPos.z = lockPosition.z;
             state.RawPosition = newPos;
+            
         }
     }
 }
@@ -47,6 +48,8 @@ public class LockAxisCameraEditor : Editor
             lockAxisCamera.lockPosition.y = EditorGUILayout.FloatField("Y", lockAxisCamera.lockPosition.y);
             lockAxisCamera.lockPosition.z = EditorGUILayout.FloatField("Z", lockAxisCamera.lockPosition.z);
         }
+
+
     }
 }
 #endif

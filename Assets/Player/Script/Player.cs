@@ -4,15 +4,6 @@ using UnityEngine;
 
 public partial class Player : MonoBehaviour
 {
-    private static readonly PlayerIdleState playerIdleState = new PlayerIdleState();//待機
-    private static readonly PlayerSneakState playerSneakState = new PlayerSneakState();//しゃがみ待機
-    private static readonly PlayerSneakingWalkState playerSneakingWalkState = new PlayerSneakingWalkState();//しゃがみ移動
-    private static readonly PlayerWalkState playerWalkState = new PlayerWalkState();//歩き
-    private static readonly PlayerDushState playerDushState = new PlayerDushState();//走り
-    private static readonly PlayerDodgeState playerDodgeState = new PlayerDodgeState();//回避
-    private static readonly PlayerJumpState playerJumpState = new PlayerJumpState();//ジャンプ
-
-    private  PlayerStateBase currentState = playerIdleState;
 
     void Start()
     {
@@ -24,6 +15,7 @@ public partial class Player : MonoBehaviour
     {
         currentState.OnUpdate(this);
         jumpIntervalCount += Time.deltaTime;
+        Debug.Log(AimPos.transform.position);
     }
 
     private void AnimetionEvent(AnimationEvent _num)
@@ -53,6 +45,8 @@ public partial class Player : MonoBehaviour
         nextState.OnEnter(this, currentState);
         currentState = nextState;
     }
+
+
     /// <summary>
     /// 移動速度とアニメーション移動速度を渡すと
     /// WASDで移動してくれる

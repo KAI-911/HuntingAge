@@ -29,7 +29,7 @@ public partial class Player
             }
 
             //ジャンプボタンが押されたら
-            if (Input.GetButtonDown("Jump"))
+            if (Input.GetButtonDown("Jump") && owner.jumpInterval < owner.jumpIntervalCount)
             {
                 owner.ChangeState(playerJumpState);
                 return;
