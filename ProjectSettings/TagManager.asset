@@ -3,12 +3,15 @@
 --- !u!78 &1
 TagManager:
   serializedVersion: 2
-  tags: []
+  tags:
+  - Enemy
+  - EnemyHit
+  - attackHit
   layers:
   - Default
   - TransparentFX
   - Ignore Raycast
-  - 
+  - EnemyHit
   - Water
   - UI
   - 

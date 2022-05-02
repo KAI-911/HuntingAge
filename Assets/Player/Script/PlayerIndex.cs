@@ -33,7 +33,8 @@ public partial class Player
         Walk,
         Dush,
         Dodge,
-        Jump
+        Jump,
+        knockback
     };
     private static readonly PlayerIdleState playerIdleState = new PlayerIdleState();//待機
     private static readonly PlayerSneakState playerSneakState = new PlayerSneakState();//しゃがみ待機
@@ -42,6 +43,7 @@ public partial class Player
     private static readonly PlayerDushState playerDushState = new PlayerDushState();//走り
     private static readonly PlayerDodgeState playerDodgeState = new PlayerDodgeState();//回避
     private static readonly PlayerJumpState playerJumpState = new PlayerJumpState();//ジャンプ
+    private static readonly PlayerKnockBackState playerKnockBackState = new PlayerKnockBackState();//ノックバック
 
     private PlayerStateBase currentState = playerIdleState;
 

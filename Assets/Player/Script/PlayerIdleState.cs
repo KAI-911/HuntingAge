@@ -11,7 +11,6 @@ public partial class Player
         }
         public override void OnUpdate(Player owner)
         {
-            Debug.Log("IdleState");
             owner.PlayerMove(1, 1);
             //‚µ‚á‚ª‚İƒ{ƒ^ƒ“‚ª‰Ÿ‚³‚ê‚½‚ç‚µ‚á‚ª‚İó‘Ô‚Ö
             if (Input.GetButtonDown("Dodge"))

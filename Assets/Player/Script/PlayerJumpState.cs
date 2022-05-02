@@ -20,7 +20,6 @@ public partial class Player
         }
         public override void OnUpdate(Player owner)
         {
-            Debug.Log("JumpState");
             //èdóÕÇâ¡Ç¶ÇÈ
             owner.moveDirection.y -= owner.gravity * Time.deltaTime;
             owner.controller.Move(owner.moveDirection * Time.deltaTime);

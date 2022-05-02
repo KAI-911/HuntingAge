@@ -11,7 +11,6 @@ public partial class Player
         public override void OnUpdate(Player owner)
         {
             owner.PlayerMove(1, 1);
-            Debug.Log("SnaekState");
             //もう一度しゃがみボタンかジャンプボタンが押されたら待機状態へ
             if (Input.GetButtonDown("Dodge") || Input.GetButtonDown("Jump"))
             {

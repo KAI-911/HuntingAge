@@ -12,7 +12,6 @@ public partial class Player
         }
         public override void OnUpdate(Player owner)
         {
-            Debug.Log("DushState");
             owner.PlayerMove(owner.dushSpeed, owner.AniDushSpeed);
 
             //ダッシュボタンが押されていなかったら歩き状態へ

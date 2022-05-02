@@ -20,7 +20,6 @@ public partial class Player
         }
         public override void OnUpdate(Player owner)
         {
-            Debug.Log("DodgeState");
 
             //is•ûŒü‚ÉŒü‚­
             Vector3 rotateTarget = new Vector3(owner.moveDirection.x, 0, owner.moveDirection.z);

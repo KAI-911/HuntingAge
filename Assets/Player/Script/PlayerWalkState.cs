@@ -11,7 +11,6 @@ public partial class Player
         }
         public override void OnUpdate(Player owner)
         {
-            Debug.Log("WalkState");
             owner.PlayerMove(owner.walkSpeed, owner.AniWalkSpeed);
 
             //ˆÚ“®‚ª‰Ÿ‚³‚ê‚Ä‚¢‚È‚©‚Á‚½‚ç‘Ò‹@ó‘Ô‚Ö

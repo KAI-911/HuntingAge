@@ -7,7 +7,7 @@ onBoardingDoNotAskAgain = true
 showPackageIndexes = false
 showStatusBar = false
 scopes = {
-	"last_search.8040E7BB" = "lang"
+	"last_search.8040E7BB" = "nav"
 	"OpenInspectorPreview.8040E7BB" = "0"
 	"currentGroup.8040E7BB" = "all"
 }
@@ -79,6 +79,7 @@ providers = {
 	}
 }
 recentSearches = [
+	"ba"
 	"a"
 ]
 searchItemFavorites = [

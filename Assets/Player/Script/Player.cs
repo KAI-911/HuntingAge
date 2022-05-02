@@ -1,7 +1,9 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+using System.Threading;
+using System.Threading.Tasks;
 public partial class Player : MonoBehaviour
 {
 
@@ -15,7 +17,6 @@ public partial class Player : MonoBehaviour
     {
         currentState.OnUpdate(this);
         jumpIntervalCount += Time.deltaTime;
-        Debug.Log(AimPos.transform.position);
     }
 
     private void AnimetionEvent(AnimationEvent _num)
@@ -53,7 +54,7 @@ public partial class Player : MonoBehaviour
     /// </summary>
     /// <param name="_moveSpeed"></param>
     /// <param name="_aniMoveSpeed"></param>
-    private void PlayerMove(float _moveSpeed,float _aniMoveSpeed)
+    private void PlayerMove(float _moveSpeed, float _aniMoveSpeed)
     {
         Vector3 inputVec = new Vector3(Input.GetAxis("Horizontal"), 0, Input.GetAxis("Vertical"));
         if (controller.isGrounded)
@@ -79,6 +80,22 @@ public partial class Player : MonoBehaviour
         moveDirection.y -= gravity * Time.deltaTime;
         //à⁄ìÆé¿çs
         controller.Move(moveDirection * Time.deltaTime);
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.CompareTag("attackHit"))
+        {
+            _ = Damage(other.transform.position);
+        }
+    }
+    private async Task Damage(Vector3 _otherPos)
+    {
+        ChangeState(playerKnockBackState);
+        moveDirection = transform.position - _otherPos;
+        moveDirection = moveDirection.normalized * 10f;
+        await Task.Delay(TimeSpan.FromSeconds(0.5f));
+        moveDirection = Vector3.zero;
     }
 
 }

@@ -12,7 +12,6 @@ public partial class Player
         }
         public override void OnUpdate(Player owner)
         {
-            Debug.Log("SneakingWalkState");
             owner.PlayerMove(owner.sneakSpeed, owner.AniSneakSpeed);
 
             //‚µ‚á‚ª‚İƒ{ƒ^ƒ“‚ª‰Ÿ‚³‚ê‚½‚ç‰ñ”ğó‘Ô‚Ö
