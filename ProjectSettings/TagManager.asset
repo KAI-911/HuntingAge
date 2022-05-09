@@ -7,6 +7,11 @@ TagManager:
   - Enemy
   - EnemyHit
   - attackHit
+  - EnemyBody
+  - EnemyHead
+  - EnemyRightLeg
+  - EnemyLeftLeg
+  - EnemyTail
   layers:
   - Default
   - TransparentFX
@@ -14,7 +19,7 @@ TagManager:
   - EnemyHit
   - Water
   - UI
-  - 
+  - PlayerHit
   - 
   - 
   - 

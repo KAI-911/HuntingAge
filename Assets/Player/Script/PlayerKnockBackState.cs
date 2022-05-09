@@ -11,8 +11,10 @@ public partial class Player
     {
         public override void OnEnter(Player owner, PlayerStateBase prevState)
         {
+            owner.Animator.SetTrigger("Change");
             owner.Animator.SetInteger("AniState", (int)AniState.knockback);
         }
+
         public override void OnUpdate(Player owner)
         {
             if (owner.moveDirection == Vector3.zero) return;
@@ -28,6 +30,7 @@ public partial class Player
             //徐々にスピードを落とす
             owner.moveDirection *= 0.99f;
         }
+
         public override void OnAnimetionEnd(Player owner, int _num)
         {
             owner.ChangeState(playerIdleState);

@@ -1,10 +1,8 @@
 using System;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
-using System.Threading;
 using System.Threading.Tasks;
-public partial class Player : MonoBehaviour
+using UnityEngine.EventSystems;
+public partial class Player : MonoBehaviour, IAttackDamage
 {
 
     void Start()
@@ -15,6 +13,9 @@ public partial class Player : MonoBehaviour
 
     void Update()
     {
+        Vector3 move = moveDirection;
+        move.y = 0;
+        Animator.SetFloat("move", Mathf.Clamp01(move.magnitude));
         currentState.OnUpdate(this);
         jumpIntervalCount += Time.deltaTime;
     }
@@ -33,6 +34,11 @@ public partial class Player : MonoBehaviour
     {
         int i = _num.intParameter;
         currentState.OnAnimetionStart(this, i);
+    }
+
+    public void OnDamaged(AttackInfo _attackInfo)
+    {
+        Debug.Log(_attackInfo.name + "Ç©ÇÁ" + _attackInfo.damage + "ÇÃÉ_ÉÅÅ[ÉWÇéÛÇØÇΩ");
     }
 
 
@@ -82,12 +88,24 @@ public partial class Player : MonoBehaviour
         controller.Move(moveDirection * Time.deltaTime);
     }
 
+
     private void OnTriggerEnter(Collider other)
     {
-        if (other.CompareTag("attackHit"))
-        {
-            _ = Damage(other.transform.position);
-        }
+        //if (other.CompareTag("attackHit"))
+        //{
+        //    var damagetarget = other.GetComponent<IAttackDamage>();
+        //    if (damagetarget != null)
+        //    {
+        //        other.GetComponent<IAttackDamage>().OnDamaged(_attackPoint);
+        //    }
+        //    _ = Damage(other.transform.position);
+        //}
+    }
+
+    private void OnControllerColliderHit(ControllerColliderHit hit)
+    {
+        if (hit.gameObject.CompareTag("Untagged")) return;
+        Debug.Log("player  "+hit.collider.gameObject.tag);
     }
     private async Task Damage(Vector3 _otherPos)
     {
@@ -97,5 +115,4 @@ public partial class Player : MonoBehaviour
         await Task.Delay(TimeSpan.FromSeconds(0.5f));
         moveDirection = Vector3.zero;
     }
-
 }

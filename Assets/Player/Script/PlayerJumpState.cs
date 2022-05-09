@@ -8,6 +8,7 @@ public partial class Player
     {
         public override void OnEnter(Player owner, PlayerStateBase prevState)
         {
+
             float moveSpeed = owner.moveDirection.magnitude;
             owner.Animator.SetInteger("AniState", (int)AniState.Jump);
             //ˆÚ“®•ûŒü‚ğƒJƒƒ‰Šî€‚É’¼‚·
@@ -16,7 +17,6 @@ public partial class Player
             owner.Animator.SetFloat("AniSpeed", Mathf.Clamp01(owner.moveDirection.magnitude));
             owner.moveDirection = Quaternion.Euler(0, owner.playerCamera.transform.rotation.eulerAngles.y, 0) * owner.moveDirection;
             owner.moveDirection *= moveSpeed;
-            owner.moveDirection.y = owner.jumpSpeed;
         }
         public override void OnUpdate(Player owner)
         {
@@ -52,9 +52,17 @@ public partial class Player
 
         public override void OnAnimetionFunction(Player owner, int _num)
         {
+            if(_num==0)
+            {
             //ƒWƒƒƒ“ƒv‚µ‚Äè‚ğ‚Â‚¢‚½‚çŒ¸‘¬
             owner.moveDirection.x *= 0.8f;
             owner.moveDirection.z *= 0.8f;
+            }
+            else if(_num==1)
+            {
+                //”ò‚Ñã‚ª‚é‚Æ‚«‚Éã•ûŒü‚É—Í‚ğ‰Á‚¦‚é
+                owner.moveDirection.y = owner.jumpSpeed;
+            }
         }
     }
 }

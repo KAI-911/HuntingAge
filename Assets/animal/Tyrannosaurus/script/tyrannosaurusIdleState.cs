@@ -2,14 +2,14 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class tyrannosaurusIdleState : tyrannosaurusStateBase
+public class TyrannosaurusIdleState : TyrannosaurusStateBase
 {
-    public override void OnEnter(tyrannosaurus owner, tyrannosaurusStateBase prevState)
+    public override void OnEnter(Tyrannosaurus owner, TyrannosaurusStateBase prevState)
     {
-        owner.Animator.SetInteger("AniState", (int)tyrannosaurus.AniState.Idle);
+        owner.Animator.SetInteger("AniState", (int)Tyrannosaurus.AniState.Idle);
     }
 
-    public override void OnUpdate(tyrannosaurus owner)
+    public override void OnUpdate(Tyrannosaurus owner)
     {
         Vector3 diff = owner.target.transform.position - owner.rayStartPos.transform.position;
         float dis = diff.magnitude;
@@ -41,7 +41,7 @@ public class tyrannosaurusIdleState : tyrannosaurusStateBase
                 //RaycastNonAllocはコリジョンがあるものだけ判定するのでプレイヤーは判定されない
                 if (hitCount == 0)
                 {
-                    owner.ChangeState<tyrannosaurusMoveState>();
+                    owner.ChangeState<TyrannosaurusMoveState>();
                 }
             }
         }

@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.AI;
 
-public partial class tyrannosaurus : MonoBehaviour
+public partial class Tyrannosaurus : MonoBehaviour, IAttackDamage
 {
     public GameObject avater = null;        //アバター
     public Animator Animator;               //アニメーションの制御用
@@ -13,11 +13,12 @@ public partial class tyrannosaurus : MonoBehaviour
     public float aniWalkSpeed;              //アニメーションで進む早さ
     public GameObject target;               //追跡対象
     public NavMeshAgent agent;              //ナビメッシュ
-    public tyrannosaurusStateBase currentState;
+    public TyrannosaurusStateBase currentState;
     public GameObject rayStartPos;          //レイ発射位置
     public float searchRange;               //索敵範囲
     public float searchAngle;               //視野角
-    public GameObject bitingColl;
+    //public hit bitingHit;
+
     public enum AniState
     {
         Idle,
@@ -29,29 +30,51 @@ public partial class tyrannosaurus : MonoBehaviour
     private void Start()
     {
         //初期状態の設定
-        currentState = new tyrannosaurusIdleState();
+        currentState = new TyrannosaurusIdleState();
         currentState.OnEnter(this, null);
         agent = GetComponent<NavMeshAgent>();
         target = GameObject.FindWithTag("Player");
         agent.speed = walkSpeed;
         agent.acceleration = walkSpeed;
         agent.angularSpeed = angularSpeed;
-
-        bitingColl.SetActive(false);
+        //bitingHit = GetComponent<hit>();
+        //bitingHit.info.damage = 10;
+        //bitingHit.info.name = "ティラノサウルス";
+        //bitingHit.SetActive(false);
     }
 
     private void Update()
     {
         currentState.OnUpdate(this);
     }
+    private void OnControllerColliderHit(ControllerColliderHit hit)
+    {
+        Debug.Log("enemy  "+hit.gameObject.tag);
+    }
 
-    public void ChangeState<T>()where T:tyrannosaurusStateBase,new()
+    private void OnCollisionEnter(Collision collision)
+    {
+        Debug.Log("enemy  " + collision.gameObject.tag);
+    }
+    private void OnTriggerEnter(Collider other)
+    {
+        Debug.Log("enemy  " + other.gameObject.tag);
+    }
+
+    public void OnDamaged(AttackInfo _attackInfo)
+    {
+        // Debug.Log("get damage");
+    }
+
+    public void ChangeState<T>()where T:TyrannosaurusStateBase,new()
     {
         var nextState = new T();
         currentState.OnExit(this, nextState);
         nextState.OnEnter(this, currentState);
         currentState = nextState;
     }
+
+    //アニメーションイベント
     private void AnimetionEvent(AnimationEvent _num)
     {
         int i = _num.intParameter;
@@ -67,5 +90,5 @@ public partial class tyrannosaurus : MonoBehaviour
         int i = _num.intParameter;
         currentState.OnAnimetionStart(this, i);
     }
-
+    
 }

@@ -2,14 +2,14 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class tyrannosaurusMoveState : tyrannosaurusStateBase
+public class TyrannosaurusMoveState : TyrannosaurusStateBase
 {
-    public override void OnEnter(tyrannosaurus owner, tyrannosaurusStateBase prevState)
+    public override void OnEnter(Tyrannosaurus owner, TyrannosaurusStateBase prevState)
     {
-        owner.Animator.SetInteger("AniState", (int)tyrannosaurus.AniState.Move);
+        owner.Animator.SetInteger("AniState", (int)Tyrannosaurus.AniState.Move);
     }
 
-    public override void OnUpdate(tyrannosaurus owner)
+    public override void OnUpdate(Tyrannosaurus owner)
     {
         //足滑りしないように移動アニメーションの再生速度の調整
         owner.Animator.SetFloat("AniSpeed", owner.agent.speed / owner.aniWalkSpeed);
@@ -29,7 +29,7 @@ public class tyrannosaurusMoveState : tyrannosaurusStateBase
             // 時計回りで正、反時計回りで負
             var signedAngle = Vector3.SignedAngle(planeFrom, planeTo, planeNormal);
 
-            owner.ChangeState<tyrannosaurusBitingAttackState>();
+            owner.ChangeState<TyrannosaurusBitingAttackState>();
         }
     }
 }

@@ -395,13 +395,14 @@ GameObject:
   m_Component:
   - component: {fileID: 8302535716207257331}
   - component: {fileID: 4284181646971442198}
+  - component: {fileID: 6676072075636758160}
   m_Layer: 3
   m_Name: bitingAttackHit
   m_TagString: attackHit
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &8302535716207257331
 Transform:
   m_ObjectHideFlags: 0
@@ -427,10 +428,22 @@ CapsuleCollider:
   m_Material: {fileID: 0}
   m_IsTrigger: 1
   m_Enabled: 1
-  m_Radius: 0.71
-  m_Height: 2.91
+  m_Radius: 0.8
+  m_Height: 3
   m_Direction: 1
   m_Center: {x: 0, y: 0.64, z: 0}
+--- !u!114 &6676072075636758160
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1094063053911798593}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 098e7b4a54581ab45bfdd78a64d49887, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1131417299552320566
 GameObject:
   m_ObjectHideFlags: 0
@@ -474,7 +487,7 @@ GameObject:
   - component: {fileID: 439624131036251755}
   m_Layer: 3
   m_Name: leftLegDownHit
-  m_TagString: EnemyHit
+  m_TagString: EnemyLeftLeg
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -709,7 +722,7 @@ GameObject:
   - component: {fileID: 6651205384654823119}
   m_Layer: 3
   m_Name: leftLegUpHIt
-  m_TagString: EnemyHit
+  m_TagString: EnemyLeftLeg
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -993,7 +1006,7 @@ GameObject:
   - component: {fileID: 8610935397988239073}
   m_Layer: 3
   m_Name: edgeTailHit
-  m_TagString: EnemyHit
+  m_TagString: EnemyTail
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1155,6 +1168,37 @@ Transform:
   m_Father: {fileID: 1762969514444925461}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &2472781710708466534
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 7893934084946980168}
+  m_Layer: 0
+  m_Name: tmp
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &7893934084946980168
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2472781710708466534}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 5322878130485107751}
+  m_RootOrder: 2
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &2808984413405429515
 GameObject:
   m_ObjectHideFlags: 0
@@ -1262,7 +1306,7 @@ GameObject:
   - component: {fileID: 4250507974076566273}
   m_Layer: 3
   m_Name: rightLegUpHit
-  m_TagString: EnemyHit
+  m_TagString: EnemyRightLeg
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1403,7 +1447,7 @@ GameObject:
   - component: {fileID: 4439105946481435888}
   m_Layer: 3
   m_Name: rightLegDownHit
-  m_TagString: EnemyHit
+  m_TagString: EnemyRightLeg
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1738,7 +1782,7 @@ GameObject:
   - component: {fileID: 854600362842679063}
   m_Layer: 3
   m_Name: bodyHIt
-  m_TagString: EnemyHit
+  m_TagString: EnemyBody
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1807,6 +1851,7 @@ Transform:
   m_Children:
   - {fileID: 3915109193004323907}
   - {fileID: 2353233158342220234}
+  - {fileID: 7893934084946980168}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -1847,12 +1892,11 @@ MonoBehaviour:
   angularSpeed: 160
   walkSpeed: 5
   aniWalkSpeed: 18
-  target: {fileID: 0}
+  target: {fileID: 2472781710708466534}
   agent: {fileID: 129118418938444966}
   rayStartPos: {fileID: 241740633324987289}
   searchRange: 50
   searchAngle: 120
-  bitingColl: {fileID: 1094063053911798593}
 --- !u!195 &129118418938444966
 NavMeshAgent:
   m_ObjectHideFlags: 0
@@ -2304,7 +2348,7 @@ GameObject:
   - component: {fileID: 192861567006382034}
   m_Layer: 3
   m_Name: headHit
-  m_TagString: EnemyHit
+  m_TagString: EnemyHead
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -2860,7 +2904,7 @@ GameObject:
   - component: {fileID: 8853733432748937285}
   m_Layer: 3
   m_Name: neckHit
-  m_TagString: EnemyHit
+  m_TagString: EnemyBody
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -4086,7 +4130,7 @@ GameObject:
   - component: {fileID: 2437190488277574618}
   m_Layer: 3
   m_Name: rootTailHit
-  m_TagString: EnemyHit
+  m_TagString: EnemyTail
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

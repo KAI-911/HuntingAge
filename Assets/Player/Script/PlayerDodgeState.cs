@@ -33,6 +33,9 @@ public partial class Player
 
         public override void OnAnimetionEnd(Player owner, int _num)
         {
+            owner.moveDirection.x *= 0.1f;
+            owner.moveDirection.z *= 0.1f;
+
             //WASD‚ª‰Ÿ‚³‚ê‚Ä‚¢‚½‚ç•à‚«ó‘Ô‚Ö
             if (Input.GetButton("Horizontal") || Input.GetButton("Vertical"))
             {
