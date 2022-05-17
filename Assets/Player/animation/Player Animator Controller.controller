@@ -32,7 +32,7 @@ AnimatorStateMachine:
     m_Position: {x: 570, y: -340, z: 0}
   - serializedVersion: 1
     m_State: {fileID: 4567278050688305573}
-    m_Position: {x: 560, y: 10, z: 0}
+    m_Position: {x: 560, y: 30, z: 0}
   - serializedVersion: 1
     m_State: {fileID: -8885632213820854692}
     m_Position: {x: 560, y: -50, z: 0}
@@ -521,6 +521,12 @@ AnimatorController:
     m_DefaultInt: 0
     m_DefaultBool: 0
     m_Controller: {fileID: 0}
+  - m_Name: HP
+    m_Type: 3
+    m_DefaultFloat: 0
+    m_DefaultInt: 0
+    m_DefaultBool: 0
+    m_Controller: {fileID: 0}
   m_AnimatorLayers:
   - serializedVersion: 5
     m_Name: Base Layer
@@ -541,7 +547,10 @@ AnimatorStateTransition:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_Name: 
-  m_Conditions: []
+  m_Conditions:
+  - m_ConditionMode: 3
+    m_ConditionEvent: HP
+    m_EventTreshold: 0
   m_DstStateMachine: {fileID: 0}
   m_DstState: {fileID: -8885632213820854692}
   m_Solo: 0
@@ -768,7 +777,7 @@ AnimatorState:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_Name: Falling To Roll
-  m_Speed: 1
+  m_Speed: 1.3
   m_CycleOffset: 0
   m_Transitions:
   - {fileID: 8281106024688272644}

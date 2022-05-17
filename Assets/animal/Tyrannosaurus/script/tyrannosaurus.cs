@@ -1,32 +1,17 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.AI;
+using UnityEngine.EventSystems;
 
 public partial class Tyrannosaurus : MonoBehaviour, IAttackDamage
 {
-    public GameObject avater = null;        //アバター
-    public Animator Animator;               //アニメーションの制御用
-    public int angularSpeed = 160;          //回転の最高速度（単位： 度／秒）
-    public float walkSpeed = 5.0F;          //移動速度
-    public float aniWalkSpeed;              //アニメーションで進む早さ
-    public GameObject target;               //追跡対象
-    public NavMeshAgent agent;              //ナビメッシュ
-    public TyrannosaurusStateBase currentState;
-    public GameObject rayStartPos;          //レイ発射位置
-    public float searchRange;               //索敵範囲
-    public float searchAngle;               //視野角
-    //public hit bitingHit;
 
-    public enum AniState
+    private void Awake()
     {
-        Idle,
-        Move,
-        BitingAttack
     }
-
-    [System.Obsolete]
     private void Start()
     {
         //初期状態の設定
@@ -37,36 +22,43 @@ public partial class Tyrannosaurus : MonoBehaviour, IAttackDamage
         agent.speed = walkSpeed;
         agent.acceleration = walkSpeed;
         agent.angularSpeed = angularSpeed;
-        //bitingHit = GetComponent<hit>();
-        //bitingHit.info.damage = 10;
-        //bitingHit.info.name = "ティラノサウルス";
-        //bitingHit.SetActive(false);
+
     }
+
 
     private void Update()
     {
         currentState.OnUpdate(this);
     }
-    private void OnControllerColliderHit(ControllerColliderHit hit)
-    {
-        Debug.Log("enemy  "+hit.gameObject.tag);
-    }
 
-    private void OnCollisionEnter(Collision collision)
-    {
-        Debug.Log("enemy  " + collision.gameObject.tag);
-    }
-    private void OnTriggerEnter(Collider other)
-    {
-        Debug.Log("enemy  " + other.gameObject.tag);
-    }
+    //private void OnCollisionEnter(Collision collision)
+    //{
+    //    Debug.Log("enemy  " + collision.gameObject.tag);
+    //    foreach (var element in colliders)
+    //    {
+    //    }
+    //    //プレイヤーと当たってる
+    //    if (collision.gameObject.CompareTag("Player"))
+    //    {
+    //        AttackInfo tmp = new AttackInfo();
+    //        tmp.damage = 10;
+    //        tmp.name = "ティラノサウルス";
+    //        tmp.transform = this.transform;
+    //        ExecuteEvents.Execute<IAttackDamage>(
+    //        target: collision.gameObject,
+    //        eventData: null,
+    //        functor: (reciever, eventData) => reciever.OnDamaged(tmp));
+    //    }
+    //}
+
 
     public void OnDamaged(AttackInfo _attackInfo)
     {
+        
         // Debug.Log("get damage");
     }
 
-    public void ChangeState<T>()where T:TyrannosaurusStateBase,new()
+    public void ChangeState<T>() where T : TyrannosaurusStateBase, new()
     {
         var nextState = new T();
         currentState.OnExit(this, nextState);
@@ -90,5 +82,5 @@ public partial class Tyrannosaurus : MonoBehaviour, IAttackDamage
         int i = _num.intParameter;
         currentState.OnAnimetionStart(this, i);
     }
-    
+
 }
