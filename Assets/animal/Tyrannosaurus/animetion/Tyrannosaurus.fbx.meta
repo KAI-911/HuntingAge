@@ -180,8 +180,8 @@ ModelImporter:
       name: GLTF_created_0|roar_GLTF_created_0
       takeName: GLTF_created_0|roar_GLTF_created_0
       internalID: 0
-      firstFrame: 0
-      lastFrame: 216
+      firstFrame: 29
+      lastFrame: 142
       wrapMode: 0
       orientationOffsetY: 0
       level: 0

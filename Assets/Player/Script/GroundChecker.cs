@@ -13,10 +13,12 @@ public class GroundChecker : MonoBehaviour
     {
         ground = true;
     }
-
+    private void OnTriggerStay(Collider other)
+    {
+        ground = true;
+    }
     private void Update()
     {
-        Debug.Log(ground);
     }
     private void OnTriggerExit(Collider other)
     {

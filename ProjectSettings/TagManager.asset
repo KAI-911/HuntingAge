@@ -12,6 +12,7 @@ TagManager:
   - EnemyRightLeg
   - EnemyLeftLeg
   - EnemyTail
+  - Wepon
   layers:
   - Default
   - TransparentFX

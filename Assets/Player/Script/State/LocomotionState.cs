@@ -1,0 +1,49 @@
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+
+public class LocomotionState : PlayerStateBase
+{
+    float nowSpeed;
+    public override void OnEnter(Player owner, PlayerStateBase prevState)
+    {
+        nowSpeed = owner.DashSpeed;
+        owner.Animator.SetInteger("AniState", (int)PlayerAnimationState.Locomotion);
+        owner.Animator.SetTrigger("Change");
+
+    }
+    public override void OnExit(Player owner, PlayerStateBase nextState)
+    {
+
+    }
+    public override void OnUpdate(Player owner)
+    {
+        owner.Animator.SetFloat("speed", owner.MoveDirection.magnitude, 0.1f, Time.deltaTime);
+        nowSpeed = owner.DashSpeed;
+
+
+        //íÖínÇµÇƒÇ¢Ç»Ç©Ç¡ÇΩÇÁóéâ∫èÛë‘Ç…ïŒà⁄
+        if (!owner.GroundChecker.IsGround())
+        {
+            owner.ChangeState<FallState>();
+        }
+
+    }
+    public override void OnFixedUpdate(Player owner)
+    {
+        owner.MoveDirection = Vector3.zero;
+        owner.MoveDirection += owner.InputMoveAction.ReadValue<Vector2>().x * owner.GetCameraRight(owner.PlayerCamera);
+        owner.MoveDirection += owner.InputMoveAction.ReadValue<Vector2>().y * owner.GetCameraForward(owner.PlayerCamera);
+        owner.MoveDirection = owner.MoveDirection.normalized * nowSpeed;
+        owner.Rigidbody.AddForce(owner.MoveDirection, ForceMode.Impulse);
+        owner.LookAt();
+    }
+    public override void OnAnimationEvent(Player owner, AnimationEvent animationEvent)
+    {
+
+    }
+    public override void OnCollisionStay(Player owner, Collision collision)
+    {
+
+    }
+}

@@ -493,11 +493,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   part: 4
-  damage: 5
   partName: leftLegDown
-  trigger: 0
+  damage: 5
+  attackFlg: 0
   targetTag: Player
-  triggerObject: {fileID: 0}
+  targetObject: {fileID: 0}
+  hitReaction: 0
 --- !u!1 &1144904897400434641
 GameObject:
   m_ObjectHideFlags: 0
@@ -764,11 +765,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   part: 4
-  damage: 5
   partName: leftLegUp
-  trigger: 0
+  damage: 5
+  attackFlg: 0
   targetTag: Player
-  triggerObject: {fileID: 0}
+  targetObject: {fileID: 0}
+  hitReaction: 0
 --- !u!1 &1594133399728555411
 GameObject:
   m_ObjectHideFlags: 0
@@ -1083,11 +1085,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   part: 5
-  damage: 10
   partName: edeail
-  trigger: 0
+  damage: 10
+  attackFlg: 0
   targetTag: Player
-  triggerObject: {fileID: 0}
+  targetObject: {fileID: 0}
+  hitReaction: 1
 --- !u!1 &2103248936361841820
 GameObject:
   m_ObjectHideFlags: 0
@@ -1433,11 +1436,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   part: 3
-  damage: 5
   partName: rightLegUp
-  trigger: 0
+  damage: 5
+  attackFlg: 0
   targetTag: Player
-  triggerObject: {fileID: 0}
+  targetObject: {fileID: 0}
+  hitReaction: 0
 --- !u!1 &2914036214734385672
 GameObject:
   m_ObjectHideFlags: 0
@@ -1610,11 +1614,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   part: 3
-  damage: 5
   partName: rightLegDown
-  trigger: 0
+  damage: 5
+  attackFlg: 0
   targetTag: Player
-  triggerObject: {fileID: 0}
+  targetObject: {fileID: 0}
+  hitReaction: 0
 --- !u!1 &3186476856961804661
 GameObject:
   m_ObjectHideFlags: 0
@@ -1707,11 +1712,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   part: 6
-  damage: 0
   partName: searchTrigger
-  trigger: 0
+  damage: 0
+  attackFlg: 0
   targetTag: Player
-  triggerObject: {fileID: 0}
+  targetObject: {fileID: 0}
+  hitReaction: 0
 --- !u!1 &3274903526251578627
 GameObject:
   m_ObjectHideFlags: 0
@@ -2015,11 +2021,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   part: 2
-  damage: 0
   partName: body
-  trigger: 0
+  damage: 0
+  attackFlg: 0
   targetTag: Player
-  triggerObject: {fileID: 0}
+  targetObject: {fileID: 0}
+  hitReaction: 0
 --- !u!136 &854600362842679063
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -2134,6 +2141,10 @@ MonoBehaviour:
   rayStartPos: {fileID: 241740633324987289}
   searchRange: 50
   searchAngle: 120
+  discoverFlg: 0
+  notDiscoverTime: 0
+  roarChengeTime: 30
+  transforms: []
 --- !u!195 &129118418938444966
 NavMeshAgent:
   m_ObjectHideFlags: 0
@@ -2645,11 +2656,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   part: 1
-  damage: 15
   partName: head
-  trigger: 0
+  damage: 15
+  attackFlg: 0
   targetTag: Player
-  triggerObject: {fileID: 0}
+  targetObject: {fileID: 0}
+  hitReaction: 2
 --- !u!1 &5386207985228611113
 GameObject:
   m_ObjectHideFlags: 0
@@ -3237,11 +3249,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   part: 1
-  damage: 15
   partName: neck
-  trigger: 0
+  damage: 15
+  attackFlg: 0
   targetTag: Player
-  triggerObject: {fileID: 0}
+  targetObject: {fileID: 0}
+  hitReaction: 2
 --- !u!1 &6706697029943484110
 GameObject:
   m_ObjectHideFlags: 0
@@ -3396,11 +3409,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   part: 8
-  damage: 0
   partName: attackTrigger
-  trigger: 0
+  damage: 0
+  attackFlg: 0
   targetTag: Player
-  triggerObject: {fileID: 0}
+  targetObject: {fileID: 0}
+  hitReaction: 0
 --- !u!1 &6888541024149631543
 GameObject:
   m_ObjectHideFlags: 0
@@ -3812,11 +3826,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   part: 7
-  damage: 0
   partName: attackTrigger
-  trigger: 0
+  damage: 0
+  attackFlg: 0
   targetTag: Player
-  triggerObject: {fileID: 0}
+  targetObject: {fileID: 0}
+  hitReaction: 0
 --- !u!1 &7917880148985653389
 GameObject:
   m_ObjectHideFlags: 0
@@ -4627,11 +4642,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   part: 5
-  damage: 10
   partName: roottail
-  trigger: 0
+  damage: 10
+  attackFlg: 0
   targetTag: Player
-  triggerObject: {fileID: 0}
+  targetObject: {fileID: 0}
+  hitReaction: 1
 --- !u!1 &9133316202959685849
 GameObject:
   m_ObjectHideFlags: 0

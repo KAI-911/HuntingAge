@@ -1,86 +1,151 @@
-using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.Events;
+using System;
 using UnityEngine.AI;
-using UnityEngine.EventSystems;
+using System.Threading.Tasks;
 
-public partial class Tyrannosaurus : MonoBehaviour, IAttackDamage
+public class Tyrannosaurus : MonoBehaviour
 {
+    //ナビメッシュエージェントーーーーーーーーーーーーーーーーーーーーーーーー
+    private NavMeshAgent _navMeshAgent;
+    public NavMeshAgent NavMeshAgent { get => _navMeshAgent; set => _navMeshAgent = value; }
+   
+    //アニメーターーーーーーーーーーーーーーーーーーーーーーーーー
+    private Animator _animator;
+    public Animator Animator { get => _animator; set => _animator = value; }
+
+    //現在の状態ーーーーーーーーーーーーーーーーーーーーーーーー
+    private TyrannosaurusState _currentState;
+
+    //攻撃判定ーーーーーーーーーーーーーーーーーーーーーーーー
+    private HitReceiver _hitReceiver;
+    public HitReceiver HitReceiver { get => _hitReceiver; set => _hitReceiver = value; }
+
+
+    //警戒状態のフラグーーーーーーーーーーーーーーーーーーーーーーーー
+    private bool _warningFlg;
+    public bool WarningFlg { get => _warningFlg; set => _warningFlg = value; }
+    
+    //発見状態のフラグーーーーーーーーーーーーーーーーーーーーーーーー
+    private bool _discoverFlg;
+    public bool DiscoverFlg { get => _discoverFlg; set => _discoverFlg = value; }
+
+    //警戒状態で見回るポイントーーーーーーーーーーーーーーーーーーーーーーーー
+    [SerializeField] private GameObject[] _warningPos;
+    public GameObject[] WaningPos { get => _warningPos; }
+
+    //攻撃対象ーーーーーーーーーーーーーーーーーーーーーーーー
+    private GameObject _target;
+    public GameObject Target { get => _target; }
+
+    //障害物が無いか判断するレイ判定の発射位置ーーーーーーーーーーーーーーーーーーーーーーーー
+    [SerializeField]private GameObject _rayStartPos;
+
+    //視野角範囲ーーーーーーーーーーーーーーーーーーーーーーーー
+    [SerializeField]private float _searchAngle;
+
+    //索敵範囲ーーーーーーーーーーーーーーーーーーーーーーーー
+    [SerializeField] private TargetChecker _searchArea;
+    public TargetChecker SearchArea { get => _searchArea; }
+
+
+    //噛みつき攻撃範囲ーーーーーーーーーーーーーーーーーーーーーーーー
+    [SerializeField] private TargetChecker _bitingAttackArea;
+    public TargetChecker BitingAttackArea { get => _bitingAttackArea; }
+
+    //尻尾攻撃範囲ーーーーーーーーーーーーーーーーーーーーーーーー
+    [SerializeField]private TargetChecker _tailAttackArea;
+    public TargetChecker TailAttackArea { get => _tailAttackArea; }
+
 
     private void Awake()
     {
+        _navMeshAgent = GetComponent<NavMeshAgent>();
+        Animator = GetComponent<Animator>();
+        _currentState = new TyrannosaurusIdleState();
+        _hitReceiver = GetComponent<HitReceiver>();
+        _currentState.OnEnter(this, null);
     }
-    private void Start()
+
+    void Start()
     {
-        //初期状態の設定
-        currentState = new TyrannosaurusIdleState();
-        currentState.OnEnter(this, null);
-        agent = GetComponent<NavMeshAgent>();
-        target = GameObject.FindWithTag("Player");
-        agent.speed = walkSpeed;
-        agent.acceleration = walkSpeed;
-        agent.angularSpeed = angularSpeed;
-
+        _target = GameObject.FindWithTag("Player");
+        _discoverFlg = false;
+        _warningFlg = false;
     }
 
-
-    private void Update()
+    void Update()
     {
-        currentState.OnUpdate(this);
+        _currentState.OnUpdate(this);
     }
-
-    //private void OnCollisionEnter(Collision collision)
-    //{
-    //    Debug.Log("enemy  " + collision.gameObject.tag);
-    //    foreach (var element in colliders)
-    //    {
-    //    }
-    //    //プレイヤーと当たってる
-    //    if (collision.gameObject.CompareTag("Player"))
-    //    {
-    //        AttackInfo tmp = new AttackInfo();
-    //        tmp.damage = 10;
-    //        tmp.name = "ティラノサウルス";
-    //        tmp.transform = this.transform;
-    //        ExecuteEvents.Execute<IAttackDamage>(
-    //        target: collision.gameObject,
-    //        eventData: null,
-    //        functor: (reciever, eventData) => reciever.OnDamaged(tmp));
-    //    }
-    //}
-
-
-    public void OnDamaged(AttackInfo _attackInfo)
+    private void FixedUpdate()
     {
-        
-        // Debug.Log("get damage");
+        _currentState.OnFixedUpdate(this);
     }
-
-    public void ChangeState<T>() where T : TyrannosaurusStateBase, new()
+    private void OnAnimationEvent(AnimationEvent animationEvent)
+    {
+        _currentState.OnAnimationEvent(this, animationEvent);
+    }
+    public void ChangeState<T>() where T : TyrannosaurusState, new()
     {
         var nextState = new T();
-        currentState.OnExit(this, nextState);
-        nextState.OnEnter(this, currentState);
-        currentState = nextState;
+        _currentState.OnExit(this, nextState);
+        nextState.OnEnter(this, _currentState);
+        _currentState = nextState;
+    }
+    public bool Search()
+    {
+        //一定範囲にいるかの判定
+        if (!_searchArea.TriggerHit) return false;
+
+        //視界に入っているかの判定
+        var from = gameObject.transform.forward;
+        var to = _target.transform.position - _rayStartPos.transform.position;
+        // 平面の法線ベクトル（上向きベクトルとする）
+        var planeNormal = Vector3.up;
+        // 平面に投影されたベクトルを求める
+        var planeFrom = Vector3.ProjectOnPlane(from, planeNormal);
+        var planeTo = Vector3.ProjectOnPlane(to, planeNormal);
+        // 平面に投影されたベクトル同士の符号付き角度  時計回りで正、反時計回りで負
+        var signedAngle = Vector3.SignedAngle(planeFrom, planeTo, planeNormal);
+        if (_searchAngle / 2.0f < Mathf.Abs(signedAngle)) return false;
+
+        //間に障害物があるかの判定
+        Vector3 dir = to.normalized;
+        RaycastHit[] raycastHits = new RaycastHit[10];
+        Ray ray = new Ray
+        {
+            origin = _rayStartPos.transform.position,
+            direction = dir
+        };
+        int hitCount = Physics.RaycastNonAlloc(ray, raycastHits, to.magnitude, 0);
+        if (hitCount > 0) return false;
+
+        return true;
     }
 
-    //アニメーションイベント
-    private void AnimetionEvent(AnimationEvent _num)
+    public void LookToTarget()
     {
-        int i = _num.intParameter;
-        currentState.OnAnimetionFunction(this, i);
+        var vec = this._target.transform.position - this.transform.position;
+        vec.y = 0;
+        vec = vec.normalized;
+        this.transform.LookAt(this.transform.position + vec);
+
     }
-    private void AnimetionEnd(AnimationEvent _num)
+    public async Task WaitForAsync(float seconds, Action action)
     {
-        int i = _num.intParameter;
-        currentState.OnAnimetionEnd(this, i);
-    }
-    private void AnimetionStart(AnimationEvent _num)
-    {
-        int i = _num.intParameter;
-        currentState.OnAnimetionStart(this, i);
+        await Task.Delay(TimeSpan.FromSeconds(seconds));
+        action();
     }
 
+}
+public enum TyrannosaurusAnimationState
+{
+    Idle,
+    Move,
+    BitingAttack,
+    TailAttack,
+    Roar,
+    Wandering
 }

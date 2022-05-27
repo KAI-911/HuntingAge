@@ -1,62 +1,53 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
 
 public class HitReceiver : MonoBehaviour
 {
 
-    private AttackInfo attackInfo;   //çUåÇèÓïÒ
-    public Hit[] hits;
+    [SerializeField] private Hit[] _hits;
+    public Hit[] Hits { get => _hits; set => _hits = value; }
 
-    public enum Part
-    {
-        notSet,
-        head,
-        body,
-        rightLeg,
-        leftLeg,
-        tail,
-        searchTrigger,
-        bitingAttackTrigger,
-        tailAttackTrigger
-    }
+    [SerializeField] private string _maskTag;
+    public string MaskTag { get => _maskTag; set => _maskTag = value; }
 
-    public void SetAttackFlg(bool _attackFlg, Part _part)
+    private void Start()
     {
-        foreach (var element in hits)
+        foreach (var element in Hits)
         {
-            if (element.GetPart() != _part) continue;
-            element.SetAttackFlg(_attackFlg);
-
-        }
-
-    }
-    public virtual void OnHit(Part _part, AttackInfo _attackInfo, GameObject _gameObject)
-    {
-        Debug.Log(_gameObject.tag + "Ç…" + _attackInfo.name + "Ç™ìñÇΩÇ¡ÇΩ");
-        var player = _gameObject.GetComponent<Player>();
-        if (player != null)
-        {
-            player.OnDamaged(_attackInfo);
+            element.MaskTag = MaskTag;
         }
     }
 
-    public virtual void TriggerEnter(Collider _other, AttackInfo _attackInfo)
+    public void ChangeAttackFlg(PartType _part)
     {
-        Debug.Log("OnTriggerEnter");
-
+        foreach (var element in _hits)
+        {
+            if (_part == element.Part) element.gameObject.SetActive(!element.gameObject.activeSelf);
+        }
     }
-    public virtual void TriggerStay(Collider _other, AttackInfo _attackInfo)
+    public void AttackFlgReset()
     {
-        Debug.Log("OnTriggerStay");
-
+        foreach (var element in _hits)
+        {
+            element.gameObject.SetActive(false);
+        }
     }
-    public virtual void TriggerExit(Collider _other, AttackInfo _attackInfo)
+
+    public virtual void OnHit(GameObject _hitObject, Hit _hit)
     {
-        Debug.Log("OnTriggerExit");
+        AttackInfo info = new AttackInfo();
+        //HitÇ©ÇÁéÊìæÇ∑ÇÈ
+        info.PartType = _hit.Part;
+        info.CllisionPos = _hit.CollisionPos;
+        var hitstatus = _hitObject.transform.root.gameObject.GetComponent<Status>();
+        var mystatus = transform.root.gameObject.GetComponent<Status>();
 
+        if (hitstatus == null || mystatus == null) return;
+        info.Attack = mystatus.Attack;
+        info.HitReaction = HitReaction.nonReaction;
+        hitstatus.OnDamaged(info);
     }
+
 
 }
 
@@ -65,10 +56,20 @@ public interface IAttackDamage : IEventSystemHandler
 {
     public void OnDamaged(AttackInfo _attackInfo);
 }
-public class AttackInfo
+public enum PartType
 {
-    public Transform transform = null;
-    public int damage = 0;
-    public string name = "non";
-    public bool attackFlg = false;
+    notSet,
+    head,
+    body,
+    rightLeg,
+    leftLeg,
+    tail,
+    axe
+}
+public enum HitReaction
+{
+    nonReaction,    //îΩâûÇµÇ»Ç¢
+    lowReaction,    //åyÇ≠ÇÃÇØÇºÇÈ
+    middleReaction, //ÇµÇËÇ‡ÇøÇÇ¬Ç≠
+    highReaction    //êÅÇ¡îÚÇ‘
 }
