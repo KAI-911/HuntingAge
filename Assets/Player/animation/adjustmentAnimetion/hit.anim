@@ -48940,8 +48940,8 @@ AnimationClip:
   m_HasMotionFloatCurves: 0
   m_Events:
   - time: 0.6
-    functionName: AnimetionEnd
-    data: 
+    functionName: OnAnimationEvent
+    data: End
     objectReferenceParameter: {fileID: 0}
     floatParameter: 0
     intParameter: 0

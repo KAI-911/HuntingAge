@@ -18,9 +18,13 @@ public class LocomotionState : PlayerStateBase
     }
     public override void OnUpdate(Player owner)
     {
-        owner.Animator.SetFloat("speed", owner.MoveDirection.magnitude, 0.1f, Time.deltaTime);
-        nowSpeed = owner.DashSpeed;
+        
+        owner.MoveDirection = Vector3.zero;
+        owner.MoveDirection += owner.InputMoveAction.ReadValue<Vector2>().x * owner.GetCameraRight(owner.PlayerCamera);
+        owner.MoveDirection += owner.InputMoveAction.ReadValue<Vector2>().y * owner.GetCameraForward(owner.PlayerCamera);
+        owner.MoveDirection = owner.MoveDirection * nowSpeed;
 
+        owner.Animator.SetFloat("speed", owner.MoveDirection.magnitude, 0.1f, Time.deltaTime);
 
         //íÖínÇµÇƒÇ¢Ç»Ç©Ç¡ÇΩÇÁóéâ∫èÛë‘Ç…ïŒà⁄
         if (!owner.GroundChecker.IsGround())
@@ -31,10 +35,6 @@ public class LocomotionState : PlayerStateBase
     }
     public override void OnFixedUpdate(Player owner)
     {
-        owner.MoveDirection = Vector3.zero;
-        owner.MoveDirection += owner.InputMoveAction.ReadValue<Vector2>().x * owner.GetCameraRight(owner.PlayerCamera);
-        owner.MoveDirection += owner.InputMoveAction.ReadValue<Vector2>().y * owner.GetCameraForward(owner.PlayerCamera);
-        owner.MoveDirection = owner.MoveDirection.normalized * nowSpeed;
         owner.Rigidbody.AddForce(owner.MoveDirection, ForceMode.Impulse);
         owner.LookAt();
     }

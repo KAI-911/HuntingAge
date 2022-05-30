@@ -15,13 +15,10 @@ public partial class Player : MonoBehaviour
     private Status _status;
     public Status Status { get => _status; set => _status = value; }
 
-    //攻撃を受けた時の反応
-    private HitReaction _hitReaction;
-    public HitReaction HitReaction { get => _hitReaction; }
 
     //攻撃判定
     [SerializeField] private HitReceiver _hitReceiver;
-    public HitReceiver HitReceiver { get => _hitReceiver; }
+    public HitReceiver HitReceiver { get => _hitReceiver; set => _hitReceiver = value; }
 
 
     //インプットシステム
@@ -29,15 +26,12 @@ public partial class Player : MonoBehaviour
     private InputAction _inputMoveAction;
     public InputAction InputMoveAction { get => _inputMoveAction; }
 
-    //ダッシュ速度
-    [SerializeField] private float _dashSpeed;
-    public float DashSpeed { get => _dashSpeed; set => _dashSpeed = value; }
+    //最大速度
+    [SerializeField] private float _maxSpeed;
+    public float DashSpeed { get => _maxSpeed; set => _maxSpeed = value; }
     //ジャンプ力
     [SerializeField] private float _jumpPowor;
     public float JumpPowor { get => _jumpPowor; }
-    //回避速度
-    [SerializeField] private float _dodgePowor;
-    public float DodgePower { get => _dodgePowor; }
     //移動ベクトル
     private Vector3 _moveDirection = Vector3.zero;
     public Vector3 MoveDirection { get => _moveDirection; set => _moveDirection = value; }
@@ -52,15 +46,18 @@ public partial class Player : MonoBehaviour
     //今の状態
     private PlayerStateBase _currentState;
 
+    private WeponChange _weponChange;
+    public WeponChange WeponChange { get => _weponChange; set => _weponChange = value; }
     private void Awake()
     {
         _rigidbody = GetComponent<Rigidbody>();
         _animator = GetComponent<Animator>();
-        _inputMove = new InputControls();
+        _status = GetComponent<Status>();
+        _weponChange = GetComponent<WeponChange>();
         _targetRotation = transform.rotation;
+        _inputMove = new InputControls();
         _currentState = new LocomotionState();
         _currentState.OnEnter(this, null);
-
     }
 
     private void OnEnable()
@@ -84,18 +81,25 @@ public partial class Player : MonoBehaviour
 
     void Start()
     {
-        _hitReaction = HitReaction.nonReaction;
+        _weponChange.Change(WeponChange.WeponType.Axe);
+
     }
 
     void Update()
     {
         _currentState.OnUpdate(this);
         _animator.SetBool("IsGround", _groundChecker.IsGround());
+
+        if (_status.HitReaction != HitReaction.nonReaction &&
+            _currentState.GetType() != typeof(HitReactionState))
+        {
+            ChangeState<HitReactionState>();
+        }
+
     }
 
     private void FixedUpdate()
     {
-
         _currentState.OnFixedUpdate(this);
     }
 
@@ -129,10 +133,7 @@ public partial class Player : MonoBehaviour
         ChangeState<StrongAttack>();
 
     }
-    //private void Attack2(InputAction.CallbackContext obj)
-    //{
-    //    //animationの切り替え
-    //}
+
     private void Jump(InputAction.CallbackContext obj)
     {
         if (!_groundChecker.IsGround()) return;
@@ -143,6 +144,7 @@ public partial class Player : MonoBehaviour
     {
         if (!_groundChecker.IsGround()) return;
         if (_currentState.GetType() != typeof(LocomotionState)) return;
+        if (_inputMoveAction.ReadValue<Vector2>().sqrMagnitude <= 0.1f) return;
         ChangeState<DodgeState>();
     }
     public void LookAt()
@@ -179,5 +181,6 @@ public enum PlayerAnimationState
     Jump,
     Fall,
     Dodge,
-    StrongAttack
+    StrongAttack,
+    HitReaction
 }

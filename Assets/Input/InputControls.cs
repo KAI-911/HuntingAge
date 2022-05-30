@@ -64,15 +64,6 @@ public partial class @InputControls : IInputActionCollection2, IDisposable
                     ""initialStateCheck"": false
                 },
                 {
-                    ""name"": ""Sneak"",
-                    ""type"": ""Button"",
-                    ""id"": ""e7ea089e-0bff-4217-b7bd-48c0b7b727ba"",
-                    ""expectedControlType"": ""Button"",
-                    ""processors"": """",
-                    ""interactions"": """",
-                    ""initialStateCheck"": false
-                },
-                {
                     ""name"": ""StrongAttack"",
                     ""type"": ""Button"",
                     ""id"": ""f445e7c4-a488-4591-b626-a44ecaf03cb1"",
@@ -89,22 +80,13 @@ public partial class @InputControls : IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
-                },
-                {
-                    ""name"": ""Dash"",
-                    ""type"": ""Button"",
-                    ""id"": ""6cc10030-a731-4882-ab30-3f5f3677941f"",
-                    ""expectedControlType"": ""Button"",
-                    ""processors"": """",
-                    ""interactions"": """",
-                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
                 {
                     ""name"": ""WASD"",
                     ""id"": ""46bf5bc2-d48a-4244-8482-aeedf5545270"",
-                    ""path"": ""2DVector"",
+                    ""path"": ""2DVector(mode=2)"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
@@ -159,7 +141,7 @@ public partial class @InputControls : IInputActionCollection2, IDisposable
                 {
                     ""name"": ""Arrow"",
                     ""id"": ""16a9de82-22b7-4475-aca5-7897861f947e"",
-                    ""path"": ""2DVector"",
+                    ""path"": ""2DVector(mode=2)"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
@@ -290,28 +272,6 @@ public partial class @InputControls : IInputActionCollection2, IDisposable
                 },
                 {
                     ""name"": """",
-                    ""id"": ""79bf637d-5fe0-4691-a562-1534a750fc40"",
-                    ""path"": ""<Keyboard>/c"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""Sneak"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
-                    ""id"": ""f5007abf-7718-4692-ba58-9a5f0e7b3b23"",
-                    ""path"": ""<Gamepad>/buttonEast"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""Sneak"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
                     ""id"": ""7071016d-0e7e-4843-8571-d1144800fe74"",
                     ""path"": ""<Gamepad>/buttonNorth"",
                     ""interactions"": """",
@@ -353,28 +313,6 @@ public partial class @InputControls : IInputActionCollection2, IDisposable
                     ""action"": ""WeakAttack"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
-                    ""id"": ""12f04d1a-71f2-4146-867e-ae3facc39465"",
-                    ""path"": ""<Keyboard>/leftShift"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""Dash"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
-                    ""id"": ""795882a0-5de3-4bad-bdc9-353b469759cd"",
-                    ""path"": ""<Gamepad>/rightShoulder"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""Dash"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -387,10 +325,8 @@ public partial class @InputControls : IInputActionCollection2, IDisposable
         m_Player_Camera = m_Player.FindAction("Camera", throwIfNotFound: true);
         m_Player_Jump = m_Player.FindAction("Jump", throwIfNotFound: true);
         m_Player_Dodge = m_Player.FindAction("Dodge", throwIfNotFound: true);
-        m_Player_Sneak = m_Player.FindAction("Sneak", throwIfNotFound: true);
         m_Player_StrongAttack = m_Player.FindAction("StrongAttack", throwIfNotFound: true);
         m_Player_WeakAttack = m_Player.FindAction("WeakAttack", throwIfNotFound: true);
-        m_Player_Dash = m_Player.FindAction("Dash", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -454,10 +390,8 @@ public partial class @InputControls : IInputActionCollection2, IDisposable
     private readonly InputAction m_Player_Camera;
     private readonly InputAction m_Player_Jump;
     private readonly InputAction m_Player_Dodge;
-    private readonly InputAction m_Player_Sneak;
     private readonly InputAction m_Player_StrongAttack;
     private readonly InputAction m_Player_WeakAttack;
-    private readonly InputAction m_Player_Dash;
     public struct PlayerActions
     {
         private @InputControls m_Wrapper;
@@ -466,10 +400,8 @@ public partial class @InputControls : IInputActionCollection2, IDisposable
         public InputAction @Camera => m_Wrapper.m_Player_Camera;
         public InputAction @Jump => m_Wrapper.m_Player_Jump;
         public InputAction @Dodge => m_Wrapper.m_Player_Dodge;
-        public InputAction @Sneak => m_Wrapper.m_Player_Sneak;
         public InputAction @StrongAttack => m_Wrapper.m_Player_StrongAttack;
         public InputAction @WeakAttack => m_Wrapper.m_Player_WeakAttack;
-        public InputAction @Dash => m_Wrapper.m_Player_Dash;
         public InputActionMap Get() { return m_Wrapper.m_Player; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -491,18 +423,12 @@ public partial class @InputControls : IInputActionCollection2, IDisposable
                 @Dodge.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnDodge;
                 @Dodge.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnDodge;
                 @Dodge.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnDodge;
-                @Sneak.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnSneak;
-                @Sneak.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnSneak;
-                @Sneak.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnSneak;
                 @StrongAttack.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnStrongAttack;
                 @StrongAttack.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnStrongAttack;
                 @StrongAttack.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnStrongAttack;
                 @WeakAttack.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnWeakAttack;
                 @WeakAttack.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnWeakAttack;
                 @WeakAttack.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnWeakAttack;
-                @Dash.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnDash;
-                @Dash.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnDash;
-                @Dash.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnDash;
             }
             m_Wrapper.m_PlayerActionsCallbackInterface = instance;
             if (instance != null)
@@ -519,18 +445,12 @@ public partial class @InputControls : IInputActionCollection2, IDisposable
                 @Dodge.started += instance.OnDodge;
                 @Dodge.performed += instance.OnDodge;
                 @Dodge.canceled += instance.OnDodge;
-                @Sneak.started += instance.OnSneak;
-                @Sneak.performed += instance.OnSneak;
-                @Sneak.canceled += instance.OnSneak;
                 @StrongAttack.started += instance.OnStrongAttack;
                 @StrongAttack.performed += instance.OnStrongAttack;
                 @StrongAttack.canceled += instance.OnStrongAttack;
                 @WeakAttack.started += instance.OnWeakAttack;
                 @WeakAttack.performed += instance.OnWeakAttack;
                 @WeakAttack.canceled += instance.OnWeakAttack;
-                @Dash.started += instance.OnDash;
-                @Dash.performed += instance.OnDash;
-                @Dash.canceled += instance.OnDash;
             }
         }
     }
@@ -541,9 +461,7 @@ public partial class @InputControls : IInputActionCollection2, IDisposable
         void OnCamera(InputAction.CallbackContext context);
         void OnJump(InputAction.CallbackContext context);
         void OnDodge(InputAction.CallbackContext context);
-        void OnSneak(InputAction.CallbackContext context);
         void OnStrongAttack(InputAction.CallbackContext context);
         void OnWeakAttack(InputAction.CallbackContext context);
-        void OnDash(InputAction.CallbackContext context);
     }
 }

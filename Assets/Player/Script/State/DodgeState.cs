@@ -4,16 +4,17 @@ using UnityEngine;
 
 public class DodgeState : PlayerStateBase
 {
-    float power;
-    float resistancePower = 0.15f;
+
+    [SerializeField] float _invincibleTime = 0.1f;//秒
     public override void OnEnter(Player owner, PlayerStateBase prevState)
     {
-        power = owner.DodgePower;
-        owner.MoveDirection += owner.InputMoveAction.ReadValue<Vector2>().x * owner.GetCameraRight(owner.PlayerCamera);
-        owner.MoveDirection += owner.InputMoveAction.ReadValue<Vector2>().y * owner.GetCameraForward(owner.PlayerCamera);
-        owner.MoveDirection = owner.MoveDirection.normalized * power;
         owner.Animator.SetInteger("AniState", (int)PlayerAnimationState.Dodge);
         owner.Animator.SetTrigger("Change");
+
+
+        //一定時間経過したら無敵フラグを落とす
+        owner.Status.InvincibleFlg = true;
+        _ = owner.WaitForAsync(_invincibleTime, () => owner.Status.InvincibleFlg = false);
     }
     public override void OnExit(Player owner, PlayerStateBase nextState)
     {
@@ -21,11 +22,6 @@ public class DodgeState : PlayerStateBase
     }
     public override void OnUpdate(Player owner)
     {
-        //if (owner.MoveDirection.sqrMagnitude < 0.1f)
-        //{
-        //    //通常状態に偏移
-        //    owner.ChangeState<LocomotionState>();
-        //}
 
         //着地していなかったら落下状態に偏移
         if (!owner.GroundChecker.IsGround())
@@ -33,14 +29,11 @@ public class DodgeState : PlayerStateBase
             owner.ChangeState<FallState>();
         }
 
+        owner.LookAt();
 
     }
     public override void OnFixedUpdate(Player owner)
     {
-        owner.LookAt();
-        power -= resistancePower;
-        if (power < 0) return;
-        owner.MoveDirection = owner.MoveDirection.normalized * power;
         owner.Rigidbody.AddForce(owner.MoveDirection, ForceMode.Impulse);
     }
     public override void OnAnimationEvent(Player owner, AnimationEvent animationEvent)

@@ -1,33 +1,38 @@
 using UnityEngine;
 using UnityEngine.EventSystems;
-
+using System.Collections.Generic;
 public class HitReceiver : MonoBehaviour
 {
 
-    [SerializeField] private Hit[] _hits;
-    public Hit[] Hits { get => _hits; set => _hits = value; }
+    [SerializeField] List<Hit> _hitList = new List<Hit>();
+    public List<Hit> Hits { get => _hitList; set => _hitList = value; }
 
     [SerializeField] private string _maskTag;
     public string MaskTag { get => _maskTag; set => _maskTag = value; }
 
+    //攻撃ステートになったらそこで切り替える
+    private HitReaction _hitReaction;
+    public HitReaction HitReaction { get => _hitReaction; set => _hitReaction = value; }
+
+    [SerializeField] GameObject particleObject;
     private void Start()
     {
-        foreach (var element in Hits)
+        foreach (var element in _hitList)
         {
-            element.MaskTag = MaskTag;
+            element.MaskTag = _maskTag;
         }
     }
 
     public void ChangeAttackFlg(PartType _part)
     {
-        foreach (var element in _hits)
+        foreach (var element in _hitList)
         {
             if (_part == element.Part) element.gameObject.SetActive(!element.gameObject.activeSelf);
         }
     }
     public void AttackFlgReset()
     {
-        foreach (var element in _hits)
+        foreach (var element in _hitList)
         {
             element.gameObject.SetActive(false);
         }
@@ -44,17 +49,32 @@ public class HitReceiver : MonoBehaviour
 
         if (hitstatus == null || mystatus == null) return;
         info.Attack = mystatus.Attack;
-        info.HitReaction = HitReaction.nonReaction;
-        hitstatus.OnDamaged(info);
+        info.HitReaction = _hitReaction;
+        Debug.Log("当たり判定はOK");
+        var success = hitstatus.OnDamaged(info);
+        //ダメージを与えられたらヒットエフェクトを出す
+        if (success)
+        {
+            Instantiate(particleObject, info.CllisionPos, Quaternion.identity);
+        }
     }
 
-
+    public void AddHitObject(Hit hit)
+    {
+        if (hit == null)
+        {
+            Debug.Log("NULL");
+            return;
+        }
+        hit.MaskTag = _maskTag;
+        _hitList.Add(hit);
+    }
 }
 
 
 public interface IAttackDamage : IEventSystemHandler
 {
-    public void OnDamaged(AttackInfo _attackInfo);
+    public bool OnDamaged(AttackInfo _attackInfo);
 }
 public enum PartType
 {
@@ -64,7 +84,8 @@ public enum PartType
     rightLeg,
     leftLeg,
     tail,
-    axe
+    axe,
+    spear
 }
 public enum HitReaction
 {
@@ -73,3 +94,4 @@ public enum HitReaction
     middleReaction, //しりもちをつく
     highReaction    //吹っ飛ぶ
 }
+

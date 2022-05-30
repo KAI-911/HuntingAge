@@ -21,14 +21,12 @@ public class FallState : PlayerStateBase
 
     public override void OnUpdate(Player owner)
     {
-        owner.MoveDirection = Vector3.zero;
-
         if (!owner.GroundChecker.IsGround())
         {
+            owner.MoveDirection = Vector3.zero;
             owner.MoveDirection += owner.InputMoveAction.ReadValue<Vector2>().x * owner.GetCameraRight(owner.PlayerCamera);
             owner.MoveDirection += owner.InputMoveAction.ReadValue<Vector2>().y * owner.GetCameraForward(owner.PlayerCamera);
             owner.MoveDirection = owner.MoveDirection.normalized * speed;
-
         }
     }
 
@@ -39,19 +37,17 @@ public class FallState : PlayerStateBase
         {
             owner.Rigidbody.AddForce(owner.MoveDirection, ForceMode.Impulse);
         }
-        else
-        {
-            var velocity = owner.Rigidbody.velocity;
-            velocity.x = 0;
-            velocity.z = 0;
-            owner.Rigidbody.velocity = velocity;
-        }
+
+
         owner.LookAt();
     }
 
     public override void OnAnimationEvent(Player owner, AnimationEvent animationEvent)
     {
-        owner.ChangeState<LocomotionState>();
+        if (animationEvent.stringParameter == "End")
+        {
+            owner.ChangeState<LocomotionState>();
+        }
     }
     public override void OnCollisionStay(Player owner, Collision collision)
     {

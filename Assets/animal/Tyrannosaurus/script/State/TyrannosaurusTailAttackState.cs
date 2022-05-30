@@ -7,7 +7,7 @@ public class TyrannosaurusTailAttackState : TyrannosaurusState
     public override void OnEnter(Tyrannosaurus owner, TyrannosaurusState prevState)
     {
         owner.Animator.SetInteger("AniState", (int)TyrannosaurusAnimationState.TailAttack);
-
+        owner.HitReceiver.HitReaction = HitReaction.middleReaction;
     }
     public override void OnExit(Tyrannosaurus owner, TyrannosaurusState nextState)
     {
@@ -16,7 +16,6 @@ public class TyrannosaurusTailAttackState : TyrannosaurusState
     public override void OnUpdate(Tyrannosaurus owner)
     {
         owner.NavMeshAgent.destination = owner.transform.position;
-        owner.LookToTarget();
     }
     public override void OnFixedUpdate(Tyrannosaurus owner)
     {
@@ -29,7 +28,7 @@ public class TyrannosaurusTailAttackState : TyrannosaurusState
             //“–‚½‚è”»’è‚ð”½“]
             owner.HitReceiver.ChangeAttackFlg(PartType.tail);
         }
-        if (animationEvent.stringParameter == "End")
+        else if (animationEvent.stringParameter == "End")
         {
             owner.HitReceiver.AttackFlgReset();
             owner.ChangeState<TyrannosaurusMoveState>();

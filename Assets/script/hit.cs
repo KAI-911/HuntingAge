@@ -9,7 +9,8 @@ public class Hit : MonoBehaviour
     [SerializeField]
     private PartType _part;
     public PartType Part { get => _part; set => _part = value; }
-
+    
+    [SerializeField]
     private string _maskTag;
     public string MaskTag { get => _maskTag; set => _maskTag = value; }
 

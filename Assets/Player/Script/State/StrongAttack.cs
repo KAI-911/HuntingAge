@@ -26,7 +26,7 @@ public class StrongAttack : PlayerStateBase
     {
         if (animationEvent.stringParameter == "Change")
         {
-            owner.HitReceiver.ChangeAttackFlg(PartType.axe);
+            owner.HitReceiver.ChangeAttackFlg(owner.WeponChange.GetPartType());
         }
         if (animationEvent.stringParameter == "End")
         {

@@ -492,13 +492,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 098e7b4a54581ab45bfdd78a64d49887, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  part: 4
-  partName: leftLegDown
-  damage: 5
-  attackFlg: 0
-  targetTag: Player
-  targetObject: {fileID: 0}
-  hitReaction: 0
+  _part: 0
 --- !u!1 &1144904897400434641
 GameObject:
   m_ObjectHideFlags: 0
@@ -764,13 +758,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 098e7b4a54581ab45bfdd78a64d49887, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  part: 4
-  partName: leftLegUp
-  damage: 5
-  attackFlg: 0
-  targetTag: Player
-  targetObject: {fileID: 0}
-  hitReaction: 0
+  _part: 0
 --- !u!1 &1594133399728555411
 GameObject:
   m_ObjectHideFlags: 0
@@ -1084,13 +1072,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 098e7b4a54581ab45bfdd78a64d49887, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  part: 5
-  partName: edeail
-  damage: 10
-  attackFlg: 0
-  targetTag: Player
-  targetObject: {fileID: 0}
-  hitReaction: 1
+  _part: 0
 --- !u!1 &2103248936361841820
 GameObject:
   m_ObjectHideFlags: 0
@@ -1435,13 +1417,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 098e7b4a54581ab45bfdd78a64d49887, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  part: 3
-  partName: rightLegUp
-  damage: 5
-  attackFlg: 0
-  targetTag: Player
-  targetObject: {fileID: 0}
-  hitReaction: 0
+  _part: 0
 --- !u!1 &2914036214734385672
 GameObject:
   m_ObjectHideFlags: 0
@@ -1613,13 +1589,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 098e7b4a54581ab45bfdd78a64d49887, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  part: 3
-  partName: rightLegDown
-  damage: 5
-  attackFlg: 0
-  targetTag: Player
-  targetObject: {fileID: 0}
-  hitReaction: 0
+  _part: 0
 --- !u!1 &3186476856961804661
 GameObject:
   m_ObjectHideFlags: 0
@@ -1711,13 +1681,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 098e7b4a54581ab45bfdd78a64d49887, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  part: 6
-  partName: searchTrigger
-  damage: 0
-  attackFlg: 0
-  targetTag: Player
-  targetObject: {fileID: 0}
-  hitReaction: 0
+  _part: 0
 --- !u!1 &3274903526251578627
 GameObject:
   m_ObjectHideFlags: 0
@@ -2020,13 +1984,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 098e7b4a54581ab45bfdd78a64d49887, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  part: 2
-  partName: body
-  damage: 0
-  attackFlg: 0
-  targetTag: Player
-  targetObject: {fileID: 0}
-  hitReaction: 0
+  _part: 0
 --- !u!136 &854600362842679063
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -2067,9 +2025,9 @@ GameObject:
   m_Component:
   - component: {fileID: 5322878130485107751}
   - component: {fileID: 2251383793275323997}
-  - component: {fileID: 8522428579723407013}
   - component: {fileID: 129118418938444966}
-  - component: {fileID: 3667248745476809884}
+  - component: {fileID: 3640010277005650462}
+  - component: {fileID: 3223054387431254629}
   m_Layer: 3
   m_Name: Tyrannosaurus
   m_TagString: Enemy
@@ -2118,33 +2076,6 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
---- !u!114 &8522428579723407013
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4797874953849587357}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: af994d1dcdd467741863f9ea277d7ae8, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  avater: {fileID: 8245485907620374102}
-  Animator: {fileID: 2251383793275323997}
-  target: {fileID: 0}
-  agent: {fileID: 129118418938444966}
-  receiver: {fileID: 3667248745476809884}
-  angularSpeed: 160
-  walkSpeed: 5
-  aniWalkSpeed: 18
-  rayStartPos: {fileID: 241740633324987289}
-  searchRange: 50
-  searchAngle: 120
-  discoverFlg: 0
-  notDiscoverTime: 0
-  roarChengeTime: 30
-  transforms: []
 --- !u!195 &129118418938444966
 NavMeshAgent:
   m_ObjectHideFlags: 0
@@ -2167,7 +2098,7 @@ NavMeshAgent:
   m_BaseOffset: 0
   m_WalkableMask: 4294967295
   m_ObstacleAvoidanceType: 1
---- !u!114 &3667248745476809884
+--- !u!114 &3640010277005650462
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -2176,22 +2107,38 @@ MonoBehaviour:
   m_GameObject: {fileID: 4797874953849587357}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e47a9fd9292d79d468c5ef3a22d499aa, type: 3}
+  m_Script: {fileID: 11500000, guid: 1c6b5257da867774697dc6db14bc1969, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  hits:
+  _hp: 1000
+  _sp: 1000
+  _attack: 1000
+  _defense: 900
+  _invincibleFlg: 0
+--- !u!114 &3223054387431254629
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4797874953849587357}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d90625640c114a5458188983dbb457c1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _hitList:
   - {fileID: 4946467327184316664}
   - {fileID: 4545587158788563752}
   - {fileID: 8851960280503444405}
-  - {fileID: 5120428176876864781}
-  - {fileID: 6291909477672453297}
   - {fileID: 6963737716522479851}
   - {fileID: 7868913172045400806}
+  - {fileID: 5120428176876864781}
+  - {fileID: 6291909477672453297}
   - {fileID: 8233839767989551660}
   - {fileID: 2265595663116749819}
-  - {fileID: 3208893862057505223}
-  - {fileID: 2497118060058394911}
-  - {fileID: 4060846527925814855}
+  _maskTag: Player
+  particleObject: {fileID: 750872277263865624, guid: 30343aff11dfe16499fe4c761f2e45f8, type: 3}
 --- !u!1 &4858379481648729028
 GameObject:
   m_ObjectHideFlags: 0
@@ -2655,13 +2602,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 098e7b4a54581ab45bfdd78a64d49887, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  part: 1
-  partName: head
-  damage: 15
-  attackFlg: 0
-  targetTag: Player
-  targetObject: {fileID: 0}
-  hitReaction: 2
+  _part: 0
 --- !u!1 &5386207985228611113
 GameObject:
   m_ObjectHideFlags: 0
@@ -3248,13 +3189,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 098e7b4a54581ab45bfdd78a64d49887, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  part: 1
-  partName: neck
-  damage: 15
-  attackFlg: 0
-  targetTag: Player
-  targetObject: {fileID: 0}
-  hitReaction: 2
+  _part: 0
 --- !u!1 &6706697029943484110
 GameObject:
   m_ObjectHideFlags: 0
@@ -3408,13 +3343,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 098e7b4a54581ab45bfdd78a64d49887, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  part: 8
-  partName: attackTrigger
-  damage: 0
-  attackFlg: 0
-  targetTag: Player
-  targetObject: {fileID: 0}
-  hitReaction: 0
+  _part: 0
 --- !u!1 &6888541024149631543
 GameObject:
   m_ObjectHideFlags: 0
@@ -3825,13 +3754,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 098e7b4a54581ab45bfdd78a64d49887, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  part: 7
-  partName: attackTrigger
-  damage: 0
-  attackFlg: 0
-  targetTag: Player
-  targetObject: {fileID: 0}
-  hitReaction: 0
+  _part: 0
 --- !u!1 &7917880148985653389
 GameObject:
   m_ObjectHideFlags: 0
@@ -4641,13 +4564,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 098e7b4a54581ab45bfdd78a64d49887, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  part: 5
-  partName: roottail
-  damage: 10
-  attackFlg: 0
-  targetTag: Player
-  targetObject: {fileID: 0}
-  hitReaction: 1
+  _part: 0
 --- !u!1 &9133316202959685849
 GameObject:
   m_ObjectHideFlags: 0
