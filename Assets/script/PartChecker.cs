@@ -11,10 +11,10 @@ public class PartChecker : MonoBehaviour
     [SerializeField] private int _partMaxEnduranceValue;
     public int PartMaxEnduranceValue { get => _partMaxEnduranceValue; set => _partMaxEnduranceValue = value; }
 
-    [SerializeField] private int _partEnduranceValue;
+    private int _partEnduranceValue;
     public int PartEnduranceValue { get => _partEnduranceValue; set => _partEnduranceValue = value; }
 
-    [SerializeField] private Status _status;
+    private Status _status;
 
     private void Start()
     {

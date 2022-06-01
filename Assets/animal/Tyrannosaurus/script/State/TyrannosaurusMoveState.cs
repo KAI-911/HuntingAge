@@ -7,6 +7,7 @@ public class TyrannosaurusMoveState : TyrannosaurusState
     private GameObject target;
     public override void OnEnter(Tyrannosaurus owner, TyrannosaurusState prevState)
     {
+        
         owner.Animator.SetInteger("AniState", (int)TyrannosaurusAnimationState.Move);
         target = owner.Target;
         //別の場所へ移動
@@ -32,12 +33,12 @@ public class TyrannosaurusMoveState : TyrannosaurusState
     {
         owner.NavMeshAgent.destination = target.transform.position;
         //攻撃に移行
-        if(owner.BitingAttackArea.TriggerHit) owner.ChangeState<TyrannosaurusBitingAttackState>();
-        if(owner.TailAttackArea.TriggerHit) owner.ChangeState<TyrannosaurusTailAttackState>();
-
+        //if (owner.BitingAttackArea.TriggerHit) owner.ChangeState<TyrannosaurusBitingAttackState>();
+        //if (owner.TailAttackArea.TriggerHit) owner.ChangeState<TyrannosaurusTailAttackState>();
+        Attackcheck(owner);
         if (owner.WarningFlg)
         {
-                //プレイヤーを見つけると威嚇する
+            //プレイヤーを見つけると威嚇する
             if (owner.Search())
             {
                 owner.ChangeState<TyrannosaurusRoarState>();
@@ -65,5 +66,28 @@ public class TyrannosaurusMoveState : TyrannosaurusState
     public override void OnCollisionStay(Tyrannosaurus owner, Collision collision)
     {
 
+    }
+    void Attackcheck(Tyrannosaurus owner)
+    {
+        //攻撃が当たる範囲にいれば攻撃パターンを設定して攻撃状態に移行
+        TyrannosaurusAttack tyrannosaurusAttack= TyrannosaurusAttack.Non;
+        if (owner.BitingAttackArea.TriggerHit)
+        {
+            tyrannosaurusAttack = TyrannosaurusAttack.Biting;
+        }
+        else if (owner.TailAttackArea.TriggerHit)
+        {
+            tyrannosaurusAttack = TyrannosaurusAttack.Tail;
+        }
+        else if(owner.StompAttackArea.TriggerHit)
+        {
+            tyrannosaurusAttack = TyrannosaurusAttack.Stomp;
+        }
+
+        if(tyrannosaurusAttack != TyrannosaurusAttack.Non)
+        {
+            owner.Animator.SetInteger("AttackType", (int)tyrannosaurusAttack);
+            owner.ChangeState<TyrannosaurusAttackState>();
+        }
     }
 }

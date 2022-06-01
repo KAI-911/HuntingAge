@@ -61,6 +61,10 @@ public class Tyrannosaurus : MonoBehaviour
     //尻尾攻撃範囲ーーーーーーーーーーーーーーーーーーーーーーーー
     [SerializeField] private TargetChecker _tailAttackArea;
     public TargetChecker TailAttackArea { get => _tailAttackArea; }
+   
+    //尻尾攻撃範囲ーーーーーーーーーーーーーーーーーーーーーーーー
+    [SerializeField] private TargetChecker _stompAttackArea;
+    public TargetChecker StompAttackArea { get => _stompAttackArea; }
 
     //転倒している時間ーーーーーーーーーーーーーーーーーーーーーーーー
     [SerializeField] private float _downTime;
@@ -91,6 +95,13 @@ public class Tyrannosaurus : MonoBehaviour
         {
             ChangeState<TyrannosaurusDownState>();
         }
+
+        if (_status.HP<=0 && _currentState.GetType() != typeof(TyrannosaurusDeathState))
+        {
+            Debug.Log("death");
+            ChangeState<TyrannosaurusDeathState>();
+        }
+        _animator.SetInteger("HP", Status.HP);
         _currentState.OnUpdate(this);
     }
     private void FixedUpdate()
@@ -158,10 +169,17 @@ public enum TyrannosaurusAnimationState
 {
     Idle,
     Move,
-    BitingAttack,
-    TailAttack,
+    Attack,
     Roar,
     Wandering,
-    Down
+    Down,
+    Death
+}
+public enum TyrannosaurusAttack
+{
+    Non,
+    Biting,
+    Tail,
+    Stomp
 }
 

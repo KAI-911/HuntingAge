@@ -12,7 +12,7 @@ public class StrongAttack : PlayerStateBase
     }
     public override void OnExit(Player owner, PlayerStateBase nextState)
     {
-
+        owner.HitReceiver.AttackFlgReset();
     }
     public override void OnUpdate(Player owner)
     {

@@ -53,7 +53,6 @@ public class HitReceiver : MonoBehaviour
         var hitstatus = _hitObject.transform.root.gameObject.GetComponent<Status>();
         var mystatus = transform.root.gameObject.GetComponent<Status>();
         info.HitPart = _hitObject.GetComponent<PartChecker>();
-        Debug.Log(info.PartType);
         if (hitstatus == null || mystatus == null) return;
         info.Attack = mystatus.Attack;
         info.HitReaction = _hitReaction;
