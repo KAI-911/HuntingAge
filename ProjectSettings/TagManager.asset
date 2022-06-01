@@ -5,13 +5,11 @@ TagManager:
   serializedVersion: 2
   tags:
   - Enemy
-  - EnemyHit
-  - attackHit
-  - EnemyBody
-  - EnemyHead
-  - EnemyRightLeg
   - EnemyLeftLeg
   - EnemyTail
+  - EnemyRightLeg
+  - EnemyBody
+  - EnemyHead
   - Wepon
   layers:
   - Default

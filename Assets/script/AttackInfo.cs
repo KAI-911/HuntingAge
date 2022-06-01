@@ -15,4 +15,8 @@ public class AttackInfo
 
     private HitReaction _hitReaction;
     public HitReaction HitReaction { get => _hitReaction; set => _hitReaction = value; }
+
+    private PartChecker _hitPart;
+    public PartChecker HitPart { get => _hitPart; set => _hitPart = value; }
+
 }

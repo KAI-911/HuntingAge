@@ -41,7 +41,7 @@ public class WeponChange : MonoBehaviour
         var scal = _wepon.transform.localScale;
         scal = new Vector3(1, 1, 1);
         _wepon.transform.localScale = scal;
-        _hitReceiver.AddHitObject(_wepon.GetComponentInChildren<Hit>());
+        _hitReceiver.AddHitObject(_wepon.GetComponentInChildren<AttackHit>());
         _weponType = wepon;
     }
 
@@ -59,5 +59,12 @@ public class WeponChange : MonoBehaviour
                 return PartType.axe;
         }
     }
-
+    public void C_Axe()
+    {
+        Change(WeponType.Axe);
+    }
+    public void C_Spear()
+    {
+        Change(WeponType.Spear);
+    }
 }

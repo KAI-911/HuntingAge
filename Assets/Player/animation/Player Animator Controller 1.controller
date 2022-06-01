@@ -345,7 +345,10 @@ AnimatorStateTransition:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_Name: 
-  m_Conditions: []
+  m_Conditions:
+  - m_ConditionMode: 7
+    m_ConditionEvent: AniState
+    m_EventTreshold: 5
   m_DstStateMachine: {fileID: 0}
   m_DstState: {fileID: 0}
   m_Solo: 0
@@ -355,7 +358,7 @@ AnimatorStateTransition:
   m_TransitionDuration: 0.25
   m_TransitionOffset: 0
   m_ExitTime: 0.625
-  m_HasExitTime: 1
+  m_HasExitTime: 0
   m_HasFixedDuration: 1
   m_InterruptionSource: 0
   m_OrderedInterruption: 1
@@ -409,7 +412,7 @@ AnimatorController:
     m_Controller: {fileID: 9100000}
   - m_Name: AniSpeed
     m_Type: 1
-    m_DefaultFloat: 0
+    m_DefaultFloat: 1
     m_DefaultInt: 0
     m_DefaultBool: 0
     m_Controller: {fileID: 9100000}
@@ -721,7 +724,10 @@ AnimatorStateTransition:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_Name: 
-  m_Conditions: []
+  m_Conditions:
+  - m_ConditionMode: 7
+    m_ConditionEvent: AniState
+    m_EventTreshold: 5
   m_DstStateMachine: {fileID: 0}
   m_DstState: {fileID: 0}
   m_Solo: 0
@@ -731,7 +737,7 @@ AnimatorStateTransition:
   m_TransitionDuration: 0.25
   m_TransitionOffset: 0
   m_ExitTime: 0.8897059
-  m_HasExitTime: 1
+  m_HasExitTime: 0
   m_HasFixedDuration: 1
   m_InterruptionSource: 0
   m_OrderedInterruption: 1
@@ -747,7 +753,7 @@ AnimatorStateMachine:
   m_ChildStates:
   - serializedVersion: 1
     m_State: {fileID: 6204168997209966820}
-    m_Position: {x: 370, y: 110, z: 0}
+    m_Position: {x: 380, y: 110, z: 0}
   - serializedVersion: 1
     m_State: {fileID: -5255600878769720934}
     m_Position: {x: 250, y: 260, z: 0}
@@ -886,18 +892,19 @@ AnimatorState:
   m_CycleOffset: 0
   m_Transitions:
   - {fileID: -7173445552031085509}
-  m_StateMachineBehaviours: []
+  m_StateMachineBehaviours:
+  - {fileID: 7717768149970878232}
   m_Position: {x: 50, y: 50, z: 0}
   m_IKOnFeet: 0
   m_WriteDefaultValues: 1
   m_Mirror: 0
-  m_SpeedParameterActive: 0
+  m_SpeedParameterActive: 1
   m_MirrorParameterActive: 0
   m_CycleOffsetParameterActive: 0
   m_TimeParameterActive: 0
   m_Motion: {fileID: 6844750717461302271}
   m_Tag: 
-  m_SpeedParameter: 
+  m_SpeedParameter: AniSpeed
   m_MirrorParameter: 
   m_CycleOffsetParameter: 
   m_TimeParameter: 
@@ -967,6 +974,78 @@ AnimatorState:
   m_MirrorParameter: 
   m_CycleOffsetParameter: 
   m_TimeParameter: 
+--- !u!114 &7717768149970878232
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 78529e48954ee7e47b45311f0527a439, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  animationCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: -0.00066938996
+      value: 0.9998059
+      inSlope: Infinity
+      outSlope: 5.0353217
+      tangentMode: 1
+      weightedMode: 3
+      inWeight: 0
+      outWeight: 0.52369195
+    - serializedVersion: 3
+      time: 0.49120033
+      value: 3.4969256
+      inSlope: 0.35322654
+      outSlope: -0.22771698
+      tangentMode: 1
+      weightedMode: 3
+      inWeight: 1
+      outWeight: 0.5426921
+    - serializedVersion: 3
+      time: 1.5657489
+      value: 2.1153588
+      inSlope: -3.2540488
+      outSlope: -3.2805235
+      tangentMode: 1
+      weightedMode: 3
+      inWeight: 0.13123001
+      outWeight: 0.12249445
+    - serializedVersion: 3
+      time: 2.009902
+      value: 0.9992546
+      inSlope: -0.0064272387
+      outSlope: -0.005898875
+      tangentMode: 1
+      weightedMode: 0
+      inWeight: 0.5516401
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 4.0179434
+      value: 1.2979387
+      inSlope: 0.1012525
+      outSlope: -0.10685993
+      tangentMode: 1
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.31651458
+    - serializedVersion: 3
+      time: 6.003503
+      value: 0.99836224
+      inSlope: -0.1305988
+      outSlope: -0.1305988
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.31950855
+      outWeight: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
 --- !u!1109 &8909583738750897146
 AnimatorTransition:
   m_ObjectHideFlags: 1

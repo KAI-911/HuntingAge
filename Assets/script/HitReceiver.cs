@@ -4,22 +4,28 @@ using System.Collections.Generic;
 public class HitReceiver : MonoBehaviour
 {
 
-    [SerializeField] List<Hit> _hitList = new List<Hit>();
-    public List<Hit> Hits { get => _hitList; set => _hitList = value; }
+    [SerializeField] List<AttackHit> _hitList = new List<AttackHit>();
+    public List<AttackHit> Hits { get => _hitList; set => _hitList = value; }
 
-    [SerializeField] private string _maskTag;
-    public string MaskTag { get => _maskTag; set => _maskTag = value; }
+    [SerializeField] private string _mask;
+    public string Mask { get => _mask; set => _mask = value; }
 
     //攻撃ステートになったらそこで切り替える
     private HitReaction _hitReaction;
     public HitReaction HitReaction { get => _hitReaction; set => _hitReaction = value; }
 
+
+
+
     [SerializeField] GameObject particleObject;
+
+
+
     private void Start()
     {
         foreach (var element in _hitList)
         {
-            element.MaskTag = _maskTag;
+            element.Mask = _mask;
         }
     }
 
@@ -27,7 +33,7 @@ public class HitReceiver : MonoBehaviour
     {
         foreach (var element in _hitList)
         {
-            if (_part == element.Part) element.gameObject.SetActive(!element.gameObject.activeSelf);
+            if (_part == element.AttackPart) element.gameObject.SetActive(!element.gameObject.activeSelf);
         }
     }
     public void AttackFlgReset()
@@ -38,19 +44,19 @@ public class HitReceiver : MonoBehaviour
         }
     }
 
-    public virtual void OnHit(GameObject _hitObject, Hit _hit)
+    public virtual void OnHit(GameObject _hitObject, AttackHit _hit)
     {
         AttackInfo info = new AttackInfo();
         //Hitから取得する
-        info.PartType = _hit.Part;
+        info.PartType = _hit.AttackPart;
         info.CllisionPos = _hit.CollisionPos;
         var hitstatus = _hitObject.transform.root.gameObject.GetComponent<Status>();
         var mystatus = transform.root.gameObject.GetComponent<Status>();
-
+        info.HitPart = _hitObject.GetComponent<PartChecker>();
+        Debug.Log(info.PartType);
         if (hitstatus == null || mystatus == null) return;
         info.Attack = mystatus.Attack;
         info.HitReaction = _hitReaction;
-        Debug.Log("当たり判定はOK");
         var success = hitstatus.OnDamaged(info);
         //ダメージを与えられたらヒットエフェクトを出す
         if (success)
@@ -59,14 +65,14 @@ public class HitReceiver : MonoBehaviour
         }
     }
 
-    public void AddHitObject(Hit hit)
+    public void AddHitObject(AttackHit hit)
     {
         if (hit == null)
         {
             Debug.Log("NULL");
             return;
         }
-        hit.MaskTag = _maskTag;
+        hit.Mask = _mask;
         _hitList.Add(hit);
     }
 }

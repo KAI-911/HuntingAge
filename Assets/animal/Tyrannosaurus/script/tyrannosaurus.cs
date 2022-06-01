@@ -10,13 +10,17 @@ public class Tyrannosaurus : MonoBehaviour
     //ナビメッシュエージェントーーーーーーーーーーーーーーーーーーーーーーーー
     private NavMeshAgent _navMeshAgent;
     public NavMeshAgent NavMeshAgent { get => _navMeshAgent; set => _navMeshAgent = value; }
-   
+
     //アニメーターーーーーーーーーーーーーーーーーーーーーーーーー
     private Animator _animator;
     public Animator Animator { get => _animator; set => _animator = value; }
 
     //現在の状態ーーーーーーーーーーーーーーーーーーーーーーーー
     private TyrannosaurusState _currentState;
+
+    //基礎ステータス
+    private Status _status;
+    public Status Status { get => _status; set => _status = value; }
 
     //攻撃判定ーーーーーーーーーーーーーーーーーーーーーーーー
     private HitReceiver _hitReceiver;
@@ -26,7 +30,7 @@ public class Tyrannosaurus : MonoBehaviour
     //警戒状態のフラグーーーーーーーーーーーーーーーーーーーーーーーー
     private bool _warningFlg;
     public bool WarningFlg { get => _warningFlg; set => _warningFlg = value; }
-    
+
     //発見状態のフラグーーーーーーーーーーーーーーーーーーーーーーーー
     private bool _discoverFlg;
     public bool DiscoverFlg { get => _discoverFlg; set => _discoverFlg = value; }
@@ -40,10 +44,10 @@ public class Tyrannosaurus : MonoBehaviour
     public GameObject Target { get => _target; }
 
     //障害物が無いか判断するレイ判定の発射位置ーーーーーーーーーーーーーーーーーーーーーーーー
-    [SerializeField]private GameObject _rayStartPos;
+    [SerializeField] private GameObject _rayStartPos;
 
     //視野角範囲ーーーーーーーーーーーーーーーーーーーーーーーー
-    [SerializeField]private float _searchAngle;
+    [SerializeField] private float _searchAngle;
 
     //索敵範囲ーーーーーーーーーーーーーーーーーーーーーーーー
     [SerializeField] private TargetChecker _searchArea;
@@ -55,8 +59,13 @@ public class Tyrannosaurus : MonoBehaviour
     public TargetChecker BitingAttackArea { get => _bitingAttackArea; }
 
     //尻尾攻撃範囲ーーーーーーーーーーーーーーーーーーーーーーーー
-    [SerializeField]private TargetChecker _tailAttackArea;
+    [SerializeField] private TargetChecker _tailAttackArea;
     public TargetChecker TailAttackArea { get => _tailAttackArea; }
+
+    //転倒している時間ーーーーーーーーーーーーーーーーーーーーーーーー
+    [SerializeField] private float _downTime;
+    public float DownTime { get => _downTime; }
+
 
 
     private void Awake()
@@ -70,6 +79,7 @@ public class Tyrannosaurus : MonoBehaviour
 
     void Start()
     {
+        _status = GetComponent<Status>();
         _target = GameObject.FindWithTag("Player");
         _discoverFlg = false;
         _warningFlg = false;
@@ -77,6 +87,10 @@ public class Tyrannosaurus : MonoBehaviour
 
     void Update()
     {
+        if (_status.DownFlg && _currentState.GetType() != typeof(TyrannosaurusDownState))
+        {
+            ChangeState<TyrannosaurusDownState>();
+        }
         _currentState.OnUpdate(this);
     }
     private void FixedUpdate()
@@ -147,5 +161,7 @@ public enum TyrannosaurusAnimationState
     BitingAttack,
     TailAttack,
     Roar,
-    Wandering
+    Wandering,
+    Down
 }
+

@@ -18,12 +18,13 @@ public class LocomotionState : PlayerStateBase
     }
     public override void OnUpdate(Player owner)
     {
-        
+
         owner.MoveDirection = Vector3.zero;
         owner.MoveDirection += owner.InputMoveAction.ReadValue<Vector2>().x * owner.GetCameraRight(owner.PlayerCamera);
         owner.MoveDirection += owner.InputMoveAction.ReadValue<Vector2>().y * owner.GetCameraForward(owner.PlayerCamera);
         owner.MoveDirection = owner.MoveDirection * nowSpeed;
-
+        //デッドゾーンを作る
+        if (owner.MoveDirection.sqrMagnitude < (0.5f * 0.5f)) owner.MoveDirection = Vector3.zero;
         owner.Animator.SetFloat("speed", owner.MoveDirection.magnitude, 0.1f, Time.deltaTime);
 
         //着地していなかったら落下状態に偏移
