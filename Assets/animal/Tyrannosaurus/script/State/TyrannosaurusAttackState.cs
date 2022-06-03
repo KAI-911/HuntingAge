@@ -6,7 +6,6 @@ public class TyrannosaurusAttackState : TyrannosaurusState
 {
     public override void OnEnter(Tyrannosaurus owner, TyrannosaurusState prevState)
     {
-        Debug.Log("attack");
         owner.Animator.SetInteger("AniState", (int)TyrannosaurusAnimationState.Attack);
         owner.HitReceiver.HitReaction = HitReaction.middleReaction;
     }

@@ -61,7 +61,7 @@ public class Tyrannosaurus : MonoBehaviour
     //尻尾攻撃範囲ーーーーーーーーーーーーーーーーーーーーーーーー
     [SerializeField] private TargetChecker _tailAttackArea;
     public TargetChecker TailAttackArea { get => _tailAttackArea; }
-   
+
     //尻尾攻撃範囲ーーーーーーーーーーーーーーーーーーーーーーーー
     [SerializeField] private TargetChecker _stompAttackArea;
     public TargetChecker StompAttackArea { get => _stompAttackArea; }
@@ -70,7 +70,19 @@ public class Tyrannosaurus : MonoBehaviour
     [SerializeField] private float _downTime;
     public float DownTime { get => _downTime; }
 
+    //表示しているマテリアルーーーーーーーーーーーーーーーーーーーーーーーー
+    [SerializeField] private Renderer _renderer;
+    public Renderer Renderer { get => _renderer; set => _renderer = value; }
 
+    [SerializeField] private SkinnedMeshRenderer _skinnedMeshRenderer;
+    public SkinnedMeshRenderer SkinnedMeshRenderer { get => _skinnedMeshRenderer; set => _skinnedMeshRenderer = value; }
+
+    //マテリアルを消すまでの時間ーーーーーーーーーーーーーーーーーーーーーーーー
+    [SerializeField] private float _dissoveTime;
+    public float DissoveTime { get => _dissoveTime;}
+
+    [SerializeField] private AnimationCurve _dissoveCurve;
+    public AnimationCurve DissoveCurve { get => _dissoveCurve;}
 
     private void Awake()
     {
@@ -91,14 +103,14 @@ public class Tyrannosaurus : MonoBehaviour
 
     void Update()
     {
+
         if (_status.DownFlg && _currentState.GetType() != typeof(TyrannosaurusDownState))
         {
             ChangeState<TyrannosaurusDownState>();
         }
 
-        if (_status.HP<=0 && _currentState.GetType() != typeof(TyrannosaurusDeathState))
+        if (_status.HP <= 0 && _currentState.GetType() != typeof(TyrannosaurusDeathState))
         {
-            Debug.Log("death");
             ChangeState<TyrannosaurusDeathState>();
         }
         _animator.SetInteger("HP", Status.HP);
@@ -163,7 +175,10 @@ public class Tyrannosaurus : MonoBehaviour
         await Task.Delay(TimeSpan.FromSeconds(seconds));
         action();
     }
-
+    public void Delete()
+    {
+        Destroy(gameObject);
+    }
 }
 public enum TyrannosaurusAnimationState
 {

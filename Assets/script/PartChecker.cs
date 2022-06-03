@@ -26,7 +26,6 @@ public class PartChecker : MonoBehaviour
     {
         
         _partEnduranceValue -= _damage;
-        Debug.Log(_damage);
         if (_partEnduranceValue <= 0)
         {
             _partEnduranceValue = _partMaxEnduranceValue;
