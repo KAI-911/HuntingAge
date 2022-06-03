@@ -5,6 +5,7 @@ using UnityEngine;
 public class TyrannosaurusDeathState : TyrannosaurusState
 {
     float time;
+    Vector4 color;
     public override void OnEnter(Tyrannosaurus owner, TyrannosaurusState prevState)
     {
 
@@ -12,6 +13,10 @@ public class TyrannosaurusDeathState : TyrannosaurusState
         owner.Animator.SetTrigger("Down");
         owner.Status.InvincibleFlg = true;
         time = 0;
+        if (owner.ShadowRenderer.material.HasProperty("_ShadowColor"))
+        {
+            color = owner.ShadowRenderer.material.GetColor("_ShadowColor");
+        }
     }
     public override void OnExit(Tyrannosaurus owner, TyrannosaurusState nextState)
     {
@@ -23,11 +28,23 @@ public class TyrannosaurusDeathState : TyrannosaurusState
 
         time += Time.deltaTime;
         float rate = time / owner.DissoveTime;
-        var myMat = owner.Renderer.material;
+
+        //–{‘Ì‚ğÁ‚µ‚Ä‚¢‚­
+        var myMat = owner.SkinnedMeshRenderer.material;
         if (myMat.HasProperty("_Threshold"))
         {
             myMat.SetFloat("_Threshold", owner.DissoveCurve.Evaluate(rate));
         }
+
+        //‰e‚ğÁ‚µ‚Ä‚¢‚­
+        var shadowMat = owner.ShadowRenderer.material;
+        if (shadowMat.HasProperty("_ShadowColor"))
+        {
+            var setColor = color;
+            setColor.w = color.w * owner.ShadowCurve.Evaluate(rate);
+            shadowMat.SetColor("_ShadowColor", setColor);
+        }
+
         if (rate >= 1)
         {
             owner.Delete();
@@ -42,7 +59,8 @@ public class TyrannosaurusDeathState : TyrannosaurusState
     {
         if (animationEvent.stringParameter == "End")
         {
-            owner.SkinnedMeshRenderer.shadowCastingMode = UnityEngine.Rendering.ShadowCastingMode.Off;
+            //owner.SkinnedMeshRenderer.shadowCastingMode = UnityEngine.Rendering.ShadowCastingMode.Off;
+           
             //‘Ì‚Ì“–‚½‚è”»’è‚ğÁ‚·
             var colls = owner.gameObject.GetComponentsInChildren<Collider>();
             foreach (var item in colls)

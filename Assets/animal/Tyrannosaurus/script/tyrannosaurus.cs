@@ -70,19 +70,21 @@ public class Tyrannosaurus : MonoBehaviour
     [SerializeField] private float _downTime;
     public float DownTime { get => _downTime; }
 
-    //表示しているマテリアルーーーーーーーーーーーーーーーーーーーーーーーー
-    [SerializeField] private Renderer _renderer;
-    public Renderer Renderer { get => _renderer; set => _renderer = value; }
-
     [SerializeField] private SkinnedMeshRenderer _skinnedMeshRenderer;
     public SkinnedMeshRenderer SkinnedMeshRenderer { get => _skinnedMeshRenderer; set => _skinnedMeshRenderer = value; }
+    
+    [SerializeField] private SkinnedMeshRenderer _shadowRenderer;
+    public SkinnedMeshRenderer ShadowRenderer { get => _shadowRenderer; set => _shadowRenderer = value; }
 
     //マテリアルを消すまでの時間ーーーーーーーーーーーーーーーーーーーーーーーー
     [SerializeField] private float _dissoveTime;
     public float DissoveTime { get => _dissoveTime;}
 
     [SerializeField] private AnimationCurve _dissoveCurve;
-    public AnimationCurve DissoveCurve { get => _dissoveCurve;}
+    public AnimationCurve DissoveCurve { get => _dissoveCurve; }
+
+    [SerializeField] private AnimationCurve _shadowCurve;
+    public AnimationCurve ShadowCurve { get => _shadowCurve; }
 
     private void Awake()
     {
