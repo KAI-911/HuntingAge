@@ -5,9 +5,11 @@ using System.Threading.Tasks;
 public class AttackHit : MonoBehaviour
 {
     private HitReceiver _hitReceiver;
-
     [SerializeField] private PartType _attackPart;
     public PartType AttackPart { get => _attackPart; set => _attackPart = value; }
+
+    private PartType _hitPart;
+    public PartType HitPart { get => _hitPart; set => _hitPart = value; }
 
     [SerializeField] private string _mask;
     public string Mask { get => _mask; set => _mask = value; }
@@ -25,10 +27,12 @@ public class AttackHit : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.gameObject.tag!=_mask) return;
-        //何かに当たったら、最上位の親にHitReceiverがある場合HitReceiverのOnHitを呼び出す
+        if (other.gameObject.tag != _mask) return;
+        //何かに当たったら、最上位の親のHitReceiverのOnHitを呼び出す
         if (_hitReceiver != null)
         {
+            PartType partType = other.gameObject.GetComponent<PartChecker>().PartType;
+            _hitPart = partType;
             _collisionPos = other.ClosestPointOnBounds(this.transform.position);
             _hitReceiver.OnHit(other.gameObject, this);
         }

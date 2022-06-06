@@ -15,14 +15,13 @@ public class HitReceiver : MonoBehaviour
     public HitReaction HitReaction { get => _hitReaction; set => _hitReaction = value; }
 
 
-
-
     [SerializeField] GameObject particleObject;
 
 
 
     private void Start()
     {
+
         foreach (var element in _hitList)
         {
             element.Mask = _mask;
@@ -46,22 +45,25 @@ public class HitReceiver : MonoBehaviour
 
     public virtual void OnHit(GameObject _hitObject, AttackHit _hit)
     {
-        AttackInfo info = new AttackInfo();
-        //Hitから取得する
-        info.PartType = _hit.AttackPart;
-        info.CllisionPos = _hit.CollisionPos;
+        //ダメージ処理をするために攻撃しているオブジェクトと攻撃されているオブジェクトからステータスを取得
         var hitstatus = _hitObject.transform.root.gameObject.GetComponent<Status>();
         var mystatus = transform.root.gameObject.GetComponent<Status>();
-        info.HitPart = _hitObject.GetComponent<PartChecker>();
         if (hitstatus == null || mystatus == null) return;
-        info.Attack = mystatus.Attack;
-        info.HitReaction = _hitReaction;
-        var success = hitstatus.OnDamaged(info);
+
+        AttackInfo attackInfo =new AttackInfo();
+        //ダメージ処理に必要な情報をまとめる
+        attackInfo.Attack = mystatus.Attack;//攻撃力
+        attackInfo.PartType = _hit.AttackPart;//攻撃している部位
+        attackInfo.HitPart = _hit.HitPart;//攻撃されてる部位
+        attackInfo.CllisionPos = _hit.CollisionPos;//衝突している地点
+        attackInfo.HitReaction = _hitReaction;//攻撃を受けてどのぐらいリアクションするのか
+        Debug.Log(attackInfo.HitPart);
+
+        //ダメージ処理を実行
+        var success = hitstatus.OnDamaged(attackInfo);
+
         //ダメージを与えられたらヒットエフェクトを出す
-        if (success)
-        {
-            Instantiate(particleObject, info.CllisionPos, Quaternion.identity);
-        }
+        if (success)Instantiate(particleObject, attackInfo.CllisionPos, Quaternion.identity);
     }
 
     public void AddHitObject(AttackHit hit)

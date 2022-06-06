@@ -33,6 +33,11 @@ public class Enemy : MonoBehaviour
     //‹–ìŠp”ÍˆÍ------------------------------------------------------------------------------------------
     [SerializeField] private float _searchAngle;
 
+    //‰ñ“]Šp“x/•b
+    [SerializeField] private float _rotationAngle;
+    public float RotationAngle { get => _rotationAngle;}
+
+
     //”ÍˆÍ“à‚É‹‚é‚©‚Ì”»’è----------------------------------------------------------------------------------------
     [SerializeField] private TargetChecker[] _areaChecker;
     public TargetChecker[] AreaChecker { get => _areaChecker; }
@@ -63,15 +68,13 @@ public class Enemy : MonoBehaviour
     public AnimationCurve ShadowCurve { get => _shadowCurve; }
 
     //Œ»İ‚Ìó‘Ô-----------------------------------------------------------------------------------------
-    private StateBase _currentState;
+    [SerializeField] private StateBase _currentState;
+    public StateBase CurrentState { get => _currentState; }
 
     //UŒ‚‘ÎÛ--------------------------------------------------------------------------------------------
     private GameObject _target;
     public GameObject Target { get => _target; }
 
-    //Œx‰úó‘Ô‚Ìƒtƒ‰ƒO-----------------------------------------------------------------------------------
-    private bool _warningFlg;
-    public bool WarningFlg { get => _warningFlg; set => _warningFlg = value; }
 
     //”­Œ©ó‘Ô‚Ìƒtƒ‰ƒO-----------------------------------------------------------------------------------
     private bool _discoverFlg;
@@ -88,7 +91,6 @@ public class Enemy : MonoBehaviour
         _currentState = new StateBase();
         _currentState.OnEnter(this, null);
         _discoverFlg = false;
-        _warningFlg = false;
     }
 
     public virtual void Start()
@@ -96,14 +98,14 @@ public class Enemy : MonoBehaviour
 
     }
 
-    void Update()
+    public virtual void Update()
     {
         _animator.SetInteger("HP", Status.HP);
 
         _currentState.OnUpdate(this);
     }
 
-    void FixedUpdate()
+    public virtual void FixedUpdate()
     {
         _currentState.OnFixedUpdate(this);
     }
@@ -127,8 +129,11 @@ public class Enemy : MonoBehaviour
         //‚Â‚Ü‚èŒ©‚Â‚¯‚Ä‹‚½‚çtrue
 
         //ˆê’è”ÍˆÍ‚É‚¢‚é‚©‚Ì”»’è
-        if (!TargetChecker(TargetCheckerType.Search)) return false;
-
+        if (!TargetChecker(TargetCheckerType.Search))
+        {
+            _discoverFlg = false;
+            return false;
+        }
         //‹ŠE‚É“ü‚Á‚Ä‚¢‚é‚©‚Ì”»’è
         var from = gameObject.transform.forward;
         var to = _target.transform.position - _rayStartPos.transform.position;
@@ -137,7 +142,12 @@ public class Enemy : MonoBehaviour
         var planeTo = Vector3.ProjectOnPlane(to, planeNormal);
         // •½–Ê‚É“Š‰e‚³‚ê‚½ƒxƒNƒgƒ‹“¯m‚Ì•„†•t‚«Šp“x  Œv‰ñ‚è‚Å³A”½Œv‰ñ‚è‚Å•‰
         var signedAngle = Vector3.SignedAngle(planeFrom, planeTo, planeNormal);
-        if (_searchAngle / 2.0f < Mathf.Abs(signedAngle)) return false;
+        if (_searchAngle / 2.0f < Mathf.Abs(signedAngle))
+        {
+            _discoverFlg = false;
+            return false;
+        }
+
 
         //ŠÔ‚ÉáŠQ•¨‚ª‚ ‚é‚©‚Ì”»’è
         Vector3 dir = to.normalized;
@@ -148,8 +158,13 @@ public class Enemy : MonoBehaviour
             direction = dir
         };
         int hitCount = Physics.RaycastNonAlloc(ray, raycastHits, to.magnitude, 0);
-        if (hitCount > 0) return false;
+        if (hitCount > 0) 
+        {
+            _discoverFlg = false;
+            return false;
+        }
 
+        _discoverFlg = true;
         return true;
     }
 
@@ -197,7 +212,10 @@ public class Enemy : MonoBehaviour
         List<TargetCheckerType> list = new List<TargetCheckerType>();
         foreach (var item in _areaChecker)
         {
-            if (item.TriggerHit) list.Add(item.TargetCheckerType);
+            if (item.TriggerHit)
+            {
+                list.Add(item.TargetCheckerType);
+            }
         }
         return list;
     }
@@ -218,12 +236,13 @@ public class Enemy : MonoBehaviour
 }
 public enum State
 {
-    Idle,   //‘Ò‹@
-    Move,   //ˆÚ“®
-    Attack, //UŒ‚
-    Roar,   //ˆĞŠd
-    Down,   //“]“|
-    Death   //€–S
+    Idle,       //‘Ò‹@
+    Move,       //ˆÚ“®
+    Wandering,  //œpœj
+    Attack,     //UŒ‚
+    Roar,       //ˆĞŠd
+    Down,       //“]“|
+    Death       //€–S
 }
 public enum TargetCheckerType
 {

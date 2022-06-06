@@ -98,7 +98,7 @@ GameObject:
   - component: {fileID: 1741463934581785649}
   m_Layer: 0
   m_Name: axeHitArea
-  m_TagString: Untagged
+  m_TagString: Attack
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

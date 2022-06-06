@@ -2,28 +2,30 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Idle_Trex : StateBase
+public class Down_Trex : StateBase
 {
+    float downTime;
+
     public override void OnEnter(Enemy owner, StateBase prevState)
     {
-        owner.Animator.SetInteger("AniState", (int)State.Idle);
-        _ = owner.WaitForAsync(5, () => { if (!owner.DiscoverFlg) owner.ChangeState<Wandering_Trex>(); });
+        owner.Animator.SetInteger("AniState", (int)State.Down);
+        owner.Animator.SetTrigger("Down");
+        downTime = owner.DownTime;
+
+
     }
     public override void OnExit(Enemy owner, StateBase nextState)
     {
-
+        owner.Status.DownFlg = false;
     }
     public override void OnUpdate(Enemy owner)
     {
-        Debug.Log("idle");
         owner.NavMeshAgent.destination = owner.transform.position;
-
-        if (owner.Search())
+        downTime -= Time.deltaTime;
+        if (downTime <= 0)
         {
             owner.ChangeState<Move_Trex>();
-            return;
         }
-
     }
     public override void OnFixedUpdate(Enemy owner)
     {

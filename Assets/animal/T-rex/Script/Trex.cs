@@ -8,5 +8,18 @@ public class Trex : Enemy
     {
         ChangeState<Idle_Trex>();
     }
+    public override void Update()
+    {
+        base.Update();
 
+        if (Status.DownFlg && CurrentState.GetType() != typeof(Down_Trex))
+        {
+            ChangeState<Down_Trex>();
+        }
+        if (Status.HP <= 0 && CurrentState.GetType() != typeof(Death_Trex))
+        {
+            ChangeState<Death_Trex>();
+        }
+
+    }
 }

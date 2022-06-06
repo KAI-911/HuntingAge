@@ -2,12 +2,11 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Idle_Trex : StateBase
+public class Move_Trex : StateBase
 {
     public override void OnEnter(Enemy owner, StateBase prevState)
     {
-        owner.Animator.SetInteger("AniState", (int)State.Idle);
-        _ = owner.WaitForAsync(5, () => { if (!owner.DiscoverFlg) owner.ChangeState<Wandering_Trex>(); });
+        owner.Animator.SetInteger("AniState", (int)State.Move);
     }
     public override void OnExit(Enemy owner, StateBase nextState)
     {
@@ -15,14 +14,20 @@ public class Idle_Trex : StateBase
     }
     public override void OnUpdate(Enemy owner)
     {
-        Debug.Log("idle");
-        owner.NavMeshAgent.destination = owner.transform.position;
+        Debug.Log("move");
+        owner.NavMeshAgent.destination = owner.Target.transform.position;
+        owner.LookToTarget((int)(owner.RotationAngle * Time.deltaTime));
+        var list = owner.TargetChecker();
 
-        if (owner.Search())
+        //searchˆÈŠO‚ÅUŒ‚”»’è‚ª‚ ‚ê‚ÎUŒ‚‚ÉˆÚs
+        foreach (var item in list)
         {
-            owner.ChangeState<Move_Trex>();
+            if (item == TargetCheckerType.Search) continue;
+            owner.ChangeState<Attack_Trex>();
             return;
         }
+        
+
 
     }
     public override void OnFixedUpdate(Enemy owner)
