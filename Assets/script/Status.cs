@@ -31,13 +31,16 @@ public class Status : MonoBehaviour, IAttackDamage
     public HitReaction HitReaction { get => _hitReaction; }
 
     //攻撃の情報
-    private AttackInfo _Hitarameter;
-    public AttackInfo HitParameter { get => _Hitarameter; }
+    private AttackInfo _Hitparameter;
+    public AttackInfo HitParameter { get => _Hitparameter; set => _Hitparameter = value; }
+
 
     private void Start()
     {
         _invincibleFlg = false;
         _downFlg = false;
+        _Hitparameter = new AttackInfo(); 
+
     }
     public void HitReactionReset()
     {
@@ -46,13 +49,29 @@ public class Status : MonoBehaviour, IAttackDamage
     //ダメージを与えられたらtrueを返す
     public bool OnDamaged(AttackInfo _attackInfo)
     {
+        //無敵処理
         if (_invincibleFlg) return false;
-        _Hitarameter = _attackInfo;
+
+        //情報の保存
+        _Hitparameter = _attackInfo;
+
+        //実際に受けるダメージの計算
         var damage = _attackInfo.Attack - _defense;
-        _hitReaction = _attackInfo.HitReaction;
+        //ダメージの調整
         if (damage <= 0) damage = 1;
+
+        //被弾リアクションの設定
+        _hitReaction = _attackInfo.HitReaction;
+
+        //ダメージを受ける
         _hp -= damage;
-        if(_attackInfo.HitPart.PartEnduranceDamage(damage))
+
+        //部位ごとに怯み計算
+        var partReceiver = this.gameObject.transform.root.GetComponent<PartCheckerReceiver>();
+        Debug.Log(_Hitparameter.HitPart);
+
+        //部位にダメージを与える
+        if (partReceiver.PartEnduranceDamage(_Hitparameter.HitPart, damage)) 
         {
             _downFlg = true;
         }

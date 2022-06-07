@@ -6,14 +6,17 @@ public class TargetChecker : MonoBehaviour
 {
     bool _triggerHit;
     public bool TriggerHit { get => _triggerHit; }
-    [SerializeField]
     private Collider _collider;
-    [SerializeField]
-    private string MaskTag;
+    [SerializeField]@private string MaskTag;
+
+    [SerializeField] private TargetCheckerType _targetCheckerType;
+    public TargetCheckerType TargetCheckerType { get => _targetCheckerType; }
+
 
     private void Start()
     {
         _triggerHit = false;
+        _collider = GetComponent<Collider>();
     }
     private void OnTriggerStay(Collider other)
     {

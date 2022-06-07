@@ -7,6 +7,7 @@ public class AttackInfo
     private int _attack;
     public int Attack { get => _attack; set => _attack = value; }
 
+    //UŒ‚‚ð‚µ‚½•”ˆÊ
     private PartType _partType;
     public PartType PartType { get => _partType; set => _partType = value; }
 
@@ -16,7 +17,8 @@ public class AttackInfo
     private HitReaction _hitReaction;
     public HitReaction HitReaction { get => _hitReaction; set => _hitReaction = value; }
 
-    private PartChecker _hitPart;
-    public PartChecker HitPart { get => _hitPart; set => _hitPart = value; }
+    //UŒ‚‚ðŽó‚¯‚½•”ˆÊ
+    private PartType _hitPart;
+    public PartType HitPart { get => _hitPart; set => _hitPart = value; }
 
 }
