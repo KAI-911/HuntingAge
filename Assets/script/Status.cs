@@ -35,13 +35,11 @@ public class Status : MonoBehaviour, IAttackDamage
     public AttackInfo HitParameter { get => _Hitparameter; set => _Hitparameter = value; }
 
 
-    [SerializeField] PartCheckerReceiver _receiver;
     private void Start()
     {
         _invincibleFlg = false;
         _downFlg = false;
         _Hitparameter = new AttackInfo(); 
-        _receiver = transform.root.gameObject.GetComponent<PartCheckerReceiver>();
 
     }
     public void HitReactionReset()
