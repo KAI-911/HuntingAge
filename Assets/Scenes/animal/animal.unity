@@ -4772,35 +4772,35 @@ PrefabInstance:
       objectReference: {fileID: 1041721593}
     - target: {fileID: 4833442073512086888, guid: 9a8aad03e64563e4cbfca026e8ddd9ab, type: 3}
       propertyPath: m_LocalRotation.y
-      value: 0.000000036105106
+      value: -0.0000000361051
       objectReference: {fileID: 0}
     - target: {fileID: 4833442073512086888, guid: 9a8aad03e64563e4cbfca026e8ddd9ab, type: 3}
       propertyPath: m_LocalRotation.z
-      value: -0.000000011380865
+      value: 0.000000011380877
       objectReference: {fileID: 0}
     - target: {fileID: 4833442073679365377, guid: 9a8aad03e64563e4cbfca026e8ddd9ab, type: 3}
       propertyPath: m_LocalRotation.y
-      value: -0.000000005330969
+      value: 0.00000000542553
       objectReference: {fileID: 0}
     - target: {fileID: 4833442073679365377, guid: 9a8aad03e64563e4cbfca026e8ddd9ab, type: 3}
       propertyPath: m_LocalRotation.z
-      value: 0.0000000016165855
+      value: -0.0000000016429753
       objectReference: {fileID: 0}
     - target: {fileID: 4833442074418402081, guid: 9a8aad03e64563e4cbfca026e8ddd9ab, type: 3}
       propertyPath: m_LocalRotation.y
-      value: 0.00000003053846
+      value: -0.00000003053846
       objectReference: {fileID: 0}
     - target: {fileID: 4833442074418402081, guid: 9a8aad03e64563e4cbfca026e8ddd9ab, type: 3}
       propertyPath: m_LocalRotation.z
-      value: -0.0000000089984304
+      value: 0.000000008998443
       objectReference: {fileID: 0}
     - target: {fileID: 4833442074856232024, guid: 9a8aad03e64563e4cbfca026e8ddd9ab, type: 3}
       propertyPath: m_LocalRotation.y
-      value: 0.000000015118239
+      value: -0.000000015118237
       objectReference: {fileID: 0}
     - target: {fileID: 4833442074856232024, guid: 9a8aad03e64563e4cbfca026e8ddd9ab, type: 3}
       propertyPath: m_LocalRotation.z
-      value: -0.0000000020708104
+      value: 0.000000002070809
       objectReference: {fileID: 0}
     - target: {fileID: 4943101399475594582, guid: 9a8aad03e64563e4cbfca026e8ddd9ab, type: 3}
       propertyPath: m_RootOrder
@@ -5617,10 +5617,10 @@ MonoBehaviour:
   _bitingAttackArea: {fileID: 6948031}
   _tailAttackArea: {fileID: 497262133}
   _stompAttackArea: {fileID: 636634097}
-  _downTime: 5
+  _downTime: 20
   _renderer: {fileID: 490765330108101686}
   _skinnedMeshRenderer: {fileID: 490765330108101686}
-  _dissoveTime: 10
+  _dissoveTime: 20
   _dissoveCurve:
     serializedVersion: 2
     m_Curve:
@@ -5633,15 +5633,6 @@ MonoBehaviour:
       weightedMode: 0
       inWeight: 0
       outWeight: 0
-    - serializedVersion: 3
-      time: 0.851929
-      value: -0.00013791677
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0.33333334
-      outWeight: 0.33333334
     - serializedVersion: 3
       time: 1
       value: 1
