@@ -6,22 +6,29 @@ using UnityEngine.SceneManagement;
 public class GameManager : Singleton<GameManager>
 {
     [SerializeField] bool chenge;
-    // Start is called before the first frame update
+    [SerializeField] scene scene;
     void Start()
     {
         chenge = false;
     }
 
-    // Update is called once per frame
     void Update()
     {
-        if (chenge) SceneManager.LoadSceneAsync((int)scene.Animal);
+        if (chenge)
+        {
+            chenge = false;
+            SceneManager.LoadSceneAsync((int)scene);
+        }
     }
-    enum scene
+    public void SceneChange(scene scene)
     {
-        Base,
-        Forest,
-        Animal
+        SceneManager.LoadSceneAsync((int)scene);
     }
 
+}
+public enum scene
+{
+    Base,
+    Forest,
+    Animal
 }
