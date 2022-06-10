@@ -67,9 +67,6 @@ public class Enemy : MonoBehaviour
     [SerializeField] private AnimationCurve _shadowCurve;
     public AnimationCurve ShadowCurve { get => _shadowCurve; }
 
-    //åªç›ÇÃèÛë‘-----------------------------------------------------------------------------------------
-    [SerializeField] private StateBase _currentState;
-    public StateBase CurrentState { get => _currentState; }
 
     //çUåÇëŒè€--------------------------------------------------------------------------------------------
     private GameObject _target;
@@ -88,40 +85,12 @@ public class Enemy : MonoBehaviour
         _hitReceiver = GetComponent<HitReceiver>();
         _status = GetComponent<Status>();
         _target = GameObject.FindWithTag("Player");
-        _currentState = new StateBase();
-        _currentState.OnEnter(this, null);
         _discoverFlg = false;
     }
 
-    public virtual void Start()
-    {
 
-    }
 
-    public virtual void Update()
-    {
-        _animator.SetInteger("HP", Status.HP);
 
-        _currentState.OnUpdate(this);
-    }
-
-    public virtual void FixedUpdate()
-    {
-        _currentState.OnFixedUpdate(this);
-    }
-
-    void OnAnimationEvent(AnimationEvent animationEvent)
-    {
-        _currentState.OnAnimationEvent(this, animationEvent);
-    }
-
-    public void ChangeState<T>() where T : StateBase, new()
-    {
-        var nextState = new T();
-        _currentState.OnExit(this, nextState);
-        nextState.OnEnter(this, _currentState);
-        _currentState = nextState;
-    }
 
     public bool Search()
     {

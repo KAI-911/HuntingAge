@@ -178,7 +178,17 @@ public partial class Player : MonoBehaviour
         await Task.Delay(TimeSpan.FromSeconds(seconds));
         action();
     }
-
+    public void ChengeAnimal()
+    {
+        GameManager.Instance.SceneChange(scene.Animal);
+    }
+    public void ChengeBase()
+    {
+        GameManager.Instance.SceneChange(scene.Base);
+    } public void ChengeForest()
+    {
+        GameManager.Instance.SceneChange(scene.Forest);
+    }
 }
 public enum PlayerAnimationState
 {
