@@ -95,7 +95,6 @@ public partial class Player : MonoBehaviour
         {
             ChangeState<HitReactionState>();
         }
-
     }
 
     private void FixedUpdate()

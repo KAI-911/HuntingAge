@@ -4,47 +4,34 @@ using UnityEngine;
 
 public class Singleton<T> : MonoBehaviour where T : MonoBehaviour
 {
-    static T instance;
+    private static T instance;
+
     public static T Instance
     {
         get
         {
-            if (instance != null) return instance;
-            instance = (T)FindObjectOfType(typeof(T));
-
             if (instance == null)
             {
-                Debug.LogError(typeof(T) + "is nothing");
+                instance = (T)FindObjectOfType(typeof(T));
+
+                if (instance == null)
+                {
+                    Debug.LogError(typeof(T) + "Ç™ÉVÅ[ÉìÇ…ë∂ç›ÇµÇ‹ÇπÇÒÅB");
+                }
             }
 
             return instance;
         }
     }
-
-    public static T InstanceNullable
+    virtual protected void Awake()
     {
-        get
+        if (this != Instance)
         {
-            return instance;
-        }
-    }
-
-    protected virtual void Awake()
-    {
-        if (instance != null && instance != this)
-        {
-            Debug.LogError(typeof(T) + " is multiple created", this);
+            Destroy(gameObject);
             return;
         }
+        DontDestroyOnLoad(gameObject);
 
-        instance = this as T;
     }
 
-    protected virtual void OnDestroy()
-    {
-        if (instance == this)
-        {
-            instance = null;
-        }
-    }
 }

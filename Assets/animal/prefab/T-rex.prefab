@@ -2722,7 +2722,6 @@ MonoBehaviour:
   _defense: 500
   _invincibleFlg: 0
   _downFlg: 0
-  _receiver: {fileID: 0}
 --- !u!114 &4547490786413605332
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3318,7 +3317,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _partType: 4
-  _receiver: {fileID: 0}
 --- !u!1 &7806976792173306159
 GameObject:
   m_ObjectHideFlags: 0
@@ -3365,7 +3363,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _partType: 3
-  _receiver: {fileID: 0}
 --- !u!136 &7806976792173306161
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -3393,7 +3390,7 @@ GameObject:
   - component: {fileID: 7806976792296140268}
   m_Layer: 3
   m_Name: Tail3
-  m_TagString: Attack
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -3426,7 +3423,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _partType: 5
-  _receiver: {fileID: 0}
 --- !u!136 &7806976792296140268
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -3515,7 +3511,7 @@ GameObject:
   - component: {fileID: 7806976792349379529}
   m_Layer: 3
   m_Name: Tail1
-  m_TagString: Attack
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -3548,7 +3544,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _partType: 5
-  _receiver: {fileID: 0}
 --- !u!136 &7806976792349379529
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -3780,7 +3775,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _partType: 2
-  _receiver: {fileID: 0}
 --- !u!1 &7806976792934685976
 GameObject:
   m_ObjectHideFlags: 0
@@ -3794,7 +3788,7 @@ GameObject:
   - component: {fileID: 7806976792934685978}
   m_Layer: 3
   m_Name: AttackTail3
-  m_TagString: Enemy
+  m_TagString: Attack
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -3855,7 +3849,7 @@ GameObject:
   - component: {fileID: 7806976793089639808}
   m_Layer: 3
   m_Name: AttackTail2
-  m_TagString: Enemy
+  m_TagString: Attack
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -3993,7 +3987,7 @@ GameObject:
   - component: {fileID: 7806976793122122137}
   m_Layer: 3
   m_Name: Tail2
-  m_TagString: Attack
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -4040,7 +4034,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _partType: 5
-  _receiver: {fileID: 0}
 --- !u!1 &7806976793322239280
 GameObject:
   m_ObjectHideFlags: 0
@@ -4054,7 +4047,7 @@ GameObject:
   - component: {fileID: 7806976793322239282}
   m_Layer: 3
   m_Name: AttackTail1
-  m_TagString: Enemy
+  m_TagString: Attack
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -4239,7 +4232,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _partType: 3
-  _receiver: {fileID: 0}
 --- !u!1 &7806976793865198190
 GameObject:
   m_ObjectHideFlags: 0
@@ -4406,7 +4398,7 @@ GameObject:
   - component: {fileID: 7806976794086860396}
   m_Layer: 3
   m_Name: RayPos
-  m_TagString: Enemy
+  m_TagString: EditorOnly
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -4472,7 +4464,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _partType: 4
-  _receiver: {fileID: 0}
 --- !u!136 &7806976794173948502
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -4608,7 +4599,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _partType: 1
-  _receiver: {fileID: 0}
 --- !u!1 &7859045419313800400
 GameObject:
   m_ObjectHideFlags: 0
