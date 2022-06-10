@@ -12,7 +12,7 @@
         _DisolveTex ("Disolve Pattern", 2D) = "white" { }
         _Threshold("Threshold", Range(0,1)) = 0.0
 
-        _FurLength ("Fur Length", Range(0.0, 1)) = 0.5
+        _FurLength ("Fur Length", Range(0.0, 3)) = 0.5
         _FurDensity ("Fur Density", Range(0, 2)) = 0.11
         _FurThinness ("Fur Thinness", Range(0.01, 10)) = 1
         _FurShading ("Fur Shading", Range(0.0, 1)) = 0.25

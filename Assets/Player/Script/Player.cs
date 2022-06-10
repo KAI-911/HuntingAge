@@ -82,18 +82,24 @@ public partial class Player : MonoBehaviour
     void Start()
     {
         _weponChange.Change(WeponChange.WeponType.Axe);
-
+        _animator.SetInteger("HP", _status.HP);
     }
 
     void Update()
     {
         _currentState.OnUpdate(this);
         _animator.SetBool("IsGround", _groundChecker.IsGround());
-
+        _animator.SetInteger("HP", _status.HP);
         if (_status.HitReaction != HitReaction.nonReaction &&
-            _currentState.GetType() != typeof(HitReactionState))
+            _currentState.GetType() != typeof(HitReactionState) &&
+            _currentState.GetType() != typeof(DeathState))  
         {
             ChangeState<HitReactionState>();
+        }
+        if (_status.HP == 0 &&
+            _currentState.GetType() != typeof(DeathState))
+        {
+            ChangeState<DeathState>();
         }
     }
 
@@ -181,5 +187,6 @@ public enum PlayerAnimationState
     Fall,
     Dodge,
     StrongAttack,
-    HitReaction
+    HitReaction,
+    Death
 }
