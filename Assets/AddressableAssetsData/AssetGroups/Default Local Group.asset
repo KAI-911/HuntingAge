@@ -16,7 +16,11 @@ MonoBehaviour:
   m_Data:
     m_SerializedData: []
   m_GUID: 3a9a25972c3a1f04da7e763431caa6f7
-  m_SerializeEntries: []
+  m_SerializeEntries:
+  - m_GUID: 7972d0fdc154c2c4190e6660bcddf1b9
+    m_Address: Assets/Scenes/HamaScene/Shader/Noise.shadergraph
+    m_ReadOnly: 0
+    m_SerializedLabels: []
   m_ReadOnly: 0
   m_Settings: {fileID: 11400000, guid: 08bfeac5929041f46a6b0b948edd9db1, type: 2}
   m_SchemaSet:
