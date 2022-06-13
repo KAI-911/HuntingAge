@@ -11,6 +11,8 @@ public class Wandering_Wolf : StateBase
     {
         owner.Animator.SetInteger("AniState", (int)State.Move);
 
+        owner.NavMeshAgent.speed = 2.5f;
+
         while (true)//•Ê‚ÌêŠ‚ÖˆÚ“®
         {
             target = owner.WaningPos[Random.Range(0, owner.WaningPos.Length)];

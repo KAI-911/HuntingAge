@@ -7,6 +7,8 @@ public class Move_Wolf : StateBase
     public override void OnEnter(Enemy owner, StateBase prevState)
     {
         owner.Animator.SetInteger("AniState", (int)State.Move);
+
+        owner.NavMeshAgent.speed = 5;
     }
     public override void OnExit(Enemy owner, StateBase nextState)
     {
