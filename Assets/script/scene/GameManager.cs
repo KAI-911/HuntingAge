@@ -25,6 +25,7 @@ public class GameManager : Singleton<GameManager>
         SceneManager.LoadSceneAsync((int)scene);
     }
 
+
 }
 public enum scene
 {

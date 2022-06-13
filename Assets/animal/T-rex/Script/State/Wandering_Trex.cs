@@ -2,12 +2,12 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Wandering_Trex : StateBase
+public class Wandering_Trex : StateBase_Trex
 {
     private GameObject target;
     private RunOnce once = new RunOnce();
     float waitTime;
-    public override void OnEnter(Enemy owner, StateBase prevState)
+    public override void OnEnter(Trex owner, StateBase_Trex prevState)
     {
         owner.Animator.SetInteger("AniState", (int)State.Move);
 
@@ -25,11 +25,11 @@ public class Wandering_Trex : StateBase
 
         waitTime = Random.Range(5f, 10f);
     }
-    public override void OnExit(Enemy owner, StateBase nextState)
+    public override void OnExit(Trex owner, StateBase_Trex nextState)
     {
 
     }
-    public override void OnUpdate(Enemy owner)
+    public override void OnUpdate(Trex owner)
     {
         Debug.Log("wandering");
         owner.NavMeshAgent.destination = target.transform.position;
@@ -53,15 +53,15 @@ public class Wandering_Trex : StateBase
             });
         }
     }
-    public override void OnFixedUpdate(Enemy owner)
+    public override void OnFixedUpdate(Trex owner)
     {
 
     }
-    public override void OnAnimationEvent(Enemy owner, AnimationEvent animationEvent)
+    public override void OnAnimationEvent(Trex owner, AnimationEvent animationEvent)
     {
 
     }
-    public override void OnCollisionStay(Enemy owner, Collision collision)
+    public override void OnCollisionStay(Trex owner, Collision collision)
     {
 
     }

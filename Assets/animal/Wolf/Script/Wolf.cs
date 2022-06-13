@@ -7,19 +7,18 @@ using System.Threading.Tasks;
 
 public class Wolf : Enemy
 {
-    [SerializeField] float _walkSpeed;
-    public float WalkSpeed { get => _walkSpeed; }
+    [SerializeField] private SatetBase_Wolf _currentState;
+    public SatetBase_Wolf CurrentState { get => _currentState; }
 
-    [SerializeField] float _dashSpeed;
-    public float DashSpeed { get => _dashSpeed; } 
-
-    public override void Start()
+    void Start()
     {
-        ChangeState<Idle_Wolf>();
+        _currentState = new Idle_Wolf();
+
     }
-    public override void Update()
+    void Update()
     {
-        base.Update();
+        Animator.SetInteger("HP", Status.HP);
+        _currentState.OnUpdate(this);
 
         if (Status.DownFlg && CurrentState.GetType() != typeof(Down_Wolf) && CurrentState.GetType() != typeof(Death_Wolf))
         {
@@ -29,6 +28,22 @@ public class Wolf : Enemy
         {
             ChangeState<Death_Wolf>();
         }
+    }
+    void FixedUpdate()
+    {
+        _currentState.OnFixedUpdate(this);
+    }
+    void OnAnimationEvent(AnimationEvent animationEvent)
+    {
+        _currentState.OnAnimationEvent(this, animationEvent);
 
     }
+    public void ChangeState<T>() where T : SatetBase_Wolf, new()
+    {
+        var nextState = new T();
+        _currentState.OnExit(this, nextState);
+        nextState.OnEnter(this, _currentState);
+        _currentState = nextState;
+    }
+
 }

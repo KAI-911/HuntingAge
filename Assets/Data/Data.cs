@@ -11,6 +11,7 @@ public class MaterialData
     public string IconName;
 }
 
+[Serializable]
 public class ItemData
 {
     public int ID;

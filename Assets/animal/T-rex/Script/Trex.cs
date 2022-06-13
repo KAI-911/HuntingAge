@@ -4,13 +4,18 @@ using UnityEngine;
 
 public class Trex : Enemy
 {
-    public override void Start()
+   [SerializeField] private StateBase_Trex _currentState;
+    public StateBase_Trex CurrentState { get => _currentState; }
+
+    void Start()
     {
-        ChangeState<Idle_Trex>();
+        _currentState = new Idle_Trex();
+
     }
-    public override void Update()
+    void Update()
     {
-        base.Update();
+        Animator.SetInteger("HP", Status.HP);
+        _currentState.OnUpdate(this);
 
         if (Status.DownFlg && CurrentState.GetType() != typeof(Down_Trex))
         {
@@ -20,6 +25,21 @@ public class Trex : Enemy
         {
             ChangeState<Death_Trex>();
         }
+    }
+    void FixedUpdate()
+    {
+        _currentState.OnFixedUpdate(this);
+    }
+    void OnAnimationEvent(AnimationEvent animationEvent)
+    {
+        _currentState.OnAnimationEvent(this, animationEvent);
 
+    }
+    public void ChangeState<T>() where T : StateBase_Trex, new()
+    {
+        var nextState = new T();
+        _currentState.OnExit(this, nextState);
+        nextState.OnEnter(this, _currentState);
+        _currentState = nextState;
     }
 }

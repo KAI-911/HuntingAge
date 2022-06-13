@@ -2,11 +2,11 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Down_Trex : StateBase
+public class Down_Trex : StateBase_Trex
 {
     float downTime;
 
-    public override void OnEnter(Enemy owner, StateBase prevState)
+    public override void OnEnter(Trex owner, StateBase_Trex prevState)
     {
         owner.Animator.SetInteger("AniState", (int)State.Down);
         owner.Animator.SetTrigger("Down");
@@ -14,11 +14,11 @@ public class Down_Trex : StateBase
 
 
     }
-    public override void OnExit(Enemy owner, StateBase nextState)
+    public override void OnExit(Trex owner, StateBase_Trex nextState)
     {
         owner.Status.DownFlg = false;
     }
-    public override void OnUpdate(Enemy owner)
+    public override void OnUpdate(Trex owner)
     {
         owner.NavMeshAgent.destination = owner.transform.position;
         downTime -= Time.deltaTime;
@@ -27,15 +27,15 @@ public class Down_Trex : StateBase
             owner.ChangeState<Move_Trex>();
         }
     }
-    public override void OnFixedUpdate(Enemy owner)
+    public override void OnFixedUpdate(Trex owner)
     {
 
     }
-    public override void OnAnimationEvent(Enemy owner, AnimationEvent animationEvent)
+    public override void OnAnimationEvent(Trex owner, AnimationEvent animationEvent)
     {
 
     }
-    public override void OnCollisionStay(Enemy owner, Collision collision)
+    public override void OnCollisionStay(Trex owner, Collision collision)
     {
 
     }

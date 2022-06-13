@@ -3,12 +3,15 @@
 #include "Lighting.cginc"
 #include "UnityCG.cginc"
 
+
+
+
 struct v2f
 {
     float4 pos: SV_POSITION;
     half4 uv: TEXCOORD0;
-    float3 worldNormal: TEXCOORD1;
-    float3 worldPos: TEXCOORD2;
+    half3 normal : TEXCOORD1; //法線
+    float3 worldPos: TEXCOORD4;
 };
 
 fixed4 _Color;
@@ -21,7 +24,8 @@ sampler2D _FurTex;
 half4 _FurTex_ST;
 sampler2D _DisolveTex;
 half _Threshold;
-
+sampler2D _NormalTex;
+half _BumpScale;
 fixed _FurLength;
 fixed _FurDensity;
 fixed _FurThinness;
@@ -35,7 +39,7 @@ v2f vert_surface(appdata_base v)
     v2f o;
     o.pos = UnityObjectToClipPos(v.vertex);
     o.uv.xy = TRANSFORM_TEX(v.texcoord, _MainTex);
-    o.worldNormal = UnityObjectToWorldNormal(v.normal);
+    o.normal = UnityObjectToWorldNormal(v.normal);
     o.worldPos = mul(unity_ObjectToWorld, v.vertex).xyz;
 
     return o;
@@ -49,18 +53,19 @@ v2f vert_base(appdata_base v)
     o.pos = UnityObjectToClipPos(float4(P, 1.0));
     o.uv.xy = TRANSFORM_TEX(v.texcoord, _MainTex);
     o.uv.zw = TRANSFORM_TEX(v.texcoord, _FurTex);
-    o.worldNormal = UnityObjectToWorldNormal(v.normal);
+    o.normal = UnityObjectToWorldNormal(v.normal);
     o.worldPos = mul(unity_ObjectToWorld, v.vertex).xyz;
 
     return o;
 }
 
-v2f cutom_vert_surface(appdata_base v)
+v2f cutom_vert_surface(appdata_full v)
 {
     v2f o;
     o.pos = UnityObjectToClipPos(v.vertex);
     o.uv.xy = TRANSFORM_TEX(v.texcoord, _MainTex);
-    o.worldNormal = UnityObjectToWorldNormal(v.normal);
+    
+    o.normal = UnityObjectToWorldNormal(v.normal);
     o.worldPos = mul(unity_ObjectToWorld, v.vertex).xyz;
 
     return o;
@@ -74,7 +79,7 @@ v2f cutom_vert_base(appdata_base v)
     o.pos = UnityObjectToClipPos(float4(P, 1.0));
     o.uv.xy = TRANSFORM_TEX(v.texcoord, _MainTex);
     o.uv.zw = TRANSFORM_TEX(v.texcoord, _FurTex);
-    o.worldNormal = UnityObjectToWorldNormal(v.normal);
+    o.normal = UnityObjectToWorldNormal(v.normal);
     o.worldPos = mul(unity_ObjectToWorld, v.vertex).xyz;
 
     return o;
@@ -82,7 +87,7 @@ v2f cutom_vert_base(appdata_base v)
 fixed4 frag_surface(v2f i): SV_Target
 {
     
-    fixed3 worldNormal = normalize(i.worldNormal);
+    fixed3 worldNormal = normalize(i.normal);
     fixed3 worldLight = normalize(_WorldSpaceLightPos0.xyz);
     fixed3 worldView = normalize(_WorldSpaceCameraPos.xyz - i.worldPos.xyz);
     fixed3 worldHalf = normalize(worldView + worldLight);
@@ -99,7 +104,7 @@ fixed4 frag_surface(v2f i): SV_Target
 
 fixed4 frag_base(v2f i): SV_Target
 {
-    fixed3 worldNormal = normalize(i.worldNormal);
+    fixed3 worldNormal = normalize(i.normal);
     fixed3 worldLight = normalize(_WorldSpaceLightPos0.xyz);
     fixed3 worldView = normalize(_WorldSpaceCameraPos.xyz - i.worldPos.xyz);
     fixed3 worldHalf = normalize(worldView + worldLight);
@@ -120,7 +125,7 @@ fixed4 frag_base(v2f i): SV_Target
 fixed4 cutom_frag_surface(v2f i) : SV_Target
 {
     
-    fixed3 worldNormal = normalize(i.worldNormal);
+    fixed3 worldNormal = normalize(i.normal);
     fixed3 worldLight = normalize(_WorldSpaceLightPos0.xyz);
     fixed3 worldView = normalize(_WorldSpaceCameraPos.xyz - i.worldPos.xyz);
     fixed3 worldHalf = normalize(worldView + worldLight);
@@ -146,7 +151,7 @@ fixed4 cutom_frag_surface(v2f i) : SV_Target
 
 fixed4 cutom_frag_base(v2f i) : SV_Target
 {
-    fixed3 worldNormal = normalize(i.worldNormal);
+    fixed3 worldNormal = normalize(i.normal);
     fixed3 worldLight = normalize(_WorldSpaceLightPos0.xyz);
     fixed3 worldView = normalize(_WorldSpaceCameraPos.xyz - i.worldPos.xyz);
     fixed3 worldHalf = normalize(worldView + worldLight);

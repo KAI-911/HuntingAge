@@ -62,7 +62,6 @@ public class WeponChange : MonoBehaviour
     public void C_Axe()
     {
         Change(WeponType.Axe);
-        GameManager.Instance.SceneChange(scene.Base);
     }
     public void C_Spear()
     {

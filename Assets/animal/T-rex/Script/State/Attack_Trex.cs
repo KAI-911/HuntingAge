@@ -2,9 +2,9 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Attack_Trex : StateBase
+public class Attack_Trex : StateBase_Trex
 {
-    public override void OnEnter(Enemy owner, StateBase prevState)
+    public override void OnEnter(Trex owner, StateBase_Trex prevState)
     {
         owner.Animator.SetInteger("AniState", (int)State.Attack);
 
@@ -34,21 +34,21 @@ public class Attack_Trex : StateBase
 
 
     }
-    public override void OnExit(Enemy owner, StateBase nextState)
+    public override void OnExit(Trex owner, StateBase_Trex nextState)
     {
         owner.HitReceiver.AttackFlgReset();
     }
-    public override void OnUpdate(Enemy owner)
+    public override void OnUpdate(Trex owner)
     {
         owner.NavMeshAgent.destination = owner.transform.position;
         owner.LookToTarget((int)(owner.RotationAngle * Time.deltaTime));
 
     }
-    public override void OnFixedUpdate(Enemy owner)
+    public override void OnFixedUpdate(Trex owner)
     {
 
     }
-    public override void OnAnimationEvent(Enemy owner, AnimationEvent animationEvent)
+    public override void OnAnimationEvent(Trex owner, AnimationEvent animationEvent)
     {
         Debug.Log("attack");
         if (animationEvent.stringParameter == "Change")
@@ -61,7 +61,7 @@ public class Attack_Trex : StateBase
             owner.ChangeState<Move_Trex>();
         }
     }
-    public override void OnCollisionStay(Enemy owner, Collision collision)
+    public override void OnCollisionStay(Trex owner, Collision collision)
     {
 
     }
