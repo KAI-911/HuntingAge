@@ -6,7 +6,7 @@ using UnityEngine.SceneManagement;
 public class GameManager : Singleton<GameManager>
 {
     [SerializeField] bool chenge;
-    [SerializeField] scene scene;
+    [SerializeField] Scene scene;
     void Start()
     {
         chenge = false;
@@ -20,14 +20,14 @@ public class GameManager : Singleton<GameManager>
             SceneManager.LoadSceneAsync((int)scene);
         }
     }
-    public void SceneChange(scene scene)
+    public void SceneChange(Scene scene)
     {
         SceneManager.LoadSceneAsync((int)scene);
     }
 
 
 }
-public enum scene
+public enum Scene
 {
     Base,
     Forest,

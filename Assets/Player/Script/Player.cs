@@ -180,14 +180,14 @@ public partial class Player : MonoBehaviour
     }
     public void ChengeAnimal()
     {
-        GameManager.Instance.SceneChange(scene.Animal);
+        GameManager.Instance.SceneChange(Scene.Animal);
     }
     public void ChengeBase()
     {
-        GameManager.Instance.SceneChange(scene.Base);
+        GameManager.Instance.SceneChange(Scene.Base);
     } public void ChengeForest()
     {
-        GameManager.Instance.SceneChange(scene.Forest);
+        GameManager.Instance.SceneChange(Scene.Forest);
     }
 }
 public enum PlayerAnimationState

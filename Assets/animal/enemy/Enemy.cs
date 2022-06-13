@@ -188,7 +188,7 @@ public class Enemy : MonoBehaviour
         }
         return list;
     }
-    public async Task WaitForAsync(float seconds, Action action)
+    public async Task WaitForAsync(int seconds, Action action)
     {
         //seconds•b‘Ò‚Á‚Ä‚©‚çaction‚ðŽÀs
         //ŒÄ‚Ño‚·‚Æ‚«‚Í _ = WaitForAsync(1,()=>Delete()); ‚Ì‚æ‚¤‚ÈŒ`‚Å

@@ -10,7 +10,7 @@ public class Trex : Enemy
     void Start()
     {
         _currentState = new Idle_Trex();
-
+        _currentState.OnEnter(this, null);
     }
     void Update()
     {
@@ -42,4 +42,5 @@ public class Trex : Enemy
         nextState.OnEnter(this, _currentState);
         _currentState = nextState;
     }
+
 }

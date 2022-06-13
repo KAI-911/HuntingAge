@@ -37,3 +37,52 @@ public enum ItemType
     AttackUp,
     DefenseUp
 }
+
+[Serializable]
+public class EnemyData
+{
+    public int ID;
+    public string InstanceName;
+    public List<EnemyPos> EnemyPos;
+}
+
+[Serializable]
+public class EnemyPos
+{
+    public Scene _scene;
+    public List<Vector3> _position;
+}
+
+[Serializable]
+public class QuestData
+{
+    public int QuestID;
+    public ClearConditions Clear;
+    public FailureConditions Failure;
+    public Scene Field;
+}
+[Serializable]
+public enum ClearConditions
+{
+    /// <summary>
+    /// ëŒè€ÇÃì¢î∞
+    /// </summary>
+    TargetSubjugation,
+    /// <summary>
+    /// çÃèW
+    /// </summary>
+    Gathering
+}
+[Serializable]
+public enum FailureConditions
+{
+    OneDown,
+    TwoDown,
+    ThreeDown,
+    FourDown,
+    FiveDown
+}
+
+
+
+

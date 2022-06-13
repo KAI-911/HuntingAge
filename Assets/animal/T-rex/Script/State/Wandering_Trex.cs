@@ -4,17 +4,17 @@ using UnityEngine;
 
 public class Wandering_Trex : StateBase_Trex
 {
-    private GameObject target;
+    private Vector3 target;
     private RunOnce once = new RunOnce();
-    float waitTime;
+    int waitTime;
     public override void OnEnter(Trex owner, StateBase_Trex prevState)
     {
         owner.Animator.SetInteger("AniState", (int)State.Move);
-
         while (true)//別の場所へ移動
         {
-            target = owner.WaningPos[Random.Range(0, owner.WaningPos.Length)];
-            var vec = target.transform.position - owner.transform.position;
+            int num = Random.Range(0, owner.WaningPos.Length - 1);
+            target = owner.WaningPos[num].transform.position;
+            var vec = target - owner.transform.position;
             vec.y = 0;
             //移動先がある程度離れている場合ループを抜ける
             if (vec.sqrMagnitude > owner.NavMeshAgent.stoppingDistance * owner.NavMeshAgent.stoppingDistance)
@@ -22,8 +22,8 @@ public class Wandering_Trex : StateBase_Trex
                 break;
             }
         }
-
-        waitTime = Random.Range(5f, 10f);
+        Debug.Log(target);
+        waitTime = Random.Range(5, 10);
     }
     public override void OnExit(Trex owner, StateBase_Trex nextState)
     {
@@ -32,17 +32,19 @@ public class Wandering_Trex : StateBase_Trex
     public override void OnUpdate(Trex owner)
     {
         Debug.Log("wandering");
-        owner.NavMeshAgent.destination = target.transform.position;
+        owner.NavMeshAgent.destination = target;
 
         if (owner.Search())
         {
             owner.ChangeState<Move_Trex>();
             return;
         }
-        var vec = target.transform.position - owner.transform.position;
+        var vec = target - owner.transform.position;
         vec.y = 0;
+        Debug.Log("距離" + vec.magnitude + "　　 停止距離" + owner.NavMeshAgent.stoppingDistance * 1.2f);
         if (vec.magnitude < owner.NavMeshAgent.stoppingDistance * 1.2f)
         {
+            Debug.Log("近くまで来た");
             //目標地点に来たら、停止する。
             //waitTime秒後、発見していなかったらもう一度徘徊する。
             once.Run(() =>

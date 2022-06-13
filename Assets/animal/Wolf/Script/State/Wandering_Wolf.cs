@@ -6,7 +6,7 @@ public class Wandering_Wolf : SatetBase_Wolf
 {
     private GameObject target;
     private RunOnce once = new RunOnce();
-    float waitTime;
+    int waitTime;
     public override void OnEnter(Wolf owner, SatetBase_Wolf prevState)
     {
         owner.Animator.SetInteger("AniState", (int)State.Move);
@@ -23,7 +23,7 @@ public class Wandering_Wolf : SatetBase_Wolf
             }
         }
 
-        waitTime = Random.Range(5f, 10f);
+        waitTime = Random.Range(5, 10);
     }
     public override void OnExit(Wolf owner, SatetBase_Wolf nextState)
     {
