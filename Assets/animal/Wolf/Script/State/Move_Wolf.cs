@@ -7,6 +7,8 @@ public class Move_Wolf : SatetBase_Wolf
     public override void OnEnter(Wolf owner, SatetBase_Wolf prevState)
     {
         owner.Animator.SetInteger("AniState", (int)State.Move);
+
+        owner.NavMeshAgent.speed = 5;
     }
     public override void OnExit(Wolf owner, SatetBase_Wolf nextState)
     {

@@ -13,7 +13,7 @@ public class Wolf : Enemy
     void Start()
     {
         _currentState = new Idle_Wolf();
-
+        _currentState.OnEnter(this, null);
     }
     void Update()
     {

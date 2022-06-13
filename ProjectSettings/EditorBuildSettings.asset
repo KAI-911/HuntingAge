@@ -9,7 +9,7 @@ EditorBuildSettings:
     path: Assets/Scenes/Base/Base.unity
     guid: 6c2495bfd6f228f40ade79be999d3b95
   - enabled: 1
-    path: Assets/Scenes/Forest/Forest.unity
+    path: Assets/animal/T-rex/animetion/Forest/Forest.unity
     guid: abb96879e5601044d8897522f12727d7
   - enabled: 1
     path: Assets/Scenes/animal/animal.unity

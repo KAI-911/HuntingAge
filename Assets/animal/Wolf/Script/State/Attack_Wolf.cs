@@ -19,7 +19,7 @@ public class Attack_Wolf : SatetBase_Wolf
         switch (type)
         {
             case TargetCheckerType.Biting:
-                owner.HitReceiver.HitReaction = HitReaction.middleReaction;
+                owner.HitReceiver.HitReaction = HitReaction.lowReaction;
                 break;
             default:
                 owner.HitReceiver.HitReaction = HitReaction.nonReaction;
