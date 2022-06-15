@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Wandering_Wolf : SatetBase_Wolf
 {
-    private GameObject target;
+    private Vector3 target;
     private RunOnce once = new RunOnce();
     int waitTime;
     public override void OnEnter(Wolf owner, SatetBase_Wolf prevState)
@@ -15,8 +15,9 @@ public class Wandering_Wolf : SatetBase_Wolf
 
         while (true)//•Ê‚ÌêŠ‚ÖˆÚ“®
         {
-            target = owner.WaningPos[Random.Range(0, owner.WaningPos.Length)];
-            var vec = target.transform.position - owner.transform.position;
+            int num = Random.Range(0, owner.WaningPos.Count);
+            target = owner.WaningPos[num];
+            var vec = target - owner.transform.position;
             vec.y = 0;
             //ˆÚ“®æ‚ª‚ ‚é’ö“x—£‚ê‚Ä‚¢‚éê‡ƒ‹[ƒv‚ð”²‚¯‚é
             if (vec.sqrMagnitude > owner.NavMeshAgent.stoppingDistance * owner.NavMeshAgent.stoppingDistance)
@@ -34,14 +35,14 @@ public class Wandering_Wolf : SatetBase_Wolf
     public override void OnUpdate(Wolf owner)
     {
         Debug.Log("wandering");
-        owner.NavMeshAgent.destination = target.transform.position;
+        owner.NavMeshAgent.destination = target;
 
         if (owner.Search())
         {
             owner.ChangeState<Move_Wolf>();
             return;
         }
-        var vec = target.transform.position - owner.transform.position;
+        var vec = target - owner.transform.position;
         vec.y = 0;
         if (vec.magnitude < owner.NavMeshAgent.stoppingDistance * 1.2f)
         {

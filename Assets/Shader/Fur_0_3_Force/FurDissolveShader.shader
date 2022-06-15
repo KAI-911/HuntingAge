@@ -37,7 +37,7 @@
                 
                 #pragma vertex cutom_vert_surface
                 #pragma fragment cutom_frag_surface
-                #define FURSTEP 0.01
+                #define FURSTEP 0.05
                 #include "FurHelper.cginc"
                 
                 ENDCG
@@ -50,163 +50,7 @@
                 
                 #pragma vertex cutom_vert_base
                 #pragma fragment cutom_frag_base
-                #define FURSTEP 0.02
-                #include "FurHelper.cginc"
-                
-                ENDCG
-                
-            }
-            
-            Pass
-            {
-                CGPROGRAM
-                
-                #pragma vertex cutom_vert_base
-                #pragma fragment cutom_frag_base
-                #define FURSTEP 0.03
-                #include "FurHelper.cginc"
-                
-                ENDCG
-                
-            }
-            
-            Pass
-            {
-                CGPROGRAM
-                
-                #pragma vertex cutom_vert_base
-                #pragma fragment cutom_frag_base
-                #define FURSTEP 0.04
-                #include "FurHelper.cginc"
-                
-                ENDCG
-                
-            }
-            
-            Pass
-            {
-                CGPROGRAM
-                
-                #pragma vertex cutom_vert_base
-                #pragma fragment cutom_frag_base
-                #define FURSTEP 0.05
-                #include "FurHelper.cginc"
-                
-                ENDCG
-                
-            }
-            
-            Pass
-            {
-                CGPROGRAM
-                
-                #pragma vertex cutom_vert_base
-                #pragma fragment cutom_frag_base
-                #define FURSTEP 0.06
-                #include "FurHelper.cginc"
-                
-                ENDCG
-                
-            }
-            
-            Pass
-            {
-                CGPROGRAM
-                
-                #pragma vertex cutom_vert_base
-                #pragma fragment cutom_frag_base
-                #define FURSTEP 0.07
-                #include "FurHelper.cginc"
-                
-                ENDCG
-                
-            }
-            
-            Pass
-            {
-                CGPROGRAM
-                
-                #pragma vertex cutom_vert_base
-                #pragma fragment cutom_frag_base
-                #define FURSTEP 0.08
-                #include "FurHelper.cginc"
-                
-                ENDCG
-                
-            }
-            
-            Pass
-            {
-                CGPROGRAM
-                
-                #pragma vertex cutom_vert_base
-                #pragma fragment cutom_frag_base
-                #define FURSTEP 0.09
-                #include "FurHelper.cginc"
-                
-                ENDCG
-                
-            }
-            
-            Pass
-            {
-                CGPROGRAM
-                
-                #pragma vertex cutom_vert_base
-                #pragma fragment cutom_frag_base
-                #define FURSTEP 0.1
-                #include "FurHelper.cginc"
-                
-                ENDCG
-                
-            }
-            
-            Pass
-            {
-                CGPROGRAM
-                
-                #pragma vertex cutom_vert_base
-                #pragma fragment cutom_frag_base
-                #define FURSTEP 0.11
-                #include "FurHelper.cginc"
-                
-                ENDCG
-                
-            }
-            
-            Pass
-            {
-                CGPROGRAM
-                
-                #pragma vertex cutom_vert_base
-                #pragma fragment cutom_frag_base
-                #define FURSTEP 0.12
-                #include "FurHelper.cginc"
-                
-                ENDCG
-                
-            }
-            
-            Pass
-            {
-                CGPROGRAM
-                
-                #pragma vertex cutom_vert_base
-                #pragma fragment cutom_frag_base
-                #define FURSTEP 0.13
-                #include "FurHelper.cginc"
-                
-                ENDCG
-                
-            }
-            
-            Pass
-            {
-                CGPROGRAM
-                
-                #pragma vertex cutom_vert_base
-                #pragma fragment cutom_frag_base
-                #define FURSTEP 0.14
+                #define FURSTEP 0.10
                 #include "FurHelper.cginc"
                 
                 ENDCG
@@ -232,7 +76,7 @@
                 
                 #pragma vertex cutom_vert_base
                 #pragma fragment cutom_frag_base
-                #define FURSTEP 0.16
+                #define FURSTEP 0.20
                 #include "FurHelper.cginc"
                 
                 ENDCG
@@ -245,7 +89,7 @@
                 
                 #pragma vertex cutom_vert_base
                 #pragma fragment cutom_frag_base
-                #define FURSTEP 0.17
+                #define FURSTEP 0.25
                 #include "FurHelper.cginc"
                 
                 ENDCG
@@ -258,7 +102,7 @@
                 
                 #pragma vertex cutom_vert_base
                 #pragma fragment cutom_frag_base
-                #define FURSTEP 0.18
+                #define FURSTEP 0.30
                 #include "FurHelper.cginc"
                 
                 ENDCG
@@ -271,7 +115,7 @@
                 
                 #pragma vertex cutom_vert_base
                 #pragma fragment cutom_frag_base
-                #define FURSTEP 0.19
+                #define FURSTEP 0.35
                 #include "FurHelper.cginc"
                 
                 ENDCG
@@ -284,7 +128,163 @@
                 
                 #pragma vertex cutom_vert_base
                 #pragma fragment cutom_frag_base
-                #define FURSTEP 0.2
+                #define FURSTEP 0.4
+                #include "FurHelper.cginc"
+                
+                ENDCG
+                
+            }
+            
+            Pass
+            {
+                CGPROGRAM
+                
+                #pragma vertex cutom_vert_base
+                #pragma fragment cutom_frag_base
+                #define FURSTEP 0.45
+                #include "FurHelper.cginc"
+                
+                ENDCG
+                
+            }
+            
+            Pass
+            {
+                CGPROGRAM
+                
+                #pragma vertex cutom_vert_base
+                #pragma fragment cutom_frag_base
+                #define FURSTEP 0.50
+                #include "FurHelper.cginc"
+                
+                ENDCG
+                
+            }
+            
+            Pass
+            {
+                CGPROGRAM
+                
+                #pragma vertex cutom_vert_base
+                #pragma fragment cutom_frag_base
+                #define FURSTEP 0.55
+                #include "FurHelper.cginc"
+                
+                ENDCG
+                
+            }
+            
+            Pass
+            {
+                CGPROGRAM
+                
+                #pragma vertex cutom_vert_base
+                #pragma fragment cutom_frag_base
+                #define FURSTEP 0.60
+                #include "FurHelper.cginc"
+                
+                ENDCG
+                
+            }
+            
+            Pass
+            {
+                CGPROGRAM
+                
+                #pragma vertex cutom_vert_base
+                #pragma fragment cutom_frag_base
+                #define FURSTEP 0.65
+                #include "FurHelper.cginc"
+                
+                ENDCG
+                
+            }
+            
+            Pass
+            {
+                CGPROGRAM
+                
+                #pragma vertex cutom_vert_base
+                #pragma fragment cutom_frag_base
+                #define FURSTEP 0.70
+                #include "FurHelper.cginc"
+                
+                ENDCG
+                
+            }
+            
+            Pass
+            {
+                CGPROGRAM
+                
+                #pragma vertex cutom_vert_base
+                #pragma fragment cutom_frag_base
+                #define FURSTEP 0.75
+                #include "FurHelper.cginc"
+                
+                ENDCG
+                
+            }
+            
+            Pass
+            {
+                CGPROGRAM
+                
+                #pragma vertex cutom_vert_base
+                #pragma fragment cutom_frag_base
+                #define FURSTEP 0.80
+                #include "FurHelper.cginc"
+                
+                ENDCG
+                
+            }
+            
+            Pass
+            {
+                CGPROGRAM
+                
+                #pragma vertex cutom_vert_base
+                #pragma fragment cutom_frag_base
+                #define FURSTEP 0.85
+                #include "FurHelper.cginc"
+                
+                ENDCG
+                
+            }
+            
+            Pass
+            {
+                CGPROGRAM
+                
+                #pragma vertex cutom_vert_base
+                #pragma fragment cutom_frag_base
+                #define FURSTEP 0.9
+                #include "FurHelper.cginc"
+                
+                ENDCG
+                
+            }
+            
+            Pass
+            {
+                CGPROGRAM
+                
+                #pragma vertex cutom_vert_base
+                #pragma fragment cutom_frag_base
+                #define FURSTEP 0.95
+                #include "FurHelper.cginc"
+                
+                ENDCG
+                
+            }
+            
+            Pass
+            {
+                CGPROGRAM
+                
+                #pragma vertex cutom_vert_base
+                #pragma fragment cutom_frag_base
+                #define FURSTEP 1.00
                 #include "FurHelper.cginc"
                 
                 ENDCG
@@ -297,7 +297,7 @@
                 
                 #pragma vertex cutom_vert_base
                 #pragma fragment cutom_frag_base
-                #define FURSTEP 0.21
+                #define FURSTEP 1.05
                 #include "FurHelper.cginc"
                 
                 ENDCG

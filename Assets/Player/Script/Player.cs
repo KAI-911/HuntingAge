@@ -1,5 +1,6 @@
 using System;
 using UnityEngine;
+using System.Collections.Generic;
 using UnityEngine.InputSystem;
 using System.Threading.Tasks;
 using UnityEngine.EventSystems;
@@ -48,6 +49,13 @@ public partial class Player : MonoBehaviour
 
     private WeponChange _weponChange;
     public WeponChange WeponChange { get => _weponChange; set => _weponChange = value; }
+
+    //•œŠˆ—p
+    [SerializeField] private List<Position> _startPos;
+    public List<Position> StartPos { get => _startPos; set => _startPos = value; }
+    private Status _keepStatus;
+
+
     private void Awake()
     {
         _rigidbody = GetComponent<Rigidbody>();
@@ -58,6 +66,7 @@ public partial class Player : MonoBehaviour
         _inputMove = new InputControls();
         _currentState = new LocomotionState();
         _currentState.OnEnter(this, null);
+        _keepStatus = new Status();
     }
 
     private void OnEnable()
@@ -83,6 +92,8 @@ public partial class Player : MonoBehaviour
     {
         _weponChange.Change(WeponChange.WeponType.Axe);
         _animator.SetInteger("HP", _status.HP);
+        _keepStatus.HP = _status.HP;
+
     }
 
     void Update()
@@ -178,17 +189,18 @@ public partial class Player : MonoBehaviour
         await Task.Delay(TimeSpan.FromSeconds(seconds));
         action();
     }
-    public void ChengeAnimal()
+
+    public void Revival()
     {
-        GameManager.Instance.SceneChange(Scene.Animal);
+        Debug.Log(_keepStatus.HP);
+        _status.HP = _keepStatus.HP;
+        var pos = StartPos.Find(n => n.scene == GameManager.Instance.Quest.QuestData.Field);
+        transform.position = pos.pos[0];
+        ChangeState<LocomotionState>();
+        _animator.SetInteger("HP", _status.HP);
+        _status.HitReaction = HitReaction.nonReaction;
     }
-    public void ChengeBase()
-    {
-        GameManager.Instance.SceneChange(Scene.Base);
-    } public void ChengeForest()
-    {
-        GameManager.Instance.SceneChange(Scene.Forest);
-    }
+
 }
 public enum PlayerAnimationState
 {

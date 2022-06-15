@@ -24,8 +24,8 @@ public class Enemy : MonoBehaviour
     public HitReceiver HitReceiver { get => _hitReceiver; set => _hitReceiver = value; }
 
     //警戒状態で見回るポイント----------------------------------------------------------------------------
-    [SerializeField] private GameObject[] _warningPos;
-    public GameObject[] WaningPos { get => _warningPos; }
+    [SerializeField] private List<Vector3> _warningPos;
+    public List<Vector3> WaningPos { get => _warningPos; set => _warningPos = value; }
 
     //障害物が無いか判断するレイ判定の発射位置------------------------------------------------------------
     [SerializeField] private GameObject _rayStartPos;
@@ -199,7 +199,7 @@ public class Enemy : MonoBehaviour
     public void Delete()
     {
         //自分を削除
-        Destroy(gameObject);
+        gameObject.SetActive(false);
     }
 
 }
