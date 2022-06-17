@@ -32,26 +32,27 @@ public class NowScene : MonoBehaviour
         if (_quest != null)
         {
             //討伐対象
-            foreach (var target in _quest.TargetEnemyData)
+            foreach (var target in _quest.QuestData.TargetName)
             {
+                var data = SaveData.GetClass<EnemyData>(target, new EnemyData());
                 Vector3 popPos = Vector3.zero;
                 //シーンごとの最初の位置を設定
-                popPos = target.EnemyPosition(_quest.QuestData.Field).pos[Random.Range(0, target.EnemyPosition(_quest.QuestData.Field).pos.Count)];
-                var obj = Instantiate(Resources.Load(target.InstanceName), popPos, Quaternion.identity) as GameObject;
+                popPos = data.EnemyPosition(_quest.QuestData.Field).pos[Random.Range(0, data.EnemyPosition(_quest.QuestData.Field).pos.Count)];
+                var obj = Instantiate(Resources.Load(data.InstanceName), popPos, Quaternion.identity) as GameObject;
                 var ene = obj.GetComponent<Enemy>();
-                ene.WaningPos = target.EnemyPosition(_quest.QuestData.Field).pos;
+                ene.WaningPos = data.EnemyPosition(_quest.QuestData.Field).pos;
                 _targetEnemies.Add(ene);
             }
             //非討伐対象
-            Debug.Log(_quest.OtherEnemyData.Count);
-            foreach (var target in _quest.OtherEnemyData)
+            foreach (var target in _quest.QuestData.OtherName)
             {
+                var data = SaveData.GetClass<EnemyData>(target, new EnemyData());
                 Vector3 popPos = Vector3.zero;
                 //シーンごとの最初の位置を設定
-                popPos = target.EnemyPosition(_quest.QuestData.Field).pos[Random.Range(0, target.EnemyPosition(_quest.QuestData.Field).pos.Count)];
-                var obj = Instantiate(Resources.Load(target.InstanceName), popPos, Quaternion.identity) as GameObject;
+                popPos = data.EnemyPosition(_quest.QuestData.Field).pos[Random.Range(0, data.EnemyPosition(_quest.QuestData.Field).pos.Count)];
+                var obj = Instantiate(Resources.Load(data.InstanceName), popPos, Quaternion.identity) as GameObject;
                 var ene = obj.GetComponent<Enemy>();
-                ene.WaningPos = target.EnemyPosition(_quest.QuestData.Field).pos;
+                ene.WaningPos = data.EnemyPosition(_quest.QuestData.Field).pos;
                 _otherEnemies.Add(ene);
                 Debug.Log("非討伐対象の出現");
             }
@@ -108,15 +109,17 @@ public class NowScene : MonoBehaviour
         if (_questStatus == QuestStatus.clear)
         {
             Debug.Log("クリアしました");
-            _sceneChengeTime -= Time.deltaTime;
+            _player.Status.InvincibleFlg = true;
+             _sceneChengeTime -= Time.deltaTime;
             if (_sceneChengeTime < 0) SceneManager.LoadSceneAsync((int)Scene.Sato);
         }
         else if (_questStatus == QuestStatus.failure)
         {
             Debug.Log("失敗しました");
             //死亡時は早く戻る
+            _player.Status.InvincibleFlg = true;
             _sceneChengeTime -= Time.deltaTime * 2;
-            if (_sceneChengeTime < 0) SceneManager.LoadSceneAsync((int)Scene.Sato);
+            if (_sceneChengeTime < 0) SceneManager.LoadSceneAsync((int)GameManager.Instance.VillageScene);
         }
     }
     enum QuestStatus
