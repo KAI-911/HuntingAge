@@ -28,7 +28,10 @@ public class Move_Wolf : SatetBase_Wolf
             owner.ChangeState<Attack_Wolf>();
             return;
         }
-
+        if (!owner.DiscoverFlg)
+        {
+            owner.ChangeState<Idle_Wolf>();
+        }
 
 
     }

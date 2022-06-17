@@ -5,21 +5,24 @@ using UnityEngine.SceneManagement;
 
 public class GameManager : Singleton<GameManager>
 {
-    [SerializeField] bool chenge;
-    [SerializeField] Scene scene;
+    [SerializeField] bool _chenge;
+    [SerializeField] Scene _scene;
+    [SerializeField] Quest _quest;
+    public Quest Quest { get => _quest; set => _quest = value; }
     void Start()
     {
-        chenge = false;
+        _chenge = false;
     }
 
     void Update()
     {
-        if (chenge)
+        if (_chenge)
         {
-            chenge = false;
-            SceneManager.LoadSceneAsync((int)scene);
+            _chenge = false;
+            SceneManager.LoadSceneAsync((int)_scene);
         }
     }
+
     public void SceneChange(Scene scene)
     {
         SceneManager.LoadSceneAsync((int)scene);
@@ -31,5 +34,6 @@ public enum Scene
 {
     Base,
     Forest,
-    Animal
+    Animal,
+    Sato
 }

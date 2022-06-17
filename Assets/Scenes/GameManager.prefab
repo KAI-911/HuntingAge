@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 974404489334883482}
   - component: {fileID: 974404489334883483}
+  - component: {fileID: 3335667563906793619}
   m_Layer: 0
   m_Name: GameManager
   m_TagString: Untagged
@@ -30,7 +31,6 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 6862996165734480187}
-  - {fileID: 9165023849678141930}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -46,8 +46,31 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c4abf15b51754414c8ad15f0332aa024, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  chenge: 0
-  scene: 0
+  _chenge: 0
+  _scene: 0
+  _quest: {fileID: 3335667563906793619}
+--- !u!114 &3335667563906793619
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 974404489334883480}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4103a0c41be21bb4991085060e29f370, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _questData:
+    QuestID: 
+    Clear: 0
+    Failure: 0
+    Field: 0
+    TargetName: []
+    OtherName: []
+  _targetEnemyDatas: []
+  _otherEnemyDatas: []
+  _questset: 0
 --- !u!1 &6862996165734480185
 GameObject:
   m_ObjectHideFlags: 0
@@ -124,60 +147,3 @@ MonoBehaviour:
   m_TrackedDeviceOrientationAction: {fileID: 7970375526676320489, guid: ca9f5fa95ffab41fb9a615ab714db018, type: 3}
   m_DeselectOnBackgroundClick: 1
   m_PointerBehavior: 0
---- !u!1 &8710364325197140397
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 9165023849678141930}
-  - component: {fileID: 220091824230224236}
-  m_Layer: 0
-  m_Name: DataManager
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &9165023849678141930
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8710364325197140397}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 974404489334883482}
-  m_RootOrder: 1
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &220091824230224236
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8710364325197140397}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 170890fa7a8d38f42bbd3a8f38401750, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _enemyData:
-    ID: 0
-    InstanceName: 
-    EnemyPos:
-    - _scene: 2
-      _position:
-      - {x: 10, y: 0, z: 10}
-      - {x: 10, y: 0, z: -10}
-      - {x: -10, y: 0, z: 10}
-      - {x: -10, y: 0, z: -10}
-  set: 0
-  load: 0
-  Key: key

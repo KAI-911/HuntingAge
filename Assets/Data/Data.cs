@@ -41,26 +41,48 @@ public enum ItemType
 [Serializable]
 public class EnemyData
 {
-    public int ID;
+    /// <summary>
+    /// ÇªÇÍÇºÇÍÇÃñºëOÇèëÇ≠
+    /// </summary>
+    public string ID;
+    public string DisplayName;
     public string InstanceName;
-    public List<EnemyPos> EnemyPos;
+    public List<Position> EnemyPos;
+    public Position EnemyPosition(Scene scene)
+    {
+        foreach (var item in EnemyPos)
+        {
+            if (item.scene != scene) continue;
+            return item;
+        }
+        return null;
+    }
 }
 
 [Serializable]
-public class EnemyPos
+public class Position
 {
-    public Scene _scene;
-    public List<Vector3> _position;
+    public Scene scene;
+    public List<Vector3> pos;
 }
 
 [Serializable]
 public class QuestData
 {
-    public int QuestID;
+    /// <summary>
+    /// Quest000 òAî‘Ç≈
+    /// </summary>
+    public string ID;
+    public string Name;
     public ClearConditions Clear;
     public FailureConditions Failure;
     public Scene Field;
+    public List<string> TargetName;
+    public List<string> OtherName;
 }
+
+
+
 [Serializable]
 public enum ClearConditions
 {

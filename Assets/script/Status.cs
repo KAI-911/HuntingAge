@@ -28,7 +28,7 @@ public class Status : MonoBehaviour, IAttackDamage
     
     //UŒ‚‚ğó‚¯‚½‚Ì”½‰
     private HitReaction _hitReaction;
-    public HitReaction HitReaction { get => _hitReaction; }
+    public HitReaction HitReaction { get => _hitReaction; set => _hitReaction = value; }
 
     //UŒ‚‚Ìî•ñ
     private AttackInfo _Hitparameter;

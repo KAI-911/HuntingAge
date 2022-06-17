@@ -26,8 +26,10 @@ public class Move_Trex : StateBase_Trex
             owner.ChangeState<Attack_Trex>();
             return;
         }
-        
-
+        if(!owner.DiscoverFlg)
+        {
+            owner.ChangeState<Idle_Trex>();
+        }
 
     }
     public override void OnFixedUpdate(Trex owner)
