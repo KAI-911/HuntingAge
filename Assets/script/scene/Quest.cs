@@ -9,16 +9,13 @@ public class Quest : MonoBehaviour
     [SerializeField] QuestData _questData = null;
     public QuestData QuestData { get => _questData; set => _questData = value; }
 
-    //討伐対象
-    [SerializeField] List<EnemyData> _targetEnemyDatas;
-    public List<EnemyData> TargetEnemyData { get => _targetEnemyDatas; set => _targetEnemyDatas = value; }
+    [SerializeField] EnemyData _EnemyData;
+    public EnemyData TargetEnemyData { get => _EnemyData; set => _EnemyData = value; }
 
-    //非討伐対象
-    [SerializeField] List<EnemyData> _otherEnemyDatas;
-    public List<EnemyData> OtherEnemyData { get => _otherEnemyDatas; set => _otherEnemyDatas = value; }
 
     public bool _questset = false;
-    public bool _enemytset = false;
+    public bool _enemyset = false;
+    public bool _enemyload = false;
     void Start()
     {
 
@@ -33,25 +30,22 @@ public class Quest : MonoBehaviour
             SaveData.SetClass<QuestData>(_questData.ID, _questData);
             Debug.Log("クエストセット");
         }
-        if (_enemytset)
+        if (_enemyset)
         {
-            _enemytset = false;
-            SaveData.SetClass<EnemyData>(_targetEnemyDatas[0].ID, _targetEnemyDatas[0]);
+            _enemyset = false;
+            SaveData.SetClass<EnemyData>(_EnemyData.ID, _EnemyData);
             Debug.Log("エネミーセット");
+        }
+        if (_enemyload)
+        {
+            _enemyset = false;
+            SaveData.GetClass<EnemyData>(_EnemyData.ID, _EnemyData);
+            Debug.Log("エネミーロード");
         }
     }
     public void QusetSelect(string QuestID)
     {
-        QuestReset();
         _questData = SaveData.GetClass<QuestData>(QuestID, new QuestData());
-        foreach (var enemy in _questData.TargetName)
-        {
-            _targetEnemyDatas.Add(SaveData.GetClass<EnemyData>(enemy, new EnemyData()));
-        }
-        foreach (var enemy in _questData.OtherName)
-        {
-            _targetEnemyDatas.Add(SaveData.GetClass<EnemyData>(enemy, new EnemyData()));
-        }
     }
     public void GoToQuset()
     {
@@ -60,9 +54,5 @@ public class Quest : MonoBehaviour
             SceneManager.LoadSceneAsync((int)_questData.Field);
         }
     }
-    public void QuestReset()
-    {
-        _targetEnemyDatas.Clear();
-        _otherEnemyDatas.Clear();
-    }
+
 }

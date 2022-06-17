@@ -65,7 +65,12 @@ public class Position
     public Scene scene;
     public List<Vector3> pos;
 }
-
+[Serializable]
+public class QuestHolder
+{
+    public int QuestLevel;
+    public List<string> QuestDataID;
+}
 [Serializable]
 public class QuestData
 {
@@ -105,6 +110,11 @@ public enum FailureConditions
     FiveDown
 }
 
-
-
+[Serializable]
+public class VillageData
+{
+    public int VillageLevel;
+    public int BlacksmithLevel;
+    public int KitchenLevel;
+}
 

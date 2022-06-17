@@ -4,12 +4,17 @@ using UnityEngine;
 
 public class Trex : Enemy
 {
-   [SerializeField] private StateBase_Trex _currentState;
+    [SerializeField] private StateBase_Trex _currentState;
     public StateBase_Trex CurrentState { get => _currentState; }
 
     void Start()
     {
         _currentState = new Idle_Trex();
+
+        //if (Physics.Raycast(transform.position, Vector3.down, out RaycastHit hit))
+        //{
+        //    transform.position = hit.point;
+        //}
         _currentState.OnEnter(this, null);
     }
     void Update()
