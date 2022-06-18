@@ -17,45 +17,46 @@ public class GroundChecker : MonoBehaviour
     }
     private void OnTriggerEnter(Collider other)
     {
-        
-        if (Physics.Raycast(transform.position, Vector3.down, out RaycastHit hit))
-        {
-            _groundAngle = Vector3.Angle(Vector3.up, hit.normal);
-        }
-        else
-        {
-            _groundAngle = 0;
-        }
+        _ground = true;
+        //if (Physics.Raycast(transform.position, Vector3.down, out RaycastHit hit))
+        //{
+        //    _groundAngle = Vector3.Angle(Vector3.up, hit.normal);
+        //}
+        //else
+        //{
+        //    _groundAngle = 0;
+        //}
 
-        if(_limitAngle>_groundAngle)
-        {
-            _ground = true;
-        }
-        else
-        {
-            _ground = false;
-        }
+        //if(_limitAngle>_groundAngle)
+        //{
+        //    _ground = true;
+        //}
+        //else
+        //{
+        //    _ground = false;
+        //}
 
     }
     private void OnTriggerStay(Collider other)
     {
-        if (Physics.Raycast(transform.position, Vector3.down, out RaycastHit hit))
-        {
-            _groundAngle = Vector3.Angle(Vector3.up, hit.normal);
-        }
-        else
-        {
-            _groundAngle = 0;
-        }
+        _ground = true;
+        //if (Physics.Raycast(transform.position, Vector3.down, out RaycastHit hit))
+        //{
+        //    _groundAngle = Vector3.Angle(Vector3.up, hit.normal);
+        //}
+        //else
+        //{
+        //    _groundAngle = 0;
+        //}
 
-        if (_limitAngle > _groundAngle)
-        {
-            _ground = true;
-        }
-        else
-        {
-            _ground = false;
-        }
+        //if (_limitAngle > _groundAngle)
+        //{
+        //    _ground = true;
+        //}
+        //else
+        //{
+        //    _ground = false;
+        //}
     }
 
     private void OnTriggerExit(Collider other)

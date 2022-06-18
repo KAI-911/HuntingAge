@@ -47,6 +47,7 @@ public class EnemyData
     public string ID;
     public string DisplayName;
     public string InstanceName;
+    public int DeathCount;
     public List<Position> EnemyPos;
     public Position EnemyPosition(Scene scene)
     {
@@ -67,7 +68,9 @@ public class Position
 }
 [Serializable]
 public class QuestHolder
-{
+{    /// <summary>
+     /// 1 òAî‘Ç≈
+     /// </summary>
     public int QuestLevel;
     public List<string> QuestDataID;
 }
@@ -118,3 +121,30 @@ public class VillageData
     public int KitchenLevel;
 }
 
+public class EnemyCount
+{
+    Dictionary<string, int> _enemyCountList=new Dictionary<string, int>();
+    public Dictionary<string, int> EnemyCountList { get => _enemyCountList; }
+    public void EnemyDataSet()
+    {
+        foreach (var item in _enemyCountList)
+        {
+            EnemyData data = SaveData.GetClass(item.Key, new EnemyData());
+            data.DeathCount += item.Value;
+            SaveData.SetClass(item.Key, data);
+        }
+    }
+    public void Add(string _enemyID)
+    {
+        //ä˘Ç…ìoò^Ç≥ÇÍÇƒÇ¢ÇΩÇÁÇªÇÃÇ‹Ç‹í«â¡
+        if (_enemyCountList.ContainsKey(_enemyID))
+        {
+            _enemyCountList[_enemyID]++;
+        }
+        //êVÇµÇ≠ìoò^ÇµÇƒí«â¡
+        else
+        {
+            _enemyCountList.Add(_enemyID, 1);
+        }
+    }
+}

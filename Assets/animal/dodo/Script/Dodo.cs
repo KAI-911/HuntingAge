@@ -1,18 +1,15 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using System;
-using UnityEngine.AI;
-using System.Threading.Tasks;
 
-public class Wolf : Enemy
+public class Dodo : Enemy
 {
-    [SerializeField] private SatetBase_Wolf _currentState;
-    public SatetBase_Wolf CurrentState { get => _currentState; }
+    [SerializeField] private StateBase_Dodo _currentState;
+    public StateBase_Dodo CurrentState { get => _currentState; }
 
     void Start()
     {
-        _currentState = new Idle_Wolf();
+        _currentState = new Idle_Dodo();
         _currentState.OnEnter(this, null);
     }
     void Update()
@@ -20,14 +17,14 @@ public class Wolf : Enemy
         Animator.SetInteger("HP", Status.HP);
         _currentState.OnUpdate(this);
 
-        if (Status.DownFlg && CurrentState.GetType() != typeof(Down_Wolf) && CurrentState.GetType() != typeof(Death_Wolf))
-        {
-            ChangeState<Down_Wolf>();
-        }
-        if (Status.HP <= 0 && CurrentState.GetType() != typeof(Death_Wolf))
-        {
-            ChangeState<Death_Wolf>();
-        }
+        //if (Status.DownFlg && CurrentState.GetType() != typeof(Down_Trex))
+        //{
+        //    ChangeState<Down_Trex>();
+        //}
+        //if (Status.HP <= 0 && CurrentState.GetType() != typeof(Death_Trex))
+        //{
+        //    ChangeState<Death_Trex>();
+        //}
     }
     void FixedUpdate()
     {
@@ -38,7 +35,7 @@ public class Wolf : Enemy
         _currentState.OnAnimationEvent(this, animationEvent);
 
     }
-    public void ChangeState<T>() where T : SatetBase_Wolf, new()
+    public void ChangeState<T>() where T : StateBase_Dodo, new()
     {
         var nextState = new T();
         _currentState.OnExit(this, nextState);
