@@ -39,7 +39,7 @@ public class FallState : PlayerStateBase
         }
 
 
-        owner.LookAt();
+        owner.LookAt(360);
     }
 
     public override void OnAnimationEvent(Player owner, AnimationEvent animationEvent)

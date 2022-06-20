@@ -47,6 +47,7 @@ public partial class Player : MonoBehaviour
     //ç°ÇÃèÛë‘
     private PlayerStateBase _currentState;
 
+    //ïêäÌêÿÇËë÷Ç¶
     private WeponChange _weponChange;
     public WeponChange WeponChange { get => _weponChange; set => _weponChange = value; }
 
@@ -145,6 +146,13 @@ public partial class Player : MonoBehaviour
 
     private void StrongAttack(InputAction.CallbackContext obj)
     {
+        //òAë±çUåÇÇÃì¸óÕéÛït
+        if(_animator.GetBool("InputReception"))
+        {
+            _animator.SetTrigger("AttackChain");
+            _animator.SetBool("InputReception", false);
+        }
+
         if (_currentState.GetType() != typeof(LocomotionState)) return;
         ChangeState<StrongAttack>();
 
@@ -163,14 +171,14 @@ public partial class Player : MonoBehaviour
         if (_inputMoveAction.ReadValue<Vector2>().sqrMagnitude <= 0.1f) return;
         ChangeState<DodgeState>();
     }
-    public void LookAt()
+    public void LookAt(float _turningAngle)
     {
         Vector3 direction = _moveDirection;
         direction.y = 0;
         if (_moveDirection.sqrMagnitude > 0.1f)
         {
             _targetRotation = Quaternion.LookRotation(direction);
-            _rigidbody.rotation = Quaternion.RotateTowards(transform.rotation, _targetRotation, 900 * Time.fixedDeltaTime);
+            _rigidbody.rotation = Quaternion.RotateTowards(transform.rotation, _targetRotation, _turningAngle * Time.fixedDeltaTime);
         }
         else
         {

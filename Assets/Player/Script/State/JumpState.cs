@@ -28,7 +28,7 @@ public class JumpState : PlayerStateBase
         owner.MoveDirection += owner.InputMoveAction.ReadValue<Vector2>().y * owner.GetCameraForward(owner.PlayerCamera);
         owner.MoveDirection = owner.MoveDirection.normalized * speed;
 
-        owner.LookAt();
+        owner.LookAt(360);
     }
     public override void OnFixedUpdate(Player owner)
     {
