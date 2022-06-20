@@ -2614,9 +2614,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _warningPos:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
+  - {x: 0.000000581359, y: 8.45e-43, z: 5.3185656e+22}
+  - {x: 0.00000016595448, y: -1.9848416e+29, z: 8.45e-43}
+  - {x: 4.6e-44, y: 8.44969e+20, z: 0.000000581359}
   _rayStartPos: {fileID: 7806976794086860397}
   _searchAngle: 120
   _rotationAngle: 30
@@ -2704,6 +2704,7 @@ MonoBehaviour:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+  _enemyID: T-rex
 --- !u!114 &4547490786413605333
 MonoBehaviour:
   m_ObjectHideFlags: 0

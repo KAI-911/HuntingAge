@@ -10,11 +10,6 @@ public class Trex : Enemy
     void Start()
     {
         _currentState = new Idle_Trex();
-
-        //if (Physics.Raycast(transform.position, Vector3.down, out RaycastHit hit))
-        //{
-        //    transform.position = hit.point;
-        //}
         _currentState.OnEnter(this, null);
     }
     void Update()

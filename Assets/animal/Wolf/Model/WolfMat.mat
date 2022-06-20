@@ -113,7 +113,7 @@ Material:
     - _EnvironmentReflections: 1
     - _FurDensity: 0
     - _FurLength: 0.002
-    - _FurShading: 0.042
+    - _FurShading: 0.07
     - _FurThinness: 10
     - _GlossMapScale: 0
     - _Glossiness: 0

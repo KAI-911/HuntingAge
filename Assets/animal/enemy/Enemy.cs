@@ -35,7 +35,7 @@ public class Enemy : MonoBehaviour
 
     //‰ñ“]Šp“x/•b
     [SerializeField] private float _rotationAngle;
-    public float RotationAngle { get => _rotationAngle;}
+    public float RotationAngle { get => _rotationAngle; }
 
 
     //”ÍˆÍ“à‚É‹‚é‚©‚Ì”»’è----------------------------------------------------------------------------------------
@@ -67,6 +67,11 @@ public class Enemy : MonoBehaviour
     [SerializeField] private AnimationCurve _shadowCurve;
     public AnimationCurve ShadowCurve { get => _shadowCurve; }
 
+    //ID
+    [SerializeField] private string _enemyID;
+    public string EnemyID { get => _enemyID; }
+    private QuestManager _questManager = null;
+    public QuestManager QuestManager { get => _questManager; set => _questManager = value; }
 
     //UŒ‚‘ÎÛ--------------------------------------------------------------------------------------------
     private GameObject _target;
@@ -86,6 +91,12 @@ public class Enemy : MonoBehaviour
         _status = GetComponent<Status>();
         _target = GameObject.FindWithTag("Player");
         _discoverFlg = false;
+        var tmp = GameObject.Find("QuestManager");
+        if (tmp != null)
+        {
+            _questManager = tmp.GetComponent<QuestManager>();
+            _questManager.AddEnemy(this);
+        }
     }
 
 
@@ -127,7 +138,7 @@ public class Enemy : MonoBehaviour
             direction = dir
         };
         int hitCount = Physics.RaycastNonAlloc(ray, raycastHits, to.magnitude, 0);
-        if (hitCount > 0) 
+        if (hitCount > 0)
         {
             _discoverFlg = false;
             return false;

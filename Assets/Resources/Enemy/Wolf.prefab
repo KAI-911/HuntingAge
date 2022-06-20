@@ -1474,6 +1474,7 @@ MonoBehaviour:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+  _enemyID: Wolf
 --- !u!195 &7486831431003633640
 NavMeshAgent:
   m_ObjectHideFlags: 0
