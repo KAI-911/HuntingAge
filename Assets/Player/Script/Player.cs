@@ -160,16 +160,11 @@ public partial class Player : MonoBehaviour
 
     private void Jump(InputAction.CallbackContext obj)
     {
-        if (!_groundChecker.IsGround()) return;
-        if (_currentState.GetType() != typeof(LocomotionState)) return;
-        ChangeState<JumpState>();
+        _currentState.OnJump(this);
     }
     private void Dodge(InputAction.CallbackContext obj)
     {
-        if (!_groundChecker.IsGround()) return;
-        if (_currentState.GetType() != typeof(LocomotionState)) return;
-        if (_inputMoveAction.ReadValue<Vector2>().sqrMagnitude <= 0.1f) return;
-        ChangeState<DodgeState>();
+        _currentState.OnDodge(this);
     }
     public void LookAt(float _turningAngle)
     {

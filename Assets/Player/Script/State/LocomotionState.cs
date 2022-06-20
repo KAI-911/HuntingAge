@@ -47,4 +47,19 @@ public class LocomotionState : PlayerStateBase
     {
 
     }
+
+    public override void OnDodge(Player owner)
+    {
+        if (!owner.GroundChecker.IsGround()) return;
+        if (owner.InputMoveAction.ReadValue<Vector2>().sqrMagnitude <= 0.1f) return;
+        owner.ChangeState<DodgeState>();
+
+    }
+    public override void OnJump(Player owner)
+    {
+        if (!owner.GroundChecker.IsGround()) return;
+        owner.ChangeState<JumpState>();
+
+    }
+
 }
