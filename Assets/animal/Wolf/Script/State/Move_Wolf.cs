@@ -16,7 +16,6 @@ public class Move_Wolf : SatetBase_Wolf
     }
     public override void OnUpdate(Wolf owner)
     {
-        Debug.Log("move");
         owner.NavMeshAgent.destination = owner.Target.transform.position;
         owner.LookToTarget((int)(owner.RotationAngle * Time.deltaTime));
         var list = owner.TargetChecker();

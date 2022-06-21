@@ -15,10 +15,7 @@ public class Attack : PlayerStateBase
     {
         owner.HitReceiver.AttackFlgReset();
     }
-    public override void OnUpdate(Player owner)
-    {
 
-    }
     public override void OnFixedUpdate(Player owner)
     {
         if (owner.Animator.GetBool("InputReception"))
@@ -30,7 +27,7 @@ public class Attack : PlayerStateBase
     {
         if (animationEvent.stringParameter == "Change")//攻撃の当たり判定の切り替え
         {
-            owner.HitReceiver.ChangeAttackFlg(owner.WeponChange.GetPartType());
+            owner.HitReceiver.ChangeAttackFlg((PartType)animationEvent.intParameter);
         }
         else if (animationEvent.stringParameter == "InputReceptionStart")//連続攻撃する場合の入力受付を開始
         {
@@ -42,15 +39,11 @@ public class Attack : PlayerStateBase
         }
         else if (animationEvent.stringParameter == "End")//アニメーション終了
         {
-            Debug.Log("攻撃終了");
             owner.HitReceiver.AttackFlgReset();
             owner.ChangeState<LocomotionState>();
         }
     }
-    public override void OnCollisionStay(Player owner, Collision collision)
-    {
 
-    }
     public override void OnDodge(Player owner)
     {
         if (!owner.GroundChecker.IsGround()) return;
@@ -67,7 +60,6 @@ public class Attack : PlayerStateBase
             owner.Animator.SetTrigger("AttackChain");
             owner.Animator.SetBool("InputReception", false);
             owner.Animator.SetInteger("AttackType", (int)AttackType.StrongAttack);
-
         }
     }
     public override void OnWeakAttack(Player owner)

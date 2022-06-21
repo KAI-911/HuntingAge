@@ -17,16 +17,6 @@ public class HitReactionState : PlayerStateBase
 
     }
 
-    public override void OnUpdate(Player owner)
-    {
-
-    }
-
-    public override void OnFixedUpdate(Player owner)
-    {
-
-    }
-
     public override void OnAnimationEvent(Player owner, AnimationEvent animationEvent)
     {
         if (animationEvent.stringParameter == "End")
@@ -37,9 +27,5 @@ public class HitReactionState : PlayerStateBase
 
     }
 
-    public override void OnCollisionStay(Player owner, Collision collision)
-    {
-
-    }
 
 }

@@ -39,14 +39,7 @@ public class LocomotionState : PlayerStateBase
         owner.Rigidbody.AddForce(owner.MoveDirection, ForceMode.Impulse);
         owner.LookAt(360);
     }
-    public override void OnAnimationEvent(Player owner, AnimationEvent animationEvent)
-    {
 
-    }
-    public override void OnCollisionStay(Player owner, Collision collision)
-    {
-
-    }
 
     public override void OnDodge(Player owner)
     {

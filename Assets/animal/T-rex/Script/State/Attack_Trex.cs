@@ -55,6 +55,7 @@ public class Attack_Trex : StateBase_Trex
         {
             //“–‚½‚è”»’è‚ð”½“]
             owner.HitReceiver.ChangeAttackFlg((PartType)animationEvent.intParameter);
+            Debug.Log((PartType)animationEvent.intParameter);
         }
         if (animationEvent.stringParameter == "End")
         {
