@@ -32,9 +32,18 @@ public class PlayerStateBase
     public virtual void OnDodge(Player owner)
     {
 
-    }    
-    
+    }
     public virtual void OnJump(Player owner)
+    {
+
+    }
+
+
+    public virtual void OnStrongAttack(Player owner)
+    {
+        
+    }
+    public virtual void OnWeakAttack(Player owner)
     {
 
     }

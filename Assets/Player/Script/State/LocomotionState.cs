@@ -61,5 +61,14 @@ public class LocomotionState : PlayerStateBase
         owner.ChangeState<JumpState>();
 
     }
-
+    public override void OnStrongAttack(Player owner)
+    {
+        owner.Animator.SetInteger("AttackType", (int)AttackType.StrongAttack);
+        owner.ChangeState<Attack>();
+    }
+    public override void OnWeakAttack(Player owner)
+    {
+        owner.Animator.SetInteger("AttackType", (int)AttackType.WeakAttack);
+        owner.ChangeState<Attack>();
+    }
 }

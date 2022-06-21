@@ -34,21 +34,21 @@ public class Blacksmith : MonoBehaviour
     public InputAction InputAction { get => _inputAction; }
 
     // Start is called before the first frame update
-    private UIState _currentState;
-    private void Awake()
-    {
-        _input = new InputControls();
-        _buttonRunOnce = new RunOnce();
-        _serectRunOnce = new RunOnce();
-        _questHolder = new QuestHolder();
-        _currentState = new CanvasClose();
-        _currentState.OnEnter(this, null);
-    }
-    void Start()
-    {
-        _canvas.enabled = false;
-        _popUp.enabled = false;
-    }
+    //private UIState _currentState;
+    //private void Awake()
+    //{
+    //    _input = new InputControls();
+    //    _buttonRunOnce = new RunOnce();
+    //    _serectRunOnce = new RunOnce();
+    //    _questHolder = new QuestHolder();
+    //    _currentState = new CanvasClose();
+    //    _currentState.OnEnter(this, null);
+    //}
+    //void Start()
+    //{
+    //    _canvas.enabled = false;
+    //    _popUp.enabled = false;
+    //}
 
     // Update is called once per frame
     void Update()
