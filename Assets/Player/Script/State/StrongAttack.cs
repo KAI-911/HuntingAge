@@ -8,7 +8,8 @@ public class StrongAttack : PlayerStateBase
     {
         owner.Animator.SetInteger("AniState", (int)PlayerAnimationState.StrongAttack);
         owner.Animator.SetTrigger("Change");
-
+        owner.Animator.SetBool("AttackChain", false);
+        owner.Animator.SetBool("InputReception", false);
     }
     public override void OnExit(Player owner, PlayerStateBase nextState)
     {
@@ -20,20 +21,31 @@ public class StrongAttack : PlayerStateBase
     }
     public override void OnFixedUpdate(Player owner)
     {
-
+        if(owner.Animator.GetBool("InputReception"))
+        {
+            owner.LookAt(100);
+        }
     }
     public override void OnAnimationEvent(Player owner, AnimationEvent animationEvent)
     {
-        if (animationEvent.stringParameter == "Change")
+        if (animationEvent.stringParameter == "Change")//攻撃の当たり判定の切り替え
         {
             owner.HitReceiver.ChangeAttackFlg(owner.WeponChange.GetPartType());
         }
-        if (animationEvent.stringParameter == "End")
+        else if(animationEvent.stringParameter == "InputReceptionStart")//連続攻撃する場合の入力受付を開始
         {
+            owner.Animator.SetBool("InputReception", true);
+        }
+        else if (animationEvent.stringParameter == "InputReceptionEnd")//連続攻撃する場合の入力受付を終了
+        {
+            owner.Animator.SetBool("InputReception", false);
+        }
+        else if (animationEvent.stringParameter == "End")//アニメーション終了
+        {
+            Debug.Log("攻撃終了");
             owner.HitReceiver.AttackFlgReset(); 
             owner.ChangeState<LocomotionState>();
         }
-
     }
     public override void OnCollisionStay(Player owner, Collision collision)
     {

@@ -37,7 +37,7 @@ public class LocomotionState : PlayerStateBase
     public override void OnFixedUpdate(Player owner)
     {
         owner.Rigidbody.AddForce(owner.MoveDirection, ForceMode.Impulse);
-        owner.LookAt();
+        owner.LookAt(360);
     }
     public override void OnAnimationEvent(Player owner, AnimationEvent animationEvent)
     {
@@ -47,4 +47,19 @@ public class LocomotionState : PlayerStateBase
     {
 
     }
+
+    public override void OnDodge(Player owner)
+    {
+        if (!owner.GroundChecker.IsGround()) return;
+        if (owner.InputMoveAction.ReadValue<Vector2>().sqrMagnitude <= 0.1f) return;
+        owner.ChangeState<DodgeState>();
+
+    }
+    public override void OnJump(Player owner)
+    {
+        if (!owner.GroundChecker.IsGround()) return;
+        owner.ChangeState<JumpState>();
+
+    }
+
 }

@@ -29,7 +29,7 @@ public class DodgeState : PlayerStateBase
             owner.ChangeState<FallState>();
         }
 
-        owner.LookAt();
+        owner.LookAt(360);
 
     }
     public override void OnFixedUpdate(Player owner)
