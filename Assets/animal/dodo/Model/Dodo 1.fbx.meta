@@ -1,20 +1,20 @@
 fileFormatVersion: 2
-guid: b61603068f5ec4042868e7f57463fd4d
+guid: 1ad683609f61980459ce0d8919d6f498
 ModelImporter:
   serializedVersion: 21202
   internalIDToNameTable:
   - first:
-      74: 2337992231936697851
-    second: "Armature|\u30A2\u30FC\u30DE\u30C1\u30E5\u30A2|\u30A2\u30FC\u30DE\u30C1\u30E5\u30A2|escape|\u30A2\u30FC\u30DE\u30C1\u30E5\u30A2"
+      74: 822205947241289969
+    second: "Armature|Armature|Armature|\u30A2\u30FC\u30DE\u30C1\u30E5\u30A2|\u30A2\u30FC\u30DE\u30C1\u30E5\u30A2|escape|"
   - first:
-      74: 5825289297652426368
-    second: "Armature|\u30A2\u30FC\u30DE\u30C1\u30E5\u30A2|\u30A2\u30FC\u30DE\u30C1\u30E5\u30A2|idol1|\u30A2\u30FC\u30DE\u30C1\u30E5\u30A2|"
+      74: 5018849674317918514
+    second: "Armature|Armature|Armature|\u30A2\u30FC\u30DE\u30C1\u30E5\u30A2|\u30A2\u30FC\u30DE\u30C1\u30E5\u30A2|idol1|_"
   - first:
-      74: 7157567232056796663
-    second: "Armature|\u30A2\u30FC\u30DE\u30C1\u30E5\u30A2|\u30A2\u30FC\u30DE\u30C1\u30E5\u30A2|idol2|\u30A2\u30FC\u30DE\u30C1\u30E5\u30A2|"
+      74: 5553184965937047537
+    second: "Armature|Armature|Armature|\u30A2\u30FC\u30DE\u30C1\u30E5\u30A2|\u30A2\u30FC\u30DE\u30C1\u30E5\u30A2|idol2|_"
   - first:
-      74: -8592267180044765133
-    second: "Armature|\u30A2\u30FC\u30DE\u30C1\u30E5\u30A2|\u30A2\u30FC\u30DE\u30C1\u30E5\u30A2|wark|\u30A2\u30FC\u30DE\u30C1\u30E5\u30A2|w"
+      74: 6985682090871786627
+    second: "Armature|Armature|Armature|\u30A2\u30FC\u30DE\u30C1\u30E5\u30A2|\u30A2\u30FC\u30DE\u30C1\u30E5\u30A2|wark|"
   externalObjects: {}
   materials:
     materialImportMode: 2

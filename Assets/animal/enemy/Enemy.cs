@@ -71,6 +71,7 @@ public class Enemy : MonoBehaviour
     [SerializeField] private string _enemyID;
     public string EnemyID { get => _enemyID; }
 
+    //クエストマネージャー
     private QuestManager _questManager = null;
     public QuestManager QuestManager { get => _questManager; set => _questManager = value; }
 
@@ -200,7 +201,7 @@ public class Enemy : MonoBehaviour
         }
         return list;
     }
-    public async Task WaitForAsync(int seconds, Action action)
+    public async Task WaitForAsync(float seconds, Action action)
     {
         //seconds秒待ってからactionを実行
         //呼び出すときは _ = WaitForAsync(1,()=>Delete()); のような形で

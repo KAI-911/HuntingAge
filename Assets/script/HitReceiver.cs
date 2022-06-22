@@ -30,12 +30,10 @@ public class HitReceiver : MonoBehaviour
 
     public void ChangeAttackFlg(PartType _part)
     {
-        Debug.Log("チェンジトライ");
         foreach (var element in _hitList)
         {
             if (_part == element.AttackPart)
             {
-                Debug.Log("チェンジOK");
                 element.gameObject.SetActive(!element.gameObject.activeSelf);
             }
         }

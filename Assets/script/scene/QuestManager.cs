@@ -12,6 +12,7 @@ public class QuestManager : MonoBehaviour
     private EnemyCount _questTarget;
     //全ての敵の情報を記録
     private List<Enemy> _enemyList;
+    public List<Enemy> EnemyList { get => _enemyList; }
     //どのようなクエストなのか
     private Quest _quest;
     //今のクエストの状況

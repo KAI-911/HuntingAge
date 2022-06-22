@@ -43,7 +43,7 @@ public class Wandering_Dodo : StateBase_Dodo
             once.Run(() =>
             {
                 owner.Animator.SetInteger("AniState", (int)State.Idle);
-                _ = owner.WaitForAsync(waitTime, () => { if (!owner.DiscoverFlg) owner.ChangeState<Wandering_Dodo>(); });
+                _ = owner.WaitForAsync(waitTime, () => { if (owner.CurrentState.GetType() == typeof(Wandering_Dodo)) owner.ChangeState<Wandering_Dodo>(); });
             });
         }
 

@@ -31,12 +31,7 @@ public class Idle_Dodo : StateBase_Dodo
     }
     public override void OnAnimationEvent(Dodo owner, AnimationEvent animationEvent)
     {
-        if (animationEvent.stringParameter == "End")
-        {
-            var tmp = Random.Range(0, 100);
-            //if (tmp > 50) owner.Animator.SetFloat("IdleBlend", (int)Idle.Grooming);
-            //else owner.Animator.SetFloat("IdleBlend", (int)Idle.Overlooking);
-        }
+
     }
     public override void OnCollisionStay(Dodo owner, Collision collision)
     {
