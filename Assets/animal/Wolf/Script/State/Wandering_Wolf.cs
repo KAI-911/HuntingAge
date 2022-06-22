@@ -50,7 +50,6 @@ public class Wandering_Wolf : SatetBase_Wolf
             //waitTime•bŒãA”­Œ©‚µ‚Ä‚¢‚È‚©‚Á‚½‚ç‚à‚¤ˆê“xœpœj‚·‚éB
             once.Run(() =>
             {
-                Debug.Log("onceRun");
                 owner.Animator.SetInteger("AniState", (int)State.Idle);
                 _ = owner.WaitForAsync(waitTime, () => { if (!owner.DiscoverFlg) owner.ChangeState<Wandering_Wolf>(); });
             });

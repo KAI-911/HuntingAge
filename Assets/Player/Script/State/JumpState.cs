@@ -12,10 +12,7 @@ public class JumpState : PlayerStateBase
         owner.Animator.SetInteger("AniState", (int)PlayerAnimationState.Jump);
         owner.Animator.SetTrigger("Change");
     }
-    public override void OnExit(Player owner, PlayerStateBase nextState)
-    {
 
-    }
     public override void OnUpdate(Player owner)
     {
         if (owner.Rigidbody.velocity.y < 0)
@@ -35,12 +32,6 @@ public class JumpState : PlayerStateBase
         owner.Rigidbody.AddForce(owner.MoveDirection, ForceMode.Impulse);
 
     }
-    public override void OnAnimationEvent(Player owner, AnimationEvent animationEvent)
-    {
-    }
-    public override void OnCollisionStay(Player owner, Collision collision)
-    {
 
-    }
 
 }

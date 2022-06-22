@@ -70,6 +70,7 @@ public class Enemy : MonoBehaviour
     //ID
     [SerializeField] private string _enemyID;
     public string EnemyID { get => _enemyID; }
+
     private QuestManager _questManager = null;
     public QuestManager QuestManager { get => _questManager; set => _questManager = value; }
 
@@ -222,7 +223,8 @@ public enum State
     Attack,     //UŒ‚
     Roar,       //ˆĞŠd
     Down,       //“]“|
-    Death       //€–S
+    Death,      //€–S
+    Escape      //“¦‘–
 }
 public enum TargetCheckerType
 {

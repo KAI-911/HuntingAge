@@ -44,11 +44,11 @@ public class Attack_Wolf : SatetBase_Wolf
     }
     public override void OnAnimationEvent(Wolf owner, AnimationEvent animationEvent)
     {
-        Debug.Log("attack");
         if (animationEvent.stringParameter == "Change")
         {
             //“–‚½‚è”»’è‚ð”½“]
             owner.HitReceiver.ChangeAttackFlg((PartType)animationEvent.intParameter);
+            Debug.Log((PartType)animationEvent.intParameter);
         }
         if (animationEvent.stringParameter == "End")
         {

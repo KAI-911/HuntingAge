@@ -22,8 +22,14 @@ public class AttackHit : MonoBehaviour
     {
         _hitReceiver = transform.root.gameObject.GetComponent<HitReceiver>();
         this.gameObject.SetActive(false);
+        _hitReceiver.AddHitObject(this);
     }
+    private void OnDestroy()
+    {
+        int num = _hitReceiver.Hits.IndexOf(this);
+        _hitReceiver.Hits.RemoveAt(num);
 
+    }
 
     private void OnTriggerEnter(Collider other)
     {

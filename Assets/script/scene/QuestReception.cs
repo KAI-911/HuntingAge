@@ -79,8 +79,6 @@ public class QuestReception : MonoBehaviour
     void Update()
     {
         _currentState.OnUpdate(this);
-        var s = _currentState.GetType();
-        Debug.Log(s);
     }
 
     public void SelectQuest_Rec(string QuestID)

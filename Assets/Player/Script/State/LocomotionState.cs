@@ -39,14 +39,7 @@ public class LocomotionState : PlayerStateBase
         owner.Rigidbody.AddForce(owner.MoveDirection, ForceMode.Impulse);
         owner.LookAt(360);
     }
-    public override void OnAnimationEvent(Player owner, AnimationEvent animationEvent)
-    {
 
-    }
-    public override void OnCollisionStay(Player owner, Collision collision)
-    {
-
-    }
 
     public override void OnDodge(Player owner)
     {
@@ -61,5 +54,14 @@ public class LocomotionState : PlayerStateBase
         owner.ChangeState<JumpState>();
 
     }
-
+    public override void OnStrongAttack(Player owner)
+    {
+        owner.Animator.SetInteger("AttackType", (int)AttackType.StrongAttack);
+        owner.ChangeState<Attack>();
+    }
+    public override void OnWeakAttack(Player owner)
+    {
+        owner.Animator.SetInteger("AttackType", (int)AttackType.WeakAttack);
+        owner.ChangeState<Attack>();
+    }
 }
