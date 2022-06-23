@@ -1376,10 +1376,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1c6b5257da867774697dc6db14bc1969, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _hp: 50
+  _hp: 100
   _sp: 98
   _attack: 10
-  _defense: 90
+  _defense: 10
   _invincibleFlg: 0
   _downFlg: 0
 --- !u!114 &7486831431003633647

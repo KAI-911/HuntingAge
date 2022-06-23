@@ -25,7 +25,7 @@
     {
 
         Tags { "RenderType" = "Transparent" "IgnoreProjector" = "True" "Queue" = "Transparent" }
-        //Cull Off
+        Cull Off
         ZWrite On
         Blend SrcAlpha OneMinusSrcAlpha
         
