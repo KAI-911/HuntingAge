@@ -34,9 +34,9 @@ public class Death_Wolf : SatetBase_Wolf
 
         //–{‘Ì‚ğÁ‚µ‚Ä‚¢‚­
         var myMat = owner.SkinnedMeshRenderer.material;
-        if (myMat.HasProperty("_Threshold"))
+        if (myMat.HasProperty("_Dissolve"))
         {
-            myMat.SetFloat("_Threshold", owner.DissoveCurve.Evaluate(rate));
+            myMat.SetFloat("_Dissolve", owner.DissoveCurve.Evaluate(rate));
         }
 
         //‰e‚ğÁ‚µ‚Ä‚¢‚­

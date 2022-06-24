@@ -35,9 +35,9 @@ public class Death_Dodo : StateBase_Dodo
         var Mat = owner.SkinnedMeshRenderer.materials;
         foreach (var mat in Mat)
         {
-            if (mat.HasProperty("_Threshold"))
+            if (mat.HasProperty("_Dissolve"))
             {
-                mat.SetFloat("_Threshold", owner.DissoveCurve.Evaluate(rate));
+                mat.SetFloat("_Dissolve", owner.DissoveCurve.Evaluate(rate));
             }
         }
 
