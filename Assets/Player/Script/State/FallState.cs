@@ -14,10 +14,6 @@ public class FallState : PlayerStateBase
         _runOnce = new RunOnce();
 
     }
-    public override void OnExit(Player owner, PlayerStateBase nextState)
-    {
-
-    }
 
     public override void OnUpdate(Player owner)
     {
@@ -49,9 +45,5 @@ public class FallState : PlayerStateBase
             owner.ChangeState<LocomotionState>();
         }
     }
-    public override void OnCollisionStay(Player owner, Collision collision)
-    {
 
-
-    }
 }

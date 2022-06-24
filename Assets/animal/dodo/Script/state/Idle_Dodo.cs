@@ -6,8 +6,8 @@ public class Idle_Dodo : StateBase_Dodo
 {
     public override void OnEnter(Dodo owner, StateBase_Dodo prevState)
     {
-        //owner.Animator.SetInteger("AniState", (int)State.Idle);
-        //_ = owner.WaitForAsync(5, () => { if (!owner.DiscoverFlg) owner.ChangeState<Wandering_Trex>(); });
+        owner.Animator.SetInteger("AniState", (int)State.Idle);
+        _ = owner.WaitForAsync(5, () => { Debug.Log("œpœj"); owner.ChangeState<Wandering_Dodo>(); });
     }
     public override void OnExit(Dodo owner, StateBase_Dodo nextState)
     {
@@ -17,7 +17,7 @@ public class Idle_Dodo : StateBase_Dodo
     {
         Debug.Log("idle");
         owner.NavMeshAgent.destination = owner.transform.position;
-
+        
         //if (owner.Search())
         //{
         //    owner.ChangeState<Move_Trex>();

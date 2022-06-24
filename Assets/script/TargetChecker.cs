@@ -7,6 +7,7 @@ public class TargetChecker : MonoBehaviour
     bool _triggerHit;
     public bool TriggerHit { get => _triggerHit; }
     private Collider _collider;
+    public Collider Collider { get => _collider; }
     [SerializeField]Å@private string MaskTag;
 
     [SerializeField] private TargetCheckerType _targetCheckerType;

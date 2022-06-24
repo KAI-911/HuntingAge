@@ -2738,19 +2738,14 @@ MonoBehaviour:
   _partDatas:
   - _partType: 1
     _maxEnduranceValue: 500
-    _enduranceValue: 0
   - _partType: 2
     _maxEnduranceValue: 1000
-    _enduranceValue: 0
   - _partType: 3
     _maxEnduranceValue: 200
-    _enduranceValue: 0
   - _partType: 4
     _maxEnduranceValue: 200
-    _enduranceValue: 0
   - _partType: 5
     _maxEnduranceValue: 400
-    _enduranceValue: 0
 --- !u!195 &4547490786413605334
 NavMeshAgent:
   m_ObjectHideFlags: 0
@@ -2785,12 +2780,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d90625640c114a5458188983dbb457c1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _hitList:
-  - {fileID: 7806976793322239282}
-  - {fileID: 7806976793089639808}
-  - {fileID: 7806976792934685978}
-  - {fileID: 7806976792343094495}
-  - {fileID: 7806976794188374236}
+  _hitList: []
   _mask: Player
   particleObject: {fileID: 750872277263865624, guid: 30343aff11dfe16499fe4c761f2e45f8, type: 3}
 --- !u!114 &4547490786413605337

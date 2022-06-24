@@ -1,20 +1,20 @@
 fileFormatVersion: 2
-guid: b61603068f5ec4042868e7f57463fd4d
+guid: 1ad683609f61980459ce0d8919d6f498
 ModelImporter:
   serializedVersion: 21202
   internalIDToNameTable:
   - first:
-      74: -46933213339498851
-    second: "\u30A2\u30FC\u30DE\u30C1\u30E5\u30A2|escape"
+      74: 822205947241289969
+    second: "Armature|Armature|Armature|\u30A2\u30FC\u30DE\u30C1\u30E5\u30A2|\u30A2\u30FC\u30DE\u30C1\u30E5\u30A2|escape|"
   - first:
-      74: -2799422172655110463
-    second: "\u30A2\u30FC\u30DE\u30C1\u30E5\u30A2|idol1"
+      74: 5018849674317918514
+    second: "Armature|Armature|Armature|\u30A2\u30FC\u30DE\u30C1\u30E5\u30A2|\u30A2\u30FC\u30DE\u30C1\u30E5\u30A2|idol1|_"
   - first:
-      74: 6940703281758405994
-    second: "\u30A2\u30FC\u30DE\u30C1\u30E5\u30A2|idol2"
+      74: 5553184965937047537
+    second: "Armature|Armature|Armature|\u30A2\u30FC\u30DE\u30C1\u30E5\u30A2|\u30A2\u30FC\u30DE\u30C1\u30E5\u30A2|idol2|_"
   - first:
-      74: -8785031410970257817
-    second: "\u30A2\u30FC\u30DE\u30C1\u30E5\u30A2|wark"
+      74: 6985682090871786627
+    second: "Armature|Armature|Armature|\u30A2\u30FC\u30DE\u30C1\u30E5\u30A2|\u30A2\u30FC\u30DE\u30C1\u30E5\u30A2|wark|"
   externalObjects: {}
   materials:
     materialImportMode: 2
@@ -109,7 +109,7 @@ ModelImporter:
   autoGenerateAvatarMappingIfUnspecified: 1
   animationType: 2
   humanoidOversampling: 1
-  avatarSetup: 0
+  avatarSetup: 1
   addHumanoidExtraRootOnlyWhenUsingAvatar: 1
   additionalBone: 0
   userData: 

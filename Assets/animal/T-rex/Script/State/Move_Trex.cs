@@ -14,7 +14,6 @@ public class Move_Trex : StateBase_Trex
     }
     public override void OnUpdate(Trex owner)
     {
-        Debug.Log("move");
         owner.NavMeshAgent.destination = owner.Target.transform.position;
         owner.LookToTarget((int)(owner.RotationAngle * Time.deltaTime));
         var list = owner.TargetChecker();

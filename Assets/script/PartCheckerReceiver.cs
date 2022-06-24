@@ -12,20 +12,18 @@ public class PartCheckerReceiver : MonoBehaviour
         _status = GetComponent<Status>();
         foreach (var part in _partDatas)
         {
-            part.EnduranceValue = part._maxEnduranceValue;
+            part.EnduranceValue = part.MaxEnduranceValue;
         }
     }
 
     public bool PartEnduranceDamage(PartType partType, int damage)
     {
-        Debug.Log("部位ダメージ計算開始");
         var part = GetPartData(partType);
         if (part == null)
         {
             Debug.Log("部位が見つかりません");
             return false;
         }
-        Debug.Log("部位  "+ part._partType);
         return part.Damage(damage,_status);
         
 
@@ -35,8 +33,8 @@ public class PartCheckerReceiver : MonoBehaviour
     {
         foreach (var part in _partDatas)
         {
-            if (part._partType == PartType.notSet) continue;
-            if (part._partType == partType) return part;
+            if (part.PartType == PartType.notSet) continue;
+            if (part.PartType == partType) return part;
         }
         return null;
     }
@@ -45,19 +43,20 @@ public class PartCheckerReceiver : MonoBehaviour
     class PartDate
     {
         // 部位
-        public PartType _partType;
+        [SerializeField] private PartType _partType;
+        public PartType PartType { get => _partType; set => _partType = value; }
 
         // 怯み値
-        public int _maxEnduranceValue;
+        [SerializeField] private int _maxEnduranceValue;
+        public int MaxEnduranceValue { get => _maxEnduranceValue; set => _maxEnduranceValue = value; }
 
         // 現在の怯み値
-        public int _enduranceValue;
+        private int _enduranceValue;
         public int EnduranceValue { get => _enduranceValue; set => _enduranceValue = value; }
 
         public bool Damage(int _damage, Status _status)
         {
             _enduranceValue -= _damage;
-            Debug.Log("部位ダメージ計算終了");
 
             if (_enduranceValue <= 0)
             {

@@ -75,16 +75,18 @@ public partial class Player : MonoBehaviour
         _inputMove.Player.Jump.started += Jump;
         _inputMove.Player.Dodge.started += Dodge;
         _inputMove.Player.StrongAttack.started += StrongAttack;
-
+        _inputMove.Player.WeakAttack.started += WeakAttack;
         _inputMoveAction = _inputMove.Player.Move;
         _inputMove.Player.Enable();
     }
+
 
     private void OnDisable()
     {
         _inputMove.Player.Jump.started -= Jump;
         _inputMove.Player.Dodge.started -= Dodge;
         _inputMove.Player.StrongAttack.started -= StrongAttack;
+        _inputMove.Player.WeakAttack.started -= WeakAttack;
 
         _inputMove.Player.Disable();
     }
@@ -104,7 +106,7 @@ public partial class Player : MonoBehaviour
         _animator.SetInteger("HP", _status.HP);
         if (_status.HitReaction != HitReaction.nonReaction &&
             _currentState.GetType() != typeof(HitReactionState) &&
-            _currentState.GetType() != typeof(DeathState))  
+            _currentState.GetType() != typeof(DeathState))
         {
             ChangeState<HitReactionState>();
         }
@@ -146,16 +148,11 @@ public partial class Player : MonoBehaviour
 
     private void StrongAttack(InputAction.CallbackContext obj)
     {
-        //òAë±çUåÇÇÃì¸óÕéÛït
-        if(_animator.GetBool("InputReception"))
-        {
-            _animator.SetTrigger("AttackChain");
-            _animator.SetBool("InputReception", false);
-        }
-
-        if (_currentState.GetType() != typeof(LocomotionState)) return;
-        ChangeState<StrongAttack>();
-
+        _currentState.OnStrongAttack(this);
+    }
+    private void WeakAttack(InputAction.CallbackContext obj)
+    {
+        _currentState.OnWeakAttack(this);
     }
 
     private void Jump(InputAction.CallbackContext obj)
@@ -214,4 +211,9 @@ public enum PlayerAnimationState
     StrongAttack,
     HitReaction,
     Death
+}
+public enum AttackType
+{
+    WeakAttack,
+    StrongAttack
 }

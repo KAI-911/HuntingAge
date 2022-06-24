@@ -57152,14 +57152,14 @@ AnimationClip:
     data: Change
     objectReferenceParameter: {fileID: 0}
     floatParameter: 0
-    intParameter: 0
+    intParameter: 6
     messageOptions: 0
   - time: 0.73333335
     functionName: OnAnimationEvent
     data: Change
     objectReferenceParameter: {fileID: 0}
     floatParameter: 0
-    intParameter: 0
+    intParameter: 6
     messageOptions: 0
   - time: 0.76666665
     functionName: OnAnimationEvent

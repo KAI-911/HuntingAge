@@ -32,7 +32,10 @@ public class HitReceiver : MonoBehaviour
     {
         foreach (var element in _hitList)
         {
-            if (_part == element.AttackPart) element.gameObject.SetActive(!element.gameObject.activeSelf);
+            if (_part == element.AttackPart)
+            {
+                element.gameObject.SetActive(!element.gameObject.activeSelf);
+            }
         }
     }
     public void AttackFlgReset()

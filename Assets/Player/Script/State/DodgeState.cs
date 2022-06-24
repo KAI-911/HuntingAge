@@ -16,10 +16,7 @@ public class DodgeState : PlayerStateBase
         owner.Status.InvincibleFlg = true;
         _ = owner.WaitForAsync(_invincibleTime, () => owner.Status.InvincibleFlg = false);
     }
-    public override void OnExit(Player owner, PlayerStateBase nextState)
-    {
 
-    }
     public override void OnUpdate(Player owner)
     {
 
@@ -40,8 +37,5 @@ public class DodgeState : PlayerStateBase
     {
         owner.ChangeState<LocomotionState>();
     }
-    public override void OnCollisionStay(Player owner, Collision collision)
-    {
 
-    }
 }
