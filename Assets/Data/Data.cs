@@ -6,7 +6,7 @@ using System;
 [Serializable]
 public class MaterialData
 {
-    public int ID;
+    public string ID;
     public string Name;
     public string IconName;
 }
@@ -14,7 +14,7 @@ public class MaterialData
 [Serializable]
 public class ItemData
 {
-    public int ID;
+    public string ID;
     public string Name;
     /// <summary>
     /// 効果が永続するかどうか（死亡すると消える）
@@ -33,11 +33,35 @@ public class ItemData
 
 public enum ItemType
 {
-    HpRecovery,
+    HpRecovery=1,
     AttackUp,
     DefenseUp
 }
 
+[Serializable]
+public class WeaponData
+{
+    /// <summary>
+    /// Weapon100[斧] Weapon200[槍] Weapon300[弓]
+    /// </summary>
+    public string ID;
+    public string Name;
+    public int AttackPoint;
+    public int WeaponType;
+    //制作に必要な素材データ
+    public Dictionary<string, int> CreateWeaponMaterial;
+    //強化に必要な素材データ
+    public Dictionary<string, int> EnhancementWeaponMaterial;
+    //強化に必要な鍛冶場レベル
+    public int RequiredBlackmithLevel;
+}
+
+public enum WeaponType
+{
+    Axe=1,
+    Spear,
+    Bow
+}
 [Serializable]
 public class EnemyData
 {
@@ -69,7 +93,7 @@ public class Position
 [Serializable]
 public class QuestHolder
 {    /// <summary>
-     /// 1 連番で
+     /// 001連番で
      /// </summary>
     public int QuestLevel;
     public List<string> QuestDataID;
@@ -78,7 +102,7 @@ public class QuestHolder
 public class QuestData
 {
     /// <summary>
-    /// Quest000 連番で
+    /// Quest001 連番で
     /// </summary>
     public string ID;
     public string Name;
