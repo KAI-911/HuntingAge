@@ -7,7 +7,7 @@ public class Idle_Dodo : StateBase_Dodo
     public override void OnEnter(Dodo owner, StateBase_Dodo prevState)
     {
         owner.Animator.SetInteger("AniState", (int)State.Idle);
-        _ = owner.WaitForAsync(5, () => { Debug.Log("œpœj"); owner.ChangeState<Wandering_Dodo>(); });
+        _ = owner.WaitForAsync(5, () => { if (owner.CurrentState.GetType() == typeof(Idle_Dodo)) owner.ChangeState<Wandering_Dodo>(); });
     }
     public override void OnExit(Dodo owner, StateBase_Dodo nextState)
     {

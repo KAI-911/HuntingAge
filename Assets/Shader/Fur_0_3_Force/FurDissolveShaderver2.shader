@@ -5,6 +5,7 @@ Shader "Custom/FurDissolveShaderver2"
 		_Color("Color", Color) = (1,1,1,1)
 		_MainTex("Albedo (RGB)", 2D) = "white" {}
 		_DissolveTex("Dissolve", 2D) = "white" {}
+		_DitherTex("Dither", 2D) = "white" {}
 		_FurTex("Fur", 2D) = "white" {}
 		_FurMaskTex("FurMask", 2D) = "white" {}
 		_Glossiness("Smoothness", Range(0,1)) = 0.5
@@ -14,6 +15,7 @@ Shader "Custom/FurDissolveShaderver2"
 		_FurThinness("Fur Thinness", Range(0.01, 10)) = 1
 		_FurClip("Fur Clip", Range(0.01, 1)) = 0.01
 		_Dissolve("Dissolve", Range(0,1)) = 0.0
+		_Dither("Dither", Range(0,1)) = 0.0
 	}
 		SubShader
 		{
@@ -29,6 +31,7 @@ Shader "Custom/FurDissolveShaderver2"
 				#pragma target 3.0
 				sampler2D _MainTex;
 				sampler2D _DissolveTex;
+				sampler2D _DitherTex;
 				struct Input
 				{
 					float2 uv_MainTex;
@@ -38,6 +41,7 @@ Shader "Custom/FurDissolveShaderver2"
 				fixed4 _Color;
 				float _Scale;
 				float _Dissolve;
+				float _Dither;
 				UNITY_INSTANCING_BUFFER_START(Props)
 				UNITY_INSTANCING_BUFFER_END(Props)
 				void vert(inout appdata_full v)
@@ -55,6 +59,12 @@ Shader "Custom/FurDissolveShaderver2"
 					float dissolve = tex2D(_DissolveTex, IN.uv_MainTex).r;
 					dissolve = dissolve * 0.999;
 					clip(dissolve - _Dissolve);
+
+					//ƒfƒBƒU”²‚«
+					float dither = tex2D(_DitherTex, IN.uv_MainTex).r;
+					dither = dither * 0.999;
+					clip(dither - _Dither);
+
 				}
 				ENDCG
 

@@ -1,5 +1,6 @@
 ﻿sampler2D _MainTex;
 sampler2D _DissolveTex;
+sampler2D _DitherTex;
 sampler2D _FurTex;
 sampler2D _FurMaskTex;
 
@@ -16,6 +17,7 @@ float _FurThinness;
 float _FurDensity;
 float _FurClip;
 float _Dissolve;
+float _Dither;
 UNITY_INSTANCING_BUFFER_START(Props)
 UNITY_INSTANCING_BUFFER_END(Props)
 
@@ -44,6 +46,12 @@ void surf(Input IN, inout SurfaceOutputStandard o)
     o.Alpha = fur;
     fur = fur * (fur - (FURSTEP * FURSTEP) * _FurDensity);
     clip(fur - _FurClip);
+    
+    //ディザ抜き
+    float dither = tex2D(_DitherTex, IN.uv_MainTex).r;
+    dither = dither * 0.999;
+    clip(dither - _Dither);
+
 
 	//ディゾルブ
     float dissolve = tex2D(_DissolveTex, IN.uv_MainTex).r;
