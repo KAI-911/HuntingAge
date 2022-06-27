@@ -2,27 +2,14 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class MaterialDataList : MonoBehaviour, ISerializationCallbackReceiver
+public class QuestHolder : MonoBehaviour, ISerializationCallbackReceiver
 {
-    [SerializeField] MaterialDataObject DictionaryData;
+    [SerializeField] QuestHolderObject DictionaryData;
     [SerializeField] List<string> keys = new List<string>();
-    [SerializeField] List<MaterialData> values = new List<MaterialData>();
-    [SerializeField] Dictionary<string, MaterialData> dictionary = new Dictionary<string, MaterialData>();
+    [SerializeField] List<QuestHolderData> values = new List<QuestHolderData>();
+    [SerializeField] Dictionary<string, QuestHolderData> dictionary = new Dictionary<string, QuestHolderData>();
     public bool modifyValues;
-
-    /// <summary>
-    /// 所持できる種類の最大量(枠数)
-    /// </summary>
-    public int MaxHolding;
-
-    /// <summary>
-    /// ボックスかポーチのどっちで保存するか
-    /// </summary>
-    public ItemStack ItemStack;
-
-    public Dictionary<string, MaterialData> Dictionary { get => dictionary;}
-
-
+    public Dictionary<string, QuestHolderData> Dictionary { get => dictionary; }
 
     private void Awake()
     {
@@ -38,7 +25,7 @@ public class MaterialDataList : MonoBehaviour, ISerializationCallbackReceiver
         {
             keys.Clear();
             values.Clear();
-            for (int i = 0; i < Mathf.Min(DictionaryData.Keys.Count,DictionaryData.Values.Count); i++)
+            for (int i = 0; i < Mathf.Min(DictionaryData.Keys.Count, DictionaryData.Values.Count); i++)
             {
                 keys.Add(DictionaryData.Keys[i]);
                 values.Add(DictionaryData.Values[i]);
@@ -46,7 +33,7 @@ public class MaterialDataList : MonoBehaviour, ISerializationCallbackReceiver
             }
         }
     }
-    
+
     public void OnAfterDeserialize()
     {
 
@@ -54,7 +41,7 @@ public class MaterialDataList : MonoBehaviour, ISerializationCallbackReceiver
     public void DesrializeDictionary()
     {
         Debug.Log("DesrializeDictionary");
-        dictionary = new Dictionary<string, MaterialData>();
+        dictionary.Clear();
         DictionaryData.Keys.Clear();
         DictionaryData.Values.Clear();
         for (int i = 0; i < Mathf.Min(keys.Count, values.Count); i++)

@@ -138,12 +138,36 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1832952ec627aa742be8649fa6a9a945, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  DictionaryData: {fileID: 11400000, guid: 96f6bab5043a55048bc9401b5065e7cd, type: 2}
-  keys: []
-  values: []
+  DictionaryData: {fileID: 11400000, guid: 3eb9340a68e4a0c48a6dae4855fade1e, type: 2}
+  keys:
+  - Material000
+  - Material001
+  values:
+  - ID: Material000
+    Name: "\u5CA9"
+    IconName: 
+    BoxStackNumber: 999
+    BoxUINumber: 0
+    BoxHoldNumber: 1
+    PoachStackNumber: 99
+    PoachUINumber: 0
+    PoachHoldNumber: 1
+    Permanent: 0
+    Time: 0
+    ItemType: 0
+  - ID: Material001
+    Name: "\u6728"
+    IconName: 
+    BoxStackNumber: 999
+    BoxUINumber: 1
+    BoxHoldNumber: 1
+    PoachStackNumber: 99
+    PoachUINumber: 1
+    PoachHoldNumber: 1
+    Permanent: 0
+    Time: 0
+    ItemType: 0
   modifyValues: 0
-  MaxHolding: 0
-  ItemStack: 0
 --- !u!1 &6862996165734480185
 GameObject:
   m_ObjectHideFlags: 0

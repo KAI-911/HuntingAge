@@ -10,13 +10,19 @@ public class ItemButton : MonoBehaviour
     public void SetID(string id)
     {
         _ID = id;
-        var data = SaveData.GetClass(id, new MaterialData());
+        var data = GameManager.Instance.ItemDataList.Dictionary[id];
         gameObject.GetComponent<Image>().sprite = Resources.Load<Sprite>(data.IconName);
+        Debug.Log(data.IconName);
     }
-    [ContextMenu("Init")]
+    public void clear()
+    {
+        _ID = "";
+        GetComponent<Image>().sprite = Resources.Load<Sprite>("Icon/white");
+    }
+
+
     void Start()
     {
-        GetComponent<Image>().sprite = Resources.Load<Sprite>("Icon/white");
     }
 
     // Update is called once per frame

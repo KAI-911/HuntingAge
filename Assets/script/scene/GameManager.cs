@@ -11,10 +11,16 @@ public class GameManager : Singleton<GameManager>
     [SerializeField] Scene _villageScene;
     [SerializeField] ItemHolder _itemBox;
     [SerializeField] ItemHolder _itemPoach;
+    [SerializeField] QuestDataList _questDataList;
+    [SerializeField] EnemyDataList _enemyDataList;
+    [SerializeField] ItemDataList _itemDataList;
     public Scene VillageScene { get => _villageScene; }
     public Quest Quest { get => _quest; set => _quest = value; }
     public ItemHolder ItemBox { get => _itemBox; }
     public ItemHolder ItemPoach { get => _itemPoach; }
+    public QuestDataList QuestDataList { get => _questDataList; }
+    public EnemyDataList EnemyDataList { get => _enemyDataList; }
+    public ItemDataList ItemDataList { get => _itemDataList; }
 
     void Start()
     {

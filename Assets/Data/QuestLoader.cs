@@ -16,20 +16,20 @@ public class QuestLoader : MonoBehaviour
         load = false;
     }
     // Update is called once per frame
-    void Update()
-    {
-        if (set)
-        {
-            SaveData.SetClass(key, Data);
-            Debug.Log("セットしました");
-            set = false;
-        }
+    //void Update()
+    //{
+    //    if (set)
+    //    {
+    //        SaveData.SetClass(key, Data);
+    //        Debug.Log("セットしました");
+    //        set = false;
+    //    }
 
-        if (load)
-        {
-            Data = SaveData.GetClass(key, Data);
-            Debug.Log("ロードしました");
-            load = false;
-        }
-    }
+    //    if (load)
+    //    {
+    //        Data = SaveData.GetClass(key, Data);
+    //        Debug.Log("ロードしました");
+    //        load = false;
+    //    }
+    //}
 }

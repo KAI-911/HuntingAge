@@ -1,0 +1,42 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7471141f60a015c4aa26262d92254c43, type: 3}
+  m_Name: ItemDataStorage
+  m_EditorClassIdentifier: 
+  keys:
+  - Material000
+  - Material001
+  values:
+  - ID: Material000
+    Name: "\u5CA9"
+    IconName: Icon/rock
+    BoxStackNumber: 9999
+    BoxUINumber: 12
+    BoxHoldNumber: 99
+    PoachStackNumber: 99
+    PoachUINumber: 4
+    PoachHoldNumber: 13
+    Permanent: 0
+    Time: 0
+    ItemType: 0
+  - ID: Material001
+    Name: "\u6728"
+    IconName: Icon/wood
+    BoxStackNumber: 9999
+    BoxUINumber: 4
+    BoxHoldNumber: 99
+    PoachStackNumber: 99
+    PoachUINumber: 5
+    PoachHoldNumber: 62
+    Permanent: 0
+    Time: 0
+    ItemType: 0
