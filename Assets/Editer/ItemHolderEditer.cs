@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEditor;
 [CustomEditor(typeof(ItemHolder))]
-public class DictionaryScriptEditer : Editor
+public class ItemHolderEditer : Editor
 {
     public override void OnInspectorGUI()
     {

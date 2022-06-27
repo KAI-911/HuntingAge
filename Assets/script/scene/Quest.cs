@@ -6,7 +6,7 @@ using UnityEngine.SceneManagement;
 public class Quest : MonoBehaviour
 {
     //クエストデータ
-    [SerializeField] QuestData _questData = null;
+    [SerializeField] QuestData _questData;
     public QuestData QuestData { get => _questData; set => _questData = value; }
 
 
@@ -22,12 +22,12 @@ public class Quest : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (_questset)
-        {
-            _questset = false;
-            SaveData.SetClass<QuestData>(_questData.ID, _questData);
-            Debug.Log("クエストセット");
-        }
+        //if (_questset)
+        //{
+        //    _questset = false;
+        //    SaveData.SetClass<QuestData>(_questData.ID, _questData);
+        //    Debug.Log("クエストセット");
+        //}
         //if (_enemyset)
         //{
         //    _enemyset = false;
@@ -43,14 +43,14 @@ public class Quest : MonoBehaviour
     }
     public void QusetSelect(string QuestID)
     {
-        _questData = SaveData.GetClass<QuestData>(QuestID, new QuestData());
+        //_questData = SaveData.GetClass<QuestData>(QuestID, new QuestData());
     }
     public void GoToQuset()
     {
-        if (_questData != null)
-        {
-            SceneManager.LoadSceneAsync((int)_questData.Field);
-        }
+        //if (_questData != null)
+        //{
+        //    SceneManager.LoadSceneAsync((int)_questData.Field);
+        //}
     }
 
 }

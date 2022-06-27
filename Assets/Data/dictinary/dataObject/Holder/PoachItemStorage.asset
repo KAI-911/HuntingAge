@@ -10,13 +10,9 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: a10407a7e54815f4ebbac0c28c024960, type: 3}
-  m_Name: BoxItemStorage
+  m_Name: PoachItemStorage
   m_EditorClassIdentifier: 
   keys:
-  - Boxkey1
-  - Boxkey2
-  - Boxkey3
-  - Boxkey4
-  - Boxkey5
-  - Boxkey6
-  values: 010000000200000003000000040000000500000006000000
+  - Material000
+  - Material001
+  values: 0d0000003e000000

@@ -9,18 +9,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 85bb16a575276044f8c4778238d0ad99, type: 3}
-  m_Name: MaterialDataStorage
+  m_Script: {fileID: 11500000, guid: 94212e58ce71e2444b1587e3d46051d6, type: 3}
+  m_Name: QuestHolder1
   m_EditorClassIdentifier: 
   keys:
-  - Material000
+  - QuestHolder1
   values:
-  - ID: Material000
-    Name: "\u5CA9"
-    IconName: 
-    BoxStackNumber: 9999
-    BoxUINumber: 5
-    BoxHoldNumber: 5
-    PoachStackNumber: 99
-    PoachUINumber: 1
-    PoachHoldNumber: 1
+  - Quests:
+    - Quest001

@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1 &974404489334883480
+--- !u!1 &187608729041509526
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -8,153 +8,9 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 974404489334883482}
-  - component: {fileID: 974404489334883483}
-  - component: {fileID: 3335667563906793619}
-  - component: {fileID: 1402602922500825700}
-  - component: {fileID: 1917138059099819461}
-  - component: {fileID: 765812722758232326}
-  m_Layer: 0
-  m_Name: GameManager
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &974404489334883482
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 974404489334883480}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children:
-  - {fileID: 6862996165734480187}
-  m_Father: {fileID: 0}
-  m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &974404489334883483
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 974404489334883480}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c4abf15b51754414c8ad15f0332aa024, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _chenge: 0
-  _scene: 0
-  _quest: {fileID: 3335667563906793619}
-  _villageScene: 0
-  _itemBox: {fileID: 1402602922500825700}
-  _itemPoach: {fileID: 1917138059099819461}
---- !u!114 &3335667563906793619
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 974404489334883480}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4103a0c41be21bb4991085060e29f370, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _questData:
-    ID: 
-    Name: 
-    Clear: 0
-    Failure: 0
-    Field: 0
-    TargetName: []
-    OtherName: []
-  _questset: 0
-  _enemyset: 0
-  _enemyload: 0
---- !u!114 &1402602922500825700
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 974404489334883480}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0311146b928456b4fbb4969387ddaa72, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  DictionaryData: {fileID: 11400000, guid: 147bb20327d7a214eb4ca48c1a3447f9, type: 2}
-  keys:
-  - Boxkey1
-  - Boxkey2
-  - Boxkey3
-  - Boxkey4
-  - Boxkey5
-  - Boxkey6
-  values: 010000000200000003000000040000000500000006000000
-  modifyValues: 0
-  MaxHolding: 0
-  ItemStack: 0
---- !u!114 &1917138059099819461
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 974404489334883480}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0311146b928456b4fbb4969387ddaa72, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  DictionaryData: {fileID: 11400000, guid: 60f048bd597549a4a9a1945354532636, type: 2}
-  keys:
-  - Poachkey1
-  - Poachkey2
-  - Poachkey3
-  - Poachkey4
-  - Poachkey5
-  - Poachkey6
-  values: 010000000200000003000000040000000500000006000000
-  modifyValues: 0
-  MaxHolding: 0
-  ItemStack: 1
---- !u!114 &765812722758232326
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 974404489334883480}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1832952ec627aa742be8649fa6a9a945, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  DictionaryData: {fileID: 11400000, guid: 96f6bab5043a55048bc9401b5065e7cd, type: 2}
-  keys: []
-  values: []
-  modifyValues: 0
-  MaxHolding: 0
-  ItemStack: 0
---- !u!1 &6862996165734480185
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 6862996165734480187}
-  - component: {fileID: 6862996165734480184}
-  - component: {fileID: 6862996165734480186}
+  - component: {fileID: 187608729041509524}
+  - component: {fileID: 187608729041509527}
+  - component: {fileID: 187608729041509525}
   m_Layer: 0
   m_Name: EventSystem
   m_TagString: Untagged
@@ -162,28 +18,28 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &6862996165734480187
+--- !u!4 &187608729041509524
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6862996165734480185}
+  m_GameObject: {fileID: 187608729041509526}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 974404489334883482}
+  m_Father: {fileID: 5773896454500950325}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &6862996165734480184
+--- !u!114 &187608729041509527
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6862996165734480185}
+  m_GameObject: {fileID: 187608729041509526}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 76c392e42b5098c458856cdf6ecaaaa1, type: 3}
@@ -192,13 +48,13 @@ MonoBehaviour:
   m_FirstSelected: {fileID: 0}
   m_sendNavigationEvents: 1
   m_DragThreshold: 10
---- !u!114 &6862996165734480186
+--- !u!114 &187608729041509525
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6862996165734480185}
+  m_GameObject: {fileID: 187608729041509526}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 01614664b831546d2ae94a42149d80ac, type: 3}
@@ -220,3 +76,269 @@ MonoBehaviour:
   m_TrackedDeviceOrientationAction: {fileID: 7970375526676320489, guid: ca9f5fa95ffab41fb9a615ab714db018, type: 3}
   m_DeselectOnBackgroundClick: 1
   m_PointerBehavior: 0
+--- !u!1 &5773896454500950327
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 5773896454500950325}
+  - component: {fileID: 5773896454500950324}
+  - component: {fileID: 8353733631692612924}
+  - component: {fileID: 5680108330927163339}
+  - component: {fileID: 5134047963096967274}
+  - component: {fileID: 8353733631692612927}
+  - component: {fileID: 6747737510290151909}
+  - component: {fileID: 8353733631692612926}
+  - component: {fileID: 8353733631692612925}
+  m_Layer: 0
+  m_Name: GameManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &5773896454500950325
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5773896454500950327}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 187608729041509524}
+  m_Father: {fileID: 0}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &5773896454500950324
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5773896454500950327}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c4abf15b51754414c8ad15f0332aa024, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _chenge: 0
+  _scene: 3
+  _quest: {fileID: 8353733631692612924}
+  _villageScene: 3
+  _itemBox: {fileID: 5680108330927163339}
+  _itemPoach: {fileID: 5134047963096967274}
+  _questDataList: {fileID: 8353733631692612926}
+  _enemyDataList: {fileID: 6747737510290151909}
+  _itemDataList: {fileID: 8353733631692612925}
+--- !u!114 &8353733631692612924
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5773896454500950327}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4103a0c41be21bb4991085060e29f370, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _questData:
+    ID: 
+    Name: 
+    Clear: 0
+    Failure: 0
+    Field: 0
+    TargetName: []
+    OtherName: []
+  _questset: 0
+  _enemyset: 0
+  _enemyload: 0
+--- !u!114 &5680108330927163339
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5773896454500950327}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0311146b928456b4fbb4969387ddaa72, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  DictionaryData: {fileID: 11400000, guid: 147bb20327d7a214eb4ca48c1a3447f9, type: 2}
+  keys:
+  - Material000
+  - Material001
+  - Item000
+  values: 630000006300000063000000
+  modifyValues: 0
+  MaxHolding: 0
+  ItemStack: 0
+--- !u!114 &5134047963096967274
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5773896454500950327}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0311146b928456b4fbb4969387ddaa72, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  DictionaryData: {fileID: 11400000, guid: 60f048bd597549a4a9a1945354532636, type: 2}
+  keys:
+  - Material000
+  - Material001
+  - Item000
+  values: 0d0000003e00000001000000
+  modifyValues: 0
+  MaxHolding: 0
+  ItemStack: 1
+--- !u!114 &8353733631692612927
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5773896454500950327}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 98e71b45002552144bf2c1cdd7701826, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  DictionaryData: {fileID: 11400000, guid: 6ca2612ffef562e44955b17e54da47bc, type: 2}
+  keys:
+  - QuestHolder1
+  values:
+  - Quests:
+    - Quest001
+  modifyValues: 0
+--- !u!114 &6747737510290151909
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5773896454500950327}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d336fbb11e1cd1c4cbc1f37572322014, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  DictionaryData: {fileID: 11400000, guid: 38fe7e8d7479fa74087c0d648cdcb60e, type: 2}
+  keys:
+  - T-rex
+  values:
+  - ID: T-rex
+    DisplayName: "\u30C6\u30A3\u30E9\u30CE\u30B5\u30A6\u30EB\u30B9"
+    InstanceName: Enemy/T-rex
+    DeathCount: 0
+    EnemyPos:
+    - scene: 2
+      pos:
+      - {x: 10, y: 0, z: 10}
+      - {x: 10, y: 0, z: -10}
+      - {x: -10, y: 0, z: 10}
+      - {x: -10, y: 0, z: -10}
+  modifyValues: 0
+--- !u!114 &8353733631692612926
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5773896454500950327}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8d473cdf783ca2148b8e0d5f7ef1fa51, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  DictionaryData: {fileID: 11400000, guid: 8b360b659d88f3c4395a3e0f665d9de9, type: 2}
+  keys:
+  - Quest001
+  - Quest002
+  values:
+  - ID: Quest001
+    Name: Quest001
+    Clear: 0
+    Failure: 1
+    Field: 2
+    TargetName:
+    - T-rex
+    OtherName:
+    - Wolf
+    - Dodo
+  - ID: Quest002
+    Name: Quest002
+    Clear: 0
+    Failure: 2
+    Field: 2
+    TargetName:
+    - Wolf
+    OtherName:
+    - T-rex
+    - Dodo
+  modifyValues: 0
+--- !u!114 &8353733631692612925
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5773896454500950327}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9259a729160daf14e90efbeae19f87d6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  DictionaryData: {fileID: 11400000, guid: 3eb9340a68e4a0c48a6dae4855fade1e, type: 2}
+  keys:
+  - Material000
+  - Material001
+  - Item000
+  values:
+  - ID: Material000
+    Name: "\u5CA9"
+    IconName: Icon/rock
+    BoxStackNumber: 9999
+    BoxUINumber: 7
+    BoxHoldNumber: 99
+    PoachStackNumber: 99
+    PoachUINumber: 0
+    PoachHoldNumber: 13
+    Permanent: 0
+    Time: 0
+    ItemType: 0
+  - ID: Material001
+    Name: "\u6728"
+    IconName: Icon/wood
+    BoxStackNumber: 9999
+    BoxUINumber: 8
+    BoxHoldNumber: 99
+    PoachStackNumber: 99
+    PoachUINumber: 1
+    PoachHoldNumber: 62
+    Permanent: 0
+    Time: 0
+    ItemType: 0
+  - ID: Item000
+    Name: "\u56DE\u5FA9"
+    IconName: Icon/kaihuku
+    BoxStackNumber: 9999
+    BoxUINumber: 9
+    BoxHoldNumber: 99
+    PoachStackNumber: 99
+    PoachUINumber: 2
+    PoachHoldNumber: 1
+    Permanent: 0
+    Time: 0
+    ItemType: 1
+  modifyValues: 0

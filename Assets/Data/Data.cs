@@ -5,88 +5,6 @@ using System;
 using UnityEditor;
 
 
-
-
-[Serializable]
-public class MaterialData
-{
-    /// <summary>
-    /// Material000から連番
-    /// </summary>
-    public string ID;
-
-    /// <summary>
-    /// 表示される名前
-    /// </summary>
-    public string Name;
-
-    /// <summary>
-    /// アイコンのパス
-    /// </summary>
-    public string IconName;
-
-    /// <summary>
-    /// アイテムボックスで一枠で保存できる最大量
-    /// </summary>
-    public int BoxStackNumber;
-
-    /// <summary>
-    /// アイテムボックスでどの枠に保存されているか
-    /// </summary>
-    public int BoxUINumber;
-
-    /// <summary>
-    /// アイテムボックスでどれだけ持っているか
-    /// </summary>
-    public int BoxHoldNumber;
-
-    /// <summary>
-    /// アイテムポーチで一枠で保存できる最大量
-    /// </summary>
-    public int PoachStackNumber;
-
-    /// <summary>
-    /// アイテムポーチでどの枠に保存されているか
-    /// </summary>
-    public int PoachUINumber;
-
-    /// <summary>
-    /// アイテムポーチでどれだけ持っているか
-    /// </summary>
-    public int PoachHoldNumber;
-
-}
-
-[Serializable]
-public class ItemData : MaterialData
-{
-    /// <summary>
-    /// IDはItem000から連番
-    /// </summary>
-
-
-
-    /// <summary>
-    /// 効果が永続するかどうか（死亡すると消える）
-    /// </summary>
-    public bool Permanent;
-    /// <summary>
-    /// 効果時間
-    /// </summary>
-    public float Time;
-    /// <summary>
-    /// どのような効果なのか
-    /// </summary>
-    public ItemType ItemType;
-}
-
-public enum ItemType
-{
-    HpRecovery = 1,
-    AttackUp,
-    DefenseUp
-}
-
 [Serializable]
 public class WeaponData
 {
@@ -111,27 +29,7 @@ public enum WeaponType
     Spear,
     Bow
 }
-[Serializable]
-public class EnemyData
-{
-    /// <summary>
-    /// それぞれの名前を書く
-    /// </summary>
-    public string ID;
-    public string DisplayName;
-    public string InstanceName;
-    public int DeathCount;
-    public List<Position> EnemyPos;
-    public Position EnemyPosition(Scene scene)
-    {
-        foreach (var item in EnemyPos)
-        {
-            if (item.scene != scene) continue;
-            return item;
-        }
-        return null;
-    }
-}
+
 
 [Serializable]
 public class Position
@@ -139,28 +37,14 @@ public class Position
     public Scene scene;
     public List<Vector3> pos;
 }
-[Serializable]
-public class QuestHolder
-{    /// <summary>
-     /// 001連番で
-     /// </summary>
-    public int QuestLevel;
-    public List<string> QuestDataID;
-}
-[Serializable]
-public class QuestData
-{
-    /// <summary>
-    /// Quest001 連番で
-    /// </summary>
-    public string ID;
-    public string Name;
-    public ClearConditions Clear;
-    public FailureConditions Failure;
-    public Scene Field;
-    public List<string> TargetName;
-    public List<string> OtherName;
-}
+//[Serializable]
+//public class QuestHolder
+//{    /// <summary>
+//     /// 001連番で
+//     /// </summary>
+//    public int QuestLevel;
+//    public List<string> QuestDataID;
+//}
 
 
 

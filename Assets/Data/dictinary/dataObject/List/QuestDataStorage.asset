@@ -1,0 +1,38 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 241d913dd67e72a4fb842b72a4c5260c, type: 3}
+  m_Name: QuestDataStorage
+  m_EditorClassIdentifier: 
+  keys:
+  - Quest001
+  - Quest002
+  values:
+  - ID: Quest001
+    Name: Quest001
+    Clear: 0
+    Failure: 1
+    Field: 2
+    TargetName:
+    - T-rex
+    OtherName:
+    - Wolf
+    - Dodo
+  - ID: Quest002
+    Name: Quest002
+    Clear: 0
+    Failure: 2
+    Field: 2
+    TargetName:
+    - Wolf
+    OtherName:
+    - T-rex
+    - Dodo
