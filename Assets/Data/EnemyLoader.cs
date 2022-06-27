@@ -34,8 +34,8 @@ public class EnemyLoader : MonoBehaviour
             Debug.Log("ロードしました");
             load = false;
         }
-        if(setPos)
-        {            
+        if (setPos)
+        {
             foreach (var item in Data.EnemyPos)
             {
                 if (item.scene != scene) continue;
@@ -51,4 +51,40 @@ public class EnemyLoader : MonoBehaviour
             setPos = false;
         }
     }
+
+    [ContextMenu("Set")]
+    private void Set()
+    {
+        SaveData.SetClass(key, Data);
+        Debug.Log("セットしました");
+    }
+
+
+    [ContextMenu("load")]
+    private void Load()
+    {
+        Data = SaveData.GetClass(key, Data);
+        Debug.Log("ロードしました");
+    }
+
+
+    [ContextMenu("SetPos")]
+    private void SetPosList()
+    {
+        foreach (var item in Data.EnemyPos)
+        {
+            if (item.scene != scene) continue;
+            item.pos.Clear();
+            foreach (var p in list)
+            {
+                item.pos.Add(p.transform.position);
+            }
+            Debug.Log("セットしました");
+            break;
+        }
+
+    }
+
+
+
 }

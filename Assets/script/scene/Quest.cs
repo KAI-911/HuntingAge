@@ -9,8 +9,6 @@ public class Quest : MonoBehaviour
     [SerializeField] QuestData _questData = null;
     public QuestData QuestData { get => _questData; set => _questData = value; }
 
-    [SerializeField] EnemyData _EnemyData;
-    public EnemyData TargetEnemyData { get => _EnemyData; set => _EnemyData = value; }
 
 
     public bool _questset = false;
@@ -30,18 +28,18 @@ public class Quest : MonoBehaviour
             SaveData.SetClass<QuestData>(_questData.ID, _questData);
             Debug.Log("クエストセット");
         }
-        if (_enemyset)
-        {
-            _enemyset = false;
-            SaveData.SetClass<EnemyData>(_EnemyData.ID, _EnemyData);
-            Debug.Log("エネミーセット");
-        }
-        if (_enemyload)
-        {
-            _enemyset = false;
-            SaveData.GetClass<EnemyData>(_EnemyData.ID, _EnemyData);
-            Debug.Log("エネミーロード");
-        }
+        //if (_enemyset)
+        //{
+        //    _enemyset = false;
+        //    SaveData.SetClass<EnemyData>(_EnemyData.ID, _EnemyData);
+        //    Debug.Log("エネミーセット");
+        //}
+        //if (_enemyload)
+        //{
+        //    _enemyset = false;
+        //    SaveData.GetClass<EnemyData>(_EnemyData.ID, _EnemyData);
+        //    Debug.Log("エネミーロード");
+        //}
     }
     public void QusetSelect(string QuestID)
     {

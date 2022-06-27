@@ -18,7 +18,8 @@ public class Dodo : Enemy
     private int _hitPointSave;
     public int HitPointSave { get => _hitPointSave; set => _hitPointSave = value; }
 
-
+    [SerializeField] private AnimationCurve _ditherCurve;
+    public AnimationCurve DitherCurve { get => _ditherCurve; }
 
     void Start()
     {

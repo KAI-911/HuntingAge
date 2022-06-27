@@ -8,7 +8,7 @@ public class Escape_Dodo : StateBase_Dodo
     private RunOnce _runOnce;
     float _time;
     Vector4 _color;
-
+    
     public override void OnEnter(Dodo owner, StateBase_Dodo prevState)
     {
         owner.Animator.SetInteger("AniState", (int)State.Escape);
@@ -27,6 +27,7 @@ public class Escape_Dodo : StateBase_Dodo
         owner.NavMeshAgent.destination = _escapePos;
 
         _runOnce = new RunOnce();
+
     }
     public override void OnExit(Dodo owner, StateBase_Dodo nextState)
     {
@@ -36,7 +37,7 @@ public class Escape_Dodo : StateBase_Dodo
     {
         Debug.Log("Escape");
         //ñŒÇ›Ç‹Ç≈ìûíBÇµÇΩÇÁè¡Ç¶ÇƒÇ¢Ç≠
-        if((owner.NavMeshAgent.destination-owner.transform.position).sqrMagnitude<(owner.NavMeshAgent.stoppingDistance* owner.NavMeshAgent.stoppingDistance))
+        if ((owner.NavMeshAgent.destination - owner.transform.position).sqrMagnitude < (owner.NavMeshAgent.stoppingDistance * owner.NavMeshAgent.stoppingDistance))
         {
             _runOnce.Run(() =>
             {
@@ -55,16 +56,16 @@ public class Escape_Dodo : StateBase_Dodo
             });
 
             _time += Time.deltaTime;
-            float rate = _time / owner.DissoveTime;
+            float rate = _time / 3;
 
             //ñ{ëÃÇè¡ÇµÇƒÇ¢Ç≠
             var Mat = owner.SkinnedMeshRenderer.materials;
             foreach (var mat in Mat)
             {
-                if (mat.HasProperty("_Dissolve"))
+                if (mat.HasProperty("_Dither"))
                 {
                     Debug.Log("è¡Ç¶ÇƒÇ¢Ç≠");
-                    mat.SetFloat("_Dissolve", owner.DissoveCurve.Evaluate(rate));
+                    mat.SetFloat("_Dither", owner.DitherCurve.Evaluate(rate));
                 }
             }
 
