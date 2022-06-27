@@ -299,21 +299,6 @@
 //                var button = obj.GetComponent<Button>();
 //                //テキストの設定
 //                var text = obj.GetComponentInChildren<Text>();
-//                switch (i)
-//                {
-//                    case 0:
-//                        text.text = "斧";
-//                        productionWeapon = Axe;
-//                        button.onClick.AddListener(() => owner.ChangeState<ProductionSelectMode>());
-//                    case 1:
-//                        text.text = "槍";
-//                        productionWeapon = Spear;
-//                        button.onClick.AddListener(() => owner.ChangeState<ProductionSelectMode>());
-//                    case 2:
-//                        text.text = "弓";
-//                        productionWeapon = Bow;
-//                        button.onClick.AddListener(() => owner.ChangeState<ProductionSelectMode>());
-//                }
 //                //ボタンが押されたときの処理
 //                owner._buttons.Add(obj);
 //            }
