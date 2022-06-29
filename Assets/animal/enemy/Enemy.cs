@@ -71,10 +71,6 @@ public class Enemy : MonoBehaviour
     [SerializeField] private string _enemyID;
     public string EnemyID { get => _enemyID; }
 
-    //クエストマネージャー
-    private QuestManager _questManager = null;
-    public QuestManager QuestManager { get => _questManager; set => _questManager = value; }
-
     //攻撃対象--------------------------------------------------------------------------------------------
     private GameObject _target;
     public GameObject Target { get => _target; }
@@ -84,7 +80,7 @@ public class Enemy : MonoBehaviour
     private bool _discoverFlg;
     public bool DiscoverFlg { get => _discoverFlg; set => _discoverFlg = value; }
 
-
+    private RunOnce Run_death = new RunOnce();
     private void Awake()
     {
         _navMeshAgent = GetComponent<NavMeshAgent>();
@@ -93,16 +89,15 @@ public class Enemy : MonoBehaviour
         _status = GetComponent<Status>();
         _target = GameObject.FindWithTag("Player");
         _discoverFlg = false;
-        var tmp = GameObject.Find("QuestManager");
-        if (tmp != null)
-        {
-            _questManager = tmp.GetComponent<QuestManager>();
-            _questManager.AddEnemy(this);
-        }
+
+        GameManager.Instance.Quest.AddEnemy(this);
     }
 
 
-
+    public void Death()
+    {
+        Run_death.Run(() => GameManager.Instance.Quest.KillEnemyCount.Add(EnemyID));
+    }
 
 
     public bool Search()

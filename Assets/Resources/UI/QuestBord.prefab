@@ -48,21 +48,41 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b9cc2c1e5dd65264699b52f398b5aa7d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _canvas: {fileID: 542143313136203825}
+  _buttonParent: {fileID: 542143313646028210}
   _questName: {fileID: 542143314272766638}
   _questContents: {fileID: 542143314357220271}
   _questbordChecker: {fileID: 542143314257542556}
   _gateChecker: {fileID: 0}
-  _canvas: {fileID: 542143313136203825}
-  _buttonParent: {fileID: 542143313646028210}
-  _popUp: {fileID: 542143313555735313}
-  _proceedButton: {fileID: 1512766428719360192}
-  _backButton: {fileID: 1512766429139822631}
-  _infoText: {fileID: 542143313585993054}
+  _confirmation: {fileID: 0}
   _buttons: []
   _currentButtonNumber: 0
-  _questHolder:
-    QuestLevel: 0
-    QuestDataID: []
+  questList:
+  - key: 
+    questDatas:
+    - ID: 
+      Name: 
+      Clear: 0
+      Failure: 0
+      Field: 0
+      TargetName: []
+      OtherName: []
+    - ID: 
+      Name: 
+      Clear: 0
+      Failure: 0
+      Field: 0
+      TargetName: []
+      OtherName: []
+    - ID: 
+      Name: 
+      Clear: 0
+      Failure: 0
+      Field: 0
+      TargetName: []
+      OtherName: []
+  - key: 
+    questDatas: []
   firstButtonPos: {x: 140, y: 350, z: 0}
   buttonBetween: 35
 --- !u!1 &542143313136203830
@@ -256,6 +276,7 @@ GameObject:
   - component: {fileID: 542143313555735313}
   - component: {fileID: 542143313555735312}
   - component: {fileID: 542143313555735319}
+  - component: {fileID: 6633429949052568145}
   m_Layer: 0
   m_Name: popup
   m_TagString: Untagged
@@ -293,7 +314,7 @@ Canvas:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 542143313555735317}
-  m_Enabled: 0
+  m_Enabled: 1
   serializedVersion: 3
   m_RenderMode: 0
   m_Camera: {fileID: 0}
@@ -347,6 +368,22 @@ MonoBehaviour:
   m_BlockingMask:
     serializedVersion: 2
     m_Bits: 4294967295
+--- !u!114 &6633429949052568145
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 542143313555735317}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 100b69ff6a2b9954982ba6749b7f9450, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _popUp: {fileID: 542143313555735313}
+  _proceedButton: {fileID: 1512766428719360192}
+  _backButton: {fileID: 1512766429139822631}
+  _infoText: {fileID: 542143313585993054}
 --- !u!1 &542143313585993052
 GameObject:
   m_ObjectHideFlags: 0

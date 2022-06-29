@@ -42,37 +42,35 @@ public class Dodo : Enemy
             _hitPointSave = Status.HP;
 
             //周りにいるドードーも一緒に逃げる
-            if (QuestManager != null)
+            //ドードーのリスト作成
+            List<Dodo> dodoList = new List<Dodo>();
+            foreach (var enemy in GameManager.Instance.Quest.EnemyList)
             {
-                //ドードーのリスト作成
-                List<Dodo> dodoList = new List<Dodo>();
-                foreach (var enemy in QuestManager.EnemyList)
-                {
-                    if (enemy.EnemyID == EnemyID) dodoList.Add(enemy.GetComponent<Dodo>());
-                }
-                //どのくらいの距離までのドードーも一緒に逃げるか
-                float dis = 0;
-                foreach (var item in AreaChecker)
-                {
-                    if (TargetCheckerType.Search != item.TargetCheckerType) continue;
-                    dis = item.transform.localScale.x;
-                    break;
-                }
-                Debug.Log(dis);
-                //magnitudeはルートの計算をするので軽いsqrMagnitudeを使う
-                //sqrMagnitudeは２乗の形になるのでdisもそれに合わせる
-                dis = dis * dis;
-                foreach (var dodo in dodoList)
-                {
-                    if (!dodo.gameObject.activeSelf) continue;
-                    if (dodo.CurrentState.GetType() == typeof(Escape_Dodo)) continue;
-                    if (dodo.CurrentState.GetType() == typeof(Death_Dodo)) continue;
-                    var sqrMag = (transform.position - dodo.transform.position).sqrMagnitude;
-                    if (dis < sqrMag) continue;
-                    dodo.ChangeState<Escape_Dodo>();
-                    //_ = dodo.WaitForAsync((dis / sqrMag) * 10, () => dodo.ChangeState<Escape_Dodo>());
-                }
+                if (enemy.EnemyID == EnemyID) dodoList.Add(enemy.GetComponent<Dodo>());
             }
+            //どのくらいの距離までのドードーも一緒に逃げるか
+            float dis = 0;
+            foreach (var item in AreaChecker)
+            {
+                if (TargetCheckerType.Search != item.TargetCheckerType) continue;
+                dis = item.transform.localScale.x;
+                break;
+            }
+            Debug.Log(dis);
+            //magnitudeはルートの計算をするので軽いsqrMagnitudeを使う
+            //sqrMagnitudeは２乗の形になるのでdisもそれに合わせる
+            dis = dis * dis;
+            foreach (var dodo in dodoList)
+            {
+                if (!dodo.gameObject.activeSelf) continue;
+                if (dodo.CurrentState.GetType() == typeof(Escape_Dodo)) continue;
+                if (dodo.CurrentState.GetType() == typeof(Death_Dodo)) continue;
+                var sqrMag = (transform.position - dodo.transform.position).sqrMagnitude;
+                if (dis < sqrMag) continue;
+                dodo.ChangeState<Escape_Dodo>();
+                //_ = dodo.WaitForAsync((dis / sqrMag) * 10, () => dodo.ChangeState<Escape_Dodo>());
+            }
+
 
         }
 

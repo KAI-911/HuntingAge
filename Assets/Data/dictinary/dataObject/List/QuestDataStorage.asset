@@ -15,6 +15,7 @@ MonoBehaviour:
   keys:
   - Quest001
   - Quest002
+  - Quest003
   values:
   - ID: Quest001
     Name: Quest001
@@ -22,17 +23,24 @@ MonoBehaviour:
     Failure: 1
     Field: 2
     TargetName:
-    - T-rex
-    OtherName:
-    - Wolf
-    - Dodo
+    - name: T-rex
+      number: 1
+    OtherName: []
   - ID: Quest002
     Name: Quest002
     Clear: 0
     Failure: 2
     Field: 2
     TargetName:
-    - Wolf
-    OtherName:
-    - T-rex
-    - Dodo
+    - name: Wolf
+      number: 2
+    OtherName: []
+  - ID: Quest003
+    Name: Quest003
+    Clear: 0
+    Failure: 2
+    Field: 2
+    TargetName:
+    - name: Dodo
+      number: 3
+    OtherName: []

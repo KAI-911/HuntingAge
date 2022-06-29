@@ -37,7 +37,7 @@ public class LocomotionState : PlayerStateBase
     public override void OnFixedUpdate(Player owner)
     {
         owner.Rigidbody.AddForce(owner.MoveDirection, ForceMode.Impulse);
-        owner.LookAt(360);
+        owner.LookAt();
     }
 
 

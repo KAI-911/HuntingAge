@@ -163,7 +163,7 @@ public partial class Player : MonoBehaviour
     {
         _currentState.OnDodge(this);
     }
-    public void LookAt(float _turningAngle)
+    public void LookAt(float _turningAngle = 900)
     {
         Vector3 direction = _moveDirection;
         direction.y = 0;

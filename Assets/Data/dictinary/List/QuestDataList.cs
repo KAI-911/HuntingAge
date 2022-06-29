@@ -78,12 +78,18 @@ public struct QuestData
     public ClearConditions Clear;
     public FailureConditions Failure;
     public Scene Field;
-    public List<string> TargetName;
-    public List<string> OtherName;
+    public List<STRINGINT> TargetName;
+    public List<STRINGINT> OtherName;
 }
 
 [System.Serializable]
 public struct QuestHolderData
 {
     public List<string> Quests;
+}
+[System.Serializable] 
+public struct STRINGINT
+{
+    public string name;
+    public int number;
 }

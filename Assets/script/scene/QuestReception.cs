@@ -7,35 +7,35 @@ using System;
 using UnityEngine.EventSystems;
 public class QuestReception : MonoBehaviour
 {
-    ///表示するテキスト
-    [SerializeField] Text _questName;
-    [SerializeField] Text _questContents;
-    //プレイヤーが近くまで来たか判断
-    [SerializeField] TargetChecker _questbordChecker;
-    [SerializeField] TargetChecker _gateChecker;
     //キャンバス
     [SerializeField] Canvas _canvas;
     [SerializeField] GameObject _buttonParent;
+    ///表示するテキスト
+    [SerializeField] Text _questName;
+    [SerializeField] Text _questContents;
+
+    //プレイヤーが近くまで来たか判断
+    [SerializeField] TargetChecker _questbordChecker;
+    [SerializeField] TargetChecker _gateChecker;
 
     //確認用
-    [SerializeField] Canvas _popUp;
-    [SerializeField] Button _proceedButton;
-    [SerializeField] Button _backButton;
-    [SerializeField] Text _infoText;
+    [SerializeField] Confirmation _confirmation;
+
 
     //ボタンの配列
+    //縦に並ぶ感じ
     [SerializeField] List<GameObject> _buttons;
     //選択中のボタン番号
     [SerializeField] int _currentButtonNumber;
 
     //レベル別クエストのまとまり
-    [SerializeField] QuestHolderObject _questHolder;
+    [SerializeField] List<QuestDataReception> _questList;
+    private int _currentQuestLevelNumber;
 
     //インプットシステム
     [SerializeField] private InputControls _input;
     private InputAction _inputAction;
     public InputAction InputAction { get => _inputAction; }
-
 
     [SerializeField] private RunOnce _buttonRunOnce;
     [SerializeField] private RunOnce _serectRunOnce;
@@ -43,41 +43,69 @@ public class QuestReception : MonoBehaviour
     [SerializeField] private Vector3 firstButtonPos;
     [SerializeField] private float buttonBetween;
 
+    [SerializeField] private bool buttonSetting;
     private UIState _currentState;
     private void Awake()
     {
         _input = new InputControls();
         _buttonRunOnce = new RunOnce();
         _serectRunOnce = new RunOnce();
-        _questHolder = new QuestHolderObject();
         _currentState = new CanvasClose();
         _currentState.OnEnter(this, null);
     }
     void Start()
     {
+        _currentQuestLevelNumber = 0;
         _canvas.enabled = false;
-        _popUp.enabled = false;
+        foreach (var item in GameManager.Instance.QuestHolder.Dictionary)
+        {
+            QuestDataReception tmp = new QuestDataReception();
+            tmp.key = item.Key;
+            tmp.questDatas = new List<QuestData>();
+            foreach (var quests in item.Value.Quests)
+            {
+                tmp.questDatas.Add(GameManager.Instance.QuestDataList.Dictionary[quests]);
+            }
+            _questList.Add(tmp);
+        }
     }
+
     private void OnEnable()
     {
         _inputAction = _input.UI.Selection;
         _input.UI.Proceed.started += Proceed;
-
+        _input.UI.Proceed.canceled += Unlock;
         _input.UI.Back.started += Back;
-
+        _input.UI.Back.canceled += Unlock;
         _input.UI.Enable();
+        _currentQuestLevelNumber = 0;
     }
+
+
 
     private void OnDisable()
     {
         _input.UI.Proceed.started -= Proceed;
+        _input.UI.Proceed.canceled -= Unlock;
         _input.UI.Back.started -= Back;
+        _input.UI.Back.canceled -= Unlock;
 
         _input.UI.Disable();
     }
 
+
     void Update()
     {
+        if (buttonSetting)
+        {
+            for (int i = 0; i < _buttons.Count; i++)
+            {
+                Vector3 vector3 = firstButtonPos;
+                vector3.y -= buttonBetween * i;
+                _buttons[i].transform.position = vector3;
+            }
+        }
+
         _currentState.OnUpdate(this);
     }
 
@@ -89,26 +117,14 @@ public class QuestReception : MonoBehaviour
         switch (data.Clear)
         {
             case ClearConditions.TargetSubjugation:
-                Dictionary<string, int> list = new Dictionary<string, int>();
-                foreach (var enemy in data.TargetName)
-                {
-                    //既に追加されている場合
-                    if (list.ContainsKey(enemy))
-                    {
-                        list[enemy]++;
-                    }
-                    else
-                    {
-                        list.Add(enemy, 1);
-                    }
-                }
+
 
                 str += "クリア条件: ";
-                foreach (var item in list)
+                foreach (var item in data.TargetName)
                 {
-                    var tmp = SaveData.GetClass<EnemyData>(item.Key, new EnemyData());
+                    var tmp = GameManager.Instance.EnemyDataList.Dictionary[item.name];
 
-                    str += tmp.DisplayName + "を" + item.Value + "体討伐する\n";
+                    str += tmp.DisplayName + "を" + item.number + "体討伐する\n";
                 }
                 break;
             case ClearConditions.Gathering:
@@ -141,27 +157,29 @@ public class QuestReception : MonoBehaviour
     {
         float v = _inputAction.ReadValue<Vector2>().y;
         if (_currentButtonNumber > _buttons.Count && _buttons.Count >= 1) _currentButtonNumber = 0;
-
         if (Mathf.Abs(v) > 0)
         {
             if (_serectRunOnce.Flg) return;
             if (v < 0)
             {
                 _currentButtonNumber++;
-                if (_currentButtonNumber > _buttons.Count - 1) _currentButtonNumber = _buttons.Count - 1;
             }
             else
             {
                 _currentButtonNumber--;
-                if (_currentButtonNumber < 0) _currentButtonNumber = 0;
             }
             _serectRunOnce.Flg = true;
+            _currentButtonNumber = Math.Clamp(_currentButtonNumber, 0, _buttons.Count - 1);
+            _buttons[_currentButtonNumber].GetComponent<Button>().Select();
+
         }
         else
         {
             _serectRunOnce.Flg = false;
         }
-        _buttons[_currentButtonNumber].GetComponent<Button>().Select();
+
+
+
     }
 
 
@@ -178,7 +196,6 @@ public class QuestReception : MonoBehaviour
     {
         Debug.Log("Back");
         _currentState.OnBack(this);
-
     }
 
     private void Proceed(InputAction.CallbackContext obj)
@@ -186,7 +203,11 @@ public class QuestReception : MonoBehaviour
         Debug.Log("Proceed");
         _currentState.OnProceed(this);
     }
-
+    private void Unlock(InputAction.CallbackContext obj)
+    {
+        Debug.Log("Unlock");
+        _buttonRunOnce.Flg = false;
+    }
     public void ChangeState<T>() where T : UIState, new()
     {
         var nextState = new T();
@@ -225,7 +246,6 @@ public class QuestReception : MonoBehaviour
         {
             owner.ButtonDelete();
             owner._canvas.enabled = false;
-            owner._popUp.enabled = false;
         }
         public override void OnUpdate(QuestReception owner)
         {
@@ -236,8 +256,8 @@ public class QuestReception : MonoBehaviour
         }
         public override void OnProceed(QuestReception owner)
         {
-            //近くに来ている && 決定ボタンを押している && キャンバスがactiveでない
-            if (owner._questbordChecker.TriggerHit && !owner._canvas.enabled)
+            //近くに来ている
+            if (owner._questbordChecker.TriggerHit)
             {
                 owner.ChangeState<LevelSerect>();
             }
@@ -251,47 +271,50 @@ public class QuestReception : MonoBehaviour
     {
         public override void OnEnter(QuestReception owner, UIState prevState)
         {
-            //owner._canvas.enabled = true;
-            //owner._popUp.enabled = false;
-
-            ////レベル選択画面
-            //owner.ButtonDelete();
-            //owner._currentButtonNumber = owner._questHolder.QuestLevel - 1;
-            //if (owner._currentButtonNumber < 0) owner._currentButtonNumber = 0;
-            //owner._questName.text = "";
-            //owner._questContents.text = "";
-            //owner._canvas.enabled = true;
-            ////ボタンの追加
-            //var villageData = SaveData.GetClass("Village", new VillageData());
-            //for (int i = 0; i < villageData.VillageLevel; i++)
-            //{
-            //    //ボタンの位置設定
-            //    Vector3 pos = owner.firstButtonPos;
-            //    pos.y -= i * owner.buttonBetween;
-            //    //インスタンス化
-            //    var obj = Instantiate(Resources.Load("UI/Button"), pos, Quaternion.identity) as GameObject;
-            //    //テキストの設定
-            //    var text = obj.GetComponentInChildren<Text>();
-            //    text.text = "level" + (i + 1);
-            //    //親の設定
-            //    obj.transform.parent = owner._buttonParent.transform;
-            //    //ボタンが押されたときの設定
-            //    var button = obj.GetComponent<Button>();
-            //    int num = i + 1;
-            //    string questHolder = "QuestHolder";
-            //    questHolder += String.Format("{0:D3}", num);
-            //    //ボタンが押されたときの処理
-            //    //_questHolderに情報を入れてQuestSerectに移動
-            //    button.onClick.AddListener(() => { owner._questHolder = SaveData.GetClass(questHolder, owner._questHolder); owner.ChangeState<QuestSerect>(); });
-            //    owner._buttons.Add(obj);
-            //}
+            owner._canvas.enabled = true;
+            //レベル選択画面
+            owner.ButtonDelete();
+            owner._currentButtonNumber = owner._currentQuestLevelNumber;
+            if (owner._currentButtonNumber < 0) owner._currentButtonNumber = 0;
+            owner._questName.text = "";
+            owner._questContents.text = "";
+            owner._canvas.enabled = true;
+            //ボタンの追加
+            var villageData = GameManager.Instance.VillageData;
+            for (int i = 0; i < Math.Min(villageData.VillageLevel, GameManager.Instance.QuestHolder.Dictionary.Count); i++)
+            {
+                //ボタンの位置設定
+                Vector3 pos = owner.firstButtonPos;
+                pos.y -= i * owner.buttonBetween;
+                //インスタンス化
+                var obj = Instantiate(Resources.Load("UI/Button"), pos, Quaternion.identity) as GameObject;
+                //テキストの設定
+                var text = obj.GetComponentInChildren<Text>();
+                text.text = "level" + (i + 1);
+                //親の設定
+                obj.transform.parent = owner._buttonParent.transform;
+                //ボタンが押されたときの設定
+                var button = obj.GetComponent<Button>();
+                int num = i + 1;
+                string questHolder = "QuestHolder";
+                questHolder += String.Format("{0:D3}", num);
+                //ボタンが押されたときの処理
+                //_questHolderに情報を入れてQuestSerectに移動
+                int level = i;
+                button.onClick.RemoveAllListeners();
+                button.onClick.AddListener(() =>
+                {
+                        owner._currentQuestLevelNumber = level;
+                });
+                owner._buttons.Add(obj);
+            }
+            owner._buttons[owner._currentButtonNumber].GetComponent<Button>().Select();
 
         }
         public override void OnUpdate(QuestReception owner)
         {
             //コントローラーで選択できるようにする
             owner.Serect();
-
 
         }
         public override void OnExit(QuestReception owner, UIState nextState)
@@ -301,124 +324,111 @@ public class QuestReception : MonoBehaviour
         public override void OnProceed(QuestReception owner)
         {
             owner._buttons[owner._currentButtonNumber].GetComponent<Button>().onClick.Invoke();
+            owner.ChangeState<QuestSerect>();
         }
         public override void OnBack(QuestReception owner)
         {
-            Debug.Log("modoru");
             owner.ChangeState<CanvasClose>();
         }
     }
     public class QuestSerect : UIState
     {
-        private RunOnce _runOnce;
-        private Button _currntButton;
-        private bool _confirmation;
         public override void OnEnter(QuestReception owner, UIState prevState)
         {
-            //owner._canvas.enabled = true;
-            //owner._popUp.enabled = false;
+            owner.ButtonDelete();
+            for (int i = 0; i < owner._questList[owner._currentQuestLevelNumber].questDatas.Count; i++)
+            {
+                //ボタンの位置設定
+                Vector3 pos = owner.firstButtonPos;
+                pos.y -= i * owner.buttonBetween;
+                //インスタンス化
+                QuestData questData = owner._questList[owner._currentQuestLevelNumber].questDatas[i];
+                var obj = Instantiate(Resources.Load("UI/Button"), pos, Quaternion.identity) as GameObject;
+                //親の設定
+                obj.transform.parent = owner._buttonParent.transform;
+                //テキストの設定
+                var text = obj.GetComponentInChildren<Text>();
+                text.text = questData.Name;
+                //ボタンが押されたときの設定
+                var button = obj.GetComponent<Button>();
+                button.onClick.RemoveAllListeners();
+                button.onClick.AddListener(() =>
+                {
+                        owner._confirmation.gameObject.SetActive(true);
+                });
+                owner._buttons.Add(obj);
+            }
 
-            //_runOnce = new RunOnce();
-            //owner.ButtonDelete();
-            //for (int i = 0; i < owner._questHolder.QuestDataID.Count; i++)
-            //{
-            //    //ボタンの位置設定
-            //    Vector3 pos = owner.firstButtonPos;
-            //    pos.y -= i * owner.buttonBetween;
-            //    //インスタンス化
-            //    QuestData questData = SaveData.GetClass(owner._questHolder.QuestDataID[i], new QuestData());
-            //    var obj = Instantiate(Resources.Load("UI/Button"), pos, Quaternion.identity) as GameObject;
-            //    //親の設定
-            //    obj.transform.parent = owner._buttonParent.transform;
-            //    //テキストの設定
-            //    var text = obj.GetComponentInChildren<Text>();
-            //    text.text = questData.Name;
-            //    //ボタンが押されたときの設定
-            //    var button = obj.GetComponent<Button>();
-            //    button.onClick.AddListener(() => owner.SelectQuest_Rec(questData.ID));
-            //    owner._buttons.Add(obj);
-            //    _currntButton = owner._proceedButton;
-            //}
 
-            //if (owner._buttons.Count >= 1)
-            //{
-            //    owner._currentButtonNumber = 0;
-            //    owner._buttons[0].GetComponent<Button>().onClick.Invoke();
-            //}
+            //最初のクエストの内容を表示させるため
+            if (owner._buttons.Count >= 1)
+            {
+                owner._currentButtonNumber = 0;
+                var data = owner._questList[owner._currentQuestLevelNumber].questDatas[owner._currentButtonNumber];
+                owner.SelectQuest_Rec(data.ID);
+                owner._buttons[0].GetComponent<Button>().Select();
+            }
 
-            //_confirmation = false;
-            //owner._proceedButton.onClick.RemoveAllListeners();
-            //owner._backButton.onClick.RemoveAllListeners();
-
-            //owner._proceedButton.onClick.AddListener(() => owner.ChangeState<QuestDecision>());
-            //owner._backButton.onClick.AddListener(() => owner._currentState.OnBack(owner));
-
+            //確認用のボタンの関数の設定
+            owner._confirmation.SetProceedButton(() =>
+            {
+                GameManager.Instance.Quest.AcceptingQuest = true;
+                owner.ChangeState<QuestDecision>();
+                owner._confirmation.gameObject.SetActive(false);
+            });
+            owner._confirmation.SetBackButton(() =>
+            {
+                GameManager.Instance.Quest.AcceptingQuest = false;
+            });
+            owner._confirmation.SetText("このクエストを受けますか");
         }
         public override void OnUpdate(QuestReception owner)
         {
-
-            if (_confirmation)
+            if (owner._confirmation.gameObject.activeSelf)
             {
-                //選択できるようにしておく
-                float v = owner._inputAction.ReadValue<Vector2>().x;
-                if (v < 0) _currntButton = owner._proceedButton;
-                if (v > 0) _currntButton = owner._backButton;
-                _currntButton.Select();
+                //コントローラーで選択できるようにする
+                owner._confirmation.Selecte();
+
+                //クエストの情報を見せる
+                var data = owner._questList[owner._currentQuestLevelNumber].questDatas[owner._currentButtonNumber];
+                owner.SelectQuest_Rec(data.ID);
             }
             else
             {
                 //コントローラーで選択できるようにする
                 owner.Serect();
-                var btn = owner._buttons[owner._currentButtonNumber].GetComponent<Button>();
-                btn.onClick.Invoke();
-                btn.Select();
+
+                //クエストの情報を見せる
+                var data = owner._questList[owner._currentQuestLevelNumber].questDatas[owner._currentButtonNumber];
+                owner.SelectQuest_Rec(data.ID);
             }
 
         }
         public override void OnExit(QuestReception owner, UIState nextState)
         {
             owner.ButtonDelete();
-            owner._popUp.enabled = false;
-
         }
 
         public override void OnProceed(QuestReception owner)
         {
-            if (_confirmation)
+            if (owner._confirmation.gameObject.activeSelf == false)
             {
-                _currntButton.onClick.Invoke();
+                owner._buttons[owner._currentButtonNumber].GetComponent<Button>().onClick.Invoke();
+                owner._confirmation.gameObject.SetActive(true);
             }
-            else
-            {
-                _runOnce.Run(() =>
-                {
-                    owner._infoText.text = "このクエストを受注しますか";
-                    _confirmation = true;
-                    owner._popUp.enabled = true;
-                    owner._proceedButton.Select();
-                });
-            }
-
-
         }
 
         public override void OnBack(QuestReception owner)
         {
-            if (_confirmation)
-            {
-                _confirmation = false;
-                _runOnce.Flg = false;
-                owner._popUp.enabled = false;
-                var btn = owner._buttons[owner._currentButtonNumber].GetComponent<Button>();
-                btn.onClick.Invoke();
-                btn.Select();
-            }
-            else
+            Debug.Log(owner._currentState.GetType());
+            if (owner._confirmation.gameObject.activeSelf == false)
             {
                 owner.ChangeState<LevelSerect>();
             }
         }
     }
+
+
     public class QuestDecision : UIState
     {
         private Button _currntButton;
@@ -427,59 +437,72 @@ public class QuestReception : MonoBehaviour
         {
             owner.ButtonDelete();
             owner._canvas.enabled = false;
-            owner._popUp.enabled = false;
-            _currntButton = owner._proceedButton;
+            owner._confirmation.gameObject.SetActive(false);
+
+            owner._confirmation.SetProceedButton(() =>
+            {
+                if (owner._questbordChecker.TriggerHit)
+                {
+                    owner.ChangeState<CanvasClose>();
+                    owner._confirmation.gameObject.SetActive(false);
+                    GameManager.Instance.Quest.AcceptingQuest = false;
+
+                }
+                else if (owner._gateChecker.TriggerHit)
+                {
+                    owner.GoToQuest_Rec();
+                }
+            });
+            owner._confirmation.SetBackButton(() =>
+            {
+                if (owner._questbordChecker.TriggerHit)
+                {
+                    owner._confirmation.gameObject.SetActive(false);
+                }
+                else if (owner._gateChecker.TriggerHit)
+                {
+                    owner._confirmation.gameObject.SetActive(false);
+                }
+            });
+
         }
         public override void OnUpdate(QuestReception owner)
         {
-            Debug.Log("クエスト受注中");
-            if (owner._popUp.enabled)
+            if (owner._confirmation.gameObject.activeSelf)
             {
-                float v = owner._inputAction.ReadValue<Vector2>().x;
-                if (v < 0) _currntButton = owner._proceedButton;
-                if (v > 0) _currntButton = owner._backButton;
-                _currntButton.Select();
-
+                owner._confirmation.Selecte();
             }
         }
         public override void OnExit(QuestReception owner, UIState nextState)
         {
-            owner._popUp.enabled = false;
+            owner._confirmation.gameObject.SetActive(false);
         }
         public override void OnProceed(QuestReception owner)
         {
             if (owner._questbordChecker.TriggerHit)
             {
-                //クエスト破棄するかどうか
-                if (!owner._popUp.enabled)
-                {
-                    owner._infoText.text = "このクエストを破棄しますか";
-                    owner._popUp.enabled = true;
-                    owner._proceedButton.onClick.RemoveAllListeners();
-                    owner._backButton.onClick.RemoveAllListeners();
-                    owner._proceedButton.onClick.AddListener(() => { owner.ChangeState<CanvasClose>(); owner._popUp.enabled = false; });
-                    owner._backButton.onClick.AddListener(() => owner._popUp.enabled = false);
-                }
-                else
-                {
-                    _currntButton.onClick.Invoke();
-                }
+                owner._confirmation.SetText("このクエストを破棄しますか");
+                owner._confirmation.gameObject.SetActive(true);
             }
 
 
             if (owner._gateChecker.TriggerHit)
             {
-                owner.GoToQuest_Rec();
+                owner._confirmation.SetText("クエストを出発しますか");
+                owner._confirmation.gameObject.SetActive(true);
             }
         }
         public override void OnBack(QuestReception owner)
         {
-            if (owner._questbordChecker.TriggerHit && owner._popUp.enabled)
-            {
-                owner._popUp.enabled = false;
-            }
+
         }
 
     }
 
+    [Serializable]
+    struct QuestDataReception
+    {
+        public string key;
+        public List<QuestData> questDatas;
+    }
 }

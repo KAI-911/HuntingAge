@@ -17,7 +17,7 @@ public class Death_Trex : StateBase_Trex
         {
             color = owner.ShadowRenderer.material.GetColor("_ShadowColor");
         }
-        if (owner.QuestManager != null) owner.QuestManager.AddKillEnemy(owner.EnemyID);
+        owner.Death();
 
     }
     public override void OnExit(Trex owner, StateBase_Trex nextState)
