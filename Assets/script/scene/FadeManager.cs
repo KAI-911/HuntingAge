@@ -30,6 +30,7 @@ public class FadeManager : MonoBehaviour
 
     public void FadeOutStart(Action action)
     {
+        _canvas.enabled = true;
         _isFadeOut = true;
         _isFinish = false;
         _action = action;
@@ -42,6 +43,7 @@ public class FadeManager : MonoBehaviour
         panel = GetComponentInChildren<Image>();
         _color.a = 0;
         panel.color = _color;
+        _canvas.enabled = false;
     }
     private void OnEnable()
     {
@@ -73,6 +75,7 @@ public class FadeManager : MonoBehaviour
             {
                 _isFadeIn = false;
                 _isFinish = true;
+                _canvas.enabled = false;
                 _color.a = 0.0f;
             }
             panel.color = _color;

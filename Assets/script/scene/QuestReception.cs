@@ -45,13 +45,17 @@ public class QuestReception : MonoBehaviour
 
     [SerializeField] private bool buttonSetting;
     private UIState _currentState;
+
+    private Player _player;
     private void Awake()
     {
+        _player = GameObject.FindGameObjectWithTag("Player").GetComponent<Player>();
         _input = new InputControls();
         _buttonRunOnce = new RunOnce();
         _serectRunOnce = new RunOnce();
         _currentState = new CanvasClose();
         _currentState.OnEnter(this, null);
+
     }
     void Start()
     {
@@ -246,13 +250,13 @@ public class QuestReception : MonoBehaviour
         {
             owner.ButtonDelete();
             owner._canvas.enabled = false;
+            owner._player.IsAction = true;
         }
         public override void OnUpdate(QuestReception owner)
         {
         }
         public override void OnExit(QuestReception owner, UIState nextState)
         {
-
         }
         public override void OnProceed(QuestReception owner)
         {
@@ -271,6 +275,8 @@ public class QuestReception : MonoBehaviour
     {
         public override void OnEnter(QuestReception owner, UIState prevState)
         {
+            owner._player.IsAction = false;
+
             owner._canvas.enabled = true;
             //レベル選択画面
             owner.ButtonDelete();
@@ -304,7 +310,7 @@ public class QuestReception : MonoBehaviour
                 button.onClick.RemoveAllListeners();
                 button.onClick.AddListener(() =>
                 {
-                        owner._currentQuestLevelNumber = level;
+                    owner._currentQuestLevelNumber = level;
                 });
                 owner._buttons.Add(obj);
             }
@@ -335,6 +341,8 @@ public class QuestReception : MonoBehaviour
     {
         public override void OnEnter(QuestReception owner, UIState prevState)
         {
+            owner._player.IsAction = false;
+
             owner.ButtonDelete();
             for (int i = 0; i < owner._questList[owner._currentQuestLevelNumber].questDatas.Count; i++)
             {
@@ -354,7 +362,7 @@ public class QuestReception : MonoBehaviour
                 button.onClick.RemoveAllListeners();
                 button.onClick.AddListener(() =>
                 {
-                        owner._confirmation.gameObject.SetActive(true);
+                    owner._confirmation.gameObject.SetActive(true);
                 });
                 owner._buttons.Add(obj);
             }
@@ -435,6 +443,8 @@ public class QuestReception : MonoBehaviour
 
         public override void OnEnter(QuestReception owner, UIState prevState)
         {
+            owner._player.IsAction = true;
+
             owner.ButtonDelete();
             owner._canvas.enabled = false;
             owner._confirmation.gameObject.SetActive(false);
@@ -446,11 +456,13 @@ public class QuestReception : MonoBehaviour
                     owner.ChangeState<CanvasClose>();
                     owner._confirmation.gameObject.SetActive(false);
                     GameManager.Instance.Quest.AcceptingQuest = false;
+                    owner._player.IsAction = true;
 
                 }
                 else if (owner._gateChecker.TriggerHit)
                 {
                     owner.GoToQuest_Rec();
+                    owner._player.IsAction = true;
                 }
             });
             owner._confirmation.SetBackButton(() =>
@@ -458,10 +470,13 @@ public class QuestReception : MonoBehaviour
                 if (owner._questbordChecker.TriggerHit)
                 {
                     owner._confirmation.gameObject.SetActive(false);
+                    owner._player.IsAction = true;
                 }
                 else if (owner._gateChecker.TriggerHit)
                 {
                     owner._confirmation.gameObject.SetActive(false);
+                    owner._player.IsAction = true;
+
                 }
             });
 
@@ -481,6 +496,8 @@ public class QuestReception : MonoBehaviour
         {
             if (owner._questbordChecker.TriggerHit)
             {
+                owner._player.IsAction = false;
+
                 owner._confirmation.SetText("このクエストを破棄しますか");
                 owner._confirmation.gameObject.SetActive(true);
             }
@@ -488,6 +505,8 @@ public class QuestReception : MonoBehaviour
 
             if (owner._gateChecker.TriggerHit)
             {
+                owner._player.IsAction = false;
+
                 owner._confirmation.SetText("クエストを出発しますか");
                 owner._confirmation.gameObject.SetActive(true);
             }

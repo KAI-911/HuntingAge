@@ -92,10 +92,12 @@ public class Quest : MonoBehaviour
     }
     void LoadEnemy()
     {
+        Debug.Log("LoadEnemy");
         //“¢”°‘ÎÛ
         foreach (var target in _questData.TargetName)
         {
 
+            Debug.Log(target.name + "    " + target.number);
             _questTargetCount.Entry(target.name, target.number);
             for (int i = 0; i < target.number; i++)
             {
@@ -111,6 +113,7 @@ public class Quest : MonoBehaviour
         //”ñ“¢”°‘ÎÛ
         foreach (var target in _questData.OtherName)
         {
+            Debug.Log(target.name + "    " + target.number);
             for (int i = 0; i < target.number; i++)
             {
                 var data = GameManager.Instance.EnemyDataList.Dictionary[target.name];

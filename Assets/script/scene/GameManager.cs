@@ -8,10 +8,12 @@ using System.Threading.Tasks;
 
 public class GameManager : Singleton<GameManager>
 {
-    [SerializeField] bool _chenge;
-    [SerializeField] Scene _scene;
+
     [SerializeField] Quest _quest;
     [SerializeField] Scene _villageScene;
+    private ItemCanvas _itemCanvas;
+
+
 
     [SerializeField] ItemHolder _itemBox;
     [SerializeField] ItemHolder _itemPoach;
@@ -24,7 +26,6 @@ public class GameManager : Singleton<GameManager>
 
     [SerializeField] VillageData _villageData;
 
-
     [SerializeField] FadeManager _fadeManager;
 
     public Scene VillageScene { get => _villageScene; }
@@ -36,28 +37,28 @@ public class GameManager : Singleton<GameManager>
     public ItemDataList ItemDataList { get => _itemDataList; }
     public QuestHolder QuestHolder { get => _questHolder; }
     public VillageData VillageData { get => _villageData; }
+    public ItemCanvas ItemCanvas { get => _itemCanvas; }
+
+
 
     void Start()
     {
-        _chenge = false;
+        _itemCanvas = GetComponent<ItemCanvas>();
         SceneManager.sceneLoaded += OnSceneLoaded;
+
+
     }
 
 
     void Update()
     {
-        if (_chenge)
-        {
-            _chenge = false;
-            SceneChange(_scene);
-        }
 
     }
 
     public void SceneChange(Scene scene)
     {
         //SceneManager.LoadScene((int)scene);
-        _fadeManager.FadeOutStart(() =>SceneManager.LoadScene((int)scene));
+        _fadeManager.FadeOutStart(() => SceneManager.LoadScene((int)scene));
     }
     private void OnSceneLoaded(UnityEngine.SceneManagement.Scene arg0, LoadSceneMode arg1)
     {

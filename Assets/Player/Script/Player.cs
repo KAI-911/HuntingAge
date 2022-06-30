@@ -47,6 +47,11 @@ public partial class Player : MonoBehaviour
     //今の状態
     private PlayerStateBase _currentState;
 
+    //プレイヤーの移動ができるか
+    [SerializeField] private bool _isAction;
+    public bool IsAction { get => _isAction; set => _isAction = value; }
+
+
     //武器切り替え
     private WeponChange _weponChange;
     public WeponChange WeponChange { get => _weponChange; set => _weponChange = value; }
@@ -54,6 +59,7 @@ public partial class Player : MonoBehaviour
     //復活用
     [SerializeField] private List<Position> _startPos;
     public List<Position> StartPos { get => _startPos; set => _startPos = value; }
+
     private Status _keepStatus;
 
 
@@ -96,7 +102,7 @@ public partial class Player : MonoBehaviour
         _weponChange.Change(WeponChange.WeponType.Axe);
         _animator.SetInteger("HP", _status.HP);
         _keepStatus.HP = _status.HP;
-
+        _isAction = true;
     }
 
     void Update()
@@ -148,19 +154,23 @@ public partial class Player : MonoBehaviour
 
     private void StrongAttack(InputAction.CallbackContext obj)
     {
+        if (!_isAction) return;
         _currentState.OnStrongAttack(this);
     }
     private void WeakAttack(InputAction.CallbackContext obj)
     {
+        if (!_isAction) return;
         _currentState.OnWeakAttack(this);
     }
 
     private void Jump(InputAction.CallbackContext obj)
     {
+        if (!_isAction) return;
         _currentState.OnJump(this);
     }
     private void Dodge(InputAction.CallbackContext obj)
     {
+        if (!_isAction) return;
         _currentState.OnDodge(this);
     }
     public void LookAt(float _turningAngle = 900)
