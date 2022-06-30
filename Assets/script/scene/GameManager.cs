@@ -14,6 +14,8 @@ public class GameManager : Singleton<GameManager>
     [SerializeField] QuestDataList _questDataList;
     [SerializeField] EnemyDataList _enemyDataList;
     [SerializeField] ItemDataList _itemDataList;
+    [SerializeField] WeaponDataList _weaponDataList;
+
     public Scene VillageScene { get => _villageScene; }
     public Quest Quest { get => _quest; set => _quest = value; }
     public ItemHolder ItemBox { get => _itemBox; }
@@ -21,6 +23,7 @@ public class GameManager : Singleton<GameManager>
     public QuestDataList QuestDataList { get => _questDataList; }
     public EnemyDataList EnemyDataList { get => _enemyDataList; }
     public ItemDataList ItemDataList { get => _itemDataList; }
+    public WeaponDataList WeaponDataList { get => _weaponDataList; }
 
     void Start()
     {

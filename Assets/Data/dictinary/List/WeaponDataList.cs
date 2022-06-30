@@ -2,14 +2,15 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+[System.Serializable]
 public class WeaponDataList : MonoBehaviour, ISerializationCallbackReceiver
 {
-    [SerializeField] ItemListObject DictionaryData;
+    [SerializeField] WeaponListObject DictionaryData;
     [SerializeField] List<string> keys = new List<string>();
-    [SerializeField] List<ItemData> values = new List<ItemData>();
-    [SerializeField] Dictionary<string, ItemData> dictionary = new Dictionary<string, ItemData>();
+    [SerializeField] List<WeaponData> values = new List<WeaponData>();
+    [SerializeField] Dictionary<string, WeaponData> dictionary = new Dictionary<string, WeaponData>();
     public bool modifyValues;
-    public Dictionary<string, ItemData> Dictionary { get => dictionary; }
+    public Dictionary<string, WeaponData> Dictionary { get => dictionary; }
     // Start is called before the first frame update
     private void Awake()
     {
@@ -60,9 +61,68 @@ public class WeaponDataList : MonoBehaviour, ISerializationCallbackReceiver
     public void PrintDictionary()
     {
         Debug.Log("Log");
-        foreach (var item in Dictionary)
+        foreach (var weapon in Dictionary)
         {
-            Debug.Log("Key: " + item.Key + " Value: " + item.Value);
+            Debug.Log("Key: " + weapon.Key + " Value: " + weapon.Value);
         }
     }
+
+    [ContextMenu("add")]
+    public void add(string _ID)
+    {
+
+        int index = keys.FindIndex(n => n.StartsWith(_ID));
+        Debug.Log(index);
+        var data = values[index];
+        data.BoxPossession = true;
+        values[index] = data;
+        DesrializeDictionary();
+    }
+}
+
+
+[System.Serializable]
+public struct WeaponData
+{
+    /// <summary>
+    /// 武器種がX00、素材が00X
+    /// </summary>
+    public string ID;
+
+    /// <summary>
+    /// 表示される名前
+    /// </summary>
+    public string Name;
+
+    /// <summary>
+    /// アイコンのパス
+    /// </summary>
+    public string IconName;
+
+    /// <summary>
+    /// アイテムボックスでどの枠に保存されているか
+    /// </summary>
+    public int BoxUINumber;
+
+    /// <summary>
+    /// ボックスに所持しているか
+    /// </summary>
+    public bool BoxPossession;
+
+    /// <summary>
+    /// 攻撃力
+    /// </summary>
+    public float AttackPoint;
+
+    /// <summary>
+    /// 武器種
+    /// </summary>
+    public WeaponType WeaponType;
+}
+
+public enum WeaponType
+{
+    Axe = 0,
+    Spear,
+    Bow
 }

@@ -21,5 +21,10 @@ public class WeaponDataEditer : Editor
         {
             ((WeaponDataList)target).PrintDictionary();
         }
+        EditorGUILayout.LabelField("", GUI.skin.horizontalScrollbar);
+        if (GUILayout.Button("add"))
+        {
+            ((WeaponDataList)target).add("weapon100");
+        }
     }
 }

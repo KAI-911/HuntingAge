@@ -384,7 +384,7 @@ public class Blacksmith : MonoBehaviour
                 //ボタンが押されたときの設定
                 var button = obj.GetComponent<Button>();
                 //ボタンが押されたときの処理
-               // button.onClick.AddListener(/*boxHolderに武器追加*/);
+                //button.onClick.AddListener(() => );
                 owner._buttons.Add(obj);
             }
         }

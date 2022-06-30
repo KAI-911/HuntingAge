@@ -10,7 +10,15 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 53c1614dd916e044082d152485008e2d, type: 3}
-  m_Name: WeaonDataStorage
+  m_Name: WeaponDataStorage
   m_EditorClassIdentifier: 
-  keys: []
-  values: []
+  keys:
+  - weapon100
+  values:
+  - ID: weapon100
+    Name: Axe
+    IconName: 
+    BoxUINumber: 0
+    BoxPossession: 0
+    AttackPoint: 100
+    WeaponType: 0

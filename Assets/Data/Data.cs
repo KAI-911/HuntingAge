@@ -5,30 +5,30 @@ using System;
 using UnityEditor;
 
 
-[Serializable]
-public class WeaponData
-{
-    /// <summary>
-    /// Weapon100[斧] Weapon200[槍] Weapon300[弓]
-    /// </summary>
-    public string ID;
-    public string Name;
-    public int AttackPoint;
-    public int WeaponType;
-    //制作に必要な素材データ
-    public Dictionary<string, int> CreateWeaponMaterial;
-    //強化に必要な素材データ
-    public Dictionary<string, int> EnhancementWeaponMaterial;
-    //強化に必要な鍛冶場レベル
-    public int RequiredBlackmithLevel;
-}
+//[Serializable]
+//public class WeaponData
+//{
+//    /// <summary>
+//    /// Weapon100[斧] Weapon200[槍] Weapon300[弓]
+//    /// </summary>
+//    public string ID;
+//    public string Name;
+//    public int AttackPoint;
+//    public int WeaponType;
+//    //制作に必要な素材データ
+//    public Dictionary<string, int> CreateWeaponMaterial;
+//    //強化に必要な素材データ
+//    public Dictionary<string, int> EnhancementWeaponMaterial;
+//    //強化に必要な鍛冶場レベル
+//    public int RequiredBlackmithLevel;
+//}
 
-public enum WeaponType
-{
-    Axe = 1,
-    Spear,
-    Bow
-}
+//public enum WeaponType
+//{
+//    Axe = 1,
+//    Spear,
+//    Bow
+//}
 
 
 [Serializable]
