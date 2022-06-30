@@ -14,6 +14,36 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   keys:
   - QuestHolder1
+  - QuestHolder2
+  - QuestHolder3
+  - QuestHolder4
+  - QuestHolder5
+  - QuestHolder6
   values:
   - Quests:
     - Quest001
+    - Quest001
+    - Quest001
+    - Quest001
+    - Quest001
+  - Quests:
+    - Quest002
+    - Quest002
+    - Quest002
+    - Quest002
+    - Quest002
+  - Quests:
+    - Quest003
+    - Quest003
+    - Quest003
+    - Quest003
+    - Quest003
+  - Quests:
+    - Quest001
+    - Quest001
+  - Quests:
+    - Quest002
+    - Quest002
+  - Quests:
+    - Quest003
+    - Quest003

@@ -37,6 +37,7 @@ public class Position
     public Scene scene;
     public List<Vector3> pos;
 }
+
 //[Serializable]
 //public class QuestHolder
 //{    /// <summary>
@@ -70,41 +71,14 @@ public enum FailureConditions
     FiveDown
 }
 
-[Serializable]
-public class VillageData
-{
-    public int VillageLevel;
-    public int BlacksmithLevel;
-    public int KitchenLevel;
-}
+//[Serializable]
+//public class VillageData
+//{
+//    public int VillageLevel;
+//    public int BlacksmithLevel;
+//    public int KitchenLevel;
+//}
 
-public class EnemyCount
-{
-    Dictionary<string, int> _enemyCountList = new Dictionary<string, int>();
-    public Dictionary<string, int> EnemyCountList { get => _enemyCountList; }
-    public void EnemyDataSet()
-    {
-        foreach (var item in _enemyCountList)
-        {
-            EnemyData data = SaveData.GetClass(item.Key, new EnemyData());
-            data.DeathCount += item.Value;
-            SaveData.SetClass(item.Key, data);
-        }
-    }
-    public void Add(string _enemyID)
-    {
-        //ä˘Ç…ìoò^Ç≥ÇÍÇƒÇ¢ÇΩÇÁÇªÇÃÇ‹Ç‹í«â¡
-        if (_enemyCountList.ContainsKey(_enemyID))
-        {
-            _enemyCountList[_enemyID]++;
-        }
-        //êVÇµÇ≠ìoò^ÇµÇƒí«â¡
-        else
-        {
-            _enemyCountList.Add(_enemyID, 1);
-        }
-    }
-}
 
 //[Serializable]
 //public class ItemHolder
@@ -219,3 +193,9 @@ public enum ItemStack
     Poach
 }
 
+public enum QuestStatus
+{
+    quest,
+    clear,
+    failure
+}

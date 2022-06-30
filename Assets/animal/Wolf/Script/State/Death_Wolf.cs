@@ -17,8 +17,7 @@ public class Death_Wolf : SatetBase_Wolf
         {
             color = owner.ShadowRenderer.material.GetColor("_ShadowColor");
         }
-        if (owner.QuestManager != null) owner.QuestManager.AddKillEnemy(owner.EnemyID);
-
+        owner.Death();
 
     }
     public override void OnExit(Wolf owner, SatetBase_Wolf nextState)

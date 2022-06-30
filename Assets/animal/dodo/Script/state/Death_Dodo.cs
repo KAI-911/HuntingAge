@@ -16,8 +16,8 @@ public class Death_Dodo : StateBase_Dodo
         {
             color = owner.ShadowRenderer.material.GetColor("_ShadowColor");
         }
-        if (owner.QuestManager != null) owner.QuestManager.AddKillEnemy(owner.EnemyID);
-
+        Debug.Log("Death_DodoOnEnter");
+        owner.Death();
     }
     public override void OnExit(Dodo owner, StateBase_Dodo nextState)
     {
