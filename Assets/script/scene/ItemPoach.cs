@@ -1,14 +1,14 @@
-using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.InputSystem;
+using UnityEditor;
+using System;
 
-public class ItemBox : MonoBehaviour
+public class ItemPoach : MonoBehaviour
 {
     private ItemHolder _itemHolder;
-    private TargetChecker _targetChecker;
     [SerializeField] ItemIcon _itemIcons;
     [SerializeField] ItemIcon _selectIcons;
 
@@ -24,7 +24,6 @@ public class ItemBox : MonoBehaviour
     private void Awake()
     {
         _itemHolder = GetComponent<ItemHolder>();
-        _targetChecker = GetComponentInChildren<TargetChecker>();
         _input = new InputControls();
 
 
@@ -33,20 +32,17 @@ public class ItemBox : MonoBehaviour
     {
         _inputAction = _input.UI.Selection;
         _input.UI.Proceed.started += Proceed;
-        _input.UI.Proceed.canceled += Unlock;
         _input.UI.Back.started += Back;
-        _input.UI.Back.canceled += Unlock;
-        _input.UI.Enable();
+        _input.UI.Menu.started += UIMenu;
+       _input.UI.Enable();
     }
 
 
     private void OnDisable()
     {
         _input.UI.Proceed.started -= Proceed;
-        _input.UI.Proceed.canceled -= Unlock;
         _input.UI.Back.started -= Back;
-        _input.UI.Back.canceled -= Unlock;
-
+        _input.UI.Menu.started -= UIMenu;
         _input.UI.Disable();
     }
 
@@ -58,26 +54,26 @@ public class ItemBox : MonoBehaviour
 
     }
 
-    // Update is called once per frame
     void Update()
     {
         _currentState.OnUpdate(this);
     }
     private void Proceed(InputAction.CallbackContext obj)
     {
-        Debug.Log("Proceed_ItemBox");
+        Debug.Log("Proceed_ItemPoach");
         _currentState.OnProceed(this);
     }
 
     private void Back(InputAction.CallbackContext obj)
     {
-        Debug.Log("Back_ItemBox");
+        Debug.Log("Back_ItemPoach");
         _currentState.OnBack(this);
     }
 
-    private void Unlock(InputAction.CallbackContext obj)
+    private void UIMenu(InputAction.CallbackContext obj)
     {
-
+        Debug.Log("Menu_ItemPoach");
+        _currentState.OnMenu(this);
     }
 
     public void ChangeState<T>() where T : ItemUIState, new()
@@ -89,34 +85,31 @@ public class ItemBox : MonoBehaviour
     }
     public class ItemUIState
     {
-        public virtual void OnEnter(ItemBox owner, ItemUIState prevState) { }
-        public virtual void OnUpdate(ItemBox owner) { }
-        public virtual void OnExit(ItemBox owner, ItemUIState nextState) { }
-        public virtual void OnProceed(ItemBox owner) { }
-        public virtual void OnBack(ItemBox owner) { }
+        public virtual void OnEnter(ItemPoach owner, ItemUIState prevState) { }
+        public virtual void OnUpdate(ItemPoach owner) { }
+        public virtual void OnExit(ItemPoach owner, ItemUIState nextState) { }
+        public virtual void OnProceed(ItemPoach owner) { }
+        public virtual void OnBack(ItemPoach owner) { }
+        public virtual void OnMenu(ItemPoach owner) { }
     }
     class CanvasClose : ItemUIState
     {
-        public override void OnEnter(ItemBox owner, ItemUIState prevState)
+        public override void OnEnter(ItemPoach owner, ItemUIState prevState)
         {
             owner._player.IsAction = true;
         }
-        public override void OnProceed(ItemBox owner)
+        public override void OnMenu(ItemPoach owner)
         {
-            if (owner._targetChecker.TriggerHit)
-            {
                 Debug.Log("‘I‘ð‰æ–Ê‚Ö");
                 owner._player.IsAction = false;
                 owner.ChangeState<TypeSerect>();
-            }
         }
     }
     class TypeSerect : ItemUIState
     {
         private Canvas _canvas;
         private RunOnce _once = new RunOnce();
-        private int _button = 0;
-        public override void OnEnter(ItemBox owner, ItemUIState prevState)
+        public override void OnEnter(ItemPoach owner, ItemUIState prevState)
         {
             owner._player.IsAction = false;
             _canvas = GameManager.Instance.ItemCanvas.Canvas;
@@ -138,31 +131,34 @@ public class ItemBox : MonoBehaviour
             var button1 = buttons[1].GetComponent<Button>();
             button1.onClick.RemoveAllListeners();
         }
-        public override void OnExit(ItemBox owner, ItemUIState nextState)
+        public override void OnExit(ItemPoach owner, ItemUIState nextState)
         {
             owner._selectIcons.DeleteButton();
         }
-        public override void OnUpdate(ItemBox owner)
+        public override void OnUpdate(ItemPoach owner)
         {
 
-            _button = owner._selectIcons.Select(owner._inputAction.ReadValue<Vector2>(), _button);
-            owner._selectIcons.ItemBoxButtons[_button].GetComponent<Button>().Select();
+            owner._selectIcons.Select(owner._inputAction.ReadValue<Vector2>());
+            if ((owner._itemIcons.TableSize.x * owner._itemIcons.TableSize.y) > 0)
+            {
+                owner._selectIcons.ItemBoxButtons[owner._selectIcons.CurrentNunber].GetComponent<Button>().Select();
+            }
         }
-        public override void OnProceed(ItemBox owner)
+        public override void OnProceed(ItemPoach owner)
         {
-            if (_button == 0)
+            if (owner._itemIcons.CurrentNunber == 0)
             {
                 Debug.Log("OnProceed_ChangeStateItemSerect");
                 owner.ChangeState<ItemSerect>();
             }
-            else if (_button == 1)
+            else if (owner._itemIcons.CurrentNunber == 1)
             {
                 Debug.Log("OnProceed_ChangeStateWeaponSerect");
                 owner.ChangeState<WeaponSerect>();
             }
 
         }
-        public override void OnBack(ItemBox owner)
+        public override void OnBack(ItemPoach owner)
         {
             owner.ChangeState<CanvasClose>();
         }
@@ -172,11 +168,9 @@ public class ItemBox : MonoBehaviour
     {
         private Canvas _canvas;
         private RunOnce _once = new RunOnce();
-        private int currentButtonNumber;
         private state _itemState;
-        public override void OnEnter(ItemBox owner, ItemUIState prevState)
+        public override void OnEnter(ItemPoach owner, ItemUIState prevState)
         {
-            currentButtonNumber = 0;
             _itemState = state.itemSelect;
             _canvas = GameManager.Instance.ItemCanvas.Canvas;
             var buttons = owner._itemIcons.CreateButton();
@@ -192,29 +186,29 @@ public class ItemBox : MonoBehaviour
                 ibutton.SetID(data.ID);
             }
         }
-        public override void OnExit(ItemBox owner, ItemUIState nextState)
+        public override void OnExit(ItemPoach owner, ItemUIState nextState)
         {
             owner._itemIcons.DeleteButton();
 
         }
-        public override void OnUpdate(ItemBox owner)
+        public override void OnUpdate(ItemPoach owner)
         {
             Debug.Log("ItemSerect");
 
             switch (_itemState)
             {
                 case state.itemSelect:
-                    currentButtonNumber = owner._itemIcons.Select(owner._inputAction.ReadValue<Vector2>(), currentButtonNumber);
+                    owner._itemIcons.Select(owner._inputAction.ReadValue<Vector2>());
                     break;
                 case state.itemExchange:
                     break;
                 default:
                     break;
             }
-            owner._itemIcons.ItemBoxButtons[currentButtonNumber].GetComponent<Button>().Select();
+            owner._itemIcons.ItemBoxButtons[owner._itemIcons.CurrentNunber].GetComponent<Button>().Select();
         }
 
-        public override void OnProceed(ItemBox owner)
+        public override void OnProceed(ItemPoach owner)
         {
             switch (_itemState)
             {
@@ -226,7 +220,7 @@ public class ItemBox : MonoBehaviour
                     break;
             }
         }
-        public override void OnBack(ItemBox owner)
+        public override void OnBack(ItemPoach owner)
         {
             switch (_itemState)
             {
@@ -250,14 +244,13 @@ public class ItemBox : MonoBehaviour
     }
     class WeaponSerect : ItemUIState
     {
-        public override void OnBack(ItemBox owner)
+        public override void OnBack(ItemPoach owner)
         {
             owner.ChangeState<CanvasClose>();
         }
-        public override void OnUpdate(ItemBox owner)
+        public override void OnUpdate(ItemPoach owner)
         {
             Debug.Log("WeaponSerect");
         }
     }
-
 }

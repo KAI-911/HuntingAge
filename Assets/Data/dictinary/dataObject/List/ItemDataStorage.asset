@@ -29,7 +29,7 @@ MonoBehaviour:
     BoxHoldNumber: 99
     PoachStackNumber: 99
     PoachUINumber: 0
-    PoachHoldNumber: 0
+    PoachHoldNumber: 1
     Permanent: 0
     Time: 0
     ItemType: 0
@@ -40,8 +40,8 @@ MonoBehaviour:
     BoxUINumber: 1
     BoxHoldNumber: 99
     PoachStackNumber: 99
-    PoachUINumber: 0
-    PoachHoldNumber: 0
+    PoachUINumber: 1
+    PoachHoldNumber: 2
     Permanent: 0
     Time: 0
     ItemType: 0
@@ -52,8 +52,8 @@ MonoBehaviour:
     BoxUINumber: 2
     BoxHoldNumber: 99
     PoachStackNumber: 99
-    PoachUINumber: 0
-    PoachHoldNumber: 0
+    PoachUINumber: 2
+    PoachHoldNumber: 3
     Permanent: 0
     Time: 0
     ItemType: 0
@@ -64,8 +64,8 @@ MonoBehaviour:
     BoxUINumber: 3
     BoxHoldNumber: 99
     PoachStackNumber: 99
-    PoachUINumber: 0
-    PoachHoldNumber: 0
+    PoachUINumber: 3
+    PoachHoldNumber: 4
     Permanent: 0
     Time: 0
     ItemType: 0
@@ -76,8 +76,8 @@ MonoBehaviour:
     BoxUINumber: 4
     BoxHoldNumber: 99
     PoachStackNumber: 99
-    PoachUINumber: 0
-    PoachHoldNumber: 0
+    PoachUINumber: 4
+    PoachHoldNumber: 5
     Permanent: 0
     Time: 0
     ItemType: 0
@@ -88,8 +88,8 @@ MonoBehaviour:
     BoxUINumber: 5
     BoxHoldNumber: 99
     PoachStackNumber: 99
-    PoachUINumber: 0
-    PoachHoldNumber: 0
+    PoachUINumber: 5
+    PoachHoldNumber: 6
     Permanent: 0
     Time: 0
     ItemType: 0
@@ -100,8 +100,8 @@ MonoBehaviour:
     BoxUINumber: 6
     BoxHoldNumber: 99
     PoachStackNumber: 99
-    PoachUINumber: 0
-    PoachHoldNumber: 0
+    PoachUINumber: 6
+    PoachHoldNumber: 7
     Permanent: 0
     Time: 0
     ItemType: 0

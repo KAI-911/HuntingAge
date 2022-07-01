@@ -15,12 +15,24 @@ public class ItemIcon : MonoBehaviour
     [SerializeField] GameObject _buttonBackPrefab;
     private GameObject _buttonBackObj;
     private RunOnce _once = new RunOnce();
+    private int _currentNunber;
     public List<GameObject> ItemBoxButtons { get => _ItemBoxButtons; set => _ItemBoxButtons = value; }
     public Vector2 TableSize { get => _tableSize; set => _tableSize = value; }
+    public int CurrentNunber { get => _currentNunber; }
+    public int GetSize { get => (int)_tableSize.x * (int)_tableSize.y; }
 
+    public bool WithinRange()
+    {
+        if (GetSize == 0) return false;
+        if (0 <= _currentNunber && _currentNunber < GetSize)
+        {
+            return true;
+        }
+        return false;
+    }
     private void Awake()
     {
-
+        _currentNunber = 0;
 
     }
 
@@ -37,42 +49,42 @@ public class ItemIcon : MonoBehaviour
         }
     }
 
-    public int Select(Vector2 vector2 ,int NowButtonNumber)
+    public int Select(Vector2 vector2)
     {
         //‰¡•ûŒü
         if (vector2.sqrMagnitude > 0)
         {
-            if (_once.Flg) return NowButtonNumber;
+            if (_once.Flg) return _currentNunber;
             if (Mathf.Abs(vector2.x) > 0)
             {
-                int i = NowButtonNumber % (int)TableSize.y;
+                int i = _currentNunber % (int)TableSize.y;
                 if (vector2.x > 0)
                 {
                     if (i != ((int)TableSize.y - 1))
                     {
-                        NowButtonNumber++;
+                        _currentNunber++;
                     }
                 }
                 else if (i != 0)
                 {
-                    NowButtonNumber--;
+                    _currentNunber--;
                 }
 
             }
             if (Mathf.Abs(vector2.y) > 0)
             {
-                int i = NowButtonNumber / (int)TableSize.y;
+                int i = _currentNunber / (int)TableSize.y;
 
                 if (vector2.y > 0)
                 {
                     if (i != 0)
                     {
-                        NowButtonNumber -= (int)TableSize.y;
+                        _currentNunber -= (int)TableSize.y;
                     }
                 }
                 else if (i != (int)TableSize.x - 1)
                 {
-                    NowButtonNumber += (int)TableSize.y;
+                    _currentNunber += (int)TableSize.y;
                 }
 
             }
@@ -82,12 +94,12 @@ public class ItemIcon : MonoBehaviour
         {
             _once.Flg = false;
         }
-        return NowButtonNumber;
+        return _currentNunber;
     }
 
 
     [ContextMenu("createbutton")]
-    public List<GameObject> CreateButton()
+    public List<GameObject> CreateButton(int currentNum = 0)
     {
         DeleteButton();
         var c = GameManager.Instance.ItemCanvas.Canvas;
@@ -97,7 +109,7 @@ public class ItemIcon : MonoBehaviour
             Vector2 width = new Vector2(Mathf.Clamp(_width.x - buttonSize.x, 0, float.MaxValue), Mathf.Clamp(_width.y - buttonSize.y, 0, float.MaxValue));
             Vector2 size = new Vector2(_tableSize.y * (buttonSize.x + width.x), _tableSize.x * (buttonSize.y + width.y));
             _buttonBackObj = Instantiate(_buttonBackPrefab, new Vector3(_leftTopPos.x + (size.x / 2) - (buttonSize.x / 2) - (width.x / 2), _leftTopPos.y - (size.y / 2) + (buttonSize.y / 2) + (width.y / 2), 0), Quaternion.identity) as GameObject;
-            _buttonBackObj.transform.parent = c.transform;
+            _buttonBackObj.transform.SetParent(c.transform);
             _buttonBackObj.GetComponent<RectTransform>().sizeDelta = size;
         }
         for (int i = 0; i < (int)(_tableSize.x * _tableSize.y); i++)
@@ -105,9 +117,10 @@ public class ItemIcon : MonoBehaviour
             int w = Mathf.Abs((i % (int)_tableSize.y) * (int)_width.x);
             int h = Mathf.Abs((i / (int)_tableSize.y) * (int)_width.y);
             var obj = Instantiate(_buttonPrefab, new Vector3(_leftTopPos.x + w, _leftTopPos.y - h, 0), Quaternion.identity) as GameObject;
-            obj.transform.parent = c.transform;
+            obj.transform.SetParent(c.transform);
             _ItemBoxButtons.Add(obj);
         }
+        _currentNunber = currentNum;
         return _ItemBoxButtons;
     }
     public void DeleteButton()

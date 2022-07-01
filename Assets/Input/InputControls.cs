@@ -346,6 +346,15 @@ public partial class @InputControls : IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Menu"",
+                    ""type"": ""Button"",
+                    ""id"": ""3a3e382b-6429-4c3a-8944-a0d651d4f74e"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -502,6 +511,28 @@ public partial class @InputControls : IInputActionCollection2, IDisposable
                     ""action"": ""Back"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""65dfe789-bfcc-4e53-9845-94c6e68df18e"",
+                    ""path"": ""<Gamepad>/start"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Menu"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""34e018fc-55ab-49e8-9fdd-f43e31e0badb"",
+                    ""path"": ""<Keyboard>/m"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Menu"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -521,6 +552,7 @@ public partial class @InputControls : IInputActionCollection2, IDisposable
         m_UI_Selection = m_UI.FindAction("Selection", throwIfNotFound: true);
         m_UI_Proceed = m_UI.FindAction("Proceed", throwIfNotFound: true);
         m_UI_Back = m_UI.FindAction("Back", throwIfNotFound: true);
+        m_UI_Menu = m_UI.FindAction("Menu", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -656,6 +688,7 @@ public partial class @InputControls : IInputActionCollection2, IDisposable
     private readonly InputAction m_UI_Selection;
     private readonly InputAction m_UI_Proceed;
     private readonly InputAction m_UI_Back;
+    private readonly InputAction m_UI_Menu;
     public struct UIActions
     {
         private @InputControls m_Wrapper;
@@ -663,6 +696,7 @@ public partial class @InputControls : IInputActionCollection2, IDisposable
         public InputAction @Selection => m_Wrapper.m_UI_Selection;
         public InputAction @Proceed => m_Wrapper.m_UI_Proceed;
         public InputAction @Back => m_Wrapper.m_UI_Back;
+        public InputAction @Menu => m_Wrapper.m_UI_Menu;
         public InputActionMap Get() { return m_Wrapper.m_UI; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -681,6 +715,9 @@ public partial class @InputControls : IInputActionCollection2, IDisposable
                 @Back.started -= m_Wrapper.m_UIActionsCallbackInterface.OnBack;
                 @Back.performed -= m_Wrapper.m_UIActionsCallbackInterface.OnBack;
                 @Back.canceled -= m_Wrapper.m_UIActionsCallbackInterface.OnBack;
+                @Menu.started -= m_Wrapper.m_UIActionsCallbackInterface.OnMenu;
+                @Menu.performed -= m_Wrapper.m_UIActionsCallbackInterface.OnMenu;
+                @Menu.canceled -= m_Wrapper.m_UIActionsCallbackInterface.OnMenu;
             }
             m_Wrapper.m_UIActionsCallbackInterface = instance;
             if (instance != null)
@@ -694,6 +731,9 @@ public partial class @InputControls : IInputActionCollection2, IDisposable
                 @Back.started += instance.OnBack;
                 @Back.performed += instance.OnBack;
                 @Back.canceled += instance.OnBack;
+                @Menu.started += instance.OnMenu;
+                @Menu.performed += instance.OnMenu;
+                @Menu.canceled += instance.OnMenu;
             }
         }
     }
@@ -712,5 +752,6 @@ public partial class @InputControls : IInputActionCollection2, IDisposable
         void OnSelection(InputAction.CallbackContext context);
         void OnProceed(InputAction.CallbackContext context);
         void OnBack(InputAction.CallbackContext context);
+        void OnMenu(InputAction.CallbackContext context);
     }
 }
