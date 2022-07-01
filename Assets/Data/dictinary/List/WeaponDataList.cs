@@ -67,16 +67,17 @@ public class WeaponDataList : MonoBehaviour, ISerializationCallbackReceiver
         }
     }
 
-    [ContextMenu("add")]
-    public void add(string _ID)
+    [ContextMenu("Production")]
+    public bool Production(string _ID)
     {
-
         int index = keys.FindIndex(n => n.StartsWith(_ID));
         Debug.Log(index);
         var data = values[index];
+        if (data.BoxPossession)return false;
         data.BoxPossession = true;
         values[index] = data;
         DesrializeDictionary();
+        return true;
     }
 }
 

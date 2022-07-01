@@ -8,20 +8,16 @@ using UnityEngine.EventSystems;
 
 public class Blacksmith : MonoBehaviour
 {
+    //キャンバス
+    [SerializeField] Canvas _canvas;
+    [SerializeField] GameObject _buttonParent;
     ///表示するテキスト
     [SerializeField] Text _weaponName;
     [SerializeField] Text _blacksmithMode;
     //プレイヤーが近くまで来たか判断
     [SerializeField] TargetChecker _blacksmithChecker;
-    //キャンバス
-    [SerializeField] Canvas _canvas;
-    [SerializeField] GameObject _buttonParent;
-
     //確認用
-    [SerializeField] Canvas _popUp;
-    [SerializeField] Button _proceedButton;
-    [SerializeField] Button _backButton;
-    [SerializeField] Text _infoText;
+    [SerializeField] Confirmation _confirmation;
 
     //レベル別クエストのまとまり
     [SerializeField] WeaponData _weaponData;
@@ -65,7 +61,6 @@ public class Blacksmith : MonoBehaviour
     void Start()
     {
         _canvas.enabled = false;
-        _popUp.enabled = false;
     }
     private void OnEnable()
     {
@@ -155,6 +150,8 @@ public class Blacksmith : MonoBehaviour
         _currentState = nextState;
     }
 
+
+
     public abstract class UIState
     {
         public virtual void OnEnter(Blacksmith owner, UIState prevState)
@@ -186,7 +183,6 @@ public class Blacksmith : MonoBehaviour
         {
             owner.ButtonDelete();
             owner._canvas.enabled = false;
-            owner._popUp.enabled = false;
         }
         public override void OnUpdate(Blacksmith owner)
         { }
@@ -194,9 +190,11 @@ public class Blacksmith : MonoBehaviour
         { }
         public override void OnProceed(Blacksmith owner)
         {
+            Debug.Log("o");
             //近くに来ている && 決定ボタンを押している && キャンバスがactiveでない
             if (owner._blacksmithChecker.TriggerHit && !owner._canvas.enabled)
             {
+                Debug.Log("f");
                 owner.ChangeState<SelectMode>();
             }
         }
@@ -208,8 +206,8 @@ public class Blacksmith : MonoBehaviour
     {
         public override void OnEnter(Blacksmith owner, UIState prevState)
         {
+            Debug.Log("i");
             owner._canvas.enabled = true;
-            owner._popUp.enabled = false;
 
             //モード選択画面
             owner.ButtonDelete();
@@ -224,7 +222,7 @@ public class Blacksmith : MonoBehaviour
                 Vector3 pos = owner.firstButtonPos;
                 pos.y -= i * owner.buttonBetween;
                 //インスタンス化
-                var obj = Instantiate(Resources.Load("UI/Button"), pos, Quaternion.identity) as GameObject;
+                var obj = Instantiate(Resources.Load("UI/Button1"), pos, Quaternion.identity) as GameObject;
                 //親の設定
                 obj.transform.parent = owner._buttonParent.transform;
                 //ボタンが押されたときの設定
@@ -273,7 +271,6 @@ public class Blacksmith : MonoBehaviour
         public override void OnEnter(Blacksmith owner, UIState prevState)
         {
             owner._canvas.enabled = true;
-            owner._popUp.enabled = false;
 
             //モード選択画面
             owner.ButtonDelete();
@@ -287,7 +284,7 @@ public class Blacksmith : MonoBehaviour
                 Vector3 pos = owner.firstButtonPos;
                 pos.y -= i * owner.buttonBetween;
                 //インスタンス化
-                var obj = Instantiate(Resources.Load("UI/Button"), pos, Quaternion.identity) as GameObject;
+                var obj = Instantiate(Resources.Load("UI/Button1"), pos, Quaternion.identity) as GameObject;
                 //親の設定
                 obj.transform.parent = owner._buttonParent.transform;
                 //ボタンが押されたときの設定
@@ -344,7 +341,6 @@ public class Blacksmith : MonoBehaviour
         public override void OnEnter(Blacksmith owner, UIState prevState)
         {
             owner._canvas.enabled = true;
-            owner._popUp.enabled = false;
 
             //モード選択画面
             owner.ButtonDelete();
@@ -384,8 +380,16 @@ public class Blacksmith : MonoBehaviour
                 //ボタンが押されたときの設定
                 var button = obj.GetComponent<Button>();
                 //ボタンが押されたときの処理
-                //button.onClick.AddListener(() => );
+                button.onClick.AddListener(() => 
+                { 
+                    if (!GameManager.Instance.WeaponDataList.Production("1011"))
+                    {
+                        owner._confirmation.SetText("すでに所持しています");
+                    }
+                    owner._confirmation.SetText("すでに所持しています");
+                }); 
                 owner._buttons.Add(obj);
+
             }
         }
         public override void OnUpdate(Blacksmith owner)
@@ -394,8 +398,6 @@ public class Blacksmith : MonoBehaviour
             {
                 //選択できるようにしておく
                 float v = owner._inputAction.ReadValue<Vector2>().x;
-                if (v < 0) _currntButton = owner._proceedButton;
-                if (v > 0) _currntButton = owner._backButton;
                 _currntButton.Select();
             }
             else
@@ -419,13 +421,6 @@ public class Blacksmith : MonoBehaviour
             }
             else
             {
-                _runOnce.Run(() =>
-                {
-                    owner._infoText.text = "このクエストを受注しますか";
-                    _confirmation = true;
-                    owner._popUp.enabled = true;
-                    owner._proceedButton.Select();
-                });
             }
         }
         public override void OnBack(Blacksmith owner)
@@ -434,7 +429,6 @@ public class Blacksmith : MonoBehaviour
             {
                 _confirmation = false;
                 _runOnce.Flg = false;
-                owner._popUp.enabled = false;
                 var btn = owner._buttons[owner._currentButtonNumber].GetComponent<Button>();
                 btn.onClick.Invoke();
                 btn.Select();

@@ -24,7 +24,7 @@ public class WeaponDataEditer : Editor
         EditorGUILayout.LabelField("", GUI.skin.horizontalScrollbar);
         if (GUILayout.Button("add"))
         {
-            ((WeaponDataList)target).add("weapon100");
+            ((WeaponDataList)target).Production("weapon100");
         }
     }
 }
