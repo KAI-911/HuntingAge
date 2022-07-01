@@ -11,12 +11,13 @@ public class ItemIcon : MonoBehaviour
     [SerializeField] Vector2 _tableSize;
     [SerializeField] bool _canBeChanged;
     [SerializeField] bool _buttonBack;
+    [SerializeField] bool _texture;
     [SerializeField] GameObject _buttonPrefab;
     [SerializeField] GameObject _buttonBackPrefab;
     private GameObject _buttonBackObj;
     private RunOnce _once = new RunOnce();
     private int _currentNunber;
-    public List<GameObject> ItemBoxButtons { get => _ItemBoxButtons; set => _ItemBoxButtons = value; }
+    public List<GameObject> Buttons { get => _ItemBoxButtons; set => _ItemBoxButtons = value; }
     public Vector2 TableSize { get => _tableSize; set => _tableSize = value; }
     public int CurrentNunber { get => _currentNunber; }
     public int GetSize { get => (int)_tableSize.x * (int)_tableSize.y; }
@@ -33,7 +34,6 @@ public class ItemIcon : MonoBehaviour
     private void Awake()
     {
         _currentNunber = 0;
-
     }
 
     private void Update()
@@ -94,6 +94,12 @@ public class ItemIcon : MonoBehaviour
         {
             _once.Flg = false;
         }
+
+        if (WithinRange())
+        {
+            Buttons[CurrentNunber].GetComponent<Button>().Select();
+        }
+
         return _currentNunber;
     }
 
@@ -137,4 +143,10 @@ public class ItemIcon : MonoBehaviour
         }
     }
 
+    private enum Alignment
+    {
+        right,
+        center,
+        left
+    }
 }

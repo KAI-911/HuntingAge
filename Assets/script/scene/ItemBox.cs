@@ -11,7 +11,6 @@ public class ItemBox : MonoBehaviour
     private TargetChecker _targetChecker;
     [SerializeField] ItemIcon _itemIcons;
     [SerializeField] ItemIcon _selectIcons;
-
     //インプットシステム
     [SerializeField] private InputControls _input;
     private InputAction _inputAction;
@@ -146,7 +145,7 @@ public class ItemBox : MonoBehaviour
             owner._selectIcons.Select(owner._inputAction.ReadValue<Vector2>());
             if (owner._selectIcons.WithinRange())
             {
-                owner._selectIcons.ItemBoxButtons[owner._selectIcons.CurrentNunber].GetComponent<Button>().Select();
+                owner._selectIcons.Buttons[owner._selectIcons.CurrentNunber].GetComponent<Button>().Select();
             }
         }
         public override void OnProceed(ItemBox owner)
@@ -210,7 +209,7 @@ public class ItemBox : MonoBehaviour
                 default:
                     break;
             }
-            owner._itemIcons.ItemBoxButtons[owner._itemIcons.CurrentNunber].GetComponent<Button>().Select();
+            owner._itemIcons.Buttons[owner._itemIcons.CurrentNunber].GetComponent<Button>().Select();
         }
 
         public override void OnProceed(ItemBox owner)

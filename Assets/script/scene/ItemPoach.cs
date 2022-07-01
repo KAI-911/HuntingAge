@@ -139,19 +139,19 @@ public class ItemPoach : MonoBehaviour
         {
 
             owner._selectIcons.Select(owner._inputAction.ReadValue<Vector2>());
-            if ((owner._itemIcons.TableSize.x * owner._itemIcons.TableSize.y) > 0)
+            if ((owner._selectIcons.TableSize.x * owner._selectIcons.TableSize.y) > 0)
             {
-                owner._selectIcons.ItemBoxButtons[owner._selectIcons.CurrentNunber].GetComponent<Button>().Select();
+                owner._selectIcons.Buttons[owner._selectIcons.CurrentNunber].GetComponent<Button>().Select();
             }
         }
         public override void OnProceed(ItemPoach owner)
         {
-            if (owner._itemIcons.CurrentNunber == 0)
+            if (owner._selectIcons.CurrentNunber == 0)
             {
                 Debug.Log("OnProceed_ChangeStateItemSerect");
                 owner.ChangeState<ItemSerect>();
             }
-            else if (owner._itemIcons.CurrentNunber == 1)
+            else if (owner._selectIcons.CurrentNunber == 1)
             {
                 Debug.Log("OnProceed_ChangeStateWeaponSerect");
                 owner.ChangeState<WeaponSerect>();
@@ -205,7 +205,7 @@ public class ItemPoach : MonoBehaviour
                 default:
                     break;
             }
-            owner._itemIcons.ItemBoxButtons[owner._itemIcons.CurrentNunber].GetComponent<Button>().Select();
+            owner._itemIcons.Buttons[owner._itemIcons.CurrentNunber].GetComponent<Button>().Select();
         }
 
         public override void OnProceed(ItemPoach owner)
