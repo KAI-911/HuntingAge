@@ -89,7 +89,7 @@ Material:
     - _NoiseDensity: 150
     - _OcclusionStrength: 1
     - _Parallax: 0.02
-    - _RimPower: 1
+    - _RimPower: 0.221
     - _SmoothnessTextureChannel: 0
     - _SpecularHighlights: 1
     - _SrcBlend: 1

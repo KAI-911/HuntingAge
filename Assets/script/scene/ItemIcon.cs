@@ -7,14 +7,17 @@ public class ItemIcon : MonoBehaviour
 
     [SerializeField] List<GameObject> _ItemBoxButtons;
     [SerializeField] Vector2 _leftTopPos;
-    [SerializeField] Vector2 _width;
+    [SerializeField] float _padding;
     [SerializeField] Vector2 _tableSize;
     [SerializeField] bool _canBeChanged;
     [SerializeField] bool _buttonBack;
-    [SerializeField] bool _texture;
+    [SerializeField] bool _textFlg;
     [SerializeField] GameObject _buttonPrefab;
     [SerializeField] GameObject _buttonBackPrefab;
+    [SerializeField] GameObject _textPrefab;
+    [SerializeField] TEXT _textData;
     private GameObject _buttonBackObj;
+    private GameObject _textObj;
     private RunOnce _once = new RunOnce();
     private int _currentNunber;
     public List<GameObject> Buttons { get => _ItemBoxButtons; set => _ItemBoxButtons = value; }
@@ -42,8 +45,8 @@ public class ItemIcon : MonoBehaviour
         {
             for (int i = 0; i < _ItemBoxButtons.Count; i++)
             {
-                int w = Mathf.Abs((i % (int)_tableSize.y) * (int)_width.x);
-                int h = Mathf.Abs((i / (int)_tableSize.y) * (int)_width.y);
+                int w = Mathf.Abs((i % (int)_tableSize.y) * (int)_padding);
+                int h = Mathf.Abs((i / (int)_tableSize.y) * (int)_padding);
                 _ItemBoxButtons[i].transform.position = new Vector3(_leftTopPos.x + w, _leftTopPos.y - h, 0);
             }
         }
@@ -109,20 +112,79 @@ public class ItemIcon : MonoBehaviour
     {
         DeleteButton();
         var c = GameManager.Instance.ItemCanvas.Canvas;
+        var buttonSize = _buttonPrefab.GetComponent<RectTransform>().sizeDelta;
+
+        //背面画像
         if (_buttonBack)
         {
-            Vector2 buttonSize = _buttonPrefab.GetComponent<RectTransform>().sizeDelta;
-            Vector2 width = new Vector2(Mathf.Clamp(_width.x - buttonSize.x, 0, float.MaxValue), Mathf.Clamp(_width.y - buttonSize.y, 0, float.MaxValue));
-            Vector2 size = new Vector2(_tableSize.y * (buttonSize.x + width.x), _tableSize.x * (buttonSize.y + width.y));
-            _buttonBackObj = Instantiate(_buttonBackPrefab, new Vector3(_leftTopPos.x + (size.x / 2) - (buttonSize.x / 2) - (width.x / 2), _leftTopPos.y - (size.y / 2) + (buttonSize.y / 2) + (width.y / 2), 0), Quaternion.identity) as GameObject;
+            //幅を決める
+            Vector2 size = new Vector2();
+            size.x = _tableSize.y * (buttonSize.x + _padding) + _padding;
+            size.y = _tableSize.x * (buttonSize.y + _padding) + _padding;
+
+            //位置を設定・調整
+            var pos = new Vector3(_leftTopPos.x, _leftTopPos.y, 0);
+            pos.x -= _padding;
+            pos.y += _padding;
+
+            //実体化
+            _buttonBackObj = Instantiate(_buttonBackPrefab, pos, Quaternion.identity);
+            //親の設定
             _buttonBackObj.transform.SetParent(c.transform);
+            //幅の設定
             _buttonBackObj.GetComponent<RectTransform>().sizeDelta = size;
         }
+
+        //テキスト
+        if (_textFlg)
+        {
+            if (_buttonBack)
+            {
+                //背面画像の位置調整
+                var backpos = _buttonBackObj.transform.position;
+                backpos.y += _textData.hight + _padding;
+                _buttonBackObj.transform.position = backpos;
+                //背面画像の幅調整
+                var backsize = _buttonBackObj.GetComponent<RectTransform>().sizeDelta;
+                backsize.y += _textData.hight + _padding;
+                _buttonBackObj.GetComponent<RectTransform>().sizeDelta = backsize;
+            }
+
+            //幅を決める
+            Vector2 size = new Vector2();
+            size.x = _tableSize.y * (buttonSize.x + _padding) + _padding;
+            size.y = _textData.hight;
+
+            //位置を設定
+            var pos = new Vector3(_leftTopPos.x, _leftTopPos.y, 0);
+            pos.x -= _padding;
+            pos.y += (_textData.hight + _padding);
+
+
+            //実体化
+            _textObj = Instantiate(_textPrefab, pos, Quaternion.identity);
+            //親の設定
+            _textObj.transform.SetParent(c.transform);
+            //幅の設定
+            _textObj.GetComponent<RectTransform>().sizeDelta = size;
+
+            //テキストの各種設定
+            var text = _textObj.GetComponent<Text>();
+            text.text = _textData.text;
+            text.fontSize = _textData.fontSize;
+            if(_textData.autoFontSize)
+            {
+                text.resizeTextForBestFit = true;
+            }
+            text.color = _textData.color;
+            text.alignment = _textData.textAnchor;
+        }
+
         for (int i = 0; i < (int)(_tableSize.x * _tableSize.y); i++)
         {
-            int w = Mathf.Abs((i % (int)_tableSize.y) * (int)_width.x);
-            int h = Mathf.Abs((i / (int)_tableSize.y) * (int)_width.y);
-            var obj = Instantiate(_buttonPrefab, new Vector3(_leftTopPos.x + w, _leftTopPos.y - h, 0), Quaternion.identity) as GameObject;
+            int w = Mathf.Abs((i % (int)_tableSize.y) * (int)(buttonSize.x + _padding));
+            int h = Mathf.Abs((i / (int)_tableSize.y) * (int)(buttonSize.y + _padding));
+            var obj = Instantiate(_buttonPrefab, new Vector3(_leftTopPos.x + w, _leftTopPos.y - h, 0), Quaternion.identity);
             obj.transform.SetParent(c.transform);
             _ItemBoxButtons.Add(obj);
         }
@@ -141,12 +203,22 @@ public class ItemIcon : MonoBehaviour
             Destroy(_buttonBackObj);
             _buttonBackObj = null;
         }
+        if (_textObj != null)
+        {
+            Destroy(_textObj);
+            _textObj = null;
+        }
     }
+}
 
-    private enum Alignment
-    {
-        right,
-        center,
-        left
-    }
+[System.Serializable]
+public struct TEXT
+{
+    public int fontSize;
+    public bool autoFontSize;
+    public string text;
+    public Color color;
+    public float hight;
+    public float margin;
+    public TextAnchor textAnchor;
 }
