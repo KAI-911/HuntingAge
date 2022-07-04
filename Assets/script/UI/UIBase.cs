@@ -4,22 +4,14 @@ using UnityEngine;
 
 abstract public class UIBase : MonoBehaviour
 {
-    [SerializeField] private ItemIcon firstSelect;
-    [SerializeField] private ItemIcon secondSelect;
+    [SerializeField] private List<ItemIcon> _itemIconList;
     protected UIStateBase _currentState;
 
-    /// <summary>
-    /// ‰¼‚Å‚ÌŽÀ‘•
-    /// </summary>
-    [SerializeField] UIManager _UIManager;
-
-    public ItemIcon FirstSelect { get => firstSelect; set => firstSelect = value; }
-    public ItemIcon SecondSelect { get => secondSelect; set => secondSelect = value; }
-    public UIManager UIManager { get => _UIManager; set => _UIManager = value; }
+    public List<ItemIcon> ItemIconList { get => _itemIconList; set => _itemIconList = value; }
 
     virtual public void Awake()
     {
-        _UIManager.AddUIList(this);
+        UIManager.Instance.AddUIList(this);
     }
     virtual public  void Update()
     {
@@ -54,5 +46,6 @@ abstract public class UIBase : MonoBehaviour
         public virtual void OnProceed(UIBase owner) { }
         public virtual void OnBack(UIBase owner) { }
         public virtual void OnMenu(UIBase owner) { }
+
     }
 }

@@ -1,0 +1,88 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: adaf2a536f985c34da66e3cf8429ebc3, type: 3}
+  m_Name: ItemIconStorage
+  m_EditorClassIdentifier: 
+  keys:
+  - IP_TypeSelect
+  - IP_ItemSelect
+  - IB_TypeSelect
+  - IB_ItemSelect
+  values:
+  - _leftTopPos: {x: 100, y: 800}
+    _padding: 10
+    _tableSize: {x: 1, y: 1}
+    _canBeChanged: 0
+    _buttonBack: 1
+    _textFlg: 1
+    _buttonPrefab: {fileID: 1403004829627007043, guid: 446577f06a189c14488ef6b7845ad21c, type: 3}
+    _buttonBackPrefab: {fileID: 4567105175149944347, guid: f7ce8ff705927a7488534fa792a126fe, type: 3}
+    _textPrefab: {fileID: 9123999925664973099, guid: 7e845aabbef9588409138ba440dc835e, type: 3}
+    _textData:
+      fontSize: 15
+      autoFontSize: 1
+      text: "\u30E1\u30CB\u30E5\u30FC"
+      color: {r: 0, g: 0, b: 0, a: 1}
+      hight: 30
+      margin: 10
+      textAnchor: 4
+  - _leftTopPos: {x: 100, y: 800}
+    _padding: 10
+    _tableSize: {x: 3, y: 5}
+    _canBeChanged: 0
+    _buttonBack: 1
+    _textFlg: 1
+    _buttonPrefab: {fileID: 2147113997115738069, guid: e0bb1dc90176c9c488618f85bd968cfa, type: 3}
+    _buttonBackPrefab: {fileID: 4567105175149944347, guid: f7ce8ff705927a7488534fa792a126fe, type: 3}
+    _textPrefab: {fileID: 9123999925664973099, guid: 7e845aabbef9588409138ba440dc835e, type: 3}
+    _textData:
+      fontSize: 15
+      autoFontSize: 1
+      text: "\u30A2\u30A4\u30C6\u30E0\u30DD\u30FC\u30C1"
+      color: {r: 0, g: 0, b: 0, a: 1}
+      hight: 30
+      margin: 10
+      textAnchor: 4
+  - _leftTopPos: {x: 100, y: 800}
+    _padding: 10
+    _tableSize: {x: 1, y: 1}
+    _canBeChanged: 0
+    _buttonBack: 1
+    _textFlg: 1
+    _buttonPrefab: {fileID: 1403004829627007043, guid: 446577f06a189c14488ef6b7845ad21c, type: 3}
+    _buttonBackPrefab: {fileID: 4567105175149944347, guid: f7ce8ff705927a7488534fa792a126fe, type: 3}
+    _textPrefab: {fileID: 9123999925664973099, guid: 7e845aabbef9588409138ba440dc835e, type: 3}
+    _textData:
+      fontSize: 15
+      autoFontSize: 1
+      text: "\u30E1\u30CB\u30E5\u30FC"
+      color: {r: 0, g: 0, b: 0, a: 1}
+      hight: 30
+      margin: 10
+      textAnchor: 4
+  - _leftTopPos: {x: 1300, y: 1000}
+    _padding: 10
+    _tableSize: {x: 9, y: 5}
+    _canBeChanged: 0
+    _buttonBack: 1
+    _textFlg: 1
+    _buttonPrefab: {fileID: 2147113997115738069, guid: e0bb1dc90176c9c488618f85bd968cfa, type: 3}
+    _buttonBackPrefab: {fileID: 4567105175149944347, guid: f7ce8ff705927a7488534fa792a126fe, type: 3}
+    _textPrefab: {fileID: 9123999925664973099, guid: 7e845aabbef9588409138ba440dc835e, type: 3}
+    _textData:
+      fontSize: 15
+      autoFontSize: 1
+      text: "\u30A2\u30A4\u30C6\u30E0\u30DD\u30FC\u30C1"
+      color: {r: 0, g: 0, b: 0, a: 1}
+      hight: 30
+      margin: 10
+      textAnchor: 4

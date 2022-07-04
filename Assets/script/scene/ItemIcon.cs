@@ -2,28 +2,21 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+[System.Serializable]
 public class ItemIcon : MonoBehaviour
 {
 
     [SerializeField] List<GameObject> _ItemBoxButtons;
-    [SerializeField] Vector2 _leftTopPos;
-    [SerializeField] float _padding;
-    [SerializeField] Vector2 _tableSize;
-    [SerializeField] bool _canBeChanged;
-    [SerializeField] bool _buttonBack;
-    [SerializeField] bool _textFlg;
-    [SerializeField] GameObject _buttonPrefab;
-    [SerializeField] GameObject _buttonBackPrefab;
-    [SerializeField] GameObject _textPrefab;
-    [SerializeField] TEXT _textData;
+    [SerializeField] ItemIconData _iconData;
+
     private GameObject _buttonBackObj;
     private GameObject _textObj;
     private RunOnce _once = new RunOnce();
     private int _currentNunber;
     public List<GameObject> Buttons { get => _ItemBoxButtons; set => _ItemBoxButtons = value; }
-    public Vector2 TableSize { get => _tableSize; set => _tableSize = value; }
+    public Vector2 TableSize { get => _iconData._tableSize; set => _iconData._tableSize = value; }
     public int CurrentNunber { get => _currentNunber; }
-    public int GetSize { get => (int)_tableSize.x * (int)_tableSize.y; }
+    public int GetSize { get => (int)_iconData._tableSize.x * (int)_iconData._tableSize.y; }
 
     public bool WithinRange()
     {
@@ -34,6 +27,14 @@ public class ItemIcon : MonoBehaviour
         }
         return false;
     }
+    public void SetIcondata(string _key)
+    {
+        _iconData = UIManager.Instance.UIPresetData.Dictionary[_key];
+    }
+    public void SetIcondata(ItemIconData _value)
+    {
+        _iconData = _value;
+    }
     private void Awake()
     {
         _currentNunber = 0;
@@ -41,13 +42,14 @@ public class ItemIcon : MonoBehaviour
 
     private void Update()
     {
-        if (_canBeChanged)
+        if (_iconData._canBeChanged)
         {
+            var buttonSize = _iconData._buttonPrefab.GetComponent<RectTransform>().sizeDelta;
             for (int i = 0; i < _ItemBoxButtons.Count; i++)
             {
-                int w = Mathf.Abs((i % (int)_tableSize.y) * (int)_padding);
-                int h = Mathf.Abs((i / (int)_tableSize.y) * (int)_padding);
-                _ItemBoxButtons[i].transform.position = new Vector3(_leftTopPos.x + w, _leftTopPos.y - h, 0);
+                int w = Mathf.Abs((i % (int)_iconData._tableSize.y) * (int)(buttonSize.x + _iconData._padding));
+                int h = Mathf.Abs((i / (int)_iconData._tableSize.y) * (int)(buttonSize.y + _iconData._padding));
+                _ItemBoxButtons[i].transform.position = new Vector3(_iconData._leftTopPos.x + w, _iconData._leftTopPos.y - h, 0);
             }
         }
     }
@@ -112,23 +114,23 @@ public class ItemIcon : MonoBehaviour
     {
         DeleteButton();
         var c = GameManager.Instance.ItemCanvas.Canvas;
-        var buttonSize = _buttonPrefab.GetComponent<RectTransform>().sizeDelta;
+        var buttonSize = _iconData._buttonPrefab.GetComponent<RectTransform>().sizeDelta;
 
         //背面画像
-        if (_buttonBack)
+        if (_iconData._buttonBack)
         {
             //幅を決める
             Vector2 size = new Vector2();
-            size.x = _tableSize.y * (buttonSize.x + _padding) + _padding;
-            size.y = _tableSize.x * (buttonSize.y + _padding) + _padding;
+            size.x = _iconData._tableSize.y * (buttonSize.x + _iconData._padding) + _iconData._padding;
+            size.y = _iconData._tableSize.x * (buttonSize.y + _iconData._padding) + _iconData._padding;
 
             //位置を設定・調整
-            var pos = new Vector3(_leftTopPos.x, _leftTopPos.y, 0);
-            pos.x -= _padding;
-            pos.y += _padding;
+            var pos = new Vector3(_iconData._leftTopPos.x, _iconData._leftTopPos.y, 0);
+            pos.x -= _iconData._padding;
+            pos.y += _iconData._padding;
 
             //実体化
-            _buttonBackObj = Instantiate(_buttonBackPrefab, pos, Quaternion.identity);
+            _buttonBackObj = Instantiate(_iconData._buttonBackPrefab, pos, Quaternion.identity);
             //親の設定
             _buttonBackObj.transform.SetParent(c.transform);
             //幅の設定
@@ -136,33 +138,33 @@ public class ItemIcon : MonoBehaviour
         }
 
         //テキスト
-        if (_textFlg)
+        if (_iconData._textFlg)
         {
-            if (_buttonBack)
+            if (_iconData._buttonBack)
             {
                 //背面画像の位置調整
                 var backpos = _buttonBackObj.transform.position;
-                backpos.y += _textData.hight + _padding;
+                backpos.y += _iconData._textData.hight + _iconData._padding;
                 _buttonBackObj.transform.position = backpos;
                 //背面画像の幅調整
                 var backsize = _buttonBackObj.GetComponent<RectTransform>().sizeDelta;
-                backsize.y += _textData.hight + _padding;
+                backsize.y += _iconData._textData.hight + _iconData._padding;
                 _buttonBackObj.GetComponent<RectTransform>().sizeDelta = backsize;
             }
 
             //幅を決める
             Vector2 size = new Vector2();
-            size.x = _tableSize.y * (buttonSize.x + _padding) + _padding;
-            size.y = _textData.hight;
+            size.x = _iconData._tableSize.y * (buttonSize.x + _iconData._padding) + _iconData._padding;
+            size.y = _iconData._textData.hight;
 
             //位置を設定
-            var pos = new Vector3(_leftTopPos.x, _leftTopPos.y, 0);
-            pos.x -= _padding;
-            pos.y += (_textData.hight + _padding);
+            var pos = new Vector3(_iconData._leftTopPos.x, _iconData._leftTopPos.y, 0);
+            pos.x -= _iconData._padding;
+            pos.y += (_iconData._textData.hight + _iconData._padding);
 
 
             //実体化
-            _textObj = Instantiate(_textPrefab, pos, Quaternion.identity);
+            _textObj = Instantiate(_iconData._textPrefab, pos, Quaternion.identity);
             //親の設定
             _textObj.transform.SetParent(c.transform);
             //幅の設定
@@ -170,21 +172,21 @@ public class ItemIcon : MonoBehaviour
 
             //テキストの各種設定
             var text = _textObj.GetComponent<Text>();
-            text.text = _textData.text;
-            text.fontSize = _textData.fontSize;
-            if(_textData.autoFontSize)
+            text.text = _iconData._textData.text;
+            text.fontSize = _iconData._textData.fontSize;
+            if(_iconData._textData.autoFontSize)
             {
                 text.resizeTextForBestFit = true;
             }
-            text.color = _textData.color;
-            text.alignment = _textData.textAnchor;
+            text.color = _iconData._textData.color;
+            text.alignment = _iconData._textData.textAnchor;
         }
 
-        for (int i = 0; i < (int)(_tableSize.x * _tableSize.y); i++)
+        for (int i = 0; i < (int)(_iconData._tableSize.x * _iconData._tableSize.y); i++)
         {
-            int w = Mathf.Abs((i % (int)_tableSize.y) * (int)(buttonSize.x + _padding));
-            int h = Mathf.Abs((i / (int)_tableSize.y) * (int)(buttonSize.y + _padding));
-            var obj = Instantiate(_buttonPrefab, new Vector3(_leftTopPos.x + w, _leftTopPos.y - h, 0), Quaternion.identity);
+            int w = Mathf.Abs((i % (int)_iconData._tableSize.y) * (int)(buttonSize.x + _iconData._padding));
+            int h = Mathf.Abs((i / (int)_iconData._tableSize.y) * (int)(buttonSize.y + _iconData._padding));
+            var obj = Instantiate(_iconData._buttonPrefab, new Vector3(_iconData._leftTopPos.x + w, _iconData._leftTopPos.y - h, 0), Quaternion.identity);
             obj.transform.SetParent(c.transform);
             _ItemBoxButtons.Add(obj);
         }

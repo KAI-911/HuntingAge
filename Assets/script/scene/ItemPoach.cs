@@ -183,7 +183,7 @@ public class ItemPoach : MonoBehaviour
                 var data = GameManager.Instance.ItemDataList.Dictionary[item.Key];
                 if (data.BoxHoldNumber == 0) continue;
                 var ibutton = buttons[data.BoxUINumber].GetComponent<ItemButton>();
-                ibutton.SetID(data.ID);
+                ibutton.SetID(data.ID, ItemBoxOrPoach.poach);
             }
         }
         public override void OnExit(ItemPoach owner, ItemUIState nextState)
