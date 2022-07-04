@@ -121,6 +121,13 @@ public class ItemHolder : MonoBehaviour, ISerializationCallbackReceiver
         }
 
     }
+    private void Start()
+    {
+        if (modifyValues)
+        {
+            Load();
+        }
+    }
     public void OnBeforeSerialize()
     {
         if (!modifyValues)
@@ -143,7 +150,7 @@ public class ItemHolder : MonoBehaviour, ISerializationCallbackReceiver
     public void DesrializeDictionary()
     {
         Debug.Log("DesrializeDictionary");
-        dictionary = new Dictionary<string, int>();
+        dictionary.Clear();
         DictionaryData.Keys.Clear();
         DictionaryData.Values.Clear();
         for (int i = 0; i < Mathf.Min(keys.Count, values.Count); i++)
@@ -170,30 +177,17 @@ public class ItemHolder : MonoBehaviour, ISerializationCallbackReceiver
         modifyValues = true;
         keys.Clear();
         values.Clear();
-        dictionary.Clear();
         Debug.Log("Load");
         switch (ItemStack)
         {
             case ItemStack.Box:
-                Debug.Log("Box"+ GameManager.Instance.ItemDataList.Dictionary.Count);
+                Debug.Log("Box" + GameManager.Instance.ItemDataList.Dictionary.Count);
                 foreach (var item in GameManager.Instance.ItemDataList.Dictionary)
                 {
-                    if (item.Value.BoxHoldNumber<= 0) continue;
-                    Debug.Log(item);
+                    if (item.Value.BoxHoldNumber <= 0) continue;
                     keys.Add(item.Key);
                     values.Add(item.Value.BoxHoldNumber);
-                    dictionary.Add(item.Key, item.Value.BoxHoldNumber);
-
                 }
-                //for (int i = 0; i < GameManager.Instance.ItemDataList.Dictionary.Count; i++)
-                //{
-                //    Debug.Log("Box"+i);
-                //    if (GameManager.Instance.ItemDataList.Dictionary[DictionaryData.Keys[i]].BoxHoldNumber <= 0) continue;
-                //    Debug.Log(DictionaryData.Keys[i]);
-                //    keys.Add(DictionaryData.Keys[i]);
-                //    values.Add(DictionaryData.Values[i]);
-                //    dictionary.Add(DictionaryData.Keys[i], DictionaryData.Values[i]);
-                //}
                 break;
             case ItemStack.Poach:
                 Debug.Log("Poach");
@@ -204,18 +198,7 @@ public class ItemHolder : MonoBehaviour, ISerializationCallbackReceiver
                     Debug.Log(item);
                     keys.Add(item.Key);
                     values.Add(item.Value.PoachHoldNumber);
-                    dictionary.Add(item.Key, item.Value.PoachHoldNumber);
-
                 }
-                //for (int i = 0; i < GameManager.Instance.ItemDataList.Dictionary.Count; i++)
-                //{
-                //    Debug.Log("Poach" + i);
-                //    if (GameManager.Instance.ItemDataList.Dictionary[DictionaryData.Keys[i]].PoachHoldNumber <= 0) continue;
-                //    Debug.Log(DictionaryData.Keys[i]);
-                //    keys.Add(DictionaryData.Keys[i]);
-                //    values.Add(DictionaryData.Values[i]);
-                //    dictionary.Add(DictionaryData.Keys[i], DictionaryData.Values[i]);
-                //}
                 break;
             default:
                 Debug.Log("default");
