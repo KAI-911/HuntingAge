@@ -9,20 +9,46 @@ public class ItemButton : MonoBehaviour
     public string ID { get => _ID; }
     [SerializeField] Image _image;
     [SerializeField] Text _count;
+    [SerializeField] Sprite _mask;
+    private ItemBoxOrPoach _item;
     void Start()
     {
     }
 
     void Update()
     {
-
+        if (_ID == "") return;
+        SetID(_ID, _item);
     }
     public void SetID(string id, ItemBoxOrPoach where)
     {
+        if (!GameManager.Instance.ItemDataList.Dictionary.ContainsKey(id)) return;
+        clear();
         _ID = id;
         var data = GameManager.Instance.ItemDataList.Dictionary[id];
-        _image.sprite = Resources.Load<Sprite>(data.IconName);
         switch (where)
+        {
+            case ItemBoxOrPoach.box:
+                if (data.BoxHoldNumber <= 0)
+                {
+                    clear();
+                    return;
+                }
+                break;
+            case ItemBoxOrPoach.poach:
+                if (data.PoachHoldNumber <= 0)
+                {
+                    clear();
+                    return;
+                }
+                break;
+            default:
+                break;
+        }
+
+        _image.sprite = Resources.Load<Sprite>(data.IconName);
+        _item = where;
+        switch (_item)
         {
             case ItemBoxOrPoach.box:
                 _count.text = data.BoxHoldNumber.ToString();
@@ -33,20 +59,21 @@ public class ItemButton : MonoBehaviour
             default:
                 break;
         }
-        
+
     }
     public void clear()
     {
         _ID = "";
-        _image.sprite = GetComponent<Sprite>();
+        _count.text = "";
+        _image.sprite = _mask;
     }
 
-   
+
 
 
 }
- public enum ItemBoxOrPoach
-    {
-        box,
-        poach
-    }
+public enum ItemBoxOrPoach
+{
+    box,
+    poach
+}

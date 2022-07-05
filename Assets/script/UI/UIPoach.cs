@@ -30,6 +30,7 @@ public class UIPoach : UIBase
         }
         public override void OnMenu(UIBase owner)
         {
+            if (!UIManager.Instance._player.IsAction) return;
             UIManager.Instance._player.IsAction = false;
             owner.ChangeState<FirstSlect>();
         }

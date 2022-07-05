@@ -41,15 +41,16 @@ public class UIManager : Singleton<UIManager>
         _input.UI.Proceed.started += UIProceed;
         _input.UI.Back.started += UIBack;
         _input.UI.Menu.started += UIMenu;
+        _input.UI.SubMenu.started += UISubMenu;
         _input.UI.Enable();
     }
-
 
     private void OnDisable()
     {
         _input.UI.Proceed.started -= UIProceed;
         _input.UI.Back.started -= UIBack;
         _input.UI.Menu.started -= UIMenu;
+        _input.UI.SubMenu.started -= UISubMenu;
         _input.UI.Disable();
     }
 
@@ -60,7 +61,13 @@ public class UIManager : Singleton<UIManager>
             ui.Menu();
         }
     }
-
+    private void UISubMenu(InputAction.CallbackContext obj)
+    {
+        foreach (var ui in _UIList)
+        {
+            ui.SubMenu();
+        }
+    }
     private void UIBack(InputAction.CallbackContext obj)
     {
         foreach (var ui in _UIList)

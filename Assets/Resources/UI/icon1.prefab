@@ -140,6 +140,7 @@ MonoBehaviour:
   _ID: 
   _image: {fileID: 4934060085269930693}
   _count: {fileID: 1273899107561278196}
+  _mask: {fileID: 10917, guid: 0000000000000000f000000000000000, type: 0}
 --- !u!1 &3645983074893122456
 GameObject:
   m_ObjectHideFlags: 0

@@ -364,6 +364,15 @@ public partial class @InputControls : IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""SubMenu"",
+                    ""type"": ""Button"",
+                    ""id"": ""55b7ffae-4b90-4695-b22c-17b724f43291"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -597,6 +606,17 @@ public partial class @InputControls : IInputActionCollection2, IDisposable
                     ""action"": ""CurrentChange"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""fb964ca3-43a4-41a1-a7a1-14efded8a639"",
+                    ""path"": ""<Gamepad>/buttonWest"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""SubMenu"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -618,6 +638,7 @@ public partial class @InputControls : IInputActionCollection2, IDisposable
         m_UI_Back = m_UI.FindAction("Back", throwIfNotFound: true);
         m_UI_Menu = m_UI.FindAction("Menu", throwIfNotFound: true);
         m_UI_CurrentChange = m_UI.FindAction("CurrentChange", throwIfNotFound: true);
+        m_UI_SubMenu = m_UI.FindAction("SubMenu", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -755,6 +776,7 @@ public partial class @InputControls : IInputActionCollection2, IDisposable
     private readonly InputAction m_UI_Back;
     private readonly InputAction m_UI_Menu;
     private readonly InputAction m_UI_CurrentChange;
+    private readonly InputAction m_UI_SubMenu;
     public struct UIActions
     {
         private @InputControls m_Wrapper;
@@ -764,6 +786,7 @@ public partial class @InputControls : IInputActionCollection2, IDisposable
         public InputAction @Back => m_Wrapper.m_UI_Back;
         public InputAction @Menu => m_Wrapper.m_UI_Menu;
         public InputAction @CurrentChange => m_Wrapper.m_UI_CurrentChange;
+        public InputAction @SubMenu => m_Wrapper.m_UI_SubMenu;
         public InputActionMap Get() { return m_Wrapper.m_UI; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -788,6 +811,9 @@ public partial class @InputControls : IInputActionCollection2, IDisposable
                 @CurrentChange.started -= m_Wrapper.m_UIActionsCallbackInterface.OnCurrentChange;
                 @CurrentChange.performed -= m_Wrapper.m_UIActionsCallbackInterface.OnCurrentChange;
                 @CurrentChange.canceled -= m_Wrapper.m_UIActionsCallbackInterface.OnCurrentChange;
+                @SubMenu.started -= m_Wrapper.m_UIActionsCallbackInterface.OnSubMenu;
+                @SubMenu.performed -= m_Wrapper.m_UIActionsCallbackInterface.OnSubMenu;
+                @SubMenu.canceled -= m_Wrapper.m_UIActionsCallbackInterface.OnSubMenu;
             }
             m_Wrapper.m_UIActionsCallbackInterface = instance;
             if (instance != null)
@@ -807,6 +833,9 @@ public partial class @InputControls : IInputActionCollection2, IDisposable
                 @CurrentChange.started += instance.OnCurrentChange;
                 @CurrentChange.performed += instance.OnCurrentChange;
                 @CurrentChange.canceled += instance.OnCurrentChange;
+                @SubMenu.started += instance.OnSubMenu;
+                @SubMenu.performed += instance.OnSubMenu;
+                @SubMenu.canceled += instance.OnSubMenu;
             }
         }
     }
@@ -827,5 +856,6 @@ public partial class @InputControls : IInputActionCollection2, IDisposable
         void OnBack(InputAction.CallbackContext context);
         void OnMenu(InputAction.CallbackContext context);
         void OnCurrentChange(InputAction.CallbackContext context);
+        void OnSubMenu(InputAction.CallbackContext context);
     }
 }

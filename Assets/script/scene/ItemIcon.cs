@@ -6,14 +6,14 @@ using UnityEngine.UI;
 public class ItemIcon : MonoBehaviour
 {
 
-    [SerializeField] List<GameObject> _ItemBoxButtons;
+    [SerializeField] List<GameObject> _Buttons;
     [SerializeField] ItemIconData _iconData;
 
     private GameObject _buttonBackObj;
     private GameObject _textObj;
     private RunOnce _once = new RunOnce();
     private int _currentNunber;
-    public List<GameObject> Buttons { get => _ItemBoxButtons; set => _ItemBoxButtons = value; }
+    public List<GameObject> Buttons { get => _Buttons; set => _Buttons = value; }
     public Vector2 TableSize { get => _iconData._tableSize; set => _iconData._tableSize = value; }
     public int CurrentNunber { get => _currentNunber; }
     public int GetSize { get => (int)_iconData._tableSize.x * (int)_iconData._tableSize.y; }
@@ -45,11 +45,11 @@ public class ItemIcon : MonoBehaviour
         if (_iconData._canBeChanged)
         {
             var buttonSize = _iconData._buttonPrefab.GetComponent<RectTransform>().sizeDelta;
-            for (int i = 0; i < _ItemBoxButtons.Count; i++)
+            for (int i = 0; i < _Buttons.Count; i++)
             {
                 int w = Mathf.Abs((i % (int)_iconData._tableSize.y) * (int)(buttonSize.x + _iconData._padding));
                 int h = Mathf.Abs((i / (int)_iconData._tableSize.y) * (int)(buttonSize.y + _iconData._padding));
-                _ItemBoxButtons[i].transform.position = new Vector3(_iconData._leftTopPos.x + w, _iconData._leftTopPos.y - h, 0);
+                _Buttons[i].transform.position = new Vector3(_iconData._leftTopPos.x + w, _iconData._leftTopPos.y - h, 0);
             }
         }
     }
@@ -108,6 +108,20 @@ public class ItemIcon : MonoBehaviour
         return _currentNunber;
     }
 
+
+    /// <summary>
+    /// 見つからない場合は-1を返す
+    /// </summary>
+    /// <returns></returns>
+    public int FirstNotSetNumber()
+    {
+        for (int i = 0; i < _Buttons.Count; i++)
+        {
+            var itembutton = _Buttons[i].GetComponent<ItemButton>();
+            if (itembutton.ID == "") return i;
+        }
+        return -1;
+    }
 
     [ContextMenu("createbutton")]
     public List<GameObject> CreateButton(int currentNum = 0)
@@ -174,7 +188,7 @@ public class ItemIcon : MonoBehaviour
             var text = _textObj.GetComponent<Text>();
             text.text = _iconData._textData.text;
             text.fontSize = _iconData._textData.fontSize;
-            if(_iconData._textData.autoFontSize)
+            if (_iconData._textData.autoFontSize)
             {
                 text.resizeTextForBestFit = true;
             }
@@ -182,24 +196,25 @@ public class ItemIcon : MonoBehaviour
             text.alignment = _iconData._textData.textAnchor;
         }
 
+        //ボタン
         for (int i = 0; i < (int)(_iconData._tableSize.x * _iconData._tableSize.y); i++)
         {
             int w = Mathf.Abs((i % (int)_iconData._tableSize.y) * (int)(buttonSize.x + _iconData._padding));
             int h = Mathf.Abs((i / (int)_iconData._tableSize.y) * (int)(buttonSize.y + _iconData._padding));
             var obj = Instantiate(_iconData._buttonPrefab, new Vector3(_iconData._leftTopPos.x + w, _iconData._leftTopPos.y - h, 0), Quaternion.identity);
             obj.transform.SetParent(c.transform);
-            _ItemBoxButtons.Add(obj);
+            _Buttons.Add(obj);
         }
         _currentNunber = currentNum;
-        return _ItemBoxButtons;
+        return _Buttons;
     }
     public void DeleteButton()
     {
-        foreach (var item in _ItemBoxButtons)
+        foreach (var item in _Buttons)
         {
             Destroy(item);
         }
-        _ItemBoxButtons.Clear();
+        _Buttons.Clear();
         if (_buttonBackObj != null)
         {
             Destroy(_buttonBackObj);
@@ -211,6 +226,18 @@ public class ItemIcon : MonoBehaviour
             _textObj = null;
         }
     }
+
+
+    //CurrentNunberにアイテムがセットされているか
+    public bool CheckCurrentNunberItem()
+    {
+        if (!WithinRange()) return false;
+
+        var button = _Buttons[CurrentNunber].GetComponent<ItemButton>();
+        if (button.ID == "") return false;
+        return true;
+    }
+
 }
 
 [System.Serializable]
