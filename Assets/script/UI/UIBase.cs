@@ -13,7 +13,7 @@ abstract public class UIBase : MonoBehaviour
     {
         UIManager.Instance.AddUIList(this);
     }
-    virtual public  void Update()
+    virtual public void Update()
     {
         _currentState.OnUpdate(this);
     }
@@ -29,6 +29,10 @@ abstract public class UIBase : MonoBehaviour
     public void Menu()
     {
         _currentState.OnMenu(this);
+    }
+    public void SubMenu()
+    {
+        _currentState.OnSubMenu(this);
     }
     public void ChangeState<T>() where T : UIStateBase, new()
     {
@@ -46,6 +50,7 @@ abstract public class UIBase : MonoBehaviour
         public virtual void OnProceed(UIBase owner) { }
         public virtual void OnBack(UIBase owner) { }
         public virtual void OnMenu(UIBase owner) { }
+        public virtual void OnSubMenu(UIBase owner) { }
 
     }
 }

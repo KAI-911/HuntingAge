@@ -342,6 +342,15 @@
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": false
+                },
+                {
+                    "name": "SubMenu",
+                    "type": "Button",
+                    "id": "55b7ffae-4b90-4695-b22c-17b724f43291",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
                 }
             ],
             "bindings": [
@@ -575,6 +584,17 @@
                     "action": "CurrentChange",
                     "isComposite": false,
                     "isPartOfComposite": true
+                },
+                {
+                    "name": "",
+                    "id": "fb964ca3-43a4-41a1-a7a1-14efded8a639",
+                    "path": "<Gamepad>/buttonWest",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "SubMenu",
+                    "isComposite": false,
+                    "isPartOfComposite": false
                 }
             ]
         }

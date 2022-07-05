@@ -2,17 +2,16 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ItemDataList : MonoBehaviour, ISerializationCallbackReceiver
+[System.Serializable]
+public class WeaponDataList : MonoBehaviour, ISerializationCallbackReceiver
 {
-    [SerializeField] ItemListObject DictionaryData;
+    [SerializeField] WeaponListObject DictionaryData;
     [SerializeField] List<string> keys = new List<string>();
-    [SerializeField] List<ItemData> values = new List<ItemData>();
-    [SerializeField] Dictionary<string, ItemData> dictionary = new Dictionary<string, ItemData>();
+    [SerializeField] List<WeaponData> values = new List<WeaponData>();
+    [SerializeField] Dictionary<string, WeaponData> dictionary = new Dictionary<string, WeaponData>();
     public bool modifyValues;
-    public Dictionary<string, ItemData> Dictionary { get => dictionary; }
-    public List<string> Keys { get => keys; set => keys = value; }
-    public List<ItemData> Values { get => values; set => values = value; }
-
+    public Dictionary<string, WeaponData> Dictionary { get => dictionary; }
+    // Start is called before the first frame update
     private void Awake()
     {
         keys.Clear();
@@ -62,19 +61,37 @@ public class ItemDataList : MonoBehaviour, ISerializationCallbackReceiver
     public void PrintDictionary()
     {
         Debug.Log("Log");
-        foreach (var item in Dictionary)
+        foreach (var weapon in Dictionary)
         {
-            Debug.Log("Key: " + item.Key + " Value: " + item.Value);
+            Debug.Log("Key: " + weapon.Key + " Value: " + weapon.Value);
         }
+    }
+
+    [ContextMenu("Production")]
+    public int Production(string _ID)
+    {
+        int index = keys.FindIndex(n => n.StartsWith(_ID));
+        Debug.Log(index);
+        var data = values[index];
+        if (data.BoxPossession)return 0;
+        data.BoxPossession = true;
+        values[index] = data;
+        DesrializeDictionary();
+        return 1;
+    }
+
+    public int Enhancement(string _ID)
+    {
+        return 1;
     }
 }
 
+
 [System.Serializable]
-public struct ItemData
+public struct WeaponData
 {
     /// <summary>
-    /// IDはItem000から連番
-    /// IDはMaterial000から連番
+    /// 武器種がX00、素材が00X
     /// </summary>
     public string ID;
 
@@ -89,53 +106,34 @@ public struct ItemData
     public string IconName;
 
     /// <summary>
-    /// アイテムボックスで一枠で保存できる最大量
-    /// </summary>
-    public int BoxStackNumber;
-
-    /// <summary>
     /// アイテムボックスでどの枠に保存されているか
     /// </summary>
     public int BoxUINumber;
 
     /// <summary>
-    /// アイテムボックスでどれだけ持っているか
+    /// 鍛冶場レベルいくらで作ることができるか
     /// </summary>
-    public int BoxHoldNumber;
+    public int CreatableLevel;
 
     /// <summary>
-    /// アイテムポーチで一枠で保存できる最大量
+    /// ボックスに所持しているか
     /// </summary>
-    public int PoachStackNumber;
+    public bool BoxPossession;
 
     /// <summary>
-    /// アイテムポーチでどの枠に保存されているか
+    /// 攻撃力
     /// </summary>
-    public int PoachUINumber;
+    public float AttackPoint;
 
     /// <summary>
-    /// アイテムポーチでどれだけ持っているか
+    /// 武器種
     /// </summary>
-    public int PoachHoldNumber;
-
-    /// <summary>
-    /// 効果が永続するかどうか（死亡すると消える）
-    /// </summary>
-    public bool Permanent;
-    /// <summary>
-    /// 効果時間
-    /// </summary>
-    public float Time;
-    /// <summary>
-    /// どのような効果なのか
-    /// </summary>
-    public ItemType ItemType;
+    public WeaponType WeaponType;
 }
 
-public enum ItemType
+public enum WeaponType
 {
-    Material,
-    HpRecovery,
-    AttackUp,
-    DefenseUp
+    Axe = 0,
+    Spear,
+    Bow
 }
