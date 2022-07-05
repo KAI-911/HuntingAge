@@ -187,7 +187,7 @@ public class ItemBox : MonoBehaviour
                 var data = GameManager.Instance.ItemDataList.Dictionary[item.Key];
                 if (data.BoxHoldNumber == 0) continue;
                 var ibutton = buttons[data.BoxUINumber].GetComponent<ItemButton>();
-                ibutton.SetID(data.ID);
+                ibutton.SetID(data.ID, ItemBoxOrPoach.box);
             }
         }
         public override void OnExit(ItemBox owner, ItemUIState nextState)

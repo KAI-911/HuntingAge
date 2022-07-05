@@ -9,7 +9,8 @@ public class UIPoach : UIBase
 
     private void Start()
     {
-        UIManager.AddUIList(this);
+        ItemIconList[(int)IconType.TypeSelect].SetIcondata(UIManager.Instance.UIPresetData.Dictionary["IP_TypeSelect"]);
+        ItemIconList[(int)IconType.ItemSelect].SetIcondata(UIManager.Instance.UIPresetData.Dictionary["IP_ItemSelect"]);
         _currentState = new Close();
         _currentState.OnEnter(this, null);
     }
@@ -21,7 +22,7 @@ public class UIPoach : UIBase
         public override void OnEnter(UIBase owner, UIStateBase prevState)
         {
             Debug.Log("UIStateBase_close_OnEnter");
-            owner.UIManager._player.IsAction = true;
+            UIManager.Instance._player.IsAction = true;
         }
         public override void OnUpdate(UIBase owner)
         {
@@ -29,7 +30,7 @@ public class UIPoach : UIBase
         }
         public override void OnMenu(UIBase owner)
         {
-            owner.UIManager._player.IsAction = false;
+            UIManager.Instance._player.IsAction = false;
             owner.ChangeState<FirstSlect>();
         }
     }
@@ -40,7 +41,7 @@ public class UIPoach : UIBase
     {
         public override void OnEnter(UIBase owner, UIStateBase prevState)
         {
-            var list = owner.FirstSelect.CreateButton();
+            var list = owner.ItemIconList[(int)IconType.TypeSelect].CreateButton();
             var button0 = list[0].GetComponent<Button>();
             button0.onClick.AddListener(()=>owner.ChangeState<ItemSlect>());
             var button0Text = list[0].GetComponentInChildren<Text>();
@@ -48,11 +49,11 @@ public class UIPoach : UIBase
         }
         public override void OnExit(UIBase owner, UIStateBase nextState)
         {
-            owner.FirstSelect.DeleteButton();
+            owner.ItemIconList[(int)IconType.TypeSelect].DeleteButton();
         }
         public override void OnProceed(UIBase owner)
         {
-            owner.FirstSelect.Buttons[owner.FirstSelect.CurrentNunber].GetComponent<Button>().onClick.Invoke();
+            owner.ItemIconList[(int)IconType.TypeSelect].Buttons[owner.ItemIconList[(int)IconType.TypeSelect].CurrentNunber].GetComponent<Button>().onClick.Invoke();
         }
         public override void OnBack(UIBase owner)
         {
@@ -60,7 +61,7 @@ public class UIPoach : UIBase
         }
         public override void OnUpdate(UIBase owner)
         {
-            owner.FirstSelect.Select(owner.UIManager.InputAction.ReadValue<Vector2>());
+            owner.ItemIconList[(int)IconType.TypeSelect].Select(UIManager.Instance.InputSelection.ReadValue<Vector2>());
             Debug.Log("UIStateBase_FirstSlect");
         }
     }
@@ -68,22 +69,22 @@ public class UIPoach : UIBase
     {
         public override void OnEnter(UIBase owner, UIStateBase prevState)
         {
-            var list = owner.SecondSelect.CreateButton();
+            var list = owner.ItemIconList[(int)IconType.ItemSelect].CreateButton();
 
             foreach (var item in GameManager.Instance.ItemDataList.Dictionary)
             {
                 if (item.Value.PoachHoldNumber == 0) continue;
-                var ibutton = list[item.Value.BoxUINumber].GetComponent<ItemButton>();
-                ibutton.SetID(item.Value.ID);
+                var ibutton = list[item.Value.PoachUINumber].GetComponent<ItemButton>();
+                ibutton.SetID(item.Value.ID, ItemBoxOrPoach.poach);
             }
         }
         public override void OnExit(UIBase owner, UIStateBase nextState)
         {
-            owner.SecondSelect.DeleteButton();
+            owner.ItemIconList[(int)IconType.ItemSelect].DeleteButton();
         }
         public override void OnUpdate(UIBase owner)
         {
-            owner.SecondSelect.Select(owner.UIManager.InputAction.ReadValue<Vector2>());
+            owner.ItemIconList[(int)IconType.ItemSelect].Select(UIManager.Instance.InputSelection.ReadValue<Vector2>());
             Debug.Log("ItemSlect_SecondSelect");
         }
         public override void OnProceed(UIBase owner)
@@ -96,4 +97,10 @@ public class UIPoach : UIBase
         }
 
     }
+    enum IconType
+    {
+        TypeSelect,
+        ItemSelect
+    }
+
 }

@@ -6,443 +6,397 @@ using UnityEngine.InputSystem;
 using System;
 using UnityEngine.EventSystems;
 
-public class Blacksmith : MonoBehaviour
+public class Blacksmith : UIBase
 {
-    //キャンバス
-    [SerializeField] Canvas _canvas;
-    [SerializeField] GameObject _buttonParent;
     ///表示するテキスト
-    [SerializeField] Text _weaponName;
     [SerializeField] Text _blacksmithMode;
     //プレイヤーが近くまで来たか判断
     [SerializeField] TargetChecker _blacksmithChecker;
     //確認用
     [SerializeField] Confirmation _confirmation;
+    //武器データリスト
+    [SerializeField] WeaponDataList _WeaponDataList;
+    //強化する武器のID
+    [SerializeField] string _EnhancementWeaponID;
 
-    //レベル別クエストのまとまり
-    [SerializeField] WeaponData _weaponData;
+    enum IconType
+    {
+        TypeSelect,
+        Confirmation
+    }
 
-    //ボタンの配列
-    [SerializeField] List<GameObject> _buttons;
-    //選択中のボタン番号
-    [SerializeField] int _currentButtonNumber;
-
-    [SerializeField] WeaponData _WeaponData;
-    private int productionWeapon;
+    private int productionWeaponType;
     private enum WeaponType
     {
         Axe = 1,
         Spear,
         Bow
     }
-
-    //インプットシステム
-    [SerializeField] private InputControls _input;
-    private InputAction _inputAction;
-    public InputAction InputAction { get => _inputAction; }
-
-    [SerializeField] private RunOnce _buttonRunOnce;
-    [SerializeField] private RunOnce _serectRunOnce;
-
-    [SerializeField] private Vector3 firstButtonPos;
-    [SerializeField] private float buttonBetween;
-
-    // Start is called before the first frame update
-    private UIState _currentState;
-    private void Awake()
-    {
-        _input = new InputControls();
-        _buttonRunOnce = new RunOnce();
-        _serectRunOnce = new RunOnce();
-        _weaponData = new WeaponData();
-        _currentState = new CanvasClose();
-        _currentState.OnEnter(this, null);
-    }
     void Start()
     {
-        _canvas.enabled = false;
-    }
-    private void OnEnable()
-    {
-        _inputAction = _input.UI.Selection;
-        _input.UI.Proceed.started += Proceed;
-
-        _input.UI.Back.started += Back;
-
-        _input.UI.Enable();
-    }
-
-    private void OnDisable()
-    {
-        _input.UI.Proceed.started -= Proceed;
-        _input.UI.Back.started -= Back;
-
-        _input.UI.Disable();
-    }
-    // Update is called once per frame
-    void Update()
-    {
-        _currentState.OnUpdate(this);
-        var s = _currentState.GetType();
-        Debug.Log(s);
-    }
-
-    private void Serect()
-    {
-        float v = _inputAction.ReadValue<Vector2>().y;
-        if (_currentButtonNumber > _buttons.Count && _buttons.Count >= 1) _currentButtonNumber = 0;
-
-        if (Mathf.Abs(v) > 0)
-        {
-            if (_serectRunOnce.Flg) return;
-            if (v < 0)
-            {
-                _currentButtonNumber++;
-                if (_currentButtonNumber > _buttons.Count - 1) _currentButtonNumber = _buttons.Count - 1;
-            }
-            else
-            {
-                _currentButtonNumber--;
-                if (_currentButtonNumber < 0) _currentButtonNumber = 0;
-            }
-            _serectRunOnce.Flg = true;
-        }
-        else
-        {
-            _serectRunOnce.Flg = false;
-        }
-        _buttons[_currentButtonNumber].GetComponent<Button>().Select();
-    }
-
-    public void ModeSelect()
-    {
-
-    }
-
-
-    void ButtonDelete()
-    {
-        foreach (var item in _buttons)
-        {
-            Destroy(item);
-        }
-        _buttons.Clear();
-    }
-
-    private void Back(InputAction.CallbackContext obj)
-    {
-        Debug.Log("Back");
-        _currentState.OnBack(this);
-
-    }
-
-    private void Proceed(InputAction.CallbackContext obj)
-    {
-        Debug.Log("Proceed");
-        _currentState.OnProceed(this);
-    }
-
-    public void ChangeState<T>() where T : UIState, new()
-    {
-        var nextState = new T();
-        _currentState.OnExit(this, nextState);
-        nextState.OnEnter(this, _currentState);
-        _currentState = nextState;
-    }
-
-
-
-    public abstract class UIState
-    {
-        public virtual void OnEnter(Blacksmith owner, UIState prevState)
-        {
-
-        }
-        public virtual void OnUpdate(Blacksmith owner)
-        {
-
-        }
-        public virtual void OnExit(Blacksmith owner, UIState nextState)
-        {
-
-        }
-        public virtual void OnProceed(Blacksmith owner)
-        {
-
-        }
-        public virtual void OnBack(Blacksmith owner)
-        {
-
-        }
+        ItemIconList[(int)IconType.TypeSelect].SetIcondata(UIManager.Instance.UIPresetData.Dictionary["BlacksmithButton"]);
+        ItemIconList[(int)IconType.Confirmation].SetIcondata(UIManager.Instance.UIPresetData.Dictionary["Confirmation"]);
+        _currentState = new Close();
+        _currentState.OnEnter(this, null);
     }
 
     [Serializable]
-    public class CanvasClose : UIState
+    public class Close : UIStateBase
     {
-        public override void OnEnter(Blacksmith owner, UIState prevState)
+        public override void OnEnter(UIBase owner, UIStateBase prevState)
         {
-            owner.ButtonDelete();
-            owner._canvas.enabled = false;
+            Debug.Log("Blacksmith_close_OnEnter");
+            UIManager.Instance._player.IsAction = true;
         }
-        public override void OnUpdate(Blacksmith owner)
-        { }
-        public override void OnExit(Blacksmith owner, UIState nextState)
-        { }
-        public override void OnProceed(Blacksmith owner)
+        public override void OnProceed(UIBase owner)
         {
-            Debug.Log("o");
+            Debug.Log("Blacksmith_close_OnProceed");
             //近くに来ている && 決定ボタンを押している && キャンバスがactiveでない
-            if (owner._blacksmithChecker.TriggerHit && !owner._canvas.enabled)
+            if (owner.GetComponent<Blacksmith>()._blacksmithChecker.TriggerHit && UIManager.Instance._player.IsAction)
             {
-                Debug.Log("f");
+                Debug.Log("o");
                 owner.ChangeState<SelectMode>();
             }
         }
-        public override void OnBack(Blacksmith owner)
-        { }
     }
 
-    public class SelectMode : UIState
+    public class SelectMode : UIStateBase
     {
-        public override void OnEnter(Blacksmith owner, UIState prevState)
+        public override void OnEnter(UIBase owner, UIStateBase prevState)
         {
-            Debug.Log("i");
-            owner._canvas.enabled = true;
+            var list = owner.ItemIconList[(int)IconType.TypeSelect].CreateButton();
 
-            //モード選択画面
-            owner.ButtonDelete();
-            owner._canvas.enabled = true;
+            var button0Text = list[0].GetComponentInChildren<Text>();
+            button0Text.text = "製造";
+            var button0 = list[0].GetComponent<Button>();
+            button0.onClick.AddListener(() => owner.ChangeState<ProductionSelectMode>());
 
-            owner._blacksmithMode.text = "何をする？";
-
-            //ボタンの追加
-            for (int i = 0; i < 2/*生産、強化の二種のみのため*/; i++)
-            {
-                //ボタンの位置設定
-                Vector3 pos = owner.firstButtonPos;
-                pos.y -= i * owner.buttonBetween;
-                //インスタンス化
-                var obj = Instantiate(Resources.Load("UI/Button1"), pos, Quaternion.identity) as GameObject;
-                //親の設定
-                obj.transform.parent = owner._buttonParent.transform;
-                //ボタンが押されたときの設定
-                var button = obj.GetComponent<Button>();
-                //テキストの設定
-                var text = obj.GetComponentInChildren<Text>();
-                if (i == 0)
-                {
-                    text.text = "生産";
-                    button.onClick.AddListener(() => owner.ChangeState<ProductionSelectMode>());
-                }
-                else
-                {
-                    text.text = "強化";
-                    button.onClick.AddListener(() => owner.ChangeState<ProductionSelectMode>());
-                }
-                //ボタンが押されたときの処理
-                owner._buttons.Add(obj);
-            }
+            var button1Text = list[1].GetComponentInChildren<Text>();
+            button1Text.text = "強化";
+            var button1 = list[1].GetComponent<Button>();
+            button1.onClick.AddListener(() => owner.ChangeState<EnhancementSelectMode>());
         }
-        public override void OnUpdate(Blacksmith owner)
+        public override void OnExit(UIBase owner, UIStateBase nextState)
         {
-            //コントローラーで選択できるようにする
-            owner.Serect();
+            owner.ItemIconList[(int)IconType.TypeSelect].DeleteButton();
         }
-        public override void OnExit(Blacksmith owner, UIState nextState)
+        public override void OnProceed(UIBase owner)
         {
-            owner.ButtonDelete();
+            owner.ItemIconList[(int)IconType.TypeSelect].Buttons[owner.ItemIconList[(int)IconType.TypeSelect].CurrentNunber].GetComponent<Button>().onClick.Invoke();
         }
-        public override void OnProceed(Blacksmith owner)
-        {
-            owner._buttons[owner._currentButtonNumber].GetComponent<Button>().onClick.Invoke();
-        }
-        public override void OnBack(Blacksmith owner)
+        public override void OnBack(UIBase owner)
         {
             Debug.Log("modoru");
-            owner.ChangeState<CanvasClose>();
+            owner.ChangeState<Close>();
         }
     }
 
-    public class ProductionSelectMode : UIState
+    public class ProductionSelectMode : UIStateBase
     {
-        private RunOnce _runOnce;
-        private Button _currntButton;
-
-        public override void OnEnter(Blacksmith owner, UIState prevState)
+        public override void OnEnter(UIBase owner, UIStateBase prevState)
         {
-            owner._canvas.enabled = true;
-
+            Debug.Log("ProductionSelect");
             //モード選択画面
-            owner.ButtonDelete();
-            owner._canvas.enabled = true;
-
-            owner._blacksmithMode.text = "何を作る？";
+            owner.GetComponent<Blacksmith>()._blacksmithMode.text = "何を作る？";
             //ボタンの追加
+            var list = owner.ItemIconList[(int)IconType.TypeSelect].CreateButton();
             for (int i = 0; i < 3/*斧・槍・弓*/; i++)
             {
-                //ボタンの位置設定
-                Vector3 pos = owner.firstButtonPos;
-                pos.y -= i * owner.buttonBetween;
-                //インスタンス化
-                var obj = Instantiate(Resources.Load("UI/Button1"), pos, Quaternion.identity) as GameObject;
-                //親の設定
-                obj.transform.parent = owner._buttonParent.transform;
-                //ボタンが押されたときの設定
-                var button = obj.GetComponent<Button>();
-                //テキストの設定
-                var text = obj.GetComponentInChildren<Text>();
+                Button button = list[i].GetComponent<Button>();
+                Text buttonText = list[i].GetComponentInChildren<Text>();
                 switch (i)
                 {
                     case 0:
-                        text.text = "斧";
-                        owner.productionWeapon = (int)WeaponType.Axe;
-                        button.onClick.AddListener(() => owner.ChangeState<ProductionSelectMode>());
+                        button.onClick.AddListener(() => owner.ChangeState<ProductionWeaponMode>());
+                        buttonText.text = "製造：斧";
                         break;
                     case 1:
-                        text.text = "槍";
-                        owner.productionWeapon = (int)WeaponType.Spear;
-                        button.onClick.AddListener(() => owner.ChangeState<ProductionSelectMode>());
+                        button.onClick.AddListener(() => owner.ChangeState<ProductionWeaponMode>());
+                        buttonText.text = "製造：槍";
                         break;
                     case 2:
-                        text.text = "弓";
-                        owner.productionWeapon = (int)WeaponType.Bow;
-                        button.onClick.AddListener(() => owner.ChangeState<ProductionSelectMode>());
+                        button.onClick.AddListener(() => owner.ChangeState<ProductionWeaponMode>());
+                        buttonText.text = "製造：弓";
                         break;
                 }
-                //ボタンが押されたときの処理
-                owner._buttons.Add(obj);
             }
         }
-        public override void OnUpdate(Blacksmith owner)
+        public override void OnExit(UIBase owner, UIStateBase nextState)
         {
-            //コントローラーで選択できるようにする
-            owner.Serect();
+            owner.ItemIconList[(int)IconType.TypeSelect].DeleteButton();
         }
-        public override void OnExit(Blacksmith owner, UIState nextState)
+        public override void OnProceed(UIBase owner)
         {
-            owner.ButtonDelete();
+            owner.ItemIconList[(int)IconType.TypeSelect].Buttons[owner.ItemIconList[(int)IconType.TypeSelect].CurrentNunber].GetComponent<Button>().onClick.Invoke();
         }
-        public override void OnProceed(Blacksmith owner)
-        {
-            owner._buttons[owner._currentButtonNumber].GetComponent<Button>().onClick.Invoke();
-        }
-        public override void OnBack(Blacksmith owner)
+        public override void OnBack(UIBase owner)
         {
             Debug.Log("modoru");
-            owner.ChangeState<CanvasClose>();
+            owner.ChangeState<SelectMode>();
         }
     }
 
-    public class ProductionWeaponMode : UIState
+    public class ProductionWeaponMode : UIStateBase
     {
-        private RunOnce _runOnce;
-        private Button _currntButton;
-        private bool _confirmation;
-        public override void OnEnter(Blacksmith owner, UIState prevState)
+        private bool ConfirmationSelect;
+        public override void OnEnter(UIBase owner, UIStateBase prevState)
         {
-            owner._canvas.enabled = true;
-
-            //モード選択画面
-            owner.ButtonDelete();
-            owner._canvas.enabled = true;
-
-            var data = GameManager.Instance;
-
-            switch (owner.productionWeapon)
+            ConfirmationSelect = false;
+            switch (owner.GetComponent<Blacksmith>().productionWeaponType)
             {
                 case 1:
-                    owner._blacksmithMode.text = "制作：斧";
+                    owner.GetComponent<Blacksmith>()._blacksmithMode.text = "製造：斧";
                     break;
                 case 2:
-                    owner._blacksmithMode.text = "制作：槍";
+                    owner.GetComponent<Blacksmith>()._blacksmithMode.text = "製造：槍";
                     break;
                 case 3:
-                    owner._blacksmithMode.text = "制作：弓";
+                    owner.GetComponent<Blacksmith>()._blacksmithMode.text = "製造：弓";
                     break;
                 default:
                     break;
             }
 
-            //ボタンの追加
-            var villageData = SaveData.GetClass("Village", new VillageData());
-            for (int i = 0; i < villageData.BlacksmithLevel; i++)
-            {
-                //ボタンの位置設定
-                Vector3 pos = owner.firstButtonPos;
-                pos.y -= i * owner.buttonBetween;
-                //インスタンス化
-                var obj = Instantiate(Resources.Load("UI/Button"), pos, Quaternion.identity) as GameObject;
-                //親の設定
-                obj.transform.parent = owner._buttonParent.transform;
-                //テキストの設定
-                var text = obj.GetComponentInChildren<Text>();
-                //text.text = data.weaponName(owner.productionWeapon * 100 + i);
-                //ボタンが押されたときの設定
-                var button = obj.GetComponent<Button>();
-                //ボタンが押されたときの処理
-                button.onClick.AddListener(() => 
-                { 
-                    if (!GameManager.Instance.WeaponDataList.Production("1011"))
-                    {
-                        owner._confirmation.SetText("すでに所持しています");
-                    }
-                    owner._confirmation.SetText("すでに所持しています");
-                }); 
-                owner._buttons.Add(obj);
 
+            //ボタンの追加
+            var villageData = GameManager.Instance.VillageData;
+            var Weapon = owner.GetComponent<Blacksmith>()._WeaponDataList.Dictionary;
+            List<WeaponData> _CreatableWeapon = new List<WeaponData>();
+            foreach (var item in Weapon)
+            {
+                if (item.Value.CreatableLevel <= villageData.BlacksmithLevel
+                    && (int)item.Value.WeaponType == owner.GetComponent<Blacksmith>().productionWeaponType)
+                {
+                    _CreatableWeapon.Add(item.Value);
+                }
+            }
+
+            var list = owner.ItemIconList[(int)IconType.TypeSelect].CreateButton();
+            for (int i = 0; i < _CreatableWeapon.Count; i++)
+            {
+                var buttonText = list[i].GetComponentInChildren<Text>();
+                buttonText.text = _CreatableWeapon[i].Name;
+                var button = list[i].GetComponent<Button>();
+                switch (GameManager.Instance.WeaponDataList.Production(_CreatableWeapon[i].ID))
+                {
+                    case 0:
+                        button.onClick.AddListener(() =>
+                        {
+                            ConfirmationSelect = true;
+                            var icon = owner.ItemIconList[(int)IconType.Confirmation].IconData;
+                            icon._textData.text = "すでに所持しています";
+                            icon._tableSize = new Vector2(1, 1);
+                            owner.ItemIconList[(int)IconType.Confirmation].SetIcondata(icon);
+                            var list = owner.ItemIconList[(int)IconType.Confirmation].CreateButton();
+                            var buttonText = list[0].GetComponentInChildren<Text>();
+                            buttonText.text = "OK";
+                            var button = list[0].GetComponent<Button>();
+                            button.onClick.AddListener(() => owner.ChangeState<ProductionSelectMode>());
+                        });
+                        break;
+                    case 1:
+                        button.onClick.AddListener(() =>
+                        {
+                            ConfirmationSelect = true;
+                            var icon = owner.ItemIconList[(int)IconType.Confirmation].IconData;
+                            icon._textData.text = "製造完了";
+                            icon._tableSize = new Vector2(1, 1);
+                            owner.ItemIconList[(int)IconType.Confirmation].SetIcondata(icon);
+                            var list = owner.ItemIconList[(int)IconType.Confirmation].CreateButton();
+                            var buttonText = list[0].GetComponentInChildren<Text>();
+                            buttonText.text = "OK";
+                            var button = list[0].GetComponent<Button>();
+                            button.onClick.AddListener(() => owner.ChangeState<ProductionSelectMode>());
+                        });
+                        break;
+                    case 2:
+                        button.onClick.AddListener(() =>
+                        {
+                            ConfirmationSelect = true;
+                            var icon = owner.ItemIconList[(int)IconType.Confirmation].IconData;
+                            icon._textData.text = "素材が足りません";
+                            icon._tableSize = new Vector2(1, 1);
+                            owner.ItemIconList[(int)IconType.Confirmation].SetIcondata(icon);
+                            var list = owner.ItemIconList[(int)IconType.Confirmation].CreateButton();
+                            var buttonText = list[0].GetComponentInChildren<Text>();
+                            buttonText.text = "OK";
+                            var button = list[0].GetComponent<Button>();
+                            button.onClick.AddListener(() => owner.ChangeState<ProductionSelectMode>());
+                        });
+                        break;
+                    default:
+                        break;
+                }
             }
         }
-        public override void OnUpdate(Blacksmith owner)
+        public override void OnUpdate(UIBase owner)
         {
-            if (_confirmation)
+            if (ConfirmationSelect)
             {
-                //選択できるようにしておく
-                float v = owner._inputAction.ReadValue<Vector2>().x;
-                _currntButton.Select();
+                owner.ItemIconList[(int)IconType.Confirmation].Select(UIManager.Instance.InputSelection.ReadValue<Vector2>());
             }
             else
             {
-                //コントローラーで選択できるようにする
-                owner.Serect();
-                var btn = owner._buttons[owner._currentButtonNumber].GetComponent<Button>();
-                btn.onClick.Invoke();
-                btn.Select();
+                owner.ItemIconList[(int)IconType.TypeSelect].Select(UIManager.Instance.InputSelection.ReadValue<Vector2>());
             }
         }
-        public override void OnExit(Blacksmith owner, UIState nextState)
+        public override void OnExit(UIBase owner, UIStateBase nextState)
         {
-            owner.ButtonDelete();
+            owner.ItemIconList[(int)IconType.TypeSelect].DeleteButton();
         }
-        public override void OnProceed(Blacksmith owner)
+        public override void OnProceed(UIBase owner)
         {
-            if (_confirmation)
-            {
-                _currntButton.onClick.Invoke();
-            }
-            else
-            {
-            }
+            owner.ItemIconList[(int)IconType.TypeSelect].Buttons[owner.ItemIconList[(int)IconType.TypeSelect].CurrentNunber].GetComponent<Button>().onClick.Invoke();
         }
-        public override void OnBack(Blacksmith owner)
+        public override void OnBack(UIBase owner)
         {
-            if (_confirmation)
-            {
-                _confirmation = false;
-                _runOnce.Flg = false;
-                var btn = owner._buttons[owner._currentButtonNumber].GetComponent<Button>();
-                btn.onClick.Invoke();
-                btn.Select();
-            }
-            else
-            {
-                owner.ChangeState<ProductionSelectMode>();
-            }
+            Debug.Log("modoru");
+            owner.ChangeState<ProductionSelectMode>();
         }
     }
 
-    public class EnhancementMode : UIState
+    public class EnhancementSelectMode : UIStateBase
     {
+        public override void OnEnter(UIBase owner, UIStateBase prevState)
+        {
+            //モード選択画面
+            owner.GetComponent<Blacksmith>()._blacksmithMode.text = "何を強化する？";
+            //ボタンの追加
+            var list = owner.ItemIconList[(int)IconType.TypeSelect].CreateButton();
 
+            var Weapon = owner.GetComponent<Blacksmith>()._WeaponDataList.Dictionary;
+            List<WeaponData> _EnhancementedWeapon = new List<WeaponData>();
+            foreach (var item in Weapon)
+            {
+                if (item.Value.BoxPossession) _EnhancementedWeapon.Add(item.Value);
+            }
+
+            for (int i = 0; i < _EnhancementedWeapon.Count; i++)
+            {
+                var buttonText = list[i].GetComponentInChildren<Text>();
+                buttonText.text = _EnhancementedWeapon[i].Name;
+                var button = list[i].GetComponent<Button>();
+                button.onClick.AddListener(() =>
+                {
+                    owner.GetComponent<Blacksmith>()._EnhancementWeaponID = _EnhancementedWeapon[i].ID;
+                    owner.ChangeState<EnhancementWeaponMode>();
+                });
+            }
+        }
+        public override void OnExit(UIBase owner, UIStateBase nextState)
+        {
+            owner.ItemIconList[(int)IconType.TypeSelect].DeleteButton();
+        }
+        public override void OnProceed(UIBase owner)
+        {
+            owner.ItemIconList[(int)IconType.TypeSelect].Buttons[owner.ItemIconList[(int)IconType.TypeSelect].CurrentNunber].GetComponent<Button>().onClick.Invoke();
+        }
+        public override void OnBack(UIBase owner)
+        {
+            Debug.Log("modoru");
+            owner.ChangeState<SelectMode>();
+        }
+    }
+
+    public class EnhancementWeaponMode : UIStateBase
+    {
+        private bool ConfirmationSelect;
+        public override void OnEnter(UIBase owner, UIStateBase prevState)
+        {
+            //モード選択画面
+            var Weapon = owner.GetComponent<Blacksmith>()._WeaponDataList.Dictionary;
+            string WeaponName = Weapon[owner.GetComponent<Blacksmith>()._EnhancementWeaponID].ID;
+            owner.GetComponent<Blacksmith>()._blacksmithMode.text = WeaponName + "の強化";
+
+            ConfirmationSelect = true;
+            var icon = owner.ItemIconList[(int)IconType.Confirmation].IconData;
+            icon._textData.text = "素材を消費して武器を強化しますか？";
+            owner.ItemIconList[(int)IconType.Confirmation].SetIcondata(icon);
+            var list = owner.ItemIconList[(int)IconType.Confirmation].CreateButton();
+
+            var button0Text = list[0].GetComponentInChildren<Text>();
+            button0Text.text = "はい";
+            var button0 = list[0].GetComponent<Button>();
+            switch (GameManager.Instance.WeaponDataList.Enhancement(owner.GetComponent<Blacksmith>()._EnhancementWeaponID))
+            {
+                case 0:
+                    button0.onClick.AddListener(() =>
+                    {
+                        ConfirmationSelect = true;
+                        var icon = owner.ItemIconList[(int)IconType.Confirmation].IconData;
+                        icon._textData.text = "すでに所持しています";
+                        icon._tableSize = new Vector2(1, 1);
+                        owner.ItemIconList[(int)IconType.Confirmation].SetIcondata(icon);
+                        var list = owner.ItemIconList[(int)IconType.Confirmation].CreateButton();
+                        var buttonText = list[0].GetComponentInChildren<Text>();
+                        buttonText.text = "OK";
+                        var button = list[0].GetComponent<Button>();
+                        button.onClick.AddListener(() => owner.ChangeState<EnhancementSelectMode>());
+                    });
+                    break;
+                case 1:
+                    button0.onClick.AddListener(() =>
+                    {
+                        ConfirmationSelect = true;
+                        var icon = owner.ItemIconList[(int)IconType.Confirmation].IconData;
+                        icon._textData.text = "製造完了";
+                        icon._tableSize = new Vector2(1, 1);
+                        owner.ItemIconList[(int)IconType.Confirmation].SetIcondata(icon);
+                        var list = owner.ItemIconList[(int)IconType.Confirmation].CreateButton();
+                        var buttonText = list[0].GetComponentInChildren<Text>();
+                        buttonText.text = "OK";
+                        var button = list[0].GetComponent<Button>();
+                        button.onClick.AddListener(() => owner.ChangeState<EnhancementSelectMode>());
+                    });
+                    break;
+                case 2:
+                    button0.onClick.AddListener(() =>
+                    {
+                        ConfirmationSelect = true;
+                        var icon = owner.ItemIconList[(int)IconType.Confirmation].IconData;
+                        icon._textData.text = "素材が足りません";
+                        icon._tableSize = new Vector2(1, 1);
+                        owner.ItemIconList[(int)IconType.Confirmation].SetIcondata(icon);
+                        var list = owner.ItemIconList[(int)IconType.Confirmation].CreateButton();
+                        var buttonText = list[0].GetComponentInChildren<Text>();
+                        buttonText.text = "OK";
+                        var button = list[0].GetComponent<Button>();
+                        button.onClick.AddListener(() => owner.ChangeState<EnhancementSelectMode>());
+                    });
+                    break;
+                default:
+                    break;
+            }
+
+            var button1Text = list[1].GetComponentInChildren<Text>();
+            button1Text.text = "いいえ";
+            var button1 = list[1].GetComponent<Button>();
+            button1.onClick.AddListener(() => owner.ChangeState<EnhancementSelectMode>());
+        }
+        public override void OnUpdate(UIBase owner)
+        {
+            if (ConfirmationSelect)
+            {
+                owner.ItemIconList[(int)IconType.Confirmation].Select(UIManager.Instance.InputSelection.ReadValue<Vector2>());
+            }
+            else
+            {
+                owner.ItemIconList[(int)IconType.TypeSelect].Select(UIManager.Instance.InputSelection.ReadValue<Vector2>());
+            }
+        }
+        public override void OnExit(UIBase owner, UIStateBase nextState)
+        {
+            owner.ItemIconList[(int)IconType.TypeSelect].DeleteButton();
+        }
+        public override void OnProceed(UIBase owner)
+        {
+            owner.ItemIconList[(int)IconType.TypeSelect].Buttons[owner.ItemIconList[(int)IconType.TypeSelect].CurrentNunber].GetComponent<Button>().onClick.Invoke();
+        }
+        public override void OnBack(UIBase owner)
+        {
+            Debug.Log("modoru");
+            owner.ChangeState<SelectMode>();
+        }
     }
 }
 

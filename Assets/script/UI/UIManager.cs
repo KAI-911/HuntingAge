@@ -4,17 +4,23 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-public class UIManager : MonoBehaviour
+public class UIManager : Singleton<UIManager>
 {
     [SerializeField] private InputControls _input;
     [SerializeField] private List<UIBase> _UIList;
-
-    private InputAction _inputAction;
+    [SerializeField] UIPresetDataList _UIPresetData;
+    private InputAction _inputSelection;
+    private InputAction _inputCurrentChange;
     public Player _player;
-    public InputAction InputAction { get => _inputAction; }
-    private void Awake()
+    public InputAction InputSelection { get => _inputSelection; }
+    public InputAction InputCurrentChange { get => _inputCurrentChange; }
+    public UIPresetDataList UIPresetData { get => _UIPresetData; set => _UIPresetData = value; }
+
+    protected override void Awake()
     {
+        base.Awake();
         _input = new InputControls();
+
     }
     public bool AddUIList(UIBase _uIBase)
     {
@@ -30,7 +36,8 @@ public class UIManager : MonoBehaviour
     }
     private void OnEnable()
     {
-        _inputAction = _input.UI.Selection;
+        _inputSelection = _input.UI.Selection;
+        _inputCurrentChange = _input.UI.CurrentChange;
         _input.UI.Proceed.started += UIProceed;
         _input.UI.Back.started += UIBack;
         _input.UI.Menu.started += UIMenu;

@@ -355,6 +355,15 @@ public partial class @InputControls : IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""CurrentChange"",
+                    ""type"": ""PassThrough"",
+                    ""id"": ""cb715d8b-2aa3-4e6a-95e7-4d6a31342ea0"",
+                    ""expectedControlType"": ""Vector2"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -533,6 +542,61 @@ public partial class @InputControls : IInputActionCollection2, IDisposable
                     ""action"": ""Menu"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": ""R1L1"",
+                    ""id"": ""3cde9690-0938-4c05-b86b-37a80d6ad2ed"",
+                    ""path"": ""2DVector"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""CurrentChange"",
+                    ""isComposite"": true,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": ""up"",
+                    ""id"": ""00f40592-e620-4edb-a325-4fe3641e026e"",
+                    ""path"": """",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""CurrentChange"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""down"",
+                    ""id"": ""b0e41f26-db7d-4737-b38d-445da6214423"",
+                    ""path"": """",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""CurrentChange"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""left"",
+                    ""id"": ""21e627c8-8d9f-423f-a1f3-1032b1f7ee73"",
+                    ""path"": ""<Gamepad>/leftShoulder"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""CurrentChange"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""right"",
+                    ""id"": ""1840eba0-161a-4143-bd35-6c0b3210c739"",
+                    ""path"": ""<Gamepad>/rightShoulder"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""CurrentChange"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
                 }
             ]
         }
@@ -553,6 +617,7 @@ public partial class @InputControls : IInputActionCollection2, IDisposable
         m_UI_Proceed = m_UI.FindAction("Proceed", throwIfNotFound: true);
         m_UI_Back = m_UI.FindAction("Back", throwIfNotFound: true);
         m_UI_Menu = m_UI.FindAction("Menu", throwIfNotFound: true);
+        m_UI_CurrentChange = m_UI.FindAction("CurrentChange", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -689,6 +754,7 @@ public partial class @InputControls : IInputActionCollection2, IDisposable
     private readonly InputAction m_UI_Proceed;
     private readonly InputAction m_UI_Back;
     private readonly InputAction m_UI_Menu;
+    private readonly InputAction m_UI_CurrentChange;
     public struct UIActions
     {
         private @InputControls m_Wrapper;
@@ -697,6 +763,7 @@ public partial class @InputControls : IInputActionCollection2, IDisposable
         public InputAction @Proceed => m_Wrapper.m_UI_Proceed;
         public InputAction @Back => m_Wrapper.m_UI_Back;
         public InputAction @Menu => m_Wrapper.m_UI_Menu;
+        public InputAction @CurrentChange => m_Wrapper.m_UI_CurrentChange;
         public InputActionMap Get() { return m_Wrapper.m_UI; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -718,6 +785,9 @@ public partial class @InputControls : IInputActionCollection2, IDisposable
                 @Menu.started -= m_Wrapper.m_UIActionsCallbackInterface.OnMenu;
                 @Menu.performed -= m_Wrapper.m_UIActionsCallbackInterface.OnMenu;
                 @Menu.canceled -= m_Wrapper.m_UIActionsCallbackInterface.OnMenu;
+                @CurrentChange.started -= m_Wrapper.m_UIActionsCallbackInterface.OnCurrentChange;
+                @CurrentChange.performed -= m_Wrapper.m_UIActionsCallbackInterface.OnCurrentChange;
+                @CurrentChange.canceled -= m_Wrapper.m_UIActionsCallbackInterface.OnCurrentChange;
             }
             m_Wrapper.m_UIActionsCallbackInterface = instance;
             if (instance != null)
@@ -734,6 +804,9 @@ public partial class @InputControls : IInputActionCollection2, IDisposable
                 @Menu.started += instance.OnMenu;
                 @Menu.performed += instance.OnMenu;
                 @Menu.canceled += instance.OnMenu;
+                @CurrentChange.started += instance.OnCurrentChange;
+                @CurrentChange.performed += instance.OnCurrentChange;
+                @CurrentChange.canceled += instance.OnCurrentChange;
             }
         }
     }
@@ -753,5 +826,6 @@ public partial class @InputControls : IInputActionCollection2, IDisposable
         void OnProceed(InputAction.CallbackContext context);
         void OnBack(InputAction.CallbackContext context);
         void OnMenu(InputAction.CallbackContext context);
+        void OnCurrentChange(InputAction.CallbackContext context);
     }
 }

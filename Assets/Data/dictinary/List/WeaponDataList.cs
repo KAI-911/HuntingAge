@@ -68,16 +68,21 @@ public class WeaponDataList : MonoBehaviour, ISerializationCallbackReceiver
     }
 
     [ContextMenu("Production")]
-    public bool Production(string _ID)
+    public int Production(string _ID)
     {
         int index = keys.FindIndex(n => n.StartsWith(_ID));
         Debug.Log(index);
         var data = values[index];
-        if (data.BoxPossession)return false;
+        if (data.BoxPossession)return 0;
         data.BoxPossession = true;
         values[index] = data;
         DesrializeDictionary();
-        return true;
+        return 1;
+    }
+
+    public int Enhancement(string _ID)
+    {
+        return 1;
     }
 }
 
@@ -104,6 +109,11 @@ public struct WeaponData
     /// アイテムボックスでどの枠に保存されているか
     /// </summary>
     public int BoxUINumber;
+
+    /// <summary>
+    /// 鍛冶場レベルいくらで作ることができるか
+    /// </summary>
+    public int CreatableLevel;
 
     /// <summary>
     /// ボックスに所持しているか
