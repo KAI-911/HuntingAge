@@ -318,6 +318,7 @@ public class Blacksmith : UIBase
             button0Text.text = "‚Í‚¢";
             var button0 = list[0].GetComponent<Button>();
             switch (GameManager.Instance.WeaponDataList.Enhancement(owner.GetComponent<Blacksmith>()._EnhancementWeaponID))
+
             {
                 case 0:
                     button0.onClick.AddListener(() =>
