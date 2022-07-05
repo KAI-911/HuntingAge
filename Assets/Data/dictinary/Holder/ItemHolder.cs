@@ -8,110 +8,11 @@ public class ItemHolder : MonoBehaviour, ISerializationCallbackReceiver
     [SerializeField] List<string> keys = new List<string>();
     [SerializeField] List<int> values = new List<int>();
     [SerializeField] Dictionary<string, int> dictionary = new Dictionary<string, int>();
+    [SerializeField] int maxFrame;
+    [SerializeField] ItemStack itemStack;
     public bool modifyValues;
     public Dictionary<string, int> Dictionary { get => dictionary; }
-
-    /// <summary>
-    /// 所持できる種類の最大量(枠数)
-    /// </summary>
-    public int MaxHolding;
-
-    /// <summary>
-    /// ボックスかポーチのどっちで保存するか
-    /// </summary>
-    public ItemStack ItemStack;
-
-
-    /// <summary>
-    /// -1 = 枠が全て埋まっている
-    /// -2 = セーブデータがない
-    /// -3 = スタック上限
-    /// </summary>
-    /// <param name="AddID"></param>
-    /// <param name="AddNumber"></param>
-    /// <returns></returns>
-    int ItemAdd(string AddID, int AddNumber)
-    {
-        //枠が全て埋まっている
-        if (MaxHolding <= dictionary.Count) return -1;
-        //AddIDがセーブデータから見つからない
-        if (!GameManager.Instance.ItemDataList.Dictionary.ContainsKey(AddID)) return -1;
-        var data = GameManager.Instance.ItemDataList.Dictionary[AddID];
-
-        if (dictionary.ContainsKey(AddID))
-        {
-            int stack = 0;
-            switch (ItemStack)
-            {
-                case ItemStack.Box:
-                    stack = data.BoxStackNumber;
-                    break;
-                case ItemStack.Poach:
-                    stack = data.PoachStackNumber;
-                    break;
-                default:
-                    stack = data.PoachStackNumber;
-                    break;
-            }
-            //スタック上限の場合
-            if (stack <= dictionary[AddID]) return -3;
-
-            if (stack <= dictionary[AddID] + AddNumber)
-            {
-                AddNumber = (dictionary[AddID] + AddNumber) - stack;
-            }
-
-            //既に一つ以上持っている && スタック上限未満
-            dictionary[AddID] += AddNumber;
-        }
-        else
-        {
-            //まだ一つももっていない && 枠が空いている
-            dictionary.Add(AddID, 1);
-        }
-        return AddNumber;
-    }
-
-    /// <summary>
-    /// -1 = EraseIDが見つからない
-    /// -2 = ItemListにEraseIDがない
-    /// </summary>
-    /// <param name="EraseID"></param>
-    /// <param name="EraseNumber"></param>
-    /// <returns></returns>
-    int ItemErase(string EraseID, int EraseNumber)
-    {
-        //EraseIDがセーブデータから見つからない
-        if (!GameManager.Instance.ItemDataList.Dictionary.ContainsKey(EraseID)) return -1;
-        var data = GameManager.Instance.ItemDataList.Dictionary[EraseID];
-        if (dictionary.ContainsKey(EraseID))
-        {
-            int num = dictionary[EraseID];
-            if (num >= EraseNumber)
-            {
-                //数値を減らす
-                dictionary[EraseID] -= EraseNumber;
-            }
-            else
-            {
-                //減らす数より保持している数が少なかった場合
-                //減らす数を保持している数にし、保持数を0にする
-                EraseNumber = num;
-                dictionary[EraseID] = 0;
-            }
-        }
-        else
-        {
-            return -2;//エラー:リストにない
-        }
-        //保持数を減らした結果0になっていたらリストから削除
-        if (dictionary[EraseID] == 0)
-        {
-            dictionary.Remove(EraseID);
-        }
-        return EraseNumber;
-    }
-
+    public int MaxFrame { get => maxFrame; set => maxFrame = value; }
 
     private void Awake()
     {
@@ -119,14 +20,9 @@ public class ItemHolder : MonoBehaviour, ISerializationCallbackReceiver
         {
             Dictionary.Add(DictionaryData.Keys[i], DictionaryData.Values[i]);
         }
-
     }
     private void Start()
     {
-        if (modifyValues)
-        {
-            Load();
-        }
     }
     public void OnBeforeSerialize()
     {
@@ -138,11 +34,30 @@ public class ItemHolder : MonoBehaviour, ISerializationCallbackReceiver
             {
                 keys.Add(DictionaryData.Keys[i]);
                 values.Add(DictionaryData.Values[i]);
-
             }
         }
     }
 
+    private void Update()
+    {
+        //foreach (var item in dictionary)
+        //{
+        //    switch (itemStack)
+        //    {
+        //        case ItemStack.Box:
+        //            var data1 = GameManager.Instance.ItemDataList.Dictionary[item.Key];
+        //            if (data1.BoxHoldNumber <= 0) Erase(item.Key);
+        //            break;
+        //        case ItemStack.Poach:
+        //            var data2 = GameManager.Instance.ItemDataList.Dictionary[item.Key];
+        //            if (data2.PoachHoldNumber <= 0) Erase(item.Key);
+        //            break;
+        //        default:
+        //            break;
+        //    }
+            
+        //}
+    }
     public void OnAfterDeserialize()
     {
 
@@ -162,6 +77,35 @@ public class ItemHolder : MonoBehaviour, ISerializationCallbackReceiver
         modifyValues = false;
     }
 
+    public void Add(string id)
+    {
+        if (keys.Contains(id)) return;
+        //追加できる範囲を取得
+        List<int> vs = new List<int>();
+        for (int i = 0; i < maxFrame; i++) vs.Add(i);
+        //既に追加している部分を除く
+        foreach (var item in dictionary)
+        {
+            if (vs.Contains(item.Value))
+            {
+                vs.Remove(item.Value);
+            }
+        }
+        if (vs.Count == 0) return;
+        //一番最初の値に追加
+        keys.Add(id);
+        values.Add(vs[0]);
+        DesrializeDictionary();
+    }
+    public void Erase(string id)
+    {
+        if (!keys.Contains(id)) return;
+        int index = keys.IndexOf(id);
+        keys.RemoveAt(index);
+        values.RemoveAt(index);
+        DesrializeDictionary();
+    }
+
     [ContextMenu("PrintDictionary")]
     public void PrintDictionary()
     {
@@ -169,41 +113,5 @@ public class ItemHolder : MonoBehaviour, ISerializationCallbackReceiver
         {
             Debug.Log("Key: " + item.Key + " Value: " + item.Value);
         }
-    }
-
-    [ContextMenu("Load")]
-    private void Load()
-    {
-        modifyValues = true;
-        keys.Clear();
-        values.Clear();
-        Debug.Log("Load");
-        switch (ItemStack)
-        {
-            case ItemStack.Box:
-                Debug.Log("Box" + GameManager.Instance.ItemDataList.Dictionary.Count);
-                foreach (var item in GameManager.Instance.ItemDataList.Dictionary)
-                {
-                    if (item.Value.BoxHoldNumber <= 0) continue;
-                    keys.Add(item.Key);
-                    values.Add(item.Value.BoxHoldNumber);
-                }
-                break;
-            case ItemStack.Poach:
-                Debug.Log("Poach");
-                Debug.Log("Poach" + GameManager.Instance.ItemDataList.Dictionary.Count);
-                foreach (var item in GameManager.Instance.ItemDataList.Dictionary)
-                {
-                    if (item.Value.PoachHoldNumber <= 0) continue;
-                    Debug.Log(item);
-                    keys.Add(item.Key);
-                    values.Add(item.Value.PoachHoldNumber);
-                }
-                break;
-            default:
-                Debug.Log("default");
-                break;
-        }
-        DesrializeDictionary();
     }
 }
