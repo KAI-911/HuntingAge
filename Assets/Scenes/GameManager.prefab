@@ -19,6 +19,7 @@ GameObject:
   - component: {fileID: 4534843911642988459}
   - component: {fileID: 2378036755278326695}
   - component: {fileID: 1199553420709282678}
+  - component: {fileID: 8175110430737109735}
   m_Layer: 0
   m_Name: GameManager
   m_TagString: Untagged
@@ -58,9 +59,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _quest: {fileID: 1199553420709282674}
   _villageScene: 3
-  _itemBox: {fileID: 3285388503253803397}
-  _itemPoach: {fileID: 2626735935849008676}
   _itemDataList: {fileID: 1199553420709282675}
+  _weaponDataList: {fileID: 8175110430737109735}
   _questHolder: {fileID: 1199553420709282673}
   _questDataList: {fileID: 1199553420709282672}
   _enemyDataList: {fileID: 4534843911642988459}
@@ -204,9 +204,9 @@ MonoBehaviour:
   - Material000
   - Material001
   values: 6300000063000000
+  maxFrame: 0
+  itemStack: 0
   modifyValues: 0
-  MaxHolding: 0
-  ItemStack: 0
 --- !u!114 &2626735935849008676
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -224,9 +224,9 @@ MonoBehaviour:
   - Material000
   - Material001
   values: 0d0000003e000000
+  maxFrame: 0
+  itemStack: 0
   modifyValues: 0
-  MaxHolding: 0
-  ItemStack: 1
 --- !u!114 &1199553420709282675
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -243,31 +243,103 @@ MonoBehaviour:
   keys:
   - Material000
   - Material001
+  - Material002
+  - Material003
+  - Material004
+  - Material005
+  - Material006
   values:
   - ID: Material000
     Name: "\u5CA9"
-    IconName: Icon/rock
+    IconName: Icon/Stone_UI
     BoxStackNumber: 9999
-    BoxUINumber: 12
-    BoxHoldNumber: 99
+    BoxUINumber: 1
+    BoxHoldNumber: 1
     PoachStackNumber: 99
-    PoachUINumber: 4
-    PoachHoldNumber: 13
+    PoachUINumber: 1
+    PoachHoldNumber: 1
     Permanent: 0
     Time: 0
     ItemType: 0
+    CreatableLevel: 0
   - ID: Material001
     Name: "\u6728"
-    IconName: Icon/wood
+    IconName: Icon/Wood_UI
     BoxStackNumber: 9999
-    BoxUINumber: 4
-    BoxHoldNumber: 99
+    BoxUINumber: 2
+    BoxHoldNumber: 0
     PoachStackNumber: 99
-    PoachUINumber: 5
-    PoachHoldNumber: 62
+    PoachUINumber: 2
+    PoachHoldNumber: 2
     Permanent: 0
     Time: 0
     ItemType: 0
+    CreatableLevel: 0
+  - ID: Material002
+    Name: "\u7E4A\u7DAD"
+    IconName: Icon/Fiber_UI
+    BoxStackNumber: 9999
+    BoxUINumber: 3
+    BoxHoldNumber: 3
+    PoachStackNumber: 99
+    PoachUINumber: 3
+    PoachHoldNumber: 0
+    Permanent: 0
+    Time: 0
+    ItemType: 0
+    CreatableLevel: 0
+  - ID: Material003
+    Name: "\u9AA8"
+    IconName: Icon/Bone_UI
+    BoxStackNumber: 9999
+    BoxUINumber: 4
+    BoxHoldNumber: 0
+    PoachStackNumber: 99
+    PoachUINumber: 4
+    PoachHoldNumber: 4
+    Permanent: 0
+    Time: 0
+    ItemType: 0
+    CreatableLevel: 0
+  - ID: Material004
+    Name: "\u690D\u7269"
+    IconName: Icon/Botanical_UI
+    BoxStackNumber: 9999
+    BoxUINumber: 5
+    BoxHoldNumber: 5
+    PoachStackNumber: 99
+    PoachUINumber: 5
+    PoachHoldNumber: 0
+    Permanent: 0
+    Time: 0
+    ItemType: 0
+    CreatableLevel: 0
+  - ID: Material005
+    Name: "\u8089"
+    IconName: Icon/Meat_UI
+    BoxStackNumber: 9999
+    BoxUINumber: 6
+    BoxHoldNumber: 0
+    PoachStackNumber: 99
+    PoachUINumber: 6
+    PoachHoldNumber: 6
+    Permanent: 0
+    Time: 0
+    ItemType: 0
+    CreatableLevel: 0
+  - ID: Material006
+    Name: "\u30C4\u30BF"
+    IconName: Icon/Vine_UI
+    BoxStackNumber: 9999
+    BoxUINumber: 7
+    BoxHoldNumber: 7
+    PoachStackNumber: 99
+    PoachUINumber: 7
+    PoachHoldNumber: 0
+    Permanent: 0
+    Time: 0
+    ItemType: 0
+    CreatableLevel: 0
   modifyValues: 0
 --- !u!114 &4534843911642988459
 MonoBehaviour:
@@ -351,6 +423,165 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _canvas: {fileID: 4534843910418402886}
+--- !u!114 &8175110430737109735
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3704992697792350073}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2db3d693f1e97034a9708bcf32d36d80, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  DictionaryData: {fileID: 11400000, guid: ebdbcb9679cddaf4a8f582e945f5c242, type: 2}
+  keys:
+  - weapon101
+  - weapon102
+  - weapon103
+  - weapon201
+  - weapon202
+  - weapon203
+  - weapon301
+  - weapon302
+  - weapon303
+  values:
+  - ID: weapon101
+    Name: TreeAxe
+    IconName: 
+    BoxUINumber: 0
+    CreatableLevel: 1
+    BoxPossession: 0
+    AttackPoint: 100
+    WeaponType: 0
+    ProductionNeedMaterialLst:
+    - materialID: Material001
+      requiredCount: 5
+    EnhancementNeedMaterialLst: []
+  - ID: weapon102
+    Name: StoneAxe
+    IconName: 
+    BoxUINumber: 0
+    CreatableLevel: 2
+    BoxPossession: 0
+    AttackPoint: 150
+    WeaponType: 0
+    ProductionNeedMaterialLst:
+    - materialID: Material001
+      requiredCount: 10
+    - materialID: Material000
+      requiredCount: 5
+    EnhancementNeedMaterialLst:
+    - materialID: Material001
+      requiredCount: 3
+    - materialID: Material000
+      requiredCount: 2
+  - ID: weapon103
+    Name: BoneAxe
+    IconName: 
+    BoxUINumber: 0
+    CreatableLevel: 5
+    BoxPossession: 0
+    AttackPoint: 200
+    WeaponType: 0
+    ProductionNeedMaterialLst:
+    - materialID: Material001
+      requiredCount: 20
+    - materialID: Material000
+      requiredCount: 15
+    - materialID: Material003
+      requiredCount: 5
+    EnhancementNeedMaterialLst:
+    - materialID: Material001
+      requiredCount: 5
+    - materialID: Material000
+      requiredCount: 5
+    - materialID: Material003
+      requiredCount: 3
+  - ID: weapon201
+    Name: TreeSpear
+    IconName: 
+    BoxUINumber: 0
+    CreatableLevel: 1
+    BoxPossession: 0
+    AttackPoint: 80
+    WeaponType: 1
+    ProductionNeedMaterialLst:
+    - materialID: Material001
+      requiredCount: 5
+    EnhancementNeedMaterialLst: []
+  - ID: weapon202
+    Name: StoneSpear
+    IconName: 
+    BoxUINumber: 0
+    CreatableLevel: 3
+    BoxPossession: 0
+    AttackPoint: 120
+    WeaponType: 0
+    ProductionNeedMaterialLst:
+    - materialID: Material001
+      requiredCount: 10
+    - materialID: Material000
+      requiredCount: 5
+    EnhancementNeedMaterialLst:
+    - materialID: Material001
+      requiredCount: 3
+    - materialID: Material000
+      requiredCount: 2
+  - ID: weapon203
+    Name: BoneSpear
+    IconName: 
+    BoxUINumber: 0
+    CreatableLevel: 6
+    BoxPossession: 0
+    AttackPoint: 160
+    WeaponType: 1
+    ProductionNeedMaterialLst:
+    - materialID: Material001
+      requiredCount: 20
+    - materialID: Material000
+      requiredCount: 15
+    - materialID: Material003
+      requiredCount: 5
+    EnhancementNeedMaterialLst:
+    - materialID: Material001
+      requiredCount: 5
+    - materialID: Material000
+      requiredCount: 5
+    - materialID: Material003
+      requiredCount: 3
+  - ID: weapon301
+    Name: Bow
+    IconName: 
+    BoxUINumber: 0
+    CreatableLevel: 1
+    BoxPossession: 0
+    AttackPoint: 50
+    WeaponType: 2
+    ProductionNeedMaterialLst: []
+    EnhancementNeedMaterialLst: []
+  - ID: weapon302
+    Name: SuperBow
+    IconName: 
+    BoxUINumber: 0
+    CreatableLevel: 4
+    BoxPossession: 0
+    AttackPoint: 75
+    WeaponType: 2
+    ProductionNeedMaterialLst: []
+    EnhancementNeedMaterialLst: []
+  - ID: weapon303
+    Name: HyperBow
+    IconName: 
+    BoxUINumber: 0
+    CreatableLevel: 7
+    BoxPossession: 0
+    AttackPoint: 100
+    WeaponType: 2
+    ProductionNeedMaterialLst: []
+    EnhancementNeedMaterialLst: []
+  modifyValues: 0
 --- !u!1 &4534843910418402881
 GameObject:
   m_ObjectHideFlags: 0

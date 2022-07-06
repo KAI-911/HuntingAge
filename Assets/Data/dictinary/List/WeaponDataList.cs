@@ -129,6 +129,16 @@ public struct WeaponData
     /// 武器種
     /// </summary>
     public WeaponType WeaponType;
+
+    /// <summary>
+    /// 製造に必要な素材
+    /// </summary>
+    public List<ProductionNeedMateliar> ProductionNeedMaterialLst;
+
+    /// <summary>
+    /// 強化に必要な素材
+    /// </summary>
+    public List<EnhancementNeedMateliar> EnhancementNeedMaterialLst;
 }
 
 public enum WeaponType
@@ -136,4 +146,18 @@ public enum WeaponType
     Axe = 0,
     Spear,
     Bow
+}
+
+[System.Serializable]
+public struct ProductionNeedMateliar
+{
+    public string materialID;
+    public int requiredCount;
+}
+
+[System.Serializable]
+public struct EnhancementNeedMateliar
+{
+    public string materialID;
+    public int requiredCount;
 }

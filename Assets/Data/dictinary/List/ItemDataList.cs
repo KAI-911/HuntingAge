@@ -130,6 +130,10 @@ public struct ItemData
     /// ‚Ç‚Ì‚æ‚¤‚ÈŒø‰Ê‚È‚Ì‚©
     /// </summary>
     public ItemType ItemType;
+    /// <summary>
+    /// ~–[ƒŒƒxƒ‹‚¢‚­‚ç‚Åì‚é‚±‚Æ‚ª‚Å‚«‚é‚©
+    /// </summary>
+    public int CreatableLevel;
 }
 
 public enum ItemType
