@@ -67,6 +67,66 @@ public class ItemDataList : MonoBehaviour, ISerializationCallbackReceiver
             Debug.Log("Key: " + item.Key + " Value: " + item.Value);
         }
     }
+
+    /// <summary>
+    /// ボックスからポーチに指定数のアイテムを送る
+    /// ボックスに指定数ない場合はボックスにあるだけ渡す
+    /// ポーチに受け取る容量が足りない場合は受け取れるだけ渡す
+    /// </summary>
+    /// <param name="ID">移動させるアイテムのID</param>
+    /// <param name="move">ボックスからいくつ移動させるか</param>
+    /// <param name="uinum">ポーチに移動させるアイテムがない場合に使用するUIの場所</param>
+    public void BoxToPoach(string ID, int move, int uinum)
+    {
+        if (!keys.Contains(ID)) return;
+        int index = keys.IndexOf(ID);
+        var data = values[index];
+
+        int eraseNumber = move;
+        //ボックスにアイテムが足りない
+        if (move > data.BoxHoldNumber) eraseNumber = data.BoxHoldNumber;
+        //ポーチに受け取る容量がない
+        if (move > data.PoachStackNumber - data.PoachHoldNumber) eraseNumber = data.PoachStackNumber - data.PoachHoldNumber;
+
+        //UIの位置を設定
+        if (data.PoachHoldNumber <= 0) data.PoachUINumber = uinum;
+
+        data.BoxHoldNumber -= eraseNumber;
+        data.PoachHoldNumber += eraseNumber;
+        values[index] = data;
+        DesrializeDictionary();
+    }
+
+    /// <summary>
+    /// ポーチからボックスに指定数のアイテムを送る
+    /// ポーチに指定数ない場合はポーチにあるだけ渡す
+    /// ボックスに受け取る容量が足りない場合は受け取れるだけ渡す
+    /// </summary>
+    /// <param name="ID">移動させるアイテムのID</param>
+    /// <param name="move">ボックスからいくつ移動させるか</param>
+    /// <param name="uinum">ボックスに移動させるアイテムがない場合に使用するUIの場所</param>
+
+    public void PoachToBox(string ID, int move, int uinum)
+    {
+        if (!keys.Contains(ID)) return;
+        int index = keys.IndexOf(ID);
+        var data = values[index];
+
+        int eraseNumber = move;
+        //ポーチにアイテムが足りない
+        if (move > data.PoachHoldNumber) eraseNumber = data.PoachHoldNumber;
+        //ボックスに受け取る容量がない
+        if (move > data.BoxStackNumber - data.BoxHoldNumber) eraseNumber = data.BoxStackNumber - data.BoxHoldNumber;
+
+        //UIの位置を設定
+        if (data.BoxHoldNumber <= 0) data.BoxUINumber = uinum;
+
+        data.PoachHoldNumber -= eraseNumber;
+        data.BoxHoldNumber += eraseNumber;
+        values[index] = data;
+        DesrializeDictionary();
+    }
+
 }
 
 [System.Serializable]

@@ -44,7 +44,7 @@ public class UIPoach : UIBase
         {
             var list = owner.ItemIconList[(int)IconType.TypeSelect].CreateButton();
             var button0 = list[0].GetComponent<Button>();
-            button0.onClick.AddListener(()=>owner.ChangeState<ItemSlect>());
+            button0.onClick.AddListener(() => owner.ChangeState<ItemSlect>());
             var button0Text = list[0].GetComponentInChildren<Text>();
             button0Text.text = "アイテム選択";
         }
@@ -70,6 +70,8 @@ public class UIPoach : UIBase
     {
         public override void OnEnter(UIBase owner, UIStateBase prevState)
         {
+            if (prevState.GetType() == typeof(UIChange)) return;
+
             var list = owner.ItemIconList[(int)IconType.ItemSelect].CreateButton();
 
             foreach (var item in GameManager.Instance.ItemDataList.Dictionary)
@@ -81,6 +83,8 @@ public class UIPoach : UIBase
         }
         public override void OnExit(UIBase owner, UIStateBase nextState)
         {
+            if (nextState.GetType() == typeof(UIChange)) return;
+
             owner.ItemIconList[(int)IconType.ItemSelect].DeleteButton();
         }
         public override void OnUpdate(UIBase owner)
@@ -90,14 +94,90 @@ public class UIPoach : UIBase
         }
         public override void OnProceed(UIBase owner)
         {
-            
+            owner.ChangeState<UIChange>();
         }
         public override void OnBack(UIBase owner)
         {
             owner.ChangeState<FirstSlect>();
         }
+    }
+    private class UIChange : UIStateBase
+    {
+        private int _selectionNumber;
+        private ItemIcon _itemIcon;
+        public override void OnEnter(UIBase owner, UIStateBase prevState)
+        {
+            Debug.Log("UI変更ステートになた");
+            _itemIcon = owner.GetComponent<UIPoach>().ItemIconList[(int)IconType.ItemSelect];
+            _selectionNumber = _itemIcon.CurrentNunber;
+
+        }
+        public override void OnUpdate(UIBase owner)
+        {
+            Debug.Log("UI変更ステート");
+            _itemIcon.Select(UIManager.Instance.InputSelection.ReadValue<Vector2>());
+
+        }
+        public override void OnBack(UIBase owner)
+        {
+            Debug.Log("modoru");
+            owner.ChangeState<ItemSlect>();
+        }
+        public override void OnProceed(UIBase owner)
+        {
+            //お互いのUI座標を入れ替える
+            var selectButton = _itemIcon.Buttons[_selectionNumber].GetComponent<ItemButton>();
+            var currentButton = _itemIcon.Buttons[_itemIcon.CurrentNunber].GetComponent<ItemButton>();
+            var itemDataList = GameManager.Instance.ItemDataList;
+            ItemData data = new ItemData();
+            if (selectButton.ID != "")
+            {
+                if (itemDataList.Keys.Contains(selectButton.ID))
+                {
+                    int index = itemDataList.Keys.IndexOf(selectButton.ID);
+                    data = itemDataList.Values[index];
+                    data.PoachUINumber = _itemIcon.CurrentNunber;
+                    itemDataList.Values[index] = data;
+                }
+            }
+            if (currentButton.ID != "")
+            {
+                if (itemDataList.Keys.Contains(currentButton.ID))
+                {
+                    int index = itemDataList.Keys.IndexOf(currentButton.ID);
+                    data = itemDataList.Values[index];
+                    data.PoachUINumber = _selectionNumber;
+                    itemDataList.Values[index] = data;
+                }
+            }
+
+            itemDataList.DesrializeDictionary();
+            owner.GetComponent<UIPoach>().UISet();
+            owner.ChangeState<ItemSlect>();
+
+        }
+    }
+    public void UISet()
+    {
+        var list = ItemIconList[(int)IconType.ItemSelect].Buttons;
+        //UIセット
+        foreach (var item in list)
+        {
+            var ibutton = item.GetComponent<ItemButton>();
+            ibutton.clear();
+        }
+
+        foreach (var item in GameManager.Instance.ItemDataList.Dictionary)
+        {
+            if (item.Value.PoachHoldNumber == 0) continue;
+            var ibutton = list[item.Value.PoachUINumber].GetComponent<ItemButton>();
+            ibutton.SetID(item.Key, ItemBoxOrPoach.poach);
+        }
+
 
     }
+
+
     enum IconType
     {
         TypeSelect,
