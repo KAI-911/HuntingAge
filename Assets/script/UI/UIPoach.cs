@@ -21,12 +21,7 @@ public class UIPoach : UIBase
 
         public override void OnEnter(UIBase owner, UIStateBase prevState)
         {
-            Debug.Log("UIStateBase_close_OnEnter");
             UIManager.Instance._player.IsAction = true;
-        }
-        public override void OnUpdate(UIBase owner)
-        {
-            Debug.Log("UIStateBase_close");
         }
         public override void OnMenu(UIBase owner)
         {

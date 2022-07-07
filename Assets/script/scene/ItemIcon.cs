@@ -57,6 +57,11 @@ public class ItemIcon : MonoBehaviour
 
     public int Select(Vector2 vector2)
     {
+        if(!WithinRange())
+        {
+            return 0;
+        }
+
         //‰¡•ûŒü
         if (vector2.sqrMagnitude > 0)
         {

@@ -11,10 +11,6 @@ GameObject:
   - component: {fileID: 3704992697792350075}
   - component: {fileID: 3704992697792350074}
   - component: {fileID: 1199553420709282674}
-  - component: {fileID: 1199553420709282673}
-  - component: {fileID: 1199553420709282672}
-  - component: {fileID: 3285388503253803397}
-  - component: {fileID: 2626735935849008676}
   - component: {fileID: 1199553420709282675}
   - component: {fileID: 4534843911642988459}
   - component: {fileID: 2378036755278326695}
@@ -61,8 +57,8 @@ MonoBehaviour:
   _villageScene: 3
   _itemDataList: {fileID: 1199553420709282675}
   _weaponDataList: {fileID: 8175110430737109735}
-  _questHolder: {fileID: 1199553420709282673}
-  _questDataList: {fileID: 1199553420709282672}
+  _questHolder: {fileID: 0}
+  _questDataList: {fileID: 0}
   _enemyDataList: {fileID: 4534843911642988459}
   _villageData: {fileID: 2378036755278326695}
   _fadeManager: {fileID: 6882794521079548332}
@@ -92,141 +88,6 @@ MonoBehaviour:
   _enemyList: []
   AcceptingQuest: 0
   _sceneChengeTime: 30
---- !u!114 &1199553420709282673
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3704992697792350073}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 98e71b45002552144bf2c1cdd7701826, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  DictionaryData: {fileID: 11400000, guid: 6ca2612ffef562e44955b17e54da47bc, type: 2}
-  keys:
-  - QuestHolder1
-  - QuestHolder2
-  - QuestHolder3
-  - QuestHolder4
-  - QuestHolder5
-  - QuestHolder6
-  values:
-  - Quests:
-    - Quest001
-    - Quest001
-    - Quest001
-    - Quest001
-    - Quest001
-  - Quests:
-    - Quest002
-    - Quest002
-    - Quest002
-    - Quest002
-    - Quest002
-  - Quests:
-    - Quest003
-    - Quest003
-    - Quest003
-    - Quest003
-    - Quest003
-  - Quests:
-    - Quest001
-    - Quest001
-  - Quests:
-    - Quest002
-    - Quest002
-  - Quests:
-    - Quest003
-    - Quest003
-  modifyValues: 0
---- !u!114 &1199553420709282672
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3704992697792350073}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8d473cdf783ca2148b8e0d5f7ef1fa51, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  DictionaryData: {fileID: 11400000, guid: 8b360b659d88f3c4395a3e0f665d9de9, type: 2}
-  keys:
-  - Quest001
-  - Quest002
-  - Quest003
-  values:
-  - ID: Quest001
-    Name: Quest001
-    Clear: 0
-    Failure: 1
-    Field: 2
-    TargetName:
-    - name: T-rex
-      number: 1
-    OtherName: []
-  - ID: Quest002
-    Name: Quest002
-    Clear: 0
-    Failure: 2
-    Field: 2
-    TargetName:
-    - name: Wolf
-      number: 2
-    OtherName: []
-  - ID: Quest003
-    Name: Quest003
-    Clear: 0
-    Failure: 2
-    Field: 2
-    TargetName:
-    - name: Dodo
-      number: 3
-    OtherName: []
-  modifyValues: 0
---- !u!114 &3285388503253803397
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3704992697792350073}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0311146b928456b4fbb4969387ddaa72, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  DictionaryData: {fileID: 11400000, guid: 147bb20327d7a214eb4ca48c1a3447f9, type: 2}
-  keys:
-  - Material000
-  - Material001
-  values: 6300000063000000
-  maxFrame: 0
-  itemStack: 0
-  modifyValues: 0
---- !u!114 &2626735935849008676
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3704992697792350073}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0311146b928456b4fbb4969387ddaa72, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  DictionaryData: {fileID: 11400000, guid: 60f048bd597549a4a9a1945354532636, type: 2}
-  keys:
-  - Material000
-  - Material001
-  values: 0d0000003e000000
-  maxFrame: 0
-  itemStack: 0
-  modifyValues: 0
 --- !u!114 &1199553420709282675
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -253,11 +114,11 @@ MonoBehaviour:
     Name: "\u5CA9"
     IconName: Icon/Stone_UI
     BoxStackNumber: 9999
-    BoxUINumber: 1
-    BoxHoldNumber: 1
+    BoxUINumber: 5
+    BoxHoldNumber: 0
     PoachStackNumber: 99
     PoachUINumber: 1
-    PoachHoldNumber: 1
+    PoachHoldNumber: 2
     Permanent: 0
     Time: 0
     ItemType: 0
@@ -269,8 +130,8 @@ MonoBehaviour:
     BoxUINumber: 2
     BoxHoldNumber: 0
     PoachStackNumber: 99
-    PoachUINumber: 2
-    PoachHoldNumber: 2
+    PoachUINumber: 4
+    PoachHoldNumber: 4
     Permanent: 0
     Time: 0
     ItemType: 0
@@ -279,46 +140,7 @@ MonoBehaviour:
     Name: "\u7E4A\u7DAD"
     IconName: Icon/Fiber_UI
     BoxStackNumber: 9999
-    BoxUINumber: 3
-    BoxHoldNumber: 3
-    PoachStackNumber: 99
-    PoachUINumber: 3
-    PoachHoldNumber: 0
-    Permanent: 0
-    Time: 0
-    ItemType: 0
-    CreatableLevel: 0
-  - ID: Material003
-    Name: "\u9AA8"
-    IconName: Icon/Bone_UI
-    BoxStackNumber: 9999
     BoxUINumber: 4
-    BoxHoldNumber: 0
-    PoachStackNumber: 99
-    PoachUINumber: 4
-    PoachHoldNumber: 4
-    Permanent: 0
-    Time: 0
-    ItemType: 0
-    CreatableLevel: 0
-  - ID: Material004
-    Name: "\u690D\u7269"
-    IconName: Icon/Botanical_UI
-    BoxStackNumber: 9999
-    BoxUINumber: 5
-    BoxHoldNumber: 5
-    PoachStackNumber: 99
-    PoachUINumber: 5
-    PoachHoldNumber: 0
-    Permanent: 0
-    Time: 0
-    ItemType: 0
-    CreatableLevel: 0
-  - ID: Material005
-    Name: "\u8089"
-    IconName: Icon/Meat_UI
-    BoxStackNumber: 9999
-    BoxUINumber: 6
     BoxHoldNumber: 0
     PoachStackNumber: 99
     PoachUINumber: 6
@@ -327,15 +149,54 @@ MonoBehaviour:
     Time: 0
     ItemType: 0
     CreatableLevel: 0
+  - ID: Material003
+    Name: "\u9AA8"
+    IconName: Icon/Bone_UI
+    BoxStackNumber: 9999
+    BoxUINumber: 1
+    BoxHoldNumber: 0
+    PoachStackNumber: 99
+    PoachUINumber: 3
+    PoachHoldNumber: 8
+    Permanent: 0
+    Time: 0
+    ItemType: 0
+    CreatableLevel: 0
+  - ID: Material004
+    Name: "\u690D\u7269"
+    IconName: Icon/Botanical_UI
+    BoxStackNumber: 9999
+    BoxUINumber: 6
+    BoxHoldNumber: 0
+    PoachStackNumber: 99
+    PoachUINumber: 0
+    PoachHoldNumber: 10
+    Permanent: 0
+    Time: 0
+    ItemType: 0
+    CreatableLevel: 0
+  - ID: Material005
+    Name: "\u8089"
+    IconName: Icon/Meat_UI
+    BoxStackNumber: 9999
+    BoxUINumber: 3
+    BoxHoldNumber: 0
+    PoachStackNumber: 99
+    PoachUINumber: 5
+    PoachHoldNumber: 12
+    Permanent: 0
+    Time: 0
+    ItemType: 0
+    CreatableLevel: 0
   - ID: Material006
     Name: "\u30C4\u30BF"
     IconName: Icon/Vine_UI
     BoxStackNumber: 9999
-    BoxUINumber: 7
-    BoxHoldNumber: 7
+    BoxUINumber: 0
+    BoxHoldNumber: 0
     PoachStackNumber: 99
-    PoachUINumber: 7
-    PoachHoldNumber: 0
+    PoachUINumber: 2
+    PoachHoldNumber: 14
     Permanent: 0
     Time: 0
     ItemType: 0

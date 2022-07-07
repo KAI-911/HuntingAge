@@ -18,8 +18,8 @@ public class UIManager : Singleton<UIManager>
 
     protected override void Awake()
     {
-        base.Awake();
         _input = new InputControls();
+        base.Awake();
 
     }
     public bool AddUIList(UIBase _uIBase)

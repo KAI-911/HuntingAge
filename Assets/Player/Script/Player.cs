@@ -64,7 +64,6 @@ public partial class Player : Singleton<Player>
 
     protected override void Awake()
     {
-        base.Awake();
         _rigidbody = GetComponent<Rigidbody>();
         _animator = GetComponent<Animator>();
         _status = GetComponent<Status>();
@@ -74,6 +73,7 @@ public partial class Player : Singleton<Player>
         _currentState = new LocomotionState();
         _currentState.OnEnter(this, null);
         _keepStatus = new Status();
+        base.Awake();
 
     }
     private void OnEnable()

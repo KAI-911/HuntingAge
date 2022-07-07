@@ -15,14 +15,10 @@ public class GameManager : Singleton<GameManager>
 
 
 
-    //[SerializeField] ItemHolder _itemBox;
-    //[SerializeField] ItemHolder _itemPoach;
     [SerializeField] ItemDataList _itemDataList;
 
     [SerializeField] WeaponDataList _weaponDataList;
 
-    [SerializeField] QuestHolder _questHolder;
-    [SerializeField] QuestDataList _questDataList;
 
     [SerializeField] EnemyDataList _enemyDataList;
 
@@ -32,13 +28,9 @@ public class GameManager : Singleton<GameManager>
 
     public Scene VillageScene { get => _villageScene; }
     public Quest Quest { get => _quest; set => _quest = value; }
-    //public ItemHolder ItemBox { get => _itemBox; }
-    //public ItemHolder ItemPoach { get => _itemPoach; }
-    public QuestDataList QuestDataList { get => _questDataList; }
     public EnemyDataList EnemyDataList { get => _enemyDataList; }
     public ItemDataList ItemDataList { get => _itemDataList; }
     public WeaponDataList WeaponDataList { get => _weaponDataList; }
-    public QuestHolder QuestHolder { get => _questHolder; }
     public VillageData VillageData { get => _villageData; }
     public ItemCanvas ItemCanvas { get => _itemCanvas; }
 
@@ -60,7 +52,6 @@ public class GameManager : Singleton<GameManager>
 
     public void SceneChange(Scene scene)
     {
-        //SceneManager.LoadScene((int)scene);
         _fadeManager.FadeOutStart(() => SceneManager.LoadScene((int)scene));
     }
     private void OnSceneLoaded(UnityEngine.SceneManagement.Scene arg0, LoadSceneMode arg1)
