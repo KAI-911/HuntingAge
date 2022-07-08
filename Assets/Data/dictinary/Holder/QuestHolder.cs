@@ -10,6 +10,8 @@ public class QuestHolder : MonoBehaviour, ISerializationCallbackReceiver
     [SerializeField] Dictionary<string, QuestHolderData> dictionary = new Dictionary<string, QuestHolderData>();
     public bool modifyValues;
     public Dictionary<string, QuestHolderData> Dictionary { get => dictionary; }
+    public List<string> Keys { get => keys; set => keys = value; }
+    public List<QuestHolderData> Values { get => values; set => values = value; }
 
     private void Awake()
     {
