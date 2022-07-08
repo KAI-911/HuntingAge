@@ -17,6 +17,7 @@ public class Idle_Wolf : SatetBase_Wolf
     {
         Debug.Log("idle");
         owner.NavMeshAgent.destination = owner.transform.position;
+        if (owner.ReceivedAttackCheck()) return;
 
         if (owner.Search())
         {

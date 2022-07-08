@@ -78,4 +78,5 @@ public class Status : MonoBehaviour, IAttackDamage
         if (_hp < 0) _hp = 0;
         return true;
     }
+
 }

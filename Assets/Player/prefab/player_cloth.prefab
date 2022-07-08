@@ -3519,7 +3519,7 @@ MonoBehaviour:
     m_LegacyHeadingDefinition: -1
     m_LegacyVelocityFilterStrength: -1
   m_XAxis:
-    Value: -91.227875
+    Value: -129.56715
     m_SpeedMode: 0
     m_MaxSpeed: 300
     m_AccelTime: 0.1
@@ -3646,7 +3646,7 @@ MonoBehaviour:
     m_LegacyHeadingDefinition: -1
     m_LegacyVelocityFilterStrength: -1
   m_XAxis:
-    Value: -91.227875
+    Value: -129.56715
     m_SpeedMode: 0
     m_MaxSpeed: 300
     m_AccelTime: 0.1
@@ -3818,7 +3818,7 @@ MonoBehaviour:
     m_LegacyHeadingDefinition: -1
     m_LegacyVelocityFilterStrength: -1
   m_XAxis:
-    Value: -91.227875
+    Value: -129.56715
     m_SpeedMode: 0
     m_MaxSpeed: 300
     m_AccelTime: 0.1
@@ -3890,8 +3890,8 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4833442073512086890}
-  m_LocalRotation: {x: 0.0000023543832, y: -0.9649862, z: -0.26230085, w: 0.000064224}
-  m_LocalPosition: {x: -0.0000014830908, y: 0.000000024801603, z: -0.000010348713}
+  m_LocalRotation: {x: -0.21828668, y: -0.0000002682209, z: -0, w: 0.97588474}
+  m_LocalPosition: {x: 0.00000705289, y: -0.00000495997, z: 0.000008260565}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -3935,7 +3935,7 @@ MonoBehaviour:
     ModeOverride: 0
     LensShift: {x: 0, y: 0}
     GateFit: 2
-    m_SensorSize: {x: 1.6001735, y: 1}
+    m_SensorSize: {x: 1.7777778, y: 1}
   m_Transitions:
     m_BlendHint: 0
     m_InheritPosition: 0
@@ -4013,8 +4013,8 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4833442073679365379}
-  m_LocalRotation: {x: 0.000000029802322, y: -0.9548213, z: -0.29718083, w: 0.00006425381}
-  m_LocalPosition: {x: 0.00001335144, y: 13.594864, z: -43.679348}
+  m_LocalRotation: {x: -0.25359154, y: -0.00000020861623, z: -0.0000000037252899, w: 0.9673114}
+  m_LocalPosition: {x: 0.00000705289, y: -0.00000495997, z: 0.000008260565}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -4058,7 +4058,7 @@ MonoBehaviour:
     ModeOverride: 0
     LensShift: {x: 0, y: 0}
     GateFit: 2
-    m_SensorSize: {x: 1.6001735, y: 1}
+    m_SensorSize: {x: 1.7777778, y: 1}
   m_Transitions:
     m_BlendHint: 0
     m_InheritPosition: 0
@@ -4227,8 +4227,8 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4833442074418402083}
-  m_LocalRotation: {x: 0.0000011846424, y: -0.9600554, z: -0.2798101, w: 0.00006419421}
-  m_LocalPosition: {x: 0.00001335144, y: 13.594864, z: -43.679348}
+  m_LocalRotation: {x: -0.2360014, y: -0.00000020861626, z: -0.000000014901161, w: 0.97175276}
+  m_LocalPosition: {x: 0.00000705289, y: -0.00000495997, z: 0.000008260565}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -4272,7 +4272,7 @@ MonoBehaviour:
     ModeOverride: 0
     LensShift: {x: 0, y: 0}
     GateFit: 2
-    m_SensorSize: {x: 1.6001735, y: 1}
+    m_SensorSize: {x: 1.7777778, y: 1}
   m_Transitions:
     m_BlendHint: 0
     m_InheritPosition: 0
@@ -4341,8 +4341,8 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4833442074856232027}
-  m_LocalRotation: {x: -0.10741592, y: 0.6914986, z: 0.10512475, w: 0.7065695}
-  m_LocalPosition: {x: 503.67737, y: 5.466666, z: 10.85451}
+  m_LocalRotation: {x: -0.044873103, y: 0.8996727, z: -0.09528925, w: -0.42366907}
+  m_LocalPosition: {x: 1361.0778, y: 99.46666, z: 1175.2023}
   m_LocalScale: {x: 10, y: 10, z: 10}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -4467,7 +4467,7 @@ MonoBehaviour:
     ModeOverride: 0
     LensShift: {x: 0, y: 0}
     GateFit: 2
-    m_SensorSize: {x: 1.6001735, y: 1}
+    m_SensorSize: {x: 1.7777778, y: 1}
   m_Transitions:
     m_BlendHint: 0
     m_InheritPosition: 1
@@ -4500,7 +4500,7 @@ MonoBehaviour:
     m_LegacyHeadingDefinition: -1
     m_LegacyVelocityFilterStrength: -1
   m_XAxis:
-    Value: -91.227875
+    Value: -129.56715
     m_SpeedMode: 0
     m_MaxSpeed: 300
     m_AccelTime: 0.1
@@ -4873,13 +4873,14 @@ MonoBehaviour:
   _jumpPowor: 10
   _playerCamera: {fileID: 4833442074856232025}
   _groundChecker: {fileID: 4833442074074191764}
+  _isAction: 0
   _startPos:
   - scene: 0
     pos:
     - {x: 10, y: 0, z: 0}
   - scene: 1
     pos:
-    - {x: -140, y: 6, z: 270}
+    - {x: 250, y: 6, z: 190}
   - scene: 2
     pos:
     - {x: 10, y: 0, z: 0}

@@ -12,11 +12,6 @@ public class Dodo : Enemy
     [SerializeField] private List<Vector3> _escapePos;
     public List<Vector3> EscapePos { get => _escapePos; set => _escapePos = value; }
 
-    /// <summary>
-    /// 攻撃を受けたか確認するため
-    /// </summary>
-    private int _hitPointSave;
-    public int HitPointSave { get => _hitPointSave; set => _hitPointSave = value; }
 
     [SerializeField] private AnimationCurve _ditherCurve;
     public AnimationCurve DitherCurve { get => _ditherCurve; }
@@ -25,7 +20,6 @@ public class Dodo : Enemy
     {
         _currentState = new Idle_Dodo();
         _currentState.OnEnter(this, null);
-        _hitPointSave = Status.HP;
         foreach (var pos in GameObject.FindGameObjectsWithTag("EscapePosition"))
         {
             _escapePos.Add(pos.transform.position);
@@ -36,10 +30,20 @@ public class Dodo : Enemy
         Animator.SetInteger("HP", Status.HP);
 
 
-        if (_hitPointSave != Status.HP && CurrentState.GetType() != typeof(Escape_Dodo))
+        if (ReceivedAttackCheck()) return;
+        _currentState.OnUpdate(this);
+
+
+        if (Status.HP <= 0 && CurrentState.GetType() != typeof(Death_Dodo))
+        {
+            ChangeState<Death_Dodo>();
+        }
+    }
+    public override bool ReceivedAttack()
+    {
+        if (CurrentState.GetType() != typeof(Escape_Dodo))
         {
             ChangeState<Escape_Dodo>();
-            _hitPointSave = Status.HP;
 
             //周りにいるドードーも一緒に逃げる
             //ドードーのリスト作成
@@ -70,21 +74,9 @@ public class Dodo : Enemy
                 dodo.ChangeState<Escape_Dodo>();
                 //_ = dodo.WaitForAsync((dis / sqrMag) * 10, () => dodo.ChangeState<Escape_Dodo>());
             }
-
-
+            return true;
         }
-
-
-        _currentState.OnUpdate(this);
-
-        //if (Status.DownFlg && CurrentState.GetType() != typeof(Down_Trex))
-        //{
-        //    ChangeState<Down_Trex>();
-        //}
-        if (Status.HP <= 0 && CurrentState.GetType() != typeof(Death_Dodo))
-        {
-            ChangeState<Death_Dodo>();
-        }
+        return false;
     }
     void FixedUpdate()
     {
