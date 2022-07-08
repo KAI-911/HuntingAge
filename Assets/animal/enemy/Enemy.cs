@@ -81,6 +81,8 @@ public class Enemy : MonoBehaviour
     public bool DiscoverFlg { get => _discoverFlg; set => _discoverFlg = value; }
 
     private RunOnce Run_death = new RunOnce();
+
+    private int _keepHP;
     private void Awake()
     {
         _navMeshAgent = GetComponent<NavMeshAgent>();
@@ -89,11 +91,30 @@ public class Enemy : MonoBehaviour
         _status = GetComponent<Status>();
         _target = GameObject.FindWithTag("Player");
         _discoverFlg = false;
-
+        _keepHP = _status.HP;
         GameManager.Instance.Quest.AddEnemy(this);
     }
 
-
+    /// <summary>
+    /// 攻撃を受けていたら（記録したHPと今のHPを比較）ReceivedAttackを呼び出す
+    /// 戻り値はReceivedAttackと同じ
+    /// </summary>
+    /// <returns></returns>
+    public bool ReceivedAttackCheck()
+    {
+        if (_keepHP != _status.HP)
+        {
+            _keepHP = _status.HP;
+            ReceivedAttack();
+            _discoverFlg = true;
+            return true;
+        }
+        return false;
+    }
+    public virtual bool ReceivedAttack()
+    {
+        return false;
+    }
     public void Death()
     {
         Run_death.Run(() => GameManager.Instance.Quest.KillEnemyCount.Add(EnemyID));

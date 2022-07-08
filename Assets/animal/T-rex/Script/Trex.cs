@@ -26,6 +26,11 @@ public class Trex : Enemy
             ChangeState<Death_Trex>();
         }
     }
+    public override bool ReceivedAttack()
+    {
+        ChangeState<Move_Trex>();
+        return true;
+    }
     void FixedUpdate()
     {
         _currentState.OnFixedUpdate(this);

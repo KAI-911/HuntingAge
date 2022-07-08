@@ -38,6 +38,11 @@ public class Wolf : Enemy
         _currentState.OnAnimationEvent(this, animationEvent);
 
     }
+    public override bool ReceivedAttack()
+    {
+        ChangeState<Move_Wolf>();
+        return true;
+    }
     public void ChangeState<T>() where T : SatetBase_Wolf, new()
     {
         var nextState = new T();

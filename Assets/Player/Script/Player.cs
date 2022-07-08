@@ -3,7 +3,7 @@ using UnityEngine;
 using System.Collections.Generic;
 using UnityEngine.InputSystem;
 using System.Threading.Tasks;
-using UnityEngine.EventSystems;
+using UnityEngine.SceneManagement;
 public partial class Player : Singleton<Player>
 {
     //リジッドボディー
@@ -84,6 +84,7 @@ public partial class Player : Singleton<Player>
         _inputMove.Player.WeakAttack.started += WeakAttack;
         _inputMoveAction = _inputMove.Player.Move;
         _inputMove.Player.Enable();
+        SceneManager.activeSceneChanged += OnActiveSceneChanged;
     }
 
 
@@ -93,6 +94,7 @@ public partial class Player : Singleton<Player>
         _inputMove.Player.Dodge.started -= Dodge;
         _inputMove.Player.StrongAttack.started -= StrongAttack;
         _inputMove.Player.WeakAttack.started -= WeakAttack;
+        SceneManager.activeSceneChanged -= OnActiveSceneChanged;
 
         _inputMove.Player.Disable();
     }
@@ -210,7 +212,11 @@ public partial class Player : Singleton<Player>
         _animator.SetInteger("HP", _status.HP);
         _status.HitReaction = HitReaction.nonReaction;
     }
-
+    private void OnActiveSceneChanged(UnityEngine.SceneManagement.Scene arg0, UnityEngine.SceneManagement.Scene arg1)
+    {
+        var pos = StartPos.Find(n => n.scene == GameManager.Instance.Quest.QuestData.Field);
+        transform.position = pos.pos[0];
+    }
 }
 public enum PlayerAnimationState
 {

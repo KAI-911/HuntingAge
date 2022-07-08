@@ -53,7 +53,7 @@ public class HitReceiver : MonoBehaviour
         var mystatus = transform.root.gameObject.GetComponent<Status>();
         if (hitstatus == null || mystatus == null) return;
 
-        AttackInfo attackInfo =new AttackInfo();
+        AttackInfo attackInfo = new AttackInfo();
         //ダメージ処理に必要な情報をまとめる
         attackInfo.Attack = mystatus.Attack;//攻撃力
         attackInfo.PartType = _hit.AttackPart;//攻撃している部位
@@ -62,11 +62,10 @@ public class HitReceiver : MonoBehaviour
         attackInfo.HitReaction = _hitReaction;//攻撃を受けてどのぐらいリアクションするのか
         Debug.Log(attackInfo.HitPart);
 
-        //ダメージ処理を実行
-        var success = hitstatus.OnDamaged(attackInfo);
+        bool success = hitstatus.OnDamaged(attackInfo);
 
         //ダメージを与えられたらヒットエフェクトを出す
-        if (success)Instantiate(particleObject, attackInfo.CllisionPos, Quaternion.identity);
+        if (success) Instantiate(particleObject, attackInfo.CllisionPos, Quaternion.identity);
     }
 
     public void AddHitObject(AttackHit hit)
