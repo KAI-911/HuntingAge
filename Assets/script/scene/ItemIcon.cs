@@ -57,6 +57,11 @@ public class ItemIcon : MonoBehaviour
 
     public int Select(Vector2 vector2)
     {
+        if(!WithinRange())
+        {
+            return 0;
+        }
+
         //â°ï˚å¸
         if (vector2.sqrMagnitude > 0)
         {
@@ -143,7 +148,6 @@ public class ItemIcon : MonoBehaviour
             var pos = new Vector3(_iconData._leftTopPos.x, _iconData._leftTopPos.y, 0);
             pos.x -= _iconData._padding;
             pos.y += _iconData._padding;
-
             //é¿ëÃâª
             _buttonBackObj = Instantiate(_iconData._buttonBackPrefab, pos, Quaternion.identity);
             //êeÇÃê›íË

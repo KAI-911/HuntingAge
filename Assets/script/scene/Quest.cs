@@ -24,7 +24,6 @@ public class Quest : MonoBehaviour
     public List<Enemy> EnemyList { get => _enemyList; }
     public EnemyCount KillEnemyCount { get => _killEnemyCount;}
 
-    public bool AcceptingQuest;
 
     //シーン切り替えまでの時間
     [SerializeField] float _sceneChengeTime;
@@ -72,14 +71,9 @@ public class Quest : MonoBehaviour
             tmp.number = item.Value;
             viewQuestTargetEnemy.Add(tmp);
         }
-        if (AcceptingQuest) Debug.Log("クエスト受注中");
         _currentState.OnUpdate(this);
     }
-    public void QusetSelect(string QuestID)
-    {
-        _questData = GameManager.Instance.QuestDataList.Dictionary[QuestID];
 
-    }
     public void GoToQuset()
     {
         GameManager.Instance.SceneChange(_questData.Field);
@@ -87,12 +81,10 @@ public class Quest : MonoBehaviour
 
     private void OnActiveSceneChanged(UnityEngine.SceneManagement.Scene arg0, UnityEngine.SceneManagement.Scene arg1)
     {
-        Debug.Log("シーン移動");
         _currentState.OnActiveSceneChanged(this);
     }
     void LoadEnemy()
     {
-        Debug.Log("LoadEnemy");
         //討伐対象
         foreach (var target in _questData.TargetName)
         {
@@ -160,14 +152,12 @@ public class Quest : MonoBehaviour
     {
         public override void OnActiveSceneChanged(Quest owner)
         {
-            if (!owner.AcceptingQuest) return;
             owner._player = GameObject.FindWithTag("Player").GetComponent<Player>();
             owner.KillEnemyCount.EnemyCountList.Clear();
             owner._questTargetCount.EnemyCountList.Clear();
             owner._enemyList.Clear();
             owner._deathCount = 0;
             owner.LoadEnemy();
-            owner.AcceptingQuest = false;
             switch (owner._questData.Clear)
             {
                 case ClearConditions.TargetSubjugation:

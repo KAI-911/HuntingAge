@@ -55,12 +55,12 @@ public class Blacksmith : UIBase
             if (owner.GetComponent<Blacksmith>()._blacksmithChecker.TriggerHit && UIManager.Instance._player.IsAction)
             {
                 Debug.Log("o");
-                owner.ChangeState<SelectMode>();
+                owner.ChangeState<TypeSelectMode>();
             }
         }
     }
 
-    public class SelectMode : UIStateBase
+    public class TypeSelectMode : UIStateBase
     {
         public override void OnEnter(UIBase owner, UIStateBase prevState)
         {
@@ -99,6 +99,8 @@ public class Blacksmith : UIBase
             //モード選択画面
             owner.GetComponent<Blacksmith>()._blacksmithMode.text = "何を作る？";
             //ボタンの追加
+            var lists = owner.ItemIconList[(int)IconType.TypeSelect];
+            lists.TableSize = new Vector2(3, 1);
             var list = owner.ItemIconList[(int)IconType.TypeSelect].CreateButton();
             for (int i = 0; i < 3/*斧・槍・弓*/; i++)
             {
@@ -132,7 +134,7 @@ public class Blacksmith : UIBase
         public override void OnBack(UIBase owner)
         {
             Debug.Log("modoru");
-            owner.ChangeState<SelectMode>();
+            owner.ChangeState<TypeSelectMode>();
         }
     }
 
@@ -142,6 +144,7 @@ public class Blacksmith : UIBase
         public override void OnEnter(UIBase owner, UIStateBase prevState)
         {
             ConfirmationSelect = false;
+
             switch (owner.GetComponent<Blacksmith>().productionWeaponType)
             {
                 case 1:
@@ -294,7 +297,7 @@ public class Blacksmith : UIBase
         public override void OnBack(UIBase owner)
         {
             Debug.Log("modoru");
-            owner.ChangeState<SelectMode>();
+            owner.ChangeState<TypeSelectMode>();
         }
     }
 
@@ -396,7 +399,7 @@ public class Blacksmith : UIBase
         public override void OnBack(UIBase owner)
         {
             Debug.Log("modoru");
-            owner.ChangeState<SelectMode>();
+            owner.ChangeState<TypeSelectMode>();
         }
     }
 }

@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using UnityEngine.InputSystem;
 using System.Threading.Tasks;
 using UnityEngine.EventSystems;
-public partial class Player : MonoBehaviour
+public partial class Player : Singleton<Player>
 {
     //リジッドボディー
     private Rigidbody _rigidbody;
@@ -62,8 +62,7 @@ public partial class Player : MonoBehaviour
 
     private Status _keepStatus;
 
-
-    private void Awake()
+    protected override void Awake()
     {
         _rigidbody = GetComponent<Rigidbody>();
         _animator = GetComponent<Animator>();
@@ -74,8 +73,9 @@ public partial class Player : MonoBehaviour
         _currentState = new LocomotionState();
         _currentState.OnEnter(this, null);
         _keepStatus = new Status();
-    }
+        base.Awake();
 
+    }
     private void OnEnable()
     {
         _inputMove.Player.Jump.started += Jump;
