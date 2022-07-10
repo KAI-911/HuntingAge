@@ -8,7 +8,7 @@ public class JumpState : PlayerStateBase
     public override void OnEnter(Player owner, PlayerStateBase prevState)
     {
         owner.Rigidbody.AddForce(new Vector3(0, owner.JumpPowor, 0), ForceMode.Impulse);
-        speed = owner.DashSpeed;
+        speed = owner.MaxSpeed;
         owner.Animator.SetInteger("AniState", (int)PlayerAnimationState.Jump);
         owner.Animator.SetTrigger("Change");
     }

@@ -11,6 +11,7 @@ public class PlayerStateBase
     public virtual void OnFixedUpdate(Player owner){}
     public virtual void OnAnimationEvent(Player owner, AnimationEvent animationEvent){}
     public virtual void OnCollisionStay(Player owner, Collision collision){}
+    public virtual void OnTriggerStay(Player owner, Collider collider) { }
     public virtual void OnDodge(Player owner){}
     public virtual void OnJump(Player owner){}
     public virtual void OnStrongAttack(Player owner){}

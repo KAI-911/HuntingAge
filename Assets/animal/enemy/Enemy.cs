@@ -83,6 +83,23 @@ public class Enemy : MonoBehaviour
     private RunOnce Run_death = new RunOnce();
 
     private int _keepHP;
+
+    [SerializeField] List<GameObject> DebugSetPosObj;
+    [ContextMenu("DebugSetPosObjSet")]
+    public void DebugSetPosObjSet()
+    {
+        _warningPos.Clear();
+        foreach (var item in DebugSetPosObj)
+        {
+            _warningPos.Add(item.transform.position);
+        }
+        var data = GameManager.Instance.EnemyDataList;
+        int i = data.Keys.IndexOf(_enemyID);
+        var pos =data.Values[i].EnemyPos.Find(n => n.scene == GameManager.Instance.NowScene);
+        pos.pos = _warningPos;
+        data.DesrializeDictionary();
+    }
+
     private void Awake()
     {
         _navMeshAgent = GetComponent<NavMeshAgent>();

@@ -7,7 +7,7 @@ public class LocomotionState : PlayerStateBase
     float nowSpeed;
     public override void OnEnter(Player owner, PlayerStateBase prevState)
     {
-        nowSpeed = owner.DashSpeed;
+        nowSpeed = owner.MaxSpeed;
         owner.Animator.SetInteger("AniState", (int)PlayerAnimationState.Locomotion);
         owner.Animator.SetTrigger("Change");
 
@@ -46,7 +46,15 @@ public class LocomotionState : PlayerStateBase
     public override void OnDodge(Player owner)
     {
         if (!owner.GroundChecker.IsGround()) return;
-        if (owner.InputMoveAction.ReadValue<Vector2>().sqrMagnitude <= 0.1f) return;
+        if (owner.InputMoveAction.ReadValue<Vector2>().sqrMagnitude <= 0.1f)
+        {
+            //•ûŒü“ü—Í‚ª‚È‚¯‚ê‚ÎÌŽæ
+            if (owner.CollectionFlg)
+            {
+                owner.ChangeState<Collection>();
+            }
+            return;
+        }
         owner.ChangeState<DodgeState>();
 
     }

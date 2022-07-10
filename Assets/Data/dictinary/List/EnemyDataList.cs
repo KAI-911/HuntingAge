@@ -10,7 +10,8 @@ public class EnemyDataList : MonoBehaviour, ISerializationCallbackReceiver
     [SerializeField] Dictionary<string, EnemyData> dictionary = new Dictionary<string, EnemyData>();
     public bool modifyValues;
     public Dictionary<string, EnemyData> Dictionary { get => dictionary; }
-
+    public List<string> Keys { get => keys; set => keys = value; }
+    public List<EnemyData> Values { get => values; set => values = value; }
 
     private void Awake()
     {

@@ -105,7 +105,6 @@ public class ItemDataList : MonoBehaviour, ISerializationCallbackReceiver
     /// <param name="ID">移動させるアイテムのID</param>
     /// <param name="move">ボックスからいくつ移動させるか</param>
     /// <param name="uinum">ボックスに移動させるアイテムがない場合に使用するUIの場所</param>
-
     public void PoachToBox(string ID, int move, int uinum)
     {
         if (!keys.Contains(ID)) return;
@@ -127,6 +126,34 @@ public class ItemDataList : MonoBehaviour, ISerializationCallbackReceiver
         DesrializeDictionary();
     }
 
+    /// <summary>
+    /// ポーチに指定数のアイテムを送る
+    /// </summary>
+    /// <param name="ID">移動させるアイテムのID</param>
+    /// <param name="move">ポーチからいくつ移動させるか</param>
+    /// <param name="uinum">ポーチに移動させるアイテムがない場合に使用するUIの場所</param>
+    /// <returns>
+    /// 基本的に正の値を返す
+    /// -1 エラー:キーが見つからなかった
+    /// </returns>
+    public int GetToPoach(string ID, int move, int uinum)
+    {
+        if (!keys.Contains(ID)) return -1;
+        int index = keys.IndexOf(ID);
+        var data = values[index];
+
+        int addNumber = move;
+        //ボックスに受け取る容量がない
+        if (move > data.PoachStackNumber - data.PoachHoldNumber) addNumber = data.PoachStackNumber - data.PoachHoldNumber;
+
+        //UIの位置を設定
+        if (data.PoachHoldNumber <= 0) data.PoachUINumber = uinum;
+
+        data.PoachHoldNumber += addNumber;
+        values[index] = data;
+        DesrializeDictionary();
+        return addNumber;
+    }
 }
 
 [System.Serializable]

@@ -72,9 +72,9 @@ MonoBehaviour:
       hight: 30
       margin: 10
       textAnchor: 4
-  - _leftTopPos: {x: 1200, y: 1000}
+  - _leftTopPos: {x: 1200, y: 800}
     _padding: 10
-    _tableSize: {x: 9, y: 5}
+    _tableSize: {x: 5, y: 5}
     _canBeChanged: 0
     _buttonBack: 1
     _textFlg: 1

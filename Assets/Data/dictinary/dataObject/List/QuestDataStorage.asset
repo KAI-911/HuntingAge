@@ -25,16 +25,22 @@ MonoBehaviour:
     TargetName:
     - name: T-rex
       number: 1
-    OtherName: []
+    OtherName:
+    - name: Wolf
+      number: 1
+    - name: Dodo
+      number: 1
   - ID: Quest002
     Name: Quest002
     Clear: 0
     Failure: 2
-    Field: 2
+    Field: 1
     TargetName:
     - name: Wolf
-      number: 2
-    OtherName: []
+      number: 5
+    OtherName:
+    - name: Wolf
+      number: 20
   - ID: Quest003
     Name: Quest003
     Clear: 0

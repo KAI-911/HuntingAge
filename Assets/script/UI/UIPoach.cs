@@ -168,10 +168,34 @@ public class UIPoach : UIBase
             var ibutton = list[item.Value.PoachUINumber].GetComponent<ItemButton>();
             ibutton.SetID(item.Key, ItemBoxOrPoach.poach);
         }
-
-
     }
 
+
+    public void AddPoach(string ID, int move)
+    {
+        var itemdata = GameManager.Instance.ItemDataList;
+        if (!itemdata.Keys.Contains(ID)) return;
+        //アイテムポーチにアイテムがある
+        if (itemdata.Dictionary[ID].PoachHoldNumber > 0)
+        {
+            itemdata.GetToPoach(ID, move, itemdata.Dictionary[ID].PoachUINumber);
+            itemdata.DesrializeDictionary();
+            return;
+        }
+        //アイテムポーチにない場合UIの位置を設定して追加
+        var data = ItemIconList[(int)IconType.ItemSelect].IconData;
+        int num = (int)data._tableSize.x * (int)data._tableSize.y;
+        List<int> vs = new List<int>();
+        for (int i = 0; i < num; i++) vs.Add(i);
+        foreach (var item in itemdata.Values)
+        {
+            if (item.PoachHoldNumber <= 0) continue;
+            vs.Remove(item.PoachUINumber);
+        }
+        if (vs.Count == 0) return;
+        itemdata.GetToPoach(ID, move, vs[0]);
+        itemdata.DesrializeDictionary();
+    }
 
     enum IconType
     {
