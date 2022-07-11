@@ -62,7 +62,7 @@ public partial class Player : Singleton<Player>
 
     //ÌŽæ—p
     private bool _collectionFlg;
-    [SerializeField] private CollectionScript _collectionScript;
+    private CollectionScript _collectionScript;
     public CollectionScript CollectionScript { get => _collectionScript; set => _collectionScript = value; }
     protected override void Awake()
     {

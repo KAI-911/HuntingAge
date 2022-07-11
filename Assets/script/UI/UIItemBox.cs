@@ -11,7 +11,7 @@ public class UIItemBox : UIBase
 
     private void Start()
     {
-        ItemIconList[(int)IconType.TypeSelect].SetIcondata(UIManager.Instance.UIPresetData.Dictionary["IB_TypeSelect"]);
+        ItemIconList[(int)IconType.TypeSelect].SetIcondata(UIManager.Instance.UIPresetData.Dictionary["IP_TypeSelect"]);
         ItemIconList[(int)IconType.BoxItemSelect].SetIcondata(UIManager.Instance.UIPresetData.Dictionary["IB_ItemSelect"]);
         ItemIconList[(int)IconType.PoachItemSelect].SetIcondata(UIManager.Instance.UIPresetData.Dictionary["IP_ItemSelect"]);
         ItemIconList[(int)IconType.SubMenuSelect].SetIcondata(UIManager.Instance.UIPresetData.Dictionary["IB_SubMenu"]);
@@ -125,7 +125,7 @@ public class UIItemBox : UIBase
                 int needNumber = data.PoachStackNumber - data.PoachHoldNumber;
                 //UIÇÃà íuÇê›íË
                 int UINumber = owner.ItemIconList[(int)IconType.PoachItemSelect].FirstNotSetNumber();
-                GameManager.Instance.ItemDataList.BoxToPoach(data.ID, needNumber, UINumber);
+                if (UINumber != -1) GameManager.Instance.ItemDataList.BoxToPoach(data.ID, needNumber, UINumber);
 
                 owner.GetComponent<UIItemBox>().UISet();
             }
@@ -137,7 +137,7 @@ public class UIItemBox : UIBase
                 int needNumber = data.BoxStackNumber - data.BoxHoldNumber;
                 //UIÇÃà íuÇê›íË
                 int UINumber = owner.ItemIconList[(int)IconType.BoxItemSelect].FirstNotSetNumber();
-                GameManager.Instance.ItemDataList.PoachToBox(data.ID, needNumber, UINumber);
+                if (UINumber != -1) GameManager.Instance.ItemDataList.PoachToBox(data.ID, needNumber, UINumber);
 
                 owner.GetComponent<UIItemBox>().UISet();
 

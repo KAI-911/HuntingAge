@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 [CreateAssetMenu(fileName = "ItemHolderStorage", menuName = "ItemHolderObject")]
 public class ItemHolderObject : ScriptableObject
@@ -14,15 +15,13 @@ public class ItemHolderObject : ScriptableObject
     public List<CollectionDataLsit> Values { get => values; set => values = value; }
 
 }
-[System.Serializable]
-public struct CollectionData
-{   
-    public string ID;
-    public int Probability;
-}
+
 
 [System.Serializable]
 public struct CollectionDataLsit
 {
-   public List<CollectionData> collectionDatas;
+    public GameObject _imagePrefab;
+    public string ID;
+    public int GetNum;
+    public Sprite Icon;
 }

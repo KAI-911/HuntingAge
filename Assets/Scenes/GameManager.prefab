@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 2773925875629662053}
   - component: {fileID: 2773925875629662048}
   - component: {fileID: 2773925875629662055}
+  - component: {fileID: 3631824838735457377}
   m_Layer: 0
   m_Name: UIpoach
   m_TagString: Untagged
@@ -49,6 +50,7 @@ MonoBehaviour:
   _itemIconList:
   - {fileID: 2773925875629662048}
   - {fileID: 2773925875629662055}
+  - {fileID: 3631824838735457377}
   dataList: {fileID: 11400000, guid: 3eb9340a68e4a0c48a6dae4855fade1e, type: 2}
 --- !u!114 &2773925875629662048
 MonoBehaviour:
@@ -82,6 +84,37 @@ MonoBehaviour:
       margin: 0
       textAnchor: 0
 --- !u!114 &2773925875629662055
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2773925875629662058}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a91304ffa4c09734aba7577349723a6e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _Buttons: []
+  _iconData:
+    _leftTopPos: {x: 0, y: 0}
+    _padding: 0
+    _tableSize: {x: 0, y: 0}
+    _canBeChanged: 0
+    _buttonBack: 0
+    _textFlg: 0
+    _buttonPrefab: {fileID: 0}
+    _buttonBackPrefab: {fileID: 0}
+    _textPrefab: {fileID: 0}
+    _textData:
+      fontSize: 0
+      autoFontSize: 0
+      text: 
+      color: {r: 0, g: 0, b: 0, a: 0}
+      hight: 0
+      margin: 0
+      textAnchor: 0
+--- !u!114 &3631824838735457377
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -270,6 +303,7 @@ MonoBehaviour:
   _villageScene: 3
   _nowScene: 3
   _itemDataList: {fileID: 591199820164075101}
+  _UIPoachList: {fileID: 2773925875629662053}
   _weaponDataList: {fileID: 7629702492207570889}
   _enemyDataList: {fileID: 2773925877255139973}
   _villageData: {fileID: 4148252544599271049}
@@ -325,11 +359,11 @@ MonoBehaviour:
     Name: "\u5CA9"
     IconName: Icon/Stone_UI
     BoxStackNumber: 9999
-    BoxUINumber: 5
-    BoxHoldNumber: 0
+    BoxUINumber: 2
+    BoxHoldNumber: 1
     PoachStackNumber: 99
-    PoachUINumber: 1
-    PoachHoldNumber: 2
+    PoachUINumber: 3
+    PoachHoldNumber: 0
     Permanent: 0
     Time: 0
     ItemType: 0
@@ -338,11 +372,11 @@ MonoBehaviour:
     Name: "\u6728"
     IconName: Icon/Wood_UI
     BoxStackNumber: 9999
-    BoxUINumber: 2
-    BoxHoldNumber: 0
+    BoxUINumber: 6
+    BoxHoldNumber: 2
     PoachStackNumber: 99
-    PoachUINumber: 4
-    PoachHoldNumber: 4
+    PoachUINumber: 1
+    PoachHoldNumber: 1
     Permanent: 0
     Time: 0
     ItemType: 0
@@ -352,10 +386,10 @@ MonoBehaviour:
     IconName: Icon/Fiber_UI
     BoxStackNumber: 9999
     BoxUINumber: 4
-    BoxHoldNumber: 0
+    BoxHoldNumber: 4
     PoachStackNumber: 99
-    PoachUINumber: 6
-    PoachHoldNumber: 6
+    PoachUINumber: 3
+    PoachHoldNumber: 1
     Permanent: 0
     Time: 0
     ItemType: 0
@@ -364,11 +398,11 @@ MonoBehaviour:
     Name: "\u9AA8"
     IconName: Icon/Bone_UI
     BoxStackNumber: 9999
-    BoxUINumber: 1
-    BoxHoldNumber: 0
+    BoxUINumber: 0
+    BoxHoldNumber: 208
     PoachStackNumber: 99
-    PoachUINumber: 3
-    PoachHoldNumber: 8
+    PoachUINumber: 0
+    PoachHoldNumber: 0
     Permanent: 0
     Time: 0
     ItemType: 0
@@ -377,11 +411,11 @@ MonoBehaviour:
     Name: "\u690D\u7269"
     IconName: Icon/Botanical_UI
     BoxStackNumber: 9999
-    BoxUINumber: 6
-    BoxHoldNumber: 0
+    BoxUINumber: 5
+    BoxHoldNumber: 8
     PoachStackNumber: 99
     PoachUINumber: 0
-    PoachHoldNumber: 10
+    PoachHoldNumber: 1
     Permanent: 0
     Time: 0
     ItemType: 0
@@ -390,11 +424,11 @@ MonoBehaviour:
     Name: "\u8089"
     IconName: Icon/Meat_UI
     BoxStackNumber: 9999
-    BoxUINumber: 3
-    BoxHoldNumber: 0
+    BoxUINumber: 1
+    BoxHoldNumber: 10
     PoachStackNumber: 99
-    PoachUINumber: 5
-    PoachHoldNumber: 12
+    PoachUINumber: 2
+    PoachHoldNumber: 1
     Permanent: 0
     Time: 0
     ItemType: 0
@@ -403,11 +437,11 @@ MonoBehaviour:
     Name: "\u30C4\u30BF"
     IconName: Icon/Vine_UI
     BoxStackNumber: 9999
-    BoxUINumber: 0
-    BoxHoldNumber: 0
+    BoxUINumber: 3
+    BoxHoldNumber: 12
     PoachStackNumber: 99
-    PoachUINumber: 2
-    PoachHoldNumber: 14
+    PoachUINumber: 4
+    PoachHoldNumber: 1
     Permanent: 0
     Time: 0
     ItemType: 0

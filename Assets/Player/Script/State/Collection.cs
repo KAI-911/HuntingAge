@@ -16,11 +16,9 @@ public class Collection : PlayerStateBase
         collectionTime -= Time.deltaTime;
         if (collectionTime < 0)
         {
-            string id = owner.CollectionScript.GetRandomItemID();
-            if (id != "")
-            {
-                GameManager.Instance.UIPoachList.AddPoach(id, 1);
-            }
+            //ポーチに追加
+            int r = GameManager.Instance.UIPoachList.AddPoach(owner.CollectionScript.GetItemID(), owner.CollectionScript.GetNumber());
+            if (r == -1) Debug.LogError("キーがない");
             owner.ChangeState<LocomotionState>();
         }
     }

@@ -259,9 +259,10 @@ GameObject:
   m_Component:
   - component: {fileID: 5392743569053125893}
   - component: {fileID: 8456348169680917733}
+  - component: {fileID: 6473244778400173260}
   m_Layer: 0
   m_Name: CollectionArea
-  m_TagString: Untagged
+  m_TagString: CollectionPoint
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -295,6 +296,20 @@ CapsuleCollider:
   m_Height: 23.72
   m_Direction: 1
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &6473244778400173260
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6900680910347476722}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 660772cc242956a46956ed6740de5104, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  MaskTag: Player
+  _targetCheckerType: 0
 --- !u!1 &8702481326834998359
 GameObject:
   m_ObjectHideFlags: 0
@@ -304,6 +319,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8348619872390368025}
+  - component: {fileID: 950063209446494874}
+  - component: {fileID: 4960334463092942474}
   m_Layer: 0
   m_Name: Bone
   m_TagString: Untagged
@@ -330,3 +347,40 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &950063209446494874
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8702481326834998359}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cb4271ea13da4f74cbbfd13df1a35e68, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _itemHolder: {fileID: 4960334463092942474}
+  _offest: {x: 0, y: 3, z: 0}
+  _backImage: {fileID: 5541608107631814696, guid: 242c96c79d9b830449b003f68433f768, type: 3}
+  _ID: Bone
+--- !u!114 &4960334463092942474
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8702481326834998359}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0311146b928456b4fbb4969387ddaa72, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  DictionaryData: {fileID: 11400000, guid: d4d92aadcc49c634cbe211128321d169, type: 2}
+  keys:
+  - Bone
+  values:
+  - _imagePrefab: {fileID: 21300000, guid: 1e69f11348e8871438bab805bd4eaf77, type: 3}
+    ID: Material003
+    GetNum: 1
+    Icon: {fileID: 21300000, guid: 774933f336245c746a07a96b9fb70ab8, type: 3}
+  modifyValues: 0

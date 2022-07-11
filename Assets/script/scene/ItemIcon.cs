@@ -17,7 +17,9 @@ public class ItemIcon : MonoBehaviour
     public Vector2 TableSize { get => _iconData._tableSize; set => _iconData._tableSize = value; }
     public int CurrentNunber { get => _currentNunber; }
     public int GetSize { get => (int)_iconData._tableSize.x * (int)_iconData._tableSize.y; }
-    public ItemIconData IconData { get => _iconData; set => _iconData = value; }
+    public ItemIconData IconData { get => _iconData; }
+    public GameObject TextObj { get => _textObj; }
+    public GameObject ButtonBackObj { get => _buttonBackObj; }
 
     public bool WithinRange()
     {
@@ -57,7 +59,7 @@ public class ItemIcon : MonoBehaviour
 
     public int Select(Vector2 vector2)
     {
-        if(!WithinRange())
+        if (!WithinRange())
         {
             return 0;
         }
