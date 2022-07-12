@@ -85,7 +85,7 @@ MonoBehaviour:
       autoFontSize: 1
       text: "\u78BA\u8A8D"
       color: {r: 0, g: 0, b: 0, a: 1}
-      hight: 30
+      hight: 60
       margin: 10
       textAnchor: 4
   - _leftTopPos: {x: 100, y: 900}
@@ -102,7 +102,7 @@ MonoBehaviour:
       autoFontSize: 1
       text: 123456789
       color: {r: 0, g: 0, b: 0, a: 1}
-      hight: 30
+      hight: 60
       margin: 10
       textAnchor: 4
   - _leftTopPos: {x: 0, y: 0}
