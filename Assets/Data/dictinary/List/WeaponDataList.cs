@@ -71,9 +71,27 @@ public class WeaponDataList : MonoBehaviour, ISerializationCallbackReceiver
     public int Production(string _ID)
     {
         int index = keys.FindIndex(n => n.StartsWith(_ID));
-        Debug.Log(index);
+        //Debug.Log(index);
         var data = values[index];
-        if (data.BoxPossession)return 0;
+        if (data.BoxPossession) return 0;
+
+        int count = data.ProductionNeedMaterialLst.Count;
+        string[] needID; needID = new string[count];
+        int[] needRequiredCount; needRequiredCount = new int[count];
+
+        for (int i = 0; i < count; i++)
+        {
+            needID[i] = data.ProductionNeedMaterialLst[i].materialID;
+            needRequiredCount[i] = data.ProductionNeedMaterialLst[i].requiredCount;
+
+            var _material = GameManager.Instance.ItemDataList;
+            if (!(_material.Dictionary.ContainsKey(needID[i]))) return 2;
+            int _num = _material.Dictionary[needID[i]].BoxHoldNumber + _material.Dictionary[needID[i]].PoachHoldNumber;
+            if (_num < needRequiredCount[i]) return 2;
+        }
+
+        ItemsConsumption(_ID, true);
+
         data.BoxPossession = true;
         values[index] = data;
         DesrializeDictionary();
@@ -82,7 +100,98 @@ public class WeaponDataList : MonoBehaviour, ISerializationCallbackReceiver
 
     public int Enhancement(string _ID)
     {
+        Debug.Log("DataListmadekiteTukuretayo");
+        int index = keys.FindIndex(n => n.StartsWith(_ID));
+        var data = values[index + 1];
+        if (data.BoxPossession) return 0;
+
+        for (int i = 0; i < data.ProductionNeedMaterialLst.Count; i++)
+        {
+            string needID = data.EnhancementNeedMaterialLst[i].materialID;
+            int needRequiredCount = data.EnhancementNeedMaterialLst[i].requiredCount;
+
+            var _material = GameManager.Instance.ItemDataList;
+            if (!(_material.Dictionary.ContainsKey(needID))) return 2;
+            int _num = _material.Dictionary[needID].BoxHoldNumber + _material.Dictionary[needID].PoachHoldNumber;
+            if (_num < needRequiredCount) return 2;
+        }
+
+
+        Debug.Log("kakuninnmadesitayo");
+
+        ItemsConsumption(_ID, false);
+
+        Debug.Log("syouhimadesitayo");
+        data.BoxPossession = true;
+        values[index + 1] = data;
+        var data1 = values[index];
+        data1.BoxPossession = false;
+        values[index] = data1;
+        DesrializeDictionary();
+
         return 1;
+    }
+
+    public void ItemsConsumption(string _ID, bool _production)
+    {
+
+
+        Debug.Log("kannsuuyobaretayo");
+        int index = keys.FindIndex(n => n.StartsWith(_ID));
+        //Debug.Log(index);
+        var data = values[index];
+        int listCount;
+
+        if (_production) listCount = data.ProductionNeedMaterialLst.Count;
+        else listCount = data.EnhancementNeedMaterialLst.Count;
+
+        List<string> needID = new List<string>();
+        List<int> needRequired = new List<int>();
+
+        if (_production)
+        {
+            for (int i = 0; i < listCount; i++)
+            {
+                needID.Add(data.ProductionNeedMaterialLst[i].materialID);
+                needRequired.Add(data.ProductionNeedMaterialLst[i].requiredCount);
+            }
+        }
+        else
+        {
+            for (int i = 0; i < listCount; i++)
+            {
+                int count = i;
+                needID.Add(data.EnhancementNeedMaterialLst[count].materialID);
+                needRequired.Add(data.EnhancementNeedMaterialLst[count].requiredCount);
+            }
+        }
+        Debug.Log("syouhisetteimadesitayo");
+
+
+
+        for (int i = 0; i < listCount; i++)
+        {
+            int count = i;
+            var _material = GameManager.Instance.ItemDataList;
+            int tmp = _material.Keys.IndexOf(needID[count]);
+            if (_material.Values[tmp].PoachHoldNumber < needRequired[count])
+            {
+                needRequired[count] -= _material.Values[tmp].PoachHoldNumber;
+                var data1 = _material.Values[tmp];
+                data1.PoachHoldNumber = 0;
+                _material.Values[tmp] = data1;
+
+                data1.BoxHoldNumber -= needRequired[count];
+                _material.Values[tmp] = data1;
+            }
+            else
+            {
+                var data1 = _material.Values[tmp];
+                data1.PoachHoldNumber -= needRequired[count];
+                _material.Values[tmp] = data1;
+            }
+        }
+        GameManager.Instance.ItemDataList.DesrializeDictionary();
     }
 }
 
@@ -94,6 +203,11 @@ public struct WeaponData
     /// 武器種がX00、素材が00X
     /// </summary>
     public string ID;
+
+    /// <summary>
+    /// 強化先のID：強化先がない場合empty
+    /// </summary>
+    public string EnhancementID;
 
     /// <summary>
     /// 表示される名前
@@ -133,12 +247,12 @@ public struct WeaponData
     /// <summary>
     /// 製造に必要な素材
     /// </summary>
-    public List<ProductionNeedMateliar> ProductionNeedMaterialLst;
+    public List<NeedMaterial> ProductionNeedMaterialLst;
 
     /// <summary>
     /// 強化に必要な素材
     /// </summary>
-    public List<EnhancementNeedMateliar> EnhancementNeedMaterialLst;
+    public List<NeedMaterial> EnhancementNeedMaterialLst;
 }
 
 public enum WeaponType
@@ -149,14 +263,7 @@ public enum WeaponType
 }
 
 [System.Serializable]
-public struct ProductionNeedMateliar
-{
-    public string materialID;
-    public int requiredCount;
-}
-
-[System.Serializable]
-public struct EnhancementNeedMateliar
+public struct NeedMaterial
 {
     public string materialID;
     public int requiredCount;

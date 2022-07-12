@@ -33,18 +33,20 @@ MonoBehaviour:
     Permanent: 0
     Time: 0
     ItemType: 0
+    CreatableLevel: 0
   - ID: Material001
     Name: "\u6728"
     IconName: Icon/Wood_UI
     BoxStackNumber: 9999
     BoxUINumber: 2
-    BoxHoldNumber: 0
+    BoxHoldNumber: 90
     PoachStackNumber: 99
     PoachUINumber: 4
     PoachHoldNumber: 4
     Permanent: 0
     Time: 0
     ItemType: 0
+    CreatableLevel: 0
   - ID: Material002
     Name: "\u7E4A\u7DAD"
     IconName: Icon/Fiber_UI
@@ -57,6 +59,7 @@ MonoBehaviour:
     Permanent: 0
     Time: 0
     ItemType: 0
+    CreatableLevel: 0
   - ID: Material003
     Name: "\u9AA8"
     IconName: Icon/Bone_UI
@@ -69,6 +72,7 @@ MonoBehaviour:
     Permanent: 0
     Time: 0
     ItemType: 0
+    CreatableLevel: 0
   - ID: Material004
     Name: "\u690D\u7269"
     IconName: Icon/Botanical_UI
@@ -81,6 +85,7 @@ MonoBehaviour:
     Permanent: 0
     Time: 0
     ItemType: 0
+    CreatableLevel: 0
   - ID: Material005
     Name: "\u8089"
     IconName: Icon/Meat_UI
@@ -93,6 +98,7 @@ MonoBehaviour:
     Permanent: 0
     Time: 0
     ItemType: 0
+    CreatableLevel: 0
   - ID: Material006
     Name: "\u30C4\u30BF"
     IconName: Icon/Vine_UI
@@ -105,3 +111,4 @@ MonoBehaviour:
     Permanent: 0
     Time: 0
     ItemType: 0
+    CreatableLevel: 0
