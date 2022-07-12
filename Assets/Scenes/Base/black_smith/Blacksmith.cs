@@ -63,12 +63,12 @@ public class Blacksmith : UIBase
             var iconText = owner.ItemIconList[(int)IconType.TypeSelect];
             var icon = iconText.IconData;
             icon._textData.text = "鍛冶場：武器";
-            iconText.IconData = icon;
+            iconText.SetIcondata(icon);
 
             var table = owner.ItemIconList[(int)IconType.TypeSelect];
             var iconData = table.IconData;
             iconData._tableSize = new Vector2(2, 1);
-            table.IconData = iconData;
+            iconText.SetIcondata(iconData);
             var list = owner.ItemIconList[(int)IconType.TypeSelect].CreateButton();
 
             var button0Text = list[0].GetComponentInChildren<Text>();
@@ -108,12 +108,12 @@ public class Blacksmith : UIBase
             var iconText = owner.ItemIconList[(int)IconType.TypeSelect];
             var icon = iconText.IconData;
             icon._textData.text = "武器製造";
-            iconText.IconData = icon;
+            iconText.SetIcondata(icon);
             //ボタンの追加
             var table = owner.ItemIconList[(int)IconType.TypeSelect];
             var iconData = table.IconData;
             iconData._tableSize = new Vector2(3, 1);
-            table.IconData = iconData;
+            table.SetIcondata(iconData);
             var list = owner.ItemIconList[(int)IconType.TypeSelect].CreateButton();
             for (int i = 0; i < 3/*斧・槍・弓*/; i++)
             {
@@ -177,7 +177,7 @@ public class Blacksmith : UIBase
             var iconText = owner.ItemIconList[(int)IconType.TypeSelect];
             var icon = iconText.IconData;
             icon._textData.text = "武器製造";
-            iconText.IconData = icon;
+            iconText.SetIcondata(icon);
 
             //ボタンの追加
             var villageData = GameManager.Instance.VillageData;
@@ -195,7 +195,7 @@ public class Blacksmith : UIBase
             var table = owner.ItemIconList[(int)IconType.TypeSelect];
             var iconData = table.IconData;
             iconData._tableSize = new Vector2(_CreatableWeapon.Count, 1);
-            table.IconData = iconData;
+            table.SetIcondata(iconData);
             var list = owner.ItemIconList[(int)IconType.TypeSelect].CreateButton();
             for (int i = 0; i < _CreatableWeapon.Count; i++)
             {
@@ -297,7 +297,7 @@ public class Blacksmith : UIBase
             var iconText = owner.ItemIconList[(int)IconType.TypeSelect];
             var icon = iconText.IconData;
             icon._textData.text = "武器強化先";
-            iconText.IconData = icon;
+            iconText.SetIcondata(icon);
 
             var Weapon = owner.GetComponent<Blacksmith>()._WeaponDataList.Dictionary;
             List<WeaponData> _TmpWeapon = new List<WeaponData>();
@@ -309,7 +309,7 @@ public class Blacksmith : UIBase
             var table = owner.ItemIconList[(int)IconType.TypeSelect];
             var iconData = table.IconData;
             iconData._tableSize = new Vector2(_TmpWeapon.Count, 1);
-            table.IconData = iconData;
+            table.SetIcondata(iconData);
 
             for (int i = 0; i < _TmpWeapon.Count; i++)
             {
