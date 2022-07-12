@@ -6,13 +6,10 @@ public class ItemHolder : MonoBehaviour, ISerializationCallbackReceiver
 {
     [SerializeField] ItemHolderObject DictionaryData;
     [SerializeField] List<string> keys = new List<string>();
-    [SerializeField] List<int> values = new List<int>();
-    [SerializeField] Dictionary<string, int> dictionary = new Dictionary<string, int>();
-    [SerializeField] int maxFrame;
-    [SerializeField] ItemStack itemStack;
+    [SerializeField] List<CollectionDataLsit> values = new List<CollectionDataLsit>();
+    [SerializeField] Dictionary<string, CollectionDataLsit> dictionary = new Dictionary<string, CollectionDataLsit>();
     public bool modifyValues;
-    public Dictionary<string, int> Dictionary { get => dictionary; }
-    public int MaxFrame { get => maxFrame; set => maxFrame = value; }
+    public Dictionary<string, CollectionDataLsit> Dictionary { get => dictionary; }
 
     private void Awake()
     {
@@ -38,30 +35,11 @@ public class ItemHolder : MonoBehaviour, ISerializationCallbackReceiver
         }
     }
 
-    private void Update()
-    {
-        //foreach (var item in dictionary)
-        //{
-        //    switch (itemStack)
-        //    {
-        //        case ItemStack.Box:
-        //            var data1 = GameManager.Instance.ItemDataList.Dictionary[item.Key];
-        //            if (data1.BoxHoldNumber <= 0) Erase(item.Key);
-        //            break;
-        //        case ItemStack.Poach:
-        //            var data2 = GameManager.Instance.ItemDataList.Dictionary[item.Key];
-        //            if (data2.PoachHoldNumber <= 0) Erase(item.Key);
-        //            break;
-        //        default:
-        //            break;
-        //    }
-            
-        //}
-    }
     public void OnAfterDeserialize()
     {
 
     }
+
     public void DesrializeDictionary()
     {
         Debug.Log("DesrializeDictionary");
@@ -77,34 +55,6 @@ public class ItemHolder : MonoBehaviour, ISerializationCallbackReceiver
         modifyValues = false;
     }
 
-    public void Add(string id)
-    {
-        if (keys.Contains(id)) return;
-        //’Ç‰Á‚Å‚«‚é”ÍˆÍ‚ðŽæ“¾
-        List<int> vs = new List<int>();
-        for (int i = 0; i < maxFrame; i++) vs.Add(i);
-        //Šù‚É’Ç‰Á‚µ‚Ä‚¢‚é•”•ª‚ðœ‚­
-        foreach (var item in dictionary)
-        {
-            if (vs.Contains(item.Value))
-            {
-                vs.Remove(item.Value);
-            }
-        }
-        if (vs.Count == 0) return;
-        //ˆê”ÔÅ‰‚Ì’l‚É’Ç‰Á
-        keys.Add(id);
-        values.Add(vs[0]);
-        DesrializeDictionary();
-    }
-    public void Erase(string id)
-    {
-        if (!keys.Contains(id)) return;
-        int index = keys.IndexOf(id);
-        keys.RemoveAt(index);
-        values.RemoveAt(index);
-        DesrializeDictionary();
-    }
 
     [ContextMenu("PrintDictionary")]
     public void PrintDictionary()

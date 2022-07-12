@@ -36,7 +36,7 @@ public class Wandering_Wolf : SatetBase_Wolf
     {
         Debug.Log("wandering");
         owner.NavMeshAgent.destination = target;
-
+        if (owner.ReceivedAttackCheck()) return;
         if (owner.Search())
         {
             owner.ChangeState<Move_Wolf>();

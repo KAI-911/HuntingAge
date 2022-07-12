@@ -166,52 +166,6 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!1 &455574640512405423
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 8361480041639409599}
-  - component: {fileID: 5038202282007227785}
-  m_Layer: 0
-  m_Name: CollectionArea
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &8361480041639409599
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 455574640512405423}
-  m_LocalRotation: {x: 0.4493002, y: -0.5460121, z: 0.44930062, w: 0.5460121}
-  m_LocalPosition: {x: 0.09, y: -3.69, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 1418337121920122062}
-  m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 78.9, y: -90, z: 0}
---- !u!136 &5038202282007227785
-CapsuleCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 455574640512405423}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 1
-  m_Enabled: 1
-  m_Radius: 2.14
-  m_Height: 6.53
-  m_Direction: 1
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &715272700638892941
 GameObject:
   m_ObjectHideFlags: 0
@@ -267,7 +221,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4673574051462356093}
-  - component: {fileID: 5187795481042499579}
+  - component: {fileID: 459801415699348321}
+  - component: {fileID: 9123352949701405028}
   m_Layer: 0
   m_Name: FallenTree
   m_TagString: Untagged
@@ -295,20 +250,72 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!136 &5187795481042499579
-CapsuleCollider:
+--- !u!114 &459801415699348321
+MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2825656116994923929}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
   m_Enabled: 1
-  m_Radius: 0.5
-  m_Height: 1
-  m_Direction: 1
-  m_Center: {x: 0, y: 0, z: 0}
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cb4271ea13da4f74cbbfd13df1a35e68, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _itemHolder: {fileID: 9123352949701405028}
+  _offest: {x: 0, y: 3, z: 0}
+  _ID: Wood
+--- !u!114 &9123352949701405028
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2825656116994923929}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0311146b928456b4fbb4969387ddaa72, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  DictionaryData: {fileID: 11400000, guid: d4d92aadcc49c634cbe211128321d169, type: 2}
+  keys:
+  - Bone
+  - Wood
+  - Botanical
+  - Fiber
+  - Meet
+  - Stone
+  - Vine
+  values:
+  - _imagePrefab: {fileID: 5541608107631814696, guid: 242c96c79d9b830449b003f68433f768, type: 3}
+    ID: Material003
+    GetNum: 1
+    Icon: {fileID: 21300000, guid: 1e69f11348e8871438bab805bd4eaf77, type: 3}
+  - _imagePrefab: {fileID: 5541608107631814696, guid: 242c96c79d9b830449b003f68433f768, type: 3}
+    ID: Material001
+    GetNum: 1
+    Icon: {fileID: 21300000, guid: 970959b020eaa7f4eab8cd6562185a92, type: 3}
+  - _imagePrefab: {fileID: 5541608107631814696, guid: 242c96c79d9b830449b003f68433f768, type: 3}
+    ID: Material004
+    GetNum: 1
+    Icon: {fileID: 21300000, guid: a2c4163e81958c04b913d9ffdd5fd933, type: 3}
+  - _imagePrefab: {fileID: 5541608107631814696, guid: 242c96c79d9b830449b003f68433f768, type: 3}
+    ID: Material002
+    GetNum: 1
+    Icon: {fileID: 21300000, guid: 9bc128f3293332549842f397cd72fd14, type: 3}
+  - _imagePrefab: {fileID: 5541608107631814696, guid: 242c96c79d9b830449b003f68433f768, type: 3}
+    ID: Material005
+    GetNum: 1
+    Icon: {fileID: 21300000, guid: fb2ba2264a2aff544b968bc54b9b55e1, type: 3}
+  - _imagePrefab: {fileID: 5541608107631814696, guid: 242c96c79d9b830449b003f68433f768, type: 3}
+    ID: Material000
+    GetNum: 1
+    Icon: {fileID: 21300000, guid: fa11fc7e22011d041abaf88ffdd2799d, type: 3}
+  - _imagePrefab: {fileID: 5541608107631814696, guid: 242c96c79d9b830449b003f68433f768, type: 3}
+    ID: Material006
+    GetNum: 1
+    Icon: {fileID: 21300000, guid: 9f48cad1bf3b45a42b3508943181ebe1, type: 3}
+  modifyValues: 0
 --- !u!1 &4470627893506759039
 GameObject:
   m_ObjectHideFlags: 0
@@ -402,9 +409,10 @@ GameObject:
   m_Component:
   - component: {fileID: 1418337121920122062}
   - component: {fileID: 3261536365763014016}
+  - component: {fileID: 1982650039676922530}
   m_Layer: 0
   m_Name: CollectionArea
-  m_TagString: Untagged
+  m_TagString: CollectionPoint
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -420,8 +428,7 @@ Transform:
   m_LocalPosition: {x: 0.16, y: 0, z: 0.7}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
-  m_Children:
-  - {fileID: 8361480041639409599}
+  m_Children: []
   m_Father: {fileID: 4673574051462356093}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 90, y: 84.86, z: 90}
@@ -435,7 +442,21 @@ CapsuleCollider:
   m_Material: {fileID: 0}
   m_IsTrigger: 1
   m_Enabled: 1
-  m_Radius: 2.4
-  m_Height: 10.7
+  m_Radius: 2.9
+  m_Height: 10.85
   m_Direction: 1
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &1982650039676922530
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8787565175855226972}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 660772cc242956a46956ed6740de5104, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  MaskTag: Player
+  _targetCheckerType: 0

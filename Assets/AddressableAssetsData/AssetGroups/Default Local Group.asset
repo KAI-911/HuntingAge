@@ -21,6 +21,10 @@ MonoBehaviour:
     m_Address: Assets/Scenes/HamaScene/material/Osmund/Osmund.mat
     m_ReadOnly: 0
     m_SerializedLabels: []
+  - m_GUID: 83c2ed844a8c74b779a4c823d16594b1
+    m_Address: Assets/Readme.asset
+    m_ReadOnly: 0
+    m_SerializedLabels: []
   m_ReadOnly: 0
   m_Settings: {fileID: 11400000, guid: 08bfeac5929041f46a6b0b948edd9db1, type: 2}
   m_SchemaSet:

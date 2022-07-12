@@ -81,6 +81,25 @@ public class Enemy : MonoBehaviour
     public bool DiscoverFlg { get => _discoverFlg; set => _discoverFlg = value; }
 
     private RunOnce Run_death = new RunOnce();
+
+    private int _keepHP;
+
+    [SerializeField] List<GameObject> DebugSetPosObj;
+    [ContextMenu("DebugSetPosObjSet")]
+    public void DebugSetPosObjSet()
+    {
+        _warningPos.Clear();
+        foreach (var item in DebugSetPosObj)
+        {
+            _warningPos.Add(item.transform.position);
+        }
+        var data = GameManager.Instance.EnemyDataList;
+        int i = data.Keys.IndexOf(_enemyID);
+        var pos =data.Values[i].EnemyPos.Find(n => n.scene == GameManager.Instance.NowScene);
+        pos.pos = _warningPos;
+        data.DesrializeDictionary();
+    }
+
     private void Awake()
     {
         _navMeshAgent = GetComponent<NavMeshAgent>();
@@ -89,11 +108,30 @@ public class Enemy : MonoBehaviour
         _status = GetComponent<Status>();
         _target = GameObject.FindWithTag("Player");
         _discoverFlg = false;
-
+        _keepHP = _status.HP;
         GameManager.Instance.Quest.AddEnemy(this);
     }
 
-
+    /// <summary>
+    /// 攻撃を受けていたら（記録したHPと今のHPを比較）ReceivedAttackを呼び出す
+    /// 戻り値はReceivedAttackと同じ
+    /// </summary>
+    /// <returns></returns>
+    public bool ReceivedAttackCheck()
+    {
+        if (_keepHP != _status.HP)
+        {
+            _keepHP = _status.HP;
+            ReceivedAttack();
+            _discoverFlg = true;
+            return true;
+        }
+        return false;
+    }
+    public virtual bool ReceivedAttack()
+    {
+        return false;
+    }
     public void Death()
     {
         Run_death.Run(() => GameManager.Instance.Quest.KillEnemyCount.Add(EnemyID));

@@ -25,11 +25,11 @@ MonoBehaviour:
     Name: "\u5CA9"
     IconName: Icon/Stone_UI
     BoxStackNumber: 9999
-    BoxUINumber: 5
-    BoxHoldNumber: 0
+    BoxUINumber: 3
+    BoxHoldNumber: 10
     PoachStackNumber: 99
-    PoachUINumber: 1
-    PoachHoldNumber: 2
+    PoachUINumber: 4
+    PoachHoldNumber: 0
     Permanent: 0
     Time: 0
     ItemType: 0
@@ -38,11 +38,11 @@ MonoBehaviour:
     Name: "\u6728"
     IconName: Icon/Wood_UI
     BoxStackNumber: 9999
-    BoxUINumber: 2
-    BoxHoldNumber: 90
+    BoxUINumber: 1
+    BoxHoldNumber: 1
     PoachStackNumber: 99
-    PoachUINumber: 4
-    PoachHoldNumber: 4
+    PoachUINumber: 1
+    PoachHoldNumber: 99
     Permanent: 0
     Time: 0
     ItemType: 0
@@ -51,11 +51,11 @@ MonoBehaviour:
     Name: "\u7E4A\u7DAD"
     IconName: Icon/Fiber_UI
     BoxStackNumber: 9999
-    BoxUINumber: 4
+    BoxUINumber: 3
     BoxHoldNumber: 0
     PoachStackNumber: 99
-    PoachUINumber: 6
-    PoachHoldNumber: 6
+    PoachUINumber: 3
+    PoachHoldNumber: 4
     Permanent: 0
     Time: 0
     ItemType: 0
@@ -64,11 +64,11 @@ MonoBehaviour:
     Name: "\u9AA8"
     IconName: Icon/Bone_UI
     BoxStackNumber: 9999
-    BoxUINumber: 1
-    BoxHoldNumber: 0
+    BoxUINumber: 0
+    BoxHoldNumber: 231
     PoachStackNumber: 99
-    PoachUINumber: 3
-    PoachHoldNumber: 8
+    PoachUINumber: 2
+    PoachHoldNumber: 4
     Permanent: 0
     Time: 0
     ItemType: 0
@@ -77,11 +77,11 @@ MonoBehaviour:
     Name: "\u690D\u7269"
     IconName: Icon/Botanical_UI
     BoxStackNumber: 9999
-    BoxUINumber: 6
+    BoxUINumber: 4
     BoxHoldNumber: 0
     PoachStackNumber: 99
     PoachUINumber: 0
-    PoachHoldNumber: 10
+    PoachHoldNumber: 7
     Permanent: 0
     Time: 0
     ItemType: 0
@@ -90,11 +90,11 @@ MonoBehaviour:
     Name: "\u8089"
     IconName: Icon/Meat_UI
     BoxStackNumber: 9999
-    BoxUINumber: 3
+    BoxUINumber: 4
     BoxHoldNumber: 0
     PoachStackNumber: 99
-    PoachUINumber: 5
-    PoachHoldNumber: 12
+    PoachUINumber: 4
+    PoachHoldNumber: 9
     Permanent: 0
     Time: 0
     ItemType: 0
@@ -103,11 +103,11 @@ MonoBehaviour:
     Name: "\u30C4\u30BF"
     IconName: Icon/Vine_UI
     BoxStackNumber: 9999
-    BoxUINumber: 0
-    BoxHoldNumber: 0
+    BoxUINumber: 2
+    BoxHoldNumber: 3
     PoachStackNumber: 99
     PoachUINumber: 2
-    PoachHoldNumber: 14
+    PoachHoldNumber: 0
     Permanent: 0
     Time: 0
     ItemType: 0
