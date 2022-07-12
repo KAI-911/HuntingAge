@@ -50,8 +50,9 @@ public partial class Player : Singleton<Player>
     public bool IsAction { get => _isAction; set => _isAction = value; }
 
     //武器切り替え
-    private WeponChange _weponChange;
-    public WeponChange WeponChange { get => _weponChange; set => _weponChange = value; }
+    [SerializeField] string _weaponID;
+    [SerializeField] GameObject _weaponParent;
+    private GameObject _weapon;
 
     //復活用
     [SerializeField] private List<Position> _startPos;
@@ -64,12 +65,12 @@ public partial class Player : Singleton<Player>
     private bool _collectionFlg;
     private CollectionScript _collectionScript;
     public CollectionScript CollectionScript { get => _collectionScript; set => _collectionScript = value; }
+
     protected override void Awake()
     {
         _rigidbody = GetComponent<Rigidbody>();
         _animator = GetComponent<Animator>();
         _status = GetComponent<Status>();
-        _weponChange = GetComponent<WeponChange>();
         _targetRotation = transform.rotation;
         _inputMove = new InputControls();
         _currentState = new LocomotionState();
@@ -102,10 +103,10 @@ public partial class Player : Singleton<Player>
 
     void Start()
     {
-        _weponChange.Change(WeponChange.WeponType.Axe);
         _animator.SetInteger("HP", _status.HP);
         _keepStatus.HP = _status.HP;
         _isAction = true;
+        WeponChange(_weaponID);
     }
 
     void Update()
@@ -244,6 +245,32 @@ public partial class Player : Singleton<Player>
     {
         var pos = StartPos.Find(n => n.scene == GameManager.Instance.NowScene);
         transform.position = pos.pos[0];
+    }
+    public void WeponChange(string weponID)
+    {
+        if (!GameManager.Instance.WeaponDataList.Dictionary.ContainsKey(weponID)) return;
+        _weaponID = weponID;
+        //既に武器を持っていたらそれと削除
+        if (_weapon != null)
+        {
+            Destroy(_weapon);
+            _weapon = null;
+            Resources.UnloadUnusedAssets();
+        }
+        //インスタンス化
+        var path = GameManager.Instance.WeaponDataList.Dictionary[weponID].IconName;//仮
+        _weapon = Instantiate(Resources.Load("weapon/Axe"), _weaponParent.transform.position, _weaponParent.transform.rotation) as GameObject;
+        _weapon.transform.SetParent(_weaponParent.transform);
+        _weapon.transform.localScale = new Vector3(1, 1, 1);
+    }
+    public void WeponDelete()
+    {
+        if (_weapon != null)
+        {
+            Destroy(_weapon);
+            _weapon = null;
+            Resources.UnloadUnusedAssets();
+        }
     }
 }
 public enum PlayerAnimationState

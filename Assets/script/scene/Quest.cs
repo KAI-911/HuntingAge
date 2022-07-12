@@ -9,6 +9,7 @@ public class Quest : MonoBehaviour
     [SerializeField] QuestData _questData;
     public QuestData QuestData { get => _questData; set => _questData = value; }
 
+    private bool _isQuest;
 
     //“|‚µ‚½“G‚Ìí—Ş‚Æ”‚ğ‹L˜^
     private EnemyCount _killEnemyCount = new EnemyCount();
@@ -23,6 +24,7 @@ public class Quest : MonoBehaviour
 
     public List<Enemy> EnemyList { get => _enemyList; }
     public EnemyCount KillEnemyCount { get => _killEnemyCount;}
+    public  bool IsQuest { get => _isQuest;}
 
 
     //ƒV[ƒ“Ø‚è‘Ö‚¦‚Ü‚Å‚ÌŠÔ
@@ -42,6 +44,7 @@ public class Quest : MonoBehaviour
         _runOnce = new RunOnce();
         _currentState = new Standby();
         _currentState.OnEnter(this, null);
+        _isQuest = false;
     }
 
     void Start()
@@ -76,6 +79,7 @@ public class Quest : MonoBehaviour
 
     public void GoToQuset()
     {
+        _isQuest = true;
         GameManager.Instance.SceneChange(_questData.Field);
     }
 
@@ -247,8 +251,7 @@ public class Quest : MonoBehaviour
         }
         public override void OnActiveSceneChanged(Quest owner)
         {
-
-
+            owner._isQuest = false;
             owner.ChangeState<Standby>();
         }
     }
@@ -269,6 +272,7 @@ public class Quest : MonoBehaviour
         }
         public override void OnActiveSceneChanged(Quest owner)
         {
+            owner._isQuest = false;
             owner.ChangeState<Standby>();
         }
     }

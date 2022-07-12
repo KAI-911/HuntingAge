@@ -12,22 +12,14 @@ public class GameManager : Singleton<GameManager>
     [SerializeField] Quest _quest;
     [SerializeField] Scene _villageScene;
     [SerializeField] Scene _nowScene;
-    private ItemCanvas _itemCanvas;
-
-
-
     [SerializeField] ItemDataList _itemDataList;
     [SerializeField] UIPoach _UIPoachList;
-
     [SerializeField] WeaponDataList _weaponDataList;
-
-
     [SerializeField] EnemyDataList _enemyDataList;
-
     [SerializeField] VillageData _villageData;
-
     [SerializeField] FadeManager _fadeManager;
-
+    private ItemCanvas _itemCanvas;
+    private Player _player;
     public Scene VillageScene { get => _villageScene; }
     public Scene NowScene { get => _nowScene; set => _nowScene = value; }
     public Quest Quest { get => _quest; set => _quest = value; }
@@ -37,12 +29,13 @@ public class GameManager : Singleton<GameManager>
     public VillageData VillageData { get => _villageData; }
     public ItemCanvas ItemCanvas { get => _itemCanvas; }
     public UIPoach UIPoachList { get => _UIPoachList; set => _UIPoachList = value; }
+    public Player Player { get => _player;}
 
     void Start()
     {
         _itemCanvas = GetComponent<ItemCanvas>();
         SceneManager.sceneLoaded += OnSceneLoaded;
-
+        _player = GameObject.FindGameObjectWithTag("Player").GetComponent<Player>();
 
     }
 
