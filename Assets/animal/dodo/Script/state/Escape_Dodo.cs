@@ -7,7 +7,6 @@ public class Escape_Dodo : StateBase_Dodo
     private Vector3 _escapePos;
     private RunOnce _runOnce;
     float _time;
-    Vector4 _color;
     
     public override void OnEnter(Dodo owner, StateBase_Dodo prevState)
     {
@@ -43,16 +42,13 @@ public class Escape_Dodo : StateBase_Dodo
             {
                 owner.Status.InvincibleFlg = true;
                 _time = 0;
-                if (owner.ShadowRenderer.material.HasProperty("_ShadowColor"))
-                {
-                    _color = owner.ShadowRenderer.material.GetColor("_ShadowColor");
-                }
                 //ëÃÇÃìñÇΩÇËîªíËÇè¡Ç∑
                 var colls = owner.gameObject.GetComponentsInChildren<Collider>();
                 foreach (var item in colls)
                 {
                     item.enabled = false;
                 }
+                owner.SkinnedMeshRenderer.shadowCastingMode = UnityEngine.Rendering.ShadowCastingMode.Off;
             });
 
             _time += Time.deltaTime;
@@ -66,18 +62,6 @@ public class Escape_Dodo : StateBase_Dodo
                 {
                     Debug.Log("è¡Ç¶ÇƒÇ¢Ç≠");
                     mat.SetFloat("_Dither", owner.DitherCurve.Evaluate(rate));
-                }
-            }
-
-            //âeÇè¡ÇµÇƒÇ¢Ç≠
-            var shadowMat = owner.ShadowRenderer.materials;
-            foreach (var mat in shadowMat)
-            {
-                if (mat.HasProperty("_ShadowColor"))
-                {
-                    var setColor = _color;
-                    setColor.w = _color.w * owner.ShadowCurve.Evaluate(rate);
-                    mat.SetColor("_ShadowColor", setColor);
                 }
             }
 

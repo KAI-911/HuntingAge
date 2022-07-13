@@ -8,20 +8,23 @@ public class TargetChecker : MonoBehaviour
     public bool TriggerHit { get => _triggerHit; }
     private Collider _collider;
     public Collider Collider { get => _collider; }
-    [SerializeField]@private string MaskTag;
+    [SerializeField]@private string _maskTag;
 
     [SerializeField] private TargetCheckerType _targetCheckerType;
     public TargetCheckerType TargetCheckerType { get => _targetCheckerType; }
 
-
-    private void Start()
+    private void Awake()
     {
         _triggerHit = false;
+    }
+    private void Start()
+    {
+        
         _collider = GetComponent<Collider>();
     }
     private void OnTriggerStay(Collider other)
     {
-        if (other.gameObject.tag == MaskTag)
+        if (other.gameObject.tag == _maskTag)
         {
             _triggerHit = true;
             _collider = other;
@@ -29,7 +32,7 @@ public class TargetChecker : MonoBehaviour
     }
     private void OnTriggerEnter(Collider other)
     {
-        if (other.gameObject.tag == MaskTag)
+        if (other.gameObject.tag == _maskTag)
         {
             _triggerHit = true;
             _collider = other;
@@ -37,7 +40,7 @@ public class TargetChecker : MonoBehaviour
     }
     private void OnTriggerExit(Collider other)
     {
-        if (other.gameObject.tag == MaskTag)
+        if (other.gameObject.tag == _maskTag)
         {
             _triggerHit = false;
             _collider = other;

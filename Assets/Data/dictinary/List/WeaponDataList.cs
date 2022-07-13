@@ -215,6 +215,11 @@ public struct WeaponData
     public string Name;
 
     /// <summary>
+    /// 武器プレハブのパス
+    /// </summary>
+    public string weaponPath;
+
+    /// <summary>
     /// アイコンのパス
     /// </summary>
     public string IconPass;

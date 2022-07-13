@@ -26,6 +26,8 @@ MonoBehaviour:
   - ID: weapon101
     EnhancementID: weapon102
     Name: "\u6728\u306E\u65A7"
+    weaponPath: weapon/Axe
+    IconPass: 
     IconName: 
     BoxUINumber: 0
     CreatableLevel: 1
@@ -41,6 +43,8 @@ MonoBehaviour:
   - ID: weapon102
     EnhancementID: weapon103
     Name: "\u77F3\u306E\u65A7"
+    weaponPath: 
+    IconPass: 
     IconName: 
     BoxUINumber: 0
     CreatableLevel: 2
@@ -60,6 +64,8 @@ MonoBehaviour:
   - ID: weapon103
     EnhancementID: empty
     Name: "\u9AA8\u65A7"
+    weaponPath: 
+    IconPass: 
     IconName: 
     BoxUINumber: 0
     CreatableLevel: 5
@@ -79,6 +85,8 @@ MonoBehaviour:
   - ID: weapon201
     EnhancementID: weapon202
     Name: "\u6728\u306E\u69CD"
+    weaponPath: 
+    IconPass: 
     IconName: 
     BoxUINumber: 0
     CreatableLevel: 3
@@ -102,6 +110,8 @@ MonoBehaviour:
   - ID: weapon202
     EnhancementID: weapon203
     Name: "\u77F3\u306E\u69CD"
+    weaponPath: 
+    IconPass: 
     IconName: 
     BoxUINumber: 0
     CreatableLevel: 3
@@ -121,6 +131,8 @@ MonoBehaviour:
   - ID: weapon203
     EnhancementID: empty
     Name: "\u9AA8\u65A7"
+    weaponPath: 
+    IconPass: 
     IconName: 
     BoxUINumber: 0
     CreatableLevel: 6
@@ -140,6 +152,8 @@ MonoBehaviour:
   - ID: weapon301
     EnhancementID: weapon302
     Name: "\u5F13"
+    weaponPath: 
+    IconPass: 
     IconName: 
     BoxUINumber: 0
     CreatableLevel: 1
@@ -163,6 +177,8 @@ MonoBehaviour:
   - ID: weapon302
     EnhancementID: weapon303
     Name: "\u8D85\u5F13"
+    weaponPath: 
+    IconPass: 
     IconName: 
     BoxUINumber: 0
     CreatableLevel: 4
@@ -174,6 +190,8 @@ MonoBehaviour:
   - ID: weapon303
     EnhancementID: empty
     Name: "\u7D76\u5F13"
+    weaponPath: 
+    IconPass: 
     IconName: 
     BoxUINumber: 0
     CreatableLevel: 7

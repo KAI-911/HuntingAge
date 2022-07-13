@@ -5,17 +5,12 @@ using UnityEngine;
 public class Death_Dodo : StateBase_Dodo
 {
     float time;
-    Vector4 color;
 
     public override void OnEnter(Dodo owner, StateBase_Dodo prevState)
     {
         owner.Animator.SetInteger("AniState", (int)State.Death);
         owner.Status.InvincibleFlg = true;
         time = 0;
-        if (owner.ShadowRenderer.material.HasProperty("_ShadowColor"))
-        {
-            color = owner.ShadowRenderer.material.GetColor("_ShadowColor");
-        }
         Debug.Log("Death_DodoOnEnter");
         owner.Death();
     }
@@ -40,18 +35,6 @@ public class Death_Dodo : StateBase_Dodo
                 mat.SetFloat("_Dissolve", owner.DissoveCurve.Evaluate(rate));
             }
         }
-
-        //‰e‚ğÁ‚µ‚Ä‚¢‚­
-        var shadowMat = owner.ShadowRenderer.materials;
-        foreach (var mat in shadowMat)
-        {
-            if (mat.HasProperty("_ShadowColor"))
-            {
-                var setColor = color;
-                setColor.w = color.w * owner.ShadowCurve.Evaluate(rate);
-                mat.SetColor("_ShadowColor", setColor);
-            }
-        }
             
 
         if (rate >= 1)
@@ -68,13 +51,13 @@ public class Death_Dodo : StateBase_Dodo
     {
         if (animationEvent.stringParameter == "End")
         {
-
             //‘Ì‚Ì“–‚½‚è”»’è‚ğÁ‚·
             var colls = owner.gameObject.GetComponentsInChildren<Collider>();
             foreach (var item in colls)
             {
                 item.enabled = false;
             }
+            owner.SkinnedMeshRenderer.shadowCastingMode = UnityEngine.Rendering.ShadowCastingMode.Off;
         }
     }
     public override void OnCollisionStay(Dodo owner, Collision collision)

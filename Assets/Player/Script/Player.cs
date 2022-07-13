@@ -30,6 +30,11 @@ public partial class Player : Singleton<Player>
     //着地判定
     [SerializeField] private GroundChecker _groundChecker;
     public GroundChecker GroundChecker { get => _groundChecker; }
+
+    //着地時に手をつく速さ(正の値)
+    [SerializeField] float _fallLength;
+    public float FallLength { get => _fallLength; }
+    //採取時間
     [SerializeField] float _collectionTime;
     public float CollectionTime { get => _collectionTime; }
 
@@ -44,6 +49,7 @@ public partial class Player : Singleton<Player>
     private Quaternion _targetRotation;
     //今の状態
     private PlayerStateBase _currentState;
+    public PlayerStateBase CurrentState { get => _currentState; }
 
     //プレイヤーの移動ができるか
     [SerializeField] private bool _isAction;
@@ -59,7 +65,6 @@ public partial class Player : Singleton<Player>
     public List<Position> StartPos { get => _startPos; set => _startPos = value; }
     public bool CollectionFlg { get => _collectionFlg; set => _collectionFlg = value; }
 
-    private Status _keepStatus;
 
     //採取用
     private bool _collectionFlg;
@@ -75,7 +80,6 @@ public partial class Player : Singleton<Player>
         _inputMove = new InputControls();
         _currentState = new LocomotionState();
         _currentState.OnEnter(this, null);
-        _keepStatus = new Status();
         base.Awake();
     }
     private void OnEnable()
@@ -104,7 +108,6 @@ public partial class Player : Singleton<Player>
     void Start()
     {
         _animator.SetInteger("HP", _status.HP);
-        _keepStatus.HP = _status.HP;
         _isAction = true;
         WeponChange(_weaponID);
     }
@@ -116,15 +119,19 @@ public partial class Player : Singleton<Player>
         _animator.SetInteger("HP", _status.HP);
         if (_status.HitReaction != HitReaction.nonReaction &&
             _currentState.GetType() != typeof(HitReactionState) &&
-            _currentState.GetType() != typeof(DeathState))
+            _currentState.GetType() != typeof(DeathState) &&
+            _currentState.GetType() != typeof(VillageAction))
         {
             ChangeState<HitReactionState>();
         }
         if (_status.HP == 0 &&
-            _currentState.GetType() != typeof(DeathState))
+            _currentState.GetType() != typeof(DeathState)&&
+            _currentState.GetType() != typeof(VillageAction))
         {
             ChangeState<DeathState>();
         }
+
+        Debug.Log(_currentState.GetType().ToString());
     }
 
     private void FixedUpdate()
@@ -233,8 +240,7 @@ public partial class Player : Singleton<Player>
 
     public void Revival()
     {
-        Debug.Log(_keepStatus.HP);
-        _status.HP = _keepStatus.HP;
+        _status.HP = _status.MaxHP;
         var pos = StartPos.Find(n => n.scene == GameManager.Instance.Quest.QuestData.Field);
         transform.position = pos.pos[0];
         ChangeState<LocomotionState>();
@@ -243,6 +249,15 @@ public partial class Player : Singleton<Player>
     }
     private void OnActiveSceneChanged(UnityEngine.SceneManagement.Scene arg0, UnityEngine.SceneManagement.Scene arg1)
     {
+        if(GameManager.Instance.Quest.IsQuest)
+        {
+            ChangeState<LocomotionState>();
+        }
+        else
+        {
+            _status.HP = _status.MaxHP;
+            ChangeState<VillageAction>();
+        }
         var pos = StartPos.Find(n => n.scene == GameManager.Instance.NowScene);
         transform.position = pos.pos[0];
     }
@@ -258,8 +273,8 @@ public partial class Player : Singleton<Player>
             Resources.UnloadUnusedAssets();
         }
         //インスタンス化
-        var path = GameManager.Instance.WeaponDataList.Dictionary[weponID].IconName;//仮
-        _weapon = Instantiate(Resources.Load("weapon/Axe"), _weaponParent.transform.position, _weaponParent.transform.rotation) as GameObject;
+        var path = GameManager.Instance.WeaponDataList.Dictionary[weponID].weaponPath;
+        _weapon = Instantiate(Resources.Load(path), _weaponParent.transform.position, _weaponParent.transform.rotation) as GameObject;
         _weapon.transform.SetParent(_weaponParent.transform);
         _weapon.transform.localScale = new Vector3(1, 1, 1);
     }
@@ -282,7 +297,8 @@ public enum PlayerAnimationState
     StrongAttack,
     HitReaction,
     Death,
-    Collection
+    Collection,
+    Landing
 }
 public enum AttackType
 {
