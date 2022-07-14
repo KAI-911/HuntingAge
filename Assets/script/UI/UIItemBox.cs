@@ -5,7 +5,6 @@ using UnityEngine.UI;
 
 public class UIItemBox : UIBase
 {
-    [SerializeField] MaterialListObject _dataList;
     [SerializeField] TargetChecker _targetChecker;
     CurrentUI current;
 
@@ -118,11 +117,11 @@ public class UIItemBox : UIBase
             {
                 if (!owner.ItemIconList[(int)IconType.BoxItemSelect].CheckCurrentNunberItem()) return;
                 var list = owner.ItemIconList[(int)IconType.BoxItemSelect];
-                var data = GameManager.Instance.ItemDataList.Dictionary[list.Buttons[list.CurrentNunber].GetComponent<ItemButton>().ID];
+                var data = GameManager.Instance.MaterialDataList.Dictionary[list.Buttons[list.CurrentNunber].GetComponent<ItemButton>().ID];
                 int needNumber = data.PoachStackNumber - data.PoachHoldNumber;
                 //UIの位置を設定
                 int UINumber = owner.ItemIconList[(int)IconType.PoachItemSelect].FirstNotSetNumber();
-                if (UINumber != -1) GameManager.Instance.ItemDataList.BoxToPoach(data.ID, needNumber, UINumber);
+                if (UINumber != -1) GameManager.Instance.MaterialDataList.BoxToPoach(data.ID, needNumber, UINumber);
 
                 owner.GetComponent<UIItemBox>().UISet();
             }
@@ -130,11 +129,11 @@ public class UIItemBox : UIBase
             {
                 if (!owner.ItemIconList[(int)IconType.PoachItemSelect].CheckCurrentNunberItem()) return;
                 var list = owner.ItemIconList[(int)IconType.PoachItemSelect];
-                var data = GameManager.Instance.ItemDataList.Dictionary[list.Buttons[list.CurrentNunber].GetComponent<ItemButton>().ID];
+                var data = GameManager.Instance.MaterialDataList.Dictionary[list.Buttons[list.CurrentNunber].GetComponent<ItemButton>().ID];
                 int needNumber = data.BoxStackNumber - data.BoxHoldNumber;
                 //UIの位置を設定
                 int UINumber = owner.ItemIconList[(int)IconType.BoxItemSelect].FirstNotSetNumber();
-                if (UINumber != -1) GameManager.Instance.ItemDataList.PoachToBox(data.ID, needNumber, UINumber);
+                if (UINumber != -1) GameManager.Instance.MaterialDataList.PoachToBox(data.ID, needNumber, UINumber);
 
                 owner.GetComponent<UIItemBox>().UISet();
 
@@ -354,7 +353,7 @@ public class UIItemBox : UIBase
                     case CurrentUI.box:
                         var list = owner.ItemIconList[(int)IconType.BoxItemSelect];
                         ID = list.Buttons[list.CurrentNunber].GetComponent<ItemButton>().ID;
-                        var data1 = GameManager.Instance.ItemDataList.Dictionary[ID];
+                        var data1 = GameManager.Instance.MaterialDataList.Dictionary[ID];
                         max = data1.BoxHoldNumber;
                         if (max > data1.PoachStackNumber - data1.PoachHoldNumber)
                         {
@@ -364,7 +363,7 @@ public class UIItemBox : UIBase
                     case CurrentUI.poach:
                         var list2 = owner.ItemIconList[(int)IconType.PoachItemSelect];
                         ID = list2.Buttons[list2.CurrentNunber].GetComponent<ItemButton>().ID;
-                        var data2 = GameManager.Instance.ItemDataList.Dictionary[ID];
+                        var data2 = GameManager.Instance.MaterialDataList.Dictionary[ID];
                         max = data2.PoachHoldNumber;
                         if (max > data2.BoxStackNumber - data2.BoxHoldNumber)
                         {
@@ -405,10 +404,10 @@ public class UIItemBox : UIBase
             {
                 if (!owner.ItemIconList[(int)IconType.BoxItemSelect].CheckCurrentNunberItem()) return;
                 var list = owner.ItemIconList[(int)IconType.BoxItemSelect];
-                var data = GameManager.Instance.ItemDataList.Dictionary[list.Buttons[list.CurrentNunber].GetComponent<ItemButton>().ID];
+                var data = GameManager.Instance.MaterialDataList.Dictionary[list.Buttons[list.CurrentNunber].GetComponent<ItemButton>().ID];
                 //UIの位置を設定
                 int UINumber = owner.ItemIconList[(int)IconType.PoachItemSelect].FirstNotSetNumber();
-                GameManager.Instance.ItemDataList.BoxToPoach(data.ID, now, UINumber);
+                GameManager.Instance.MaterialDataList.BoxToPoach(data.ID, now, UINumber);
 
                 owner.GetComponent<UIItemBox>().UISet();
             }
@@ -416,10 +415,10 @@ public class UIItemBox : UIBase
             {
                 if (!owner.ItemIconList[(int)IconType.PoachItemSelect].CheckCurrentNunberItem()) return;
                 var list = owner.ItemIconList[(int)IconType.PoachItemSelect];
-                var data = GameManager.Instance.ItemDataList.Dictionary[list.Buttons[list.CurrentNunber].GetComponent<ItemButton>().ID];
+                var data = GameManager.Instance.MaterialDataList.Dictionary[list.Buttons[list.CurrentNunber].GetComponent<ItemButton>().ID];
                 //UIの位置を設定
                 int UINumber = owner.ItemIconList[(int)IconType.BoxItemSelect].FirstNotSetNumber();
-                GameManager.Instance.ItemDataList.PoachToBox(data.ID, now, UINumber);
+                GameManager.Instance.MaterialDataList.PoachToBox(data.ID, now, UINumber);
 
                 owner.GetComponent<UIItemBox>().UISet();
 
@@ -449,7 +448,7 @@ public class UIItemBox : UIBase
             ibutton.clear();
         }
 
-        foreach (var item in GameManager.Instance.ItemDataList.Dictionary)
+        foreach (var item in GameManager.Instance.MaterialDataList.Dictionary)
         {
             if (item.Value.BoxHoldNumber == 0) continue;
             var ibutton = boxList[item.Value.BoxUINumber].GetComponent<ItemButton>();
@@ -464,7 +463,7 @@ public class UIItemBox : UIBase
             ibutton.clear();
         }
 
-        foreach (var item in GameManager.Instance.ItemDataList.Dictionary)
+        foreach (var item in GameManager.Instance.MaterialDataList.Dictionary)
         {
             if (item.Value.PoachHoldNumber == 0) continue;
             var ibutton = poachList[item.Value.PoachUINumber].GetComponent<ItemButton>();

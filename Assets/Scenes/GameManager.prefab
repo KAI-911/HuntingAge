@@ -260,6 +260,7 @@ GameObject:
   - component: {fileID: 4148252544599271049}
   - component: {fileID: 591199820164075096}
   - component: {fileID: 7629702492207570889}
+  - component: {fileID: 1349276329944774562}
   m_Layer: 0
   m_Name: GameManager
   m_TagString: Untagged
@@ -301,7 +302,8 @@ MonoBehaviour:
   _quest: {fileID: 591199820164075100}
   _villageScene: 3
   _nowScene: 3
-  _materialDataList: {fileID: 591199820164075101}
+  _MaterialDataList: {fileID: 591199820164075101}
+  _ItemDataList: {fileID: 1349276329944774562}
   _UIPoachList: {fileID: 2773925875629662053}
   _weaponDataList: {fileID: 7629702492207570889}
   _enemyDataList: {fileID: 2773925877255139973}
@@ -390,7 +392,7 @@ MonoBehaviour:
     BoxHoldNumber: 60
     PoachStackNumber: 99
     PoachUINumber: 2
-    PoachHoldNumber: 3
+    PoachHoldNumber: 21
   - ID: Material004
     Name: "\u690D\u7269"
     IconName: Icon/Botanical_UI
@@ -408,7 +410,7 @@ MonoBehaviour:
     BoxHoldNumber: 50
     PoachStackNumber: 99
     PoachUINumber: 0
-    PoachHoldNumber: 12
+    PoachHoldNumber: 24
   - ID: Material006
     Name: "\u30C4\u30BF"
     IconName: Icon/Vine_UI
@@ -478,7 +480,7 @@ MonoBehaviour:
   - ID: Dodo
     DisplayName: "\u30C9\u30FC\u30C9\u30FC"
     InstanceName: Enemy/Dodo
-    DeathCount: 3
+    DeathCount: 6
     EnemyPos:
     - scene: 2
       pos:
@@ -718,6 +720,58 @@ MonoBehaviour:
     WeaponType: 2
     ProductionNeedMaterialLst: []
     EnhancementNeedMaterialLst: []
+  modifyValues: 0
+--- !u!114 &1349276329944774562
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3169181030452595287}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4942ff73c6e7e374695e722c7b9c7df8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  DictionaryData: {fileID: 11400000, guid: 3eb9340a68e4a0c48a6dae4855fade1e, type: 2}
+  keys:
+  - Item000
+  - Item001
+  values:
+  - ID: Item000
+    Name: "\u5CA9\u30B9\u30FC\u30D7"
+    IconName: 
+    BoxStackNumber: 99
+    BoxUINumber: 0
+    BoxHoldNumber: 0
+    PoachStackNumber: 99
+    PoachUINumber: 0
+    PoachHoldNumber: 0
+    Permanent: 0
+    Time: 0
+    ItemType: 0
+    CreatableLevel: 1
+    NeedMaterialLst:
+    - materialID: Material000
+      requiredCount: 2
+    - materialID: Material004
+      requiredCount: 2
+  - ID: Item001
+    Name: "\u30C4\u30BF\u30B9\u30C6\u30FC\u30AD"
+    IconName: 
+    BoxStackNumber: 99
+    BoxUINumber: 0
+    BoxHoldNumber: 0
+    PoachStackNumber: 99
+    PoachUINumber: 0
+    PoachHoldNumber: 0
+    Permanent: 0
+    Time: 0
+    ItemType: 1
+    CreatableLevel: 2
+    NeedMaterialLst:
+    - materialID: Material006
+      requiredCount: 3
   modifyValues: 0
 --- !u!1 &4769996686153179420
 GameObject:
