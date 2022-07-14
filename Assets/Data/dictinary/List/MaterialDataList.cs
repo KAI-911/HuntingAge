@@ -2,16 +2,16 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ItemDataList : MonoBehaviour, ISerializationCallbackReceiver
+public class MaterialDataList : MonoBehaviour, ISerializationCallbackReceiver
 {
-    [SerializeField] ItemDataList DictionaryData;
+    [SerializeField] MaterialListObject DictionaryData;
     [SerializeField] List<string> keys = new List<string>();
-    [SerializeField] List<ItemData> values = new List<ItemData>();
-    [SerializeField] Dictionary<string, ItemData> dictionary = new Dictionary<string, ItemData>();
+    [SerializeField] List<MaterialData> values = new List<MaterialData>();
+    [SerializeField] Dictionary<string, MaterialData> dictionary = new Dictionary<string, MaterialData>();
     public bool modifyValues;
-    public Dictionary<string, ItemData> Dictionary { get => dictionary; }
+    public Dictionary<string, MaterialData> Dictionary { get => dictionary; }
     public List<string> Keys { get => keys; set => keys = value; }
-    public List<ItemData> Values { get => values; set => values = value; }
+    public List<MaterialData> Values { get => values; set => values = value; }
 
     private void Awake()
     {
@@ -157,7 +157,7 @@ public class ItemDataList : MonoBehaviour, ISerializationCallbackReceiver
 }
 
 [System.Serializable]
-public struct ItemData
+public struct MaterialData
 {
     /// <summary>
     /// IDはItem000から連番
@@ -204,39 +204,4 @@ public struct ItemData
     /// アイテムポーチでどれだけ持っているか
     /// </summary>
     public int PoachHoldNumber;
-
-    /// <summary>
-    /// 効果が永続するかどうか（死亡すると消える）
-    /// </summary>
-    public bool Permanent;
-    /// <summary>
-    /// 効果時間
-    /// </summary>
-    public float Time;
-    /// <summary>
-    /// どのような効果なのか
-    /// </summary>
-    public ItemType ItemType;
-    /// <summary>
-    /// 厨房レベルいくらで作ることができるか
-    /// </summary>
-    public int CreatableLevel;
-    /// <summary>
-    /// 生産に必要な素材
-    /// </summary>
-    public List<ItemNeedMaterial> NeedMaterialLst;
-}
-
-public enum ItemType
-{
-    HpRecovery,
-    AttackUp,
-    DefenseUp
-}
-
-[System.Serializable]
-public struct ItemNeedMaterial
-{
-    public string materialID;
-    public int requiredCount;
 }

@@ -61,23 +61,19 @@ public class Blacksmith : UIBase
         {
             Debug.Log("Blacksmith_TypeSelectMode_OnEnter");
             var iconText = owner.ItemIconList[(int)IconType.TypeSelect];
-            var icon = iconText.IconData;
-            icon._textData.text = "鍛冶場：武器";
+            var icon = iconText.IconData; icon._textData.text = "鍛冶場：武器";
             iconText.SetIcondata(icon);
 
             var table = owner.ItemIconList[(int)IconType.TypeSelect];
-            var iconData = table.IconData;
-            iconData._tableSize = new Vector2(2, 1);
+            var iconData = table.IconData; iconData._tableSize = new Vector2(2, 1);
             iconText.SetIcondata(iconData);
             var list = owner.ItemIconList[(int)IconType.TypeSelect].CreateButton();
 
-            var button0Text = list[0].GetComponentInChildren<Text>();
-            button0Text.text = "製造";
+            var button0Text = list[0].GetComponentInChildren<Text>(); button0Text.text = "製造";
             var button0 = list[0].GetComponent<Button>();
             button0.onClick.AddListener(() => owner.ChangeState<ProductionSelectMode>());
 
-            var button1Text = list[1].GetComponentInChildren<Text>();
-            button1Text.text = "強化";
+            var button1Text = list[1].GetComponentInChildren<Text>(); button1Text.text = "強化";
             var button1 = list[1].GetComponent<Button>();
             button1.onClick.AddListener(() => owner.ChangeState<EnhancementSelectMode>());
         }
@@ -293,17 +289,18 @@ public class Blacksmith : UIBase
         public override void OnEnter(UIBase owner, UIStateBase prevState)
         {
             //ボタンの追加
-            var list = owner.ItemIconList[(int)IconType.TypeSelect].CreateButton();
             var iconText = owner.ItemIconList[(int)IconType.TypeSelect];
             var icon = iconText.IconData;
             icon._textData.text = "武器強化先";
             iconText.SetIcondata(icon);
+            var list = owner.ItemIconList[(int)IconType.TypeSelect].CreateButton();
 
             var Weapon = owner.GetComponent<Blacksmith>()._WeaponDataList.Dictionary;
             List<WeaponData> _TmpWeapon = new List<WeaponData>();
             foreach (var item in Weapon)
             {
-                if (item.Value.BoxPossession) _TmpWeapon.Add(item.Value);
+                if (item.Value.BoxPossession
+                    && item.Value.EnhancementID != "empty") _TmpWeapon.Add(item.Value);
             }
 
             var table = owner.ItemIconList[(int)IconType.TypeSelect];
@@ -315,9 +312,9 @@ public class Blacksmith : UIBase
             {
                 int num = i;
                 string enhancementID = _TmpWeapon[num].EnhancementID;
-                if (enhancementID == "empty") continue;
                 var buttonText = list[num].GetComponentInChildren<Text>();
-                buttonText.text = enhancementID;
+                var name = GameManager.Instance.WeaponDataList;int index = name.Keys.IndexOf(enhancementID);
+                buttonText.text = name.Values[index].Name;
                 var button = list[num].GetComponent<Button>();
                 button.onClick.AddListener(() =>
                 {
@@ -431,27 +428,20 @@ public class Blacksmith : UIBase
         }
         public override void OnUpdate(UIBase owner)
         {
-            if (ConfirmationSelect)
-            {
                 owner.ItemIconList[(int)IconType.Confirmation].Select(UIManager.Instance.InputSelection.ReadValue<Vector2>());
-            }
-            else
-            {
-                owner.ItemIconList[(int)IconType.TypeSelect].Select(UIManager.Instance.InputSelection.ReadValue<Vector2>());
-            }
         }
         public override void OnExit(UIBase owner, UIStateBase nextState)
         {
-            owner.ItemIconList[(int)IconType.TypeSelect].DeleteButton();
+            owner.ItemIconList[(int)IconType.Confirmation].DeleteButton();
         }
         public override void OnProceed(UIBase owner)
         {
-            owner.ItemIconList[(int)IconType.TypeSelect].Buttons[owner.ItemIconList[(int)IconType.TypeSelect].CurrentNunber].GetComponent<Button>().onClick.Invoke();
+            owner.ItemIconList[(int)IconType.Confirmation].Buttons[owner.ItemIconList[(int)IconType.Confirmation].CurrentNunber].GetComponent<Button>().onClick.Invoke();
         }
         public override void OnBack(UIBase owner)
         {
             Debug.Log("modoru");
-            owner.ChangeState<TypeSelectMode>();
+            owner.ChangeState<EnhancementSelectMode>();
         }
     }
 }

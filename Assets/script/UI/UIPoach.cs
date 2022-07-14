@@ -5,7 +5,7 @@ using UnityEngine.UI;
 
 public class UIPoach : UIBase
 {
-    [SerializeField] ItemListObject dataList;
+    [SerializeField] MaterialListObject dataList;
     private string _addItemID;
     private int _addNumber;
     private void Start()
@@ -127,7 +127,7 @@ public class UIPoach : UIBase
             var selectButton = _itemIcon.Buttons[_selectionNumber].GetComponent<ItemButton>();
             var currentButton = _itemIcon.Buttons[_itemIcon.CurrentNunber].GetComponent<ItemButton>();
             var itemDataList = GameManager.Instance.ItemDataList;
-            ItemData data = new ItemData();
+            MaterialData data = new MaterialData();
             if (selectButton.ID != "")
             {
                 if (itemDataList.Keys.Contains(selectButton.ID))

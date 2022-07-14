@@ -13,7 +13,7 @@ public class kichen : UIBase
     //確認用
     [SerializeField] Confirmation _confirmation;
     //武器データリスト
-    [SerializeField] ItemDataList _itemDataList;
+    [SerializeField] MaterialDataList _itemDataList;
     //強化する武器のID
     [SerializeField] string _cleateItem;
 
@@ -52,9 +52,59 @@ public class kichen : UIBase
             //近くに来ている && 決定ボタンを押している && キャンバスがactiveでない
             if (owner.GetComponent<kichen>()._kichenChecker.TriggerHit && UIManager.Instance._player.IsAction)
             {
-                Debug.Log("o");
-                owner.ChangeState<TypeSelectMode>();
+                owner.ChangeState<BoxorPouch>();
             }
+        }
+    }
+
+    public class BoxorPouch : UIStateBase
+    {
+        private bool ConfirmationSelect;
+        public override void OnEnter(UIBase owner, UIStateBase prevState)
+        {
+            ConfirmationSelect = true;
+            var icon = owner.ItemIconList[(int)IconType.TypeSelect].IconData;
+            icon._textData.text = "アイテムをどこに送りますか？";
+            owner.ItemIconList[(int)IconType.TypeSelect].SetIcondata(icon);
+            var table = owner.ItemIconList[(int)IconType.TypeSelect];
+            var iconData = table.IconData;
+            iconData._tableSize = new Vector2(2, 1);
+            table.SetIcondata(iconData);
+            var list = owner.ItemIconList[(int)IconType.TypeSelect].CreateButton();
+
+            var button0Text = list[0].GetComponentInChildren<Text>();
+            button0Text.text = "ボックスへ";
+            var button0 = list[0].GetComponent<Button>();
+            
+
+            var button1Text = list[1].GetComponentInChildren<Text>();
+            button1Text.text = "ポーチへ";
+            var button1 = list[1].GetComponent<Button>();
+            button1.onClick.AddListener(() => owner.ChangeState<TypeSelectMode>());
+        }
+        public override void OnUpdate(UIBase owner)
+        {
+            if (ConfirmationSelect)
+            {
+                owner.ItemIconList[(int)IconType.Confirmation].Select(UIManager.Instance.InputSelection.ReadValue<Vector2>());
+            }
+            else
+            {
+                owner.ItemIconList[(int)IconType.TypeSelect].Select(UIManager.Instance.InputSelection.ReadValue<Vector2>());
+            }
+        }
+        public override void OnExit(UIBase owner, UIStateBase nextState)
+        {
+            owner.ItemIconList[(int)IconType.TypeSelect].DeleteButton();
+        }
+        public override void OnProceed(UIBase owner)
+        {
+            owner.ItemIconList[(int)IconType.TypeSelect].Buttons[owner.ItemIconList[(int)IconType.TypeSelect].CurrentNunber].GetComponent<Button>().onClick.Invoke();
+        }
+        public override void OnBack(UIBase owner)
+        {
+            Debug.Log("modoru");
+            owner.ChangeState<Close>();
         }
     }
 
@@ -62,23 +112,29 @@ public class kichen : UIBase
     {
         public override void OnEnter(UIBase owner, UIStateBase prevState)
         {
+            var iconText = owner.ItemIconList[(int)IconType.TypeSelect];
+            var icon = iconText.IconData;
+            icon._textData.text = "作るアイテム";
+            iconText.SetIcondata(icon);
             var list = owner.ItemIconList[(int)IconType.TypeSelect].CreateButton();
             //モード選択画面
             var Weapon = owner.GetComponent<kichen>()._itemDataList.Dictionary;
             List<ItemData> _createItem = new List<ItemData>();
             foreach (var item in Weapon)
             {
-                if (item.Value.CreatableLevel < GameManager.Instance.VillageData.KitchenLevel) _createItem.Add(item.Value);
+                //if (item.Value.CreatableLevel < GameManager.Instance.VillageData.KitchenLevel
+                    //&& (int)item.Value.ItemType > 0) _createItem.Add(item.Value);
             }
 
             for (int i = 0; i < _createItem.Count; i++)
             {
-                var buttonText = list[i].GetComponentInChildren<Text>();
-                buttonText.text = _createItem[i].Name;
-                var button = list[i].GetComponent<Button>();
+                int num = i;
+                var buttonText = list[num].GetComponentInChildren<Text>();
+                buttonText.text = _createItem[num].Name;
+                var button = list[num].GetComponent<Button>();
                 button.onClick.AddListener(() =>
                 {
-                    owner.GetComponent<kichen>()._cleateItem = _createItem[i].ID;
+                    owner.GetComponent<kichen>()._cleateItem = _createItem[num].ID;
                     owner.ChangeState<CleateItem>();
                 });
             }

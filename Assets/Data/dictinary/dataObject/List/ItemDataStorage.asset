@@ -13,102 +13,40 @@ MonoBehaviour:
   m_Name: ItemDataStorage
   m_EditorClassIdentifier: 
   keys:
-  - Material000
-  - Material001
-  - Material002
-  - Material003
-  - Material004
-  - Material005
-  - Material006
+  - Item000
+  - Item001
   values:
-  - ID: Material000
-    Name: "\u5CA9"
-    IconName: Icon/Stone_UI
-    BoxStackNumber: 9999
-    BoxUINumber: 3
-    BoxHoldNumber: 10
-    PoachStackNumber: 99
-    PoachUINumber: 4
-    PoachHoldNumber: 0
-    Permanent: 0
-    Time: 0
-    ItemType: 0
-    CreatableLevel: 0
-  - ID: Material001
-    Name: "\u6728"
-    IconName: Icon/Wood_UI
-    BoxStackNumber: 9999
-    BoxUINumber: 1
-    BoxHoldNumber: 1
-    PoachStackNumber: 99
-    PoachUINumber: 1
-    PoachHoldNumber: 99
-    Permanent: 0
-    Time: 0
-    ItemType: 0
-    CreatableLevel: 0
-  - ID: Material002
-    Name: "\u7E4A\u7DAD"
-    IconName: Icon/Fiber_UI
-    BoxStackNumber: 9999
-    BoxUINumber: 3
-    BoxHoldNumber: 0
-    PoachStackNumber: 99
-    PoachUINumber: 3
-    PoachHoldNumber: 4
-    Permanent: 0
-    Time: 0
-    ItemType: 0
-    CreatableLevel: 0
-  - ID: Material003
-    Name: "\u9AA8"
-    IconName: Icon/Bone_UI
-    BoxStackNumber: 9999
+  - ID: Item000
+    Name: "\u5CA9\u30B9\u30FC\u30D7"
+    IconName: 
+    BoxStackNumber: 99
     BoxUINumber: 0
-    BoxHoldNumber: 231
-    PoachStackNumber: 99
-    PoachUINumber: 2
-    PoachHoldNumber: 4
-    Permanent: 0
-    Time: 0
-    ItemType: 0
-    CreatableLevel: 0
-  - ID: Material004
-    Name: "\u690D\u7269"
-    IconName: Icon/Botanical_UI
-    BoxStackNumber: 9999
-    BoxUINumber: 4
     BoxHoldNumber: 0
     PoachStackNumber: 99
     PoachUINumber: 0
-    PoachHoldNumber: 7
-    Permanent: 0
-    Time: 0
-    ItemType: 0
-    CreatableLevel: 0
-  - ID: Material005
-    Name: "\u8089"
-    IconName: Icon/Meat_UI
-    BoxStackNumber: 9999
-    BoxUINumber: 4
-    BoxHoldNumber: 0
-    PoachStackNumber: 99
-    PoachUINumber: 4
-    PoachHoldNumber: 9
-    Permanent: 0
-    Time: 0
-    ItemType: 0
-    CreatableLevel: 0
-  - ID: Material006
-    Name: "\u30C4\u30BF"
-    IconName: Icon/Vine_UI
-    BoxStackNumber: 9999
-    BoxUINumber: 2
-    BoxHoldNumber: 3
-    PoachStackNumber: 99
-    PoachUINumber: 2
     PoachHoldNumber: 0
     Permanent: 0
     Time: 0
     ItemType: 0
-    CreatableLevel: 0
+    CreatableLevel: 1
+    NeedMaterialLst:
+    - materialID: Material000
+      requiredCount: 2
+    - materialID: Material004
+      requiredCount: 2
+  - ID: Item001
+    Name: "\u30C4\u30BF\u30B9\u30C6\u30FC\u30AD"
+    IconName: 
+    BoxStackNumber: 99
+    BoxUINumber: 0
+    BoxHoldNumber: 0
+    PoachStackNumber: 99
+    PoachUINumber: 0
+    PoachHoldNumber: 0
+    Permanent: 0
+    Time: 0
+    ItemType: 1
+    CreatableLevel: 2
+    NeedMaterialLst:
+    - materialID: Material006
+      requiredCount: 3
