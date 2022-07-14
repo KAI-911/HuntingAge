@@ -51,7 +51,6 @@ MonoBehaviour:
   - {fileID: 2773925875629662048}
   - {fileID: 2773925875629662055}
   - {fileID: 3631824838735457377}
-  dataList: {fileID: 11400000, guid: 3eb9340a68e4a0c48a6dae4855fade1e, type: 2}
 --- !u!114 &2773925875629662048
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -302,7 +301,7 @@ MonoBehaviour:
   _quest: {fileID: 591199820164075100}
   _villageScene: 3
   _nowScene: 3
-  _itemDataList: {fileID: 591199820164075101}
+  _materialDataList: {fileID: 591199820164075101}
   _UIPoachList: {fileID: 2773925875629662053}
   _weaponDataList: {fileID: 7629702492207570889}
   _enemyDataList: {fileID: 2773925877255139973}
@@ -329,6 +328,7 @@ MonoBehaviour:
     Field: 0
     TargetName: []
     OtherName: []
+  _isQuest: 0
   viewKillEnemy: []
   viewQuestTargetEnemy: []
   _enemyList: []
@@ -345,7 +345,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9259a729160daf14e90efbeae19f87d6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  DictionaryData: {fileID: 11400000, guid: 3eb9340a68e4a0c48a6dae4855fade1e, type: 2}
+  DictionaryData: {fileID: 11400000, guid: 35f7a00bd15737e4eb41c6b57643190f, type: 2}
   keys:
   - Material000
   - Material001
@@ -359,93 +359,65 @@ MonoBehaviour:
     Name: "\u5CA9"
     IconName: Icon/Stone_UI
     BoxStackNumber: 9999
-    BoxUINumber: 2
-    BoxHoldNumber: 1
+    BoxUINumber: 0
+    BoxHoldNumber: 20
     PoachStackNumber: 99
-    PoachUINumber: 3
+    PoachUINumber: 0
     PoachHoldNumber: 0
-    Permanent: 0
-    Time: 0
-    ItemType: 0
-    CreatableLevel: 0
   - ID: Material001
     Name: "\u6728"
     IconName: Icon/Wood_UI
     BoxStackNumber: 9999
-    BoxUINumber: 6
-    BoxHoldNumber: 2
+    BoxUINumber: 1
+    BoxHoldNumber: 20
     PoachStackNumber: 99
     PoachUINumber: 1
-    PoachHoldNumber: 1
-    Permanent: 0
-    Time: 0
-    ItemType: 0
-    CreatableLevel: 0
+    PoachHoldNumber: 2
   - ID: Material002
     Name: "\u7E4A\u7DAD"
     IconName: Icon/Fiber_UI
     BoxStackNumber: 9999
-    BoxUINumber: 4
-    BoxHoldNumber: 4
+    BoxUINumber: 2
+    BoxHoldNumber: 40
     PoachStackNumber: 99
-    PoachUINumber: 3
-    PoachHoldNumber: 1
-    Permanent: 0
-    Time: 0
-    ItemType: 0
-    CreatableLevel: 0
+    PoachUINumber: 2
+    PoachHoldNumber: 0
   - ID: Material003
     Name: "\u9AA8"
     IconName: Icon/Bone_UI
     BoxStackNumber: 9999
-    BoxUINumber: 0
-    BoxHoldNumber: 208
+    BoxUINumber: 3
+    BoxHoldNumber: 60
     PoachStackNumber: 99
-    PoachUINumber: 0
-    PoachHoldNumber: 0
-    Permanent: 0
-    Time: 0
-    ItemType: 0
-    CreatableLevel: 0
+    PoachUINumber: 2
+    PoachHoldNumber: 3
   - ID: Material004
     Name: "\u690D\u7269"
     IconName: Icon/Botanical_UI
     BoxStackNumber: 9999
-    BoxUINumber: 5
-    BoxHoldNumber: 8
+    BoxUINumber: 4
+    BoxHoldNumber: 80
     PoachStackNumber: 99
-    PoachUINumber: 0
-    PoachHoldNumber: 1
-    Permanent: 0
-    Time: 0
-    ItemType: 0
-    CreatableLevel: 0
+    PoachUINumber: 3
+    PoachHoldNumber: 6
   - ID: Material005
     Name: "\u8089"
     IconName: Icon/Meat_UI
     BoxStackNumber: 9999
-    BoxUINumber: 1
-    BoxHoldNumber: 10
+    BoxUINumber: 5
+    BoxHoldNumber: 50
     PoachStackNumber: 99
-    PoachUINumber: 2
-    PoachHoldNumber: 1
-    Permanent: 0
-    Time: 0
-    ItemType: 0
-    CreatableLevel: 0
+    PoachUINumber: 0
+    PoachHoldNumber: 12
   - ID: Material006
     Name: "\u30C4\u30BF"
     IconName: Icon/Vine_UI
     BoxStackNumber: 9999
-    BoxUINumber: 3
-    BoxHoldNumber: 12
+    BoxUINumber: 6
+    BoxHoldNumber: 60
     PoachStackNumber: 99
-    PoachUINumber: 4
-    PoachHoldNumber: 1
-    Permanent: 0
-    Time: 0
-    ItemType: 0
-    CreatableLevel: 0
+    PoachUINumber: 1
+    PoachHoldNumber: 0
   modifyValues: 0
 --- !u!114 &2773925877255139973
 MonoBehaviour:
@@ -506,7 +478,7 @@ MonoBehaviour:
   - ID: Dodo
     DisplayName: "\u30C9\u30FC\u30C9\u30FC"
     InstanceName: Enemy/Dodo
-    DeathCount: 0
+    DeathCount: 3
     EnemyPos:
     - scene: 2
       pos:
@@ -570,25 +542,33 @@ MonoBehaviour:
   - weapon303
   values:
   - ID: weapon101
-    Name: TreeAxe
+    EnhancementID: weapon102
+    Name: "\u6728\u306E\u65A7"
+    weaponPath: weapon/Axe
+    IconPass: 
     IconName: 
     BoxUINumber: 0
     CreatableLevel: 1
-    BoxPossession: 0
+    BoxPossession: 1
     AttackPoint: 100
     WeaponType: 0
     ProductionNeedMaterialLst:
     - materialID: Material001
       requiredCount: 5
-    EnhancementNeedMaterialLst: []
+    EnhancementNeedMaterialLst:
+    - materialID: Material001
+      requiredCount: 5
   - ID: weapon102
-    Name: StoneAxe
+    EnhancementID: weapon103
+    Name: "\u77F3\u306E\u65A7"
+    weaponPath: 
+    IconPass: 
     IconName: 
     BoxUINumber: 0
     CreatableLevel: 2
-    BoxPossession: 0
-    AttackPoint: 150
-    WeaponType: 0
+    BoxPossession: 1
+    AttackPoint: 120
+    WeaponType: 1
     ProductionNeedMaterialLst:
     - materialID: Material001
       requiredCount: 10
@@ -600,46 +580,15 @@ MonoBehaviour:
     - materialID: Material000
       requiredCount: 2
   - ID: weapon103
-    Name: BoneAxe
+    EnhancementID: empty
+    Name: "\u9AA8\u65A7"
+    weaponPath: 
+    IconPass: 
     IconName: 
     BoxUINumber: 0
     CreatableLevel: 5
-    BoxPossession: 0
+    BoxPossession: 1
     AttackPoint: 200
-    WeaponType: 0
-    ProductionNeedMaterialLst:
-    - materialID: Material001
-      requiredCount: 20
-    - materialID: Material000
-      requiredCount: 15
-    - materialID: Material003
-      requiredCount: 5
-    EnhancementNeedMaterialLst:
-    - materialID: Material001
-      requiredCount: 5
-    - materialID: Material000
-      requiredCount: 5
-    - materialID: Material003
-      requiredCount: 3
-  - ID: weapon201
-    Name: TreeSpear
-    IconName: 
-    BoxUINumber: 0
-    CreatableLevel: 1
-    BoxPossession: 0
-    AttackPoint: 80
-    WeaponType: 1
-    ProductionNeedMaterialLst:
-    - materialID: Material001
-      requiredCount: 5
-    EnhancementNeedMaterialLst: []
-  - ID: weapon202
-    Name: StoneSpear
-    IconName: 
-    BoxUINumber: 0
-    CreatableLevel: 3
-    BoxPossession: 0
-    AttackPoint: 120
     WeaponType: 0
     ProductionNeedMaterialLst:
     - materialID: Material001
@@ -651,13 +600,16 @@ MonoBehaviour:
       requiredCount: 3
     - materialID: Material000
       requiredCount: 2
-  - ID: weapon203
-    Name: BoneSpear
+  - ID: weapon201
+    EnhancementID: weapon202
+    Name: "\u6728\u306E\u69CD"
+    weaponPath: 
+    IconPass: 
     IconName: 
     BoxUINumber: 0
-    CreatableLevel: 6
-    BoxPossession: 0
-    AttackPoint: 160
+    CreatableLevel: 3
+    BoxPossession: 1
+    AttackPoint: 80
     WeaponType: 1
     ProductionNeedMaterialLst:
     - materialID: Material001
@@ -673,18 +625,78 @@ MonoBehaviour:
       requiredCount: 5
     - materialID: Material003
       requiredCount: 3
+  - ID: weapon202
+    EnhancementID: weapon203
+    Name: "\u77F3\u306E\u69CD"
+    weaponPath: 
+    IconPass: 
+    IconName: 
+    BoxUINumber: 0
+    CreatableLevel: 3
+    BoxPossession: 0
+    AttackPoint: 120
+    WeaponType: 1
+    ProductionNeedMaterialLst:
+    - materialID: Material001
+      requiredCount: 10
+    - materialID: Material000
+      requiredCount: 5
+    EnhancementNeedMaterialLst:
+    - materialID: Material001
+      requiredCount: 3
+    - materialID: Material000
+      requiredCount: 2
+  - ID: weapon203
+    EnhancementID: empty
+    Name: "\u9AA8\u65A7"
+    weaponPath: 
+    IconPass: 
+    IconName: 
+    BoxUINumber: 0
+    CreatableLevel: 6
+    BoxPossession: 1
+    AttackPoint: 160
+    WeaponType: 1
+    ProductionNeedMaterialLst:
+    - materialID: Material001
+      requiredCount: 10
+    - materialID: Material000
+      requiredCount: 5
+    EnhancementNeedMaterialLst:
+    - materialID: Material001
+      requiredCount: 3
+    - materialID: Material000
+      requiredCount: 2
   - ID: weapon301
-    Name: Bow
+    EnhancementID: weapon302
+    Name: "\u5F13"
+    weaponPath: 
+    IconPass: 
     IconName: 
     BoxUINumber: 0
     CreatableLevel: 1
     BoxPossession: 0
     AttackPoint: 50
     WeaponType: 2
-    ProductionNeedMaterialLst: []
-    EnhancementNeedMaterialLst: []
+    ProductionNeedMaterialLst:
+    - materialID: Material001
+      requiredCount: 20
+    - materialID: Material000
+      requiredCount: 15
+    - materialID: Material003
+      requiredCount: 5
+    EnhancementNeedMaterialLst:
+    - materialID: Material001
+      requiredCount: 5
+    - materialID: Material000
+      requiredCount: 5
+    - materialID: Material003
+      requiredCount: 3
   - ID: weapon302
-    Name: SuperBow
+    EnhancementID: weapon303
+    Name: "\u8D85\u5F13"
+    weaponPath: 
+    IconPass: 
     IconName: 
     BoxUINumber: 0
     CreatableLevel: 4
@@ -694,7 +706,10 @@ MonoBehaviour:
     ProductionNeedMaterialLst: []
     EnhancementNeedMaterialLst: []
   - ID: weapon303
-    Name: HyperBow
+    EnhancementID: empty
+    Name: "\u7D76\u5F13"
+    weaponPath: 
+    IconPass: 
     IconName: 
     BoxUINumber: 0
     CreatableLevel: 7
@@ -963,16 +978,27 @@ MonoBehaviour:
   m_MoveRepeatDelay: 0.5
   m_MoveRepeatRate: 0.1
   m_XRTrackingOrigin: {fileID: 0}
-  m_ActionsAsset: {fileID: -944628639613478452, guid: ca9f5fa95ffab41fb9a615ab714db018, type: 3}
-  m_PointAction: {fileID: -1654692200621890270, guid: ca9f5fa95ffab41fb9a615ab714db018, type: 3}
-  m_MoveAction: {fileID: -8784545083839296357, guid: ca9f5fa95ffab41fb9a615ab714db018, type: 3}
-  m_SubmitAction: {fileID: 392368643174621059, guid: ca9f5fa95ffab41fb9a615ab714db018, type: 3}
-  m_CancelAction: {fileID: 7727032971491509709, guid: ca9f5fa95ffab41fb9a615ab714db018, type: 3}
-  m_LeftClickAction: {fileID: 3001919216989983466, guid: ca9f5fa95ffab41fb9a615ab714db018, type: 3}
-  m_MiddleClickAction: {fileID: -2185481485913320682, guid: ca9f5fa95ffab41fb9a615ab714db018, type: 3}
-  m_RightClickAction: {fileID: -4090225696740746782, guid: ca9f5fa95ffab41fb9a615ab714db018, type: 3}
-  m_ScrollWheelAction: {fileID: 6240969308177333660, guid: ca9f5fa95ffab41fb9a615ab714db018, type: 3}
-  m_TrackedDevicePositionAction: {fileID: 6564999863303420839, guid: ca9f5fa95ffab41fb9a615ab714db018, type: 3}
-  m_TrackedDeviceOrientationAction: {fileID: 7970375526676320489, guid: ca9f5fa95ffab41fb9a615ab714db018, type: 3}
+  m_ActionsAsset: {fileID: -944628639613478452, guid: ca9f5fa95ffab41fb9a615ab714db018,
+    type: 3}
+  m_PointAction: {fileID: -1654692200621890270, guid: ca9f5fa95ffab41fb9a615ab714db018,
+    type: 3}
+  m_MoveAction: {fileID: -8784545083839296357, guid: ca9f5fa95ffab41fb9a615ab714db018,
+    type: 3}
+  m_SubmitAction: {fileID: 392368643174621059, guid: ca9f5fa95ffab41fb9a615ab714db018,
+    type: 3}
+  m_CancelAction: {fileID: 7727032971491509709, guid: ca9f5fa95ffab41fb9a615ab714db018,
+    type: 3}
+  m_LeftClickAction: {fileID: 3001919216989983466, guid: ca9f5fa95ffab41fb9a615ab714db018,
+    type: 3}
+  m_MiddleClickAction: {fileID: -2185481485913320682, guid: ca9f5fa95ffab41fb9a615ab714db018,
+    type: 3}
+  m_RightClickAction: {fileID: -4090225696740746782, guid: ca9f5fa95ffab41fb9a615ab714db018,
+    type: 3}
+  m_ScrollWheelAction: {fileID: 6240969308177333660, guid: ca9f5fa95ffab41fb9a615ab714db018,
+    type: 3}
+  m_TrackedDevicePositionAction: {fileID: 6564999863303420839, guid: ca9f5fa95ffab41fb9a615ab714db018,
+    type: 3}
+  m_TrackedDeviceOrientationAction: {fileID: 7970375526676320489, guid: ca9f5fa95ffab41fb9a615ab714db018,
+    type: 3}
   m_DeselectOnBackgroundClick: 1
   m_PointerBehavior: 0

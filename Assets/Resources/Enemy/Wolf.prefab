@@ -93,6 +93,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 3493076668569738914}
+  - {fileID: 1863727982500473075}
   m_Father: {fileID: 7830986973975358800}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: -0.000012335905, y: 0, z: 0}
@@ -348,6 +349,135 @@ Transform:
   m_Father: {fileID: 1408088190526871882}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 27.740753, y: -90.001, z: -0.0004581996}
+--- !u!1 &2957970975977792609
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1863727982500473075}
+  - component: {fileID: 8308846659564787552}
+  - component: {fileID: 8460731246523097634}
+  - component: {fileID: 1584444364524473315}
+  - component: {fileID: 585903124652548255}
+  m_Layer: 0
+  m_Name: collection
+  m_TagString: CollectionPoint
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1863727982500473075
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2957970975977792609}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1161247536781524430}
+  m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!65 &8308846659564787552
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2957970975977792609}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 0.025454948, y: 0.0403124, z: 0.0717202}
+  m_Center: {x: 0.0007845497, y: -0.008401305, z: -0.00021051883}
+--- !u!114 &8460731246523097634
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2957970975977792609}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 660772cc242956a46956ed6740de5104, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _maskTag: Player
+  _targetCheckerType: 0
+--- !u!114 &1584444364524473315
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2957970975977792609}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cb4271ea13da4f74cbbfd13df1a35e68, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _itemHolder: {fileID: 585903124652548255}
+  _getItemNumber: 5
+  _offest: {x: 0, y: 3, z: 0}
+  _ID: Meet
+--- !u!114 &585903124652548255
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2957970975977792609}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0311146b928456b4fbb4969387ddaa72, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  DictionaryData: {fileID: 11400000, guid: d4d92aadcc49c634cbe211128321d169, type: 2}
+  keys:
+  - Bone
+  - Wood
+  - Botanical
+  - Fiber
+  - Meet
+  - Stone
+  - Vine
+  values:
+  - _imagePrefab: {fileID: 5541608107631814696, guid: 242c96c79d9b830449b003f68433f768,
+      type: 3}
+    ID: Material003
+    Icon: {fileID: 21300000, guid: 1e69f11348e8871438bab805bd4eaf77, type: 3}
+  - _imagePrefab: {fileID: 5541608107631814696, guid: 242c96c79d9b830449b003f68433f768,
+      type: 3}
+    ID: Material001
+    Icon: {fileID: 21300000, guid: 970959b020eaa7f4eab8cd6562185a92, type: 3}
+  - _imagePrefab: {fileID: 5541608107631814696, guid: 242c96c79d9b830449b003f68433f768,
+      type: 3}
+    ID: Material004
+    Icon: {fileID: 21300000, guid: a2c4163e81958c04b913d9ffdd5fd933, type: 3}
+  - _imagePrefab: {fileID: 5541608107631814696, guid: 242c96c79d9b830449b003f68433f768,
+      type: 3}
+    ID: Material002
+    Icon: {fileID: 21300000, guid: 9bc128f3293332549842f397cd72fd14, type: 3}
+  - _imagePrefab: {fileID: 5541608107631814696, guid: 242c96c79d9b830449b003f68433f768,
+      type: 3}
+    ID: Material005
+    Icon: {fileID: 21300000, guid: fb2ba2264a2aff544b968bc54b9b55e1, type: 3}
+  - _imagePrefab: {fileID: 5541608107631814696, guid: 242c96c79d9b830449b003f68433f768,
+      type: 3}
+    ID: Material000
+    Icon: {fileID: 21300000, guid: fa11fc7e22011d041abaf88ffdd2799d, type: 3}
+  - _imagePrefab: {fileID: 5541608107631814696, guid: 242c96c79d9b830449b003f68433f768,
+      type: 3}
+    ID: Material006
+    Icon: {fileID: 21300000, guid: 9f48cad1bf3b45a42b3508943181ebe1, type: 3}
+  modifyValues: 0
 --- !u!1 &3010515228882141489
 GameObject:
   m_ObjectHideFlags: 0
@@ -1658,7 +1788,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 660772cc242956a46956ed6740de5104, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _maskTag: Player
+  _maskTag: 
   _targetCheckerType: 1
 --- !u!1 &7721413129219504865
 GameObject:

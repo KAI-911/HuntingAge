@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEditor;
 [CustomEditor(typeof(MaterialDataList))]
-public class ItemDataEditer : Editor
+public class MaterialDataEditer : Editor
 {
     public override void OnInspectorGUI()
     {

@@ -86,7 +86,7 @@ public class WeaponDataList : MonoBehaviour, ISerializationCallbackReceiver
             needID[i] = data.ProductionNeedMaterialLst[i].materialID;
             needRequiredCount[i] = data.ProductionNeedMaterialLst[i].requiredCount;
 
-            var _material = GameManager.Instance.ItemDataList;
+            var _material = GameManager.Instance.MaterialDataList;
             if (!(_material.Dictionary.ContainsKey(needID[i]))) return 2;
             int _num = _material.Dictionary[needID[i]].BoxHoldNumber + _material.Dictionary[needID[i]].PoachHoldNumber;
             if (_num < needRequiredCount[i]) return 2;
@@ -112,7 +112,7 @@ public class WeaponDataList : MonoBehaviour, ISerializationCallbackReceiver
             string needID = data.EnhancementNeedMaterialLst[i].materialID;
             int needRequiredCount = data.EnhancementNeedMaterialLst[i].requiredCount;
 
-            var _material = GameManager.Instance.ItemDataList;
+            var _material = GameManager.Instance.MaterialDataList;
             if (!(_material.Dictionary.ContainsKey(needID))) return 2;
             int _num = _material.Dictionary[needID].BoxHoldNumber + _material.Dictionary[needID].PoachHoldNumber;
             if (_num < needRequiredCount) return 2;
@@ -174,7 +174,7 @@ public class WeaponDataList : MonoBehaviour, ISerializationCallbackReceiver
         for (int i = 0; i < listCount; i++)
         {
             int count = i;
-            var _material = GameManager.Instance.ItemDataList;
+            var _material = GameManager.Instance.MaterialDataList;
             int tmp = _material.Keys.IndexOf(needID[count]);
             if (_material.Values[tmp].PoachHoldNumber < needRequired[count])
             {
@@ -193,7 +193,7 @@ public class WeaponDataList : MonoBehaviour, ISerializationCallbackReceiver
                 _material.Values[tmp] = data1;
             }
         }
-        GameManager.Instance.ItemDataList.DesrializeDictionary();
+        GameManager.Instance.MaterialDataList.DesrializeDictionary();
     }
 }
 

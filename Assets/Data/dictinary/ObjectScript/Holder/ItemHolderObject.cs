@@ -22,6 +22,5 @@ public struct CollectionDataLsit
 {
     public GameObject _imagePrefab;
     public string ID;
-    public int GetNum;
     public Sprite Icon;
 }
