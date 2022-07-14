@@ -126,30 +126,30 @@ public class UIPoach : UIBase
             //Ç®å›Ç¢ÇÃUIç¿ïWÇì¸ÇÍë÷Ç¶ÇÈ
             var selectButton = _itemIcon.Buttons[_selectionNumber].GetComponent<ItemButton>();
             var currentButton = _itemIcon.Buttons[_itemIcon.CurrentNunber].GetComponent<ItemButton>();
-            var itemDataList = GameManager.Instance.ItemDataList;
+            var MaterialDataList = GameManager.Instance.MaterialDataList;
             MaterialData data = new MaterialData();
             if (selectButton.ID != "")
             {
-                if (itemDataList.Keys.Contains(selectButton.ID))
+                if (MaterialDataList.Keys.Contains(selectButton.ID))
                 {
-                    int index = itemDataList.Keys.IndexOf(selectButton.ID);
-                    data = itemDataList.Values[index];
+                    int index = MaterialDataList.Keys.IndexOf(selectButton.ID);
+                    data = MaterialDataList.Values[index];
                     data.PoachUINumber = _itemIcon.CurrentNunber;
-                    itemDataList.Values[index] = data;
+                    MaterialDataList.Values[index] = data;
                 }
             }
             if (currentButton.ID != "")
             {
-                if (itemDataList.Keys.Contains(currentButton.ID))
+                if (MaterialDataList.Keys.Contains(currentButton.ID))
                 {
-                    int index = itemDataList.Keys.IndexOf(currentButton.ID);
-                    data = itemDataList.Values[index];
+                    int index = MaterialDataList.Keys.IndexOf(currentButton.ID);
+                    data = MaterialDataList.Values[index];
                     data.PoachUINumber = _selectionNumber;
-                    itemDataList.Values[index] = data;
+                    MaterialDataList.Values[index] = data;
                 }
             }
 
-            itemDataList.DesrializeDictionary();
+            MaterialDataList.DesrializeDictionary();
             owner.GetComponent<UIPoach>().UISet();
             owner.ChangeState<ItemSlect>();
 

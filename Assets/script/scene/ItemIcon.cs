@@ -38,6 +38,19 @@ public class ItemIcon : MonoBehaviour
     {
         _iconData = _value;
     }
+    public void SetText(string _text)
+    {
+        this._iconData._textData.text = _text;
+    }
+    public void SetTable(Vector2 _table)
+    {
+        var iconData = this.IconData; iconData._tableSize = _table;
+        this.SetIcondata(iconData);
+    }
+    public void SetButtonText(string _taxt)
+    {
+
+    }
     private void Awake()
     {
         _currentNunber = 0;

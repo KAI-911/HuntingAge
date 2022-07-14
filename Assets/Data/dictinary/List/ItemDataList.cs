@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class ItemDataList : MonoBehaviour, ISerializationCallbackReceiver
 {
-    [SerializeField] ItemDataList DictionaryData;
+    [SerializeField] ItemListObject DictionaryData;
     [SerializeField] List<string> keys = new List<string>();
     [SerializeField] List<ItemData> values = new List<ItemData>();
     [SerializeField] Dictionary<string, ItemData> dictionary = new Dictionary<string, ItemData>();
@@ -153,6 +153,70 @@ public class ItemDataList : MonoBehaviour, ISerializationCallbackReceiver
         values[index] = data;
         DesrializeDictionary();
         return addNumber;
+    }
+
+    public bool ChackItem(string _ID, int _num)
+    {
+        var _material = GameManager.Instance.ItemDataList;
+        if (!(_material.Dictionary.ContainsKey(_ID))) return false;
+        int num = _material.Dictionary[_ID].BoxHoldNumber + _material.Dictionary[_ID].PoachHoldNumber;
+        if (num < _num) return false;
+
+        return true;
+    }
+
+    public int CreateItem(string _ID, bool _toPouch)
+    {
+        int index = keys.FindIndex(n => n.StartsWith(_ID));
+        //Debug.Log(index);
+        var data = values[index];
+
+        int listCount = data.NeedMaterialLst.Count;
+        List<string> needID = new List<string>();
+        List<int> needRequiredCount = new List<int>();
+        List<int> needRequired = new List<int>();
+
+        for (int i = 0; i < listCount; i++)
+        {
+            needID.Add(data.NeedMaterialLst[i].materialID);
+            needRequiredCount.Add(data.NeedMaterialLst[i].requiredCount);
+            needRequired.Add(data.NeedMaterialLst[i].requiredCount);
+
+            var _material = GameManager.Instance.ItemDataList;
+            if (!(_material.Dictionary.ContainsKey(needID[i]))) return 2;
+            int _num = _material.Dictionary[needID[i]].BoxHoldNumber + _material.Dictionary[needID[i]].PoachHoldNumber;
+            if (_num < needRequiredCount[i]) return 2;
+        }
+
+
+        for (int i = 0; i < listCount; i++)
+        {
+            int count = i;
+            var _material = GameManager.Instance.ItemDataList;
+            int tmp = _material.Keys.IndexOf(needID[count]);
+            if (_material.Values[tmp].PoachHoldNumber < needRequired[count])
+            {
+                needRequired[count] -= _material.Values[tmp].PoachHoldNumber;
+                var data1 = _material.Values[tmp];
+                data1.PoachHoldNumber = 0;
+                _material.Values[tmp] = data1;
+
+                data1.BoxHoldNumber -= needRequired[count];
+                _material.Values[tmp] = data1;
+            }
+            else
+            {
+                var data1 = _material.Values[tmp];
+                data1.PoachHoldNumber -= needRequired[count];
+                _material.Values[tmp] = data1;
+            }
+        }
+        GameManager.Instance.ItemDataList.DesrializeDictionary();
+
+        if (_toPouch)
+        values[index] = data;
+        DesrializeDictionary();
+        return 1;
     }
 }
 

@@ -110,9 +110,6 @@ public class UIItemBox : UIBase
                     owner.ItemIconList[(int)IconType.PoachItemSelect].Select(UIManager.Instance.InputSelection.ReadValue<Vector2>());
                     break;
             }
-
-
-
         }
         public override void OnProceed(UIBase owner)
         {
@@ -259,16 +256,16 @@ public class UIItemBox : UIBase
             //Ç®å›Ç¢ÇÃUIç¿ïWÇì¸ÇÍë÷Ç¶ÇÈ
             var selectButton = _itemIcon.Buttons[_selectionNumber].GetComponent<ItemButton>();
             var currentButton = _itemIcon.Buttons[_itemIcon.CurrentNunber].GetComponent<ItemButton>();
-            var itemDataList = GameManager.Instance.ItemDataList;
+            var MaterialDataList = GameManager.Instance.MaterialDataList;
             MaterialData data = new MaterialData();
             if (selectButton.ID != "")
             {
                 Debug.Log("S0");
-                if (itemDataList.Keys.Contains(selectButton.ID))
+                if (MaterialDataList.Keys.Contains(selectButton.ID))
                 {
                     Debug.Log("S1");
-                    int index = itemDataList.Keys.IndexOf(selectButton.ID);
-                    data = itemDataList.Values[index];
+                    int index = MaterialDataList.Keys.IndexOf(selectButton.ID);
+                    data = MaterialDataList.Values[index];
                     switch (owner.GetComponent<UIItemBox>().current)
                     {
                         case CurrentUI.box:
@@ -282,17 +279,17 @@ public class UIItemBox : UIBase
                         default:
                             break;
                     }
-                    itemDataList.Values[index] = data;
+                    MaterialDataList.Values[index] = data;
                 }
             }
             if (currentButton.ID != "")
             {
                 Debug.Log("C0");
-                if (itemDataList.Keys.Contains(currentButton.ID))
+                if (MaterialDataList.Keys.Contains(currentButton.ID))
                 {
                     Debug.Log("C1");
-                    int index = itemDataList.Keys.IndexOf(currentButton.ID);
-                    data = itemDataList.Values[index];
+                    int index = MaterialDataList.Keys.IndexOf(currentButton.ID);
+                    data = MaterialDataList.Values[index];
                     switch (owner.GetComponent<UIItemBox>().current)
                     {
                         case CurrentUI.box:
@@ -306,11 +303,11 @@ public class UIItemBox : UIBase
                         default:
                             break;
                     }
-                    itemDataList.Values[index] = data;
+                    MaterialDataList.Values[index] = data;
                 }
             }
 
-            itemDataList.DesrializeDictionary();
+            MaterialDataList.DesrializeDictionary();
             owner.GetComponent<UIItemBox>().UISet();
             owner.ChangeState<ItemSlect>();
 

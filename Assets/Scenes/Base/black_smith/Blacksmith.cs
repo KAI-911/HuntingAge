@@ -60,14 +60,10 @@ public class Blacksmith : UIBase
         public override void OnEnter(UIBase owner, UIStateBase prevState)
         {
             Debug.Log("Blacksmith_TypeSelectMode_OnEnter");
-            var iconText = owner.ItemIconList[(int)IconType.TypeSelect];
-            var icon = iconText.IconData; icon._textData.text = "íbñËèÍÅFïêäÌ";
-            iconText.SetIcondata(icon);
-
-            var table = owner.ItemIconList[(int)IconType.TypeSelect];
-            var iconData = table.IconData; iconData._tableSize = new Vector2(2, 1);
-            iconText.SetIcondata(iconData);
-            var list = owner.ItemIconList[(int)IconType.TypeSelect].CreateButton();
+            var UI = owner.ItemIconList[(int)IconType.TypeSelect];
+            UI.SetText("íbñËèÍÅFïêäÌ");
+            UI.SetTable(new Vector2(2, 1));
+            var list = UI.CreateButton();
 
             var button0Text = list[0].GetComponentInChildren<Text>(); button0Text.text = "êªë¢";
             var button0 = list[0].GetComponent<Button>();

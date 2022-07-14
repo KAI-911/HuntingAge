@@ -16,7 +16,10 @@ public class GameManager : Singleton<GameManager>
 
 
 
-    [SerializeField] MaterialDataList _itemDataList;
+    [SerializeField] MaterialDataList _MaterialDataList;
+
+    [SerializeField] ItemDataList _ItemDataList;
+
     [SerializeField] UIPoach _UIPoachList;
 
     [SerializeField] WeaponDataList _weaponDataList;
@@ -32,7 +35,8 @@ public class GameManager : Singleton<GameManager>
     public Scene NowScene { get => _nowScene; set => _nowScene = value; }
     public Quest Quest { get => _quest; set => _quest = value; }
     public EnemyDataList EnemyDataList { get => _enemyDataList; }
-    public MaterialDataList ItemDataList { get => _itemDataList; }
+    public MaterialDataList MaterialDataList { get => _MaterialDataList; }
+    public ItemDataList ItemDataList { get => _ItemDataList; }
     public WeaponDataList WeaponDataList { get => _weaponDataList; }
     public VillageData VillageData { get => _villageData; }
     public ItemCanvas ItemCanvas { get => _itemCanvas; }
