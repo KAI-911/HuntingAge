@@ -17,6 +17,7 @@ public class MaterialDataList : MonoBehaviour, ISerializationCallbackReceiver
     {
         keys.Clear();
         values.Clear();
+        PrintDictionary();
         for (int i = 0; i < Mathf.Min(DictionaryData.Keys.Count, DictionaryData.Values.Count); i++)
         {
             keys.Add(DictionaryData.Keys[i]);
@@ -31,6 +32,12 @@ public class MaterialDataList : MonoBehaviour, ISerializationCallbackReceiver
         {
             keys.Clear();
             values.Clear();
+            PrintDictionary();
+            Debug.Log(DictionaryData);
+            Debug.Log(DictionaryData.Keys);
+            Debug.Log(DictionaryData.Keys.Count);
+            Debug.Log(DictionaryData.Values);
+            Debug.Log(DictionaryData.Values.Count);
             for (int i = 0; i < Mathf.Min(DictionaryData.Keys.Count, DictionaryData.Values.Count); i++)
             {
                 keys.Add(DictionaryData.Keys[i]);

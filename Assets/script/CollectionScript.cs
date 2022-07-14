@@ -49,7 +49,7 @@ public class CollectionScript : MonoBehaviour
                     _image = Instantiate(_itemHolder.Dictionary[_ID]._imagePrefab);
                     _image.transform.SetParent(GameManager.Instance.ItemCanvas.Canvas.transform);
                     var text = _image.GetComponentInChildren<Text>();
-                    text.text = GameManager.Instance.ItemDataList.Dictionary[_itemHolder.Dictionary[_ID].ID].Name;
+                    text.text = GameManager.Instance.MaterialDataList.Dictionary[_itemHolder.Dictionary[_ID].ID].Name;
                     var icon = _image.GetComponentsInChildren<Image>();
                     icon[1].sprite = _itemHolder.Dictionary[_ID].Icon;
                 });

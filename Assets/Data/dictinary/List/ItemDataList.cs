@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class ItemDataList : MonoBehaviour, ISerializationCallbackReceiver
 {
-    [SerializeField] ItemDataList DictionaryData;
+    [SerializeField] ItemListObject DictionaryData;
     [SerializeField] List<string> keys = new List<string>();
     [SerializeField] List<ItemData> values = new List<ItemData>();
     [SerializeField] Dictionary<string, ItemData> dictionary = new Dictionary<string, ItemData>();
