@@ -4,4 +4,24 @@
 EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
-  m_Scenes: []
+  m_Scenes:
+  - enabled: 1
+    path: Assets/Scenes/Base/Base.unity
+    guid: 6c2495bfd6f228f40ade79be999d3b95
+  - enabled: 1
+    path: Assets/Scenes/Forest/Forest.unity
+    guid: abb96879e5601044d8897522f12727d7
+  - enabled: 1
+    path: Assets/Scenes/animal/animal.unity
+    guid: d89b843a77d50f34ebcea6614ba7b1a7
+  - enabled: 1
+    path: Assets/Scenes/SatoScene/Sato.unity
+    guid: cb361a0789e96b04aa5e1003d6c99b7f
+  - enabled: 1
+    path: Assets/Scenes/HamaScene/Scene.unity
+    guid: b73448fca47dc614b9495233b495f429
+  m_configObjects:
+    com.unity.addressableassets: {fileID: 11400000, guid: b5161ce55fc13e846b0ca3e941e597e2,
+      type: 2}
+    com.unity.input.settings: {fileID: 11400000, guid: 15da8eccc355b2742b67226f7bc94397,
+      type: 2}

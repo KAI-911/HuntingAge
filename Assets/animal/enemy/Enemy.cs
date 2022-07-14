@@ -51,9 +51,6 @@ public class Enemy : MonoBehaviour
     [SerializeField] private SkinnedMeshRenderer _skinnedMeshRenderer;
     public SkinnedMeshRenderer SkinnedMeshRenderer { get => _skinnedMeshRenderer; set => _skinnedMeshRenderer = value; }
 
-    //影のメッシュレンダラー------------------------------------------------------------------------------
-    [SerializeField] private SkinnedMeshRenderer _shadowRenderer;
-    public SkinnedMeshRenderer ShadowRenderer { get => _shadowRenderer; set => _shadowRenderer = value; }
 
     //マテリアルを消すまでの時間--------------------------------------------------------------------------
     [SerializeField] private float _dissoveTime;
@@ -62,10 +59,6 @@ public class Enemy : MonoBehaviour
     //マテリアルを消すタイミング--------------------------------------------------------------------------
     [SerializeField] private AnimationCurve _dissoveCurve;
     public AnimationCurve DissoveCurve { get => _dissoveCurve; }
-
-    //影を消すタイミング----------------------------------------------------------------------------------
-    [SerializeField] private AnimationCurve _shadowCurve;
-    public AnimationCurve ShadowCurve { get => _shadowCurve; }
 
     //ID
     [SerializeField] private string _enemyID;
