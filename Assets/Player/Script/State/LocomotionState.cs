@@ -48,10 +48,10 @@ public class LocomotionState : PlayerStateBase
     public override void OnDodge(Player owner)
     {
         if (!owner.GroundChecker.IsGround()) return;
+        //•ûŒü“ü—Í‚ª‚È‚¯‚ê‚ÎÌæ
         if (owner.InputMoveAction.ReadValue<Vector2>().sqrMagnitude <= 0.1f)
         {
-            //•ûŒü“ü—Í‚ª‚È‚¯‚ê‚ÎÌæ
-            if (owner.CollectionFlg)
+            if (owner.CollectionFlg && owner.CollectionScript != null)
             {
                 owner.ChangeState<Collection>();
             }

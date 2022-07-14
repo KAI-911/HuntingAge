@@ -31,6 +31,8 @@ public class Death_Trex : StateBase_Trex
         if (myMat.HasProperty("_Threshold"))
         {
             myMat.SetFloat("_Threshold", owner.DissoveCurve.Evaluate(rate));
+            if (owner.DissoveCurve.Evaluate(rate) > 0) owner.CollectionScript.gameObject.SetActive(false);
+
         }
 
         if (rate >= 1)
@@ -53,6 +55,7 @@ public class Death_Trex : StateBase_Trex
                 item.enabled = false;
             }
             owner.SkinnedMeshRenderer.shadowCastingMode = UnityEngine.Rendering.ShadowCastingMode.Off;
+            owner.CollectionScript.gameObject.SetActive(true);
 
         }
 

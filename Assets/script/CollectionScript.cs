@@ -6,6 +6,7 @@ using UnityEngine.UI;
 public class CollectionScript : MonoBehaviour
 {
     [SerializeField] ItemHolder _itemHolder;
+    [SerializeField] int _getItemNumber;
     [SerializeField] Vector3 _offest;
     private TargetChecker _targetChecker;
     private GameObject _image;
@@ -18,6 +19,18 @@ public class CollectionScript : MonoBehaviour
     {
         _targetChecker = GetComponentInChildren<TargetChecker>();
 
+    }
+    private void OnDisable()
+    {
+        if (_image != null)
+        {
+            Destroy(_image);
+        }
+        if (UIManager.Instance != null && UIManager.Instance._player.CollectionScript == this)
+        {
+            UIManager.Instance._player.CollectionScript = null;
+            UIManager.Instance._player.CollectionFlg = false;
+        }
     }
     public void OnDestroy()
     {
@@ -59,6 +72,6 @@ public class CollectionScript : MonoBehaviour
     }
     public int GetNumber()
     {
-        return _itemHolder.Dictionary[_ID].GetNum;
+        return _getItemNumber;
     }
 }

@@ -109,7 +109,7 @@ public partial class Player : Singleton<Player>
     {
         _animator.SetInteger("HP", _status.HP);
         _isAction = true;
-        WeponChange(_weaponID);
+
     }
 
     void Update()
@@ -125,12 +125,23 @@ public partial class Player : Singleton<Player>
             ChangeState<HitReactionState>();
         }
         if (_status.HP == 0 &&
-            _currentState.GetType() != typeof(DeathState)&&
+            _currentState.GetType() != typeof(DeathState) &&
             _currentState.GetType() != typeof(VillageAction))
         {
             ChangeState<DeathState>();
         }
 
+        ////採取ポイントが今も有効かどうか確認
+        //if (_collectionScript != null)
+        //{
+        //    Debug.Log("dfagdskoghndbghjmodbvmgiohfmvd@:cdcl:s.dc");
+        //    if (_collectionScript.gameObject.activeSelf == false)
+        //    {
+        //        Debug.Log("あlsmfcじゃそ；ンjfヴぃさｇｖｈｍヴぁｓｈｐ０あｃｊ、ｊｄｓｇ");
+        //        _collectionFlg = false;
+        //        _collectionScript = null;
+        //    }
+        //}
         Debug.Log(_currentState.GetType().ToString());
     }
 
@@ -150,7 +161,7 @@ public partial class Player : Singleton<Player>
         {
             Debug.Log("採取ポイント");
             _collectionFlg = true;
-            _collectionScript = other.transform.root.GetComponent<CollectionScript>();
+            _collectionScript = other.GetComponent<CollectionScript>();
         }
     }
     private void OnTriggerStay(Collider other)
@@ -160,13 +171,15 @@ public partial class Player : Singleton<Player>
             Debug.Log("採取ポイント");
             _collectionFlg = true;
         }
-       
+
     }
     private void OnTriggerExit(Collider other)
     {
         if (other.CompareTag("CollectionPoint"))
         {
             _collectionFlg = false;
+            _collectionScript = null;
+
         }
 
     }
@@ -249,19 +262,21 @@ public partial class Player : Singleton<Player>
     }
     private void OnActiveSceneChanged(UnityEngine.SceneManagement.Scene arg0, UnityEngine.SceneManagement.Scene arg1)
     {
-        if(GameManager.Instance.Quest.IsQuest)
+        if (GameManager.Instance.Quest.IsQuest)
         {
+            ChangeWepon(_weaponID);
             ChangeState<LocomotionState>();
         }
         else
         {
+            DeleteWepon();
             _status.HP = _status.MaxHP;
             ChangeState<VillageAction>();
         }
         var pos = StartPos.Find(n => n.scene == GameManager.Instance.NowScene);
         transform.position = pos.pos[0];
     }
-    public void WeponChange(string weponID)
+    public void ChangeWepon(string weponID)
     {
         if (!GameManager.Instance.WeaponDataList.Dictionary.ContainsKey(weponID)) return;
         _weaponID = weponID;
@@ -278,7 +293,7 @@ public partial class Player : Singleton<Player>
         _weapon.transform.SetParent(_weaponParent.transform);
         _weapon.transform.localScale = new Vector3(1, 1, 1);
     }
-    public void WeponDelete()
+    public void DeleteWepon()
     {
         if (_weapon != null)
         {

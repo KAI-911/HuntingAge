@@ -1775,6 +1775,136 @@ Transform:
   m_Father: {fileID: 5777478249611241188}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: -0.00016158873, y: -3.5698993, z: 0.00021727764}
+--- !u!1 &5604669498608432113
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 284454737109874972}
+  - component: {fileID: 1537818383253779076}
+  - component: {fileID: 3575382166591360139}
+  - component: {fileID: 5713459878936223937}
+  - component: {fileID: 7331076015102344176}
+  m_Layer: 0
+  m_Name: collection
+  m_TagString: CollectionPoint
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &284454737109874972
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5604669498608432113}
+  m_LocalRotation: {x: 0.7071068, y: -0, z: -0, w: 0.7071068}
+  m_LocalPosition: {x: 0, y: 0.007603549, z: 0}
+  m_LocalScale: {x: 0.011433907, y: 0.011433907, z: 0.011433907}
+  m_ConstrainProportionsScale: 1
+  m_Children: []
+  m_Father: {fileID: 6143663992296296275}
+  m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: -90, y: 0, z: 0}
+--- !u!114 &1537818383253779076
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5604669498608432113}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 660772cc242956a46956ed6740de5104, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _maskTag: Player
+  _targetCheckerType: 0
+--- !u!64 &3575382166591360139
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5604669498608432113}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 4
+  m_Convex: 1
+  m_CookingOptions: 30
+  m_Mesh: {fileID: 6435469934825792502, guid: d8911ef81b4bc0e4683f1bf0ee0e5080, type: 3}
+--- !u!114 &5713459878936223937
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5604669498608432113}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cb4271ea13da4f74cbbfd13df1a35e68, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _itemHolder: {fileID: 7331076015102344176}
+  _getItemNumber: 15
+  _offest: {x: 0, y: 3, z: 0}
+  _ID: Meet
+--- !u!114 &7331076015102344176
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5604669498608432113}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0311146b928456b4fbb4969387ddaa72, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  DictionaryData: {fileID: 11400000, guid: d4d92aadcc49c634cbe211128321d169, type: 2}
+  keys:
+  - Bone
+  - Wood
+  - Botanical
+  - Fiber
+  - Meet
+  - Stone
+  - Vine
+  values:
+  - _imagePrefab: {fileID: 5541608107631814696, guid: 242c96c79d9b830449b003f68433f768,
+      type: 3}
+    ID: Material003
+    Icon: {fileID: 21300000, guid: 1e69f11348e8871438bab805bd4eaf77, type: 3}
+  - _imagePrefab: {fileID: 5541608107631814696, guid: 242c96c79d9b830449b003f68433f768,
+      type: 3}
+    ID: Material001
+    Icon: {fileID: 21300000, guid: 970959b020eaa7f4eab8cd6562185a92, type: 3}
+  - _imagePrefab: {fileID: 5541608107631814696, guid: 242c96c79d9b830449b003f68433f768,
+      type: 3}
+    ID: Material004
+    Icon: {fileID: 21300000, guid: a2c4163e81958c04b913d9ffdd5fd933, type: 3}
+  - _imagePrefab: {fileID: 5541608107631814696, guid: 242c96c79d9b830449b003f68433f768,
+      type: 3}
+    ID: Material002
+    Icon: {fileID: 21300000, guid: 9bc128f3293332549842f397cd72fd14, type: 3}
+  - _imagePrefab: {fileID: 5541608107631814696, guid: 242c96c79d9b830449b003f68433f768,
+      type: 3}
+    ID: Material005
+    Icon: {fileID: 21300000, guid: fb2ba2264a2aff544b968bc54b9b55e1, type: 3}
+  - _imagePrefab: {fileID: 5541608107631814696, guid: 242c96c79d9b830449b003f68433f768,
+      type: 3}
+    ID: Material000
+    Icon: {fileID: 21300000, guid: fa11fc7e22011d041abaf88ffdd2799d, type: 3}
+  - _imagePrefab: {fileID: 5541608107631814696, guid: 242c96c79d9b830449b003f68433f768,
+      type: 3}
+    ID: Material006
+    Icon: {fileID: 21300000, guid: 9f48cad1bf3b45a42b3508943181ebe1, type: 3}
+  modifyValues: 0
 --- !u!1 &5648031124077137443
 GameObject:
   m_ObjectHideFlags: 0
@@ -3926,7 +4056,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 660772cc242956a46956ed6740de5104, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _maskTag: Player
+  _maskTag: 
   _targetCheckerType: 1
 --- !u!135 &7806976793578882838
 SphereCollider:
@@ -4476,6 +4606,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1078752299808495410}
+  - {fileID: 284454737109874972}
   m_Father: {fileID: 39747833093205572}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}

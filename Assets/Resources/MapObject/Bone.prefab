@@ -260,6 +260,8 @@ GameObject:
   - component: {fileID: 5392743569053125893}
   - component: {fileID: 8456348169680917733}
   - component: {fileID: 6473244778400173260}
+  - component: {fileID: 3470377899449463573}
+  - component: {fileID: 5384447870054169863}
   m_Layer: 0
   m_Name: CollectionArea
   m_TagString: CollectionPoint
@@ -310,6 +312,73 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _maskTag: Player
   _targetCheckerType: 0
+--- !u!114 &3470377899449463573
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6900680910347476722}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cb4271ea13da4f74cbbfd13df1a35e68, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _itemHolder: {fileID: 5384447870054169863}
+  _getItemNumber: 1
+  _offest: {x: 0, y: 3, z: 0}
+  _ID: Bone
+--- !u!114 &5384447870054169863
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6900680910347476722}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0311146b928456b4fbb4969387ddaa72, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  DictionaryData: {fileID: 11400000, guid: d4d92aadcc49c634cbe211128321d169, type: 2}
+  keys:
+  - Bone
+  - Wood
+  - Botanical
+  - Fiber
+  - Meet
+  - Stone
+  - Vine
+  values:
+  - _imagePrefab: {fileID: 5541608107631814696, guid: 242c96c79d9b830449b003f68433f768,
+      type: 3}
+    ID: Material003
+    Icon: {fileID: 21300000, guid: 1e69f11348e8871438bab805bd4eaf77, type: 3}
+  - _imagePrefab: {fileID: 5541608107631814696, guid: 242c96c79d9b830449b003f68433f768,
+      type: 3}
+    ID: Material001
+    Icon: {fileID: 21300000, guid: 970959b020eaa7f4eab8cd6562185a92, type: 3}
+  - _imagePrefab: {fileID: 5541608107631814696, guid: 242c96c79d9b830449b003f68433f768,
+      type: 3}
+    ID: Material004
+    Icon: {fileID: 21300000, guid: a2c4163e81958c04b913d9ffdd5fd933, type: 3}
+  - _imagePrefab: {fileID: 5541608107631814696, guid: 242c96c79d9b830449b003f68433f768,
+      type: 3}
+    ID: Material002
+    Icon: {fileID: 21300000, guid: 9bc128f3293332549842f397cd72fd14, type: 3}
+  - _imagePrefab: {fileID: 5541608107631814696, guid: 242c96c79d9b830449b003f68433f768,
+      type: 3}
+    ID: Material005
+    Icon: {fileID: 21300000, guid: fb2ba2264a2aff544b968bc54b9b55e1, type: 3}
+  - _imagePrefab: {fileID: 5541608107631814696, guid: 242c96c79d9b830449b003f68433f768,
+      type: 3}
+    ID: Material000
+    Icon: {fileID: 21300000, guid: fa11fc7e22011d041abaf88ffdd2799d, type: 3}
+  - _imagePrefab: {fileID: 5541608107631814696, guid: 242c96c79d9b830449b003f68433f768,
+      type: 3}
+    ID: Material006
+    Icon: {fileID: 21300000, guid: 9f48cad1bf3b45a42b3508943181ebe1, type: 3}
+  modifyValues: 0
 --- !u!1 &8702481326834998359
 GameObject:
   m_ObjectHideFlags: 0
@@ -319,8 +388,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8348619872390368025}
-  - component: {fileID: 950063209446494874}
-  - component: {fileID: 4960334463092942474}
   m_Layer: 0
   m_Name: Bone
   m_TagString: Untagged
@@ -347,76 +414,3 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &950063209446494874
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8702481326834998359}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: cb4271ea13da4f74cbbfd13df1a35e68, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _itemHolder: {fileID: 4960334463092942474}
-  _offest: {x: 0, y: 3, z: 0}
-  _ID: Bone
---- !u!114 &4960334463092942474
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8702481326834998359}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0311146b928456b4fbb4969387ddaa72, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  DictionaryData: {fileID: 11400000, guid: d4d92aadcc49c634cbe211128321d169, type: 2}
-  keys:
-  - Bone
-  - Wood
-  - Botanical
-  - Fiber
-  - Meet
-  - Stone
-  - Vine
-  values:
-  - _imagePrefab: {fileID: 5541608107631814696, guid: 242c96c79d9b830449b003f68433f768,
-      type: 3}
-    ID: Material003
-    GetNum: 1
-    Icon: {fileID: 21300000, guid: 1e69f11348e8871438bab805bd4eaf77, type: 3}
-  - _imagePrefab: {fileID: 5541608107631814696, guid: 242c96c79d9b830449b003f68433f768,
-      type: 3}
-    ID: Material001
-    GetNum: 1
-    Icon: {fileID: 21300000, guid: 970959b020eaa7f4eab8cd6562185a92, type: 3}
-  - _imagePrefab: {fileID: 5541608107631814696, guid: 242c96c79d9b830449b003f68433f768,
-      type: 3}
-    ID: Material004
-    GetNum: 1
-    Icon: {fileID: 21300000, guid: a2c4163e81958c04b913d9ffdd5fd933, type: 3}
-  - _imagePrefab: {fileID: 5541608107631814696, guid: 242c96c79d9b830449b003f68433f768,
-      type: 3}
-    ID: Material002
-    GetNum: 1
-    Icon: {fileID: 21300000, guid: 9bc128f3293332549842f397cd72fd14, type: 3}
-  - _imagePrefab: {fileID: 5541608107631814696, guid: 242c96c79d9b830449b003f68433f768,
-      type: 3}
-    ID: Material005
-    GetNum: 1
-    Icon: {fileID: 21300000, guid: fb2ba2264a2aff544b968bc54b9b55e1, type: 3}
-  - _imagePrefab: {fileID: 5541608107631814696, guid: 242c96c79d9b830449b003f68433f768,
-      type: 3}
-    ID: Material000
-    GetNum: 1
-    Icon: {fileID: 21300000, guid: fa11fc7e22011d041abaf88ffdd2799d, type: 3}
-  - _imagePrefab: {fileID: 5541608107631814696, guid: 242c96c79d9b830449b003f68433f768,
-      type: 3}
-    ID: Material006
-    GetNum: 1
-    Icon: {fileID: 21300000, guid: 9f48cad1bf3b45a42b3508943181ebe1, type: 3}
-  modifyValues: 0

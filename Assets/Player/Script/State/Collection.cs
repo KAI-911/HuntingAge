@@ -5,9 +5,13 @@ using UnityEngine;
 public class Collection : PlayerStateBase
 {
     float collectionTime;
+    string _getItem;
+    int _getNumber;
     public override void OnEnter(Player owner, PlayerStateBase prevState)
     {
         collectionTime = owner.CollectionTime;
+        _getItem = owner.CollectionScript.GetItemID();
+        _getNumber = owner.CollectionScript.GetNumber();
         owner.Animator.SetInteger("AniState", (int)PlayerAnimationState.Collection);
         owner.Animator.SetTrigger("Change");
     }
@@ -17,7 +21,7 @@ public class Collection : PlayerStateBase
         if (collectionTime < 0)
         {
             //ポーチに追加
-            int r = GameManager.Instance.UIPoachList.AddPoach(owner.CollectionScript.GetItemID(), owner.CollectionScript.GetNumber());
+            int r = GameManager.Instance.UIPoachList.AddPoach(_getItem, _getNumber);
             if (r == -1) Debug.LogError("キーがない");
             owner.ChangeState<LocomotionState>();
         }
