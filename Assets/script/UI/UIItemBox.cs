@@ -5,7 +5,7 @@ using UnityEngine.UI;
 
 public class UIItemBox : UIBase
 {
-    [SerializeField] ItemListObject _dataList;
+    [SerializeField] MaterialListObject _dataList;
     [SerializeField] TargetChecker _targetChecker;
     CurrentUI current;
 
@@ -260,7 +260,7 @@ public class UIItemBox : UIBase
             var selectButton = _itemIcon.Buttons[_selectionNumber].GetComponent<ItemButton>();
             var currentButton = _itemIcon.Buttons[_itemIcon.CurrentNunber].GetComponent<ItemButton>();
             var itemDataList = GameManager.Instance.ItemDataList;
-            ItemData data = new ItemData();
+            MaterialData data = new MaterialData();
             if (selectButton.ID != "")
             {
                 Debug.Log("S0");

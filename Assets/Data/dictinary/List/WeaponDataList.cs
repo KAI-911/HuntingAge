@@ -11,6 +11,8 @@ public class WeaponDataList : MonoBehaviour, ISerializationCallbackReceiver
     [SerializeField] Dictionary<string, WeaponData> dictionary = new Dictionary<string, WeaponData>();
     public bool modifyValues;
     public Dictionary<string, WeaponData> Dictionary { get => dictionary; }
+    public List<string> Keys { get => keys; set => keys = value; }
+    public List<WeaponData> Values { get => values; set => values = value; }
     // Start is called before the first frame update
     private void Awake()
     {

@@ -2,24 +2,24 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEditor;
-[CustomEditor(typeof(ItemDataList))]
+[CustomEditor(typeof(MaterialDataList))]
 public class ItemDataEditer : Editor
 {
     public override void OnInspectorGUI()
     {
         base.OnInspectorGUI();
 
-        if(((ItemDataList)target).modifyValues)
+        if(((MaterialDataList)target).modifyValues)
         {
             if(GUILayout.Button("Save Chenge"))
             {
-                ((ItemDataList)target).DesrializeDictionary();
+                ((MaterialDataList)target).DesrializeDictionary();
             }
         }
         EditorGUILayout.LabelField("", GUI.skin.horizontalScrollbar);
         if(GUILayout.Button("PrintDictionary"))
         {
-            ((ItemDataList)target).PrintDictionary();
+            ((MaterialDataList)target).PrintDictionary();
         }
     }
 }

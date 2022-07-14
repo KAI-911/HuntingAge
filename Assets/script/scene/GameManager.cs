@@ -12,30 +12,37 @@ public class GameManager : Singleton<GameManager>
     [SerializeField] Quest _quest;
     [SerializeField] Scene _villageScene;
     [SerializeField] Scene _nowScene;
-    [SerializeField] ItemDataList _itemDataList;
-    [SerializeField] UIPoach _UIPoachList;
-    [SerializeField] WeaponDataList _weaponDataList;
-    [SerializeField] EnemyDataList _enemyDataList;
-    [SerializeField] VillageData _villageData;
-    [SerializeField] FadeManager _fadeManager;
     private ItemCanvas _itemCanvas;
-    private Player _player;
+
+
+
+    [SerializeField] MaterialDataList _itemDataList;
+    [SerializeField] UIPoach _UIPoachList;
+
+    [SerializeField] WeaponDataList _weaponDataList;
+
+
+    [SerializeField] EnemyDataList _enemyDataList;
+
+    [SerializeField] VillageData _villageData;
+
+    [SerializeField] FadeManager _fadeManager;
+
     public Scene VillageScene { get => _villageScene; }
     public Scene NowScene { get => _nowScene; set => _nowScene = value; }
     public Quest Quest { get => _quest; set => _quest = value; }
     public EnemyDataList EnemyDataList { get => _enemyDataList; }
-    public ItemDataList ItemDataList { get => _itemDataList; }
+    public MaterialDataList ItemDataList { get => _itemDataList; }
     public WeaponDataList WeaponDataList { get => _weaponDataList; }
     public VillageData VillageData { get => _villageData; }
     public ItemCanvas ItemCanvas { get => _itemCanvas; }
     public UIPoach UIPoachList { get => _UIPoachList; set => _UIPoachList = value; }
-    public Player Player { get => _player;}
 
     void Start()
     {
         _itemCanvas = GetComponent<ItemCanvas>();
         SceneManager.sceneLoaded += OnSceneLoaded;
-        _player = GameObject.FindGameObjectWithTag("Player").GetComponent<Player>();
+
 
     }
 
@@ -62,6 +69,5 @@ public enum Scene
     Base,
     Forest,
     Animal,
-    Sato,
-    Hama
+    Sato
 }
