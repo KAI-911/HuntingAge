@@ -16,15 +16,16 @@ MonoBehaviour:
   - Item000
   - Item001
   values:
-  - ID: Item000
-    Name: "\u5CA9\u30B9\u30FC\u30D7"
-    IconName: 
-    BoxStackNumber: 99
-    BoxUINumber: 0
-    BoxHoldNumber: 0
-    PoachStackNumber: 99
-    PoachUINumber: 0
-    PoachHoldNumber: 0
+  - baseData:
+      ID: Item000
+      Name: "\u30B9\u30FC\u30D7"
+      IconName: Icon/Soup_UI
+      BoxStackNumber: 9999
+      BoxUINumber: 0
+      BoxHoldNumber: 0
+      PoachStackNumber: 99
+      PoachUINumber: 0
+      PoachHoldNumber: 0
     Permanent: 0
     Time: 0
     ItemType: 0
@@ -34,15 +35,16 @@ MonoBehaviour:
       requiredCount: 2
     - materialID: Material004
       requiredCount: 2
-  - ID: Item001
-    Name: "\u30C4\u30BF\u30B9\u30C6\u30FC\u30AD"
-    IconName: 
-    BoxStackNumber: 99
-    BoxUINumber: 0
-    BoxHoldNumber: 0
-    PoachStackNumber: 99
-    PoachUINumber: 0
-    PoachHoldNumber: 0
+  - baseData:
+      ID: Item001
+      Name: "\u3053\u3093\u304C\u308A\u8089"
+      IconName: Icon/GrilledMeat_UI
+      BoxStackNumber: 0
+      BoxUINumber: 0
+      BoxHoldNumber: 0
+      PoachStackNumber: 0
+      PoachUINumber: 0
+      PoachHoldNumber: 0
     Permanent: 0
     Time: 0
     ItemType: 1

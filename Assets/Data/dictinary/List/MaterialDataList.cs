@@ -32,12 +32,6 @@ public class MaterialDataList : MonoBehaviour, ISerializationCallbackReceiver
         {
             keys.Clear();
             values.Clear();
-            PrintDictionary();
-            //Debug.Log(DictionaryData);
-            //Debug.Log(DictionaryData.Keys);
-            //Debug.Log(DictionaryData.Keys.Count);
-            //Debug.Log(DictionaryData.Values);
-            //Debug.Log(DictionaryData.Values.Count);
             for (int i = 0; i < Mathf.Min(DictionaryData.Keys.Count, DictionaryData.Values.Count); i++)
             {
                 keys.Add(DictionaryData.Keys[i]);
@@ -68,7 +62,7 @@ public class MaterialDataList : MonoBehaviour, ISerializationCallbackReceiver
     [ContextMenu("PrintDictionary")]
     public void PrintDictionary()
     {
-        //Debug.Log("Log");
+        Debug.Log("Log");
         foreach (var item in Dictionary)
         {
             Debug.Log("Key: " + item.Key + " Value: " + item.Value);
