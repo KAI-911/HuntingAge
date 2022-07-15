@@ -22,10 +22,10 @@ public class ItemButton : MonoBehaviour
     }
     public void SetID(string id, ItemBoxOrPoach where)
     {
-        if (!GameManager.Instance.ItemDataList.Dictionary.ContainsKey(id)) return;
+        if (!GameManager.Instance.MaterialDataList.Dictionary.ContainsKey(id)) return;
         clear();
         _ID = id;
-        var data = GameManager.Instance.ItemDataList.Dictionary[id];
+        var data = GameManager.Instance.MaterialDataList.Dictionary[id];
         switch (where)
         {
             case ItemBoxOrPoach.box:

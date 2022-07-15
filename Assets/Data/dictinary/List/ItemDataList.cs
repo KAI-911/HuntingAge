@@ -84,15 +84,15 @@ public class ItemDataList : MonoBehaviour, ISerializationCallbackReceiver
 
         int eraseNumber = move;
         //ボックスにアイテムが足りない
-        if (move > data.BoxHoldNumber) eraseNumber = data.BoxHoldNumber;
+        if (move > data.baseData.BoxHoldNumber) eraseNumber = data.baseData.BoxHoldNumber;
         //ポーチに受け取る容量がない
-        if (move > data.PoachStackNumber - data.PoachHoldNumber) eraseNumber = data.PoachStackNumber - data.PoachHoldNumber;
+        if (move > data.baseData.PoachStackNumber - data.baseData.PoachHoldNumber) eraseNumber = data.baseData.PoachStackNumber - data.baseData.PoachHoldNumber;
 
         //UIの位置を設定
-        if (data.PoachHoldNumber <= 0) data.PoachUINumber = uinum;
+        if (data.baseData.PoachHoldNumber <= 0) data.baseData.PoachUINumber = uinum;
 
-        data.BoxHoldNumber -= eraseNumber;
-        data.PoachHoldNumber += eraseNumber;
+        data.baseData.BoxHoldNumber -= eraseNumber;
+        data.baseData.PoachHoldNumber += eraseNumber;
         values[index] = data;
         DesrializeDictionary();
     }
@@ -113,15 +113,15 @@ public class ItemDataList : MonoBehaviour, ISerializationCallbackReceiver
 
         int eraseNumber = move;
         //ポーチにアイテムが足りない
-        if (move > data.PoachHoldNumber) eraseNumber = data.PoachHoldNumber;
+        if (move > data.baseData.PoachHoldNumber) eraseNumber = data.baseData.PoachHoldNumber;
         //ボックスに受け取る容量がない
-        if (move > data.BoxStackNumber - data.BoxHoldNumber) eraseNumber = data.BoxStackNumber - data.BoxHoldNumber;
+        if (move > data.baseData.BoxStackNumber - data.baseData.BoxHoldNumber) eraseNumber = data.baseData.BoxStackNumber - data.baseData.BoxHoldNumber;
 
         //UIの位置を設定
-        if (data.BoxHoldNumber <= 0) data.BoxUINumber = uinum;
+        if (data.baseData.BoxHoldNumber <= 0) data.baseData.BoxUINumber = uinum;
 
-        data.PoachHoldNumber -= eraseNumber;
-        data.BoxHoldNumber += eraseNumber;
+        data.baseData.PoachHoldNumber -= eraseNumber;
+        data.baseData.BoxHoldNumber += eraseNumber;
         values[index] = data;
         DesrializeDictionary();
     }
@@ -144,67 +144,86 @@ public class ItemDataList : MonoBehaviour, ISerializationCallbackReceiver
 
         int addNumber = move;
         //ボックスに受け取る容量がない
-        if (move > data.PoachStackNumber - data.PoachHoldNumber) addNumber = data.PoachStackNumber - data.PoachHoldNumber;
+        if (move > data.baseData.PoachStackNumber - data.baseData.PoachHoldNumber) addNumber = data.baseData.PoachStackNumber - data.baseData.PoachHoldNumber;
 
         //UIの位置を設定
-        if (data.PoachHoldNumber <= 0) data.PoachUINumber = uinum;
+        if (data.baseData.PoachHoldNumber <= 0) data.baseData.PoachUINumber = uinum;
 
-        data.PoachHoldNumber += addNumber;
+        data.baseData.PoachHoldNumber += addNumber;
         values[index] = data;
         DesrializeDictionary();
         return addNumber;
+    }
+
+    public bool ChackItem(string _ID, int _num)
+    {
+        var _material = GameManager.Instance.ItemDataList;
+        if (!(_material.Dictionary.ContainsKey(_ID))) return false;
+        int num = _material.Dictionary[_ID].baseData.BoxHoldNumber + _material.Dictionary[_ID].baseData.PoachHoldNumber;
+        if (num < _num) return false;
+
+        return true;
+    }
+
+    public int CreateItem(string _ID, bool _toPouch)
+    {
+        int index = keys.FindIndex(n => n.StartsWith(_ID));
+        //Debug.Log(index);
+        var data = values[index];
+
+        int listCount = data.NeedMaterialLst.Count;
+        List<string> needID = new List<string>();
+        List<int> needRequiredCount = new List<int>();
+        List<int> needRequired = new List<int>();
+
+        for (int i = 0; i < listCount; i++)
+        {
+            needID.Add(data.NeedMaterialLst[i].materialID);
+            needRequiredCount.Add(data.NeedMaterialLst[i].requiredCount);
+            needRequired.Add(data.NeedMaterialLst[i].requiredCount);
+
+            var _material = GameManager.Instance.ItemDataList;
+            if (!(_material.Dictionary.ContainsKey(needID[i]))) return 2;
+            int _num = _material.Dictionary[needID[i]].baseData.BoxHoldNumber + _material.Dictionary[needID[i]].baseData.PoachHoldNumber;
+            if (_num < needRequiredCount[i]) return 2;
+        }
+
+
+        for (int i = 0; i < listCount; i++)
+        {
+            int count = i;
+            var _material = GameManager.Instance.ItemDataList;
+            int tmp = _material.Keys.IndexOf(needID[count]);
+            if (_material.Values[tmp].baseData.PoachHoldNumber < needRequired[count])
+            {
+                needRequired[count] -= _material.Values[tmp].baseData.PoachHoldNumber;
+                var data1 = _material.Values[tmp];
+                data1.baseData.PoachHoldNumber = 0;
+                _material.Values[tmp] = data1;
+
+                data1.baseData.BoxHoldNumber -= needRequired[count];
+                _material.Values[tmp] = data1;
+            }
+            else
+            {
+                var data1 = _material.Values[tmp];
+                data1.baseData.PoachHoldNumber -= needRequired[count];
+                _material.Values[tmp] = data1;
+            }
+        }
+        GameManager.Instance.ItemDataList.DesrializeDictionary();
+
+        if (_toPouch)
+            values[index] = data;
+        DesrializeDictionary();
+        return 1;
     }
 }
 
 [System.Serializable]
 public struct ItemData
 {
-    /// <summary>
-    /// IDはItem000から連番
-    /// IDはMaterial000から連番
-    /// </summary>
-    public string ID;
-
-    /// <summary>
-    /// 表示される名前
-    /// </summary>
-    public string Name;
-
-    /// <summary>
-    /// アイコンのパス
-    /// </summary>
-    public string IconName;
-
-    /// <summary>
-    /// アイテムボックスで一枠で保存できる最大量
-    /// </summary>
-    public int BoxStackNumber;
-
-    /// <summary>
-    /// アイテムボックスでどの枠に保存されているか
-    /// </summary>
-    public int BoxUINumber;
-
-    /// <summary>
-    /// アイテムボックスでどれだけ持っているか
-    /// </summary>
-    public int BoxHoldNumber;
-
-    /// <summary>
-    /// アイテムポーチで一枠で保存できる最大量
-    /// </summary>
-    public int PoachStackNumber;
-
-    /// <summary>
-    /// アイテムポーチでどの枠に保存されているか
-    /// </summary>
-    public int PoachUINumber;
-
-    /// <summary>
-    /// アイテムポーチでどれだけ持っているか
-    /// </summary>
-    public int PoachHoldNumber;
-
+    public MaterialData baseData;
     /// <summary>
     /// 効果が永続するかどうか（死亡すると消える）
     /// </summary>
@@ -221,12 +240,22 @@ public struct ItemData
     /// 厨房レベルいくらで作ることができるか
     /// </summary>
     public int CreatableLevel;
+    /// <summary>
+    /// 生産に必要な素材
+    /// </summary>
+    public List<ItemNeedMaterial> NeedMaterialLst;
 }
 
 public enum ItemType
 {
-    Material,
     HpRecovery,
     AttackUp,
     DefenseUp
+}
+
+[System.Serializable]
+public struct ItemNeedMaterial
+{
+    public string materialID;
+    public int requiredCount;
 }

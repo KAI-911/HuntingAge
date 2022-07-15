@@ -10,7 +10,6 @@ public class ItemListObject : ScriptableObject
     [SerializeField] List<ItemData> values = new List<ItemData>();
     [SerializeField] Dictionary<string, ItemData> dictionary = new Dictionary<string, ItemData>();
 
-
     public List<string> Keys { get => keys; set => keys = value; }
     public List<ItemData> Values { get => values; set => values = value; }
 }

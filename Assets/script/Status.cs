@@ -5,12 +5,15 @@ using UnityEngine;
 using UnityEditor;
 public class Status : MonoBehaviour, IAttackDamage
 {
-
+    [SerializeField] private int _maxHp;
     [SerializeField] private int _hp;
     public int HP { get => _hp; set => _hp = value; }
+    public int MaxHP { get => _maxHp; set => _maxHp = value; }
 
+    [SerializeField] private int _maxSp;
     [SerializeField] private int _sp;
     public int SP { get => _sp; set => _sp = value; }
+    public int MaxSp { get => _maxSp; set => _maxSp = value; }
 
     [SerializeField] private int _attack;
     public int Attack { get => _attack; set => _attack = value; }
@@ -33,7 +36,6 @@ public class Status : MonoBehaviour, IAttackDamage
     //UŒ‚‚Ìî•ñ
     private AttackInfo _Hitparameter;
     public AttackInfo HitParameter { get => _Hitparameter; set => _Hitparameter = value; }
-
 
     private void Start()
     {

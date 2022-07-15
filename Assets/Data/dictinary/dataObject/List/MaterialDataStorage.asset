@@ -1,0 +1,86 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 61a07b9ee3c46af449bb9d06023d798c, type: 3}
+  m_Name: MaterialDataStorage
+  m_EditorClassIdentifier: 
+  keys:
+  - Material000
+  - Material001
+  - Material002
+  - Material003
+  - Material004
+  - Material005
+  - Material006
+  values:
+  - ID: Material000
+    Name: "\u5CA9"
+    IconName: Icon/Stone_UI
+    BoxStackNumber: 9999
+    BoxUINumber: 0
+    BoxHoldNumber: 10
+    PoachStackNumber: 99
+    PoachUINumber: 0
+    PoachHoldNumber: 10
+  - ID: Material001
+    Name: "\u6728"
+    IconName: Icon/Wood_UI
+    BoxStackNumber: 9999
+    BoxUINumber: 1
+    BoxHoldNumber: 20
+    PoachStackNumber: 99
+    PoachUINumber: 1
+    PoachHoldNumber: 0
+  - ID: Material002
+    Name: "\u7E4A\u7DAD"
+    IconName: Icon/Fiber_UI
+    BoxStackNumber: 9999
+    BoxUINumber: 2
+    BoxHoldNumber: 40
+    PoachStackNumber: 99
+    PoachUINumber: 2
+    PoachHoldNumber: 0
+  - ID: Material003
+    Name: "\u9AA8"
+    IconName: Icon/Bone_UI
+    BoxStackNumber: 9999
+    BoxUINumber: 3
+    BoxHoldNumber: 60
+    PoachStackNumber: 99
+    PoachUINumber: 3
+    PoachHoldNumber: 0
+  - ID: Material004
+    Name: "\u690D\u7269"
+    IconName: Icon/Botanical_UI
+    BoxStackNumber: 9999
+    BoxUINumber: 4
+    BoxHoldNumber: 80
+    PoachStackNumber: 99
+    PoachUINumber: 4
+    PoachHoldNumber: 0
+  - ID: Material005
+    Name: "\u8089"
+    IconName: Icon/Meat_UI
+    BoxStackNumber: 9999
+    BoxUINumber: 5
+    BoxHoldNumber: 50
+    PoachStackNumber: 99
+    PoachUINumber: 0
+    PoachHoldNumber: 0
+  - ID: Material006
+    Name: "\u30C4\u30BF"
+    IconName: Icon/Vine_UI
+    BoxStackNumber: 9999
+    BoxUINumber: 6
+    BoxHoldNumber: 60
+    PoachStackNumber: 99
+    PoachUINumber: 1
+    PoachHoldNumber: 0

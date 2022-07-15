@@ -51,9 +51,6 @@ public class Enemy : MonoBehaviour
     [SerializeField] private SkinnedMeshRenderer _skinnedMeshRenderer;
     public SkinnedMeshRenderer SkinnedMeshRenderer { get => _skinnedMeshRenderer; set => _skinnedMeshRenderer = value; }
 
-    //影のメッシュレンダラー------------------------------------------------------------------------------
-    [SerializeField] private SkinnedMeshRenderer _shadowRenderer;
-    public SkinnedMeshRenderer ShadowRenderer { get => _shadowRenderer; set => _shadowRenderer = value; }
 
     //マテリアルを消すまでの時間--------------------------------------------------------------------------
     [SerializeField] private float _dissoveTime;
@@ -63,14 +60,12 @@ public class Enemy : MonoBehaviour
     [SerializeField] private AnimationCurve _dissoveCurve;
     public AnimationCurve DissoveCurve { get => _dissoveCurve; }
 
-    //影を消すタイミング----------------------------------------------------------------------------------
-    [SerializeField] private AnimationCurve _shadowCurve;
-    public AnimationCurve ShadowCurve { get => _shadowCurve; }
-
     //ID
     [SerializeField] private string _enemyID;
     public string EnemyID { get => _enemyID; }
 
+    private CollectionScript _collectionScript;
+    public CollectionScript CollectionScript { get => _collectionScript;}
     //攻撃対象--------------------------------------------------------------------------------------------
     private GameObject _target;
     public GameObject Target { get => _target; }
@@ -106,10 +101,12 @@ public class Enemy : MonoBehaviour
         Animator = GetComponent<Animator>();
         _hitReceiver = GetComponent<HitReceiver>();
         _status = GetComponent<Status>();
+        _collectionScript = GetComponentInChildren<CollectionScript>();
         _target = GameObject.FindWithTag("Player");
         _discoverFlg = false;
         _keepHP = _status.HP;
         GameManager.Instance.Quest.AddEnemy(this);
+        _collectionScript.gameObject.SetActive(false);
     }
 
     /// <summary>

@@ -11,9 +11,10 @@
 		
 		// shadow color
 		Pass {   
-			
 			ZWrite On
 			ZTest LEqual 
+			Cull Off
+
 			Blend SrcAlpha OneMinusSrcAlpha
 			
 			Stencil {
@@ -27,7 +28,6 @@
 			#include "PlanarShadowBase.cginc"
 			#pragma vertex vert
 			#pragma fragment frag
-
 			vsOut vert( appdata_base v)
 			{
 				return vertPlanarShadow(v);

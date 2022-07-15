@@ -9,6 +9,7 @@ public class Quest : MonoBehaviour
     [SerializeField] QuestData _questData;
     public QuestData QuestData { get => _questData; set => _questData = value; }
 
+    [SerializeField] bool _isQuest;
 
     //“|‚µ‚½“G‚Ìí—Ş‚Æ”‚ğ‹L˜^
     private EnemyCount _killEnemyCount = new EnemyCount();
@@ -23,6 +24,7 @@ public class Quest : MonoBehaviour
 
     public List<Enemy> EnemyList { get => _enemyList; }
     public EnemyCount KillEnemyCount { get => _killEnemyCount;}
+    public  bool IsQuest { get => _isQuest;}
 
 
     //ƒV[ƒ“Ø‚è‘Ö‚¦‚Ü‚Å‚ÌŠÔ
@@ -42,6 +44,7 @@ public class Quest : MonoBehaviour
         _runOnce = new RunOnce();
         _currentState = new Standby();
         _currentState.OnEnter(this, null);
+        _isQuest = false;
     }
 
     void Start()
@@ -76,6 +79,7 @@ public class Quest : MonoBehaviour
 
     public void GoToQuset()
     {
+        _isQuest = true;
         GameManager.Instance.SceneChange(_questData.Field);
     }
 
@@ -128,6 +132,7 @@ public class Quest : MonoBehaviour
         nextState.OnEnter(this, _currentState);
         _currentState = nextState;
     }
+
     /// <summary>
     /// oŒ»‚µ‚½“G‚ğŠÇ—‚·‚é‚½‚ß‚ÉƒŠƒXƒg‚É‰Á‚¦‚é
     /// </summary>
@@ -234,21 +239,25 @@ public class Quest : MonoBehaviour
         public override void OnEnter(Quest owner, QuestState prevState)
         {
             time = owner._sceneChengeTime;
+            owner._player.Status.InvincibleFlg = true;
+            owner._isQuest = false;
         }
 
         public override void OnUpdate(Quest owner)
         {
             Debug.Log("ƒNƒŠƒA‚µ‚Ü‚µ‚½");
-            owner._player.Status.InvincibleFlg = true;
+           
             time -= Time.deltaTime;
-            if (time < 0) GameManager.Instance.SceneChange(GameManager.Instance.VillageScene);
-
+            if (time < 0)
+            {
+                
+                GameManager.Instance.SceneChange(GameManager.Instance.VillageScene);
+            }
 
         }
         public override void OnActiveSceneChanged(Quest owner)
         {
-
-
+            
             owner.ChangeState<Standby>();
         }
     }
@@ -258,14 +267,20 @@ public class Quest : MonoBehaviour
         public override void OnEnter(Quest owner, QuestState prevState)
         {
             time = owner._sceneChengeTime / 2;
+            owner._isQuest = false;
+            owner._player.Status.InvincibleFlg = true;
         }
 
         public override void OnUpdate(Quest owner)
         {
             Debug.Log("¸”s‚µ‚Ü‚µ‚½");
-            owner._player.Status.InvincibleFlg = true;
+            
             time -= Time.deltaTime;
-            if (time < 0) GameManager.Instance.SceneChange(GameManager.Instance.VillageScene);
+            if (time < 0)
+            {
+                
+                GameManager.Instance.SceneChange(GameManager.Instance.VillageScene);
+            }
         }
         public override void OnActiveSceneChanged(Quest owner)
         {

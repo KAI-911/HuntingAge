@@ -9,6 +9,7 @@ TagManager:
   - Wepon
   - EscapePosition
   - CollectionPoint
+  - Ground
   layers:
   - Default
   - TransparentFX

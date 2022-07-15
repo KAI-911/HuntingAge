@@ -5,7 +5,6 @@ using UnityEngine;
 public class Death_Wolf : SatetBase_Wolf
 {
     float time;
-    Vector4 color;
 
     public override void OnEnter(Wolf owner, SatetBase_Wolf prevState)
     {
@@ -13,10 +12,6 @@ public class Death_Wolf : SatetBase_Wolf
         owner.Animator.SetTrigger("Down");
         owner.Status.InvincibleFlg = true;
         time = 0;
-        if (owner.ShadowRenderer.material.HasProperty("_ShadowColor"))
-        {
-            color = owner.ShadowRenderer.material.GetColor("_ShadowColor");
-        }
         owner.Death();
 
     }
@@ -36,16 +31,10 @@ public class Death_Wolf : SatetBase_Wolf
         if (myMat.HasProperty("_Dissolve"))
         {
             myMat.SetFloat("_Dissolve", owner.DissoveCurve.Evaluate(rate));
+            if (owner.DissoveCurve.Evaluate(rate) > 0) owner.CollectionScript.gameObject.SetActive(false);
+
         }
 
-        //‰e‚ğÁ‚µ‚Ä‚¢‚­
-        var shadowMat = owner.ShadowRenderer.material;
-        if (shadowMat.HasProperty("_ShadowColor"))
-        {
-            var setColor = color;
-            setColor.w = color.w * owner.ShadowCurve.Evaluate(rate);
-            shadowMat.SetColor("_ShadowColor", setColor);
-        }
 
         if (rate >= 1)
         {
@@ -60,13 +49,15 @@ public class Death_Wolf : SatetBase_Wolf
     {
         if (animationEvent.stringParameter == "End")
         {
-
             //‘Ì‚Ì“–‚½‚è”»’è‚ğÁ‚·
             var colls = owner.gameObject.GetComponentsInChildren<Collider>();
             foreach (var item in colls)
             {
                 item.enabled = false;
             }
+            owner.SkinnedMeshRenderer.shadowCastingMode = UnityEngine.Rendering.ShadowCastingMode.Off;
+            owner.CollectionScript.gameObject.SetActive(true);
+
         }
 
     }

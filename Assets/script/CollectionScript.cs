@@ -6,6 +6,7 @@ using UnityEngine.UI;
 public class CollectionScript : MonoBehaviour
 {
     [SerializeField] ItemHolder _itemHolder;
+    [SerializeField] int _getItemNumber;
     [SerializeField] Vector3 _offest;
     private TargetChecker _targetChecker;
     private GameObject _image;
@@ -18,6 +19,18 @@ public class CollectionScript : MonoBehaviour
     {
         _targetChecker = GetComponentInChildren<TargetChecker>();
 
+    }
+    private void OnDisable()
+    {
+        if (_image != null)
+        {
+            Destroy(_image);
+        }
+        if (UIManager.Instance != null && UIManager.Instance._player.CollectionScript == this)
+        {
+            UIManager.Instance._player.CollectionScript = null;
+            UIManager.Instance._player.CollectionFlg = false;
+        }
     }
     public void OnDestroy()
     {
@@ -36,7 +49,7 @@ public class CollectionScript : MonoBehaviour
                     _image = Instantiate(_itemHolder.Dictionary[_ID]._imagePrefab);
                     _image.transform.SetParent(GameManager.Instance.ItemCanvas.Canvas.transform);
                     var text = _image.GetComponentInChildren<Text>();
-                    text.text = GameManager.Instance.ItemDataList.Dictionary[_itemHolder.Dictionary[_ID].ID].Name;
+                    text.text = GameManager.Instance.MaterialDataList.Dictionary[_itemHolder.Dictionary[_ID].ID].Name;
                     var icon = _image.GetComponentsInChildren<Image>();
                     icon[1].sprite = _itemHolder.Dictionary[_ID].Icon;
                 });
@@ -59,6 +72,6 @@ public class CollectionScript : MonoBehaviour
     }
     public int GetNumber()
     {
-        return _itemHolder.Dictionary[_ID].GetNum;
+        return _getItemNumber;
     }
 }

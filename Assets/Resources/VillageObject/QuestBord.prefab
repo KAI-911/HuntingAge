@@ -152,7 +152,8 @@ MonoBehaviour:
   - {fileID: 9036187752298957502}
   - {fileID: 9036187752298957503}
   - {fileID: 9036187752298957500}
-  _questMenuPrefab: {fileID: 6657940091633368198, guid: c18077c3456c32046bcc8f8a5fe2a1c2, type: 3}
+  _questMenuPrefab: {fileID: 6657940091633368198, guid: c18077c3456c32046bcc8f8a5fe2a1c2,
+    type: 3}
   _questbordChecker: {fileID: 9036187753394930021}
   _gateChecker: {fileID: 0}
   _questHolder: {fileID: 9036187752298957501}
@@ -398,7 +399,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 660772cc242956a46956ed6740de5104, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  MaskTag: Player
+  _maskTag: Player
   _targetCheckerType: 0
 --- !u!65 &9036187753394930042
 BoxCollider:

@@ -24,25 +24,33 @@ MonoBehaviour:
   - weapon303
   values:
   - ID: weapon101
-    Name: TreeAxe
+    EnhancementID: weapon102
+    Name: "\u6728\u306E\u65A7"
+    weaponPath: weapon/Axe
+    IconPass: 
     IconName: 
     BoxUINumber: 0
     CreatableLevel: 1
-    BoxPossession: 0
+    BoxPossession: 1
     AttackPoint: 100
     WeaponType: 0
     ProductionNeedMaterialLst:
     - materialID: Material001
       requiredCount: 5
-    EnhancementNeedMaterialLst: []
+    EnhancementNeedMaterialLst:
+    - materialID: Material001
+      requiredCount: 5
   - ID: weapon102
-    Name: StoneAxe
+    EnhancementID: weapon103
+    Name: "\u77F3\u306E\u65A7"
+    weaponPath: 
+    IconPass: 
     IconName: 
     BoxUINumber: 0
     CreatableLevel: 2
-    BoxPossession: 0
-    AttackPoint: 150
-    WeaponType: 0
+    BoxPossession: 1
+    AttackPoint: 120
+    WeaponType: 1
     ProductionNeedMaterialLst:
     - materialID: Material001
       requiredCount: 10
@@ -54,46 +62,15 @@ MonoBehaviour:
     - materialID: Material000
       requiredCount: 2
   - ID: weapon103
-    Name: BoneAxe
+    EnhancementID: empty
+    Name: "\u9AA8\u65A7"
+    weaponPath: 
+    IconPass: 
     IconName: 
     BoxUINumber: 0
     CreatableLevel: 5
-    BoxPossession: 0
+    BoxPossession: 1
     AttackPoint: 200
-    WeaponType: 0
-    ProductionNeedMaterialLst:
-    - materialID: Material001
-      requiredCount: 20
-    - materialID: Material000
-      requiredCount: 15
-    - materialID: Material003
-      requiredCount: 5
-    EnhancementNeedMaterialLst:
-    - materialID: Material001
-      requiredCount: 5
-    - materialID: Material000
-      requiredCount: 5
-    - materialID: Material003
-      requiredCount: 3
-  - ID: weapon201
-    Name: TreeSpear
-    IconName: 
-    BoxUINumber: 0
-    CreatableLevel: 1
-    BoxPossession: 0
-    AttackPoint: 80
-    WeaponType: 1
-    ProductionNeedMaterialLst:
-    - materialID: Material001
-      requiredCount: 5
-    EnhancementNeedMaterialLst: []
-  - ID: weapon202
-    Name: StoneSpear
-    IconName: 
-    BoxUINumber: 0
-    CreatableLevel: 3
-    BoxPossession: 0
-    AttackPoint: 120
     WeaponType: 0
     ProductionNeedMaterialLst:
     - materialID: Material001
@@ -105,13 +82,16 @@ MonoBehaviour:
       requiredCount: 3
     - materialID: Material000
       requiredCount: 2
-  - ID: weapon203
-    Name: BoneSpear
+  - ID: weapon201
+    EnhancementID: weapon202
+    Name: "\u6728\u306E\u69CD"
+    weaponPath: 
+    IconPass: 
     IconName: 
     BoxUINumber: 0
-    CreatableLevel: 6
-    BoxPossession: 0
-    AttackPoint: 160
+    CreatableLevel: 3
+    BoxPossession: 1
+    AttackPoint: 80
     WeaponType: 1
     ProductionNeedMaterialLst:
     - materialID: Material001
@@ -127,18 +107,78 @@ MonoBehaviour:
       requiredCount: 5
     - materialID: Material003
       requiredCount: 3
+  - ID: weapon202
+    EnhancementID: weapon203
+    Name: "\u77F3\u306E\u69CD"
+    weaponPath: 
+    IconPass: 
+    IconName: 
+    BoxUINumber: 0
+    CreatableLevel: 3
+    BoxPossession: 0
+    AttackPoint: 120
+    WeaponType: 1
+    ProductionNeedMaterialLst:
+    - materialID: Material001
+      requiredCount: 10
+    - materialID: Material000
+      requiredCount: 5
+    EnhancementNeedMaterialLst:
+    - materialID: Material001
+      requiredCount: 3
+    - materialID: Material000
+      requiredCount: 2
+  - ID: weapon203
+    EnhancementID: empty
+    Name: "\u9AA8\u65A7"
+    weaponPath: 
+    IconPass: 
+    IconName: 
+    BoxUINumber: 0
+    CreatableLevel: 6
+    BoxPossession: 1
+    AttackPoint: 160
+    WeaponType: 1
+    ProductionNeedMaterialLst:
+    - materialID: Material001
+      requiredCount: 10
+    - materialID: Material000
+      requiredCount: 5
+    EnhancementNeedMaterialLst:
+    - materialID: Material001
+      requiredCount: 3
+    - materialID: Material000
+      requiredCount: 2
   - ID: weapon301
-    Name: Bow
+    EnhancementID: weapon302
+    Name: "\u5F13"
+    weaponPath: 
+    IconPass: 
     IconName: 
     BoxUINumber: 0
     CreatableLevel: 1
     BoxPossession: 0
     AttackPoint: 50
     WeaponType: 2
-    ProductionNeedMaterialLst: []
-    EnhancementNeedMaterialLst: []
+    ProductionNeedMaterialLst:
+    - materialID: Material001
+      requiredCount: 20
+    - materialID: Material000
+      requiredCount: 15
+    - materialID: Material003
+      requiredCount: 5
+    EnhancementNeedMaterialLst:
+    - materialID: Material001
+      requiredCount: 5
+    - materialID: Material000
+      requiredCount: 5
+    - materialID: Material003
+      requiredCount: 3
   - ID: weapon302
-    Name: SuperBow
+    EnhancementID: weapon303
+    Name: "\u8D85\u5F13"
+    weaponPath: 
+    IconPass: 
     IconName: 
     BoxUINumber: 0
     CreatableLevel: 4
@@ -148,7 +188,10 @@ MonoBehaviour:
     ProductionNeedMaterialLst: []
     EnhancementNeedMaterialLst: []
   - ID: weapon303
-    Name: HyperBow
+    EnhancementID: empty
+    Name: "\u7D76\u5F13"
+    weaponPath: 
+    IconPass: 
     IconName: 
     BoxUINumber: 0
     CreatableLevel: 7
