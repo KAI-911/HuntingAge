@@ -8,7 +8,8 @@ Material:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_Name: Water4Advanced
-  m_Shader: {fileID: 4800000, guid: 475c4a4e617a8401b84ca7b32c7cc460, type: 3}
+  m_Shader: {fileID: -6465566751694194690, guid: b6071caeafc0880408ebb03759cb82e5,
+    type: 3}
   m_ValidKeywords: []
   m_InvalidKeywords: []
   m_LightmapFlags: 4
@@ -68,6 +69,14 @@ Material:
         m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
+    - _SampleTexture2D_25c1d399266b4f908dd4cb4bf7dbf0e7_Texture_1:
+        m_Texture: {fileID: 2800000, guid: ceb32476f229b91428e76017fd8ade38, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _SampleTexture2D_a6593cf7567b4e938ecc38dbe7b20de0_Texture_1:
+        m_Texture: {fileID: 2800000, guid: d67b76d547812d4409fed68c80527fde, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
     - _SecondDisplacementHeightMap:
         m_Texture: {fileID: 2800000, guid: 4facc21e08e3a43ed97c930f7dae6e7b, type: 2}
         m_Scale: {x: 1, y: 1}
@@ -103,6 +112,8 @@ Material:
     m_Ints: []
     m_Floats:
     - _Ambient: 1
+    - _BUILTIN_QueueControl: 0
+    - _BUILTIN_QueueOffset: 0
     - _Displacement: 0.27863377
     - _DisplacementTiling: 18.586807
     - _FadeExp: 0.91503274
@@ -171,3 +182,16 @@ Material:
 --- !u!1002 &2100001
 EditorExtensionImpl:
   serializedVersion: 6
+--- !u!114 &1175379311656027657
+MonoBehaviour:
+  m_ObjectHideFlags: 11
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 639247ca83abc874e893eb93af2b5e44, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  version: 0
