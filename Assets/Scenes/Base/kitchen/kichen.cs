@@ -13,7 +13,7 @@ public class kichen : UIBase
     //確認用
     [SerializeField] Confirmation _confirmation;
     //武器データリスト
-    [SerializeField] MaterialDataList _itemDataList;
+    [SerializeField] ItemDataList _itemDataList;
     //強化する武器のID
     [SerializeField] string _cleateItemID;
     //ボックスかポーチどっちに送るか
@@ -87,14 +87,7 @@ public class kichen : UIBase
         }
         public override void OnUpdate(UIBase owner)
         {
-            if (ConfirmationSelect)
-            {
-                owner.ItemIconList[(int)IconType.Confirmation].Select(UIManager.Instance.InputSelection.ReadValue<Vector2>());
-            }
-            else
-            {
-                owner.ItemIconList[(int)IconType.TypeSelect].Select(UIManager.Instance.InputSelection.ReadValue<Vector2>());
-            }
+            owner.ItemIconList[(int)IconType.TypeSelect].Select(UIManager.Instance.InputSelection.ReadValue<Vector2>());
         }
         public override void OnExit(UIBase owner, UIStateBase nextState)
         {
@@ -113,21 +106,30 @@ public class kichen : UIBase
 
     public class TypeSelectMode : UIStateBase
     {
+        private GameObject count;
+        private int min, max, now;
+        private bool lockflg;
         public override void OnEnter(UIBase owner, UIStateBase prevState)
         {
-            var iconText = owner.ItemIconList[(int)IconType.TypeSelect];
-            var icon = iconText.IconData;
-            icon._textData.text = "作るアイテム";
-            iconText.SetIcondata(icon);
-            var list = owner.ItemIconList[(int)IconType.TypeSelect].CreateButton();
+            Debug.Log(owner.GetComponent<kichen>()._toPouch);
+            var UI = owner.ItemIconList[(int)IconType.TypeSelect];
+            UI.SetText("作るアイテム");
+            Debug.Log("e!");
             //モード選択画面
-            var Weapon = owner.GetComponent<kichen>()._itemDataList.Dictionary;
+            var Item = owner.GetComponent<kichen>()._itemDataList.Dictionary;
+            Debug.Log("a!");
             List<ItemData> _createItem = new List<ItemData>();
-            foreach (var item in Weapon)
+            Debug.Log("o!");
+            foreach (var item in Item)
             {
-                //if (item.Value.CreatableLevel < GameManager.Instance.VillageData.KitchenLevel
-                //&& (int)item.Value.ItemType > 0) _createItem.Add(item.Value);
+                if (item.Value.CreatableLevel < GameManager.Instance.VillageData.KitchenLevel) _createItem.Add(item.Value);
             }
+            Debug.Log(_createItem[0].Name);
+            var table = owner.ItemIconList[(int)IconType.TypeSelect];
+            var iconData = table.IconData;
+            iconData._tableSize = new Vector2(_createItem.Count, 1);
+            table.SetIcondata(iconData);
+            var list = owner.ItemIconList[(int)IconType.TypeSelect].CreateButton();
 
             for (int i = 0; i < _createItem.Count; i++)
             {
@@ -137,9 +139,59 @@ public class kichen : UIBase
                 var button = list[num].GetComponent<Button>();
                 button.onClick.AddListener(() =>
                 {
-                    owner.GetComponent<kichen>()._cleateItemID = _createItem[num].ID;
-                    owner.ChangeState<CleateItem>();
+                    Debug.Log("osaretayo");
+                    owner.GetComponent<kichen>()._cleateItemID = _createItem[num].ID; lockflg = false;
+                    count = Instantiate(Resources.Load("UI/Count"), Vector3.zero, Quaternion.identity) as GameObject;
+                    var rect = count.GetComponent<RectTransform>();
+                    Vector2 buttonSize = new Vector2();
+                    ItemIconData data = new ItemIconData();
+
+                    buttonSize = owner.ItemIconList[(int)IconType.TypeSelect].IconData._buttonPrefab.GetComponent<RectTransform>().sizeDelta;
+                    data = owner.ItemIconList[(int)IconType.TypeSelect].IconData;
+
+                    int w = Mathf.Abs((int)(buttonSize.x + data._padding));
+                    var pos = new Vector2(list[num].GetComponent<RectTransform>().anchoredPosition.x + w, list[num].GetComponent<RectTransform>().anchoredPosition.y);
+                    rect.anchoredPosition = pos;
+                    count.transform.SetParent(GameManager.Instance.ItemCanvas.Canvas.transform);
+
+                    now = 1;
+                    min = 1;
+                    max = 9999;
+
+                    string id = owner.GetComponent<kichen>()._cleateItemID;
+                    var _Item = GameManager.Instance.ItemDataList;
+                    var _material = GameManager.Instance.MaterialDataList;
+                    var counter = _Item.Dictionary[id].NeedMaterialLst;
+                    for (int i = 0; i < counter.Count; i++)
+                    {
+                        var tmp = counter[i].requiredCount;
+                        var materialNum = _material.Dictionary[id].BoxHoldNumber + _material.Dictionary[id].PoachHoldNumber;
+                        if ((materialNum / tmp) < max)
+                        {
+                            max = materialNum / tmp;
+                        }
+                    }
                 });
+            }
+        }
+        public override void OnUpdate(UIBase owner)
+        {
+            var vec = UIManager.Instance.InputSelection.ReadValue<Vector2>();
+            if (vec.sqrMagnitude > 0)
+            {
+                if (lockflg == false)
+                {
+                    if (vec.y > 0) now++;
+                    else now--;
+                    now = Mathf.Clamp(now, min, max);
+                    lockflg = true;
+
+                    count.GetComponentInChildren<Text>().text = now.ToString();
+                }
+            }
+            else
+            {
+                lockflg = false;
             }
         }
         public override void OnExit(UIBase owner, UIStateBase nextState)
@@ -149,6 +201,16 @@ public class kichen : UIBase
         public override void OnProceed(UIBase owner)
         {
             owner.ItemIconList[(int)IconType.TypeSelect].Buttons[owner.ItemIconList[(int)IconType.TypeSelect].CurrentNunber].GetComponent<Button>().onClick.Invoke();
+            if (!owner.ItemIconList[(int)IconType.TypeSelect].CheckCurrentNunberItem()) return;
+            var list = owner.ItemIconList[(int)IconType.TypeSelect];
+            var data = GameManager.Instance.ItemDataList.Dictionary[list.Buttons[list.CurrentNunber].GetComponent<ItemButton>().ID];
+            //UIの位置を設定
+            int UINumber = owner.ItemIconList[(int)IconType.TypeSelect].FirstNotSetNumber();
+            GameManager.Instance.ItemDataList.PoachToBox(data.ID, now, UINumber);
+
+            owner.GetComponent<UIItemBox>().UISet();
+
+            owner.ChangeState<CleateItem>();
         }
         public override void OnBack(UIBase owner)
         {
@@ -254,98 +316,6 @@ public class kichen : UIBase
         }
     }
 
-
-    /*private class NumberSelection : UIStateBase
-    {
-        private GameObject count;
-        private int min, max, now;
-        private string ID;
-        private bool lockflg;
-        public override void OnEnter(UIBase owner, UIStateBase prevState)
-        {
-            lockflg = false;
-            count = Instantiate(Resources.Load("UI/Count"), Vector3.zero, Quaternion.identity) as GameObject;
-            var rect = count.GetComponent<RectTransform>();
-            Vector2 buttonSize = new Vector2();
-            ItemIconData data = new ItemIconData();
-
-            buttonSize = owner.ItemIconList[(int)IconType.TypeSelect].IconData._buttonPrefab.GetComponent<RectTransform>().sizeDelta;
-            data = owner.ItemIconList[(int)IconType.TypeSelect].IconData;
-
-            int w = Mathf.Abs((int)(buttonSize.x + data._padding));
-            int h = Mathf.Abs((num / (int)data._tableSize.y) * (int)(buttonSize.y + data._padding));
-            var pos = new Vector2(data._leftTopPos.x + w, data._leftTopPos.y - h);
-            rect.anchoredPosition = pos;
-            count.transform.SetParent(GameManager.Instance.ItemCanvas.Canvas.transform);
-
-            now = 1;
-            min = 1;
-
-            string id = owner.GetComponent<kichen>()._cleateItemID;
-            var _material = GameManager.Instance.ItemDataList;
-            int counter = _material.Dictionary[id].NeedMaterialLst.Count;
-            for (int i = 0; i < counter; i++)
-            {
-
-            }
-        }
-        public override void OnExit(UIBase owner, UIStateBase nextState)
-        {
-            Destroy(count);
-        }
-        public override void OnUpdate(UIBase owner)
-        {
-            var vec = UIManager.Instance.InputSelection.ReadValue<Vector2>();
-            if (vec.sqrMagnitude > 0)
-            {
-                if (lockflg == false)
-                {
-                    if (vec.y > 0) now++;
-                    else now--;
-                    now = Mathf.Clamp(now, min, max);
-                    lockflg = true;
-
-                    count.GetComponentInChildren<Text>().text = now.ToString();
-                }
-            }
-            else
-            {
-                lockflg = false;
-            }
-        }
-        public override void OnProceed(UIBase owner)
-        {
-            //アイテムの入れ替えpoach(box)からbox(poach)へ最大量送る
-            if (owner.GetComponent<UIItemBox>().current == CurrentUI.box)
-            {
-                if (!owner.ItemIconList[(int)IconType.BoxItemSelect].CheckCurrentNunberItem()) return;
-                var list = owner.ItemIconList[(int)IconType.BoxItemSelect];
-                var data = GameManager.Instance.ItemDataList.Dictionary[list.Buttons[list.CurrentNunber].GetComponent<ItemButton>().ID];
-                //UIの位置を設定
-                int UINumber = owner.ItemIconList[(int)IconType.PoachItemSelect].FirstNotSetNumber();
-                GameManager.Instance.ItemDataList.BoxToPoach(data.ID, now, UINumber);
-
-                owner.GetComponent<UIItemBox>().UISet();
-            }
-            else
-            {
-                if (!owner.ItemIconList[(int)IconType.PoachItemSelect].CheckCurrentNunberItem()) return;
-                var list = owner.ItemIconList[(int)IconType.PoachItemSelect];
-                var data = GameManager.Instance.ItemDataList.Dictionary[list.Buttons[list.CurrentNunber].GetComponent<ItemButton>().ID];
-                //UIの位置を設定
-                int UINumber = owner.ItemIconList[(int)IconType.BoxItemSelect].FirstNotSetNumber();
-                GameManager.Instance.ItemDataList.PoachToBox(data.ID, now, UINumber);
-
-                owner.GetComponent<UIItemBox>().UISet();
-
-            }
-            owner.ChangeState<ItemSlect>();
-        }
-        public override void OnBack(UIBase owner)
-        {
-            owner.ChangeState<ItemSlect>();
-        }
-    }*/
 
 }
 
