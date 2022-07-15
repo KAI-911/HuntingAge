@@ -9,27 +9,26 @@ using System.Threading.Tasks;
 public class GameManager : Singleton<GameManager>
 {
 
-    [SerializeField] Quest _quest;
     [SerializeField] Scene _villageScene;
     [SerializeField] Scene _nowScene;
+
+    private Quest _quest;
+
     private ItemCanvas _itemCanvas;
 
+    private MaterialDataList _MaterialDataList;
 
+    private ItemDataList _ItemDataList;
 
-    [SerializeField] MaterialDataList _MaterialDataList;
+    private UIPoach _UIPoachList;
 
-    [SerializeField] ItemDataList _ItemDataList;
+    private WeaponDataList _weaponDataList;
 
-    [SerializeField] UIPoach _UIPoachList;
+    private EnemyDataList _enemyDataList;
 
-    [SerializeField] WeaponDataList _weaponDataList;
+    private VillageData _villageData;
 
-
-    [SerializeField] EnemyDataList _enemyDataList;
-
-    [SerializeField] VillageData _villageData;
-
-    [SerializeField] FadeManager _fadeManager;
+    private FadeManager _fadeManager;
 
     public Scene VillageScene { get => _villageScene; }
     public Scene NowScene { get => _nowScene; set => _nowScene = value; }
@@ -40,8 +39,22 @@ public class GameManager : Singleton<GameManager>
     public WeaponDataList WeaponDataList { get => _weaponDataList; }
     public VillageData VillageData { get => _villageData; }
     public ItemCanvas ItemCanvas { get => _itemCanvas; }
-    public UIPoach UIPoachList { get => _UIPoachList; set => _UIPoachList = value; }
+    public UIPoach UIPoachList { get => _UIPoachList; }
 
+    protected override void Awake()
+    {
+        _quest = GetComponent<Quest>();
+        _itemCanvas = GetComponent<ItemCanvas>();
+        _MaterialDataList = GetComponent<MaterialDataList>();
+        _ItemDataList = GetComponent<ItemDataList>();
+        _UIPoachList = GetComponentInChildren<UIPoach>();
+        _weaponDataList = GetComponent<WeaponDataList>();
+        _enemyDataList = GetComponent<EnemyDataList>();
+        _villageData = GetComponent<VillageData>();
+        _fadeManager = GetComponentInChildren<FadeManager>();
+
+        base.Awake();
+    }
     void Start()
     {
         _itemCanvas = GetComponent<ItemCanvas>();
