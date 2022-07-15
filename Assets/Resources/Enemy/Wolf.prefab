@@ -252,7 +252,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 660772cc242956a46956ed6740de5104, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _maskTag: 
+  _maskTag: Player
   _targetCheckerType: 2
 --- !u!1 &1881910101868227324
 GameObject:
@@ -1542,7 +1542,7 @@ MonoBehaviour:
   - {fileID: 4900827126266798528}
   _downTime: 5
   _skinnedMeshRenderer: {fileID: 5791024819710236917}
-  _dissoveTime: 20
+  _dissoveTime: 120
   _dissoveCurve:
     serializedVersion: 2
     m_Curve:
@@ -1788,7 +1788,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 660772cc242956a46956ed6740de5104, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _maskTag: 
+  _maskTag: Player
   _targetCheckerType: 1
 --- !u!1 &7721413129219504865
 GameObject:

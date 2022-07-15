@@ -133,11 +133,11 @@ public class kichen : UIBase
             {
                 int num = i;
                 var buttonText = list[num].GetComponentInChildren<Text>();
-                buttonText.text = _createItem[num].Name;
+                buttonText.text = _createItem[num].baseData.Name;
                 var button = list[num].GetComponent<Button>();
                 button.onClick.AddListener(() =>
                 {
-                    owner.GetComponent<kichen>()._cleateItemID = _createItem[num].ID;
+                    owner.GetComponent<kichen>()._cleateItemID = _createItem[num].baseData.ID;
                     owner.ChangeState<CleateItem>();
                 });
             }

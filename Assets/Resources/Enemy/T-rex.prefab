@@ -731,6 +731,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 3859231862284403901}
+  - {fileID: 284454737109874972}
   m_Father: {fileID: 7678825178372298918}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 89.98021, y: -0.0000086495065, z: 0}
@@ -1802,12 +1803,12 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5604669498608432113}
-  m_LocalRotation: {x: 0.7071068, y: -0, z: -0, w: 0.7071068}
-  m_LocalPosition: {x: 0, y: 0.007603549, z: 0}
-  m_LocalScale: {x: 0.011433907, y: 0.011433907, z: 0.011433907}
+  m_LocalRotation: {x: -0.7071069, y: 0.000000047503022, z: 0.00000004750303, w: 0.70710665}
+  m_LocalPosition: {x: 0, y: -0.76035464, z: 0}
+  m_LocalScale: {x: 1.143391, y: 1.1433913, z: 1.1433913}
   m_ConstrainProportionsScale: 1
   m_Children: []
-  m_Father: {fileID: 6143663992296296275}
+  m_Father: {fileID: 3056750443011445276}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: -90, y: 0, z: 0}
 --- !u!114 &1537818383253779076
@@ -2759,7 +2760,7 @@ MonoBehaviour:
   - {fileID: 7806976793865198195}
   _downTime: 10
   _skinnedMeshRenderer: {fileID: 9174905979140089813}
-  _dissoveTime: 10
+  _dissoveTime: 120
   _dissoveCurve:
     serializedVersion: 2
     m_Curve:
@@ -3858,7 +3859,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 660772cc242956a46956ed6740de5104, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _maskTag: 
+  _maskTag: Player
   _targetCheckerType: 2
 --- !u!135 &7806976793094672600
 SphereCollider:
@@ -4056,7 +4057,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 660772cc242956a46956ed6740de5104, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _maskTag: 
+  _maskTag: Player
   _targetCheckerType: 1
 --- !u!135 &7806976793578882838
 SphereCollider:
@@ -4193,7 +4194,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 660772cc242956a46956ed6740de5104, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _maskTag: 
+  _maskTag: Player
   _targetCheckerType: 3
 --- !u!136 &7806976793865198192
 CapsuleCollider:
@@ -4271,7 +4272,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 660772cc242956a46956ed6740de5104, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _maskTag: 
+  _maskTag: Player
   _targetCheckerType: 4
 --- !u!135 &7806976793903401064
 SphereCollider:
@@ -4606,7 +4607,6 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1078752299808495410}
-  - {fileID: 284454737109874972}
   m_Father: {fileID: 39747833093205572}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}

@@ -1099,7 +1099,7 @@ MonoBehaviour:
   - {fileID: 7549161658709418831}
   _downTime: 10
   _skinnedMeshRenderer: {fileID: 5625072451970788778}
-  _dissoveTime: 10
+  _dissoveTime: 120
   _dissoveCurve:
     serializedVersion: 2
     m_Curve:
@@ -1654,7 +1654,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 660772cc242956a46956ed6740de5104, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _maskTag: 
+  _maskTag: Player
   _targetCheckerType: 1
 --- !u!135 &8462138593584306587
 SphereCollider:
