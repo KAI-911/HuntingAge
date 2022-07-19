@@ -51,7 +51,7 @@ public class LocomotionState : PlayerStateBase
         //•ûŒü“ü—Í‚ª‚È‚¯‚ê‚ÎÌæ
         if (owner.InputMoveAction.ReadValue<Vector2>().sqrMagnitude <= 0.1f)
         {
-            if (owner.CollectionFlg && owner.CollectionScript != null)
+            if (owner.CollectionScript != null)
             {
                 owner.ChangeState<Collection>();
             }

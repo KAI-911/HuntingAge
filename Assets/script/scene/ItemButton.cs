@@ -61,6 +61,19 @@ public class ItemButton : MonoBehaviour
         }
 
     }
+    public void SetWeaponID(string id)
+    {
+        if (!GameManager.Instance.WeaponDataList.Dictionary.ContainsKey(id)) return;
+        clear();
+        _ID = id;
+        var data = GameManager.Instance.WeaponDataList.Dictionary[id];
+        _image.sprite = Resources.Load<Sprite>(data.IconName);
+        if(UIManager.Instance._player.WeaponID==data.ID)
+        {
+            _count.text = "E";
+        }
+    }
+
     public void clear()
     {
         _ID = "";

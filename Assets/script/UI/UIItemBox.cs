@@ -14,6 +14,7 @@ public class UIItemBox : UIBase
         ItemIconList[(int)IconType.BoxItemSelect].SetIcondata(UIManager.Instance.UIPresetData.Dictionary["IB_ItemSelect"]);
         ItemIconList[(int)IconType.PoachItemSelect].SetIcondata(UIManager.Instance.UIPresetData.Dictionary["IP_ItemSelect"]);
         ItemIconList[(int)IconType.SubMenuSelect].SetIcondata(UIManager.Instance.UIPresetData.Dictionary["IB_SubMenu"]);
+        ItemIconList[(int)IconType.WeaponSelect].SetIcondata(UIManager.Instance.UIPresetData.Dictionary["IB_ItemSelect"]);
 
         _currentState = new Close();
         _currentState.OnEnter(this, null);
@@ -49,9 +50,13 @@ public class UIItemBox : UIBase
         public override void OnEnter(UIBase owner, UIStateBase prevState)
         {
             _itemIcon = owner.ItemIconList[(int)IconType.TypeSelect];
+            _itemIcon.SetTable(new Vector2(2, 1));
             var list = _itemIcon.CreateButton();
             _itemIcon.SetButtonOnClick(0, () => owner.ChangeState<ItemSlect>());
             _itemIcon.SetButtonText(0, "アイテム選択");
+            _itemIcon.SetButtonOnClick(1, () => owner.ChangeState<weaponSelect>());
+            _itemIcon.SetButtonText(1, "武器選択");
+
         }
         public override void OnExit(UIBase owner, UIStateBase nextState)
         {
@@ -166,7 +171,6 @@ public class UIItemBox : UIBase
         }
 
     }
-
     private class SubMune : UIStateBase
     {
         ItemIcon _itemIcon = new ItemIcon();
@@ -207,7 +211,6 @@ public class UIItemBox : UIBase
             _itemIcon.Buttons[_itemIcon.CurrentNunber].GetComponent<Button>().onClick.Invoke();
         }
     }
-
     private class UIChange : UIStateBase
     {
         private int _selectionNumber;
@@ -289,7 +292,6 @@ public class UIItemBox : UIBase
 
         }
     }
-
     private class NumberSelection : UIStateBase
     {
         private GameObject count;
@@ -397,13 +399,47 @@ public class UIItemBox : UIBase
             owner.ChangeState<ItemSlect>();
         }
     }
+    private class weaponSelect: UIStateBase
+    {
+        ItemIcon itemIcon;
+        public override void OnEnter(UIBase owner, UIStateBase prevState)
+        {
+            itemIcon = owner.ItemIconList[(int)IconType.WeaponSelect];
+            itemIcon.CreateButton();
+            foreach (var item in GameManager.Instance.WeaponDataList.Dictionary)
+            {
+                if (!item.Value.BoxPossession) continue;
+                itemIcon.Buttons[item.Value.BoxUINumber].GetComponent<ItemButton>().SetWeaponID(item.Value.ID);
+            }
+        }
+        public override void OnExit(UIBase owner, UIStateBase nextState)
+        {
+            itemIcon.DeleteButton();
+        }
+        public override void OnUpdate(UIBase owner)
+        {
+            itemIcon.Select(UIManager.Instance.InputSelection.ReadValue<Vector2>());
+        }
+        public override void OnProceed(UIBase owner)
+        {
+            var weaponID = itemIcon.Buttons[itemIcon.CurrentNunber].GetComponent<ItemButton>().ID;
+            UIManager.Instance._player.WeaponID= weaponID;
+            owner.GetComponent<UIItemBox>().WeaponUISet();
 
+        }
+        public override void OnBack(UIBase owner)
+        {
+            owner.ChangeState<FirstSlect>();
+        }
+
+    }
     enum IconType
     {
         TypeSelect,
         BoxItemSelect,
         PoachItemSelect,
-        SubMenuSelect
+        SubMenuSelect,
+        WeaponSelect
     }
     public void UISet()
     {
@@ -437,6 +473,22 @@ public class UIItemBox : UIBase
             ibutton.SetID(item.Key, ItemBoxOrPoach.poach);
         }
 
+    }
+    public void WeaponUISet()
+    {
+        var weaponList = ItemIconList[(int)IconType.WeaponSelect].Buttons;
+        //ボックスリストのUIセット
+        foreach (var item in weaponList)
+        {
+            var ibutton = item.GetComponent<ItemButton>();
+            ibutton.clear();
+        }
+        foreach (var item in GameManager.Instance.WeaponDataList.Dictionary)
+        {
+            if (!item.Value.BoxPossession) continue;
+            var ibutton = weaponList[item.Value.BoxUINumber].GetComponent<ItemButton>();
+            ibutton.SetWeaponID(item.Value.ID);
+        }
     }
 
 }

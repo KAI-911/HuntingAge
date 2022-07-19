@@ -29,7 +29,6 @@ public class CollectionScript : MonoBehaviour
         if (UIManager.Instance != null && UIManager.Instance._player.CollectionScript == this)
         {
             UIManager.Instance._player.CollectionScript = null;
-            UIManager.Instance._player.CollectionFlg = false;
         }
     }
     public void OnDestroy()
@@ -39,30 +38,50 @@ public class CollectionScript : MonoBehaviour
             Destroy(_image);
         }
     }
-    public void Update()
+    //public void Update()
+    //{
+    //    if (_targetChecker.TriggerHit)
+    //    {
+    //        _runOnce.Run(
+    //            () =>
+    //            {
+    //                _image = Instantiate(_itemHolder.Dictionary[_ID]._imagePrefab);
+    //                _image.transform.SetParent(GameManager.Instance.ItemCanvas.Canvas.transform);
+    //                var text = _image.GetComponentInChildren<Text>();
+    //                text.text = GameManager.Instance.MaterialDataList.Dictionary[_itemHolder.Dictionary[_ID].ID].Name;
+    //                var icon = _image.GetComponentsInChildren<Image>();
+    //                icon[1].sprite = _itemHolder.Dictionary[_ID].Icon;
+    //            });
+    //        var rext = _image.GetComponent<RectTransform>();
+    //        rext.position = RectTransformUtility.WorldToScreenPoint(Camera.main, this.transform.position + _offest);
+    //    }
+    //    else
+    //    {
+    //        if (_runOnce.Flg == true)
+    //        {
+    //            Destroy(_image);
+    //            _runOnce.Flg = false;
+    //        }
+    //    }
+    //}
+
+    public void CreateImage()
     {
-        if (_targetChecker.TriggerHit)
+        _image = Instantiate(_itemHolder.Dictionary[_ID]._imagePrefab);
+        _image.transform.SetParent(GameManager.Instance.ItemCanvas.Canvas.transform);
+        var text = _image.GetComponentInChildren<Text>();
+        text.text = GameManager.Instance.MaterialDataList.Dictionary[_itemHolder.Dictionary[_ID].ID].Name;
+        var icon = _image.GetComponentsInChildren<Image>();
+        icon[1].sprite = _itemHolder.Dictionary[_ID].Icon;
+        var rext = _image.GetComponent<RectTransform>();
+        rext.anchoredPosition = new Vector2(0, rext.sizeDelta.y);
+
+    }
+    public void DeleteImage()
+    {
+        if (_image != null)
         {
-            _runOnce.Run(
-                () =>
-                {
-                    _image = Instantiate(_itemHolder.Dictionary[_ID]._imagePrefab);
-                    _image.transform.SetParent(GameManager.Instance.ItemCanvas.Canvas.transform);
-                    var text = _image.GetComponentInChildren<Text>();
-                    text.text = GameManager.Instance.MaterialDataList.Dictionary[_itemHolder.Dictionary[_ID].ID].Name;
-                    var icon = _image.GetComponentsInChildren<Image>();
-                    icon[1].sprite = _itemHolder.Dictionary[_ID].Icon;
-                });
-            var rext = _image.GetComponent<RectTransform>();
-            rext.position = RectTransformUtility.WorldToScreenPoint(Camera.main, this.transform.position + _offest);
-        }
-        else
-        {
-            if (_runOnce.Flg == true)
-            {
-                Destroy(_image);
-                _runOnce.Flg = false;
-            }
+            Destroy(_image);
         }
     }
 

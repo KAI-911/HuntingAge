@@ -14,6 +14,7 @@ GameObject:
   - component: {fileID: 1899507311733123216}
   - component: {fileID: 1899507311733123217}
   - component: {fileID: 1899507311733123218}
+  - component: {fileID: 7160461107736146450}
   m_Layer: 0
   m_Name: UIBOX
   m_TagString: Untagged
@@ -55,7 +56,7 @@ MonoBehaviour:
   - {fileID: 1899507311733123216}
   - {fileID: 1899507311733123217}
   - {fileID: 1899507311733123218}
-  _dataList: {fileID: 11400000, guid: 35f7a00bd15737e4eb41c6b57643190f, type: 2}
+  - {fileID: 7160461107736146450}
   _targetChecker: {fileID: 1899507313176175347}
 --- !u!114 &1899507311733123223
 MonoBehaviour:
@@ -151,6 +152,37 @@ MonoBehaviour:
       margin: 0
       textAnchor: 0
 --- !u!114 &1899507311733123218
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1899507311733123231}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a91304ffa4c09734aba7577349723a6e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _Buttons: []
+  _iconData:
+    _leftTopPos: {x: 0, y: 0}
+    _padding: 0
+    _tableSize: {x: 0, y: 0}
+    _canBeChanged: 0
+    _buttonBack: 0
+    _textFlg: 0
+    _buttonPrefab: {fileID: 0}
+    _buttonBackPrefab: {fileID: 0}
+    _textPrefab: {fileID: 0}
+    _textData:
+      fontSize: 0
+      autoFontSize: 0
+      text: 
+      color: {r: 0, g: 0, b: 0, a: 0}
+      hight: 0
+      margin: 0
+      textAnchor: 0
+--- !u!114 &7160461107736146450
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}

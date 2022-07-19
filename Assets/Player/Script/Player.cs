@@ -59,15 +59,14 @@ public partial class Player : Singleton<Player>
     [SerializeField] string _weaponID;
     [SerializeField] GameObject _weaponParent;
     private GameObject _weapon;
+    public string WeaponID { get => _weaponID; set => _weaponID = value; }
 
     //復活用
     [SerializeField] private List<Position> _startPos;
     public List<Position> StartPos { get => _startPos; set => _startPos = value; }
-    public bool CollectionFlg { get => _collectionFlg; set => _collectionFlg = value; }
 
 
     //採取用
-    private bool _collectionFlg;
     private CollectionScript _collectionScript;
     public CollectionScript CollectionScript { get => _collectionScript; set => _collectionScript = value; }
 
@@ -160,28 +159,26 @@ public partial class Player : Singleton<Player>
         if (other.CompareTag("CollectionPoint"))
         {
             Debug.Log("採取ポイント");
-            _collectionFlg = true;
+            if (_collectionScript != null)
+            {
+                _collectionScript.DeleteImage();
+            }
             _collectionScript = other.GetComponent<CollectionScript>();
+            _collectionScript.CreateImage();
         }
     }
-    private void OnTriggerStay(Collider other)
-    {
-        if (other.CompareTag("CollectionPoint"))
-        {
-            Debug.Log("採取ポイント");
-            _collectionFlg = true;
-        }
 
-    }
+
     private void OnTriggerExit(Collider other)
     {
         if (other.CompareTag("CollectionPoint"))
         {
-            _collectionFlg = false;
-            _collectionScript = null;
-
+            if (_collectionScript != null)
+            {
+                _collectionScript.DeleteImage();
+                _collectionScript = null;
+            }
         }
-
     }
     private void OnAnimationEvent(AnimationEvent animationEvent)
     {
@@ -276,7 +273,7 @@ public partial class Player : Singleton<Player>
         var pos = StartPos.Find(n => n.scene == GameManager.Instance.NowScene);
         transform.position = pos.pos[0];
     }
-    public void ChangeWepon(string weponID)
+    private void ChangeWepon(string weponID)
     {
         if (!GameManager.Instance.WeaponDataList.Dictionary.ContainsKey(weponID)) return;
         _weaponID = weponID;
