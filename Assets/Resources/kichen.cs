@@ -124,7 +124,7 @@ public class kichen : UIBase
             {
                 if (item.Value.CreatableLevel < GameManager.Instance.VillageData.KitchenLevel) _createItem.Add(item.Value);
             }
-            Debug.Log(_createItem[0].Name);
+            Debug.Log(_createItem[0].baseData.Name);
             var table = owner.ItemIconList[(int)IconType.TypeSelect];
             var iconData = table.IconData;
             iconData._tableSize = new Vector2(_createItem.Count, 1);
@@ -135,12 +135,12 @@ public class kichen : UIBase
             {
                 int num = i;
                 var buttonText = list[num].GetComponentInChildren<Text>();
-                buttonText.text = _createItem[num].Name;
+                buttonText.text = _createItem[num].baseData.Name;
                 var button = list[num].GetComponent<Button>();
                 button.onClick.AddListener(() =>
                 {
                     Debug.Log("osaretayo");
-                    owner.GetComponent<kichen>()._cleateItemID = _createItem[num].ID; lockflg = false;
+                    owner.GetComponent<kichen>()._cleateItemID = _createItem[num].baseData.ID; lockflg = false;
                     count = Instantiate(Resources.Load("UI/Count"), Vector3.zero, Quaternion.identity) as GameObject;
                     var rect = count.GetComponent<RectTransform>();
                     Vector2 buttonSize = new Vector2();
@@ -206,7 +206,7 @@ public class kichen : UIBase
             var data = GameManager.Instance.ItemDataList.Dictionary[list.Buttons[list.CurrentNunber].GetComponent<ItemButton>().ID];
             //UIÇÃà íuÇê›íË
             int UINumber = owner.ItemIconList[(int)IconType.TypeSelect].FirstNotSetNumber();
-            GameManager.Instance.ItemDataList.PoachToBox(data.ID, now, UINumber);
+            GameManager.Instance.ItemDataList.PoachToBox(data.baseData.ID, now, UINumber);
 
             owner.GetComponent<UIItemBox>().UISet();
 
