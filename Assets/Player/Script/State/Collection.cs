@@ -23,15 +23,10 @@ public class Collection : PlayerStateBase
             //ポーチに追加
             int r = GameManager.Instance.UIPoachList.AddPoach(_getItem, _getNumber);
             if (r == -1) Debug.LogError("キーがない");
+            if (r > 0) GameManager.Instance.Quest.GatheringCount.Add(_getItem, r);
             owner.ChangeState<LocomotionState>();
         }
     }
-    private void AddItem()
-    {
-        List<ItemData> itemDatas = new List<ItemData>();
-        var data = GameManager.Instance.UIPoachList;
 
-
-    }
 }
 

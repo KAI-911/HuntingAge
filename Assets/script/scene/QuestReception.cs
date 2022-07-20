@@ -128,12 +128,10 @@ public class QuestReception : UIBase
             for (int i = 0; i < objList.Count; i++)
             {
                 var data = owner.GetComponent<QuestReception>()._questDataList.Dictionary[owner.GetComponent<QuestReception>()._questHolderData.Quests[i]];
-                var t = objList[i].GetComponentInChildren<Text>();
-                t.text = data.Name;
-                var b = objList[i].GetComponentInChildren<Button>();
-                b.onClick.AddListener(() =>
+                itemIcon.SetButtonText(i, data.Name);
+                itemIcon.SetButtonOnClick(i, () =>
                 {
-                    GameManager.Instance.Quest.QuestData = data;
+                    //GameManager.Instance.Quest.QuestData = data;
                     owner.ChangeState<QuestConfirmation>();
                 });
             }
@@ -188,7 +186,6 @@ public class QuestReception : UIBase
                     t.text = "はい";
                     b.onClick.AddListener(() =>
                     {
-                        GameManager.Instance.Quest.QuestData = data;
                         Debug.Log("GoQueest");
                         owner.ChangeState<GoQuest>();
                     });
@@ -198,8 +195,7 @@ public class QuestReception : UIBase
                     t.text = "いいえ";
                     b.onClick.AddListener(() =>
                     {
-                        GameManager.Instance.Quest.QuestData = data;
-                        Debug.Log("GoQueest");
+                        Debug.Log("QuestSelect");
                         owner.ChangeState<QuestSelect>();
                     });
                 }
@@ -232,7 +228,6 @@ public class QuestReception : UIBase
     private class GoQuest : UIStateBase
     {
         ItemIcon itemIcon;
-
         public override void OnEnter(UIBase owner, UIStateBase prevState)
         {
             UIManager.Instance._player.IsAction = true;
@@ -241,7 +236,7 @@ public class QuestReception : UIBase
         public override void OnUpdate(UIBase owner)
         {
             Debug.Log("クエスト受注中");
-            if (UIManager.Instance._player.IsAction == false)
+            if (!UIManager.Instance._player.IsAction && itemIcon.Buttons.Count != 0)
             {
                 Debug.Log("クエスト逝くの？破棄するの?");
                 itemIcon.Select(UIManager.Instance.InputSelection.ReadValue<Vector2>());
@@ -250,7 +245,7 @@ public class QuestReception : UIBase
         }
         public override void OnProceed(UIBase owner)
         {
-            if (UIManager.Instance._player.IsAction == false)
+            if (!UIManager.Instance._player.IsAction && itemIcon.Buttons.Count != 0)
             {
                 itemIcon.Buttons[itemIcon.CurrentNunber].GetComponent<Button>().onClick.Invoke();
                 return;
@@ -328,7 +323,7 @@ public class QuestReception : UIBase
                 }
 
             }
-            
+
         }
         public override void OnBack(UIBase owner)
         {
@@ -359,6 +354,13 @@ public class QuestReception : UIBase
                 }
                 break;
             case ClearConditions.Gathering:
+                str += "クリア条件: ";
+                foreach (var item in data.TargetName)
+                {
+                    var tmp = GameManager.Instance.MaterialDataList.Dictionary[item.name];
+
+                    str += tmp.Name + "を" + item.number + "個採取する\n";
+                }
                 break;
             default:
                 break;
@@ -375,12 +377,11 @@ public class QuestReception : UIBase
             default:
                 break;
         }
-        if(_questMenu!=null)
+        if (_questMenu != null)
         {
             var texts = _questMenu.GetComponentsInChildren<Text>();
-            texts[0].text= data.Name;
-            texts[1].text= str;
-
+            texts[0].text = data.Name;
+            texts[1].text = str;
         }
     }
 

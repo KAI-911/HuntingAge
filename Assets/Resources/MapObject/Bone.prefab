@@ -324,9 +324,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cb4271ea13da4f74cbbfd13df1a35e68, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _imagePrefab: {fileID: 5541608107631814696, guid: 242c96c79d9b830449b003f68433f768,
+    type: 3}
   _itemHolder: {fileID: 5384447870054169863}
   _getItemNumber: 1
-  _offest: {x: 0, y: 3, z: 0}
   _ID: Bone
 --- !u!114 &5384447870054169863
 MonoBehaviour:

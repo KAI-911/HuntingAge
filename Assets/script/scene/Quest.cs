@@ -15,16 +15,16 @@ public class Quest : MonoBehaviour
     private EnemyCount _killEnemyCount = new EnemyCount();
     //倒すべき敵の種類と数を記録
     private EnemyCount _questTargetCount = new EnemyCount();
-
-    [SerializeField] List<STRINGINT> viewKillEnemy = new List<STRINGINT>();
-    [SerializeField] List<STRINGINT> viewQuestTargetEnemy = new List<STRINGINT>();
+    //採取したアイテムを記録
+    private GatheringCount _gatheringCount = new GatheringCount();
 
     //全ての敵の情報を記録
     [SerializeField] List<Enemy> _enemyList = new List<Enemy>();
 
     public List<Enemy> EnemyList { get => _enemyList; }
-    public EnemyCount KillEnemyCount { get => _killEnemyCount;}
-    public  bool IsQuest { get => _isQuest;}
+    public EnemyCount KillEnemyCount { get => _killEnemyCount; }
+    public bool IsQuest { get => _isQuest; }
+    public GatheringCount GatheringCount { get => _gatheringCount; }
 
 
     //シーン切り替えまでの時間
@@ -58,22 +58,6 @@ public class Quest : MonoBehaviour
     void Update()
     {
         _nowState = _currentState.GetType().ToString();
-        viewKillEnemy.Clear();
-        viewQuestTargetEnemy.Clear();
-        foreach (var item in KillEnemyCount.EnemyCountList)
-        {
-            var tmp = new STRINGINT();
-            tmp.name = item.Key;
-            tmp.number = item.Value;
-            viewKillEnemy.Add(tmp);
-        }
-        foreach (var item in _questTargetCount.EnemyCountList)
-        {
-            var tmp = new STRINGINT();
-            tmp.name = item.Key;
-            tmp.number = item.Value;
-            viewQuestTargetEnemy.Add(tmp);
-        }
         _currentState.OnUpdate(this);
     }
 
@@ -89,23 +73,27 @@ public class Quest : MonoBehaviour
     }
     void LoadEnemy()
     {
-        //討伐対象
-        foreach (var target in _questData.TargetName)
+        if (_questData.Clear == ClearConditions.TargetSubjugation)
         {
-
-            Debug.Log(target.name + "    " + target.number);
-            _questTargetCount.Entry(target.name, target.number);
-            for (int i = 0; i < target.number; i++)
+            //討伐対象
+            foreach (var target in _questData.TargetName)
             {
-                var data = GameManager.Instance.EnemyDataList.Dictionary[target.name];
-                Vector3 popPos = Vector3.zero;
-                //シーンごとの最初の位置を設定
-                popPos = data.EnemyPosition(_questData.Field).pos[Random.Range(0, data.EnemyPosition(_questData.Field).pos.Count)];
-                var obj = Instantiate(Resources.Load(data.InstanceName), popPos, Quaternion.identity) as GameObject;
-                var ene = obj.GetComponent<Enemy>();
-                ene.WaningPos = data.EnemyPosition(_questData.Field).pos;
+
+                Debug.Log(target.name + "    " + target.number);
+                _questTargetCount.Entry(target.name, target.number);
+                for (int i = 0; i < target.number; i++)
+                {
+                    var data = GameManager.Instance.EnemyDataList.Dictionary[target.name];
+                    Vector3 popPos = Vector3.zero;
+                    //シーンごとの最初の位置を設定
+                    popPos = data.EnemyPosition(_questData.Field).pos[Random.Range(0, data.EnemyPosition(_questData.Field).pos.Count)];
+                    var obj = Instantiate(Resources.Load(data.InstanceName), popPos, Quaternion.identity) as GameObject;
+                    var ene = obj.GetComponent<Enemy>();
+                    ene.WaningPos = data.EnemyPosition(_questData.Field).pos;
+                }
             }
         }
+
         //非討伐対象
         foreach (var target in _questData.OtherName)
         {
@@ -169,6 +157,7 @@ public class Quest : MonoBehaviour
                     owner.ChangeState<TargetSubjugation>();
                     break;
                 case ClearConditions.Gathering:
+                    owner.ChangeState<Gathering>();
                     break;
                 default:
                     break;
@@ -182,7 +171,7 @@ public class Quest : MonoBehaviour
             bool clear = true;
             foreach (var item in owner._questTargetCount.EnemyCountList)
             {
-                if(!owner.KillEnemyCount.EnemyCountList.ContainsKey(item.Key))
+                if (!owner.KillEnemyCount.EnemyCountList.ContainsKey(item.Key))
                 {
                     clear = false;
                     break;
@@ -198,41 +187,44 @@ public class Quest : MonoBehaviour
             if (clear)
             {
                 owner.KillEnemyCount.EnemyDataSet();
-
                 owner.ChangeState<QuestClear>();
                 return;
             }
 
-            if (owner._player.Status.HP == 0)
-            {
-                foreach (var ene in owner._enemyList) ene.DiscoverFlg = false;
-
-                _ = owner._runOnce.WaitForAsync(2,
-                    () =>
-                    {
-                        owner._deathCount++;
-                        if (owner._deathCount >= (int)owner.QuestData.Failure + 1)
-                        {
-                            owner.ChangeState<QuestFailure>();
-                        }
-                        else
-                        {
-                            owner._player.Revival();
-                            foreach (var ene in owner._enemyList) ene.DiscoverFlg = false;
-                            owner._runOnce.Flg = false;//もう一度行えるように
-                        }
-                    }
-                );
-            }
+            owner.CheckPlayerDown();
         }
         public override void OnExit(Quest owner, QuestState nextState)
         {
             owner._questTargetCount.EnemyCountList.Clear();
             owner._killEnemyCount.EnemyCountList.Clear();
+            owner._gatheringCount.CountList.Clear();
             owner.EnemyList.Clear();
-
         }
     }
+    class Gathering : QuestState
+    {
+        public override void OnUpdate(Quest owner)
+        {
+            owner.CheckPlayerDown();
+
+            foreach (var item in owner._questData.TargetName)
+            {
+                if (!owner._gatheringCount.CountList.ContainsKey(item.name))return;
+                //クエストの採取数以上取っていなかったら
+                if (owner._gatheringCount.CountList[item.name] < item.number) return;
+            }
+            owner.ChangeState<QuestClear>();
+
+        }
+        public override void OnExit(Quest owner, QuestState nextState)
+        {
+            owner._questTargetCount.EnemyCountList.Clear();
+            owner._killEnemyCount.EnemyCountList.Clear();
+            owner._gatheringCount.CountList.Clear();
+            owner.EnemyList.Clear();
+        }
+    }
+
     class QuestClear : QuestState
     {
         float time;
@@ -246,18 +238,18 @@ public class Quest : MonoBehaviour
         public override void OnUpdate(Quest owner)
         {
             Debug.Log("クリアしました");
-           
+
             time -= Time.deltaTime;
             if (time < 0)
             {
-                
+
                 GameManager.Instance.SceneChange(GameManager.Instance.VillageScene);
             }
 
         }
         public override void OnActiveSceneChanged(Quest owner)
         {
-            
+
             owner.ChangeState<Standby>();
         }
     }
@@ -274,11 +266,11 @@ public class Quest : MonoBehaviour
         public override void OnUpdate(Quest owner)
         {
             Debug.Log("失敗しました");
-            
+
             time -= Time.deltaTime;
             if (time < 0)
             {
-                
+
                 GameManager.Instance.SceneChange(GameManager.Instance.VillageScene);
             }
         }
@@ -286,5 +278,31 @@ public class Quest : MonoBehaviour
         {
             owner.ChangeState<Standby>();
         }
+    }
+
+
+    private void CheckPlayerDown()
+    {
+        if (_player.Status.HP == 0)
+        {
+            foreach (var ene in _enemyList) ene.DiscoverFlg = false;
+
+            _ = _runOnce.WaitForAsync(2,
+                () =>
+                {
+                    _deathCount++;
+                    if (_deathCount >= (int)QuestData.Failure + 1)
+                    {
+                        ChangeState<QuestFailure>();
+                    }
+                    else
+                    {
+                        _player.Revival();
+                        foreach (var ene in _enemyList) ene.DiscoverFlg = false;
+                        _runOnce.Flg = false;//もう一度行えるように
+                    }
+                });
+        }
+
     }
 }
