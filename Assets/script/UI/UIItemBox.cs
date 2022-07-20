@@ -14,6 +14,7 @@ public class UIItemBox : UIBase
         ItemIconList[(int)IconType.BoxItemSelect].SetIcondata(UIManager.Instance.UIPresetData.Dictionary["IB_ItemSelect"]);
         ItemIconList[(int)IconType.PoachItemSelect].SetIcondata(UIManager.Instance.UIPresetData.Dictionary["IP_ItemSelect"]);
         ItemIconList[(int)IconType.SubMenuSelect].SetIcondata(UIManager.Instance.UIPresetData.Dictionary["IB_SubMenu"]);
+        ItemIconList[(int)IconType.WeaponSelect].SetIcondata(UIManager.Instance.UIPresetData.Dictionary["IB_ItemSelect"]);
 
         _currentState = new Close();
         _currentState.OnEnter(this, null);
@@ -44,21 +45,26 @@ public class UIItemBox : UIBase
     /// </summary>
     private class FirstSlect : UIStateBase
     {
+        ItemIcon _itemIcon = new ItemIcon();
+
         public override void OnEnter(UIBase owner, UIStateBase prevState)
         {
-            var list = owner.ItemIconList[(int)IconType.TypeSelect].CreateButton();
-            var button0 = list[0].GetComponent<Button>();
-            button0.onClick.AddListener(() => owner.ChangeState<ItemSlect>());
-            var button0Text = list[0].GetComponentInChildren<Text>();
-            button0Text.text = "アイテム選択";
+            _itemIcon = owner.ItemIconList[(int)IconType.TypeSelect];
+            _itemIcon.SetTable(new Vector2(2, 1));
+            var list = _itemIcon.CreateButton();
+            _itemIcon.SetButtonOnClick(0, () => owner.ChangeState<ItemSlect>());
+            _itemIcon.SetButtonText(0, "アイテム選択");
+            _itemIcon.SetButtonOnClick(1, () => owner.ChangeState<weaponSelect>());
+            _itemIcon.SetButtonText(1, "武器選択");
+
         }
         public override void OnExit(UIBase owner, UIStateBase nextState)
         {
-            owner.ItemIconList[(int)IconType.TypeSelect].DeleteButton();
+            _itemIcon.DeleteButton();
         }
         public override void OnProceed(UIBase owner)
         {
-            owner.ItemIconList[(int)IconType.TypeSelect].Buttons[owner.ItemIconList[(int)IconType.TypeSelect].CurrentNunber].GetComponent<Button>().onClick.Invoke();
+            _itemIcon.CurrentButtonInvoke();
         }
         public override void OnBack(UIBase owner)
         {
@@ -66,19 +72,22 @@ public class UIItemBox : UIBase
         }
         public override void OnUpdate(UIBase owner)
         {
-            owner.ItemIconList[(int)IconType.TypeSelect].Select(UIManager.Instance.InputSelection.ReadValue<Vector2>());
-            Debug.Log("UIStateBase_FirstSlect");
+            _itemIcon.Select(UIManager.Instance.InputSelection.ReadValue<Vector2>());
         }
     }
     private class ItemSlect : UIStateBase
     {
+        private ItemIcon itemIcon_box = new ItemIcon();
+        private ItemIcon itemIcon_poach = new ItemIcon();
         public override void OnEnter(UIBase owner, UIStateBase prevState)
         {
+            itemIcon_box = owner.ItemIconList[(int)IconType.BoxItemSelect];
+            itemIcon_poach = owner.ItemIconList[(int)IconType.PoachItemSelect];
             if (prevState.GetType() == typeof(FirstSlect))
             {
                 owner.GetComponent<UIItemBox>().current = CurrentUI.box;
-                owner.ItemIconList[(int)IconType.BoxItemSelect].CreateButton();
-                owner.ItemIconList[(int)IconType.PoachItemSelect].CreateButton();
+                itemIcon_box.CreateButton();
+                itemIcon_poach.CreateButton();
                 owner.GetComponent<UIItemBox>().UISet();
             }
 
@@ -87,26 +96,28 @@ public class UIItemBox : UIBase
         {
             if (nextState.GetType() == typeof(FirstSlect))
             {
-                owner.ItemIconList[(int)IconType.BoxItemSelect].DeleteButton();
-                owner.ItemIconList[(int)IconType.PoachItemSelect].DeleteButton();
+                itemIcon_box.DeleteButton();
+                itemIcon_poach.DeleteButton();
             }
         }
         public override void OnUpdate(UIBase owner)
         {
             Debug.Log("select");
             //どっちのリストを見ているか
+
             if (UIManager.Instance.InputCurrentChange.ReadValue<Vector2>().sqrMagnitude > 0)
             {
-                if (UIManager.Instance.InputCurrentChange.ReadValue<Vector2>().x > 0) owner.GetComponent<UIItemBox>().current = CurrentUI.box;
+                float value = UIManager.Instance.InputCurrentChange.ReadValue<Vector2>().x;
+                if (value > 0) owner.GetComponent<UIItemBox>().current = CurrentUI.box;
                 else owner.GetComponent<UIItemBox>().current = CurrentUI.poach;
             }
             switch (owner.GetComponent<UIItemBox>().current)
             {
                 case CurrentUI.box:
-                    owner.ItemIconList[(int)IconType.BoxItemSelect].Select(UIManager.Instance.InputSelection.ReadValue<Vector2>());
+                    itemIcon_box.Select(UIManager.Instance.InputSelection.ReadValue<Vector2>());
                     break;
                 case CurrentUI.poach:
-                    owner.ItemIconList[(int)IconType.PoachItemSelect].Select(UIManager.Instance.InputSelection.ReadValue<Vector2>());
+                    itemIcon_poach.Select(UIManager.Instance.InputSelection.ReadValue<Vector2>());
                     break;
             }
         }
@@ -115,9 +126,8 @@ public class UIItemBox : UIBase
             //アイテムの入れ替えpoach(box)からbox(poach)へ最大量送る
             if (owner.GetComponent<UIItemBox>().current == CurrentUI.box)
             {
-                if (!owner.ItemIconList[(int)IconType.BoxItemSelect].CheckCurrentNunberItem()) return;
-                var list = owner.ItemIconList[(int)IconType.BoxItemSelect];
-                var data = GameManager.Instance.MaterialDataList.Dictionary[list.Buttons[list.CurrentNunber].GetComponent<ItemButton>().ID];
+                if (!itemIcon_box.CheckCurrentNunberItem()) return;
+                var data = GameManager.Instance.MaterialDataList.Dictionary[itemIcon_box.Buttons[itemIcon_box.CurrentNunber].GetComponent<ItemButton>().ID];
                 int needNumber = data.PoachStackNumber - data.PoachHoldNumber;
                 //UIの位置を設定
                 int UINumber = owner.ItemIconList[(int)IconType.PoachItemSelect].FirstNotSetNumber();
@@ -127,9 +137,8 @@ public class UIItemBox : UIBase
             }
             else
             {
-                if (!owner.ItemIconList[(int)IconType.PoachItemSelect].CheckCurrentNunberItem()) return;
-                var list = owner.ItemIconList[(int)IconType.PoachItemSelect];
-                var data = GameManager.Instance.MaterialDataList.Dictionary[list.Buttons[list.CurrentNunber].GetComponent<ItemButton>().ID];
+                if (!itemIcon_poach.CheckCurrentNunberItem()) return;
+                var data = GameManager.Instance.MaterialDataList.Dictionary[itemIcon_poach.Buttons[itemIcon_poach.CurrentNunber].GetComponent<ItemButton>().ID];
                 int needNumber = data.BoxStackNumber - data.BoxHoldNumber;
                 //UIの位置を設定
                 int UINumber = owner.ItemIconList[(int)IconType.BoxItemSelect].FirstNotSetNumber();
@@ -162,44 +171,27 @@ public class UIItemBox : UIBase
         }
 
     }
-
     private class SubMune : UIStateBase
     {
         ItemIcon _itemIcon = new ItemIcon();
         public override void OnEnter(UIBase owner, UIStateBase prevState)
         {
             _itemIcon = owner.ItemIconList[(int)IconType.SubMenuSelect];
-            var muneData = _itemIcon.IconData;
-            Vector2 buttonSize = new Vector2();
-            ItemIconData data = new ItemIconData();
-
             switch (owner.GetComponent<UIItemBox>().current)
             {
                 case CurrentUI.box:
-                    buttonSize = owner.ItemIconList[(int)IconType.BoxItemSelect].IconData._buttonPrefab.GetComponent<RectTransform>().sizeDelta;
-                    data = owner.ItemIconList[(int)IconType.BoxItemSelect].IconData;
+                    _itemIcon.SetLeftTopPos(owner.ItemIconList[(int)IconType.BoxItemSelect].ImagePos());
                     break;
                 case CurrentUI.poach:
-                    buttonSize = owner.ItemIconList[(int)IconType.PoachItemSelect].IconData._buttonPrefab.GetComponent<RectTransform>().sizeDelta;
-                    data = owner.ItemIconList[(int)IconType.PoachItemSelect].IconData;
+                    _itemIcon.SetLeftTopPos(owner.ItemIconList[(int)IconType.PoachItemSelect].ImagePos());
                     break;
             }
-            var num = owner.ItemIconList[(int)IconType.BoxItemSelect].CurrentNunber;
-            int w = Mathf.Abs((num % (int)data._tableSize.y) * (int)(buttonSize.x + data._padding)) + (int)(buttonSize.x + data._padding);
-            int h = Mathf.Abs((num / (int)data._tableSize.y) * (int)(buttonSize.y + data._padding));
-            muneData._leftTopPos = new Vector2(data._leftTopPos.x + w, data._leftTopPos.y - h);
-            _itemIcon.SetIcondata(muneData);
-            var buttonList = _itemIcon.CreateButton();
 
-            var button0 = buttonList[0].GetComponent<Button>();
-            button0.onClick.AddListener(() => owner.ChangeState<NumberSelection>());
-            var button0Text = buttonList[0].GetComponentInChildren<Text>();
-            button0Text.text = "個数を指定して送る";
-
-            var button1 = buttonList[1].GetComponent<Button>();
-            button1.onClick.AddListener(() => owner.ChangeState<UIChange>());
-            var button1Text = buttonList[1].GetComponentInChildren<Text>();
-            button1Text.text = "入れ替え";
+            _itemIcon.CreateButton();
+            _itemIcon.SetButtonText(0, "個数を指定して送る");
+            _itemIcon.SetButtonOnClick(0, () => owner.ChangeState<NumberSelection>());
+            _itemIcon.SetButtonText(1, "入れ替え");
+            _itemIcon.SetButtonOnClick(1, () => owner.ChangeState<UIChange>());
 
         }
         public override void OnExit(UIBase owner, UIStateBase nextState)
@@ -219,14 +211,12 @@ public class UIItemBox : UIBase
             _itemIcon.Buttons[_itemIcon.CurrentNunber].GetComponent<Button>().onClick.Invoke();
         }
     }
-
     private class UIChange : UIStateBase
     {
         private int _selectionNumber;
         private ItemIcon _itemIcon;
         public override void OnEnter(UIBase owner, UIStateBase prevState)
         {
-            Debug.Log("UI変更ステートになた");
             switch (owner.GetComponent<UIItemBox>().current)
             {
                 case CurrentUI.box:
@@ -241,13 +231,11 @@ public class UIItemBox : UIBase
         }
         public override void OnUpdate(UIBase owner)
         {
-            Debug.Log("UI変更ステート");
             _itemIcon.Select(UIManager.Instance.InputSelection.ReadValue<Vector2>());
 
         }
         public override void OnBack(UIBase owner)
         {
-            Debug.Log("modoru");
             owner.ChangeState<ItemSlect>();
         }
         public override void OnProceed(UIBase owner)
@@ -259,21 +247,17 @@ public class UIItemBox : UIBase
             MaterialData data = new MaterialData();
             if (selectButton.ID != "")
             {
-                Debug.Log("S0");
                 if (MaterialDataList.Keys.Contains(selectButton.ID))
                 {
-                    Debug.Log("S1");
                     int index = MaterialDataList.Keys.IndexOf(selectButton.ID);
                     data = MaterialDataList.Values[index];
                     switch (owner.GetComponent<UIItemBox>().current)
                     {
                         case CurrentUI.box:
                             data.BoxUINumber = _itemIcon.CurrentNunber;
-                            Debug.Log("S2_box");
                             break;
                         case CurrentUI.poach:
                             data.PoachUINumber = _itemIcon.CurrentNunber;
-                            Debug.Log("S2_poach");
                             break;
                         default:
                             break;
@@ -283,21 +267,17 @@ public class UIItemBox : UIBase
             }
             if (currentButton.ID != "")
             {
-                Debug.Log("C0");
                 if (MaterialDataList.Keys.Contains(currentButton.ID))
                 {
-                    Debug.Log("C1");
                     int index = MaterialDataList.Keys.IndexOf(currentButton.ID);
                     data = MaterialDataList.Values[index];
                     switch (owner.GetComponent<UIItemBox>().current)
                     {
                         case CurrentUI.box:
                             data.BoxUINumber = _selectionNumber;
-                            Debug.Log("C2_box");
                             break;
                         case CurrentUI.poach:
                             data.PoachUINumber = _selectionNumber;
-                            Debug.Log("C2_poach");
                             break;
                         default:
                             break;
@@ -312,7 +292,6 @@ public class UIItemBox : UIBase
 
         }
     }
-
     private class NumberSelection : UIStateBase
     {
         private GameObject count;
@@ -324,27 +303,17 @@ public class UIItemBox : UIBase
             if (prevState.GetType() == typeof(SubMune))
             {
                 lockflg = false;
-                count = Instantiate(Resources.Load("UI/Count"), Vector3.zero, Quaternion.identity) as GameObject;
-                var rect = count.GetComponent<RectTransform>();
-                Vector2 buttonSize = new Vector2();
-                ItemIconData data = new ItemIconData();
+                count = Instantiate(Resources.Load("UI/Count"), GameManager.Instance.ItemCanvas.Canvas.transform) as GameObject;
                 switch (owner.GetComponent<UIItemBox>().current)
                 {
                     case CurrentUI.box:
-                        buttonSize = owner.ItemIconList[(int)IconType.BoxItemSelect].IconData._buttonPrefab.GetComponent<RectTransform>().sizeDelta;
-                        data = owner.ItemIconList[(int)IconType.BoxItemSelect].IconData;
+                        owner.ItemIconList[(int)IconType.BoxItemSelect].AdjustmentImage(count.GetComponent<RectTransform>());
                         break;
                     case CurrentUI.poach:
-                        buttonSize = owner.ItemIconList[(int)IconType.PoachItemSelect].IconData._buttonPrefab.GetComponent<RectTransform>().sizeDelta;
-                        data = owner.ItemIconList[(int)IconType.PoachItemSelect].IconData;
+                        owner.ItemIconList[(int)IconType.PoachItemSelect].AdjustmentImage(count.GetComponent<RectTransform>());
                         break;
                 }
-                var num = owner.ItemIconList[(int)IconType.BoxItemSelect].CurrentNunber;
-                int w = Mathf.Abs((num % (int)data._tableSize.y) * (int)(buttonSize.x + data._padding)) + (int)(buttonSize.x + data._padding);
-                int h = Mathf.Abs((num / (int)data._tableSize.y) * (int)(buttonSize.y + data._padding));
-                var pos = new Vector2(data._leftTopPos.x + w, data._leftTopPos.y - h);
-                rect.anchoredPosition = pos;
-                count.transform.SetParent(GameManager.Instance.ItemCanvas.Canvas.transform);
+
 
                 now = 1;
                 min = 1;
@@ -430,13 +399,47 @@ public class UIItemBox : UIBase
             owner.ChangeState<ItemSlect>();
         }
     }
+    private class weaponSelect: UIStateBase
+    {
+        ItemIcon itemIcon;
+        public override void OnEnter(UIBase owner, UIStateBase prevState)
+        {
+            itemIcon = owner.ItemIconList[(int)IconType.WeaponSelect];
+            itemIcon.CreateButton();
+            foreach (var item in GameManager.Instance.WeaponDataList.Dictionary)
+            {
+                if (!item.Value.BoxPossession) continue;
+                itemIcon.Buttons[item.Value.BoxUINumber].GetComponent<ItemButton>().SetWeaponID(item.Value.ID);
+            }
+        }
+        public override void OnExit(UIBase owner, UIStateBase nextState)
+        {
+            itemIcon.DeleteButton();
+        }
+        public override void OnUpdate(UIBase owner)
+        {
+            itemIcon.Select(UIManager.Instance.InputSelection.ReadValue<Vector2>());
+        }
+        public override void OnProceed(UIBase owner)
+        {
+            var weaponID = itemIcon.Buttons[itemIcon.CurrentNunber].GetComponent<ItemButton>().ID;
+            UIManager.Instance._player.WeaponID= weaponID;
+            owner.GetComponent<UIItemBox>().WeaponUISet();
 
+        }
+        public override void OnBack(UIBase owner)
+        {
+            owner.ChangeState<FirstSlect>();
+        }
+
+    }
     enum IconType
     {
         TypeSelect,
         BoxItemSelect,
         PoachItemSelect,
-        SubMenuSelect
+        SubMenuSelect,
+        WeaponSelect
     }
     public void UISet()
     {
@@ -470,6 +473,22 @@ public class UIItemBox : UIBase
             ibutton.SetID(item.Key, ItemBoxOrPoach.poach);
         }
 
+    }
+    public void WeaponUISet()
+    {
+        var weaponList = ItemIconList[(int)IconType.WeaponSelect].Buttons;
+        //ボックスリストのUIセット
+        foreach (var item in weaponList)
+        {
+            var ibutton = item.GetComponent<ItemButton>();
+            ibutton.clear();
+        }
+        foreach (var item in GameManager.Instance.WeaponDataList.Dictionary)
+        {
+            if (!item.Value.BoxPossession) continue;
+            var ibutton = weaponList[item.Value.BoxUINumber].GetComponent<ItemButton>();
+            ibutton.SetWeaponID(item.Value.ID);
+        }
     }
 
 }

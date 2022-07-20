@@ -8,7 +8,7 @@ Material:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_Name: mossyTree
-  m_Shader: {fileID: -6465566751694194690, guid: 9e200945c7d9d7b4d9ccdf758451820a,
+  m_Shader: {fileID: -6465566751694194690, guid: b6071caeafc0880408ebb03759cb82e5,
     type: 3}
   m_ValidKeywords: []
   m_InvalidKeywords: []
@@ -90,7 +90,7 @@ Material:
     - _NoiseDensity: 150
     - _OcclusionStrength: 1
     - _Parallax: 0.02
-    - _RimPower: 0
+    - _RimPower: 0.221
     - _SmoothnessTextureChannel: 0
     - _SpecularHighlights: 1
     - _SrcBlend: 1
@@ -99,7 +99,7 @@ Material:
     m_Colors:
     - _Color: {r: 1, g: 1, b: 1, a: 1}
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
-    - _RimColor: {r: 1, g: 1, b: 0, a: 1}
+    - _RimColor: {r: 0, g: 1, b: 0.8937447, a: 0}
     - _Vector2: {r: 0, g: 0, b: 0, a: 0}
   m_BuildTextureStacks: []
 --- !u!114 &9138577593381781651

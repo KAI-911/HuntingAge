@@ -93,8 +93,7 @@ public enum PartType
     rightLeg,
     leftLeg,
     tail,
-    axe,
-    spear
+    weapon
 }
 public enum HitReaction
 {
