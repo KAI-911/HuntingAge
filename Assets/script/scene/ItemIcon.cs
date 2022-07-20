@@ -3,7 +3,6 @@ using UnityEngine.Events;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
-using UnityEngine.Events;
 [System.Serializable]
 public class ItemIcon : MonoBehaviour
 {
@@ -43,11 +42,7 @@ public class ItemIcon : MonoBehaviour
 
     public void SetText(string _text)
     {
-        //this._iconData._textData.text = _text;
-        var iconData = this.IconData;
-        iconData._textData.text = _text;
-        this.SetIcondata(iconData);
-
+        this._iconData._textData.text = _text;
     }
     public void SetTable(Vector2 _table)
     {
@@ -55,7 +50,6 @@ public class ItemIcon : MonoBehaviour
         iconData._tableSize = _table;
         this.SetIcondata(iconData);
     }
-<<<<<<< HEAD
     public void SetLeftTopPos(Vector2 vector2)
     {
         var iconData = this.IconData;
@@ -64,15 +58,10 @@ public class ItemIcon : MonoBehaviour
     }
     public bool SetButtonText(int _buttonNumber, string _taxt)
     {
-=======
-    public bool SetButtonText(int _buttonNumber, string _taxt)
-    {
->>>>>>> cf2e1680e54e9e2490cd8414ed3f94cd8c6d6625
         if (_buttonNumber < 0 || _buttonNumber > GetSize) return false;
         Buttons[_buttonNumber].GetComponentInChildren<Text>().text = _taxt;
         return true;
     }
-<<<<<<< HEAD
 
     public void SetButtonOnClick(int _buttonNumber, UnityAction action)
     {
@@ -85,30 +74,10 @@ public class ItemIcon : MonoBehaviour
     {
         Buttons[_currentNunber].GetComponent<Button>().onClick.Invoke();
     }
-=======
-    public void SetButtonOnClick(int _buttonNumber, UnityAction action)
-    {
-        if (_buttonNumber < 0 || _buttonNumber > GetSize) return;
-        var button = Buttons[_buttonNumber].GetComponent<Button>();
-        button.onClick.RemoveAllListeners();
-        button.onClick.AddListener(action);
-    }
-    public void CurrentButtonInvoke()
-    {
-        Buttons[_currentNunber].GetComponent<Button>().onClick.Invoke();
-    }
-
-
->>>>>>> cf2e1680e54e9e2490cd8414ed3f94cd8c6d6625
     public void AdjustmentImage(RectTransform rectTransform)
     {
         AdjustmentImage(rectTransform, CurrentNunber);
     }
-<<<<<<< HEAD
-=======
-
-
->>>>>>> cf2e1680e54e9e2490cd8414ed3f94cd8c6d6625
     public bool AdjustmentImage(RectTransform rectTransform, int currentNunber)
     {
         if (currentNunber < 0 || currentNunber > GetSize) return false;
@@ -117,7 +86,6 @@ public class ItemIcon : MonoBehaviour
         //currentNunberのボタンのUI座標から横にずらす
         rectTransform.anchoredPosition = new Vector2(rect.anchoredPosition.x + rect.sizeDelta.x + _iconData._padding, rect.anchoredPosition.y);
         return true;
-<<<<<<< HEAD
     }
     public Vector2 ImagePos(int currentNunber)
     {
@@ -138,14 +106,11 @@ public class ItemIcon : MonoBehaviour
         //currentNunberのボタンのUI座標から横にずらす
         returnVec = new Vector2(rect.anchoredPosition.x + rect.sizeDelta.x + _iconData._padding, rect.anchoredPosition.y);
         return returnVec;
-=======
->>>>>>> cf2e1680e54e9e2490cd8414ed3f94cd8c6d6625
     }
     private void Awake()
     {
         _currentNunber = 0;
     }
-
 
     private void Update()
     {

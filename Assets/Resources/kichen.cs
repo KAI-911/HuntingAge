@@ -141,18 +141,6 @@ public class kichen : UIBase
 
             for (int i = 0; i < _createItem.Count; i++)
             {
-<<<<<<< HEAD:Assets/Resources/kichen.cs
-                int num = i;
-                var buttonText = list[num].GetComponentInChildren<Text>();
-                buttonText.text = _createItem[num].baseData.Name;
-                var button = list[num].GetComponent<Button>();
-                button.onClick.AddListener(() =>
-                {
-                    Debug.Log("osaretayo");
-                    owner.GetComponent<kichen>()._cleateItemID = _createItem[num].baseData.ID; lockflg = false;
-                    count = Instantiate(Resources.Load("UI/Count"), Vector3.zero, Quaternion.identity) as GameObject;
-                    var rect = count.GetComponent<RectTransform>();
-=======
                 int numi = i;
                 var buttonText = list[numi].GetComponentInChildren<Text>();
                 buttonText.text = _createItem[numi].baseData.Name;
@@ -163,7 +151,6 @@ public class kichen : UIBase
                     owner.GetComponent<kichen>()._cleateItemID = _createItem[numi].baseData.ID; lockflg = false;
                     owner.GetComponent<kichen>().countObject = Instantiate(Resources.Load("UI/Count"), Vector3.zero, Quaternion.identity) as GameObject;
                     var rect = owner.GetComponent<kichen>().countObject.GetComponent<RectTransform>();
->>>>>>> cf2e1680e54e9e2490cd8414ed3f94cd8c6d6625:Assets/Scenes/Base/kitchen/kichen.cs
                     Vector2 buttonSize = new Vector2();
                     ItemIconData data = new ItemIconData();
 
@@ -237,19 +224,6 @@ public class kichen : UIBase
         }
         public override void OnProceed(UIBase owner)
         {
-<<<<<<< HEAD:Assets/Resources/kichen.cs
-            owner.ItemIconList[(int)IconType.TypeSelect].Buttons[owner.ItemIconList[(int)IconType.TypeSelect].CurrentNunber].GetComponent<Button>().onClick.Invoke();
-            if (!owner.ItemIconList[(int)IconType.TypeSelect].CheckCurrentNunberItem()) return;
-            var list = owner.ItemIconList[(int)IconType.TypeSelect];
-            var data = GameManager.Instance.ItemDataList.Dictionary[list.Buttons[list.CurrentNunber].GetComponent<ItemButton>().ID];
-            //UIÇÃà íuÇê›íË
-            int UINumber = owner.ItemIconList[(int)IconType.TypeSelect].FirstNotSetNumber();
-            GameManager.Instance.ItemDataList.PoachToBox(data.baseData.ID, now, UINumber);
-
-            owner.GetComponent<UIItemBox>().UISet();
-
-            owner.ChangeState<CleateItem>();
-=======
             if (!_check)
             {
                 Debug.Log("futuu");
@@ -260,7 +234,6 @@ public class kichen : UIBase
                 owner.GetComponent<kichen>().cleateNum = now;
                 owner.ChangeState<CleateItem>();
             }
->>>>>>> cf2e1680e54e9e2490cd8414ed3f94cd8c6d6625:Assets/Scenes/Base/kitchen/kichen.cs
         }
         public override void OnBack(UIBase owner)
         {
