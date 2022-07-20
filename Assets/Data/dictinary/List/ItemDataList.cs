@@ -165,7 +165,7 @@ public class ItemDataList : MonoBehaviour, ISerializationCallbackReceiver
         return true;
     }
 
-    public int CreateItem(string _ID, bool _toPouch)
+    public int CreateItem(string _ID, int _num, bool _toPouch)
     {
         int index = keys.FindIndex(n => n.StartsWith(_ID));
         //Debug.Log(index);
@@ -181,11 +181,10 @@ public class ItemDataList : MonoBehaviour, ISerializationCallbackReceiver
             needID.Add(data.NeedMaterialLst[i].materialID);
             needRequiredCount.Add(data.NeedMaterialLst[i].requiredCount);
             needRequired.Add(data.NeedMaterialLst[i].requiredCount);
+            needRequired[i] *= _num;
 
             var _material = GameManager.Instance.ItemDataList;
-            if (!(_material.Dictionary.ContainsKey(needID[i]))) return 2;
-            int _num = _material.Dictionary[needID[i]].baseData.BoxHoldNumber + _material.Dictionary[needID[i]].baseData.PoachHoldNumber;
-            if (_num < needRequiredCount[i]) return 2;
+            int num = _material.Dictionary[needID[i]].baseData.BoxHoldNumber + _material.Dictionary[needID[i]].baseData.PoachHoldNumber;
         }
 
 
@@ -213,8 +212,8 @@ public class ItemDataList : MonoBehaviour, ISerializationCallbackReceiver
         }
         GameManager.Instance.ItemDataList.DesrializeDictionary();
 
-        if (_toPouch)
-            values[index] = data;
+        if (_toPouch) { var data1 = values[index]; data1.baseData.PoachHoldNumber = _num; values[index] = data1; }
+        else { var data1 = values[index]; data1.baseData.BoxHoldNumber = _num; values[index] = data1; }
         DesrializeDictionary();
         return 1;
     }

@@ -26,16 +26,16 @@ MonoBehaviour:
     IconName: Icon/Stone_UI
     BoxStackNumber: 9999
     BoxUINumber: 0
-    BoxHoldNumber: 10
+    BoxHoldNumber: 1000
     PoachStackNumber: 99
     PoachUINumber: 0
-    PoachHoldNumber: 10
+    PoachHoldNumber: 0
   - ID: Material001
     Name: "\u6728"
     IconName: Icon/Wood_UI
     BoxStackNumber: 9999
     BoxUINumber: 1
-    BoxHoldNumber: 20
+    BoxHoldNumber: 1000
     PoachStackNumber: 99
     PoachUINumber: 1
     PoachHoldNumber: 0
@@ -53,7 +53,7 @@ MonoBehaviour:
     IconName: Icon/Bone_UI
     BoxStackNumber: 9999
     BoxUINumber: 3
-    BoxHoldNumber: 60
+    BoxHoldNumber: 1000
     PoachStackNumber: 99
     PoachUINumber: 3
     PoachHoldNumber: 0
@@ -62,7 +62,7 @@ MonoBehaviour:
     IconName: Icon/Botanical_UI
     BoxStackNumber: 9999
     BoxUINumber: 4
-    BoxHoldNumber: 80
+    BoxHoldNumber: 1000
     PoachStackNumber: 99
     PoachUINumber: 4
     PoachHoldNumber: 0
@@ -80,7 +80,7 @@ MonoBehaviour:
     IconName: Icon/Vine_UI
     BoxStackNumber: 9999
     BoxUINumber: 6
-    BoxHoldNumber: 60
+    BoxHoldNumber: 1000
     PoachStackNumber: 99
     PoachUINumber: 1
     PoachHoldNumber: 0

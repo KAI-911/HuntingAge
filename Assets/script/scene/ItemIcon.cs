@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.Events;
 [System.Serializable]
 public class ItemIcon : MonoBehaviour
 {
@@ -40,21 +41,56 @@ public class ItemIcon : MonoBehaviour
     }
     public void SetText(string _text)
     {
-        this._iconData._textData.text = _text;
+        //this._iconData._textData.text = _text;
+        var iconData = this.IconData;
+        iconData._textData.text = _text;
+        this.SetIcondata(iconData);
+
     }
     public void SetTable(Vector2 _table)
     {
         var iconData = this.IconData; iconData._tableSize = _table;
         this.SetIcondata(iconData);
     }
-    public void SetButtonText(string _taxt)
+    public bool SetButtonText(int _buttonNumber, string _taxt)
     {
+        if (_buttonNumber < 0 || _buttonNumber > GetSize) return false;
+        Buttons[_buttonNumber].GetComponentInChildren<Text>().text = _taxt;
+        return true;
+    }
+    public void SetButtonOnClick(int _buttonNumber, UnityAction action)
+    {
+        if (_buttonNumber < 0 || _buttonNumber > GetSize) return;
+        var button = Buttons[_buttonNumber].GetComponent<Button>();
+        button.onClick.RemoveAllListeners();
+        button.onClick.AddListener(action);
+    }
+    public void CurrentButtonInvoke()
+    {
+        Buttons[_currentNunber].GetComponent<Button>().onClick.Invoke();
+    }
 
+
+    public void AdjustmentImage(RectTransform rectTransform)
+    {
+        AdjustmentImage(rectTransform, CurrentNunber);
+    }
+
+
+    public bool AdjustmentImage(RectTransform rectTransform, int currentNunber)
+    {
+        if (currentNunber < 0 || currentNunber > GetSize) return false;
+        //currentNunberのボタンのUI座標を取得
+        var rect = Buttons[currentNunber].GetComponent<RectTransform>();
+        //currentNunberのボタンのUI座標から横にずらす
+        rectTransform.anchoredPosition = new Vector2(rect.anchoredPosition.x + rect.sizeDelta.x + _iconData._padding, rect.anchoredPosition.y);
+        return true;
     }
     private void Awake()
     {
         _currentNunber = 0;
     }
+
 
     private void Update()
     {
