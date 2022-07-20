@@ -10,14 +10,13 @@ public class kichen : UIBase
 {
     //プレイヤーが近くまで来たか判断
     [SerializeField] TargetChecker _kichenChecker;
-    //確認用
-    [SerializeField] Confirmation _confirmation;
-    //武器データリスト
-    [SerializeField] ItemDataList _itemDataList;
     //強化する武器のID
     [SerializeField] string _cleateItemID;
     //ボックスかポーチどっちに送るか
     [SerializeField] bool _toPouch;
+    //何個作るか
+    int cleateNum;
+    private GameObject countObject;
 
     enum IconType
     {
@@ -106,23 +105,32 @@ public class kichen : UIBase
 
     public class TypeSelectMode : UIStateBase
     {
-        private GameObject count;
         private int min, max, now;
         private bool lockflg;
+        private bool _check;
         public override void OnEnter(UIBase owner, UIStateBase prevState)
         {
+            if (prevState.GetType() == typeof(CleateItem))
+            {
+                owner.ItemIconList[(int)IconType.TypeSelect].DeleteButton();
+            }
+            _check = false;
             Debug.Log(owner.GetComponent<kichen>()._toPouch);
             var UI = owner.ItemIconList[(int)IconType.TypeSelect];
             UI.SetText("作るアイテム");
-            Debug.Log("e!");
             //モード選択画面
-            var Item = owner.GetComponent<kichen>()._itemDataList.Dictionary;
-            Debug.Log("a!");
+            var Item = GameManager.Instance.ItemDataList.Dictionary;
             List<ItemData> _createItem = new List<ItemData>();
-            Debug.Log("o!");
             foreach (var item in Item)
             {
-                if (item.Value.CreatableLevel < GameManager.Instance.VillageData.KitchenLevel) _createItem.Add(item.Value);
+                if (item.Value.CreatableLevel < GameManager.Instance.VillageData.KitchenLevel)
+                {
+                    for (int i = 0; i < item.Value.NeedMaterialLst.Count; i++)
+                    {
+                        if (!GameManager.Instance.MaterialDataList.Dictionary.ContainsKey(item.Value.NeedMaterialLst[i].materialID)) continue;
+                    }
+                    _createItem.Add(item.Value);
+                }
             }
             Debug.Log(_createItem[0].baseData.Name);
             var table = owner.ItemIconList[(int)IconType.TypeSelect];
@@ -133,6 +141,7 @@ public class kichen : UIBase
 
             for (int i = 0; i < _createItem.Count; i++)
             {
+<<<<<<< HEAD:Assets/Resources/kichen.cs
                 int num = i;
                 var buttonText = list[num].GetComponentInChildren<Text>();
                 buttonText.text = _createItem[num].baseData.Name;
@@ -143,19 +152,35 @@ public class kichen : UIBase
                     owner.GetComponent<kichen>()._cleateItemID = _createItem[num].baseData.ID; lockflg = false;
                     count = Instantiate(Resources.Load("UI/Count"), Vector3.zero, Quaternion.identity) as GameObject;
                     var rect = count.GetComponent<RectTransform>();
+=======
+                int numi = i;
+                var buttonText = list[numi].GetComponentInChildren<Text>();
+                buttonText.text = _createItem[numi].baseData.Name;
+                var button = list[numi].GetComponent<Button>();
+                button.onClick.AddListener(() =>
+                {
+                    _check = true;
+                    owner.GetComponent<kichen>()._cleateItemID = _createItem[numi].baseData.ID; lockflg = false;
+                    owner.GetComponent<kichen>().countObject = Instantiate(Resources.Load("UI/Count"), Vector3.zero, Quaternion.identity) as GameObject;
+                    var rect = owner.GetComponent<kichen>().countObject.GetComponent<RectTransform>();
+>>>>>>> cf2e1680e54e9e2490cd8414ed3f94cd8c6d6625:Assets/Scenes/Base/kitchen/kichen.cs
                     Vector2 buttonSize = new Vector2();
                     ItemIconData data = new ItemIconData();
 
                     buttonSize = owner.ItemIconList[(int)IconType.TypeSelect].IconData._buttonPrefab.GetComponent<RectTransform>().sizeDelta;
                     data = owner.ItemIconList[(int)IconType.TypeSelect].IconData;
 
-                    int w = Mathf.Abs((int)(buttonSize.x + data._padding));
-                    var pos = new Vector2(list[num].GetComponent<RectTransform>().anchoredPosition.x + w, list[num].GetComponent<RectTransform>().anchoredPosition.y);
+                    buttonSize = owner.ItemIconList[(int)IconType.TypeSelect].IconData._buttonPrefab.GetComponent<RectTransform>().sizeDelta;
+                    data = owner.ItemIconList[(int)IconType.TypeSelect].IconData;
+                    var num = owner.ItemIconList[(int)IconType.TypeSelect].CurrentNunber;
+                    int w = Mathf.Abs((num % (int)data._tableSize.y) * (int)(buttonSize.x + data._padding)) + (int)(buttonSize.x + data._padding);
+                    int h = Mathf.Abs((num / (int)data._tableSize.y) * (int)(buttonSize.y + data._padding));
+                    var pos = new Vector2(data._leftTopPos.x + w, data._leftTopPos.y - h);
                     rect.anchoredPosition = pos;
-                    count.transform.SetParent(GameManager.Instance.ItemCanvas.Canvas.transform);
+                    owner.GetComponent<kichen>().countObject.transform.SetParent(GameManager.Instance.ItemCanvas.Canvas.transform);
 
-                    now = 1;
-                    min = 1;
+                    now = 0;
+                    min = 0;
                     max = 9999;
 
                     string id = owner.GetComponent<kichen>()._cleateItemID;
@@ -164,42 +189,55 @@ public class kichen : UIBase
                     var counter = _Item.Dictionary[id].NeedMaterialLst;
                     for (int i = 0; i < counter.Count; i++)
                     {
+                        string _needMaterialID = _Item.Dictionary[id].NeedMaterialLst[i].materialID;
                         var tmp = counter[i].requiredCount;
-                        var materialNum = _material.Dictionary[id].BoxHoldNumber + _material.Dictionary[id].PoachHoldNumber;
+                        var materialNum = _material.Dictionary[_needMaterialID].BoxHoldNumber + _material.Dictionary[_needMaterialID].PoachHoldNumber;
                         if ((materialNum / tmp) < max)
                         {
                             max = materialNum / tmp;
                         }
                     }
+                    Debug.Log(max);
                 });
             }
         }
         public override void OnUpdate(UIBase owner)
         {
-            var vec = UIManager.Instance.InputSelection.ReadValue<Vector2>();
-            if (vec.sqrMagnitude > 0)
-            {
-                if (lockflg == false)
-                {
-                    if (vec.y > 0) now++;
-                    else now--;
-                    now = Mathf.Clamp(now, min, max);
-                    lockflg = true;
 
-                    count.GetComponentInChildren<Text>().text = now.ToString();
-                }
+            if (!_check)
+            {
+                owner.ItemIconList[(int)IconType.TypeSelect].Select(UIManager.Instance.InputSelection.ReadValue<Vector2>());
             }
             else
             {
-                lockflg = false;
+                var vec = UIManager.Instance.InputSelection.ReadValue<Vector2>();
+                if (vec.sqrMagnitude > 0)
+                {
+                    if (lockflg == false)
+                    {
+                        if (vec.y > 0) now++;
+                        else now--;
+                        now = Mathf.Clamp(now, min, max);
+                        lockflg = true;
+
+                        owner.GetComponent<kichen>().countObject.GetComponentInChildren<Text>().text = now.ToString();
+                    }
+                }
+                else
+                {
+                    lockflg = false;
+                }
             }
         }
         public override void OnExit(UIBase owner, UIStateBase nextState)
         {
+            Destroy(owner.GetComponent<kichen>().countObject);
             owner.ItemIconList[(int)IconType.TypeSelect].DeleteButton();
+
         }
         public override void OnProceed(UIBase owner)
         {
+<<<<<<< HEAD:Assets/Resources/kichen.cs
             owner.ItemIconList[(int)IconType.TypeSelect].Buttons[owner.ItemIconList[(int)IconType.TypeSelect].CurrentNunber].GetComponent<Button>().onClick.Invoke();
             if (!owner.ItemIconList[(int)IconType.TypeSelect].CheckCurrentNunberItem()) return;
             var list = owner.ItemIconList[(int)IconType.TypeSelect];
@@ -211,6 +249,18 @@ public class kichen : UIBase
             owner.GetComponent<UIItemBox>().UISet();
 
             owner.ChangeState<CleateItem>();
+=======
+            if (!_check)
+            {
+                Debug.Log("futuu");
+                owner.ItemIconList[(int)IconType.TypeSelect].Buttons[owner.ItemIconList[(int)IconType.TypeSelect].CurrentNunber].GetComponent<Button>().onClick.Invoke();
+            }
+            else
+            {
+                owner.GetComponent<kichen>().cleateNum = now;
+                owner.ChangeState<CleateItem>();
+            }
+>>>>>>> cf2e1680e54e9e2490cd8414ed3f94cd8c6d6625:Assets/Scenes/Base/kitchen/kichen.cs
         }
         public override void OnBack(UIBase owner)
         {
@@ -222,68 +272,35 @@ public class kichen : UIBase
     public class CleateItem : UIStateBase
     {
         private bool ConfirmationSelect;
+        private ItemIcon confimationIcon;
+
         public override void OnEnter(UIBase owner, UIStateBase prevState)
         {
-            ConfirmationSelect = true;
-            var icon = owner.ItemIconList[(int)IconType.Confirmation].IconData;
+            confimationIcon = owner.ItemIconList[(int)IconType.Confirmation];
+            Debug.Log("cleateItemnikitayo");
+            ConfirmationSelect = false;
+            var icon = confimationIcon.IconData;
             icon._textData.text = "素材を消費してアイテムを作りますか？";
-            owner.ItemIconList[(int)IconType.Confirmation].SetIcondata(icon);
-            var list = owner.ItemIconList[(int)IconType.Confirmation].CreateButton();
+            confimationIcon.SetIcondata(icon);
+            var list = confimationIcon.CreateButton();
 
             var button0Text = list[0].GetComponentInChildren<Text>();
             button0Text.text = "はい";
             var button0 = list[0].GetComponent<Button>();
-            switch (GameManager.Instance.WeaponDataList.Enhancement(owner.GetComponent<kichen>()._cleateItemID))
-
+            button0.onClick.AddListener(() =>
             {
-                case 0:
-                    button0.onClick.AddListener(() =>
-                    {
-                        ConfirmationSelect = true;
-                        var icon = owner.ItemIconList[(int)IconType.Confirmation].IconData;
-                        icon._textData.text = "すでに所持しています";
-                        icon._tableSize = new Vector2(1, 1);
-                        owner.ItemIconList[(int)IconType.Confirmation].SetIcondata(icon);
-                        var list = owner.ItemIconList[(int)IconType.Confirmation].CreateButton();
-                        var buttonText = list[0].GetComponentInChildren<Text>();
-                        buttonText.text = "OK";
-                        var button = list[0].GetComponent<Button>();
-                        button.onClick.AddListener(() => owner.ChangeState<TypeSelectMode>());
-                    });
-                    break;
-                case 1:
-                    button0.onClick.AddListener(() =>
-                    {
-                        ConfirmationSelect = true;
-                        var icon = owner.ItemIconList[(int)IconType.Confirmation].IconData;
-                        icon._textData.text = "製造完了";
-                        icon._tableSize = new Vector2(1, 1);
-                        owner.ItemIconList[(int)IconType.Confirmation].SetIcondata(icon);
-                        var list = owner.ItemIconList[(int)IconType.Confirmation].CreateButton();
-                        var buttonText = list[0].GetComponentInChildren<Text>();
-                        buttonText.text = "OK";
-                        var button = list[0].GetComponent<Button>();
-                        button.onClick.AddListener(() => owner.ChangeState<TypeSelectMode>());
-                    });
-                    break;
-                case 2:
-                    button0.onClick.AddListener(() =>
-                    {
-                        ConfirmationSelect = true;
-                        var icon = owner.ItemIconList[(int)IconType.Confirmation].IconData;
-                        icon._textData.text = "素材が足りません";
-                        icon._tableSize = new Vector2(1, 1);
-                        owner.ItemIconList[(int)IconType.Confirmation].SetIcondata(icon);
-                        var list = owner.ItemIconList[(int)IconType.Confirmation].CreateButton();
-                        var buttonText = list[0].GetComponentInChildren<Text>();
-                        buttonText.text = "OK";
-                        var button = list[0].GetComponent<Button>();
-                        button.onClick.AddListener(() => owner.ChangeState<TypeSelectMode>());
-                    });
-                    break;
-                default:
-                    break;
-            }
+                GameManager.Instance.WeaponDataList.Enhancement(owner.GetComponent<kichen>()._cleateItemID);
+                ConfirmationSelect = true;
+                var icon = confimationIcon.IconData;
+                icon._textData.text = "調理完了";
+                icon._tableSize = new Vector2(1, 1);
+                confimationIcon.SetIcondata(icon);
+                var list = confimationIcon.CreateButton();
+                var buttonText = list[0].GetComponentInChildren<Text>();
+                buttonText.text = "OK";
+                var button = list[0].GetComponent<Button>();
+                button.onClick.AddListener(() => owner.ChangeState<TypeSelectMode>());
+            });
 
             var button1Text = list[1].GetComponentInChildren<Text>();
             button1Text.text = "いいえ";
@@ -292,22 +309,16 @@ public class kichen : UIBase
         }
         public override void OnUpdate(UIBase owner)
         {
-            if (ConfirmationSelect)
-            {
-                owner.ItemIconList[(int)IconType.Confirmation].Select(UIManager.Instance.InputSelection.ReadValue<Vector2>());
-            }
-            else
-            {
-                owner.ItemIconList[(int)IconType.TypeSelect].Select(UIManager.Instance.InputSelection.ReadValue<Vector2>());
-            }
+            confimationIcon.Select(UIManager.Instance.InputSelection.ReadValue<Vector2>());
         }
         public override void OnExit(UIBase owner, UIStateBase nextState)
         {
-            owner.ItemIconList[(int)IconType.TypeSelect].DeleteButton();
+            Destroy(owner.GetComponent<kichen>().countObject);
+            confimationIcon.DeleteButton();
         }
         public override void OnProceed(UIBase owner)
         {
-            owner.ItemIconList[(int)IconType.TypeSelect].Buttons[owner.ItemIconList[(int)IconType.TypeSelect].CurrentNunber].GetComponent<Button>().onClick.Invoke();
+            confimationIcon.Buttons[confimationIcon.CurrentNunber].GetComponent<Button>().onClick.Invoke();
         }
         public override void OnBack(UIBase owner)
         {

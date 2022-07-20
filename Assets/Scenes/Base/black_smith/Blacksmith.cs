@@ -10,8 +10,6 @@ public class Blacksmith : UIBase
 {
     //プレイヤーが近くまで来たか判断
     [SerializeField] TargetChecker _blacksmithChecker;
-    //武器データリスト
-    [SerializeField] WeaponDataList _WeaponDataList;
     //強化する武器のID
     string _EnhancementWeaponID;
 
@@ -65,13 +63,11 @@ public class Blacksmith : UIBase
             UI.SetTable(new Vector2(2, 1));
             var list = UI.CreateButton();
 
-            var button0Text = list[0].GetComponentInChildren<Text>(); button0Text.text = "製造";
-            var button0 = list[0].GetComponent<Button>();
-            button0.onClick.AddListener(() => owner.ChangeState<ProductionSelectMode>());
+            UI.SetButtonText(0, "製造");
+            UI.SetButtonOnClick(0, () => owner.ChangeState<ProductionSelectMode>());
 
-            var button1Text = list[1].GetComponentInChildren<Text>(); button1Text.text = "強化";
-            var button1 = list[1].GetComponent<Button>();
-            button1.onClick.AddListener(() => owner.ChangeState<EnhancementSelectMode>());
+            UI.SetButtonText(1, "強化");
+            UI.SetButtonOnClick(1, () => owner.ChangeState<EnhancementSelectMode>());
         }
         public override void OnExit(UIBase owner, UIStateBase nextState)
         {
@@ -97,45 +93,37 @@ public class Blacksmith : UIBase
     {
         public override void OnEnter(UIBase owner, UIStateBase prevState)
         {
-            var iconText = owner.ItemIconList[(int)IconType.TypeSelect];
-            var icon = iconText.IconData;
-            icon._textData.text = "武器製造";
-            iconText.SetIcondata(icon);
-            //ボタンの追加
-            var table = owner.ItemIconList[(int)IconType.TypeSelect];
-            var iconData = table.IconData;
-            iconData._tableSize = new Vector2(3, 1);
-            table.SetIcondata(iconData);
-            var list = owner.ItemIconList[(int)IconType.TypeSelect].CreateButton();
+            var UI = owner.ItemIconList[(int)IconType.TypeSelect];
+            UI.SetText("武器製造");
+            UI.SetTable(new Vector2(3, 1));
+            var list = UI.CreateButton();
             for (int i = 0; i < 3/*斧・槍・弓*/; i++)
             {
-                Button button = list[i].GetComponent<Button>();
-                Text buttonText = list[i].GetComponentInChildren<Text>();
                 switch (i)
                 {
                     case 0:
-                        button.onClick.AddListener(() =>
-                        {
-                            owner.GetComponent<Blacksmith>().productionWeaponType = 0;
-                            owner.ChangeState<ProductionWeaponMode>();
-                        });
-                        buttonText.text = "製造：斧";
+                        UI.SetButtonText(i, "製造：斧");
+                        UI.SetButtonOnClick(i, () =>
+                             {
+                                 owner.GetComponent<Blacksmith>().productionWeaponType = 0;
+                                 owner.ChangeState<ProductionWeaponMode>();
+                             });
                         break;
                     case 1:
-                        button.onClick.AddListener(() =>
-                        {
-                            owner.GetComponent<Blacksmith>().productionWeaponType = 1;
-                            owner.ChangeState<ProductionWeaponMode>();
-                        });
-                        buttonText.text = "製造：槍";
+                        UI.SetButtonText(i, "製造：槍");
+                        UI.SetButtonOnClick(i, () =>
+                            {
+                                owner.GetComponent<Blacksmith>().productionWeaponType = 1;
+                                owner.ChangeState<ProductionWeaponMode>();
+                            });
                         break;
                     case 2:
-                        button.onClick.AddListener(() =>
-                        {
-                            owner.GetComponent<Blacksmith>().productionWeaponType = 2;
-                            owner.ChangeState<ProductionWeaponMode>();
-                        });
-                        buttonText.text = "製造：弓";
+                        UI.SetButtonText(i, "製造：弓");
+                        UI.SetButtonOnClick(i, () =>
+                            {
+                                owner.GetComponent<Blacksmith>().productionWeaponType = 2;
+                                owner.ChangeState<ProductionWeaponMode>();
+                            });
                         break;
                 }
             }
@@ -166,112 +154,70 @@ public class Blacksmith : UIBase
         {
             Debug.Log("Blacksmith_ProductionWeaponMode_OnEnter");
             ConfirmationSelect = false;
-            var iconText = owner.ItemIconList[(int)IconType.TypeSelect];
-            var icon = iconText.IconData;
-            icon._textData.text = "武器製造";
-            iconText.SetIcondata(icon);
+            var UI = owner.ItemIconList[(int)IconType.TypeSelect];
+            var confUI = owner.ItemIconList[(int)IconType.Confirmation];
 
-            //ボタンの追加
-            var villageData = GameManager.Instance.VillageData;
-            var Weapon = owner.GetComponent<Blacksmith>()._WeaponDataList.Dictionary;
+            var Weapon = GameManager.Instance.WeaponDataList.Dictionary;
             List<WeaponData> _CreatableWeapon = new List<WeaponData>();
             foreach (var item in Weapon)
             {
-                if ((item.Value.CreatableLevel <= villageData.BlacksmithLevel)
+                if ((item.Value.CreatableLevel <= GameManager.Instance.VillageData.BlacksmithLevel)
                     && ((int)item.Value.WeaponType == owner.GetComponent<Blacksmith>().productionWeaponType))
                 {
                     _CreatableWeapon.Add(item.Value);
                 }
             }
 
-            var table = owner.ItemIconList[(int)IconType.TypeSelect];
-            var iconData = table.IconData;
-            iconData._tableSize = new Vector2(_CreatableWeapon.Count, 1);
-            table.SetIcondata(iconData);
-            var list = owner.ItemIconList[(int)IconType.TypeSelect].CreateButton();
+            UI.SetText("武器製造");
+            UI.SetTable(new Vector2(_CreatableWeapon.Count, 1));
+            UI.CreateButton();
+
             for (int i = 0; i < _CreatableWeapon.Count; i++)
             {
-                var buttonText = list[i].GetComponentInChildren<Text>();
-                buttonText.text = _CreatableWeapon[i].Name;
-                var button = list[i].GetComponent<Button>();
+                UI.SetButtonText(i, _CreatableWeapon[i].Name);
                 int num = i;
-                button.onClick.AddListener(() =>
+                UI.SetButtonOnClick(i, () =>
                 {
-                    Debug.Log("osaretayo " + _CreatableWeapon[num].ID);
                     int count = GameManager.Instance.WeaponDataList.Production(_CreatableWeapon[num].ID);
                     ConfirmationSelect = true;
 
-                    var icon = owner.ItemIconList[(int)IconType.Confirmation].IconData;
-                    icon._tableSize = new Vector2(1, 1);
-                    icon._textData.hight = 60;
-
+                    confUI.SetTable(new Vector2(1, 1));
                     switch (count)
                     {
                         case 0:
-                            icon._textData.text = "すでに所持しています";
+                            confUI.SetText("すでに所持しています");
                             break;
                         case 1:
-                            icon._textData.text = "製造完了";
+                            confUI.SetText("製造完了");
                             break;
                         case 2:
-                            icon._textData.text = "素材が足りません";
+                            confUI.SetText("素材が足りません");
                             break;
                         default:
                             break;
                     }
+                    confUI.CreateButton();
+                    confUI.SetButtonText(0, "OK");
 
-                    owner.ItemIconList[(int)IconType.Confirmation].SetIcondata(icon);
-                    var list = owner.ItemIconList[(int)IconType.Confirmation].CreateButton();
-                    var buttonText = list[0].GetComponentInChildren<Text>();
-                    var button = list[0].GetComponent<Button>();
-
-                    switch (count)
-                    {
-                        case 0:
-                            {
-                                Debug.Log("すでに所持しています");
-                                buttonText.text = "OK";
-                                button.onClick.AddListener(() => { owner.ChangeState<ProductionSelectMode>(); owner.ItemIconList[(int)IconType.Confirmation].DeleteButton(); });
-                            }
-                            break;
-                        case 1:
-                            {
-                                Debug.Log("製造完了");
-                                buttonText.text = "OK";
-                                button.onClick.AddListener(() => { owner.ChangeState<ProductionSelectMode>(); owner.ItemIconList[(int)IconType.Confirmation].DeleteButton(); });
-                            }
-                            break;
-                        case 2:
-                            {
-                                Debug.Log("素材が足りません");
-                                buttonText.text = "OK";
-                                button.onClick.AddListener(() => { owner.ChangeState<ProductionSelectMode>(); owner.ItemIconList[(int)IconType.Confirmation].DeleteButton(); });
-                            }
-                            break;
-                        default:
-                            break;
-                    }
+                    confUI.SetButtonOnClick(0, () => owner.ChangeState<ProductionSelectMode>());
                 });
             }
         }
         public override void OnUpdate(UIBase owner)
         {
-            if (ConfirmationSelect)
-            {
-                owner.ItemIconList[(int)IconType.Confirmation].Select(UIManager.Instance.InputSelection.ReadValue<Vector2>());
-            }
-            else
-            {
-                owner.ItemIconList[(int)IconType.TypeSelect].Select(UIManager.Instance.InputSelection.ReadValue<Vector2>());
-            }
+            Debug.Log(ConfirmationSelect);
+            if (ConfirmationSelect) owner.ItemIconList[(int)IconType.Confirmation].Select(UIManager.Instance.InputSelection.ReadValue<Vector2>());
+            else owner.ItemIconList[(int)IconType.TypeSelect].Select(UIManager.Instance.InputSelection.ReadValue<Vector2>());
         }
         public override void OnExit(UIBase owner, UIStateBase nextState)
         {
             owner.ItemIconList[(int)IconType.TypeSelect].DeleteButton();
+            owner.ItemIconList[(int)IconType.Confirmation].DeleteButton();
         }
         public override void OnProceed(UIBase owner)
         {
-            owner.ItemIconList[(int)IconType.TypeSelect].Buttons[owner.ItemIconList[(int)IconType.TypeSelect].CurrentNunber].GetComponent<Button>().onClick.Invoke();
+            if (ConfirmationSelect) owner.ItemIconList[(int)IconType.Confirmation].CurrentButtonInvoke();
+            else owner.ItemIconList[(int)IconType.TypeSelect].CurrentButtonInvoke();
         }
         public override void OnBack(UIBase owner)
         {
@@ -285,36 +231,28 @@ public class Blacksmith : UIBase
         public override void OnEnter(UIBase owner, UIStateBase prevState)
         {
             //ボタンの追加
-            var iconText = owner.ItemIconList[(int)IconType.TypeSelect];
-            var icon = iconText.IconData;
-            icon._textData.text = "武器強化先";
-            iconText.SetIcondata(icon);
-            var list = owner.ItemIconList[(int)IconType.TypeSelect].CreateButton();
+            var UI = owner.ItemIconList[(int)IconType.TypeSelect];
+            UI.SetText("武器強化先");
 
-            var Weapon = owner.GetComponent<Blacksmith>()._WeaponDataList.Dictionary;
+            var Weapon = GameManager.Instance.WeaponDataList.Dictionary;
             List<WeaponData> _TmpWeapon = new List<WeaponData>();
             foreach (var item in Weapon)
             {
                 if (item.Value.BoxPossession
                     && item.Value.EnhancementID != "empty") _TmpWeapon.Add(item.Value);
             }
-
-            var table = owner.ItemIconList[(int)IconType.TypeSelect];
-            var iconData = table.IconData;
-            iconData._tableSize = new Vector2(_TmpWeapon.Count, 1);
-            table.SetIcondata(iconData);
+            UI.SetTable(new Vector2(_TmpWeapon.Count, 1));
+            UI.CreateButton();
 
             for (int i = 0; i < _TmpWeapon.Count; i++)
             {
                 int num = i;
                 string enhancementID = _TmpWeapon[num].EnhancementID;
-                var buttonText = list[num].GetComponentInChildren<Text>();
-                var name = GameManager.Instance.WeaponDataList;int index = name.Keys.IndexOf(enhancementID);
-                buttonText.text = name.Values[index].Name;
-                var button = list[num].GetComponent<Button>();
-                button.onClick.AddListener(() =>
+                var name = GameManager.Instance.WeaponDataList; int index = name.Keys.IndexOf(enhancementID);
+                UI.SetButtonText(i, name.Values[index].Name);
+                UI.SetButtonOnClick(i, () =>
                 {
-                    owner.GetComponent<Blacksmith>()._EnhancementWeaponID = enhancementID;
+                    owner.GetComponent<Blacksmith>()._EnhancementWeaponID = _TmpWeapon[num].ID;
                     owner.ChangeState<EnhancementWeaponMode>();
                 });
             }
@@ -345,86 +283,75 @@ public class Blacksmith : UIBase
         {
             Debug.Log("kyoukakakuninndayo");
             //モード選択画面
-            var Weapon = owner.GetComponent<Blacksmith>()._WeaponDataList.Dictionary;
+            var Weapon = GameManager.Instance.WeaponDataList.Dictionary;
             string WeaponName = Weapon[owner.GetComponent<Blacksmith>()._EnhancementWeaponID].ID;
+            var UI = owner.ItemIconList[(int)IconType.Confirmation];
 
             ConfirmationSelect = true;
-            var icon = owner.ItemIconList[(int)IconType.Confirmation].IconData;
-            icon._textData.text = "素材を消費して武器を強化しますか？";
-            owner.ItemIconList[(int)IconType.Confirmation].SetIcondata(icon);
-            var list = owner.ItemIconList[(int)IconType.Confirmation].CreateButton();
+            UI.SetText("素材を消費して武器を強化しますか？");
+            UI.SetTable(new Vector2(1, 2));
+            UI.CreateButton();
+            UI.SetButtonText(0, "はい");
+            UI.SetButtonOnClick(0, () =>
+             {
+                 UI.DeleteButton();
+                 int count = GameManager.Instance.WeaponDataList.Enhancement(WeaponName);
+                 ConfirmationSelect = true;
 
-            var button0Text = list[0].GetComponentInChildren<Text>();
-            button0Text.text = "はい";
-            var button0 = list[0].GetComponent<Button>();
+                 var confUI = owner.ItemIconList[(int)IconType.Confirmation];
+                 confUI.SetTable(new Vector2(1, 1));
 
-            button0.onClick.AddListener(() =>
-            {
+                 switch (count)
+                 {
+                     case 0:
+                         Debug.Log("syozidayo");
+                         confUI.SetText("すでに所持しています");
+                         break;
+                     case 1:
+                         Debug.Log("kyoukadayo");
+                         confUI.SetText("強化完了");
+                         break;
+                     case 2:
+                         Debug.Log("tarinaiyo");
+                         confUI.SetText("素材が足りません");
+                         break;
+                     default:
+                         break;
+                 }
 
-                owner.ItemIconList[(int)IconType.Confirmation].DeleteButton();
-                int count = GameManager.Instance.WeaponDataList.Enhancement(WeaponName);
-                ConfirmationSelect = true;
+                 confUI.CreateButton();
 
-                var icon = owner.ItemIconList[(int)IconType.Confirmation].IconData;
-                icon._tableSize = new Vector2(1, 1);
-                icon._textData.hight = 60;
+                 switch (count)
+                 {
+                     case 0:
+                         {
+                             confUI.SetButtonText(0, "OK");
+                             confUI.SetButtonOnClick(0, () => { owner.ChangeState<EnhancementSelectMode>(); owner.ItemIconList[(int)IconType.Confirmation].DeleteButton(); });
+                         }
+                         break;
+                     case 1:
+                         {
+                             confUI.SetButtonText(0, "OK");
+                             confUI.SetButtonOnClick(0, () => { owner.ChangeState<EnhancementSelectMode>(); owner.ItemIconList[(int)IconType.Confirmation].DeleteButton(); });
+                         }
+                         break;
+                     case 2:
+                         {
+                             confUI.SetButtonText(0, "OK");
+                             confUI.SetButtonOnClick(0, () => { owner.ChangeState<EnhancementSelectMode>(); owner.ItemIconList[(int)IconType.Confirmation].DeleteButton(); });
+                         }
+                         break;
+                     default:
+                         break;
+                 }
+             });
 
-                switch (count)
-                {
-                    case 0:
-                Debug.Log("syozidayo");
-                        icon._textData.text = "すでに所持しています";
-                        break;
-                    case 1:
-                        Debug.Log("kyoukadayo");
-                        icon._textData.text = "強化完了";
-                        break;
-                    case 2:
-                        Debug.Log("tarinaiyo");
-                        icon._textData.text = "素材が足りません";
-                        break;
-                    default:
-                        break;
-                }
-
-                owner.ItemIconList[(int)IconType.Confirmation].SetIcondata(icon);
-                var list = owner.ItemIconList[(int)IconType.Confirmation].CreateButton();
-                var buttonText = list[0].GetComponentInChildren<Text>();
-                var button = list[0].GetComponent<Button>();
-
-                switch (count)
-                {
-                    case 0:
-                        {
-                            buttonText.text = "OK";
-                            button.onClick.AddListener(() => { owner.ChangeState<EnhancementSelectMode>(); owner.ItemIconList[(int)IconType.Confirmation].DeleteButton(); });
-                        }
-                        break;
-                    case 1:
-                        {
-                            buttonText.text = "OK";
-                            button.onClick.AddListener(() => { owner.ChangeState<EnhancementSelectMode>(); owner.ItemIconList[(int)IconType.Confirmation].DeleteButton(); });
-                        }
-                        break;
-                    case 2:
-                        {
-                            buttonText.text = "OK";
-                            button.onClick.AddListener(() => { owner.ChangeState<EnhancementSelectMode>(); owner.ItemIconList[(int)IconType.Confirmation].DeleteButton(); });
-                        }
-                        break;
-                    default:
-                        break;
-                }
-            });
-
-            var button1Text = list[1].GetComponentInChildren<Text>();
-            button1Text.text = "いいえ";
-            var button1 = list[1].GetComponent<Button>();
-            button1.onClick.AddListener(() => { owner.ChangeState<EnhancementSelectMode>(); owner.ItemIconList[(int)IconType.Confirmation].DeleteButton(); });
+            UI.SetButtonText(1, "いいえ");
+            UI.SetButtonOnClick(1, () => { owner.ChangeState<EnhancementSelectMode>(); owner.ItemIconList[(int)IconType.Confirmation].DeleteButton(); });
         }
         public override void OnUpdate(UIBase owner)
         {
-                owner.ItemIconList[(int)IconType.Confirmation].Select(UIManager.Instance.InputSelection.ReadValue<Vector2>());
+            owner.ItemIconList[(int)IconType.Confirmation].Select(UIManager.Instance.InputSelection.ReadValue<Vector2>());
         }
         public override void OnExit(UIBase owner, UIStateBase nextState)
         {
@@ -432,7 +359,8 @@ public class Blacksmith : UIBase
         }
         public override void OnProceed(UIBase owner)
         {
-            owner.ItemIconList[(int)IconType.Confirmation].Buttons[owner.ItemIconList[(int)IconType.Confirmation].CurrentNunber].GetComponent<Button>().onClick.Invoke();
+            //owner.ItemIconList[(int)IconType.Confirmation].Buttons[owner.ItemIconList[(int)IconType.Confirmation].CurrentNunber].GetComponent<Button>().onClick.Invoke();
+            owner.ItemIconList[(int)IconType.Confirmation].CurrentButtonInvoke();
         }
         public override void OnBack(UIBase owner)
         {

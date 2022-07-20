@@ -104,13 +104,18 @@ public class WeaponDataList : MonoBehaviour, ISerializationCallbackReceiver
     {
         Debug.Log("DataListmadekiteTukuretayo");
         int index = keys.FindIndex(n => n.StartsWith(_ID));
-        var data = values[index + 1];
-        if (data.BoxPossession) return 0;
+        var data = values[index];
+        int enhIndex = keys.FindIndex(n => n.StartsWith(data.EnhancementID));
+        var enhdata = values[enhIndex];
+        if (enhdata.BoxPossession) return 0;
 
-        for (int i = 0; i < data.ProductionNeedMaterialLst.Count; i++)
+        Debug.Log(data.ID);
+        Debug.Log(enhdata.ID);
+
+        for (int i = 0; i < enhdata.ProductionNeedMaterialLst.Count; i++)
         {
-            string needID = data.EnhancementNeedMaterialLst[i].materialID;
-            int needRequiredCount = data.EnhancementNeedMaterialLst[i].requiredCount;
+            string needID = enhdata.EnhancementNeedMaterialLst[i].materialID;
+            int needRequiredCount = enhdata.EnhancementNeedMaterialLst[i].requiredCount;
 
             var _material = GameManager.Instance.MaterialDataList;
             if (!(_material.Dictionary.ContainsKey(needID))) return 2;
@@ -124,11 +129,11 @@ public class WeaponDataList : MonoBehaviour, ISerializationCallbackReceiver
         ItemsConsumption(_ID, false);
 
         Debug.Log("syouhimadesitayo");
-        data.BoxPossession = true;
-        values[index + 1] = data;
-        var data1 = values[index];
-        data1.BoxPossession = false;
-        values[index] = data1;
+        enhdata.BoxPossession = true;
+        values[enhIndex] = enhdata;
+        data.BoxPossession = false;
+        values[index] = data;
+        Debug.Log("dataList" + values[index].BoxPossession + "kakuninndayo");
         DesrializeDictionary();
 
         return 1;
@@ -136,9 +141,6 @@ public class WeaponDataList : MonoBehaviour, ISerializationCallbackReceiver
 
     public void ItemsConsumption(string _ID, bool _production)
     {
-
-
-        Debug.Log("kannsuuyobaretayo");
         int index = keys.FindIndex(n => n.StartsWith(_ID));
         //Debug.Log(index);
         var data = values[index];
@@ -167,7 +169,6 @@ public class WeaponDataList : MonoBehaviour, ISerializationCallbackReceiver
                 needRequired.Add(data.EnhancementNeedMaterialLst[count].requiredCount);
             }
         }
-        Debug.Log("syouhisetteimadesitayo");
 
 
 

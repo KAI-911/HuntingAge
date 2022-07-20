@@ -26,7 +26,11 @@ MonoBehaviour:
     IconName: Icon/Stone_UI
     BoxStackNumber: 9999
     BoxUINumber: 0
+<<<<<<< HEAD
     BoxHoldNumber: 2
+=======
+    BoxHoldNumber: 1000
+>>>>>>> cf2e1680e54e9e2490cd8414ed3f94cd8c6d6625
     PoachStackNumber: 99
     PoachUINumber: 0
     PoachHoldNumber: 0
@@ -34,8 +38,13 @@ MonoBehaviour:
     Name: "\u6728"
     IconName: Icon/Wood_UI
     BoxStackNumber: 9999
+<<<<<<< HEAD
     BoxUINumber: 18
     BoxHoldNumber: 2
+=======
+    BoxUINumber: 1
+    BoxHoldNumber: 1000
+>>>>>>> cf2e1680e54e9e2490cd8414ed3f94cd8c6d6625
     PoachStackNumber: 99
     PoachUINumber: 1
     PoachHoldNumber: 1
@@ -52,8 +61,13 @@ MonoBehaviour:
     Name: "\u9AA8"
     IconName: Icon/Bone_UI
     BoxStackNumber: 9999
+<<<<<<< HEAD
     BoxUINumber: 24
     BoxHoldNumber: 6
+=======
+    BoxUINumber: 3
+    BoxHoldNumber: 1000
+>>>>>>> cf2e1680e54e9e2490cd8414ed3f94cd8c6d6625
     PoachStackNumber: 99
     PoachUINumber: 0
     PoachHoldNumber: 2
@@ -62,7 +76,11 @@ MonoBehaviour:
     IconName: Icon/Botanical_UI
     BoxStackNumber: 9999
     BoxUINumber: 4
+<<<<<<< HEAD
     BoxHoldNumber: 8
+=======
+    BoxHoldNumber: 1000
+>>>>>>> cf2e1680e54e9e2490cd8414ed3f94cd8c6d6625
     PoachStackNumber: 99
     PoachUINumber: 2
     PoachHoldNumber: 4
@@ -79,8 +97,13 @@ MonoBehaviour:
     Name: "\u30C4\u30BF"
     IconName: Icon/Vine_UI
     BoxStackNumber: 9999
+<<<<<<< HEAD
     BoxUINumber: 12
     BoxHoldNumber: 5
+=======
+    BoxUINumber: 6
+    BoxHoldNumber: 1000
+>>>>>>> cf2e1680e54e9e2490cd8414ed3f94cd8c6d6625
     PoachStackNumber: 99
     PoachUINumber: 0
     PoachHoldNumber: 0
