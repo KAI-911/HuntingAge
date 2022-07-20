@@ -175,7 +175,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2858051948614465947}
-  - component: {fileID: 1692696955927494216}
+  - component: {fileID: 675142009655612064}
   m_Layer: 0
   m_Name: collision
   m_TagString: Ground
@@ -190,16 +190,16 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 715272700638892941}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: -1.91}
-  m_LocalScale: {x: 100, y: 100, z: 100}
-  m_ConstrainProportionsScale: 1
+  m_LocalRotation: {x: -0, y: -0.052218284, z: -0, w: 0.9986357}
+  m_LocalPosition: {x: 0.34, y: 0.81, z: 0.26}
+  m_LocalScale: {x: 2.34, y: 6.3, z: 9.01}
+  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 4673574051462356093}
   m_RootOrder: 4
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!64 &1692696955927494216
-MeshCollider:
+  m_LocalEulerAnglesHint: {x: 0, y: -5.986, z: 0}
+--- !u!65 &675142009655612064
+BoxCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -208,10 +208,9 @@ MeshCollider:
   m_Material: {fileID: 0}
   m_IsTrigger: 0
   m_Enabled: 1
-  serializedVersion: 4
-  m_Convex: 0
-  m_CookingOptions: 30
-  m_Mesh: {fileID: -3696680023821087833, guid: d38d9f5d9b24f354ea931895676b6261, type: 3}
+  serializedVersion: 2
+  m_Size: {x: 1, y: 1, z: 1}
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &2825656116994923929
 GameObject:
   m_ObjectHideFlags: 0

@@ -86,7 +86,7 @@ Material:
     - _DstBlend: 0
     - _FurClip: 0.08
     - _FurDensity: 1.1
-    - _FurLength: 0.001
+    - _FurLength: 0.0015
     - _FurShading: 0.25
     - _FurThinness: 3.01
     - _GlossMapScale: 1
