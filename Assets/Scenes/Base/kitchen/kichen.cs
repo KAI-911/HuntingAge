@@ -60,29 +60,18 @@ public class kichen : UIBase
 
     public class BoxorPouch : UIStateBase
     {
-        private bool ConfirmationSelect;
         public override void OnEnter(UIBase owner, UIStateBase prevState)
         {
-            ConfirmationSelect = true;
-            var icon = owner.ItemIconList[(int)IconType.TypeSelect].IconData;
-            icon._textData.text = "アイテムをどこに送りますか？";
-            owner.ItemIconList[(int)IconType.TypeSelect].SetIcondata(icon);
-            var table = owner.ItemIconList[(int)IconType.TypeSelect];
-            var iconData = table.IconData;
-            iconData._tableSize = new Vector2(2, 1);
-            table.SetIcondata(iconData);
-            var list = owner.ItemIconList[(int)IconType.TypeSelect].CreateButton();
+            var UI = owner.ItemIconList[(int)IconType.TypeSelect];
+            UI.SetText("アイテムをどこに送りますか？");
+            UI.SetTable(new Vector2(2, 1));
+            UI.CreateButton();
+            Debug.Log("dasitayo");
+            UI.SetButtonText(0, "ボックスへ");
+            UI.SetButtonOnClick(0, () => { owner.GetComponent<kichen>()._toPouch = false; owner.ChangeState<TypeSelectMode>(); });
 
-            var button0Text = list[0].GetComponentInChildren<Text>();
-            button0Text.text = "ボックスへ";
-            var button0 = list[0].GetComponent<Button>();
-            button0.onClick.AddListener(() => { owner.GetComponent<kichen>()._toPouch = false; owner.ChangeState<TypeSelectMode>(); });
-
-
-            var button1Text = list[1].GetComponentInChildren<Text>();
-            button1Text.text = "ポーチへ";
-            var button1 = list[1].GetComponent<Button>();
-            button1.onClick.AddListener(() => { owner.GetComponent<kichen>()._toPouch = true; owner.ChangeState<TypeSelectMode>(); });
+            UI.SetButtonText(1, "ポーチへ");
+            UI.SetButtonOnClick(1, () => { owner.GetComponent<kichen>()._toPouch = true; owner.ChangeState<TypeSelectMode>(); });
         }
         public override void OnUpdate(UIBase owner)
         {
@@ -105,6 +94,7 @@ public class kichen : UIBase
 
     public class TypeSelectMode : UIStateBase
     {
+        private GameObject count;
         private int min, max, now;
         private bool lockflg;
         private bool _check;
@@ -115,13 +105,11 @@ public class kichen : UIBase
                 owner.ItemIconList[(int)IconType.TypeSelect].DeleteButton();
             }
             _check = false;
-            Debug.Log(owner.GetComponent<kichen>()._toPouch);
             var UI = owner.ItemIconList[(int)IconType.TypeSelect];
             UI.SetText("作るアイテム");
             //モード選択画面
-            var Item = GameManager.Instance.ItemDataList.Dictionary;
             List<ItemData> _createItem = new List<ItemData>();
-            foreach (var item in Item)
+            foreach (var item in GameManager.Instance.ItemDataList.Dictionary)
             {
                 if (item.Value.CreatableLevel < GameManager.Instance.VillageData.KitchenLevel)
                 {
@@ -132,40 +120,19 @@ public class kichen : UIBase
                     _createItem.Add(item.Value);
                 }
             }
-            Debug.Log(_createItem[0].baseData.Name);
-            var table = owner.ItemIconList[(int)IconType.TypeSelect];
-            var iconData = table.IconData;
-            iconData._tableSize = new Vector2(_createItem.Count, 1);
-            table.SetIcondata(iconData);
-            var list = owner.ItemIconList[(int)IconType.TypeSelect].CreateButton();
+            UI.SetTable(new Vector2(_createItem.Count, 1));
+            UI.CreateButton();
 
             for (int i = 0; i < _createItem.Count; i++)
             {
                 int numi = i;
-                var buttonText = list[numi].GetComponentInChildren<Text>();
-                buttonText.text = _createItem[numi].baseData.Name;
-                var button = list[numi].GetComponent<Button>();
-                button.onClick.AddListener(() =>
+                UI.SetButtonText(numi, _createItem[numi].baseData.Name);
+                UI.SetButtonOnClick(numi, () =>
                 {
                     _check = true;
-                    owner.GetComponent<kichen>()._cleateItemID = _createItem[numi].baseData.ID; lockflg = false;
-                    owner.GetComponent<kichen>().countObject = Instantiate(Resources.Load("UI/Count"), Vector3.zero, Quaternion.identity) as GameObject;
-                    var rect = owner.GetComponent<kichen>().countObject.GetComponent<RectTransform>();
-                    Vector2 buttonSize = new Vector2();
-                    ItemIconData data = new ItemIconData();
-
-                    buttonSize = owner.ItemIconList[(int)IconType.TypeSelect].IconData._buttonPrefab.GetComponent<RectTransform>().sizeDelta;
-                    data = owner.ItemIconList[(int)IconType.TypeSelect].IconData;
-
-                    buttonSize = owner.ItemIconList[(int)IconType.TypeSelect].IconData._buttonPrefab.GetComponent<RectTransform>().sizeDelta;
-                    data = owner.ItemIconList[(int)IconType.TypeSelect].IconData;
-                    var num = owner.ItemIconList[(int)IconType.TypeSelect].CurrentNunber;
-                    int w = Mathf.Abs((num % (int)data._tableSize.y) * (int)(buttonSize.x + data._padding)) + (int)(buttonSize.x + data._padding);
-                    int h = Mathf.Abs((num / (int)data._tableSize.y) * (int)(buttonSize.y + data._padding));
-                    var pos = new Vector2(data._leftTopPos.x + w, data._leftTopPos.y - h);
-                    rect.anchoredPosition = pos;
-                    owner.GetComponent<kichen>().countObject.transform.SetParent(GameManager.Instance.ItemCanvas.Canvas.transform);
-
+                    count = Instantiate(Resources.Load("UI/Count"), GameManager.Instance.ItemCanvas.Canvas.transform) as GameObject;
+                    owner.ItemIconList[(int)IconType.TypeSelect].AdjustmentImage(count.GetComponent<RectTransform>());
+                   
                     now = 0;
                     min = 0;
                     max = 9999;
@@ -184,7 +151,6 @@ public class kichen : UIBase
                             max = materialNum / tmp;
                         }
                     }
-                    Debug.Log(max);
                 });
             }
         }
@@ -207,7 +173,7 @@ public class kichen : UIBase
                         now = Mathf.Clamp(now, min, max);
                         lockflg = true;
 
-                        owner.GetComponent<kichen>().countObject.GetComponentInChildren<Text>().text = now.ToString();
+                        count.GetComponentInChildren<Text>().text = now.ToString();
                     }
                 }
                 else
@@ -252,33 +218,25 @@ public class kichen : UIBase
             confimationIcon = owner.ItemIconList[(int)IconType.Confirmation];
             Debug.Log("cleateItemnikitayo");
             ConfirmationSelect = false;
-            var icon = confimationIcon.IconData;
-            icon._textData.text = "素材を消費してアイテムを作りますか？";
-            confimationIcon.SetIcondata(icon);
-            var list = confimationIcon.CreateButton();
+            confimationIcon.SetText("素材を消費してアイテムを作りますか？");
+            confimationIcon.SetTable(new Vector2(1, 2));
+            confimationIcon.CreateButton();
 
-            var button0Text = list[0].GetComponentInChildren<Text>();
-            button0Text.text = "はい";
-            var button0 = list[0].GetComponent<Button>();
-            button0.onClick.AddListener(() =>
+            confimationIcon.SetButtonText(0, "はい");
+            confimationIcon.SetButtonOnClick(0, () =>
             {
                 GameManager.Instance.WeaponDataList.Enhancement(owner.GetComponent<kichen>()._cleateItemID);
                 ConfirmationSelect = true;
-                var icon = confimationIcon.IconData;
-                icon._textData.text = "調理完了";
-                icon._tableSize = new Vector2(1, 1);
-                confimationIcon.SetIcondata(icon);
-                var list = confimationIcon.CreateButton();
-                var buttonText = list[0].GetComponentInChildren<Text>();
-                buttonText.text = "OK";
-                var button = list[0].GetComponent<Button>();
-                button.onClick.AddListener(() => owner.ChangeState<TypeSelectMode>());
+                var UI = confimationIcon;
+                UI.SetText("調理完了");
+                UI.SetTable(new Vector2(1, 1));
+                UI.CreateButton();
+                UI.SetButtonText(0,"OK");
+                UI.SetButtonOnClick(0,() => owner.ChangeState<TypeSelectMode>());
             });
 
-            var button1Text = list[1].GetComponentInChildren<Text>();
-            button1Text.text = "いいえ";
-            var button1 = list[1].GetComponent<Button>();
-            button1.onClick.AddListener(() => owner.ChangeState<TypeSelectMode>());
+            confimationIcon.SetButtonText(1, "いいえ");
+            confimationIcon.SetButtonOnClick(1, () => owner.ChangeState<TypeSelectMode>());
         }
         public override void OnUpdate(UIBase owner)
         {

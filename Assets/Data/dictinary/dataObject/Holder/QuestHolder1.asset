@@ -22,28 +22,31 @@ MonoBehaviour:
   values:
   - Quests:
     - Quest001
-    - Quest001
-    - Quest001
-    - Quest001
-    - Quest001
-  - Quests:
     - Quest002
-    - Quest002
-    - Quest002
-    - Quest002
-    - Quest002
-  - Quests:
     - Quest003
-    - Quest003
-    - Quest003
-    - Quest003
-    - Quest003
+    - Quest004
   - Quests:
     - Quest001
+    - Quest002
+    - Quest003
+    - Quest004
+  - Quests:
     - Quest001
-  - Quests:
     - Quest002
-    - Quest002
+    - Quest003
+    - Quest004
   - Quests:
+    - Quest001
+    - Quest002
     - Quest003
+    - Quest004
+  - Quests:
+    - Quest001
+    - Quest002
     - Quest003
+    - Quest004
+  - Quests:
+    - Quest001
+    - Quest002
+    - Quest003
+    - Quest004

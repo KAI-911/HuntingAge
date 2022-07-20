@@ -70,6 +70,8 @@ public partial class Player : Singleton<Player>
     private CollectionScript _collectionScript;
     public CollectionScript CollectionScript { get => _collectionScript; set => _collectionScript = value; }
 
+    //ポップアップ
+    private PopImage _popImage;
     protected override void Awake()
     {
         _rigidbody = GetComponent<Rigidbody>();
@@ -130,17 +132,6 @@ public partial class Player : Singleton<Player>
             ChangeState<DeathState>();
         }
 
-        ////採取ポイントが今も有効かどうか確認
-        //if (_collectionScript != null)
-        //{
-        //    Debug.Log("dfagdskoghndbghjmodbvmgiohfmvd@:cdcl:s.dc");
-        //    if (_collectionScript.gameObject.activeSelf == false)
-        //    {
-        //        Debug.Log("あlsmfcじゃそ；ンjfヴぃさｇｖｈｍヴぁｓｈｐ０あｃｊ、ｊｄｓｇ");
-        //        _collectionFlg = false;
-        //        _collectionScript = null;
-        //    }
-        //}
         Debug.Log(_currentState.GetType().ToString());
     }
 
@@ -166,6 +157,15 @@ public partial class Player : Singleton<Player>
             _collectionScript = other.GetComponent<CollectionScript>();
             _collectionScript.CreateImage();
         }
+        if (other.CompareTag("PopImage"))
+        {
+            if (_popImage != null)
+            {
+                _popImage.DeleteImage();
+            }
+            _popImage = other.GetComponent<PopImage>();
+            _popImage.CreateImage();
+        }
     }
 
 
@@ -179,6 +179,15 @@ public partial class Player : Singleton<Player>
                 _collectionScript = null;
             }
         }
+        if (other.CompareTag("PopImage"))
+        {
+            if (_popImage != null)
+            {
+                _popImage.DeleteImage();
+                _popImage = null;
+            }
+        }
+
     }
     private void OnAnimationEvent(AnimationEvent animationEvent)
     {

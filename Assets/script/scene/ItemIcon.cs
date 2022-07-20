@@ -121,7 +121,7 @@ public class ItemIcon : MonoBehaviour
             {
                 int w = Mathf.Abs((i % (int)_iconData._tableSize.y) * (int)(buttonSize.x + _iconData._padding));
                 int h = Mathf.Abs((i / (int)_iconData._tableSize.y) * (int)(buttonSize.y + _iconData._padding));
-                _Buttons[i].transform.position = new Vector3(_iconData._leftTopPos.x + w, _iconData._leftTopPos.y - h, 0);
+                _Buttons[i].GetComponent<RectTransform>().anchoredPosition = new Vector2(_iconData._leftTopPos.x + w, _iconData._leftTopPos.y - h);
             }
         }
     }

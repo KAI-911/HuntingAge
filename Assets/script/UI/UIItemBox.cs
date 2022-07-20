@@ -399,7 +399,7 @@ public class UIItemBox : UIBase
             owner.ChangeState<ItemSlect>();
         }
     }
-    private class weaponSelect: UIStateBase
+    private class weaponSelect : UIStateBase
     {
         ItemIcon itemIcon;
         public override void OnEnter(UIBase owner, UIStateBase prevState)
@@ -422,10 +422,10 @@ public class UIItemBox : UIBase
         }
         public override void OnProceed(UIBase owner)
         {
+            if (!itemIcon.CheckCurrentNunberItem()) return;
             var weaponID = itemIcon.Buttons[itemIcon.CurrentNunber].GetComponent<ItemButton>().ID;
-            UIManager.Instance._player.WeaponID= weaponID;
+            UIManager.Instance._player.WeaponID = weaponID;
             owner.GetComponent<UIItemBox>().WeaponUISet();
-
         }
         public override void OnBack(UIBase owner)
         {
