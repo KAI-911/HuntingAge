@@ -29,6 +29,10 @@ MonoBehaviour:
     m_Address: Assets/EffectExamples/Fire & Explosion Effects/Materials/LargeFlame01.mat
     m_ReadOnly: 0
     m_SerializedLabels: []
+  - m_GUID: 6080979872e0ce9488ce76222fa7703c
+    m_Address: Assets/Scenes/HamaScene/material/Tent 1.mat
+    m_ReadOnly: 0
+    m_SerializedLabels: []
   m_ReadOnly: 0
   m_Settings: {fileID: 11400000, guid: 08bfeac5929041f46a6b0b948edd9db1, type: 2}
   m_SchemaSet:
