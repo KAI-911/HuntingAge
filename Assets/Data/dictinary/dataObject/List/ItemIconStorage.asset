@@ -100,7 +100,7 @@ MonoBehaviour:
       hight: 60
       margin: 10
       textAnchor: 4
-  - _leftTopPos: {x: 100, y: 900}
+  - _leftTopPos: {x: -860, y: 360}
     _padding: 10
     _tableSize: {x: 2, y: 1}
     _canBeChanged: 0
