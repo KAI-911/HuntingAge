@@ -1851,9 +1851,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cb4271ea13da4f74cbbfd13df1a35e68, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _imagePrefab: {fileID: 0}
+  _spritePrefab: {fileID: 0}
+  _text: 
   _itemHolder: {fileID: 7331076015102344176}
   _getItemNumber: 15
-  _offest: {x: 0, y: 3, z: 0}
   _ID: Meet
 --- !u!114 &7331076015102344176
 MonoBehaviour:
@@ -2808,12 +2810,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1c6b5257da867774697dc6db14bc1969, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _maxHp: 0
-  _hp: 50
-  _maxSp: 0
-  _sp: 2000
-  _attack: 500
-  _defense: 500
+  _maxHp: 100
+  _hp: 100
+  _maxSp: 100
+  _sp: 100
+  _attack: 100
+  _defense: 100
   _invincibleFlg: 0
   _downFlg: 0
 --- !u!114 &4547490786413605332

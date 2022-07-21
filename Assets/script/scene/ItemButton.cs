@@ -67,7 +67,7 @@ public class ItemButton : MonoBehaviour
         clear();
         _ID = id;
         var data = GameManager.Instance.WeaponDataList.Dictionary[id];
-        _image.sprite = Resources.Load<Sprite>(data.IconName);
+        _image.sprite = Resources.Load<Sprite>(data.IconPass);
         if(UIManager.Instance._player.WeaponID==data.ID)
         {
             _count.text = "E";

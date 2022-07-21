@@ -189,10 +189,10 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   m_FontData:
-    m_Font: {fileID: 12800000, guid: e35048bf8674d2f4d8c3aa51aa973f5d, type: 3}
-    m_FontSize: 51
+    m_Font: {fileID: 12800000, guid: 77282aa4a98fa5943a0cc4dce91f7886, type: 3}
+    m_FontSize: 40
     m_FontStyle: 0
-    m_BestFit: 1
+    m_BestFit: 0
     m_MinSize: 0
     m_MaxSize: 300
     m_Alignment: 4

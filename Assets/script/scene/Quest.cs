@@ -1,10 +1,9 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
-
+using Data;
 public class Quest : MonoBehaviour
 {
-    [SerializeField] string _nowState;
     //クエストデータ
     [SerializeField] QuestData _questData;
     public QuestData QuestData { get => _questData; set => _questData = value; }
@@ -17,14 +16,18 @@ public class Quest : MonoBehaviour
     private EnemyCount _questTargetCount = new EnemyCount();
     //採取したアイテムを記録
     private GatheringCount _gatheringCount = new GatheringCount();
-
     //全ての敵の情報を記録
     [SerializeField] List<Enemy> _enemyList = new List<Enemy>();
+
+    //UI
+    private GameObject _HPBar;
+    private GameObject _SPBar;
 
     public List<Enemy> EnemyList { get => _enemyList; }
     public EnemyCount KillEnemyCount { get => _killEnemyCount; }
     public bool IsQuest { get => _isQuest; }
     public GatheringCount GatheringCount { get => _gatheringCount; }
+
 
 
     //シーン切り替えまでの時間
@@ -52,21 +55,22 @@ public class Quest : MonoBehaviour
         _player = GameObject.FindWithTag("Player").GetComponent<Player>();
         SceneManager.activeSceneChanged += OnActiveSceneChanged;
     }
-
-
-
     void Update()
     {
-        _nowState = _currentState.GetType().ToString();
         _currentState.OnUpdate(this);
+        if(_HPBar!=null&&_SPBar!=null)
+        {
+            var hp = _HPBar.GetComponent<BarScript>();
+            hp.SetSlisder(_player.Status.HP);
+            var sp = _SPBar.GetComponent<BarScript>();
+            sp.SetSlisder(_player.Status.SP);
+        }
     }
-
     public void GoToQuset()
     {
         _isQuest = true;
         GameManager.Instance.SceneChange(_questData.Field);
     }
-
     private void OnActiveSceneChanged(UnityEngine.SceneManagement.Scene arg0, UnityEngine.SceneManagement.Scene arg1)
     {
         _currentState.OnActiveSceneChanged(this);
@@ -111,16 +115,6 @@ public class Quest : MonoBehaviour
         }
 
     }
-
-
-    void ChangeState<T>() where T : QuestState, new()
-    {
-        var nextState = new T();
-        _currentState.OnExit(this, nextState);
-        nextState.OnEnter(this, _currentState);
-        _currentState = nextState;
-    }
-
     /// <summary>
     /// 出現した敵を管理するためにリストに加える
     /// </summary>
@@ -131,8 +125,13 @@ public class Quest : MonoBehaviour
         if (_enemyList.Find(n => n == enemy)) return;
         _enemyList.Add(enemy);
     }
-
-
+    void ChangeState<T>() where T : QuestState, new()
+    {
+        var nextState = new T();
+        _currentState.OnExit(this, nextState);
+        nextState.OnEnter(this, _currentState);
+        _currentState = nextState;
+    }
     abstract class QuestState
     {
         public virtual void OnEnter(Quest owner, QuestState prevState) { }
@@ -140,17 +139,32 @@ public class Quest : MonoBehaviour
         public virtual void OnExit(Quest owner, QuestState nextState) { }
         public virtual void OnActiveSceneChanged(Quest owner) { }
     }
-
     class Standby : QuestState
     {
         public override void OnActiveSceneChanged(Quest owner)
         {
-            owner._player = GameObject.FindWithTag("Player").GetComponent<Player>();
+            //owner._player = GameObject.FindWithTag("Player").GetComponent<Player>();
             owner.KillEnemyCount.EnemyCountList.Clear();
             owner._questTargetCount.EnemyCountList.Clear();
             owner._enemyList.Clear();
             owner._deathCount = 0;
             owner.LoadEnemy();
+            //UIのセット
+            owner._HPBar = Instantiate(Resources.Load("UI/Bar")) as GameObject;
+            owner._SPBar = Instantiate(Resources.Load("UI/Bar")) as GameObject;
+            owner._HPBar.transform.SetParent(GameManager.Instance.ItemCanvas.Canvas.transform);
+            owner._SPBar.transform.SetParent(GameManager.Instance.ItemCanvas.Canvas.transform);
+            var hp = owner._HPBar.GetComponent<BarScript>();
+            hp.SetMaxSlider(owner._player.Status.MaxHP);
+            hp.SetSlisder(owner._player.Status.MaxHP);
+            hp.SetFillColor(new Color(0, 1, 0, 1));
+            hp.SetRectTransform(new Vector2(-Data.SCR.Width / 2 + Data.SCR.Padding, Data.SCR.Height/2 - Data.SCR.Padding));
+            var sp = owner._SPBar.GetComponent<BarScript>();
+            sp.SetMaxSlider(owner._player.Status.MaxSP);
+            sp.SetSlisder(owner._player.Status.MaxSP);
+            sp.SetFillColor(new Color(1, 1, 0, 1));
+            sp.SetRectTransform(new Vector2(-Data.SCR.Width / 2 + Data.SCR.Padding, hp.GetRectTransform().y - hp.GetRectTransformSize().y - Data.SCR.Padding));
+           
             switch (owner._questData.Clear)
             {
                 case ClearConditions.TargetSubjugation:
@@ -168,30 +182,20 @@ public class Quest : MonoBehaviour
     {
         public override void OnUpdate(Quest owner)
         {
-            bool clear = true;
-            foreach (var item in owner._questTargetCount.EnemyCountList)
-            {
-                if (!owner.KillEnemyCount.EnemyCountList.ContainsKey(item.Key))
-                {
-                    clear = false;
-                    break;
-                }
-                //クエストの討伐数以上倒していなかったら
-                if (owner.KillEnemyCount.EnemyCountList[item.Key] < item.Value)
-                {
-                    clear = false;
-                    break;
-                }
-            }
-
-            if (clear)
-            {
-                owner.KillEnemyCount.EnemyDataSet();
-                owner.ChangeState<QuestClear>();
-                return;
-            }
 
             owner.CheckPlayerDown();
+
+
+            foreach (var item in owner._questTargetCount.EnemyCountList)
+            {
+                if (!owner.KillEnemyCount.EnemyCountList.ContainsKey(item.Key)) return;
+                //クエストの討伐数以上倒していなかったら
+                if (owner.KillEnemyCount.EnemyCountList[item.Key] < item.Value) return;
+            }
+
+            owner.KillEnemyCount.EnemyDataSet();
+            owner.ChangeState<QuestClear>();
+
         }
         public override void OnExit(Quest owner, QuestState nextState)
         {
@@ -205,11 +209,12 @@ public class Quest : MonoBehaviour
     {
         public override void OnUpdate(Quest owner)
         {
+
             owner.CheckPlayerDown();
 
             foreach (var item in owner._questData.TargetName)
             {
-                if (!owner._gatheringCount.CountList.ContainsKey(item.name))return;
+                if (!owner._gatheringCount.CountList.ContainsKey(item.name)) return;
                 //クエストの採取数以上取っていなかったら
                 if (owner._gatheringCount.CountList[item.name] < item.number) return;
             }
@@ -224,7 +229,6 @@ public class Quest : MonoBehaviour
             owner.EnemyList.Clear();
         }
     }
-
     class QuestClear : QuestState
     {
         float time;
@@ -249,7 +253,8 @@ public class Quest : MonoBehaviour
         }
         public override void OnActiveSceneChanged(Quest owner)
         {
-
+            Destroy(owner._HPBar);
+            Destroy(owner._SPBar);
             owner.ChangeState<Standby>();
         }
     }
@@ -276,6 +281,8 @@ public class Quest : MonoBehaviour
         }
         public override void OnActiveSceneChanged(Quest owner)
         {
+            Destroy(owner._HPBar);
+            Destroy(owner._SPBar);
             owner.ChangeState<Standby>();
         }
     }
