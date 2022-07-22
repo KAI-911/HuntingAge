@@ -127,23 +127,45 @@ public class UIItemBox : UIBase
             if (owner.GetComponent<UIItemBox>().current == CurrentUI.box)
             {
                 if (!itemIcon_box.CheckCurrentNunberItem()) return;
-                var data = GameManager.Instance.MaterialDataList.Dictionary[itemIcon_box.Buttons[itemIcon_box.CurrentNunber].GetComponent<ItemButton>().ID];
-                int needNumber = data.PoachStackNumber - data.PoachHoldNumber;
-                //UIの位置を設定
-                int UINumber = owner.ItemIconList[(int)IconType.PoachItemSelect].FirstNotSetNumber();
-                if (UINumber != -1) GameManager.Instance.MaterialDataList.BoxToPoach(data.ID, needNumber, UINumber);
+                if (GameManager.Instance.MaterialDataList.Dictionary.ContainsKey(itemIcon_box.Buttons[itemIcon_box.CurrentNunber].GetComponent<ItemButton>().ID))
+                {
+                    var data = GameManager.Instance.MaterialDataList.Dictionary[itemIcon_box.Buttons[itemIcon_box.CurrentNunber].GetComponent<ItemButton>().ID];
+                    int needNumber = data.PoachStackNumber - data.PoachHoldNumber;
+                    //UIの位置を設定
+                    int UINumber = owner.ItemIconList[(int)IconType.PoachItemSelect].FirstNotSetNumber();
+                    if (UINumber != -1) GameManager.Instance.MaterialDataList.BoxToPoach(data.ID, needNumber, UINumber);
+                }
+                else if (GameManager.Instance.ItemDataList.Dictionary.ContainsKey(itemIcon_box.Buttons[itemIcon_box.CurrentNunber].GetComponent<ItemButton>().ID))
+                {
+                    var data = GameManager.Instance.ItemDataList.Dictionary[itemIcon_box.Buttons[itemIcon_box.CurrentNunber].GetComponent<ItemButton>().ID];
+                    int needNumber = data.baseData.PoachStackNumber - data.baseData.PoachHoldNumber;
+                    //UIの位置を設定
+                    int UINumber = owner.ItemIconList[(int)IconType.PoachItemSelect].FirstNotSetNumber();
+                    if (UINumber != -1) GameManager.Instance.ItemDataList.BoxToPoach(data.baseData.ID, needNumber, UINumber);
 
+                }
                 owner.GetComponent<UIItemBox>().UISet();
             }
             else
             {
                 if (!itemIcon_poach.CheckCurrentNunberItem()) return;
-                var data = GameManager.Instance.MaterialDataList.Dictionary[itemIcon_poach.Buttons[itemIcon_poach.CurrentNunber].GetComponent<ItemButton>().ID];
-                int needNumber = data.BoxStackNumber - data.BoxHoldNumber;
-                //UIの位置を設定
-                int UINumber = owner.ItemIconList[(int)IconType.BoxItemSelect].FirstNotSetNumber();
-                if (UINumber != -1) GameManager.Instance.MaterialDataList.PoachToBox(data.ID, needNumber, UINumber);
+                if (GameManager.Instance.MaterialDataList.Dictionary.ContainsKey(itemIcon_poach.Buttons[itemIcon_poach.CurrentNunber].GetComponent<ItemButton>().ID))
+                {
+                    var data = GameManager.Instance.MaterialDataList.Dictionary[itemIcon_poach.Buttons[itemIcon_poach.CurrentNunber].GetComponent<ItemButton>().ID];
+                    int needNumber = data.BoxStackNumber - data.BoxHoldNumber;
+                    //UIの位置を設定
+                    int UINumber = owner.ItemIconList[(int)IconType.BoxItemSelect].FirstNotSetNumber();
+                    if (UINumber != -1) GameManager.Instance.MaterialDataList.PoachToBox(data.ID, needNumber, UINumber);
+                }
+                else if (GameManager.Instance.ItemDataList.Dictionary.ContainsKey(itemIcon_poach.Buttons[itemIcon_poach.CurrentNunber].GetComponent<ItemButton>().ID))
+                {
+                    var data = GameManager.Instance.ItemDataList.Dictionary[itemIcon_poach.Buttons[itemIcon_poach.CurrentNunber].GetComponent<ItemButton>().ID];
+                    int needNumber = data.baseData.BoxStackNumber - data.baseData.BoxHoldNumber;
+                    //UIの位置を設定
+                    int UINumber = owner.ItemIconList[(int)IconType.BoxItemSelect].FirstNotSetNumber();
+                    if (UINumber != -1) GameManager.Instance.ItemDataList.PoachToBox(data.baseData.ID, needNumber, UINumber);
 
+                }
                 owner.GetComponent<UIItemBox>().UISet();
 
             }
@@ -244,49 +266,88 @@ public class UIItemBox : UIBase
             var selectButton = _itemIcon.Buttons[_selectionNumber].GetComponent<ItemButton>();
             var currentButton = _itemIcon.Buttons[_itemIcon.CurrentNunber].GetComponent<ItemButton>();
             var MaterialDataList = GameManager.Instance.MaterialDataList;
+            var ItemDataList = GameManager.Instance.ItemDataList;
             MaterialData data = new MaterialData();
             if (selectButton.ID != "")
             {
-                if (MaterialDataList.Keys.Contains(selectButton.ID))
+                int index = 0;
+
+                if (MaterialDataList.Dictionary.ContainsKey(selectButton.ID))
                 {
-                    int index = MaterialDataList.Keys.IndexOf(selectButton.ID);
+                    index = MaterialDataList.Keys.IndexOf(selectButton.ID);
                     data = MaterialDataList.Values[index];
-                    switch (owner.GetComponent<UIItemBox>().current)
-                    {
-                        case CurrentUI.box:
-                            data.BoxUINumber = _itemIcon.CurrentNunber;
-                            break;
-                        case CurrentUI.poach:
-                            data.PoachUINumber = _itemIcon.CurrentNunber;
-                            break;
-                        default:
-                            break;
-                    }
+                }
+                else if (ItemDataList.Dictionary.ContainsKey(selectButton.ID))
+                {
+                    index = ItemDataList.Keys.IndexOf(selectButton.ID);
+                    data = ItemDataList.Values[index].baseData;
+                }
+
+                switch (owner.GetComponent<UIItemBox>().current)
+                {
+                    case CurrentUI.box:
+                        data.BoxUINumber = _itemIcon.CurrentNunber;
+                        break;
+                    case CurrentUI.poach:
+                        data.PoachUINumber = _itemIcon.CurrentNunber;
+                        break;
+                    default:
+                        break;
+                }
+
+                if (MaterialDataList.Dictionary.ContainsKey(selectButton.ID))
+                {
                     MaterialDataList.Values[index] = data;
                 }
+                else if (ItemDataList.Dictionary.ContainsKey(selectButton.ID))
+                {
+                    var tmp = ItemDataList.Values[index];
+                    tmp.baseData = data;
+                    ItemDataList.Values[index] = tmp;
+                }
             }
+
             if (currentButton.ID != "")
             {
-                if (MaterialDataList.Keys.Contains(currentButton.ID))
+                int index = 0;
+
+                if (MaterialDataList.Dictionary.ContainsKey(currentButton.ID))
                 {
-                    int index = MaterialDataList.Keys.IndexOf(currentButton.ID);
+                    index = MaterialDataList.Keys.IndexOf(currentButton.ID);
                     data = MaterialDataList.Values[index];
-                    switch (owner.GetComponent<UIItemBox>().current)
-                    {
-                        case CurrentUI.box:
-                            data.BoxUINumber = _selectionNumber;
-                            break;
-                        case CurrentUI.poach:
-                            data.PoachUINumber = _selectionNumber;
-                            break;
-                        default:
-                            break;
-                    }
+                }
+                else if (ItemDataList.Dictionary.ContainsKey(currentButton.ID))
+                {
+                    index = ItemDataList.Keys.IndexOf(currentButton.ID);
+                    data = ItemDataList.Values[index].baseData;
+                }
+
+                switch (owner.GetComponent<UIItemBox>().current)
+                {
+                    case CurrentUI.box:
+                        data.BoxUINumber = _selectionNumber;
+                        break;
+                    case CurrentUI.poach:
+                        data.PoachUINumber = _selectionNumber;
+                        break;
+                    default:
+                        break;
+                }
+
+                if (MaterialDataList.Dictionary.ContainsKey(currentButton.ID))
+                {
                     MaterialDataList.Values[index] = data;
+                }
+                else if (ItemDataList.Dictionary.ContainsKey(currentButton.ID))
+                {
+                    var tmp = ItemDataList.Values[index];
+                    tmp.baseData = data;
+                    ItemDataList.Values[index] = tmp;
                 }
             }
 
             MaterialDataList.DesrializeDictionary();
+            ItemDataList.DesrializeDictionary();
             owner.GetComponent<UIItemBox>().UISet();
             owner.ChangeState<ItemSlect>();
 
@@ -317,26 +378,41 @@ public class UIItemBox : UIBase
 
                 now = 1;
                 min = 1;
+                MaterialData materialData = new MaterialData();
                 switch (owner.GetComponent<UIItemBox>().current)
                 {
                     case CurrentUI.box:
                         var list = owner.ItemIconList[(int)IconType.BoxItemSelect];
                         ID = list.Buttons[list.CurrentNunber].GetComponent<ItemButton>().ID;
-                        var data1 = GameManager.Instance.MaterialDataList.Dictionary[ID];
-                        max = data1.BoxHoldNumber;
-                        if (max > data1.PoachStackNumber - data1.PoachHoldNumber)
+                        if (GameManager.Instance.MaterialDataList.Dictionary.ContainsKey(ID))
                         {
-                            max = data1.PoachStackNumber - data1.PoachHoldNumber;
+                            materialData = GameManager.Instance.MaterialDataList.Dictionary[ID];
+                        }
+                        else if (GameManager.Instance.ItemDataList.Dictionary.ContainsKey(ID))
+                        {
+                            materialData = GameManager.Instance.ItemDataList.Dictionary[ID].baseData;
+                        }
+                        max = materialData.BoxHoldNumber;
+                        if (max > materialData.PoachStackNumber - materialData.PoachHoldNumber)
+                        {
+                            max = materialData.PoachStackNumber - materialData.PoachHoldNumber;
                         }
                         break;
                     case CurrentUI.poach:
                         var list2 = owner.ItemIconList[(int)IconType.PoachItemSelect];
                         ID = list2.Buttons[list2.CurrentNunber].GetComponent<ItemButton>().ID;
-                        var data2 = GameManager.Instance.MaterialDataList.Dictionary[ID];
-                        max = data2.PoachHoldNumber;
-                        if (max > data2.BoxStackNumber - data2.BoxHoldNumber)
+                        if (GameManager.Instance.MaterialDataList.Dictionary.ContainsKey(ID))
                         {
-                            max = data2.BoxStackNumber - data2.BoxHoldNumber;
+                            materialData = GameManager.Instance.MaterialDataList.Dictionary[ID];
+                        }
+                        else if (GameManager.Instance.ItemDataList.Dictionary.ContainsKey(ID))
+                        {
+                            materialData = GameManager.Instance.ItemDataList.Dictionary[ID].baseData;
+                        }
+                        max = materialData.PoachHoldNumber;
+                        if (max > materialData.BoxStackNumber - materialData.BoxHoldNumber)
+                        {
+                            max = materialData.BoxStackNumber - materialData.BoxHoldNumber;
                         }
                         break;
                 }
@@ -368,27 +444,61 @@ public class UIItemBox : UIBase
         }
         public override void OnProceed(UIBase owner)
         {
+            MaterialData materialData = new MaterialData();
             //アイテムの入れ替えpoach(box)からbox(poach)へ最大量送る
             if (owner.GetComponent<UIItemBox>().current == CurrentUI.box)
             {
                 if (!owner.ItemIconList[(int)IconType.BoxItemSelect].CheckCurrentNunberItem()) return;
                 var list = owner.ItemIconList[(int)IconType.BoxItemSelect];
-                var data = GameManager.Instance.MaterialDataList.Dictionary[list.Buttons[list.CurrentNunber].GetComponent<ItemButton>().ID];
+
+                if (GameManager.Instance.MaterialDataList.Dictionary.ContainsKey(ID))
+                {
+                    materialData = GameManager.Instance.MaterialDataList.Dictionary[list.Buttons[list.CurrentNunber].GetComponent<ItemButton>().ID];
+
+                }
+                else if (GameManager.Instance.ItemDataList.Dictionary.ContainsKey(ID))
+                {
+                    materialData = GameManager.Instance.ItemDataList.Dictionary[list.Buttons[list.CurrentNunber].GetComponent<ItemButton>().ID].baseData;
+
+                }
+
                 //UIの位置を設定
                 int UINumber = owner.ItemIconList[(int)IconType.PoachItemSelect].FirstNotSetNumber();
-                GameManager.Instance.MaterialDataList.BoxToPoach(data.ID, now, UINumber);
-
+                if (GameManager.Instance.MaterialDataList.Dictionary.ContainsKey(ID))
+                {
+                    GameManager.Instance.MaterialDataList.BoxToPoach(materialData.ID, now, UINumber);
+                }
+                else if (GameManager.Instance.ItemDataList.Dictionary.ContainsKey(ID))
+                {
+                    GameManager.Instance.ItemDataList.BoxToPoach(materialData.ID, now, UINumber);
+                }
                 owner.GetComponent<UIItemBox>().UISet();
             }
             else
             {
                 if (!owner.ItemIconList[(int)IconType.PoachItemSelect].CheckCurrentNunberItem()) return;
                 var list = owner.ItemIconList[(int)IconType.PoachItemSelect];
-                var data = GameManager.Instance.MaterialDataList.Dictionary[list.Buttons[list.CurrentNunber].GetComponent<ItemButton>().ID];
+
+                if (GameManager.Instance.MaterialDataList.Dictionary.ContainsKey(ID))
+                {
+                    materialData = GameManager.Instance.MaterialDataList.Dictionary[list.Buttons[list.CurrentNunber].GetComponent<ItemButton>().ID];
+
+                }
+                else if (GameManager.Instance.ItemDataList.Dictionary.ContainsKey(ID))
+                {
+                    materialData = GameManager.Instance.ItemDataList.Dictionary[list.Buttons[list.CurrentNunber].GetComponent<ItemButton>().ID].baseData;
+
+                }
                 //UIの位置を設定
                 int UINumber = owner.ItemIconList[(int)IconType.BoxItemSelect].FirstNotSetNumber();
-                GameManager.Instance.MaterialDataList.PoachToBox(data.ID, now, UINumber);
-
+                if (GameManager.Instance.MaterialDataList.Dictionary.ContainsKey(ID))
+                {
+                    GameManager.Instance.MaterialDataList.PoachToBox(materialData.ID, now, UINumber);
+                }
+                else if (GameManager.Instance.ItemDataList.Dictionary.ContainsKey(ID))
+                {
+                    GameManager.Instance.ItemDataList.PoachToBox(materialData.ID, now, UINumber);
+                }
                 owner.GetComponent<UIItemBox>().UISet();
 
             }
@@ -444,35 +554,46 @@ public class UIItemBox : UIBase
     public void UISet()
     {
         var boxList = ItemIconList[(int)IconType.BoxItemSelect].Buttons;
-        //ボックスリストのUIセット
+        //一度リセット
         foreach (var item in boxList)
         {
             var ibutton = item.GetComponent<ItemButton>();
             ibutton.clear();
         }
-
+        //ボックスリストのUIセット
         foreach (var item in GameManager.Instance.MaterialDataList.Dictionary)
         {
             if (item.Value.BoxHoldNumber == 0) continue;
             var ibutton = boxList[item.Value.BoxUINumber].GetComponent<ItemButton>();
             ibutton.SetID(item.Key, ItemBoxOrPoach.box);
         }
-
+        foreach (var item in GameManager.Instance.ItemDataList.Dictionary)
+        {
+            if (item.Value.baseData.BoxHoldNumber == 0) continue;
+            var ibutton = boxList[item.Value.baseData.BoxUINumber].GetComponent<ItemButton>();
+            ibutton.SetID(item.Key, ItemBoxOrPoach.box);
+        }
         var poachList = ItemIconList[(int)IconType.PoachItemSelect].Buttons;
-        //ポーチリストのUIセット
+        //一度リセット
         foreach (var item in poachList)
         {
             var ibutton = item.GetComponent<ItemButton>();
             ibutton.clear();
         }
-
+        //ポーチリストのUIセット
         foreach (var item in GameManager.Instance.MaterialDataList.Dictionary)
         {
             if (item.Value.PoachHoldNumber == 0) continue;
             var ibutton = poachList[item.Value.PoachUINumber].GetComponent<ItemButton>();
             ibutton.SetID(item.Key, ItemBoxOrPoach.poach);
         }
-
+        foreach (var item in GameManager.Instance.ItemDataList.Dictionary)
+        {
+            if (item.Value.baseData.PoachHoldNumber == 0) continue;
+            Debug.Log("poachItem");
+            var ibutton = poachList[item.Value.baseData.PoachUINumber].GetComponent<ItemButton>();
+            ibutton.SetID(item.Key, ItemBoxOrPoach.poach);
+        }
     }
     public void WeaponUISet()
     {

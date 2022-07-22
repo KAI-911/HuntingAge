@@ -69,14 +69,9 @@ public class UIPoach : UIBase
         {
             if (prevState.GetType() == typeof(UIChange)) return;
 
-            var list = owner.ItemIconList[(int)IconType.ItemSelect].CreateButton();
+            owner.ItemIconList[(int)IconType.ItemSelect].CreateButton();
 
-            foreach (var item in GameManager.Instance.MaterialDataList.Dictionary)
-            {
-                if (item.Value.PoachHoldNumber == 0) continue;
-                var ibutton = list[item.Value.PoachUINumber].GetComponent<ItemButton>();
-                ibutton.SetID(item.Value.ID, ItemBoxOrPoach.poach);
-            }
+            owner.GetComponent<UIPoach>().UISet();
         }
         public override void OnExit(UIBase owner, UIStateBase nextState)
         {
@@ -126,6 +121,7 @@ public class UIPoach : UIBase
             var selectButton = _itemIcon.Buttons[_selectionNumber].GetComponent<ItemButton>();
             var currentButton = _itemIcon.Buttons[_itemIcon.CurrentNunber].GetComponent<ItemButton>();
             var MaterialDataList = GameManager.Instance.MaterialDataList;
+            var ItemDataList = GameManager.Instance.ItemDataList;
             MaterialData data = new MaterialData();
             if (selectButton.ID != "")
             {
@@ -135,6 +131,15 @@ public class UIPoach : UIBase
                     data = MaterialDataList.Values[index];
                     data.PoachUINumber = _itemIcon.CurrentNunber;
                     MaterialDataList.Values[index] = data;
+                }
+                else if(ItemDataList.Dictionary.ContainsKey(selectButton.ID))
+                {
+                    int index = ItemDataList.Keys.IndexOf(selectButton.ID);
+                    data = ItemDataList.Values[index].baseData;
+                    data.PoachUINumber = _itemIcon.CurrentNunber;
+                    var tmp =ItemDataList.Values[index];
+                    tmp.baseData = data;
+                    ItemDataList.Values[index] = tmp;
                 }
             }
             if (currentButton.ID != "")
@@ -146,9 +151,19 @@ public class UIPoach : UIBase
                     data.PoachUINumber = _selectionNumber;
                     MaterialDataList.Values[index] = data;
                 }
+                else if (ItemDataList.Dictionary.ContainsKey(currentButton.ID))
+                {
+                    int index = ItemDataList.Keys.IndexOf(currentButton.ID);
+                    data = ItemDataList.Values[index].baseData;
+                    data.PoachUINumber = _selectionNumber;
+                    var tmp = ItemDataList.Values[index];
+                    tmp.baseData = data;
+                    ItemDataList.Values[index] = tmp;
+                }
             }
 
             MaterialDataList.DesrializeDictionary();
+            ItemDataList.DesrializeDictionary();
             owner.GetComponent<UIPoach>().UISet();
             owner.ChangeState<ItemSlect>();
 
@@ -305,6 +320,12 @@ public class UIPoach : UIBase
         {
             if (item.Value.PoachHoldNumber == 0) continue;
             var ibutton = list[item.Value.PoachUINumber].GetComponent<ItemButton>();
+            ibutton.SetID(item.Key, ItemBoxOrPoach.poach);
+        }
+        foreach (var item in GameManager.Instance.ItemDataList.Dictionary)
+        {
+            if (item.Value.baseData.PoachHoldNumber == 0) continue;
+            var ibutton = list[item.Value.baseData.PoachUINumber].GetComponent<ItemButton>();
             ibutton.SetID(item.Key, ItemBoxOrPoach.poach);
         }
     }
