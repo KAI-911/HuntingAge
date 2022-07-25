@@ -7,7 +7,6 @@ public class LocomotionState : PlayerStateBase
     float nowSpeed;
     public override void OnEnter(Player owner, PlayerStateBase prevState)
     {
-        Debug.Log("LocomotionState");
         nowSpeed = owner.MaxSpeed;
         owner.Animator.SetInteger("AniState", (int)PlayerAnimationState.Locomotion);
         owner.Animator.SetTrigger("Change");
@@ -19,7 +18,6 @@ public class LocomotionState : PlayerStateBase
     }
     public override void OnUpdate(Player owner)
     {
-        Debug.Log("LocomotionState");
         owner.MoveDirection = Vector3.zero;
         if (owner.IsAction)
         {

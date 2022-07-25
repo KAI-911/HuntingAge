@@ -53,7 +53,6 @@ public class ItemButton : MonoBehaviour
         }
         else if (GameManager.Instance.ItemDataList.Dictionary.ContainsKey(id))
         {
-            Debug.Log("dsfahgsahdsaogvhsao;  " + id);
             clear();
             _ID = id;
             var data = GameManager.Instance.ItemDataList.Dictionary[id];

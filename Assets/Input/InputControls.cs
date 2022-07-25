@@ -373,6 +373,33 @@ public partial class @InputControls : IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""UseItemSelect"",
+                    ""type"": ""Button"",
+                    ""id"": ""5b706f71-8f6e-4d91-aec6-215da8c6aefb"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""boxbutton"",
+                    ""type"": ""Button"",
+                    ""id"": ""b76234a1-6f0d-4876-9959-13066fabd243"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""trianglebutton"",
+                    ""type"": ""Button"",
+                    ""id"": ""eaf5339a-b722-4534-8b10-a77d4e8ea3c9"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -617,6 +644,39 @@ public partial class @InputControls : IInputActionCollection2, IDisposable
                     ""action"": ""SubMenu"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""7ecbda84-0b2b-4f07-9b0e-7ddfafa3c918"",
+                    ""path"": ""<Gamepad>/leftShoulder"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""UseItemSelect"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""53e63788-2c12-4a74-ab42-b8c15309e05a"",
+                    ""path"": ""<Gamepad>/buttonWest"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""boxbutton"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""abe34d42-981d-4bce-bc6b-d80f756b51a9"",
+                    ""path"": ""<Gamepad>/buttonNorth"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""trianglebutton"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -639,6 +699,9 @@ public partial class @InputControls : IInputActionCollection2, IDisposable
         m_UI_Menu = m_UI.FindAction("Menu", throwIfNotFound: true);
         m_UI_CurrentChange = m_UI.FindAction("CurrentChange", throwIfNotFound: true);
         m_UI_SubMenu = m_UI.FindAction("SubMenu", throwIfNotFound: true);
+        m_UI_UseItemSelect = m_UI.FindAction("UseItemSelect", throwIfNotFound: true);
+        m_UI_boxbutton = m_UI.FindAction("boxbutton", throwIfNotFound: true);
+        m_UI_trianglebutton = m_UI.FindAction("trianglebutton", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -777,6 +840,9 @@ public partial class @InputControls : IInputActionCollection2, IDisposable
     private readonly InputAction m_UI_Menu;
     private readonly InputAction m_UI_CurrentChange;
     private readonly InputAction m_UI_SubMenu;
+    private readonly InputAction m_UI_UseItemSelect;
+    private readonly InputAction m_UI_boxbutton;
+    private readonly InputAction m_UI_trianglebutton;
     public struct UIActions
     {
         private @InputControls m_Wrapper;
@@ -787,6 +853,9 @@ public partial class @InputControls : IInputActionCollection2, IDisposable
         public InputAction @Menu => m_Wrapper.m_UI_Menu;
         public InputAction @CurrentChange => m_Wrapper.m_UI_CurrentChange;
         public InputAction @SubMenu => m_Wrapper.m_UI_SubMenu;
+        public InputAction @UseItemSelect => m_Wrapper.m_UI_UseItemSelect;
+        public InputAction @boxbutton => m_Wrapper.m_UI_boxbutton;
+        public InputAction @trianglebutton => m_Wrapper.m_UI_trianglebutton;
         public InputActionMap Get() { return m_Wrapper.m_UI; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -814,6 +883,15 @@ public partial class @InputControls : IInputActionCollection2, IDisposable
                 @SubMenu.started -= m_Wrapper.m_UIActionsCallbackInterface.OnSubMenu;
                 @SubMenu.performed -= m_Wrapper.m_UIActionsCallbackInterface.OnSubMenu;
                 @SubMenu.canceled -= m_Wrapper.m_UIActionsCallbackInterface.OnSubMenu;
+                @UseItemSelect.started -= m_Wrapper.m_UIActionsCallbackInterface.OnUseItemSelect;
+                @UseItemSelect.performed -= m_Wrapper.m_UIActionsCallbackInterface.OnUseItemSelect;
+                @UseItemSelect.canceled -= m_Wrapper.m_UIActionsCallbackInterface.OnUseItemSelect;
+                @boxbutton.started -= m_Wrapper.m_UIActionsCallbackInterface.OnBoxbutton;
+                @boxbutton.performed -= m_Wrapper.m_UIActionsCallbackInterface.OnBoxbutton;
+                @boxbutton.canceled -= m_Wrapper.m_UIActionsCallbackInterface.OnBoxbutton;
+                @trianglebutton.started -= m_Wrapper.m_UIActionsCallbackInterface.OnTrianglebutton;
+                @trianglebutton.performed -= m_Wrapper.m_UIActionsCallbackInterface.OnTrianglebutton;
+                @trianglebutton.canceled -= m_Wrapper.m_UIActionsCallbackInterface.OnTrianglebutton;
             }
             m_Wrapper.m_UIActionsCallbackInterface = instance;
             if (instance != null)
@@ -836,6 +914,15 @@ public partial class @InputControls : IInputActionCollection2, IDisposable
                 @SubMenu.started += instance.OnSubMenu;
                 @SubMenu.performed += instance.OnSubMenu;
                 @SubMenu.canceled += instance.OnSubMenu;
+                @UseItemSelect.started += instance.OnUseItemSelect;
+                @UseItemSelect.performed += instance.OnUseItemSelect;
+                @UseItemSelect.canceled += instance.OnUseItemSelect;
+                @boxbutton.started += instance.OnBoxbutton;
+                @boxbutton.performed += instance.OnBoxbutton;
+                @boxbutton.canceled += instance.OnBoxbutton;
+                @trianglebutton.started += instance.OnTrianglebutton;
+                @trianglebutton.performed += instance.OnTrianglebutton;
+                @trianglebutton.canceled += instance.OnTrianglebutton;
             }
         }
     }
@@ -857,5 +944,8 @@ public partial class @InputControls : IInputActionCollection2, IDisposable
         void OnMenu(InputAction.CallbackContext context);
         void OnCurrentChange(InputAction.CallbackContext context);
         void OnSubMenu(InputAction.CallbackContext context);
+        void OnUseItemSelect(InputAction.CallbackContext context);
+        void OnBoxbutton(InputAction.CallbackContext context);
+        void OnTrianglebutton(InputAction.CallbackContext context);
     }
 }

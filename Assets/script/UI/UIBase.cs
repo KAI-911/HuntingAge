@@ -11,10 +11,11 @@ abstract public class UIBase : MonoBehaviour
 
     virtual public void Awake()
     {
+        _currentState = new UIStateBase();
         uIManager = UIManager.Instance;
         uIManager.AddUIList(this);
     }
-    public void OnDestroy()
+    virtual public void OnDestroy()
     {
         if (uIManager != null)
         {
@@ -42,6 +43,26 @@ abstract public class UIBase : MonoBehaviour
     {
         _currentState.OnSubMenu(this);
     }
+    public void UseItemSelectStart()
+    {
+        _currentState.OnSelectItemStart(this);
+    }
+    public void UseItemSelectEnd()
+    {
+        _currentState.OnSelectItemEnd(this);
+    }
+    public void PushBoxButton()
+    {
+        _currentState.OnPushBoxButton(this);
+    }
+    public void PushTriangleButton()
+    {
+        _currentState.OnPushTriangleButton(this);
+    }
+    public void SceneChenge()
+    {
+        _currentState.OnSceneChenge(this);
+    }
     public void ChangeState<T>() where T : UIStateBase, new()
     {
         var nextState = new T();
@@ -59,6 +80,11 @@ abstract public class UIBase : MonoBehaviour
         public virtual void OnBack(UIBase owner) { }
         public virtual void OnMenu(UIBase owner) { }
         public virtual void OnSubMenu(UIBase owner) { }
+        public virtual void OnSelectItemStart(UIBase owner) { }
+        public virtual void OnSelectItemEnd(UIBase owner) { }
+        public virtual void OnPushBoxButton(UIBase owner) { }
+        public virtual void OnPushTriangleButton(UIBase owner) { }
+        public virtual void OnSceneChenge(UIBase owner) { }
 
     }
 }

@@ -132,7 +132,6 @@ public partial class Player : Singleton<Player>
             ChangeState<DeathState>();
         }
 
-        Debug.Log(_currentState.GetType().ToString());
     }
 
     private void FixedUpdate()

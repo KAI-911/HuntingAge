@@ -351,6 +351,33 @@
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": false
+                },
+                {
+                    "name": "UseItemSelect",
+                    "type": "Button",
+                    "id": "5b706f71-8f6e-4d91-aec6-215da8c6aefb",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "boxbutton",
+                    "type": "Button",
+                    "id": "b76234a1-6f0d-4876-9959-13066fabd243",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "trianglebutton",
+                    "type": "Button",
+                    "id": "eaf5339a-b722-4534-8b10-a77d4e8ea3c9",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
                 }
             ],
             "bindings": [
@@ -593,6 +620,39 @@
                     "processors": "",
                     "groups": "",
                     "action": "SubMenu",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "7ecbda84-0b2b-4f07-9b0e-7ddfafa3c918",
+                    "path": "<Gamepad>/leftShoulder",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "UseItemSelect",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "53e63788-2c12-4a74-ab42-b8c15309e05a",
+                    "path": "<Gamepad>/buttonWest",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "boxbutton",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "abe34d42-981d-4bce-bc6b-d80f756b51a9",
+                    "path": "<Gamepad>/buttonNorth",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "trianglebutton",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

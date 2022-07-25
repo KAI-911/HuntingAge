@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.SceneManagement;
 
 public class UIManager : Singleton<UIManager>
 {
@@ -43,7 +44,14 @@ public class UIManager : Singleton<UIManager>
         _input.UI.Menu.started += UIMenu;
         _input.UI.SubMenu.started += UISubMenu;
         _input.UI.Enable();
+        _input.UI.UseItemSelect.started += UIUseItemSelectStart;
+        _input.UI.UseItemSelect.canceled += UIUseItemSelectEnd;
+        _input.UI.boxbutton.started += UIBoxPush;
+        _input.UI.trianglebutton.started += UITrianglePush;
+        SceneManager.sceneLoaded += OnSceneLoaded;
+
     }
+
 
     private void OnDisable()
     {
@@ -52,6 +60,12 @@ public class UIManager : Singleton<UIManager>
         _input.UI.Menu.started -= UIMenu;
         _input.UI.SubMenu.started -= UISubMenu;
         _input.UI.Disable();
+        _input.UI.UseItemSelect.started -= UIUseItemSelectStart;
+        _input.UI.UseItemSelect.canceled -= UIUseItemSelectEnd;
+        _input.UI.boxbutton.started -= UIBoxPush;
+        _input.UI.trianglebutton.started -= UITrianglePush;
+        SceneManager.sceneLoaded -= OnSceneLoaded;
+
     }
 
     private void UIMenu(InputAction.CallbackContext obj)
@@ -83,4 +97,41 @@ public class UIManager : Singleton<UIManager>
             ui.Proceed();
         }
     }
+    private void UIUseItemSelectStart(InputAction.CallbackContext obj)
+    {
+        foreach (var ui in _UIList)
+        {
+            ui.UseItemSelectStart();
+        }
+    }
+    private void UIUseItemSelectEnd(InputAction.CallbackContext obj)
+    {
+        foreach (var ui in _UIList)
+        {
+            ui.UseItemSelectEnd();
+        }
+    }
+    private void UITrianglePush(InputAction.CallbackContext obj)
+    {
+        foreach (var ui in _UIList)
+        {
+            ui.PushTriangleButton();
+        }
+    }
+
+    private void UIBoxPush(InputAction.CallbackContext obj)
+    {
+        foreach (var ui in _UIList)
+        {
+            ui.PushBoxButton();
+        }
+    }
+    private void OnSceneLoaded(UnityEngine.SceneManagement.Scene arg0, LoadSceneMode arg1)
+    {
+        foreach (var ui in _UIList)
+        {
+            ui.SceneChenge();
+        }
+    }
+
 }

@@ -7,7 +7,6 @@ public class VillageAction : PlayerStateBase
     float nowSpeed;
     public override void OnEnter(Player owner, PlayerStateBase prevState)
     {
-        Debug.Log("VillageAction");
         nowSpeed = owner.MaxSpeed;
         owner.Animator.SetInteger("AniState", (int)PlayerAnimationState.Locomotion);
         owner.Animator.SetTrigger("Change");
@@ -18,7 +17,6 @@ public class VillageAction : PlayerStateBase
     }
     public override void OnUpdate(Player owner)
     {
-        Debug.Log("VillageAction");
         owner.MoveDirection = Vector3.zero;
         if (owner.IsAction)
         {

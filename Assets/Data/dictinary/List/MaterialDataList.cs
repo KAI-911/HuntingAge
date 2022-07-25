@@ -62,7 +62,6 @@ public class MaterialDataList : MonoBehaviour, ISerializationCallbackReceiver
     [ContextMenu("PrintDictionary")]
     public void PrintDictionary()
     {
-        Debug.Log("Log");
         foreach (var item in Dictionary)
         {
             Debug.Log("Key: " + item.Key + " Value: " + item.Value);
