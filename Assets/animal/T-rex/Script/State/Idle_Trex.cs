@@ -15,7 +15,6 @@ public class Idle_Trex : StateBase_Trex
     }
     public override void OnUpdate(Trex owner)
     {
-        Debug.Log("idle");
         owner.NavMeshAgent.destination = owner.transform.position;
         if (owner.ReceivedAttackCheck()) return;
 

@@ -15,7 +15,6 @@ public class BarScript : MonoBehaviour
     public void SetMinValue(float minValue) { _slider.minValue = minValue; }
     public void SetRectTransform(Vector2 vector2)
     {
-        Debug.Log(vector2);
         var rect = GetComponent<RectTransform>();
         rect.anchoredPosition = vector2;
     }

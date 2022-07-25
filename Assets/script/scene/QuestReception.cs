@@ -238,7 +238,6 @@ public class QuestReception : UIBase
             Debug.Log("クエスト受注中");
             if (!UIManager.Instance._player.IsAction && itemIcon.Buttons.Count != 0)
             {
-                Debug.Log("クエスト逝くの？破棄するの?");
                 itemIcon.Select(UIManager.Instance.InputSelection.ReadValue<Vector2>());
             }
 

@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using UnityEngine.SceneManagement;
 public partial class Player : Singleton<Player>
 {
+    private PlayerStatusData _statusData;
     //リジッドボディー
     private Rigidbody _rigidbody;
     public Rigidbody Rigidbody { get => _rigidbody; set => _rigidbody = value; }
@@ -77,6 +78,7 @@ public partial class Player : Singleton<Player>
         _rigidbody = GetComponent<Rigidbody>();
         _animator = GetComponent<Animator>();
         _status = GetComponent<Status>();
+        _statusData = GetComponent<PlayerStatusData>();
         _targetRotation = transform.rotation;
         _inputMove = new InputControls();
         _currentState = new LocomotionState();
@@ -258,24 +260,46 @@ public partial class Player : Singleton<Player>
 
     public void Revival()
     {
+        GameManager.Instance.UIItemView.ClearPermanentBuff();
+        _status.MaxHP = _statusData.MaxHP;
+        _status.MaxSP = _statusData.MaxSP;
+        _status.Attack = _statusData.Attack;
+        _status.Defense = _statusData.Defense;
         _status.HP = _status.MaxHP;
+        _status.SP = _status.MaxSP;
+
         var pos = StartPos.Find(n => n.scene == GameManager.Instance.Quest.QuestData.Field);
         transform.position = pos.pos[0];
-        ChangeState<LocomotionState>();
         _animator.SetInteger("HP", _status.HP);
         _status.HitReaction = HitReaction.nonReaction;
+        _status.InvincibleFlg = false;
+        ChangeState<LocomotionState>();
+
+
+        Debug.Log("Revival");
     }
     private void OnActiveSceneChanged(UnityEngine.SceneManagement.Scene arg0, UnityEngine.SceneManagement.Scene arg1)
     {
         if (GameManager.Instance.Quest.IsQuest)
         {
             ChangeWepon(_weaponID);
+            _status.MaxHP = _statusData.MaxHP;
+            _status.MaxSP = _statusData.MaxSP;
+            _status.Attack = _statusData.Attack;
+            _status.Defense = _statusData.Defense;
+            _status.HP = _status.MaxHP;
+            _status.SP = _status.MaxSP;
             ChangeState<LocomotionState>();
         }
         else
         {
             DeleteWepon();
+            _status.MaxHP = _statusData.MaxHP;
+            _status.MaxSP = _statusData.MaxSP;
+            _status.Attack = _statusData.Attack;
+            _status.Defense = _statusData.Defense;
             _status.HP = _status.MaxHP;
+            _status.SP = _status.MaxSP;
             ChangeState<VillageAction>();
         }
         var pos = StartPos.Find(n => n.scene == GameManager.Instance.NowScene);

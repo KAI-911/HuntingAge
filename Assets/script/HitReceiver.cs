@@ -60,7 +60,6 @@ public class HitReceiver : MonoBehaviour
         attackInfo.HitPart = _hit.HitPart;//攻撃されてる部位
         attackInfo.CllisionPos = _hit.CollisionPos;//衝突している地点
         attackInfo.HitReaction = _hitReaction;//攻撃を受けてどのぐらいリアクションするのか
-        Debug.Log(attackInfo.HitPart);
 
         bool success = hitstatus.OnDamaged(attackInfo);
 

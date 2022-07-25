@@ -3,16 +3,17 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using Data;
+using System;
 public class UIItemView : UIBase
 {
     [SerializeField] GameObject _itemViewPrefab;
     [SerializeField, Range(0.1f, 1.0f)] float _sideScaleSize;
     [SerializeField] float _padding;
-    [SerializeField] private GameObject[] objects = new GameObject[3];
+    [SerializeField] GameObject[] objects = new GameObject[3];
+
     private float _sideLength;
-    [SerializeField] private List<string> _itemIDList;
-    [SerializeField] private int[] intList = new int[3];
-    [SerializeField] private string _currentID;
+    private List<string> _itemIDList = new List<string>();
+    private string _currentID;
     enum position
     {
         center,
@@ -71,14 +72,95 @@ public class UIItemView : UIBase
             owner.GetComponent<UIItemView>().SetItemID();
             Debug.Log(GetType().Name);
         }
+        public override void OnPushBoxButton(UIBase owner)
+        {
+            owner.ChangeState<UseItem>();
+        }
         public override void OnSceneChenge(UIBase owner)
         {
-            if (!GameManager.Instance.Quest.IsQuest) owner.ChangeState<NotQuest>();
+            if (!GameManager.Instance.Quest.IsQuest)
+            {
+                owner.ChangeState<NotQuest>();
+            }
         }
 
     }
     private class UseItem : UIStateBase
     {
+        private Run run = new Run();
+        public override void OnEnter(UIBase owner, UIStateBase prevState)
+        {
+            var OWNER = owner.GetComponent<UIItemView>();
+
+            int index = GameManager.Instance.ItemDataList.Keys.IndexOf(OWNER._currentID);
+            var data = GameManager.Instance.ItemDataList.Values[index];
+            Status status = GameManager.Instance.Player.Status;
+            switch (data.ItemType)
+            {
+                case ItemType.HpRecovery:
+                    status.HP += (int)data.UpValue;
+                    data.baseData.PoachHoldNumber--;
+                    if (status.HP > status.MaxHP)
+                    {
+                        status.HP = status.MaxHP;
+                    }
+                    break;
+                case ItemType.AttackUp:
+                    if (data.Use) return;
+                    if (!data.Permanent)
+                    {
+                        _ = run.WaitForAsync(data.Time, () =>
+                        {
+                            if (!data.Use) return;
+                            data.Use = false;
+                            status.Attack -= (int)data.UpValue;
+                            GameManager.Instance.Player.Status = status;
+                            GameManager.Instance.ItemDataList.Values[index] = data;
+                            GameManager.Instance.ItemDataList.DesrializeDictionary();
+                        });
+                    }
+                    data.Use = true;
+                    data.baseData.PoachHoldNumber--;
+                    status.Attack += (int)data.UpValue;
+                    break;
+                case ItemType.DefenseUp:
+                    if (data.Use) return;
+                    if (!data.Permanent)
+                    {
+                        _ = run.WaitForAsync(data.Time, () =>
+                        {
+                            if (!data.Use) return;
+                            data.Use = false;
+                            status.Defense -= (int)data.UpValue;
+                            GameManager.Instance.Player.Status = status;
+                            GameManager.Instance.ItemDataList.Values[index] = data;
+                            GameManager.Instance.ItemDataList.DesrializeDictionary();
+                        });
+                    }
+                    data.Use = true;
+                    data.baseData.PoachHoldNumber--;
+                    status.Defense += (int)data.UpValue;
+
+                    break;
+                default:
+                    break;
+            }
+            GameManager.Instance.Player.Status = status;
+            GameManager.Instance.ItemDataList.Values[index] = data;
+            GameManager.Instance.ItemDataList.DesrializeDictionary();
+            OWNER.SetCenterImage();
+        }
+        public override void OnUpdate(UIBase owner)
+        {
+            owner.ChangeState<WaitItem>();
+        }
+        public override void OnSceneChenge(UIBase owner)
+        {
+            if (!GameManager.Instance.Quest.IsQuest)
+            {
+                owner.ChangeState<NotQuest>();
+            }
+        }
 
     }
     private class SelectItem : UIStateBase
@@ -127,6 +209,14 @@ public class UIItemView : UIBase
             OWNER.SetRightImage();
             OWNER.SetLeftImage();
         }
+        public override void OnSceneChenge(UIBase owner)
+        {
+            if (!GameManager.Instance.Quest.IsQuest)
+            {
+                owner.ChangeState<NotQuest>();
+            }
+        }
+
     }
 
     public void SetCenterUI()
@@ -176,16 +266,21 @@ public class UIItemView : UIBase
     {
         if (objects[(int)position.center] == null) return;
         Destroy(objects[(int)position.center]);
+        objects[(int)position.center] = null;
+
     }
     public void DeleteRightUI()
     {
         if (objects[(int)position.right] == null) return;
         Destroy(objects[(int)position.right]);
+        objects[(int)position.right] = null;
     }
     public void DeleteLeftUI()
     {
         if (objects[(int)position.left] == null) return;
         Destroy(objects[(int)position.left]);
+        objects[(int)position.left] = null;
+
     }
 
     public void SetItemID()
@@ -203,32 +298,67 @@ public class UIItemView : UIBase
     public void SetRightImage()
     {
         if (_itemIDList.Count == 0) return;
+        if (objects[(int)position.right] == null) return;
         int index = _itemIDList.IndexOf(_currentID);
         index++;
         if (index >= _itemIDList.Count) index = 0;
         var images = objects[(int)position.right].GetComponentsInChildren<Image>();
         var iconname = GameManager.Instance.ItemDataList.Dictionary[_itemIDList[index]].baseData.IconName;
         images[1].sprite = Resources.Load<Sprite>(iconname);
-        intList[(int)position.right] = index;
     }
     public void SetLeftImage()
     {
         if (_itemIDList.Count == 0) return;
+        if (objects[(int)position.left] == null) return;
+
         int index = _itemIDList.IndexOf(_currentID);
         index--;
         if (index < 0) index = _itemIDList.Count - 1;
         var images = objects[(int)position.left].GetComponentsInChildren<Image>();
         var iconname = GameManager.Instance.ItemDataList.Dictionary[_itemIDList[index]].baseData.IconName;
         images[1].sprite = Resources.Load<Sprite>(iconname);
-        intList[(int)position.left] = index;
     }
     public void SetCenterImage()
     {
         if (_itemIDList.Count == 0) return;
-        var images = objects[(int)position.center].GetComponentsInChildren<Image>();
-        var iconname = GameManager.Instance.ItemDataList.Dictionary[_currentID].baseData.IconName;
-        images[1].sprite = Resources.Load<Sprite>(iconname);
-        intList[(int)position.center] = _itemIDList.IndexOf(_currentID);
-    }
+        if (objects[(int)position.center] == null) return;
 
+        var images = objects[(int)position.center].GetComponentsInChildren<Image>();
+        var data = GameManager.Instance.ItemDataList.Dictionary[_currentID].baseData;
+        if (data.PoachHoldNumber == 0)
+        {
+            images[1].sprite = Resources.Load<Sprite>("Icon/alpha");
+        }
+        else
+        {
+            images[1].sprite = Resources.Load<Sprite>(data.IconName);
+        }
+    }
+    public void ClearPermanentBuff()
+    {
+        var list = GameManager.Instance.ItemDataList;
+        foreach (var item in GameManager.Instance.ItemDataList.Dictionary)
+        {
+            //‰i‘±Œø‰Ê‚Å‚È‚¯‚ê‚Î–ß‚é
+            if (!item.Value.Permanent) continue;
+            //Žg—p‚µ‚Ä‚¢‚È‚©‚Á‚½‚ç–ß‚é
+            if (!item.Value.Use) continue;
+            int index = list.Keys.IndexOf(item.Key);
+            var data = list.Values[index];
+            data.Use = false;
+            switch (data.ItemType)
+            {
+                case ItemType.AttackUp:
+                    GameManager.Instance.Player.Status.Attack-= data.UpValue;
+                    break;
+                case ItemType.DefenseUp:
+                    GameManager.Instance.Player.Status.Defense -= data.UpValue;
+                    break;
+                default:
+                    break;
+            }
+            list.Values[index] = data;
+        }
+            GameManager.Instance.ItemDataList.DesrializeDictionary();
+    }
 }

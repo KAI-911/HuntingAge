@@ -70,7 +70,6 @@ public class Status : MonoBehaviour, IAttackDamage
 
         //部位ごとに怯み計算
         var partReceiver = this.gameObject.transform.root.GetComponent<PartCheckerReceiver>();
-        Debug.Log(_Hitparameter.HitPart);
 
         //部位にダメージを与える
         if (partReceiver.PartEnduranceDamage(_Hitparameter.HitPart, damage)) 

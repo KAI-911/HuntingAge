@@ -224,13 +224,21 @@ public struct ItemData
 {
     public MaterialData baseData;
     /// <summary>
+    /// 使用中のフラグ
+    /// </summary>
+    public bool Use;
+    /// <summary>
     /// 効果が永続するかどうか（死亡すると消える）
     /// </summary>
     public bool Permanent;
     /// <summary>
-    /// 効果時間
+    /// 効果時間(秒)
     /// </summary>
     public float Time;
+    /// <summary>
+    /// 上昇する値
+    /// </summary>
+    public int UpValue;
     /// <summary>
     /// どのような効果なのか
     /// </summary>

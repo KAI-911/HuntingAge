@@ -207,7 +207,6 @@ public class ItemIcon : MonoBehaviour
         var c = GameManager.Instance.ItemCanvas.Canvas;
         var buttonSize = _iconData._buttonPrefab.GetComponent<RectTransform>().sizeDelta;
         var _buttonBackObjRect = new Vector2(_iconData._leftTopPos.x, _iconData._leftTopPos.y);
-        Debug.Log(_iconData._leftTopPos);
         //”w–Ê‰æ‘œ
         if (_iconData._buttonBack)
         {

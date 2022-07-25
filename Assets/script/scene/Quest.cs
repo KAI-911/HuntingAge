@@ -35,19 +35,21 @@ public class Quest : MonoBehaviour
     //プレイヤーの情報
     private Player _player;
     //このクエストで何回死んだか
-    private int _deathCount;
+    [SerializeField] private int _deathCount;
+    public int DeathCount { get => _deathCount; set => _deathCount = value; }
 
-    private RunOnce _runOnce;
+    [SerializeField] float _delayTime;
+    private float _delay;
 
     private QuestState _currentState;
 
     private void Awake()
     {
         _enemyList = new List<Enemy>();
-        _runOnce = new RunOnce();
         _currentState = new Standby();
         _currentState.OnEnter(this, null);
         _isQuest = false;
+        _delay = _delayTime;
     }
 
     void Start()
@@ -101,7 +103,6 @@ public class Quest : MonoBehaviour
         //非討伐対象
         foreach (var target in _questData.OtherName)
         {
-            Debug.Log(target.name + "    " + target.number);
             for (int i = 0; i < target.number; i++)
             {
                 var data = GameManager.Instance.EnemyDataList.Dictionary[target.name];
@@ -164,7 +165,7 @@ public class Quest : MonoBehaviour
             sp.SetSlisder(owner._player.Status.MaxSP);
             sp.SetFillColor(new Color(1, 1, 0, 1));
             sp.SetRectTransform(new Vector2(-Data.SCR.Width / 2 + Data.SCR.Padding, hp.GetRectTransform().y - hp.GetRectTransformSize().y - Data.SCR.Padding));
-           
+            GameManager.Instance.Player.Revival();
             switch (owner._questData.Clear)
             {
                 case ClearConditions.TargetSubjugation:
@@ -183,7 +184,7 @@ public class Quest : MonoBehaviour
         public override void OnUpdate(Quest owner)
         {
 
-            owner.CheckPlayerDown();
+            if (owner.CheckPlayerDown()) return;
 
 
             foreach (var item in owner._questTargetCount.EnemyCountList)
@@ -210,7 +211,7 @@ public class Quest : MonoBehaviour
         public override void OnUpdate(Quest owner)
         {
 
-            owner.CheckPlayerDown();
+            if (owner.CheckPlayerDown()) return;
 
             foreach (var item in owner._questData.TargetName)
             {
@@ -288,28 +289,34 @@ public class Quest : MonoBehaviour
     }
 
 
-    private void CheckPlayerDown()
+    private bool CheckPlayerDown()
     {
-        if (_player.Status.HP == 0)
+        Debug.Log("C1");
+        if (_player.Status.HP <= 0)
         {
             foreach (var ene in _enemyList) ene.DiscoverFlg = false;
-
-            _ = _runOnce.WaitForAsync(2,
-                () =>
+            Debug.Log("C2");
+            _delay -= Time.deltaTime;
+            if(_delay<0)
+            {
+                Debug.Log("C3");
+                if (_deathCount >= (int)QuestData.Failure + 1)
                 {
-                    _deathCount++;
-                    if (_deathCount >= (int)QuestData.Failure + 1)
-                    {
-                        ChangeState<QuestFailure>();
-                    }
-                    else
-                    {
-                        _player.Revival();
-                        foreach (var ene in _enemyList) ene.DiscoverFlg = false;
-                        _runOnce.Flg = false;//もう一度行えるように
-                    }
-                });
-        }
+                    Debug.Log("C4");
+                    _delay = _delayTime;
+                    ChangeState<QuestFailure>();
+                    return true;
+                }
+                else
+                {
+                    Debug.Log("C5");
+                    _delay = _delayTime;
+                    _player.Revival();
+                    foreach (var ene in _enemyList) ene.DiscoverFlg = false;
+                }
 
+            }
+        }
+        return false;
     }
 }

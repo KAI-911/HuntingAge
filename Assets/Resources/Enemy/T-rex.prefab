@@ -2814,8 +2814,8 @@ MonoBehaviour:
   _hp: 100
   _maxSp: 100
   _sp: 100
-  _attack: 100
-  _defense: 100
+  _attack: 70
+  _defense: 70
   _invincibleFlg: 0
   _downFlg: 0
 --- !u!114 &4547490786413605332

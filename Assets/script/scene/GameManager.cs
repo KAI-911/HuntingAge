@@ -22,7 +22,7 @@ public class GameManager : Singleton<GameManager>
     private VillageData _villageData;
     private FadeManager _fadeManager;
     private UIItemView _iItemView;
-
+    [SerializeField] private Player _player;
     public Scene VillageScene { get => _villageScene; }
     public Scene NowScene { get => _nowScene; set => _nowScene = value; }
     public Quest Quest { get => _quest; set => _quest = value; }
@@ -33,7 +33,8 @@ public class GameManager : Singleton<GameManager>
     public VillageData VillageData { get => _villageData; }
     public ItemCanvas ItemCanvas { get => _itemCanvas; }
     public UIPoach UIPoachList { get => _UIPoachList; }
-    public UIItemView IItemView { get => _iItemView;}
+    public UIItemView UIItemView { get => _iItemView; }
+    public Player Player { get => _player; }
 
     protected override void Awake()
     {
@@ -52,6 +53,7 @@ public class GameManager : Singleton<GameManager>
     void Start()
     {
         _itemCanvas = GetComponent<ItemCanvas>();
+        _player = GameObject.FindWithTag("Player").GetComponent<Player>();
     }
 
 
