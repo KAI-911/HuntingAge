@@ -16,7 +16,7 @@ public class ItemIcon : MonoBehaviour
     private int _currentNunber;
     public List<GameObject> Buttons { get => _Buttons; set => _Buttons = value; }
     public Vector2 TableSize { get => _iconData._tableSize; set => _iconData._tableSize = value; }
-    public int CurrentNunber { get => _currentNunber; }
+    public int CurrentNunber { get => _currentNunber; set => _currentNunber = value; }
     public int GetSize { get => (int)_iconData._tableSize.x * (int)_iconData._tableSize.y; }
     public ItemIconData IconData { get => _iconData; }
     public GameObject TextObj { get => _textObj; }
@@ -200,7 +200,7 @@ public class ItemIcon : MonoBehaviour
         return -1;
     }
 
-    [ContextMenu("createbutton")]
+    [ContextMenu("CreateButton")]
     public List<GameObject> CreateButton(int currentNum = 0)
     {
         DeleteButton();

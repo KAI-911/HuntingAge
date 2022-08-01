@@ -58,6 +58,15 @@
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": false
+                },
+                {
+                    "name": "Collection",
+                    "type": "Button",
+                    "id": "c252fadc-9d0a-41ae-81c1-a88d3e21507c",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
                 }
             ],
             "bindings": [
@@ -240,7 +249,7 @@
                 {
                     "name": "",
                     "id": "a9d1d53b-d849-4c51-8221-26d96b325e40",
-                    "path": "<Gamepad>/buttonEast",
+                    "path": "<Gamepad>/buttonSouth",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
@@ -273,7 +282,7 @@
                 {
                     "name": "",
                     "id": "88ad8cea-2271-40bc-a173-c0034901679d",
-                    "path": "<Gamepad>/buttonWest",
+                    "path": "<Gamepad>/buttonEast",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
@@ -289,6 +298,17 @@
                     "processors": "",
                     "groups": "",
                     "action": "WeakAttack",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "9b9f1ca5-8ae8-4032-a5f1-8a745a798580",
+                    "path": "<Gamepad>/buttonWest",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Collection",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

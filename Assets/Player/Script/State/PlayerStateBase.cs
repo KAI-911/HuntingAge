@@ -13,6 +13,7 @@ public class PlayerStateBase
     public virtual void OnCollisionStay(Player owner, Collision collision){}
     public virtual void OnTriggerStay(Player owner, Collider collider) { }
     public virtual void OnDodge(Player owner){}
+    public virtual void OnCollect(Player owner) { }
     public virtual void OnJump(Player owner){}
     public virtual void OnStrongAttack(Player owner){}
     public virtual void OnWeakAttack(Player owner){}

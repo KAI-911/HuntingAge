@@ -35,6 +35,7 @@ public class GameManager : Singleton<GameManager>
     public UIPoach UIPoachList { get => _UIPoachList; }
     public UIItemView UIItemView { get => _iItemView; }
     public Player Player { get => _player; }
+    public FadeManager FadeManager { get => _fadeManager;}
 
     protected override void Awake()
     {

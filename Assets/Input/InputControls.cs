@@ -80,6 +80,15 @@ public partial class @InputControls : IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Collection"",
+                    ""type"": ""Button"",
+                    ""id"": ""c252fadc-9d0a-41ae-81c1-a88d3e21507c"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -262,7 +271,7 @@ public partial class @InputControls : IInputActionCollection2, IDisposable
                 {
                     ""name"": """",
                     ""id"": ""a9d1d53b-d849-4c51-8221-26d96b325e40"",
-                    ""path"": ""<Gamepad>/buttonEast"",
+                    ""path"": ""<Gamepad>/buttonSouth"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
@@ -295,7 +304,7 @@ public partial class @InputControls : IInputActionCollection2, IDisposable
                 {
                     ""name"": """",
                     ""id"": ""88ad8cea-2271-40bc-a173-c0034901679d"",
-                    ""path"": ""<Gamepad>/buttonWest"",
+                    ""path"": ""<Gamepad>/buttonEast"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
@@ -311,6 +320,17 @@ public partial class @InputControls : IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""groups"": """",
                     ""action"": ""WeakAttack"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""9b9f1ca5-8ae8-4032-a5f1-8a745a798580"",
+                    ""path"": ""<Gamepad>/buttonWest"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Collection"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 }
@@ -691,6 +711,7 @@ public partial class @InputControls : IInputActionCollection2, IDisposable
         m_Player_Dodge = m_Player.FindAction("Dodge", throwIfNotFound: true);
         m_Player_StrongAttack = m_Player.FindAction("StrongAttack", throwIfNotFound: true);
         m_Player_WeakAttack = m_Player.FindAction("WeakAttack", throwIfNotFound: true);
+        m_Player_Collection = m_Player.FindAction("Collection", throwIfNotFound: true);
         // UI
         m_UI = asset.FindActionMap("UI", throwIfNotFound: true);
         m_UI_Selection = m_UI.FindAction("Selection", throwIfNotFound: true);
@@ -767,6 +788,7 @@ public partial class @InputControls : IInputActionCollection2, IDisposable
     private readonly InputAction m_Player_Dodge;
     private readonly InputAction m_Player_StrongAttack;
     private readonly InputAction m_Player_WeakAttack;
+    private readonly InputAction m_Player_Collection;
     public struct PlayerActions
     {
         private @InputControls m_Wrapper;
@@ -777,6 +799,7 @@ public partial class @InputControls : IInputActionCollection2, IDisposable
         public InputAction @Dodge => m_Wrapper.m_Player_Dodge;
         public InputAction @StrongAttack => m_Wrapper.m_Player_StrongAttack;
         public InputAction @WeakAttack => m_Wrapper.m_Player_WeakAttack;
+        public InputAction @Collection => m_Wrapper.m_Player_Collection;
         public InputActionMap Get() { return m_Wrapper.m_Player; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -804,6 +827,9 @@ public partial class @InputControls : IInputActionCollection2, IDisposable
                 @WeakAttack.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnWeakAttack;
                 @WeakAttack.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnWeakAttack;
                 @WeakAttack.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnWeakAttack;
+                @Collection.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnCollection;
+                @Collection.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnCollection;
+                @Collection.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnCollection;
             }
             m_Wrapper.m_PlayerActionsCallbackInterface = instance;
             if (instance != null)
@@ -826,6 +852,9 @@ public partial class @InputControls : IInputActionCollection2, IDisposable
                 @WeakAttack.started += instance.OnWeakAttack;
                 @WeakAttack.performed += instance.OnWeakAttack;
                 @WeakAttack.canceled += instance.OnWeakAttack;
+                @Collection.started += instance.OnCollection;
+                @Collection.performed += instance.OnCollection;
+                @Collection.canceled += instance.OnCollection;
             }
         }
     }
@@ -935,6 +964,7 @@ public partial class @InputControls : IInputActionCollection2, IDisposable
         void OnDodge(InputAction.CallbackContext context);
         void OnStrongAttack(InputAction.CallbackContext context);
         void OnWeakAttack(InputAction.CallbackContext context);
+        void OnCollection(InputAction.CallbackContext context);
     }
     public interface IUIActions
     {

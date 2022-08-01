@@ -318,7 +318,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _imagePrefab: {fileID: 5541608107631814696, guid: 242c96c79d9b830449b003f68433f768,
     type: 3}
-  _spritePrefab: {fileID: 21300000, guid: cafbb0229cd09a44a929ded63df426cb, type: 3}
+  _spritePrefab: {fileID: 21300000, guid: f62562f0d4bd52a49864d3e6fdb3f67b, type: 3}
   _text: "\u30AF\u30A8\u30B9\u30C8\u51FA\u767A\u5730\u70B9"
 --- !u!1 &5512235142271852093
 GameObject:
@@ -407,31 +407,35 @@ MonoBehaviour:
   values:
   - Quests:
     - Quest001
-    - Quest001
-    - Quest001
-    - Quest001
-    - Quest001
-  - Quests:
     - Quest002
-    - Quest002
-    - Quest002
-    - Quest002
-    - Quest002
-  - Quests:
     - Quest003
-    - Quest003
-    - Quest003
-    - Quest003
-    - Quest003
+    - Quest004
+    - Quest005
   - Quests:
     - Quest001
+    - Quest002
+    - Quest003
+    - Quest004
+  - Quests:
     - Quest001
-  - Quests:
     - Quest002
-    - Quest002
+    - Quest003
+    - Quest004
   - Quests:
+    - Quest001
+    - Quest002
     - Quest003
+    - Quest004
+  - Quests:
+    - Quest001
+    - Quest002
     - Quest003
+    - Quest004
+  - Quests:
+    - Quest001
+    - Quest002
+    - Quest003
+    - Quest004
   modifyValues: 0
 --- !u!114 &5512235142271852091
 MonoBehaviour:
@@ -450,6 +454,8 @@ MonoBehaviour:
   - Quest001
   - Quest002
   - Quest003
+  - Quest004
+  - Quest005
   values:
   - ID: Quest001
     Name: Quest001
@@ -474,7 +480,7 @@ MonoBehaviour:
       number: 5
     OtherName:
     - name: Wolf
-      number: 20
+      number: 10
   - ID: Quest003
     Name: Quest003
     Clear: 0
@@ -483,6 +489,26 @@ MonoBehaviour:
     TargetName:
     - name: Dodo
       number: 3
+    OtherName: []
+  - ID: Quest004
+    Name: Quest004
+    Clear: 1
+    Failure: 2
+    Field: 2
+    TargetName:
+    - name: Material003
+      number: 10
+    OtherName:
+    - name: Dodo
+      number: 10
+  - ID: Quest005
+    Name: Quest005
+    Clear: 1
+    Failure: 2
+    Field: 1
+    TargetName:
+    - name: Material003
+      number: 1
     OtherName: []
   modifyValues: 0
 --- !u!114 &5512235142271852087
@@ -750,7 +776,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _imagePrefab: {fileID: 5541608107631814696, guid: 242c96c79d9b830449b003f68433f768,
     type: 3}
-  _spritePrefab: {fileID: 21300000, guid: 2969d90b86698124696637a6df64a112, type: 3}
+  _spritePrefab: {fileID: 21300000, guid: 91030cd2e003a86418087708d9d2890c, type: 3}
   _text: "\u30AF\u30A8\u30B9\u30C8\u30DC\u30FC\u30C9"
 --- !u!1 &5512235143775867418
 GameObject:
