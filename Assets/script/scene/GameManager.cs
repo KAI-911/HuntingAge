@@ -76,5 +76,7 @@ public enum Scene
     Base,
     Forest,
     Animal,
-    Sato
+    Sato,
+    Hama,
+    Shimi
 }
