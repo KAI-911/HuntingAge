@@ -7,9 +7,13 @@ using System;
 public class UIItemView : UIBase
 {
     [SerializeField] GameObject _itemViewPrefab;
+    [SerializeField] GameObject _maruButtonPrefab;
+    [SerializeField] GameObject _shikakuButtonPrefab;
     [SerializeField, Range(0.1f, 1.0f)] float _sideScaleSize;
     [SerializeField] float _padding;
-    [SerializeField] GameObject[] objects = new GameObject[3];
+    private GameObject[] objects = new GameObject[3];
+    private GameObject _maruButton;
+    private GameObject _shikakuButton;
 
     private float _sideLength;
     private List<string> _itemIDList = new List<string>();
@@ -33,7 +37,10 @@ public class UIItemView : UIBase
         DeleteRightUI();
         DeleteLeftUI();
     }
-
+    public void ChangeNotQuestState()
+    {
+        GetComponent<UIBase>().ChangeState<NotQuest>();
+    }
     private class NotQuest : UIStateBase
     {
         public override void OnEnter(UIBase owner, UIStateBase prevState)
@@ -60,8 +67,15 @@ public class UIItemView : UIBase
     {
         public override void OnEnter(UIBase owner, UIStateBase prevState)
         {
-            owner.GetComponent<UIItemView>().SetCenterUI();
-            owner.GetComponent<UIItemView>().SetCenterImage();
+            var OWNER = owner.GetComponent<UIItemView>();
+            OWNER.SetCenterUI();
+            OWNER.SetCenterImage();
+            OWNER.CreateLightButton();
+        }
+        public override void OnExit(UIBase owner, UIStateBase nextState)
+        {
+            var OWNER = owner.GetComponent<UIItemView>();
+            OWNER.DeleteLightButton();
         }
         public override void OnSelectItemStart(UIBase owner)
         {
@@ -70,7 +84,6 @@ public class UIItemView : UIBase
         public override void OnUpdate(UIBase owner)
         {
             owner.GetComponent<UIItemView>().SetItemID();
-            Debug.Log(GetType().Name);
         }
         public override void OnPushBoxButton(UIBase owner)
         {
@@ -83,7 +96,6 @@ public class UIItemView : UIBase
                 owner.ChangeState<NotQuest>();
             }
         }
-
     }
     private class UseItem : UIStateBase
     {
@@ -167,13 +179,24 @@ public class UIItemView : UIBase
     {
         public override void OnEnter(UIBase owner, UIStateBase prevState)
         {
-            owner.GetComponent<UIItemView>().SetRightUI();
-            owner.GetComponent<UIItemView>().SetRightImage();
+            var OWNER = owner.GetComponent<UIItemView>();
 
-            owner.GetComponent<UIItemView>().SetLeftUI();
-            owner.GetComponent<UIItemView>().SetLeftImage();
+            OWNER.SetRightUI();
+            OWNER.SetRightImage();
+
+            OWNER.SetLeftUI();
+            OWNER.SetLeftImage();
+            OWNER.CreateLightButton();
+            OWNER.CreateRightButton();
 
         }
+        public override void OnExit(UIBase owner, UIStateBase nextState)
+        {
+            var OWNER = owner.GetComponent<UIItemView>();
+            OWNER.DeleteLightButton();
+            OWNER.DeleteRightButton();
+        }
+
         public override void OnSelectItemEnd(UIBase owner)
         {
             owner.GetComponent<UIItemView>().DeleteLeftUI();
@@ -219,6 +242,47 @@ public class UIItemView : UIBase
 
     }
 
+    public void CreateLightButton()
+    {
+        if (_maruButton != null) return;
+        if (objects[(int)position.center] == null) return;
+        Debug.Log("Light");
+        _maruButton = Instantiate(_maruButtonPrefab);
+        _maruButton.transform.SetParent(GameManager.Instance.ItemCanvas.Canvas.transform);
+        var rect = _maruButton.GetComponent<RectTransform>();
+        var centerRect = objects[(int)position.center].GetComponent<RectTransform>();
+        var pos = centerRect.anchoredPosition;
+        pos.x -= rect.sizeDelta.x / 2;
+        pos.y -= centerRect.sizeDelta.y - rect.sizeDelta.y / 2;
+        rect.anchoredPosition = pos;
+    }
+    public void CreateRightButton()
+    {
+        if (_shikakuButton != null) return;
+        if (objects[(int)position.center] == null) return;
+        Debug.Log("Right");
+        _shikakuButton = Instantiate(_shikakuButtonPrefab);
+        _shikakuButton.transform.SetParent(GameManager.Instance.ItemCanvas.Canvas.transform);
+        var rect = _shikakuButton.GetComponent<RectTransform>();
+        var centerRect = objects[(int)position.center].GetComponent<RectTransform>();
+        var pos = centerRect.anchoredPosition;
+        pos.x += centerRect.sizeDelta.x - rect.sizeDelta.x / 2;
+        pos.y -= centerRect.sizeDelta.y - rect.sizeDelta.y / 2;
+        rect.anchoredPosition = pos;
+    }
+    public void DeleteLightButton()
+    {
+        if (_maruButton == null) return;
+        Destroy(_maruButton);
+        _maruButton = null;
+    }
+    public void DeleteRightButton()
+    {
+        if (_shikakuButton == null) return;
+        Destroy(_shikakuButton);
+        _shikakuButton = null;
+    }
+
     public void SetCenterUI()
     {
         if (objects[(int)position.center] != null) return;
@@ -261,7 +325,7 @@ public class UIItemView : UIBase
         objects[(int)position.left].GetComponent<RectTransform>().sizeDelta = new Vector2(rectSize, rectSize);
         return true;
     }
-
+    //UIの削除
     public void DeleteCenterUI()
     {
         if (objects[(int)position.center] == null) return;
@@ -269,12 +333,14 @@ public class UIItemView : UIBase
         objects[(int)position.center] = null;
 
     }
+    //UIの削除
     public void DeleteRightUI()
     {
         if (objects[(int)position.right] == null) return;
         Destroy(objects[(int)position.right]);
         objects[(int)position.right] = null;
     }
+    //UIの削除
     public void DeleteLeftUI()
     {
         if (objects[(int)position.left] == null) return;
@@ -282,7 +348,7 @@ public class UIItemView : UIBase
         objects[(int)position.left] = null;
 
     }
-
+    //持っているアイテムのリスト
     public void SetItemID()
     {
         var data = GameManager.Instance.ItemDataList.Dictionary;
@@ -294,7 +360,7 @@ public class UIItemView : UIBase
         }
         _itemIDList.Sort((a, b) => GameManager.Instance.ItemDataList.Dictionary[a].baseData.PoachUINumber - GameManager.Instance.ItemDataList.Dictionary[b].baseData.PoachUINumber);
     }
-
+    //アイコンの設定
     public void SetRightImage()
     {
         if (_itemIDList.Count == 0) return;
@@ -306,6 +372,7 @@ public class UIItemView : UIBase
         var iconname = GameManager.Instance.ItemDataList.Dictionary[_itemIDList[index]].baseData.IconName;
         images[1].sprite = Resources.Load<Sprite>(iconname);
     }
+    //アイコンの設定
     public void SetLeftImage()
     {
         if (_itemIDList.Count == 0) return;
@@ -318,6 +385,7 @@ public class UIItemView : UIBase
         var iconname = GameManager.Instance.ItemDataList.Dictionary[_itemIDList[index]].baseData.IconName;
         images[1].sprite = Resources.Load<Sprite>(iconname);
     }
+    //アイコンの設定
     public void SetCenterImage()
     {
         if (_itemIDList.Count == 0) return;
@@ -334,6 +402,9 @@ public class UIItemView : UIBase
             images[1].sprite = Resources.Load<Sprite>(data.IconName);
         }
     }
+    /// <summary>
+    /// 永続効果のアイテムの効果を削除
+    /// </summary>
     public void ClearPermanentBuff()
     {
         var list = GameManager.Instance.ItemDataList;
@@ -349,7 +420,7 @@ public class UIItemView : UIBase
             switch (data.ItemType)
             {
                 case ItemType.AttackUp:
-                    GameManager.Instance.Player.Status.Attack-= data.UpValue;
+                    GameManager.Instance.Player.Status.Attack -= data.UpValue;
                     break;
                 case ItemType.DefenseUp:
                     GameManager.Instance.Player.Status.Defense -= data.UpValue;
@@ -359,6 +430,6 @@ public class UIItemView : UIBase
             }
             list.Values[index] = data;
         }
-            GameManager.Instance.ItemDataList.DesrializeDictionary();
+        GameManager.Instance.ItemDataList.DesrializeDictionary();
     }
 }

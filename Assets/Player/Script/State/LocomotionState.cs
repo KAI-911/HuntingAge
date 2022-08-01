@@ -46,18 +46,25 @@ public class LocomotionState : PlayerStateBase
     public override void OnDodge(Player owner)
     {
         if (!owner.GroundChecker.IsGround()) return;
-        //•ûŒü“ü—Í‚ª‚È‚¯‚ê‚ÎÌæ
-        if (owner.InputMoveAction.ReadValue<Vector2>().sqrMagnitude <= 0.1f)
-        {
-            if (owner.CollectionScript != null)
-            {
-                owner.ChangeState<Collection>();
-            }
-            return;
-        }
+        ////•ûŒü“ü—Í‚ª‚È‚¯‚ê‚ÎÌæ
+        //if (owner.InputMoveAction.ReadValue<Vector2>().sqrMagnitude <= 0.1f)
+        //{
+        //    if (owner.CollectionScript != null)
+        //    {
+        //        owner.ChangeState<Collection>();
+        //    }
+        //    return;
+        //}
         owner.ChangeState<DodgeState>();
-
     }
+    public override void OnCollect(Player owner)
+    {
+        if (owner.CollectionScript != null)
+        {
+            owner.ChangeState<Collection>();
+        }
+    }
+
     public override void OnJump(Player owner)
     {
         if (!owner.GroundChecker.IsGround()) return;

@@ -87,7 +87,8 @@ public partial class Player : Singleton<Player>
     }
     private void OnEnable()
     {
-        _inputMove.Player.Jump.started += Jump;
+        //_inputMove.Player.Jump.started += Jump;
+        _inputMove.Player.Collection.started += Collect;
         _inputMove.Player.Dodge.started += Dodge;
         _inputMove.Player.StrongAttack.started += StrongAttack;
         _inputMove.Player.WeakAttack.started += WeakAttack;
@@ -97,9 +98,11 @@ public partial class Player : Singleton<Player>
     }
 
 
+
     private void OnDisable()
     {
-        _inputMove.Player.Jump.started -= Jump;
+        //_inputMove.Player.Jump.started -= Jump;
+        _inputMove.Player.Collection.started -= Collect;
         _inputMove.Player.Dodge.started -= Dodge;
         _inputMove.Player.StrongAttack.started -= StrongAttack;
         _inputMove.Player.WeakAttack.started -= WeakAttack;
@@ -220,7 +223,10 @@ public partial class Player : Singleton<Player>
         if (!_isAction) return;
         _currentState.OnWeakAttack(this);
     }
-
+    private void Collect(InputAction.CallbackContext obj)
+    {
+        _currentState.OnCollect(this);
+    }
     private void Jump(InputAction.CallbackContext obj)
     {
         if (!_isAction) return;
