@@ -18,7 +18,7 @@ public class ItemButton : MonoBehaviour
     void Update()
     {
         if (_ID == "") return;
-        SetID(_ID, _item);
+        //SetID(_ID, _item);
     }
     public void SetID(string id, ItemBoxOrPoach where)
     {
@@ -95,6 +95,12 @@ public class ItemButton : MonoBehaviour
         }
     }
 
+    public void SetData(string _id,string _text, Sprite _sprite)
+    {
+        _ID = _id;
+        _count.text = _text;
+        _image.sprite = _sprite;
+    }
     public void clear()
     {
         _ID = "";
