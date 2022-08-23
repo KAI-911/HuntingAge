@@ -22,7 +22,7 @@ public class GameManager : Singleton<GameManager>
     private VillageData _villageData;
     private FadeManager _fadeManager;
     private UIItemView _iItemView;
-    [SerializeField] private Player _player;
+    private Player _player;
     public Scene VillageScene { get => _villageScene; }
     public Scene NowScene { get => _nowScene; set => _nowScene = value; }
     public Quest Quest { get => _quest; set => _quest = value; }

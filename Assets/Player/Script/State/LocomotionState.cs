@@ -63,6 +63,10 @@ public class LocomotionState : PlayerStateBase
         {
             owner.ChangeState<Collection>();
         }
+        else
+        {
+            owner.ChangeState<ItemUseing>();
+        }
     }
 
     public override void OnJump(Player owner)

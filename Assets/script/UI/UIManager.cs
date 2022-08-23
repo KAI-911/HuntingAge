@@ -10,6 +10,9 @@ public class UIManager : Singleton<UIManager>
     [SerializeField] private InputControls _input;
     [SerializeField] private List<UIBase> _UIList;
     [SerializeField] UIPresetDataList _UIPresetData;
+    [SerializeField] GameObject _cursorSE;
+    [SerializeField] GameObject _questSE;
+    [SerializeField] GameObject _decisionSE;
     private InputAction _inputSelection;
     private InputAction _inputCurrentChange;
     public Player _player;
@@ -34,6 +37,18 @@ public class UIManager : Singleton<UIManager>
         if (!_UIList.Contains(_uIBase)) return false;
         _UIList.Remove(_uIBase);
         return true;
+    }
+    public void PlayCursorSE()
+    {
+        Instantiate(_cursorSE);
+    }
+    public void PlayQuestSE()
+    {
+        Instantiate(_questSE);
+    }
+    public void PlayDecisionSE()
+    {
+        Instantiate(_decisionSE);
     }
     private void OnEnable()
     {

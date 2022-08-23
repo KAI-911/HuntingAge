@@ -35,6 +35,7 @@ public class UIItemBox : UIBase
             if (!UIManager.Instance._player.IsAction) return;
             if (owner.gameObject.GetComponent<UIItemBox>()._targetChecker.TriggerHit)
             {
+                UIManager.Instance.PlayDecisionSE();
                 UIManager.Instance._player.IsAction = false;
                 owner.ChangeState<FirstSlect>();
             }
@@ -64,6 +65,7 @@ public class UIItemBox : UIBase
         }
         public override void OnProceed(UIBase owner)
         {
+            UIManager.Instance.PlayDecisionSE();
             _itemIcon.CurrentButtonInvoke();
         }
         public override void OnBack(UIBase owner)
@@ -123,6 +125,7 @@ public class UIItemBox : UIBase
         }
         public override void OnProceed(UIBase owner)
         {
+            UIManager.Instance.PlayDecisionSE();
             //アイテムの入れ替えpoach(box)からbox(poach)へ最大量送る
             if (owner.GetComponent<UIItemBox>().current == CurrentUI.box)
             {
@@ -230,6 +233,7 @@ public class UIItemBox : UIBase
         }
         public override void OnProceed(UIBase owner)
         {
+            UIManager.Instance.PlayDecisionSE();
             _itemIcon.Buttons[_itemIcon.CurrentNunber].GetComponent<Button>().onClick.Invoke();
         }
     }
@@ -262,6 +266,7 @@ public class UIItemBox : UIBase
         }
         public override void OnProceed(UIBase owner)
         {
+            UIManager.Instance.PlayDecisionSE();
             //お互いのUI座標を入れ替える
             var selectButton = _itemIcon.Buttons[_selectionNumber].GetComponent<ItemButton>();
             var currentButton = _itemIcon.Buttons[_itemIcon.CurrentNunber].GetComponent<ItemButton>();
@@ -429,6 +434,7 @@ public class UIItemBox : UIBase
             {
                 if (lockflg == false)
                 {
+                    UIManager.Instance.PlayCursorSE();
                     if (vec.y > 0) now++;
                     else now--;
                     now = Mathf.Clamp(now, min, max);
@@ -444,6 +450,7 @@ public class UIItemBox : UIBase
         }
         public override void OnProceed(UIBase owner)
         {
+            UIManager.Instance.PlayDecisionSE();
             MaterialData materialData = new MaterialData();
             //アイテムの入れ替えpoach(box)からbox(poach)へ最大量送る
             if (owner.GetComponent<UIItemBox>().current == CurrentUI.box)
@@ -533,6 +540,7 @@ public class UIItemBox : UIBase
         public override void OnProceed(UIBase owner)
         {
             if (!itemIcon.CheckCurrentNunberItem()) return;
+            UIManager.Instance.PlayDecisionSE();
             var weaponID = itemIcon.Buttons[itemIcon.CurrentNunber].GetComponent<ItemButton>().ID;
             UIManager.Instance._player.WeaponID = weaponID;
             owner.GetComponent<UIItemBox>().WeaponUISet();

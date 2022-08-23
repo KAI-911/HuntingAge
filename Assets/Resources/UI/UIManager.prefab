@@ -47,6 +47,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _UIList: []
   _UIPresetData: {fileID: 4888507690912263440}
+  _cursorSE: {fileID: 5378510270213133771, guid: ccb0fc7a4e8962441addfcbd448e448b,
+    type: 3}
+  _questSE: {fileID: 8504682689478910861, guid: 86bc5fc3c7bfd6b4cb65ab8ac1c225e9,
+    type: 3}
+  _decisionSE: {fileID: 3545920616778026257, guid: b5213b92ae601de4aabf6b777f1164bc,
+    type: 3}
   _player: {fileID: 0}
 --- !u!114 &4888507690912263440
 MonoBehaviour:

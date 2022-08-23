@@ -26,6 +26,7 @@ public class UIPoach : UIBase
         {
             if (!UIManager.Instance._player.IsAction) return;
             UIManager.Instance._player.IsAction = false;
+            UIManager.Instance.PlayDecisionSE();
             owner.ChangeState<FirstSlect>();
         }
     }
@@ -51,6 +52,7 @@ public class UIPoach : UIBase
         }
         public override void OnProceed(UIBase owner)
         {
+            UIManager.Instance.PlayDecisionSE();
             owner.ItemIconList[(int)IconType.TypeSelect].Buttons[owner.ItemIconList[(int)IconType.TypeSelect].CurrentNunber].GetComponent<Button>().onClick.Invoke();
         }
         public override void OnBack(UIBase owner)
@@ -86,6 +88,7 @@ public class UIPoach : UIBase
         }
         public override void OnProceed(UIBase owner)
         {
+            UIManager.Instance.PlayDecisionSE();
             owner.ChangeState<UIChange>();
         }
         public override void OnBack(UIBase owner)
@@ -117,6 +120,7 @@ public class UIPoach : UIBase
         }
         public override void OnProceed(UIBase owner)
         {
+            UIManager.Instance.PlayDecisionSE();
             //Ç®å›Ç¢ÇÃUIç¿ïWÇì¸ÇÍë÷Ç¶ÇÈ
             var selectButton = _itemIcon.Buttons[_selectionNumber].GetComponent<ItemButton>();
             var currentButton = _itemIcon.Buttons[_itemIcon.CurrentNunber].GetComponent<ItemButton>();
@@ -249,6 +253,7 @@ public class UIPoach : UIBase
         {
             if (itemIcon.Buttons.Count > 0)
             {
+                UIManager.Instance.PlayDecisionSE();
                 itemIcon.Buttons[itemIcon.CurrentNunber].GetComponent<Button>().onClick.Invoke();
             }
         }
@@ -291,6 +296,7 @@ public class UIPoach : UIBase
         }
         public override void OnProceed(UIBase owner)
         {
+            UIManager.Instance.PlayDecisionSE();
             var OWNER = owner.GetComponent<UIPoach>();
             var icon = itemIcon.Buttons[itemIcon.CurrentNunber].GetComponent<ItemButton>();
             MaterialDataList materialList = GameManager.Instance.MaterialDataList;

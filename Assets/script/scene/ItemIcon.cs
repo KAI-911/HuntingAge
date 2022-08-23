@@ -139,12 +139,14 @@ public class ItemIcon : MonoBehaviour
             if (_once.Flg) return _currentNunber;
             if (Mathf.Abs(vector2.x) > 0)
             {
+                UIManager.Instance.PlayCursorSE();
                 int i = _currentNunber % (int)TableSize.y;
                 if (vector2.x > 0)
                 {
                     if (i != ((int)TableSize.y - 1))
                     {
                         _currentNunber++;
+                        
                     }
                 }
                 else if (i != 0)
@@ -155,6 +157,7 @@ public class ItemIcon : MonoBehaviour
             }
             if (Mathf.Abs(vector2.y) > 0)
             {
+                UIManager.Instance.PlayCursorSE();
                 int i = _currentNunber / (int)TableSize.y;
 
                 if (vector2.y > 0)
@@ -176,7 +179,7 @@ public class ItemIcon : MonoBehaviour
         {
             _once.Flg = false;
         }
-
+        
         if (WithinRange())
         {
             Buttons[CurrentNunber].GetComponent<Button>().Select();

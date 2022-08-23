@@ -54,6 +54,7 @@ public class UIQuestResult : UIBase
             var gm = GameManager.Instance;
             foreach (var reward in gm.Quest.QuestData.QuestRewardDatas)
             {
+                if (reward.probability > Random.Range(0, 100)) continue;
                 MaterialData data;
                 if(gm.MaterialDataList.Keys.Contains(reward.name))
                 {
@@ -142,6 +143,7 @@ public class UIQuestResult : UIBase
         }
         public override void OnProceed(UIBase owner)
         {
+            UIManager.Instance.PlayDecisionSE();
             var OWNER = owner.GetComponent<UIQuestResult>();
 
             if (OWNER.currentNum == current.item)

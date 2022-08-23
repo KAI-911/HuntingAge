@@ -87,4 +87,6 @@ abstract public class UIBase : MonoBehaviour
         public virtual void OnSceneChenge(UIBase owner) { }
 
     }
+
+
 }

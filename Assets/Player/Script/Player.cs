@@ -216,25 +216,30 @@ public partial class Player : Singleton<Player>
     private void StrongAttack(InputAction.CallbackContext obj)
     {
         if (!_isAction) return;
+        if (GameManager.Instance.UIItemView.IsSelect()) return;
         _currentState.OnStrongAttack(this);
     }
     private void WeakAttack(InputAction.CallbackContext obj)
     {
         if (!_isAction) return;
+        if (GameManager.Instance.UIItemView.IsSelect()) return;
         _currentState.OnWeakAttack(this);
     }
     private void Collect(InputAction.CallbackContext obj)
     {
+        if (GameManager.Instance.UIItemView.IsSelect()) return;
         _currentState.OnCollect(this);
     }
     private void Jump(InputAction.CallbackContext obj)
     {
         if (!_isAction) return;
+        if (GameManager.Instance.UIItemView.IsSelect()) return;
         _currentState.OnJump(this);
     }
     private void Dodge(InputAction.CallbackContext obj)
     {
         if (!_isAction) return;
+        if (GameManager.Instance.UIItemView.IsSelect()) return;
         _currentState.OnDodge(this);
     }
     public void LookAt(float _turningAngle = 900)
@@ -348,7 +353,8 @@ public enum PlayerAnimationState
     HitReaction,
     Death,
     Collection,
-    Landing
+    Landing,
+    ItemUseing
 }
 public enum AttackType
 {
