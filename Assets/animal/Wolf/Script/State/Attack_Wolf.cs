@@ -46,9 +46,8 @@ public class Attack_Wolf : SatetBase_Wolf
     {
         if (animationEvent.stringParameter == "Change")
         {
-            //“–‚½‚è”»’è‚ð”½“]
+            //“–‚½‚è”»’è
             owner.HitReceiver.ChangeAttackFlg((PartType)animationEvent.intParameter);
-            Debug.Log((PartType)animationEvent.intParameter);
         }
         if (animationEvent.stringParameter == "End")
         {

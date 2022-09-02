@@ -15,7 +15,6 @@ public class Idle_Dodo : StateBase_Dodo
     }
     public override void OnUpdate(Dodo owner)
     {
-        Debug.Log("idle");
         owner.NavMeshAgent.destination = owner.transform.position;
         
         //if (owner.Search())

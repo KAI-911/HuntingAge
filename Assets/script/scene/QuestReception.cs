@@ -51,6 +51,7 @@ public class QuestReception : UIBase
             if (owner.gameObject.GetComponent<QuestReception>()._questbordChecker.TriggerHit)
             {
                 UIManager.Instance._player.IsAction = false;
+                UIManager.Instance.PlayDecisionSE();
                 owner.ChangeState<QuestLevelSelect>();
             }
         }
@@ -124,7 +125,6 @@ public class QuestReception : UIBase
             itemIcon.SetIcondata(itemIconData);
 
             var objList = itemIcon.CreateButton();
-            Debug.Log("ボタン作成完了");
             for (int i = 0; i < objList.Count; i++)
             {
                 var data = owner.GetComponent<QuestReception>()._questDataList.Dictionary[owner.GetComponent<QuestReception>()._questHolderData.Quests[i]];
@@ -154,6 +154,7 @@ public class QuestReception : UIBase
         }
         public override void OnProceed(UIBase owner)
         {
+            UIManager.Instance.PlayDecisionSE();
             itemIcon.Buttons[itemIcon.CurrentNunber].GetComponent<Button>().onClick.Invoke();
         }
         public override void OnBack(UIBase owner)
@@ -186,6 +187,7 @@ public class QuestReception : UIBase
                     t.text = "はい";
                     b.onClick.AddListener(() =>
                     {
+                        UIManager.Instance.PlayDecisionSE();
                         Debug.Log("GoQueest");
                         owner.ChangeState<GoQuest>();
                     });
@@ -195,6 +197,7 @@ public class QuestReception : UIBase
                     t.text = "いいえ";
                     b.onClick.AddListener(() =>
                     {
+                        UIManager.Instance.PlayDecisionSE();
                         Debug.Log("QuestSelect");
                         owner.ChangeState<QuestSelect>();
                     });
@@ -218,6 +221,7 @@ public class QuestReception : UIBase
         }
         public override void OnProceed(UIBase owner)
         {
+            UIManager.Instance.PlayDecisionSE();
             itemIcon.Buttons[itemIcon.CurrentNunber].GetComponent<Button>().onClick.Invoke();
         }
         public override void OnBack(UIBase owner)
@@ -238,7 +242,6 @@ public class QuestReception : UIBase
             Debug.Log("クエスト受注中");
             if (!UIManager.Instance._player.IsAction && itemIcon.Buttons.Count != 0)
             {
-                Debug.Log("クエスト逝くの？破棄するの?");
                 itemIcon.Select(UIManager.Instance.InputSelection.ReadValue<Vector2>());
             }
 
@@ -247,6 +250,7 @@ public class QuestReception : UIBase
         {
             if (!UIManager.Instance._player.IsAction && itemIcon.Buttons.Count != 0)
             {
+                UIManager.Instance.PlayDecisionSE();
                 itemIcon.Buttons[itemIcon.CurrentNunber].GetComponent<Button>().onClick.Invoke();
                 return;
             }
@@ -269,6 +273,7 @@ public class QuestReception : UIBase
                         t.text = "はい";
                         b.onClick.AddListener(() =>
                         {
+                            UIManager.Instance.PlayQuestSE();
                             UIManager.Instance._player.IsAction = true;
                             itemIcon.DeleteButton();
                             GameManager.Instance.Quest.GoToQuset();
@@ -280,6 +285,7 @@ public class QuestReception : UIBase
                         t.text = "いいえ";
                         b.onClick.AddListener(() =>
                         {
+                            UIManager.Instance.PlayDecisionSE();
                             UIManager.Instance._player.IsAction = true;
                             itemIcon.DeleteButton();
                         });
@@ -305,6 +311,7 @@ public class QuestReception : UIBase
                         t.text = "はい";
                         b.onClick.AddListener(() =>
                         {
+                            UIManager.Instance.PlayDecisionSE();
                             owner.ChangeState<Close>();
                             UIManager.Instance._player.IsAction = true;
                             itemIcon.DeleteButton();
@@ -315,6 +322,7 @@ public class QuestReception : UIBase
                         t.text = "いいえ";
                         b.onClick.AddListener(() =>
                         {
+                            UIManager.Instance.PlayDecisionSE();
                             UIManager.Instance._player.IsAction = true;
                             itemIcon.DeleteButton();
                         });

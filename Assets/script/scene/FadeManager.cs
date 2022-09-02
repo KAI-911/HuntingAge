@@ -69,7 +69,6 @@ public class FadeManager : MonoBehaviour
         {
             //経過時間から透明度計算
             _color.a -= Time.deltaTime / _fadeTime;
-            Debug.Log("_isFadeIn");
             //フェードイン終了判定
             if (_color.a <= 0.0f)
             {

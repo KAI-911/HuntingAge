@@ -6,6 +6,7 @@ public class Delete : MonoBehaviour
     [SerializeField] float deleteTime;
     void Start()
     {
+        DontDestroyOnLoad(this);
         Destroy(gameObject, deleteTime);
     }
 }

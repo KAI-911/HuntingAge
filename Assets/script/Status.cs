@@ -13,7 +13,7 @@ public class Status : MonoBehaviour, IAttackDamage
     [SerializeField] private int _maxSp;
     [SerializeField] private int _sp;
     public int SP { get => _sp; set => _sp = value; }
-    public int MaxSp { get => _maxSp; set => _maxSp = value; }
+    public int MaxSP { get => _maxSp; set => _maxSp = value; }
 
     [SerializeField] private int _attack;
     public int Attack { get => _attack; set => _attack = value; }
@@ -70,7 +70,6 @@ public class Status : MonoBehaviour, IAttackDamage
 
         //部位ごとに怯み計算
         var partReceiver = this.gameObject.transform.root.GetComponent<PartCheckerReceiver>();
-        Debug.Log(_Hitparameter.HitPart);
 
         //部位にダメージを与える
         if (partReceiver.PartEnduranceDamage(_Hitparameter.HitPart, damage)) 

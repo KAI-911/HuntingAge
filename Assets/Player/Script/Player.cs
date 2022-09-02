@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using UnityEngine.SceneManagement;
 public partial class Player : Singleton<Player>
 {
+    private PlayerStatusData _statusData;
     //リジッドボディー
     private Rigidbody _rigidbody;
     public Rigidbody Rigidbody { get => _rigidbody; set => _rigidbody = value; }
@@ -77,6 +78,7 @@ public partial class Player : Singleton<Player>
         _rigidbody = GetComponent<Rigidbody>();
         _animator = GetComponent<Animator>();
         _status = GetComponent<Status>();
+        _statusData = GetComponent<PlayerStatusData>();
         _targetRotation = transform.rotation;
         _inputMove = new InputControls();
         _currentState = new LocomotionState();
@@ -85,7 +87,8 @@ public partial class Player : Singleton<Player>
     }
     private void OnEnable()
     {
-        _inputMove.Player.Jump.started += Jump;
+        //_inputMove.Player.Jump.started += Jump;
+        _inputMove.Player.Collection.started += Collect;
         _inputMove.Player.Dodge.started += Dodge;
         _inputMove.Player.StrongAttack.started += StrongAttack;
         _inputMove.Player.WeakAttack.started += WeakAttack;
@@ -95,9 +98,11 @@ public partial class Player : Singleton<Player>
     }
 
 
+
     private void OnDisable()
     {
-        _inputMove.Player.Jump.started -= Jump;
+        //_inputMove.Player.Jump.started -= Jump;
+        _inputMove.Player.Collection.started -= Collect;
         _inputMove.Player.Dodge.started -= Dodge;
         _inputMove.Player.StrongAttack.started -= StrongAttack;
         _inputMove.Player.WeakAttack.started -= WeakAttack;
@@ -132,7 +137,6 @@ public partial class Player : Singleton<Player>
             ChangeState<DeathState>();
         }
 
-        Debug.Log(_currentState.GetType().ToString());
     }
 
     private void FixedUpdate()
@@ -212,22 +216,30 @@ public partial class Player : Singleton<Player>
     private void StrongAttack(InputAction.CallbackContext obj)
     {
         if (!_isAction) return;
+        if (GameManager.Instance.UIItemView.IsSelect()) return;
         _currentState.OnStrongAttack(this);
     }
     private void WeakAttack(InputAction.CallbackContext obj)
     {
         if (!_isAction) return;
+        if (GameManager.Instance.UIItemView.IsSelect()) return;
         _currentState.OnWeakAttack(this);
     }
-
+    private void Collect(InputAction.CallbackContext obj)
+    {
+        if (GameManager.Instance.UIItemView.IsSelect()) return;
+        _currentState.OnCollect(this);
+    }
     private void Jump(InputAction.CallbackContext obj)
     {
         if (!_isAction) return;
+        if (GameManager.Instance.UIItemView.IsSelect()) return;
         _currentState.OnJump(this);
     }
     private void Dodge(InputAction.CallbackContext obj)
     {
         if (!_isAction) return;
+        if (GameManager.Instance.UIItemView.IsSelect()) return;
         _currentState.OnDodge(this);
     }
     public void LookAt(float _turningAngle = 900)
@@ -259,24 +271,46 @@ public partial class Player : Singleton<Player>
 
     public void Revival()
     {
+        GameManager.Instance.UIItemView.ClearPermanentBuff();
+        _status.MaxHP = _statusData.MaxHP;
+        _status.MaxSP = _statusData.MaxSP;
+        _status.Attack = _statusData.Attack;
+        _status.Defense = _statusData.Defense;
         _status.HP = _status.MaxHP;
+        _status.SP = _status.MaxSP;
+
         var pos = StartPos.Find(n => n.scene == GameManager.Instance.Quest.QuestData.Field);
         transform.position = pos.pos[0];
-        ChangeState<LocomotionState>();
         _animator.SetInteger("HP", _status.HP);
         _status.HitReaction = HitReaction.nonReaction;
+        _status.InvincibleFlg = false;
+        ChangeState<LocomotionState>();
+
+
+        Debug.Log("Revival");
     }
     private void OnActiveSceneChanged(UnityEngine.SceneManagement.Scene arg0, UnityEngine.SceneManagement.Scene arg1)
     {
         if (GameManager.Instance.Quest.IsQuest)
         {
             ChangeWepon(_weaponID);
+            _status.MaxHP = _statusData.MaxHP;
+            _status.MaxSP = _statusData.MaxSP;
+            _status.Attack = _statusData.Attack;
+            _status.Defense = _statusData.Defense;
+            _status.HP = _status.MaxHP;
+            _status.SP = _status.MaxSP;
             ChangeState<LocomotionState>();
         }
         else
         {
             DeleteWepon();
+            _status.MaxHP = _statusData.MaxHP;
+            _status.MaxSP = _statusData.MaxSP;
+            _status.Attack = _statusData.Attack;
+            _status.Defense = _statusData.Defense;
             _status.HP = _status.MaxHP;
+            _status.SP = _status.MaxSP;
             ChangeState<VillageAction>();
         }
         var pos = StartPos.Find(n => n.scene == GameManager.Instance.NowScene);
@@ -319,7 +353,8 @@ public enum PlayerAnimationState
     HitReaction,
     Death,
     Collection,
-    Landing
+    Landing,
+    ItemUseing
 }
 public enum AttackType
 {

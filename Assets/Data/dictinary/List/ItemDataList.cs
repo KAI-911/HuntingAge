@@ -154,6 +154,34 @@ public class ItemDataList : MonoBehaviour, ISerializationCallbackReceiver
         DesrializeDictionary();
         return addNumber;
     }
+    /// <summary>
+    /// ボックスに指定数のアイテムを送る 
+    /// 基本的に正の値を返す
+    /// -1 エラー:キーが見つからなかった
+    /// </summary>
+    /// <param name="ID">移動させるアイテムのID</param>
+    /// <param name="move">いくつ移動させるか</param>
+    /// <param name="uinum">ボックスに移動させるアイテムがない場合に使用するUIの場所</param>
+    /// <returns></returns>
+    public int GetToBox(string ID, int move, int uinum)
+    {
+        if (!keys.Contains(ID)) return -1;
+        int index = keys.IndexOf(ID);
+        var data = values[index];
+
+        int addNumber = move;
+        //ポーチに受け取る容量がない
+        if (move > data.baseData.BoxStackNumber - data.baseData.BoxHoldNumber) addNumber = data.baseData.BoxStackNumber - data.baseData.BoxHoldNumber;
+
+        //UIの位置を設定
+        if (data.baseData.BoxHoldNumber <= 0) data.baseData.BoxUINumber = uinum;
+
+        data.baseData.BoxHoldNumber += addNumber;
+        values[index] = data;
+        DesrializeDictionary();
+        return addNumber;
+    }
+
 
     public bool ChackItem(string _ID, int _num)
     {
@@ -224,13 +252,21 @@ public struct ItemData
 {
     public MaterialData baseData;
     /// <summary>
+    /// 使用中のフラグ
+    /// </summary>
+    public bool Use;
+    /// <summary>
     /// 効果が永続するかどうか（死亡すると消える）
     /// </summary>
     public bool Permanent;
     /// <summary>
-    /// 効果時間
+    /// 効果時間(秒)
     /// </summary>
     public float Time;
+    /// <summary>
+    /// 上昇する値
+    /// </summary>
+    public int UpValue;
     /// <summary>
     /// どのような効果なのか
     /// </summary>

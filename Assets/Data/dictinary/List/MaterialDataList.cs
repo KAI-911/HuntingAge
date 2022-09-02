@@ -62,7 +62,6 @@ public class MaterialDataList : MonoBehaviour, ISerializationCallbackReceiver
     [ContextMenu("PrintDictionary")]
     public void PrintDictionary()
     {
-        Debug.Log("Log");
         foreach (var item in Dictionary)
         {
             Debug.Log("Key: " + item.Key + " Value: " + item.Value);
@@ -131,7 +130,7 @@ public class MaterialDataList : MonoBehaviour, ISerializationCallbackReceiver
     /// ポーチに指定数のアイテムを送る
     /// </summary>
     /// <param name="ID">移動させるアイテムのID</param>
-    /// <param name="move">ポーチからいくつ移動させるか</param>
+    /// <param name="move">いくつ移動させるか</param>
     /// <param name="uinum">ポーチに移動させるアイテムがない場合に使用するUIの場所</param>
     /// <returns>
     /// 基本的に正の値を返す
@@ -144,7 +143,7 @@ public class MaterialDataList : MonoBehaviour, ISerializationCallbackReceiver
         var data = values[index];
 
         int addNumber = move;
-        //ボックスに受け取る容量がない
+        //ポーチに受け取る容量がない
         if (move > data.PoachStackNumber - data.PoachHoldNumber) addNumber = data.PoachStackNumber - data.PoachHoldNumber;
 
         //UIの位置を設定
@@ -155,6 +154,35 @@ public class MaterialDataList : MonoBehaviour, ISerializationCallbackReceiver
         DesrializeDictionary();
         return addNumber;
     }
+
+    /// <summary>
+    /// ボックスに指定数のアイテムを送る 
+    /// 基本的に正の値を返す
+    /// -1 エラー:キーが見つからなかった
+    /// </summary>
+    /// <param name="ID">移動させるアイテムのID</param>
+    /// <param name="move">いくつ移動させるか</param>
+    /// <param name="uinum">ボックスに移動させるアイテムがない場合に使用するUIの場所</param>
+    /// <returns></returns>
+    public int GetToBox(string ID, int move, int uinum)
+    {
+        if (!keys.Contains(ID)) return -1;
+        int index = keys.IndexOf(ID);
+        var data = values[index];
+
+        int addNumber = move;
+        //ポーチに受け取る容量がない
+        if (move > data.BoxStackNumber - data.BoxHoldNumber) addNumber = data.BoxStackNumber - data.BoxHoldNumber;
+
+        //UIの位置を設定
+        if (data.BoxHoldNumber <= 0) data.BoxUINumber = uinum;
+
+        data.BoxHoldNumber += addNumber;
+        values[index] = data;
+        DesrializeDictionary();
+        return addNumber;
+    }
+
 }
 
 [System.Serializable]

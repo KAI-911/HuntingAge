@@ -227,10 +227,10 @@ public struct WeaponData
     /// </summary>
     public string IconPass;
 
-    /// <summary>
-    /// アイコンの名前
-    /// </summary>
-    public string IconName;
+    ///// <summary>
+    ///// アイコンの名前
+    ///// </summary>
+    //public string IconName;
 
     /// <summary>
     /// アイテムボックスでどの枠に保存されているか

@@ -30,7 +30,6 @@ public class Wandering_Trex : StateBase_Trex
     }
     public override void OnUpdate(Trex owner)
     {
-        Debug.Log("wandering");
         owner.NavMeshAgent.destination = target;
         if (owner.ReceivedAttackCheck()) return;
         if (owner.Search())

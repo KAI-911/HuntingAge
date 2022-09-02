@@ -44,9 +44,9 @@ MonoBehaviour:
     IconName: Icon/Fiber_UI
     BoxStackNumber: 9999
     BoxUINumber: 2
-    BoxHoldNumber: 40
+    BoxHoldNumber: 1000
     PoachStackNumber: 99
-    PoachUINumber: 2
+    PoachUINumber: 0
     PoachHoldNumber: 0
   - ID: Material003
     Name: "\u9AA8"
@@ -55,7 +55,7 @@ MonoBehaviour:
     BoxUINumber: 3
     BoxHoldNumber: 1000
     PoachStackNumber: 99
-    PoachUINumber: 3
+    PoachUINumber: 0
     PoachHoldNumber: 0
   - ID: Material004
     Name: "\u690D\u7269"
@@ -64,23 +64,23 @@ MonoBehaviour:
     BoxUINumber: 4
     BoxHoldNumber: 1000
     PoachStackNumber: 99
-    PoachUINumber: 4
+    PoachUINumber: 0
     PoachHoldNumber: 0
   - ID: Material005
     Name: "\u8089"
     IconName: Icon/Meat_UI
     BoxStackNumber: 9999
     BoxUINumber: 5
-    BoxHoldNumber: 50
+    BoxHoldNumber: 1000
     PoachStackNumber: 99
-    PoachUINumber: 0
+    PoachUINumber: 1
     PoachHoldNumber: 0
   - ID: Material006
     Name: "\u30C4\u30BF"
     IconName: Icon/Vine_UI
     BoxStackNumber: 9999
     BoxUINumber: 6
-    BoxHoldNumber: 1000
+    BoxHoldNumber: 901
     PoachStackNumber: 99
-    PoachUINumber: 1
-    PoachHoldNumber: 0
+    PoachUINumber: 0
+    PoachHoldNumber: 99
