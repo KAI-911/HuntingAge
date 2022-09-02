@@ -3890,8 +3890,8 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4833442073512086890}
-  m_LocalRotation: {x: 0.018189518, y: -0, z: 0.000000011175872, w: 0.9998346}
-  m_LocalPosition: {x: 0.00000014872205, y: -0.0000007206813, z: 0.0000020990835}
+  m_LocalRotation: {x: 0.018189508, y: -0.000000029802322, z: 0.000000018626451, w: 0.9998346}
+  m_LocalPosition: {x: 0.00000008923318, y: -0.00000050701004, z: 0.0000012754322}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -4778,6 +4778,7 @@ GameObject:
   - component: {fileID: 1331165932923879208}
   - component: {fileID: 1842739017157591613}
   - component: {fileID: 1331165932923879222}
+  - component: {fileID: 5246227396808778926}
   m_Layer: 6
   m_Name: player_cloth
   m_TagString: Player
@@ -4955,6 +4956,24 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _partType: 2
+--- !u!114 &5246227396808778926
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5751866540782452716}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 20fdb7ab447456a43b15ddefb8f5d346, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  DictionaryData: {fileID: 11400000, guid: 749bd347cb326b94688c74026ae97f31, type: 2}
+  _maxHP: 100
+  _maxSP: 100
+  _attack: 50
+  _defense: 50
+  modifyValues: 0
 --- !u!1 &5874563852639974736
 GameObject:
   m_ObjectHideFlags: 0

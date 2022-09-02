@@ -16,7 +16,7 @@ public class ItemIcon : MonoBehaviour
     private int _currentNunber;
     public List<GameObject> Buttons { get => _Buttons; set => _Buttons = value; }
     public Vector2 TableSize { get => _iconData._tableSize; set => _iconData._tableSize = value; }
-    public int CurrentNunber { get => _currentNunber; }
+    public int CurrentNunber { get => _currentNunber; set => _currentNunber = value; }
     public int GetSize { get => (int)_iconData._tableSize.x * (int)_iconData._tableSize.y; }
     public ItemIconData IconData { get => _iconData; }
     public GameObject TextObj { get => _textObj; }
@@ -139,12 +139,14 @@ public class ItemIcon : MonoBehaviour
             if (_once.Flg) return _currentNunber;
             if (Mathf.Abs(vector2.x) > 0)
             {
+                UIManager.Instance.PlayCursorSE();
                 int i = _currentNunber % (int)TableSize.y;
                 if (vector2.x > 0)
                 {
                     if (i != ((int)TableSize.y - 1))
                     {
                         _currentNunber++;
+                        
                     }
                 }
                 else if (i != 0)
@@ -155,6 +157,7 @@ public class ItemIcon : MonoBehaviour
             }
             if (Mathf.Abs(vector2.y) > 0)
             {
+                UIManager.Instance.PlayCursorSE();
                 int i = _currentNunber / (int)TableSize.y;
 
                 if (vector2.y > 0)
@@ -176,7 +179,7 @@ public class ItemIcon : MonoBehaviour
         {
             _once.Flg = false;
         }
-
+        
         if (WithinRange())
         {
             Buttons[CurrentNunber].GetComponent<Button>().Select();
@@ -200,14 +203,13 @@ public class ItemIcon : MonoBehaviour
         return -1;
     }
 
-    [ContextMenu("createbutton")]
+    [ContextMenu("CreateButton")]
     public List<GameObject> CreateButton(int currentNum = 0)
     {
         DeleteButton();
         var c = GameManager.Instance.ItemCanvas.Canvas;
         var buttonSize = _iconData._buttonPrefab.GetComponent<RectTransform>().sizeDelta;
         var _buttonBackObjRect = new Vector2(_iconData._leftTopPos.x, _iconData._leftTopPos.y);
-        Debug.Log(_iconData._leftTopPos);
         //”w–Ê‰æ‘œ
         if (_iconData._buttonBack)
         {

@@ -26,7 +26,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4888507690912263443}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0.75, z: -0.325}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -47,6 +47,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _UIList: []
   _UIPresetData: {fileID: 4888507690912263440}
+  _cursorSE: {fileID: 5378510270213133771, guid: ccb0fc7a4e8962441addfcbd448e448b,
+    type: 3}
+  _questSE: {fileID: 8504682689478910861, guid: 86bc5fc3c7bfd6b4cb65ab8ac1c225e9,
+    type: 3}
+  _decisionSE: {fileID: 3545920616778026257, guid: b5213b92ae601de4aabf6b777f1164bc,
+    type: 3}
   _player: {fileID: 0}
 --- !u!114 &4888507690912263440
 MonoBehaviour:
@@ -64,19 +70,23 @@ MonoBehaviour:
   keys:
   - IP_TypeSelect
   - IP_ItemSelect
-  - IB_TypeSelect
   - IB_ItemSelect
   - Confirmation
+  - BlacksmithButton
+  - IB_SubMenu
   values:
-  - _leftTopPos: {x: 100, y: 800}
+  - _leftTopPos: {x: -900, y: 400}
     _padding: 10
     _tableSize: {x: 1, y: 1}
     _canBeChanged: 0
     _buttonBack: 1
     _textFlg: 1
-    _buttonPrefab: {fileID: 1403004829627007043, guid: 446577f06a189c14488ef6b7845ad21c, type: 3}
-    _buttonBackPrefab: {fileID: 4567105175149944347, guid: f7ce8ff705927a7488534fa792a126fe, type: 3}
-    _textPrefab: {fileID: 9123999925664973099, guid: 7e845aabbef9588409138ba440dc835e, type: 3}
+    _buttonPrefab: {fileID: 1403004829627007043, guid: 446577f06a189c14488ef6b7845ad21c,
+      type: 3}
+    _buttonBackPrefab: {fileID: 4567105175149944347, guid: f7ce8ff705927a7488534fa792a126fe,
+      type: 3}
+    _textPrefab: {fileID: 9123999925664973099, guid: 7e845aabbef9588409138ba440dc835e,
+      type: 3}
     _textData:
       fontSize: 15
       autoFontSize: 1
@@ -85,71 +95,103 @@ MonoBehaviour:
       hight: 30
       margin: 10
       textAnchor: 4
-  - _leftTopPos: {x: 100, y: 800}
+  - _leftTopPos: {x: -900, y: 400}
     _padding: 10
-    _tableSize: {x: 3, y: 5}
+    _tableSize: {x: 1, y: 5}
     _canBeChanged: 0
     _buttonBack: 1
     _textFlg: 1
-    _buttonPrefab: {fileID: 2147113997115738069, guid: e0bb1dc90176c9c488618f85bd968cfa, type: 3}
-    _buttonBackPrefab: {fileID: 4567105175149944347, guid: f7ce8ff705927a7488534fa792a126fe, type: 3}
-    _textPrefab: {fileID: 9123999925664973099, guid: 7e845aabbef9588409138ba440dc835e, type: 3}
+    _buttonPrefab: {fileID: 2147113997115738069, guid: e0bb1dc90176c9c488618f85bd968cfa,
+      type: 3}
+    _buttonBackPrefab: {fileID: 4567105175149944347, guid: f7ce8ff705927a7488534fa792a126fe,
+      type: 3}
+    _textPrefab: {fileID: 9123999925664973099, guid: 7e845aabbef9588409138ba440dc835e,
+      type: 3}
     _textData:
       fontSize: 15
       autoFontSize: 1
       text: "\u30A2\u30A4\u30C6\u30E0\u30DD\u30FC\u30C1"
-      color: {r: 0, g: 0, b: 0, a: 1}
+      color: {r: 0.09151816, g: 1, b: 0, a: 1}
       hight: 30
       margin: 10
       textAnchor: 4
-  - _leftTopPos: {x: 100, y: 800}
+  - _leftTopPos: {x: 200, y: 400}
     _padding: 10
-    _tableSize: {x: 1, y: 1}
+    _tableSize: {x: 5, y: 5}
     _canBeChanged: 0
     _buttonBack: 1
     _textFlg: 1
-    _buttonPrefab: {fileID: 1403004829627007043, guid: 446577f06a189c14488ef6b7845ad21c, type: 3}
-    _buttonBackPrefab: {fileID: 4567105175149944347, guid: f7ce8ff705927a7488534fa792a126fe, type: 3}
-    _textPrefab: {fileID: 9123999925664973099, guid: 7e845aabbef9588409138ba440dc835e, type: 3}
+    _buttonPrefab: {fileID: 2147113997115738069, guid: e0bb1dc90176c9c488618f85bd968cfa,
+      type: 3}
+    _buttonBackPrefab: {fileID: 4567105175149944347, guid: f7ce8ff705927a7488534fa792a126fe,
+      type: 3}
+    _textPrefab: {fileID: 9123999925664973099, guid: 7e845aabbef9588409138ba440dc835e,
+      type: 3}
     _textData:
       fontSize: 15
       autoFontSize: 1
-      text: "\u30E1\u30CB\u30E5\u30FC"
-      color: {r: 0, g: 0, b: 0, a: 1}
+      text: "\u30A2\u30A4\u30C6\u30E0\u30DC\u30C3\u30AF\u30B9"
+      color: {r: 1, g: 0, b: 0, a: 1}
       hight: 30
       margin: 10
       textAnchor: 4
-  - _leftTopPos: {x: 1300, y: 1000}
-    _padding: 10
-    _tableSize: {x: 9, y: 5}
-    _canBeChanged: 0
-    _buttonBack: 1
-    _textFlg: 1
-    _buttonPrefab: {fileID: 2147113997115738069, guid: e0bb1dc90176c9c488618f85bd968cfa, type: 3}
-    _buttonBackPrefab: {fileID: 4567105175149944347, guid: f7ce8ff705927a7488534fa792a126fe, type: 3}
-    _textPrefab: {fileID: 9123999925664973099, guid: 7e845aabbef9588409138ba440dc835e, type: 3}
-    _textData:
-      fontSize: 15
-      autoFontSize: 1
-      text: "\u30A2\u30A4\u30C6\u30E0\u30DD\u30FC\u30C1"
-      color: {r: 0, g: 0, b: 0, a: 1}
-      hight: 30
-      margin: 10
-      textAnchor: 4
-  - _leftTopPos: {x: 655, y: 540}
+  - _leftTopPos: {x: 0, y: 100}
     _padding: 10
     _tableSize: {x: 1, y: 2}
     _canBeChanged: 0
     _buttonBack: 1
     _textFlg: 1
-    _buttonPrefab: {fileID: 1403004829627007043, guid: ac45662ca2cc1624f925db70b55c9b3e, type: 3}
-    _buttonBackPrefab: {fileID: 4567105175149944347, guid: f7ce8ff705927a7488534fa792a126fe, type: 3}
-    _textPrefab: {fileID: 9123999925664973099, guid: 7e845aabbef9588409138ba440dc835e, type: 3}
+    _buttonPrefab: {fileID: 1403004829627007043, guid: 446577f06a189c14488ef6b7845ad21c,
+      type: 3}
+    _buttonBackPrefab: {fileID: 4567105175149944347, guid: f7ce8ff705927a7488534fa792a126fe,
+      type: 3}
+    _textPrefab: {fileID: 9123999925664973099, guid: 7e845aabbef9588409138ba440dc835e,
+      type: 3}
     _textData:
       fontSize: 15
       autoFontSize: 1
-      text: "\u30A2\u30A4\u30C6\u30E0\u30DD\u30FC\u30C1"
+      text: "\u78BA\u8A8D"
       color: {r: 0, g: 0, b: 0, a: 1}
+      hight: 60
+      margin: 10
+      textAnchor: 4
+  - _leftTopPos: {x: -860, y: 360}
+    _padding: 10
+    _tableSize: {x: 2, y: 1}
+    _canBeChanged: 0
+    _buttonBack: 1
+    _textFlg: 1
+    _buttonPrefab: {fileID: 1403004829627007043, guid: ac45662ca2cc1624f925db70b55c9b3e,
+      type: 3}
+    _buttonBackPrefab: {fileID: 4567105175149944347, guid: f7ce8ff705927a7488534fa792a126fe,
+      type: 3}
+    _textPrefab: {fileID: 9123999925664973099, guid: 7e845aabbef9588409138ba440dc835e,
+      type: 3}
+    _textData:
+      fontSize: 15
+      autoFontSize: 1
+      text: 123456789
+      color: {r: 0, g: 0, b: 0, a: 1}
+      hight: 60
+      margin: 10
+      textAnchor: 4
+  - _leftTopPos: {x: 0, y: 0}
+    _padding: 10
+    _tableSize: {x: 2, y: 1}
+    _canBeChanged: 0
+    _buttonBack: 1
+    _textFlg: 0
+    _buttonPrefab: {fileID: 1403004829627007043, guid: 446577f06a189c14488ef6b7845ad21c,
+      type: 3}
+    _buttonBackPrefab: {fileID: 4567105175149944347, guid: f7ce8ff705927a7488534fa792a126fe,
+      type: 3}
+    _textPrefab: {fileID: 9123999925664973099, guid: 7e845aabbef9588409138ba440dc835e,
+      type: 3}
+    _textData:
+      fontSize: 15
+      autoFontSize: 1
+      text: "\u30B5\u30D6\u30E1\u30CB\u30E5\u30FC"
+      color: {r: 1, g: 0, b: 0.91832733, a: 1}
       hight: 30
       margin: 10
       textAnchor: 4

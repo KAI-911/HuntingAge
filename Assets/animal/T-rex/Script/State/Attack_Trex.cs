@@ -50,12 +50,10 @@ public class Attack_Trex : StateBase_Trex
     }
     public override void OnAnimationEvent(Trex owner, AnimationEvent animationEvent)
     {
-        Debug.Log("attack");
         if (animationEvent.stringParameter == "Change")
         {
-            //“–‚½‚è”»’è‚ð”½“]
+            //“–‚½‚è”»’è
             owner.HitReceiver.ChangeAttackFlg((PartType)animationEvent.intParameter);
-            Debug.Log((PartType)animationEvent.intParameter);
         }
         if (animationEvent.stringParameter == "End")
         {

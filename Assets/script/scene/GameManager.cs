@@ -13,23 +13,16 @@ public class GameManager : Singleton<GameManager>
     [SerializeField] Scene _nowScene;
 
     private Quest _quest;
-
     private ItemCanvas _itemCanvas;
-
     private MaterialDataList _MaterialDataList;
-
     private ItemDataList _ItemDataList;
-
     private UIPoach _UIPoachList;
-
     private WeaponDataList _weaponDataList;
-
     private EnemyDataList _enemyDataList;
-
     private VillageData _villageData;
-
     private FadeManager _fadeManager;
-
+    private UIItemView _iItemView;
+    private Player _player;
     public Scene VillageScene { get => _villageScene; }
     public Scene NowScene { get => _nowScene; set => _nowScene = value; }
     public Quest Quest { get => _quest; set => _quest = value; }
@@ -40,6 +33,9 @@ public class GameManager : Singleton<GameManager>
     public VillageData VillageData { get => _villageData; }
     public ItemCanvas ItemCanvas { get => _itemCanvas; }
     public UIPoach UIPoachList { get => _UIPoachList; }
+    public UIItemView UIItemView { get => _iItemView; }
+    public Player Player { get => _player; }
+    public FadeManager FadeManager { get => _fadeManager;}
 
     protected override void Awake()
     {
@@ -52,15 +48,13 @@ public class GameManager : Singleton<GameManager>
         _enemyDataList = GetComponent<EnemyDataList>();
         _villageData = GetComponent<VillageData>();
         _fadeManager = GetComponentInChildren<FadeManager>();
-
+        _iItemView = GetComponentInChildren<UIItemView>();
         base.Awake();
     }
     void Start()
     {
         _itemCanvas = GetComponent<ItemCanvas>();
-        SceneManager.sceneLoaded += OnSceneLoaded;
-
-
+        _player = GameObject.FindWithTag("Player").GetComponent<Player>();
     }
 
 
@@ -74,9 +68,6 @@ public class GameManager : Singleton<GameManager>
         _nowScene = scene;
         _fadeManager.FadeOutStart(() => SceneManager.LoadScene((int)scene));
     }
-    private void OnSceneLoaded(UnityEngine.SceneManagement.Scene arg0, LoadSceneMode arg1)
-    {
-    }
 
 
 
@@ -86,5 +77,7 @@ public enum Scene
     Base,
     Forest,
     Animal,
-    Sato
+    Sato,
+    Hama,
+    Shimi
 }

@@ -15,7 +15,6 @@ public class Idle_Wolf : SatetBase_Wolf
     }
     public override void OnUpdate(Wolf owner)
     {
-        Debug.Log("idle");
         owner.NavMeshAgent.destination = owner.transform.position;
         if (owner.ReceivedAttackCheck()) return;
 

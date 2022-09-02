@@ -10,6 +10,7 @@ TagManager:
   - EscapePosition
   - CollectionPoint
   - Ground
+  - PopImage
   layers:
   - Default
   - TransparentFX

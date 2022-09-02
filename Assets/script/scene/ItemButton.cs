@@ -18,46 +18,67 @@ public class ItemButton : MonoBehaviour
     void Update()
     {
         if (_ID == "") return;
-        SetID(_ID, _item);
+        //SetID(_ID, _item);
     }
     public void SetID(string id, ItemBoxOrPoach where)
     {
-        if (!GameManager.Instance.MaterialDataList.Dictionary.ContainsKey(id)) return;
-        clear();
-        _ID = id;
-        var data = GameManager.Instance.MaterialDataList.Dictionary[id];
-        switch (where)
+        if (GameManager.Instance.MaterialDataList.Dictionary.ContainsKey(id))
         {
-            case ItemBoxOrPoach.box:
-                if (data.BoxHoldNumber <= 0)
-                {
-                    clear();
-                    return;
-                }
-                break;
-            case ItemBoxOrPoach.poach:
-                if (data.PoachHoldNumber <= 0)
-                {
-                    clear();
-                    return;
-                }
-                break;
-            default:
-                break;
+            clear();
+            _ID = id;
+            var data = GameManager.Instance.MaterialDataList.Dictionary[id];
+            if(where== ItemBoxOrPoach.box&& data.BoxHoldNumber <= 0)
+            {
+                clear();
+                return;
+            }
+            else if (where == ItemBoxOrPoach.poach && data.PoachHoldNumber <= 0)
+            {
+                clear();
+                return;
+            }
+            _image.sprite = Resources.Load<Sprite>(data.IconName);
+            _item = where;
+            switch (_item)
+            {
+                case ItemBoxOrPoach.box:
+                    _count.text = data.BoxHoldNumber.ToString();
+                    break;
+                case ItemBoxOrPoach.poach:
+                    _count.text = data.PoachHoldNumber.ToString();
+                    break;
+                default:
+                    break;
+            }
         }
-
-        _image.sprite = Resources.Load<Sprite>(data.IconName);
-        _item = where;
-        switch (_item)
+        else if (GameManager.Instance.ItemDataList.Dictionary.ContainsKey(id))
         {
-            case ItemBoxOrPoach.box:
-                _count.text = data.BoxHoldNumber.ToString();
-                break;
-            case ItemBoxOrPoach.poach:
-                _count.text = data.PoachHoldNumber.ToString();
-                break;
-            default:
-                break;
+            clear();
+            _ID = id;
+            var data = GameManager.Instance.ItemDataList.Dictionary[id];
+            if (where == ItemBoxOrPoach.box && data.baseData.BoxHoldNumber <= 0)
+            {
+                clear();
+                return;
+            }
+            else if (where == ItemBoxOrPoach.poach && data.baseData.PoachHoldNumber <= 0)
+            {
+                clear();
+                return;
+            }
+            _image.sprite = Resources.Load<Sprite>(data.baseData.IconName);
+            _item = where;
+            switch (_item)
+            {
+                case ItemBoxOrPoach.box:
+                    _count.text = data.baseData.BoxHoldNumber.ToString();
+                    break;
+                case ItemBoxOrPoach.poach:
+                    _count.text = data.baseData.PoachHoldNumber.ToString();
+                    break;
+                default:
+                    break;
+            }
         }
 
     }
@@ -67,13 +88,19 @@ public class ItemButton : MonoBehaviour
         clear();
         _ID = id;
         var data = GameManager.Instance.WeaponDataList.Dictionary[id];
-        _image.sprite = Resources.Load<Sprite>(data.IconName);
-        if(UIManager.Instance._player.WeaponID==data.ID)
+        _image.sprite = Resources.Load<Sprite>(data.IconPass);
+        if (UIManager.Instance._player.WeaponID == data.ID)
         {
             _count.text = "E";
         }
     }
 
+    public void SetData(string _id,string _text, Sprite _sprite)
+    {
+        _ID = _id;
+        _count.text = _text;
+        _image.sprite = _sprite;
+    }
     public void clear()
     {
         _ID = "";
