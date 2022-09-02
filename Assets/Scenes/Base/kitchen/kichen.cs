@@ -104,6 +104,7 @@ public class kichen : UIBase
             {
                 owner.ItemIconList[(int)IconType.TypeSelect].DeleteButton();
             }
+                Destroy(count);
             _check = false;
             var UI = owner.ItemIconList[(int)IconType.TypeSelect];
             UI.SetText("çÏÇÈÉAÉCÉeÉÄ");
