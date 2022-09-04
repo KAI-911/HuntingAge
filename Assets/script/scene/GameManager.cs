@@ -5,6 +5,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 using System.Threading.Tasks;
+using UnityEngine.InputSystem;
 
 public class GameManager : Singleton<GameManager>
 {
@@ -35,7 +36,8 @@ public class GameManager : Singleton<GameManager>
     public UIPoach UIPoachList { get => _UIPoachList; }
     public UIItemView UIItemView { get => _iItemView; }
     public Player Player { get => _player; }
-    public FadeManager FadeManager { get => _fadeManager;}
+    public FadeManager FadeManager { get => _fadeManager; }
+
 
     protected override void Awake()
     {
@@ -51,17 +53,27 @@ public class GameManager : Singleton<GameManager>
         _iItemView = GetComponentInChildren<UIItemView>();
         base.Awake();
     }
+    public void GoToVillage()
+    {
+        if (_nowScene == Scene.Title)
+        {
+            _nowScene = VillageScene;
+            _fadeManager.FadeOutStart(() =>
+            {
+                _fadeManager.FadeInStart();
+                SceneManager.LoadScene((int)VillageScene);
+                _quest.QuestReset();
+            });
+
+        }
+    }
+
     void Start()
     {
         _itemCanvas = GetComponent<ItemCanvas>();
         _player = GameObject.FindWithTag("Player").GetComponent<Player>();
     }
 
-
-    void Update()
-    {
-
-    }
 
     public void SceneChange(Scene scene)
     {
@@ -79,5 +91,6 @@ public enum Scene
     Animal,
     Sato,
     Hama,
-    Shimi
+    Shimi,
+    Title
 }

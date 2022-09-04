@@ -17,6 +17,11 @@ public class HitReceiver : MonoBehaviour
 
     [SerializeField] GameObject particleObject;
 
+    //音
+    private GameObject _se;
+    public GameObject SE { get => _se; set => _se = value; }
+
+
 
 
     private void Start()
@@ -60,9 +65,11 @@ public class HitReceiver : MonoBehaviour
         attackInfo.HitPart = _hit.HitPart;//攻撃されてる部位
         attackInfo.CllisionPos = _hit.CollisionPos;//衝突している地点
         attackInfo.HitReaction = _hitReaction;//攻撃を受けてどのぐらいリアクションするのか
-
         bool success = hitstatus.OnDamaged(attackInfo);
-
+        if (_se != null)
+        {
+            Instantiate(_se);
+        }
         //ダメージを与えられたらヒットエフェクトを出す
         if (success) Instantiate(particleObject, attackInfo.CllisionPos, Quaternion.identity);
     }

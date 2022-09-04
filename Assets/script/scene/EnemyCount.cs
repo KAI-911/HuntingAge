@@ -25,7 +25,6 @@ public class EnemyCount
         //Šù‚É“o˜^‚³‚ê‚Ä‚¢‚½‚ç‚»‚Ì‚Ü‚Ü’Ç‰Á
         if (_enemyCountList.ContainsKey(_enemyID))
         {
-            Debug.Log("’Ç‰Á");
             _enemyCountList[_enemyID]++;
         }
     }

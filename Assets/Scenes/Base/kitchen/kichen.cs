@@ -33,8 +33,8 @@ public class kichen : UIBase
     }
     void Start()
     {
-        ItemIconList[(int)IconType.TypeSelect].SetIcondata(UIManager.Instance.UIPresetData.Dictionary["BlacksmithButton"]);
-        ItemIconList[(int)IconType.Confirmation].SetIcondata(UIManager.Instance.UIPresetData.Dictionary["Confirmation"]);
+        ItemIconList[(int)IconType.TypeSelect].SetIcondata(UISoundManager.Instance.UIPresetData.Dictionary["BlacksmithButton"]);
+        ItemIconList[(int)IconType.Confirmation].SetIcondata(UISoundManager.Instance.UIPresetData.Dictionary["Confirmation"]);
         _currentState = new Close();
         _currentState.OnEnter(this, null);
     }
@@ -45,13 +45,13 @@ public class kichen : UIBase
         public override void OnEnter(UIBase owner, UIStateBase prevState)
         {
             Debug.Log("Blacksmith_close_OnEnter");
-            UIManager.Instance._player.IsAction = true;
+            UISoundManager.Instance._player.IsAction = true;
         }
         public override void OnProceed(UIBase owner)
         {
             Debug.Log("Blacksmith_close_OnProceed");
             //近くに来ている && 決定ボタンを押している && キャンバスがactiveでない
-            if (owner.GetComponent<kichen>()._kichenChecker.TriggerHit && UIManager.Instance._player.IsAction)
+            if (owner.GetComponent<kichen>()._kichenChecker.TriggerHit && UISoundManager.Instance._player.IsAction)
             {
                 owner.ChangeState<BoxorPouch>();
             }
@@ -75,7 +75,7 @@ public class kichen : UIBase
         }
         public override void OnUpdate(UIBase owner)
         {
-            owner.ItemIconList[(int)IconType.TypeSelect].Select(UIManager.Instance.InputSelection.ReadValue<Vector2>());
+            owner.ItemIconList[(int)IconType.TypeSelect].Select(UISoundManager.Instance.InputSelection.ReadValue<Vector2>());
         }
         public override void OnExit(UIBase owner, UIStateBase nextState)
         {
@@ -159,11 +159,11 @@ public class kichen : UIBase
 
             if (!_check)
             {
-                owner.ItemIconList[(int)IconType.TypeSelect].Select(UIManager.Instance.InputSelection.ReadValue<Vector2>());
+                owner.ItemIconList[(int)IconType.TypeSelect].Select(UISoundManager.Instance.InputSelection.ReadValue<Vector2>());
             }
             else
             {
-                var vec = UIManager.Instance.InputSelection.ReadValue<Vector2>();
+                var vec = UISoundManager.Instance.InputSelection.ReadValue<Vector2>();
                 if (vec.sqrMagnitude > 0)
                 {
                     if (lockflg == false)
@@ -240,7 +240,7 @@ public class kichen : UIBase
         }
         public override void OnUpdate(UIBase owner)
         {
-            confimationIcon.Select(UIManager.Instance.InputSelection.ReadValue<Vector2>());
+            confimationIcon.Select(UISoundManager.Instance.InputSelection.ReadValue<Vector2>());
         }
         public override void OnExit(UIBase owner, UIStateBase nextState)
         {

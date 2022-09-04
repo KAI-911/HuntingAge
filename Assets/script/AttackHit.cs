@@ -16,7 +16,9 @@ public class AttackHit : MonoBehaviour
 
     private Vector3 _collisionPos;
     public Vector3 CollisionPos { get => _collisionPos; set => _collisionPos = value; }
-
+    //‰¹
+    [SerializeField] private GameObject _se;
+    public GameObject SE { get => _se; set => _se = value; }
 
     private void Start()
     {
@@ -40,6 +42,7 @@ public class AttackHit : MonoBehaviour
             PartType partType = other.gameObject.GetComponent<PartChecker>().PartType;
             _hitPart = partType;
             _collisionPos = other.ClosestPointOnBounds(this.transform.position);
+            _hitReceiver.SE = _se;
             _hitReceiver.OnHit(other.gameObject, this);
         }
     }

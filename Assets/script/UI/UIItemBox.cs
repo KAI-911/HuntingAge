@@ -10,11 +10,11 @@ public class UIItemBox : UIBase
 
     private void Start()
     {
-        ItemIconList[(int)IconType.TypeSelect].SetIcondata(UIManager.Instance.UIPresetData.Dictionary["IP_TypeSelect"]);
-        ItemIconList[(int)IconType.BoxItemSelect].SetIcondata(UIManager.Instance.UIPresetData.Dictionary["IB_ItemSelect"]);
-        ItemIconList[(int)IconType.PoachItemSelect].SetIcondata(UIManager.Instance.UIPresetData.Dictionary["IP_ItemSelect"]);
-        ItemIconList[(int)IconType.SubMenuSelect].SetIcondata(UIManager.Instance.UIPresetData.Dictionary["IB_SubMenu"]);
-        ItemIconList[(int)IconType.WeaponSelect].SetIcondata(UIManager.Instance.UIPresetData.Dictionary["IB_ItemSelect"]);
+        ItemIconList[(int)IconType.TypeSelect].SetIcondata(UISoundManager.Instance.UIPresetData.Dictionary["IP_TypeSelect"]);
+        ItemIconList[(int)IconType.BoxItemSelect].SetIcondata(UISoundManager.Instance.UIPresetData.Dictionary["IB_ItemSelect"]);
+        ItemIconList[(int)IconType.PoachItemSelect].SetIcondata(UISoundManager.Instance.UIPresetData.Dictionary["IP_ItemSelect"]);
+        ItemIconList[(int)IconType.SubMenuSelect].SetIcondata(UISoundManager.Instance.UIPresetData.Dictionary["IB_SubMenu"]);
+        ItemIconList[(int)IconType.WeaponSelect].SetIcondata(UISoundManager.Instance.UIPresetData.Dictionary["IB_ItemSelect"]);
 
         _currentState = new Close();
         _currentState.OnEnter(this, null);
@@ -25,18 +25,18 @@ public class UIItemBox : UIBase
     {
         public override void OnEnter(UIBase owner, UIStateBase prevState)
         {
-            UIManager.Instance._player.IsAction = true;
+            UISoundManager.Instance._player.IsAction = true;
         }
         public override void OnUpdate(UIBase owner)
         {
         }
         public override void OnProceed(UIBase owner)
         {
-            if (!UIManager.Instance._player.IsAction) return;
+            if (!UISoundManager.Instance._player.IsAction) return;
             if (owner.gameObject.GetComponent<UIItemBox>()._targetChecker.TriggerHit)
             {
-                UIManager.Instance.PlayDecisionSE();
-                UIManager.Instance._player.IsAction = false;
+                UISoundManager.Instance.PlayDecisionSE();
+                UISoundManager.Instance._player.IsAction = false;
                 owner.ChangeState<FirstSlect>();
             }
         }
@@ -65,7 +65,7 @@ public class UIItemBox : UIBase
         }
         public override void OnProceed(UIBase owner)
         {
-            UIManager.Instance.PlayDecisionSE();
+            UISoundManager.Instance.PlayDecisionSE();
             _itemIcon.CurrentButtonInvoke();
         }
         public override void OnBack(UIBase owner)
@@ -74,7 +74,7 @@ public class UIItemBox : UIBase
         }
         public override void OnUpdate(UIBase owner)
         {
-            _itemIcon.Select(UIManager.Instance.InputSelection.ReadValue<Vector2>());
+            _itemIcon.Select(UISoundManager.Instance.InputSelection.ReadValue<Vector2>());
         }
     }
     private class ItemSlect : UIStateBase
@@ -107,25 +107,25 @@ public class UIItemBox : UIBase
             Debug.Log("select");
             //どっちのリストを見ているか
 
-            if (UIManager.Instance.InputCurrentChange.ReadValue<Vector2>().sqrMagnitude > 0)
+            if (UISoundManager.Instance.InputCurrentChange.ReadValue<Vector2>().sqrMagnitude > 0)
             {
-                float value = UIManager.Instance.InputCurrentChange.ReadValue<Vector2>().x;
+                float value = UISoundManager.Instance.InputCurrentChange.ReadValue<Vector2>().x;
                 if (value > 0) owner.GetComponent<UIItemBox>().current = CurrentUI.box;
                 else owner.GetComponent<UIItemBox>().current = CurrentUI.poach;
             }
             switch (owner.GetComponent<UIItemBox>().current)
             {
                 case CurrentUI.box:
-                    itemIcon_box.Select(UIManager.Instance.InputSelection.ReadValue<Vector2>());
+                    itemIcon_box.Select(UISoundManager.Instance.InputSelection.ReadValue<Vector2>());
                     break;
                 case CurrentUI.poach:
-                    itemIcon_poach.Select(UIManager.Instance.InputSelection.ReadValue<Vector2>());
+                    itemIcon_poach.Select(UISoundManager.Instance.InputSelection.ReadValue<Vector2>());
                     break;
             }
         }
         public override void OnProceed(UIBase owner)
         {
-            UIManager.Instance.PlayDecisionSE();
+            UISoundManager.Instance.PlayDecisionSE();
             //アイテムの入れ替えpoach(box)からbox(poach)へ最大量送る
             if (owner.GetComponent<UIItemBox>().current == CurrentUI.box)
             {
@@ -225,7 +225,7 @@ public class UIItemBox : UIBase
         }
         public override void OnUpdate(UIBase owner)
         {
-            _itemIcon.Select(UIManager.Instance.InputSelection.ReadValue<Vector2>());
+            _itemIcon.Select(UISoundManager.Instance.InputSelection.ReadValue<Vector2>());
         }
         public override void OnBack(UIBase owner)
         {
@@ -233,7 +233,7 @@ public class UIItemBox : UIBase
         }
         public override void OnProceed(UIBase owner)
         {
-            UIManager.Instance.PlayDecisionSE();
+            UISoundManager.Instance.PlayDecisionSE();
             _itemIcon.Buttons[_itemIcon.CurrentNunber].GetComponent<Button>().onClick.Invoke();
         }
     }
@@ -257,7 +257,7 @@ public class UIItemBox : UIBase
         }
         public override void OnUpdate(UIBase owner)
         {
-            _itemIcon.Select(UIManager.Instance.InputSelection.ReadValue<Vector2>());
+            _itemIcon.Select(UISoundManager.Instance.InputSelection.ReadValue<Vector2>());
 
         }
         public override void OnBack(UIBase owner)
@@ -266,7 +266,7 @@ public class UIItemBox : UIBase
         }
         public override void OnProceed(UIBase owner)
         {
-            UIManager.Instance.PlayDecisionSE();
+            UISoundManager.Instance.PlayDecisionSE();
             //お互いのUI座標を入れ替える
             var selectButton = _itemIcon.Buttons[_selectionNumber].GetComponent<ItemButton>();
             var currentButton = _itemIcon.Buttons[_itemIcon.CurrentNunber].GetComponent<ItemButton>();
@@ -429,12 +429,12 @@ public class UIItemBox : UIBase
         }
         public override void OnUpdate(UIBase owner)
         {
-            var vec = UIManager.Instance.InputSelection.ReadValue<Vector2>();
+            var vec = UISoundManager.Instance.InputSelection.ReadValue<Vector2>();
             if (vec.sqrMagnitude > 0)
             {
                 if (lockflg == false)
                 {
-                    UIManager.Instance.PlayCursorSE();
+                    UISoundManager.Instance.PlayCursorSE();
                     if (vec.y > 0) now++;
                     else now--;
                     now = Mathf.Clamp(now, min, max);
@@ -450,7 +450,7 @@ public class UIItemBox : UIBase
         }
         public override void OnProceed(UIBase owner)
         {
-            UIManager.Instance.PlayDecisionSE();
+            UISoundManager.Instance.PlayDecisionSE();
             MaterialData materialData = new MaterialData();
             //アイテムの入れ替えpoach(box)からbox(poach)へ最大量送る
             if (owner.GetComponent<UIItemBox>().current == CurrentUI.box)
@@ -535,14 +535,14 @@ public class UIItemBox : UIBase
         }
         public override void OnUpdate(UIBase owner)
         {
-            itemIcon.Select(UIManager.Instance.InputSelection.ReadValue<Vector2>());
+            itemIcon.Select(UISoundManager.Instance.InputSelection.ReadValue<Vector2>());
         }
         public override void OnProceed(UIBase owner)
         {
             if (!itemIcon.CheckCurrentNunberItem()) return;
-            UIManager.Instance.PlayDecisionSE();
+            UISoundManager.Instance.PlayDecisionSE();
             var weaponID = itemIcon.Buttons[itemIcon.CurrentNunber].GetComponent<ItemButton>().ID;
-            UIManager.Instance._player.WeaponID = weaponID;
+            UISoundManager.Instance._player.WeaponID = weaponID;
             owner.GetComponent<UIItemBox>().WeaponUISet();
         }
         public override void OnBack(UIBase owner)

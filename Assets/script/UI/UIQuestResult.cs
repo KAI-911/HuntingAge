@@ -21,7 +21,7 @@ public class UIQuestResult : UIBase
         ItemIcon _itemIcon;
         public override void OnEnter(UIBase owner, UIStateBase prevState)
         {
-            UIManager.Instance._player.IsAction = false;
+            UISoundManager.Instance._player.IsAction = false;
             lockFlg = false;
             var texts = owner.GetComponentsInChildren<Text>();
             for (int i = 0; i < texts.Length; i++)
@@ -102,7 +102,7 @@ public class UIQuestResult : UIBase
         public override void OnUpdate(UIBase owner)
         {
             var OWNER = owner.GetComponent<UIQuestResult>();
-            var vec = UIManager.Instance.InputSelection.ReadValue<Vector2>();
+            var vec = UISoundManager.Instance.InputSelection.ReadValue<Vector2>();
 
             if (OWNER.currentNum == current.item)
             {
@@ -143,7 +143,7 @@ public class UIQuestResult : UIBase
         }
         public override void OnProceed(UIBase owner)
         {
-            UIManager.Instance.PlayDecisionSE();
+            UISoundManager.Instance.PlayDecisionSE();
             var OWNER = owner.GetComponent<UIQuestResult>();
 
             if (OWNER.currentNum == current.item)

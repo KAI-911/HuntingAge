@@ -45,7 +45,6 @@ public class ItemDataList : MonoBehaviour, ISerializationCallbackReceiver
     }
     public void DesrializeDictionary()
     {
-        Debug.Log("DesrializeDictionary");
         dictionary.Clear();
         DictionaryData.Keys.Clear();
         DictionaryData.Values.Clear();
