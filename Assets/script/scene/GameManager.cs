@@ -58,6 +58,7 @@ public class GameManager : Singleton<GameManager>
         if (_nowScene == Scene.Title)
         {
             _nowScene = VillageScene;
+            UISoundManager.Instance.PlayQuestSE();
             _fadeManager.FadeOutStart(() =>
             {
                 _fadeManager.FadeInStart();
