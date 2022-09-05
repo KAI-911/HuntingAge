@@ -9,8 +9,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4888507690912263441}
-  - component: {fileID: 4888507690912263442}
   - component: {fileID: 4888507690912263440}
+  - component: {fileID: 2164456130251953720}
   m_Layer: 0
   m_Name: UIManager
   m_TagString: Untagged
@@ -33,27 +33,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &4888507690912263442
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4888507690912263443}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0fb6727cea9ea654f843461c509abd89, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _UIList: []
-  _UIPresetData: {fileID: 4888507690912263440}
-  _cursorSE: {fileID: 5378510270213133771, guid: ccb0fc7a4e8962441addfcbd448e448b,
-    type: 3}
-  _questSE: {fileID: 8504682689478910861, guid: 86bc5fc3c7bfd6b4cb65ab8ac1c225e9,
-    type: 3}
-  _decisionSE: {fileID: 3545920616778026257, guid: b5213b92ae601de4aabf6b777f1164bc,
-    type: 3}
-  _player: {fileID: 0}
 --- !u!114 &4888507690912263440
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -196,3 +175,32 @@ MonoBehaviour:
       margin: 10
       textAnchor: 4
   modifyValues: 0
+--- !u!114 &2164456130251953720
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4888507690912263443}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e3e57ef61c7484742947295ac6c39c5f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _UIList: []
+  _UIPresetData: {fileID: 4888507690912263440}
+  _cursorSE: {fileID: 5378510270213133771, guid: ccb0fc7a4e8962441addfcbd448e448b,
+    type: 3}
+  _questSE: {fileID: 8504682689478910861, guid: 86bc5fc3c7bfd6b4cb65ab8ac1c225e9,
+    type: 3}
+  _decisionSE: {fileID: 3545920616778026257, guid: b5213b92ae601de4aabf6b777f1164bc,
+    type: 3}
+  _kickAttackSE: {fileID: 8504682689478910861, guid: d6d4b7fa3f859554e8cc2cf792451fdd,
+    type: 3}
+  _kickSwingSE: {fileID: 8504682689478910861, guid: 19370e92627ceb0479f740846b0a3fa8,
+    type: 3}
+  _swordAttackSE: {fileID: 8504682689478910861, guid: cc192e3440c088e45b2eae0fab5d3cac,
+    type: 3}
+  _swordSwingSE: {fileID: 8504682689478910861, guid: eb53638e986fba34183f515464d80ff0,
+    type: 3}
+  _player: {fileID: 0}

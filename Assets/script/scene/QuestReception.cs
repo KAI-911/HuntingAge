@@ -23,9 +23,9 @@ public class QuestReception : UIBase
 
     private void Start()
     {
-        ItemIconList[(int)IconType.LevelSelect].SetIcondata(UIManager.Instance.UIPresetData.Dictionary["IP_TypeSelect"]);
-        ItemIconList[(int)IconType.QuestSelect].SetIcondata(UIManager.Instance.UIPresetData.Dictionary["IP_TypeSelect"]);
-        ItemIconList[(int)IconType.Confirmation].SetIcondata(UIManager.Instance.UIPresetData.Dictionary["Confirmation"]);
+        ItemIconList[(int)IconType.LevelSelect].SetIcondata(UISoundManager.Instance.UIPresetData.Dictionary["IP_TypeSelect"]);
+        ItemIconList[(int)IconType.QuestSelect].SetIcondata(UISoundManager.Instance.UIPresetData.Dictionary["IP_TypeSelect"]);
+        ItemIconList[(int)IconType.Confirmation].SetIcondata(UISoundManager.Instance.UIPresetData.Dictionary["Confirmation"]);
 
         //仮でボタンの大きさをIP_TypeSelectに合わせている
         ItemIconData itemIconData = ItemIconList[(int)IconType.Confirmation].IconData;
@@ -34,24 +34,24 @@ public class QuestReception : UIBase
 
         _currentState = new Close();
         _currentState.OnEnter(this, null);
-
+        GameManager.Instance.Quest.QuestReset();
     }
 
     private class Close : UIStateBase
     {
         public override void OnEnter(UIBase owner, UIStateBase prevState)
         {
-            UIManager.Instance._player.IsAction = true;
+            UISoundManager.Instance._player.IsAction = true;
         }
 
         public override void OnProceed(UIBase owner)
         {
             //動けない時(==他のUIを開いている)ときは早期リターン
-            if (!UIManager.Instance._player.IsAction) return;
+            if (!UISoundManager.Instance._player.IsAction) return;
             if (owner.gameObject.GetComponent<QuestReception>()._questbordChecker.TriggerHit)
             {
-                UIManager.Instance._player.IsAction = false;
-                UIManager.Instance.PlayDecisionSE();
+                UISoundManager.Instance._player.IsAction = false;
+                UISoundManager.Instance.PlayDecisionSE();
                 owner.ChangeState<QuestLevelSelect>();
             }
         }
@@ -96,7 +96,7 @@ public class QuestReception : UIBase
         {
             Debug.Log(owner.GetType());
 
-            itemIcon.Select(UIManager.Instance.InputSelection.ReadValue<Vector2>());
+            itemIcon.Select(UISoundManager.Instance.InputSelection.ReadValue<Vector2>());
         }
         public override void OnProceed(UIBase owner)
         {
@@ -147,14 +147,13 @@ public class QuestReception : UIBase
         public override void OnUpdate(UIBase owner)
         {
             Debug.Log(owner.GetType());
-            Debug.Log(itemIcon.Buttons.Count);
-            itemIcon.Select(UIManager.Instance.InputSelection.ReadValue<Vector2>());
+            itemIcon.Select(UISoundManager.Instance.InputSelection.ReadValue<Vector2>());
             var id = owner.GetComponent<QuestReception>()._questDataList.Dictionary[owner.GetComponent<QuestReception>()._questHolderData.Quests[itemIcon.CurrentNunber]].ID;
             owner.GetComponent<QuestReception>().SelectQuest_Rec(id);
         }
         public override void OnProceed(UIBase owner)
         {
-            UIManager.Instance.PlayDecisionSE();
+            UISoundManager.Instance.PlayDecisionSE();
             itemIcon.Buttons[itemIcon.CurrentNunber].GetComponent<Button>().onClick.Invoke();
         }
         public override void OnBack(UIBase owner)
@@ -187,7 +186,7 @@ public class QuestReception : UIBase
                     t.text = "はい";
                     b.onClick.AddListener(() =>
                     {
-                        UIManager.Instance.PlayDecisionSE();
+                        UISoundManager.Instance.PlayDecisionSE();
                         Debug.Log("GoQueest");
                         owner.ChangeState<GoQuest>();
                     });
@@ -197,7 +196,7 @@ public class QuestReception : UIBase
                     t.text = "いいえ";
                     b.onClick.AddListener(() =>
                     {
-                        UIManager.Instance.PlayDecisionSE();
+                        UISoundManager.Instance.PlayDecisionSE();
                         Debug.Log("QuestSelect");
                         owner.ChangeState<QuestSelect>();
                     });
@@ -217,11 +216,11 @@ public class QuestReception : UIBase
         public override void OnUpdate(UIBase owner)
         {
             Debug.Log(owner.GetType());
-            itemIcon.Select(UIManager.Instance.InputSelection.ReadValue<Vector2>());
+            itemIcon.Select(UISoundManager.Instance.InputSelection.ReadValue<Vector2>());
         }
         public override void OnProceed(UIBase owner)
         {
-            UIManager.Instance.PlayDecisionSE();
+            UISoundManager.Instance.PlayDecisionSE();
             itemIcon.Buttons[itemIcon.CurrentNunber].GetComponent<Button>().onClick.Invoke();
         }
         public override void OnBack(UIBase owner)
@@ -234,30 +233,30 @@ public class QuestReception : UIBase
         ItemIcon itemIcon;
         public override void OnEnter(UIBase owner, UIStateBase prevState)
         {
-            UIManager.Instance._player.IsAction = true;
+            UISoundManager.Instance._player.IsAction = true;
             itemIcon = owner.ItemIconList[(int)IconType.Confirmation];
         }
         public override void OnUpdate(UIBase owner)
         {
             Debug.Log("クエスト受注中");
-            if (!UIManager.Instance._player.IsAction && itemIcon.Buttons.Count != 0)
+            if (!UISoundManager.Instance._player.IsAction && itemIcon.Buttons.Count != 0)
             {
-                itemIcon.Select(UIManager.Instance.InputSelection.ReadValue<Vector2>());
+                itemIcon.Select(UISoundManager.Instance.InputSelection.ReadValue<Vector2>());
             }
 
         }
         public override void OnProceed(UIBase owner)
         {
-            if (!UIManager.Instance._player.IsAction && itemIcon.Buttons.Count != 0)
+            if (!UISoundManager.Instance._player.IsAction && itemIcon.Buttons.Count != 0)
             {
-                UIManager.Instance.PlayDecisionSE();
+                UISoundManager.Instance.PlayDecisionSE();
                 itemIcon.Buttons[itemIcon.CurrentNunber].GetComponent<Button>().onClick.Invoke();
                 return;
             }
 
-            if (owner.GetComponent<QuestReception>()._gateChecker.TriggerHit && UIManager.Instance._player.IsAction)
+            if (owner.GetComponent<QuestReception>()._gateChecker.TriggerHit && UISoundManager.Instance._player.IsAction)
             {
-                UIManager.Instance._player.IsAction = false;
+                UISoundManager.Instance._player.IsAction = false;
                 //ボタンの調整
                 ItemIconData itemIconData = itemIcon.IconData;
                 itemIconData._textData.text = "このクエストに出発しますか";
@@ -273,8 +272,8 @@ public class QuestReception : UIBase
                         t.text = "はい";
                         b.onClick.AddListener(() =>
                         {
-                            UIManager.Instance.PlayQuestSE();
-                            UIManager.Instance._player.IsAction = true;
+                            UISoundManager.Instance.PlayQuestSE();
+                            UISoundManager.Instance._player.IsAction = true;
                             itemIcon.DeleteButton();
                             GameManager.Instance.Quest.GoToQuset();
                             owner.ChangeState<Close>();
@@ -285,17 +284,17 @@ public class QuestReception : UIBase
                         t.text = "いいえ";
                         b.onClick.AddListener(() =>
                         {
-                            UIManager.Instance.PlayDecisionSE();
-                            UIManager.Instance._player.IsAction = true;
+                            UISoundManager.Instance.PlayDecisionSE();
+                            UISoundManager.Instance._player.IsAction = true;
                             itemIcon.DeleteButton();
                         });
                     }
                 }
             }
 
-            if (owner.GetComponent<QuestReception>()._questbordChecker.TriggerHit && UIManager.Instance._player.IsAction)
+            if (owner.GetComponent<QuestReception>()._questbordChecker.TriggerHit && UISoundManager.Instance._player.IsAction)
             {
-                UIManager.Instance._player.IsAction = false;
+                UISoundManager.Instance._player.IsAction = false;
                 //ボタンの調整
                 ItemIconData itemIconData = itemIcon.IconData;
                 itemIconData._textData.text = "このクエストを破棄しますか";
@@ -311,9 +310,9 @@ public class QuestReception : UIBase
                         t.text = "はい";
                         b.onClick.AddListener(() =>
                         {
-                            UIManager.Instance.PlayDecisionSE();
+                            UISoundManager.Instance.PlayDecisionSE();
                             owner.ChangeState<Close>();
-                            UIManager.Instance._player.IsAction = true;
+                            UISoundManager.Instance._player.IsAction = true;
                             itemIcon.DeleteButton();
                         });
                     }
@@ -322,8 +321,8 @@ public class QuestReception : UIBase
                         t.text = "いいえ";
                         b.onClick.AddListener(() =>
                         {
-                            UIManager.Instance.PlayDecisionSE();
-                            UIManager.Instance._player.IsAction = true;
+                            UISoundManager.Instance.PlayDecisionSE();
+                            UISoundManager.Instance._player.IsAction = true;
                             itemIcon.DeleteButton();
                         });
                     }
@@ -335,7 +334,7 @@ public class QuestReception : UIBase
         }
         public override void OnBack(UIBase owner)
         {
-            UIManager.Instance._player.IsAction = true;
+            UISoundManager.Instance._player.IsAction = true;
             itemIcon.DeleteButton();
 
         }

@@ -6,7 +6,7 @@ public class Attack : PlayerStateBase
 {
     public override void OnEnter(Player owner, PlayerStateBase prevState)
     {
-        owner.Animator.SetInteger("AniState", (int)PlayerAnimationState.StrongAttack);
+        owner.Animator.SetInteger("AniState", (int)PlayerAnimationState.Attack);
         owner.Animator.SetTrigger("Change");
         owner.Animator.SetBool("AttackChain", false);
         owner.Animator.SetBool("InputReception", false);

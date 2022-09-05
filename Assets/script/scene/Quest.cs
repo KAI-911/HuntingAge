@@ -93,7 +93,6 @@ public class Quest : MonoBehaviour
             foreach (var target in _questData.TargetName)
             {
 
-                Debug.Log(target.name + "    " + target.number);
                 _questTargetCount.Entry(target.name, target.number);
                 for (int i = 0; i < target.number; i++)
                 {
@@ -133,6 +132,13 @@ public class Quest : MonoBehaviour
         //“¯‚¶“G‚ª’Ç‰Á‚³‚ê‚È‚¢‚æ‚¤‚É‚·‚é
         if (_enemyList.Find(n => n == enemy)) return;
         _enemyList.Add(enemy);
+    }
+    public void QuestReset()
+    {
+        ChangeState<Standby>(); 
+        if (_HPBar != null) Destroy(_HPBar);
+        if (_SPBar != null) Destroy(_SPBar);
+
     }
     void ChangeState<T>() where T : QuestState, new()
     {
@@ -332,25 +338,20 @@ public class Quest : MonoBehaviour
 
     private bool CheckPlayerDown()
     {
-        Debug.Log("C1");
         if (_player.Status.HP <= 0)
         {
             foreach (var ene in _enemyList) ene.DiscoverFlg = false;
-            Debug.Log("C2");
             _delay -= Time.deltaTime;
             if (_delay < 0)
             {
-                Debug.Log("C3");
                 if (_deathCount >= (int)QuestData.Failure + 1)
                 {
-                    Debug.Log("C4");
                     _delay = _delayTime;
                     ChangeState<QuestFailure>();
                     return true;
                 }
                 else
                 {
-                    Debug.Log("C5");
                     _delay = _delayTime;
                     _player.Revival();
                     foreach (var ene in _enemyList) ene.DiscoverFlg = false;
