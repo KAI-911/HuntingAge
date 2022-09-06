@@ -18,7 +18,7 @@ public class ItemButton : MonoBehaviour
     void Update()
     {
         if (_ID == "") return;
-        SetID(_ID, _item);
+        //SetID(_ID, _item);
     }
     public void SetID(string id, ItemBoxOrPoach where)
     {
@@ -89,12 +89,18 @@ public class ItemButton : MonoBehaviour
         _ID = id;
         var data = GameManager.Instance.WeaponDataList.Dictionary[id];
         _image.sprite = Resources.Load<Sprite>(data.IconPass);
-        if (UIManager.Instance._player.WeaponID == data.ID)
+        if (UISoundManager.Instance._player.WeaponID == data.ID)
         {
             _count.text = "E";
         }
     }
 
+    public void SetData(string _id,string _text, Sprite _sprite)
+    {
+        _ID = _id;
+        _count.text = _text;
+        _image.sprite = _sprite;
+    }
     public void clear()
     {
         _ID = "";

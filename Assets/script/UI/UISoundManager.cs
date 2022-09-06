@@ -5,17 +5,31 @@ using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.SceneManagement;
 
-public class UIManager : Singleton<UIManager>
+public class UISoundManager : Singleton<UISoundManager>
 {
     [SerializeField] private InputControls _input;
     [SerializeField] private List<UIBase> _UIList;
     [SerializeField] UIPresetDataList _UIPresetData;
+    [SerializeField] GameObject _cursorSE;
+    [SerializeField] GameObject _questSE;
+    [SerializeField] GameObject _decisionSE;
+    [SerializeField] GameObject _kickAttackSE;
+    [SerializeField] GameObject _kickSwingSE;
+    [SerializeField] GameObject _swordAttackSE;
+    [SerializeField] GameObject _swordSwingSE;
     private InputAction _inputSelection;
     private InputAction _inputCurrentChange;
     public Player _player;
     public InputAction InputSelection { get => _inputSelection; }
     public InputAction InputCurrentChange { get => _inputCurrentChange; }
     public UIPresetDataList UIPresetData { get => _UIPresetData; set => _UIPresetData = value; }
+    public GameObject CursorSE { get => _cursorSE; }
+    public GameObject QuestSE { get => _questSE; }
+    public GameObject DecisionSE { get => _decisionSE; }
+    public GameObject KickAttackSE { get => _kickAttackSE; }
+    public GameObject KickSwingSE { get => _kickSwingSE; }
+    public GameObject SwordAttackSE { get => _swordAttackSE; }
+    public GameObject SwordSwingSE { get => _swordSwingSE; }
 
     protected override void Awake()
     {
@@ -35,6 +49,34 @@ public class UIManager : Singleton<UIManager>
         _UIList.Remove(_uIBase);
         return true;
     }
+    public void PlayCursorSE()
+    {
+        Instantiate(_cursorSE);
+    }
+    public void PlayQuestSE()
+    {
+        Instantiate(_questSE);
+    }
+    public void PlayDecisionSE()
+    {
+        Instantiate(_decisionSE);
+    }
+    public void PlaySwordAttackSE()
+    {
+        Instantiate(_swordAttackSE);
+    }
+    public void PlaySwordSwingSE()
+    {
+        Instantiate(_swordSwingSE);
+    }
+    public void PlayKickAttackSE()
+    {
+        Instantiate(_kickAttackSE);
+    }
+    public void PlayKickSwingSE()
+    {
+        Instantiate(_kickSwingSE);
+    }
     private void OnEnable()
     {
         _inputSelection = _input.UI.Selection;
@@ -48,6 +90,7 @@ public class UIManager : Singleton<UIManager>
         _input.UI.UseItemSelect.canceled += UIUseItemSelectEnd;
         _input.UI.boxbutton.started += UIBoxPush;
         _input.UI.trianglebutton.started += UITrianglePush;
+        _input.UI.Title.started += NextVillage;
         SceneManager.sceneLoaded += OnSceneLoaded;
 
     }
@@ -64,6 +107,8 @@ public class UIManager : Singleton<UIManager>
         _input.UI.UseItemSelect.canceled -= UIUseItemSelectEnd;
         _input.UI.boxbutton.started -= UIBoxPush;
         _input.UI.trianglebutton.started -= UITrianglePush;
+        _input.UI.Title.started -= NextVillage;
+
         SceneManager.sceneLoaded -= OnSceneLoaded;
 
     }
@@ -117,6 +162,10 @@ public class UIManager : Singleton<UIManager>
         {
             ui.PushTriangleButton();
         }
+    }
+    private void NextVillage(InputAction.CallbackContext obj)
+    {
+        GameManager.Instance.GoToVillage();
     }
 
     private void UIBoxPush(InputAction.CallbackContext obj)

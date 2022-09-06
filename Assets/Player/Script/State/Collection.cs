@@ -24,6 +24,7 @@ public class Collection : PlayerStateBase
             int r = GameManager.Instance.UIPoachList.AddPoach(_getItem, _getNumber);
             if (r == -1) Debug.LogError("ƒL[‚ª‚È‚¢");
             if (r > 0) GameManager.Instance.Quest.GatheringCount.Add(_getItem, r);
+            owner.CollectionScript.CollectableTimes -= 1;
             owner.ChangeState<LocomotionState>();
         }
     }

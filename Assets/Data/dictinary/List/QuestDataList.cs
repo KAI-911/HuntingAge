@@ -80,6 +80,7 @@ public struct QuestData
     public Scene Field;
     public List<STRINGINT> TargetName;
     public List<STRINGINT> OtherName;
+    public List<QuestRewardData> QuestRewardDatas;
 }
 
 [System.Serializable]
@@ -93,3 +94,11 @@ public struct STRINGINT
     public string name;
     public int number;
 }
+[System.Serializable]
+public struct QuestRewardData
+{
+    public string name;
+    public int number;
+    public int probability;
+}
+

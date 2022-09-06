@@ -85,14 +85,21 @@ public class UIItemView : UIBase
         {
             owner.GetComponent<UIItemView>().SetItemID();
         }
-        public override void OnPushBoxButton(UIBase owner)
-        {
-            owner.ChangeState<UseItem>();
-        }
+        //public override void OnPushBoxButton(UIBase owner)
+        //{
+        //    if (GameManager.Instance.Player.CollectionScript == null)
+        //    {
+        //        owner.ChangeState<UseItem>();
+        //    }
+        //}
         public override void OnSceneChenge(UIBase owner)
         {
             if (!GameManager.Instance.Quest.IsQuest)
             {
+                var OWNER = owner.GetComponent<UIItemView>();
+                OWNER.DeleteCenterUI();
+                OWNER.DeleteRightUI();
+                OWNER.DeleteLeftUI();
                 owner.ChangeState<NotQuest>();
             }
         }
@@ -102,65 +109,69 @@ public class UIItemView : UIBase
         private Run run = new Run();
         public override void OnEnter(UIBase owner, UIStateBase prevState)
         {
-            var OWNER = owner.GetComponent<UIItemView>();
-
-            int index = GameManager.Instance.ItemDataList.Keys.IndexOf(OWNER._currentID);
-            var data = GameManager.Instance.ItemDataList.Values[index];
-            Status status = GameManager.Instance.Player.Status;
-            switch (data.ItemType)
+            if (prevState.GetType() == typeof(WaitItem))
             {
-                case ItemType.HpRecovery:
-                    status.HP += (int)data.UpValue;
-                    data.baseData.PoachHoldNumber--;
-                    if (status.HP > status.MaxHP)
-                    {
-                        status.HP = status.MaxHP;
-                    }
-                    break;
-                case ItemType.AttackUp:
-                    if (data.Use) return;
-                    if (!data.Permanent)
-                    {
-                        _ = run.WaitForAsync(data.Time, () =>
-                        {
-                            if (!data.Use) return;
-                            data.Use = false;
-                            status.Attack -= (int)data.UpValue;
-                            GameManager.Instance.Player.Status = status;
-                            GameManager.Instance.ItemDataList.Values[index] = data;
-                            GameManager.Instance.ItemDataList.DesrializeDictionary();
-                        });
-                    }
-                    data.Use = true;
-                    data.baseData.PoachHoldNumber--;
-                    status.Attack += (int)data.UpValue;
-                    break;
-                case ItemType.DefenseUp:
-                    if (data.Use) return;
-                    if (!data.Permanent)
-                    {
-                        _ = run.WaitForAsync(data.Time, () =>
-                        {
-                            if (!data.Use) return;
-                            data.Use = false;
-                            status.Defense -= (int)data.UpValue;
-                            GameManager.Instance.Player.Status = status;
-                            GameManager.Instance.ItemDataList.Values[index] = data;
-                            GameManager.Instance.ItemDataList.DesrializeDictionary();
-                        });
-                    }
-                    data.Use = true;
-                    data.baseData.PoachHoldNumber--;
-                    status.Defense += (int)data.UpValue;
+                var OWNER = owner.GetComponent<UIItemView>();
 
-                    break;
-                default:
-                    break;
+                int index = GameManager.Instance.ItemDataList.Keys.IndexOf(OWNER._currentID);
+                var data = GameManager.Instance.ItemDataList.Values[index];
+                Status status = GameManager.Instance.Player.Status;
+                switch (data.ItemType)
+                {
+                    case ItemType.HpRecovery:
+                        status.HP += (int)data.UpValue;
+                        data.baseData.PoachHoldNumber--;
+                        if (status.HP > status.MaxHP)
+                        {
+                            status.HP = status.MaxHP;
+                        }
+                        break;
+                    case ItemType.AttackUp:
+                        if (data.Use) return;
+                        if (!data.Permanent)
+                        {
+                            _ = run.WaitForAsync(data.Time, () =>
+                            {
+                                if (!data.Use) return;
+                                data.Use = false;
+                                status.Attack -= (int)data.UpValue;
+                                GameManager.Instance.Player.Status = status;
+                                GameManager.Instance.ItemDataList.Values[index] = data;
+                                GameManager.Instance.ItemDataList.DesrializeDictionary();
+                            });
+                        }
+                        data.Use = true;
+                        data.baseData.PoachHoldNumber--;
+                        status.Attack += (int)data.UpValue;
+                        break;
+                    case ItemType.DefenseUp:
+                        if (data.Use) return;
+                        if (!data.Permanent)
+                        {
+                            _ = run.WaitForAsync(data.Time, () =>
+                            {
+                                if (!data.Use) return;
+                                data.Use = false;
+                                status.Defense -= (int)data.UpValue;
+                                GameManager.Instance.Player.Status = status;
+                                GameManager.Instance.ItemDataList.Values[index] = data;
+                                GameManager.Instance.ItemDataList.DesrializeDictionary();
+                            });
+                        }
+                        data.Use = true;
+                        data.baseData.PoachHoldNumber--;
+                        status.Defense += (int)data.UpValue;
+
+                        break;
+                    default:
+                        break;
+                }
+                GameManager.Instance.Player.Status = status;
+                GameManager.Instance.ItemDataList.Values[index] = data;
+                GameManager.Instance.ItemDataList.DesrializeDictionary();
+                OWNER.SetCenterImage();
             }
-            GameManager.Instance.Player.Status = status;
-            GameManager.Instance.ItemDataList.Values[index] = data;
-            GameManager.Instance.ItemDataList.DesrializeDictionary();
-            OWNER.SetCenterImage();
+
         }
         public override void OnUpdate(UIBase owner)
         {
@@ -170,10 +181,13 @@ public class UIItemView : UIBase
         {
             if (!GameManager.Instance.Quest.IsQuest)
             {
+                var OWNER = owner.GetComponent<UIItemView>();
+                OWNER.DeleteCenterUI();
+                OWNER.DeleteRightUI();
+                OWNER.DeleteLeftUI();
                 owner.ChangeState<NotQuest>();
             }
         }
-
     }
     private class SelectItem : UIStateBase
     {
@@ -236,6 +250,10 @@ public class UIItemView : UIBase
         {
             if (!GameManager.Instance.Quest.IsQuest)
             {
+                var OWNER = owner.GetComponent<UIItemView>();
+                OWNER.DeleteCenterUI();
+                OWNER.DeleteRightUI();
+                OWNER.DeleteLeftUI();
                 owner.ChangeState<NotQuest>();
             }
         }
@@ -371,6 +389,9 @@ public class UIItemView : UIBase
         var images = objects[(int)position.right].GetComponentsInChildren<Image>();
         var iconname = GameManager.Instance.ItemDataList.Dictionary[_itemIDList[index]].baseData.IconName;
         images[1].sprite = Resources.Load<Sprite>(iconname);
+        var text = objects[(int)position.center].GetComponentInChildren<Text>();
+        text.text = "";
+
     }
     //アイコンの設定
     public void SetLeftImage()
@@ -384,6 +405,9 @@ public class UIItemView : UIBase
         var images = objects[(int)position.left].GetComponentsInChildren<Image>();
         var iconname = GameManager.Instance.ItemDataList.Dictionary[_itemIDList[index]].baseData.IconName;
         images[1].sprite = Resources.Load<Sprite>(iconname);
+        var text = objects[(int)position.center].GetComponentInChildren<Text>();
+        text.text = "";
+
     }
     //アイコンの設定
     public void SetCenterImage()
@@ -401,6 +425,8 @@ public class UIItemView : UIBase
         {
             images[1].sprite = Resources.Load<Sprite>(data.IconName);
         }
+        var text = objects[(int)position.center].GetComponentInChildren<Text>();
+        text.text = data.PoachHoldNumber.ToString();
     }
     /// <summary>
     /// 永続効果のアイテムの効果を削除
@@ -431,5 +457,17 @@ public class UIItemView : UIBase
             list.Values[index] = data;
         }
         GameManager.Instance.ItemDataList.DesrializeDictionary();
+    }
+    public void ItemUseEnd()
+    {
+        if (this._currentState.GetType() == typeof(WaitItem))
+        {
+            ChangeState<UseItem>();
+        }
+    }
+    public bool IsSelect()
+    {
+        if(this._currentState.GetType()==typeof(WaitItem)) return false;
+        return true;
     }
 }

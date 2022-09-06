@@ -68,6 +68,8 @@ public class Status : MonoBehaviour, IAttackDamage
         //ダメージを受ける
         _hp -= damage;
 
+
+
         //部位ごとに怯み計算
         var partReceiver = this.gameObject.transform.root.GetComponent<PartCheckerReceiver>();
 

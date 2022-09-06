@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using UnityEngine.InputSystem;
 using System.Threading.Tasks;
 using UnityEngine.SceneManagement;
+using System.Text.RegularExpressions;
 public partial class Player : Singleton<Player>
 {
     private PlayerStatusData _statusData;
@@ -154,6 +155,9 @@ public partial class Player : Singleton<Player>
         if (other.CompareTag("CollectionPoint"))
         {
             Debug.Log("採取ポイント");
+            //採取回数が０以下なら何もしない
+            if (other.GetComponent<CollectionScript>().CollectableTimes <= 0) return;
+
             if (_collectionScript != null)
             {
                 _collectionScript.DeleteImage();
@@ -169,6 +173,18 @@ public partial class Player : Singleton<Player>
             }
             _popImage = other.GetComponent<PopImage>();
             _popImage.CreateImage();
+        }
+    }
+    private void OnTriggerStay(Collider other)
+    {
+        if (other.CompareTag("CollectionPoint"))
+        {
+            //採取回数が０以下なら表示を消す
+            if (_collectionScript != null && other.GetComponent<CollectionScript>().CollectableTimes <= 0)
+            {
+                _collectionScript.DeleteImage();
+                _collectionScript = null;
+            }
         }
     }
 
@@ -198,6 +214,14 @@ public partial class Player : Singleton<Player>
         _currentState.OnAnimationEvent(this, animationEvent);
     }
 
+    private void OnPlaySE(AnimationEvent animationEvent)
+    {
+        if (animationEvent.objectReferenceParameter != null)
+        {
+            Instantiate(animationEvent.objectReferenceParameter);
+        }
+    }
+
     public Vector3 GetCameraForward(Camera playerCamera)
     {
         Vector3 forward = playerCamera.transform.forward;
@@ -216,25 +240,30 @@ public partial class Player : Singleton<Player>
     private void StrongAttack(InputAction.CallbackContext obj)
     {
         if (!_isAction) return;
+        if (GameManager.Instance.UIItemView.IsSelect()) return;
         _currentState.OnStrongAttack(this);
     }
     private void WeakAttack(InputAction.CallbackContext obj)
     {
         if (!_isAction) return;
+        if (GameManager.Instance.UIItemView.IsSelect()) return;
         _currentState.OnWeakAttack(this);
     }
     private void Collect(InputAction.CallbackContext obj)
     {
+        if (GameManager.Instance.UIItemView.IsSelect()) return;
         _currentState.OnCollect(this);
     }
     private void Jump(InputAction.CallbackContext obj)
     {
         if (!_isAction) return;
+        if (GameManager.Instance.UIItemView.IsSelect()) return;
         _currentState.OnJump(this);
     }
     private void Dodge(InputAction.CallbackContext obj)
     {
         if (!_isAction) return;
+        if (GameManager.Instance.UIItemView.IsSelect()) return;
         _currentState.OnDodge(this);
     }
     public void LookAt(float _turningAngle = 900)
@@ -327,6 +356,14 @@ public partial class Player : Singleton<Player>
         _weapon = Instantiate(Resources.Load(path), _weaponParent.transform.position, _weaponParent.transform.rotation) as GameObject;
         _weapon.transform.SetParent(_weaponParent.transform);
         _weapon.transform.localScale = new Vector3(1, 1, 1);
+        if (_weaponID.Contains("weapon1"))
+        {
+            _animator.SetFloat("wepon", 0);
+        }
+        else if(_weaponID.Contains("weapon2"))
+        {
+            _animator.SetFloat("wepon", 1);
+        }
     }
     public void DeleteWepon()
     {
@@ -344,11 +381,12 @@ public enum PlayerAnimationState
     Jump,
     Fall,
     Dodge,
-    StrongAttack,
+    Attack,
     HitReaction,
     Death,
     Collection,
-    Landing
+    Landing,
+    ItemUseing
 }
 public enum AttackType
 {

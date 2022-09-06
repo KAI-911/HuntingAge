@@ -6,20 +6,20 @@ abstract public class UIBase : MonoBehaviour
 {
     [SerializeField] private List<ItemIcon> _itemIconList;
     protected UIStateBase _currentState;
-    private UIManager uIManager;
+    private UISoundManager uIManager;
     public List<ItemIcon> ItemIconList { get => _itemIconList; set => _itemIconList = value; }
 
     virtual public void Awake()
     {
         _currentState = new UIStateBase();
-        uIManager = UIManager.Instance;
+        uIManager = UISoundManager.Instance;
         uIManager.AddUIList(this);
     }
     virtual public void OnDestroy()
     {
         if (uIManager != null)
         {
-            UIManager.Instance.EraseUIList(this);
+            UISoundManager.Instance.EraseUIList(this);
         }
     }
     virtual public void Update()
@@ -87,4 +87,6 @@ abstract public class UIBase : MonoBehaviour
         public virtual void OnSceneChenge(UIBase owner) { }
 
     }
+
+
 }
