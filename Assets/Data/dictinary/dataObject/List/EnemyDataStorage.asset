@@ -17,6 +17,7 @@ MonoBehaviour:
   - Wolf
   - Dodo
   - Deer
+  - Rhino
   values:
   - ID: T-rex
     DisplayName: "\u30C6\u30A3\u30E9\u30CE\u30B5\u30A6\u30EB\u30B9"
@@ -58,7 +59,24 @@ MonoBehaviour:
   - ID: Deer
     DisplayName: "\u30B7\u30AB"
     InstanceName: Enemy/Deer
-    DeathCount: 0
+    DeathCount: 3
+    EnemyPos:
+    - scene: 2
+      pos:
+      - {x: 10, y: 0, z: 10}
+      - {x: 10, y: 0, z: -10}
+      - {x: -10, y: 0, z: 10}
+      - {x: -10, y: 0, z: -10}
+    - scene: 2
+      pos:
+      - {x: 5, y: 0, z: 5}
+      - {x: 5, y: 0, z: -5}
+      - {x: -5, y: 0, z: 5}
+      - {x: -5, y: 0, z: -5}
+  - ID: Rhino
+    DisplayName: "\u30B5\u30A4"
+    InstanceName: Enemy/Rhino
+    DeathCount: 3
     EnemyPos:
     - scene: 2
       pos:
