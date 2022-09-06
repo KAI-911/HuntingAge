@@ -79,6 +79,7 @@ public class Enemy : MonoBehaviour
 
     private int _keepHP;
 
+
     [SerializeField] List<GameObject> DebugSetPosObj;
     [ContextMenu("DebugSetPosObjSet")]
     public void DebugSetPosObjSet()
@@ -264,5 +265,7 @@ public enum TargetCheckerType
     Biting, //噛みつき
     Tail,   //尻尾
     Stomp,  //踏みつけ
-    tackle  //タックル
+    tackle, //タックル
+    Gore    //角で突く
+
 }

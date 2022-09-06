@@ -1,35 +1,20 @@
 fileFormatVersion: 2
-guid: a32d8e0483c13764890e95f7b5316320
+guid: 1a2fc0dfc3336914fb2715cc5107aed4
 ModelImporter:
   serializedVersion: 21202
   internalIDToNameTable:
   - first:
-      74: 4781951162920444690
-    second: Armature|ArmatureAction
+      74: 4877027234966185543
+    second: GLTF_created_0|dash
   - first:
-      74: -8535775156832171347
-    second: Armature|BackStep
+      74: 4984605800708111303
+    second: GLTF_created_0|idle1
   - first:
-      74: -900883631484333615
-    second: Armature|Dash_Spear
+      74: -3349338882231284775
+    second: GLTF_created_0|idle2
   - first:
-      74: 5165997653236201061
-    second: Armature|HevyAttack2_Spear
-  - first:
-      74: -8993272633849257056
-    second: Armature|HevyAttack_Spear
-  - first:
-      74: 7783600045814649250
-    second: Armature|LightAttack2_Spear
-  - first:
-      74: 6403117611174102230
-    second: Armature|LightAttack_spear
-  - first:
-      74: 4853097287693444440
-    second: Armature|tmp
-  - first:
-      74: -3260289394641467721
-    second: Armature|Walk_Spear
+      74: 5543790720745721805
+    second: GLTF_created_0|wark
   externalObjects: {}
   materials:
     materialImportMode: 2
@@ -43,8 +28,7 @@ ModelImporter:
     optimizeGameObjects: 0
     removeConstantScaleCurves: 1
     motionNodeName: 
-    rigImportErrors: "Copied Avatar Rig Configuration mis-match. Transform hierarchy
-      does not match:\n\tTransform 'Armature' not found in HumanDescription.\n"
+    rigImportErrors: 
     rigImportWarnings: 
     animationImportErrors: 
     animationImportWarnings: 
@@ -119,13 +103,13 @@ ModelImporter:
     globalScale: 1
     rootMotionBoneName: 
     hasTranslationDoF: 0
-    hasExtraRoot: 1
+    hasExtraRoot: 0
     skeletonHasParents: 1
   lastHumanDescriptionAvatarSource: {instanceID: 0}
   autoGenerateAvatarMappingIfUnspecified: 1
-  animationType: 3
+  animationType: 2
   humanoidOversampling: 1
-  avatarSetup: 1
+  avatarSetup: 0
   addHumanoidExtraRootOnlyWhenUsingAvatar: 1
   additionalBone: 0
   userData: 

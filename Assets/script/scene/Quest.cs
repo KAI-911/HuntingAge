@@ -316,10 +316,6 @@ public class Quest : MonoBehaviour
             if (owner._HPBar != null) Destroy(owner._HPBar);
             if (owner._SPBar != null) Destroy(owner._SPBar);
             GameManager.Instance.UIItemView.ChangeNotQuestState();
-            //foreach (var item in owner._enemyList)
-            //{
-            //    item.Delete();
-            //}
 
             //UI‚ÌƒZƒbƒg
             owner._result = Instantiate(Resources.Load("UI/QuestResult")) as GameObject;
