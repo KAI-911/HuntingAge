@@ -102,7 +102,7 @@ public class Blacksmith : UIBase
                 switch (i)
                 {
                     case 0:
-                        UI.SetButtonText(i, "»‘¢F•€");
+                        UI.SetButtonText(i, "•€Œn“");
                         UI.SetButtonOnClick(i, () =>
                              {
                                  owner.GetComponent<Blacksmith>().productionWeaponType = 0;
@@ -110,7 +110,7 @@ public class Blacksmith : UIBase
                              });
                         break;
                     case 1:
-                        UI.SetButtonText(i, "»‘¢F‘„");
+                        UI.SetButtonText(i, "‘„Œn“");
                         UI.SetButtonOnClick(i, () =>
                             {
                                 owner.GetComponent<Blacksmith>().productionWeaponType = 1;
@@ -118,7 +118,7 @@ public class Blacksmith : UIBase
                             });
                         break;
                     case 2:
-                        UI.SetButtonText(i, "»‘¢F‹|");
+                        UI.SetButtonText(i, "‹|Œn“");
                         UI.SetButtonOnClick(i, () =>
                             {
                                 owner.GetComponent<Blacksmith>().productionWeaponType = 2;
