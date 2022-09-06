@@ -250,7 +250,7 @@ public struct WeaponData
     /// <summary>
     /// UŒ‚—Í
     /// </summary>
-    public float AttackPoint;
+    public int AttackPoint;
 
     /// <summary>
     /// •Šíí

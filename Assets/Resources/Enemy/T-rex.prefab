@@ -1851,11 +1851,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cb4271ea13da4f74cbbfd13df1a35e68, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _imagePrefab: {fileID: 0}
-  _spritePrefab: {fileID: 0}
+  _imagePrefab: {fileID: 5541608107631814696, guid: 242c96c79d9b830449b003f68433f768,
+    type: 3}
+  _spritePrefab: {fileID: 21300000, guid: fb2ba2264a2aff544b968bc54b9b55e1, type: 3}
   _text: 
   _itemHolder: {fileID: 7331076015102344176}
   _getItemNumber: 15
+  _collectableTimes: 3
+  _repopTime: 20
   _ID: Meet
 --- !u!114 &7331076015102344176
 MonoBehaviour:
@@ -1878,6 +1881,7 @@ MonoBehaviour:
   - Meet
   - Stone
   - Vine
+  - Fur
   values:
   - _imagePrefab: {fileID: 5541608107631814696, guid: 242c96c79d9b830449b003f68433f768,
       type: 3}
@@ -1907,6 +1911,10 @@ MonoBehaviour:
       type: 3}
     ID: Material006
     Icon: {fileID: 21300000, guid: 9f48cad1bf3b45a42b3508943181ebe1, type: 3}
+  - _imagePrefab: {fileID: 5541608107631814696, guid: 242c96c79d9b830449b003f68433f768,
+      type: 3}
+    ID: Material007
+    Icon: {fileID: 21300000, guid: d0e00c93c80e5bc46a5516f604666827, type: 3}
   modifyValues: 0
 --- !u!1 &5648031124077137443
 GameObject:
@@ -2810,8 +2818,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1c6b5257da867774697dc6db14bc1969, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _maxHp: 100
-  _hp: 100
+  _maxHp: 500
+  _hp: 500
   _maxSp: 100
   _sp: 100
   _attack: 70
@@ -2834,13 +2842,13 @@ MonoBehaviour:
   - _partType: 1
     _maxEnduranceValue: 500
   - _partType: 2
-    _maxEnduranceValue: 1000
+    _maxEnduranceValue: 100
   - _partType: 3
-    _maxEnduranceValue: 200
+    _maxEnduranceValue: 100
   - _partType: 4
-    _maxEnduranceValue: 200
+    _maxEnduranceValue: 100
   - _partType: 5
-    _maxEnduranceValue: 400
+    _maxEnduranceValue: 50
 --- !u!195 &4547490786413605334
 NavMeshAgent:
   m_ObjectHideFlags: 0
@@ -3573,6 +3581,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _attackPart: 1
   _mask: 
+  _se: {fileID: 0}
 --- !u!1 &7806976792349379527
 GameObject:
   m_ObjectHideFlags: 0
@@ -3754,6 +3763,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _attackPart: 5
   _mask: 
+  _se: {fileID: 0}
 --- !u!1 &7806976793089639870
 GameObject:
   m_ObjectHideFlags: 0
@@ -3815,6 +3825,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _attackPart: 5
   _mask: 
+  _se: {fileID: 0}
 --- !u!1 &7806976793094672598
 GameObject:
   m_ObjectHideFlags: 0
@@ -4013,6 +4024,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _attackPart: 5
   _mask: 
+  _se: {fileID: 0}
 --- !u!1 &7806976793578882836
 GameObject:
   m_ObjectHideFlags: 0
@@ -4457,6 +4469,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _attackPart: 4
   _mask: 
+  _se: {fileID: 0}
 --- !u!1 &7806976794257023097
 GameObject:
   m_ObjectHideFlags: 0
