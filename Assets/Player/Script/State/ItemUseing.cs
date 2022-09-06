@@ -21,9 +21,13 @@ public class ItemUseing : PlayerStateBase
     }
     public override void OnAnimationEvent(Player owner, AnimationEvent animationEvent)
     {
-        if (animationEvent.stringParameter == "End")//アニメーション終了
+        if (animationEvent.stringParameter == "Use")
         {
             GameManager.Instance.UIItemView.ItemUseEnd();
+        }
+        else if (animationEvent.stringParameter == "End")//アニメーション終了
+        {
+
             owner.ChangeState<LocomotionState>();
         }
     }

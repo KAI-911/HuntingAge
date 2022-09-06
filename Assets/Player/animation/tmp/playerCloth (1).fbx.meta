@@ -1,8 +1,41 @@
 fileFormatVersion: 2
-guid: 5e5ee029cb740da40bc5d793b86e8c29
+guid: 37cf53a807b52eb4380b00c115be5f5b
 ModelImporter:
   serializedVersion: 21202
-  internalIDToNameTable: []
+  internalIDToNameTable:
+  - first:
+      74: 4781951162920444690
+    second: Armature|ArmatureAction
+  - first:
+      74: -8535775156832171347
+    second: Armature|BackStep
+  - first:
+      74: -900883631484333615
+    second: Armature|Dash_Spear
+  - first:
+      74: 5165997653236201061
+    second: Armature|HevyAttack2_Spear
+  - first:
+      74: -8993272633849257056
+    second: Armature|HevyAttack_Spear
+  - first:
+      74: 7783600045814649250
+    second: Armature|LightAttack2_Spear
+  - first:
+      74: 6403117611174102230
+    second: Armature|LightAttack_spear
+  - first:
+      74: 4853097287693444440
+    second: Armature|tmp
+  - first:
+      74: -2274873541537862302
+    second: Armature|UseItem(eat)
+  - first:
+      74: -1670246386503931823
+    second: Armature|UseItem2(eat)
+  - first:
+      74: -3260289394641467721
+    second: Armature|Walk_Spear
   externalObjects: {}
   materials:
     materialImportMode: 2
@@ -24,7 +57,7 @@ ModelImporter:
     animationDoRetargetingWarnings: 0
     importAnimatedCustomProperties: 0
     importConstraints: 0
-    animationCompression: 1
+    animationCompression: 3
     animationRotationError: 0.5
     animationPositionError: 0.5
     animationScaleError: 0.5
@@ -91,13 +124,13 @@ ModelImporter:
     globalScale: 1
     rootMotionBoneName: 
     hasTranslationDoF: 0
-    hasExtraRoot: 0
+    hasExtraRoot: 1
     skeletonHasParents: 1
   lastHumanDescriptionAvatarSource: {instanceID: 0}
   autoGenerateAvatarMappingIfUnspecified: 1
-  animationType: 2
+  animationType: 3
   humanoidOversampling: 1
-  avatarSetup: 0
+  avatarSetup: 1
   addHumanoidExtraRootOnlyWhenUsingAvatar: 1
   additionalBone: 0
   userData: 
