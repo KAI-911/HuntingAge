@@ -614,9 +614,11 @@ GameObject:
   m_Component:
   - component: {fileID: 2669420369011842963}
   - component: {fileID: 3724160942109103030}
+  - component: {fileID: 1228840641483579741}
+  - component: {fileID: 6773398526993790654}
   m_Layer: 0
   m_Name: collection
-  m_TagString: Untagged
+  m_TagString: CollectionPoint
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -628,14 +630,14 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1308270867339997792}
-  m_LocalRotation: {x: 0.07415958, y: -0.000000007450581, z: 0.0000005818438, w: 0.99724644}
+  m_LocalRotation: {x: 0.14841351, y: 0, z: 0, w: 0.9889254}
   m_LocalPosition: {x: -1.2457725, y: 2.1955404, z: -2.0329614}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 3216515950869342073}
   m_RootOrder: 6
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 17.07, y: 0, z: 0}
 --- !u!114 &3724160942109103030
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -648,14 +650,85 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cb4271ea13da4f74cbbfd13df1a35e68, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _imagePrefab: {fileID: 0}
-  _spritePrefab: {fileID: 0}
+  _imagePrefab: {fileID: 5541608107631814696, guid: 242c96c79d9b830449b003f68433f768,
+    type: 3}
+  _spritePrefab: {fileID: 21300000, guid: d0e00c93c80e5bc46a5516f604666827, type: 3}
   _text: 
-  _itemHolder: {fileID: 0}
+  _itemHolder: {fileID: 6773398526993790654}
   _getItemNumber: 3
   _collectableTimes: 3
   _repopTime: 9999
-  _ID: 
+  _ID: Fur
+--- !u!136 &1228840641483579741
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1308270867339997792}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  m_Radius: 2.4847004
+  m_Height: 13.497304
+  m_Direction: 1
+  m_Center: {x: 1.0173731, y: -1.3248101, z: 1.4214429}
+--- !u!114 &6773398526993790654
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1308270867339997792}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0311146b928456b4fbb4969387ddaa72, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  DictionaryData: {fileID: 11400000, guid: d4d92aadcc49c634cbe211128321d169, type: 2}
+  keys:
+  - Bone
+  - Wood
+  - Botanical
+  - Fiber
+  - Meet
+  - Stone
+  - Vine
+  - Fur
+  values:
+  - _imagePrefab: {fileID: 5541608107631814696, guid: 242c96c79d9b830449b003f68433f768,
+      type: 3}
+    ID: Material003
+    Icon: {fileID: 21300000, guid: 1e69f11348e8871438bab805bd4eaf77, type: 3}
+  - _imagePrefab: {fileID: 5541608107631814696, guid: 242c96c79d9b830449b003f68433f768,
+      type: 3}
+    ID: Material001
+    Icon: {fileID: 21300000, guid: 970959b020eaa7f4eab8cd6562185a92, type: 3}
+  - _imagePrefab: {fileID: 5541608107631814696, guid: 242c96c79d9b830449b003f68433f768,
+      type: 3}
+    ID: Material004
+    Icon: {fileID: 21300000, guid: a2c4163e81958c04b913d9ffdd5fd933, type: 3}
+  - _imagePrefab: {fileID: 5541608107631814696, guid: 242c96c79d9b830449b003f68433f768,
+      type: 3}
+    ID: Material002
+    Icon: {fileID: 21300000, guid: 9bc128f3293332549842f397cd72fd14, type: 3}
+  - _imagePrefab: {fileID: 5541608107631814696, guid: 242c96c79d9b830449b003f68433f768,
+      type: 3}
+    ID: Material005
+    Icon: {fileID: 21300000, guid: fb2ba2264a2aff544b968bc54b9b55e1, type: 3}
+  - _imagePrefab: {fileID: 5541608107631814696, guid: 242c96c79d9b830449b003f68433f768,
+      type: 3}
+    ID: Material000
+    Icon: {fileID: 21300000, guid: fa11fc7e22011d041abaf88ffdd2799d, type: 3}
+  - _imagePrefab: {fileID: 5541608107631814696, guid: 242c96c79d9b830449b003f68433f768,
+      type: 3}
+    ID: Material006
+    Icon: {fileID: 21300000, guid: 9f48cad1bf3b45a42b3508943181ebe1, type: 3}
+  - _imagePrefab: {fileID: 5541608107631814696, guid: 242c96c79d9b830449b003f68433f768,
+      type: 3}
+    ID: Material007
+    Icon: {fileID: 21300000, guid: d0e00c93c80e5bc46a5516f604666827, type: 3}
+  modifyValues: 1
 --- !u!1 &1365283750446959199
 GameObject:
   m_ObjectHideFlags: 0
@@ -2881,7 +2954,7 @@ GameObject:
   - component: {fileID: 5678624885590679354}
   m_Layer: 0
   m_Name: AttackHead
-  m_TagString: Untagged
+  m_TagString: Attack
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -2943,7 +3016,7 @@ GameObject:
   - component: {fileID: 5678624885747591256}
   m_Layer: 0
   m_Name: Head
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -3034,7 +3107,7 @@ GameObject:
   - component: {fileID: 5678624886957108022}
   m_Layer: 0
   m_Name: body
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

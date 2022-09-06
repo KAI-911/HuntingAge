@@ -19,6 +19,7 @@ MonoBehaviour:
   - Quest004
   - Quest005
   - Quest006
+  - Quest007
   values:
   - ID: Quest001
     Name: Quest001
@@ -146,4 +147,14 @@ MonoBehaviour:
     OtherName:
     - name: Deer
       number: 9
+    QuestRewardDatas: []
+  - ID: Quest007
+    Name: Quest007
+    Clear: 0
+    Failure: 4
+    Field: 2
+    TargetName:
+    - name: Rhino
+      number: 1
+    OtherName: []
     QuestRewardDatas: []
