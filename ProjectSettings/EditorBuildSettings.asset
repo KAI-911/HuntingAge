@@ -20,6 +20,9 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/HamaScene/Scene.unity
     guid: b73448fca47dc614b9495233b495f429
+  - enabled: 1
+    path: Assets/Scenes/ShimiScene/ShimiScene.unity
+    guid: 9caabac127ce460459d2cc4dc019f60c
   m_configObjects:
     com.unity.addressableassets: {fileID: 11400000, guid: b5161ce55fc13e846b0ca3e941e597e2,
       type: 2}

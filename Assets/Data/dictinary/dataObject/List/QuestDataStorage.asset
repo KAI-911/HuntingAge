@@ -18,6 +18,7 @@ MonoBehaviour:
   - Quest003
   - Quest004
   - Quest005
+  - Quest006
   values:
   - ID: Quest001
     Name: Quest001
@@ -72,3 +73,14 @@ MonoBehaviour:
     - name: Material003
       number: 1
     OtherName: []
+  - ID: Quest006
+    Name: Quest006
+    Clear: 0
+    Failure: 4
+    Field: 2
+    TargetName:
+    - name: Deer
+      number: 1
+    OtherName:
+    - name: Deer
+      number: 9
