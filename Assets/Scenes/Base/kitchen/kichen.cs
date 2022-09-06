@@ -185,9 +185,8 @@ public class kichen : UIBase
         }
         public override void OnExit(UIBase owner, UIStateBase nextState)
         {
-            Destroy(owner.GetComponent<kichen>().countObject);
+            Destroy(count);
             owner.ItemIconList[(int)IconType.TypeSelect].DeleteButton();
-
         }
         public override void OnProceed(UIBase owner)
         {
