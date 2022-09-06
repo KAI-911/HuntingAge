@@ -31,7 +31,7 @@ MonoBehaviour:
     BoxUINumber: 0
     CreatableLevel: 1
     BoxPossession: 1
-    AttackPoint: 100
+    AttackPoint: 0
     WeaponType: 0
     ProductionNeedMaterialLst:
     - materialID: Material001
@@ -45,7 +45,7 @@ MonoBehaviour:
     BoxUINumber: 3
     CreatableLevel: 2
     BoxPossession: 1
-    AttackPoint: 120
+    AttackPoint: 0
     WeaponType: 0
     ProductionNeedMaterialLst:
     - materialID: Material001
@@ -65,7 +65,7 @@ MonoBehaviour:
     BoxUINumber: 0
     CreatableLevel: 5
     BoxPossession: 0
-    AttackPoint: 200
+    AttackPoint: 0
     WeaponType: 0
     ProductionNeedMaterialLst:
     - materialID: Material001
@@ -85,7 +85,7 @@ MonoBehaviour:
     BoxUINumber: 1
     CreatableLevel: 3
     BoxPossession: 1
-    AttackPoint: 80
+    AttackPoint: 0
     WeaponType: 1
     ProductionNeedMaterialLst:
     - materialID: Material001
@@ -109,7 +109,7 @@ MonoBehaviour:
     BoxUINumber: 2
     CreatableLevel: 3
     BoxPossession: 1
-    AttackPoint: 120
+    AttackPoint: 0
     WeaponType: 1
     ProductionNeedMaterialLst:
     - materialID: Material001
@@ -129,7 +129,7 @@ MonoBehaviour:
     BoxUINumber: 0
     CreatableLevel: 6
     BoxPossession: 0
-    AttackPoint: 160
+    AttackPoint: 0
     WeaponType: 1
     ProductionNeedMaterialLst:
     - materialID: Material001
@@ -149,7 +149,7 @@ MonoBehaviour:
     BoxUINumber: 0
     CreatableLevel: 1
     BoxPossession: 0
-    AttackPoint: 50
+    AttackPoint: 0
     WeaponType: 2
     ProductionNeedMaterialLst:
     - materialID: Material001
@@ -173,7 +173,7 @@ MonoBehaviour:
     BoxUINumber: 0
     CreatableLevel: 4
     BoxPossession: 0
-    AttackPoint: 75
+    AttackPoint: 0
     WeaponType: 2
     ProductionNeedMaterialLst: []
     EnhancementNeedMaterialLst: []
@@ -185,7 +185,7 @@ MonoBehaviour:
     BoxUINumber: 0
     CreatableLevel: 7
     BoxPossession: 0
-    AttackPoint: 100
+    AttackPoint: 0
     WeaponType: 2
     ProductionNeedMaterialLst: []
     EnhancementNeedMaterialLst: []
