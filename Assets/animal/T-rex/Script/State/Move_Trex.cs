@@ -30,6 +30,12 @@ public class Move_Trex : StateBase_Trex
             owner.ChangeState<Idle_Trex>();
         }
 
+        if (owner.Search() == false)
+        {
+            owner.ChangeState<Wandering_Trex>();
+            return;
+        }
+
     }
     public override void OnFixedUpdate(Trex owner)
     {
