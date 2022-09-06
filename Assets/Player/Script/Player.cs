@@ -121,6 +121,7 @@ public partial class Player : Singleton<Player>
 
     void Update()
     {
+        Debug.Log(_currentState.GetType());
         _currentState.OnUpdate(this);
         _animator.SetBool("IsGround", _groundChecker.IsGround());
         _animator.SetInteger("HP", _status.HP);

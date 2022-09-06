@@ -64,6 +64,7 @@ public class GameManager : Singleton<GameManager>
                 _fadeManager.FadeInStart();
                 SceneManager.LoadScene((int)VillageScene);
                 _quest.QuestReset();
+                _player.ChangeState<VillageAction>();
             });
 
         }
