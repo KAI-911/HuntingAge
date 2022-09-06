@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: a32d8e0483c13764890e95f7b5316320
+guid: 37cf53a807b52eb4380b00c115be5f5b
 ModelImporter:
   serializedVersion: 21202
   internalIDToNameTable:
@@ -28,6 +28,12 @@ ModelImporter:
       74: 4853097287693444440
     second: Armature|tmp
   - first:
+      74: -2274873541537862302
+    second: Armature|UseItem(eat)
+  - first:
+      74: -1670246386503931823
+    second: Armature|UseItem2(eat)
+  - first:
       74: -3260289394641467721
     second: Armature|Walk_Spear
   externalObjects: {}
@@ -43,8 +49,7 @@ ModelImporter:
     optimizeGameObjects: 0
     removeConstantScaleCurves: 1
     motionNodeName: 
-    rigImportErrors: "Copied Avatar Rig Configuration mis-match. Transform hierarchy
-      does not match:\n\tTransform 'Armature' not found in HumanDescription.\n"
+    rigImportErrors: 
     rigImportWarnings: 
     animationImportErrors: 
     animationImportWarnings: 
@@ -52,7 +57,7 @@ ModelImporter:
     animationDoRetargetingWarnings: 0
     importAnimatedCustomProperties: 0
     importConstraints: 0
-    animationCompression: 1
+    animationCompression: 3
     animationRotationError: 0.5
     animationPositionError: 0.5
     animationScaleError: 0.5
