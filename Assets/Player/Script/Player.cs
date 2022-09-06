@@ -356,6 +356,7 @@ public partial class Player : Singleton<Player>
         _weapon = Instantiate(Resources.Load(path), _weaponParent.transform.position, _weaponParent.transform.rotation) as GameObject;
         _weapon.transform.SetParent(_weaponParent.transform);
         _weapon.transform.localScale = new Vector3(1, 1, 1);
+        _status.Attack = GameManager.Instance.WeaponDataList.Dictionary[weponID].AttackPoint;
         if (_weaponID.Contains("weapon1"))
         {
             _animator.SetFloat("wepon", 0);

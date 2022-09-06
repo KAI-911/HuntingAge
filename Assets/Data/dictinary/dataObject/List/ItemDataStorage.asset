@@ -22,11 +22,11 @@ MonoBehaviour:
       Name: "\u30B9\u30FC\u30D7"
       IconName: Icon/Soup_UI
       BoxStackNumber: 9999
-      BoxUINumber: 8
-      BoxHoldNumber: 990
+      BoxUINumber: 5
+      BoxHoldNumber: 2990
       PoachStackNumber: 10
-      PoachUINumber: 3
-      PoachHoldNumber: 10
+      PoachUINumber: 4
+      PoachHoldNumber: 9
     Use: 0
     Permanent: 0
     Time: 0
@@ -44,11 +44,11 @@ MonoBehaviour:
       IconName: Icon/GrilledMeat_UI
       BoxStackNumber: 9999
       BoxUINumber: 7
-      BoxHoldNumber: 990
+      BoxHoldNumber: 2989
       PoachStackNumber: 10
-      PoachUINumber: 4
-      PoachHoldNumber: 10
-    Use: 0
+      PoachUINumber: 3
+      PoachHoldNumber: 4
+    Use: 1
     Permanent: 0
     Time: 120
     UpValue: 50
@@ -62,8 +62,8 @@ MonoBehaviour:
       Name: "\u304A\u3044\u3057\u305D\u3046\u306A\u6BD2\u308A\u3093\u3054"
       IconName: Icon/Fruit_UI
       BoxStackNumber: 9999
-      BoxUINumber: 9
-      BoxHoldNumber: 980
+      BoxUINumber: 6
+      BoxHoldNumber: 2990
       PoachStackNumber: 10
       PoachUINumber: 2
       PoachHoldNumber: 10

@@ -1,0 +1,3114 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &23314432593652969
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 4983575190589957928}
+  m_Layer: 0
+  m_Name: Deer_l_FrontLeg_AnkleSHJnt_5
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &4983575190589957928
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 23314432593652969}
+  m_LocalRotation: {x: 0.00000009713959, y: 0.00000017391422, z: -0.067492165, w: 0.9977198}
+  m_LocalPosition: {x: -5.76465e-10, y: 0.00030633569, z: 2.1827872e-12}
+  m_LocalScale: {x: 1, y: 0.99999994, z: 0.9999999}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 5121627643206878225}
+  m_Father: {fileID: 8513435640839399968}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: -0.001549987, y: 0.000058175974, z: -8.969554}
+--- !u!1 &160803490809679905
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 9182668455388457541}
+  m_Layer: 0
+  m_Name: Deer_Spine_04SHJnt_34
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &9182668455388457541
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 160803490809679905}
+  m_LocalRotation: {x: 0.0000003624529, y: -0.00000004049459, z: -0.0021997986, w: 0.9999976}
+  m_LocalPosition: {x: 0.00011055438, y: 0.0016021692, z: 0.0000009804342}
+  m_LocalScale: {x: 0.99999994, y: 0.9999998, z: 1.0000001}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 2289030666015369565}
+  m_Father: {fileID: 146607063684350979}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: -0.6129746, y: -0.01176537, z: 0.9542942}
+--- !u!1 &199799008594042362
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1157272459479345653}
+  m_Layer: 0
+  m_Name: Deer_r_FrontLeg_ToeSHJnt_11
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1157272459479345653
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 199799008594042362}
+  m_LocalRotation: {x: -0.49999985, y: 0.5000003, z: 0.5, w: -0.49999988}
+  m_LocalPosition: {x: 1.680928e-10, y: 0.0005773349, z: -3.6287343e-10}
+  m_LocalScale: {x: 0.99999976, y: 0.9999997, z: 0.9999999}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 5721120822036310458}
+  m_Father: {fileID: 6984205973985103514}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: -0.000032661184, y: -90.00001, z: -89.99998}
+--- !u!1 &420699336835909679
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 8606891201012509913}
+  m_Layer: 0
+  m_Name: Deer_l_HindLeg_Knee1SHJnt_43
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &8606891201012509913
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 420699336835909679}
+  m_LocalRotation: {x: 0.00000068286823, y: 0.0000002114051, z: 0.12483734, w: 0.99217725}
+  m_LocalPosition: {x: 1.839362e-10, y: 0.0037033856, z: 0.000000001619046}
+  m_LocalScale: {x: 0.9999998, y: 0.9999999, z: 0.99999976}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 1789016849053838633}
+  m_Father: {fileID: 4943557521026353440}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0.00007442466, y: 0.00003417606, z: 14.342724}
+--- !u!1 &807649505405733829
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2932744915875340116}
+  m_Layer: 0
+  m_Name: Deer_Tail_01_03SHJnt_end_52_end
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &2932744915875340116
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 807649505405733829}
+  m_LocalRotation: {x: 0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -0, y: 0.0006999999, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 6838684190032141587}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &833996724472514313
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 6232846278371586793}
+  m_Layer: 0
+  m_Name: GLTF_created_0_rootJoint
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &6232846278371586793
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 833996724472514313}
+  m_LocalRotation: {x: 0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 1080883847712289402}
+  m_Father: {fileID: 4110063085218827398}
+  m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &897982274157952009
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1144847426067235545}
+  m_Layer: 0
+  m_Name: Deer_Head_JawEndSHJnt_end_18_end
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1144847426067235545
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 897982274157952009}
+  m_LocalRotation: {x: 0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -0, y: 0.00070000126, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 8495988363363905050}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &903848856496914524
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 8652742170582551011}
+  m_Layer: 0
+  m_Name: Deer_Tail_01_01SHJnt_55
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &8652742170582551011
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 903848856496914524}
+  m_LocalRotation: {x: 0.6269816, y: 0.000016652326, z: 0.000059203212, w: 0.779034}
+  m_LocalPosition: {x: 2.388582e-10, y: -0.00031222944, z: 0.0017406895}
+  m_LocalScale: {x: 1, y: 1.0000001, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 3975961250660965340}
+  m_Father: {fileID: 4746378395543817783}
+  m_RootOrder: 3
+  m_LocalEulerAnglesHint: {x: 77.65555, y: 0.026848948, z: 0.030317355}
+--- !u!1 &1463485317401386034
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 8653796464994950285}
+  m_Layer: 0
+  m_Name: Deer_r_HindLeg_ToeSHJnt_end_45_end
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &8653796464994950285
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1463485317401386034}
+  m_LocalRotation: {x: 0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -0, y: 0.00070000003, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 4070316720109008472}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1620230889197588778
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 3285290753236012575}
+  m_Layer: 0
+  m_Name: GLTF_SceneRootNode
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &3285290753236012575
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1620230889197588778}
+  m_LocalRotation: {x: 0.7071068, y: 0, z: -0, w: 0.7071067}
+  m_LocalPosition: {x: -0, y: 0, z: 0}
+  m_LocalScale: {x: 1.0000001, y: 1.0000001, z: 1.0000001}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 4087163642963576516}
+  m_Father: {fileID: 8515568922736940670}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1631451665877358895
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 4098060166965701215}
+  m_Layer: 0
+  m_Name: Deer_r_FrontLeg_Knee1SHJnt_15
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &4098060166965701215
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1631451665877358895}
+  m_LocalRotation: {x: 0.0000000013792487, y: 0.00000013300178, z: -0.00000017680185,
+    w: 1}
+  m_LocalPosition: {x: 4.5554768e-10, y: 0.004206108, z: 0.0000000011079828}
+  m_LocalScale: {x: 0.99999994, y: 0.99999994, z: 1.0000001}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 3923506821777358240}
+  m_Father: {fileID: 7105214271302058214}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: -0.00000062801917, y: 0.00001582243, z: -3.033752}
+--- !u!1 &1787614927505792187
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 684420167285876090}
+  m_Layer: 0
+  m_Name: Deer_r_HindLeg_Knee2SHJnt_49
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &684420167285876090
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1787614927505792187}
+  m_LocalRotation: {x: 0.000049465958, y: 0.00018785217, z: 0.11879143, w: 0.9929192}
+  m_LocalPosition: {x: 6.589107e-10, y: 0.0031094025, z: -5.6315913e-10}
+  m_LocalScale: {x: 0.9999999, y: 0.9999999, z: 0.99999994}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 339930555311702759}
+  m_Father: {fileID: 3720312945271452043}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0.0030715703, y: 0.022047007, z: 13.644716}
+--- !u!1 &1846161180726510279
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 4943557521026353440}
+  m_Layer: 0
+  m_Name: Deer_l_HindLeg_HipSHJnt_44
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &4943557521026353440
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1846161180726510279}
+  m_LocalRotation: {x: 0.05119894, y: -0.70490575, z: -0.07361378, w: 0.70361036}
+  m_LocalPosition: {x: -0.001189991, y: 0.0008962555, z: 0.00000033942862}
+  m_LocalScale: {x: 0.99999994, y: 0.9999995, z: 0.9999998}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 8606891201012509913}
+  m_Father: {fileID: 4746378395543817783}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: -1.7484133, y: -89.99311, z: -8.639105}
+--- !u!1 &1916282228676774763
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 8495988363363905050}
+  m_Layer: 0
+  m_Name: Deer_Head_JawEndSHJnt_end_18
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &8495988363363905050
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1916282228676774763}
+  m_LocalRotation: {x: -0.000000029813716, y: 2.182787e-11, z: 3.637979e-12, w: 1}
+  m_LocalPosition: {x: 7.275957e-13, y: 0.00070000027, z: 1.3871855e-10}
+  m_LocalScale: {x: 1.0000001, y: 1.0000001, z: 1.0000001}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 1144847426067235545}
+  m_Father: {fileID: 9193458178216886062}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: -0.0000038027576, y: 0.0000000027841578, z: 4.6402615e-10}
+--- !u!1 &2018568840395723349
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 8166564851492200193}
+  - component: {fileID: 6326183716768893188}
+  - component: {fileID: 3458993278337526242}
+  - component: {fileID: 5451584329905617759}
+  - component: {fileID: 2644077709365868725}
+  m_Layer: 0
+  m_Name: collection
+  m_TagString: CollectionPoint
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &8166564851492200193
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2018568840395723349}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 3752727649044952569}
+  m_RootOrder: 2
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &6326183716768893188
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2018568840395723349}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 660772cc242956a46956ed6740de5104, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _maskTag: Player
+  _targetCheckerType: 0
+--- !u!114 &3458993278337526242
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2018568840395723349}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cb4271ea13da4f74cbbfd13df1a35e68, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _imagePrefab: {fileID: 0}
+  _spritePrefab: {fileID: 0}
+  _text: 
+  _itemHolder: {fileID: 5451584329905617759}
+  _getItemNumber: 15
+  _collectableTimes: 3
+  _repopTime: 20
+  _ID: Meet
+--- !u!114 &5451584329905617759
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2018568840395723349}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0311146b928456b4fbb4969387ddaa72, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  DictionaryData: {fileID: 11400000, guid: d4d92aadcc49c634cbe211128321d169, type: 2}
+  keys:
+  - Bone
+  - Wood
+  - Botanical
+  - Fiber
+  - Meet
+  - Stone
+  - Vine
+  values:
+  - _imagePrefab: {fileID: 5541608107631814696, guid: 242c96c79d9b830449b003f68433f768,
+      type: 3}
+    ID: Material003
+    Icon: {fileID: 21300000, guid: 1e69f11348e8871438bab805bd4eaf77, type: 3}
+  - _imagePrefab: {fileID: 5541608107631814696, guid: 242c96c79d9b830449b003f68433f768,
+      type: 3}
+    ID: Material001
+    Icon: {fileID: 21300000, guid: 970959b020eaa7f4eab8cd6562185a92, type: 3}
+  - _imagePrefab: {fileID: 5541608107631814696, guid: 242c96c79d9b830449b003f68433f768,
+      type: 3}
+    ID: Material004
+    Icon: {fileID: 21300000, guid: a2c4163e81958c04b913d9ffdd5fd933, type: 3}
+  - _imagePrefab: {fileID: 5541608107631814696, guid: 242c96c79d9b830449b003f68433f768,
+      type: 3}
+    ID: Material002
+    Icon: {fileID: 21300000, guid: 9bc128f3293332549842f397cd72fd14, type: 3}
+  - _imagePrefab: {fileID: 5541608107631814696, guid: 242c96c79d9b830449b003f68433f768,
+      type: 3}
+    ID: Material005
+    Icon: {fileID: 21300000, guid: fb2ba2264a2aff544b968bc54b9b55e1, type: 3}
+  - _imagePrefab: {fileID: 5541608107631814696, guid: 242c96c79d9b830449b003f68433f768,
+      type: 3}
+    ID: Material000
+    Icon: {fileID: 21300000, guid: fa11fc7e22011d041abaf88ffdd2799d, type: 3}
+  - _imagePrefab: {fileID: 5541608107631814696, guid: 242c96c79d9b830449b003f68433f768,
+      type: 3}
+    ID: Material006
+    Icon: {fileID: 21300000, guid: 9f48cad1bf3b45a42b3508943181ebe1, type: 3}
+  modifyValues: 0
+--- !u!65 &2644077709365868725
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2018568840395723349}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 0.016296597, y: 0.01597717, z: 0.005912387}
+  m_Center: {x: 0.0005636725, y: 0.004595295, z: 0.00023569124}
+--- !u!1 &2287286659874891413
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2051129528919820422}
+  m_Layer: 0
+  m_Name: Deer_l_FrontLeg_Knee1SHJnt_7
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &2051129528919820422
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2287286659874891413}
+  m_LocalRotation: {x: -0.0000000071381687, y: 0.000000018928404, z: 0.00000001960143,
+    w: 1}
+  m_LocalPosition: {x: 7.1097017e-10, y: 0.0042061075, z: -3.390596e-10}
+  m_LocalScale: {x: 1, y: 1, z: 1.0000001}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 8513435640839399968}
+  m_Father: {fileID: 4698033464056787408}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: -0.0000012772963, y: 0.0000018735675, z: -1.1134912}
+--- !u!1 &2500191420520379427
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 6915737802541918170}
+  m_Layer: 0
+  m_Name: Deer_r_FrontLeg_ToeSHJnt_end_10_end
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &6915737802541918170
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2500191420520379427}
+  m_LocalRotation: {x: 0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -0, y: 0.00070000015, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 5721120822036310458}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &2511927458414313035
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 8661041282522692370}
+  m_Layer: 0
+  m_Name: Deer_l_Ear_01_03SHJnt_end_21
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &8661041282522692370
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2511927458414313035}
+  m_LocalRotation: {x: 0.0000000024447218, y: -0.00000049987284, z: -0.0000000018626454,
+    w: 1}
+  m_LocalPosition: {x: -0.0000000015087426, y: 0.0007000028, z: 3.5390257e-10}
+  m_LocalScale: {x: 0.99999994, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 2798404607703703559}
+  m_Father: {fileID: 3543067039650960768}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0.0000003118256, y: -0.000056856676, z: -0.00000023758177}
+--- !u!1 &2647799248121701240
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2798404607703703559}
+  m_Layer: 0
+  m_Name: Deer_l_Ear_01_03SHJnt_end_21_end
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &2798404607703703559
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2647799248121701240}
+  m_LocalRotation: {x: 0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -0, y: 0.00069999916, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 8661041282522692370}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &3086523712419536402
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 339930555311702759}
+  m_Layer: 0
+  m_Name: Deer_r_HindLeg_AnkleSHJnt_48
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &339930555311702759
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3086523712419536402}
+  m_LocalRotation: {x: -0.015367394, y: 0.0027161897, z: -0.15593517, w: 0.987644}
+  m_LocalPosition: {x: -4.324829e-10, y: 0.0004926476, z: -2.2540916e-10}
+  m_LocalScale: {x: 1, y: 1, z: 1.0000001}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 1533433972462033863}
+  m_Father: {fileID: 684420167285876090}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: -1.6909261, y: 0.58226705, z: -17.952868}
+--- !u!1 &3323955871588930128
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 6984205973985103514}
+  m_Layer: 0
+  m_Name: Deer_r_FrontLeg_BallSHJnt_12
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &6984205973985103514
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3323955871588930128}
+  m_LocalRotation: {x: -0.000000053614027, y: 0.0000004549498, z: 0.70571744, w: 0.7084934}
+  m_LocalPosition: {x: -0.00048022933, y: 0.00067529344, z: 5.55508e-10}
+  m_LocalScale: {x: 0.9999999, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 1157272459479345653}
+  m_Father: {fileID: 815204870203600195}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: -0.00020570547, y: 0.0076027815, z: 89.52468}
+--- !u!1 &3698807388757391528
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 3975961250660965340}
+  m_Layer: 0
+  m_Name: Deer_Tail_01_02SHJnt_54
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &3975961250660965340
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3698807388757391528}
+  m_LocalRotation: {x: -0.44469348, y: -0.00000009337281, z: 0.0000000031082015, w: 0.8956828}
+  m_LocalPosition: {x: -1.1272277e-10, y: 0.00068652583, z: -0.00036782786}
+  m_LocalScale: {x: 0.9999999, y: 1, z: 1.0000001}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 5438892413353631202}
+  m_Father: {fileID: 8652742170582551011}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: -52.807457, y: -0.000016212773, z: 0.000007623171}
+--- !u!1 &3737772550821265629
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 146607063684350979}
+  m_Layer: 0
+  m_Name: Deer_Spine_03SHJnt_35
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &146607063684350979
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3737772550821265629}
+  m_LocalRotation: {x: -0.033895344, y: 0.9994254, z: 0.0000003538083, w: -0.00000014523395}
+  m_LocalPosition: {x: -0.000029029612, y: 0.0016045879, z: -0.0000008802151}
+  m_LocalScale: {x: 0.99999994, y: 1.0000002, z: 1.0000001}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 9182668455388457541}
+  m_Father: {fileID: 1833058646971251462}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: -0.10998713, y: -179.99153, z: -4.142907}
+--- !u!1 &3880343649691018327
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 74007398444555667}
+  m_Layer: 0
+  m_Name: Deer_l_Clavicle_01_01SHJnt_9
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &74007398444555667
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3880343649691018327}
+  m_LocalRotation: {x: 0.50000036, y: -0.49999967, z: -0.50000006, w: -0.49999994}
+  m_LocalPosition: {x: 0, y: 0, z: -0.0008670316}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 4698033464056787408}
+  m_Father: {fileID: 2289030666015369565}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: -90, y: 89.99996, z: 0}
+--- !u!1 &3883759012429882726
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 7192126812024109631}
+  m_Layer: 0
+  m_Name: Deer_Neck_01SHJnt_32
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &7192126812024109631
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3883759012429882726}
+  m_LocalRotation: {x: 0.00010514254, y: 0.00007252662, z: -0.4240955, w: 0.90561754}
+  m_LocalPosition: {x: 0.0008414269, y: 0.0010913801, z: 0.0000009685313}
+  m_LocalScale: {x: 0.9999998, y: 0.99999976, z: 0.9999998}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 8364200762996408695}
+  - {fileID: 8855262895447835497}
+  m_Father: {fileID: 2289030666015369565}
+  m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: -1.1276305, y: -1.404468, z: -36.47225}
+--- !u!1 &4224287767342580802
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2289030666015369565}
+  m_Layer: 0
+  m_Name: Deer_Spine_TopSHJnt_33
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &2289030666015369565
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4224287767342580802}
+  m_LocalRotation: {x: -0.00000001518072, y: -0.0000003760843, z: 0.0031985308, w: 0.9999949}
+  m_LocalPosition: {x: 0.000065290275, y: 0.0015966352, z: 0.00000086178363}
+  m_LocalScale: {x: 1.0000001, y: 0.99999994, z: 0.99999994}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 74007398444555667}
+  - {fileID: 7192126812024109631}
+  - {fileID: 4626454417832733910}
+  m_Father: {fileID: 9182668455388457541}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: -0.38373274, y: -0.00835017, z: 8.465378}
+--- !u!1 &4244223302538115950
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 8508144061772140146}
+  m_Layer: 0
+  m_Name: Deer_r_Ear_01_02SHJnt_27
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &8508144061772140146
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4244223302538115950}
+  m_LocalRotation: {x: 0.0000003459586, y: 0.00000016395926, z: 0.086972676, w: 0.9962107}
+  m_LocalPosition: {x: 0.00000004040077, y: 0.0008658471, z: 2.8318026e-10}
+  m_LocalScale: {x: 0.9999999, y: 0.9999998, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 6429479437475624787}
+  m_Father: {fileID: 2302931357917497485}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 8.017586, y: 1.6325543, z: 10.539178}
+--- !u!1 &4291261501985950560
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2217894482944595161}
+  m_Layer: 0
+  m_Name: Deer_l_FrontLeg_ToeSHJnt_end_2_end
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &2217894482944595161
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4291261501985950560}
+  m_LocalRotation: {x: 0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -0, y: 0.0007000002, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 4702848564259064997}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &4421149206418670140
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 4698033464056787408}
+  m_Layer: 0
+  m_Name: Deer_l_FrontLeg_HipSHJnt_8
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &4698033464056787408
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4421149206418670140}
+  m_LocalRotation: {x: 0.0075789625, y: 0.706946, z: 0.007581316, w: 0.7071863}
+  m_LocalPosition: {x: 0.00031649705, y: 0.00089625805, z: 2.627028e-10}
+  m_LocalScale: {x: 1, y: 1.0000002, z: 0.9999999}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 2051129528919820422}
+  m_Father: {fileID: 74007398444555667}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0.1612667, y: 88.913, z: 11.218084}
+--- !u!1 &4544610262245480589
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 4746378395543817783}
+  m_Layer: 0
+  m_Name: Deer_ROOTSHJnt_56
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &4746378395543817783
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4544610262245480589}
+  m_LocalRotation: {x: 1, y: -2.6932072e-22, z: -0.0000000754979, w: -6.123234e-17}
+  m_LocalPosition: {x: -5.2421754e-11, y: 0.008708746, z: -0.0038054707}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 4943557521026353440}
+  - {fileID: 3933306554076368563}
+  - {fileID: 3752727649044952569}
+  - {fileID: 8652742170582551011}
+  m_Father: {fileID: 1080883847712289402}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: -1.4888941, y: -179.99998, z: -180}
+--- !u!1 &4632219898431226883
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 3720312945271452043}
+  m_Layer: 0
+  m_Name: Deer_r_HindLeg_Knee1SHJnt_50
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &3720312945271452043
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4632219898431226883}
+  m_LocalRotation: {x: -0.000000012692581, y: -0.0000004179992, z: 0.12510712, w: 0.9921432}
+  m_LocalPosition: {x: 0.0000000019097932, y: 0.0037033837, z: 0.0000000018635182}
+  m_LocalScale: {x: 0.99999976, y: 0.99999994, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 684420167285876090}
+  m_Father: {fileID: 3933306554076368563}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0.00000506399, y: -0.00004792289, z: 14.373885}
+--- !u!1 &4643576605941047419
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 3923506821777358240}
+  m_Layer: 0
+  m_Name: Deer_r_FrontLeg_Knee2SHJnt_14
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &3923506821777358240
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4643576605941047419}
+  m_LocalRotation: {x: -0.000000051131252, y: -0.00000042307155, z: 0.05683915, w: 0.99838334}
+  m_LocalPosition: {x: -0.0000000012714008, y: 0.0026291155, z: 6.1409083e-10}
+  m_LocalScale: {x: 0.9999997, y: 0.9999996, z: 0.9999998}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 815204870203600195}
+  m_Father: {fileID: 4098060166965701215}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0.0010614394, y: -0.0047699814, z: 8.089542}
+--- !u!1 &4746758505929402430
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 5373936862636028548}
+  - component: {fileID: 2050303098763733246}
+  - component: {fileID: 2050303098763733187}
+  - component: {fileID: 2050303098763733186}
+  - component: {fileID: 2050303098763733245}
+  - component: {fileID: 2050303098763733244}
+  - component: {fileID: 2050303098763733247}
+  m_Layer: 0
+  m_Name: Deer
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &5373936862636028548
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4746758505929402430}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 6.628428, y: 0.00000047683716, z: -0.21683776}
+  m_LocalScale: {x: 2, y: 2, z: 2}
+  m_ConstrainProportionsScale: 1
+  m_Children:
+  - {fileID: 6063715797570666679}
+  - {fileID: 2585905635122362217}
+  - {fileID: 8855262895292032340}
+  m_Father: {fileID: 0}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!95 &2050303098763733246
+Animator:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4746758505929402430}
+  m_Enabled: 1
+  m_Avatar: {fileID: 9000000, guid: 72c4ad1da2bdf974aa4449fab18e43c1, type: 3}
+  m_Controller: {fileID: 9100000, guid: beb0ec44ff730ee45a462dd3ee455663, type: 2}
+  m_CullingMode: 1
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!114 &2050303098763733187
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4746758505929402430}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3cb07301bad201f40806148689415ffe, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _warningPos:
+  - {x: 10, y: 0, z: 0}
+  - {x: -10, y: 0, z: 0}
+  _rayStartPos: {fileID: 8855262895079077415}
+  _searchAngle: 180
+  _rotationAngle: 40
+  _areaChecker:
+  - {fileID: 8855262895292032342}
+  _downTime: 10
+  _skinnedMeshRenderer: {fileID: 7828977764094199930}
+  _dissoveTime: 60
+  _dissoveCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 34
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 0.9
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 1
+      value: 1
+      inSlope: 9.999998
+      outSlope: 9.999998
+      tangentMode: 34
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  _enemyID: Deer
+  DebugSetPosObj: []
+--- !u!114 &2050303098763733186
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4746758505929402430}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1c6b5257da867774697dc6db14bc1969, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _maxHp: 1
+  _hp: 1
+  _maxSp: 100
+  _sp: 100
+  _attack: 100
+  _defense: 100
+  _invincibleFlg: 0
+  _downFlg: 0
+--- !u!114 &2050303098763733245
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4746758505929402430}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a063d38cda52edc4586648a09d176694, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _partDatas:
+  - _partType: 2
+    _maxEnduranceValue: 1000
+  - _partType: 1
+    _maxEnduranceValue: 1000
+--- !u!195 &2050303098763733244
+NavMeshAgent:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4746758505929402430}
+  m_Enabled: 1
+  m_AgentTypeID: 0
+  m_Radius: 0.5
+  m_Speed: 3.5
+  m_Acceleration: 8
+  avoidancePriority: 50
+  m_AngularSpeed: 120
+  m_StoppingDistance: 0
+  m_AutoTraverseOffMeshLink: 1
+  m_AutoBraking: 1
+  m_AutoRepath: 1
+  m_Height: 2
+  m_BaseOffset: 0
+  m_WalkableMask: 4294967295
+  m_ObstacleAvoidanceType: 4
+--- !u!114 &2050303098763733247
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4746758505929402430}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d90625640c114a5458188983dbb457c1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _hitList: []
+  _mask: Player
+  particleObject: {fileID: 750872277263865624, guid: 30343aff11dfe16499fe4c761f2e45f8,
+    type: 3}
+--- !u!1 &4765330167665698643
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 4634832252785237198}
+  m_Layer: 0
+  m_Name: Deer_Head_JawSHJnt_20
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &4634832252785237198
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4765330167665698643}
+  m_LocalRotation: {x: 0.37934893, y: -0.59765965, z: 0.3778931, w: 0.59673625}
+  m_LocalPosition: {x: -0.002107449, y: 0.0014436636, z: -9.812356e-10}
+  m_LocalScale: {x: 1, y: 0.9999996, z: 0.99999976}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 9193458178216886062}
+  - {fileID: 8855262896122983330}
+  m_Father: {fileID: 8590446390618279312}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 83.705605, y: 67.561874, z: -22.43431}
+--- !u!1 &4819187156454473342
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2818622924485944003}
+  m_Layer: 0
+  m_Name: Deer_l_HindLeg_BallSHJnt_40
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &2818622924485944003
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4819187156454473342}
+  m_LocalRotation: {x: -0.00000027161198, y: 0.00000017843543, z: 0.70710456, w: 0.707109}
+  m_LocalPosition: {x: -0.000230655, y: 0.00060050655, z: -1.6627953e-10}
+  m_LocalScale: {x: 1, y: 1.0000001, z: 1.0000001}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 8478153184713679157}
+  m_Father: {fileID: 911844808784930916}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: -0.000037139456, y: -0.000008403642, z: 89.99963}
+--- !u!1 &5010607991471900758
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 4541974030379814950}
+  m_Layer: 0
+  m_Name: Deer_r_HindLeg_ToeSHJnt_46
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &4541974030379814950
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5010607991471900758}
+  m_LocalRotation: {x: 0.50000006, y: -0.49999988, z: -0.50000006, w: 0.5}
+  m_LocalPosition: {x: -0, y: 0.00073380483, z: 8.193695e-12}
+  m_LocalScale: {x: 1.0000001, y: 0.9999997, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 4070316720109008472}
+  m_Father: {fileID: 1533433972462033863}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0.000007602608, y: -89.99999, z: -90.00001}
+--- !u!1 &5238490747277052213
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 8513435640839399968}
+  m_Layer: 0
+  m_Name: Deer_l_FrontLeg_Knee2SHJnt_6
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &8513435640839399968
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5238490747277052213}
+  m_LocalRotation: {x: 0.0000000055640923, y: -0.0000003710672, z: 0.05688439, w: 0.9983808}
+  m_LocalPosition: {x: 1.1714292e-10, y: 0.0026291155, z: 1.5555997e-10}
+  m_LocalScale: {x: 0.9999998, y: 0.9999999, z: 0.9999998}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 4983575190589957928}
+  m_Father: {fileID: 2051129528919820422}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0.00087846187, y: -0.006021948, z: 7.076371}
+--- !u!1 &5323679591841798184
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 4070316720109008472}
+  m_Layer: 0
+  m_Name: Deer_r_HindLeg_ToeSHJnt_end_45
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &4070316720109008472
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5323679591841798184}
+  m_LocalRotation: {x: 1.15839546e-10, y: 0.00000007940847, z: 6.821209e-13, w: 1}
+  m_LocalPosition: {x: 4.9516696e-10, y: 0.00070000044, z: 2.1827872e-13}
+  m_LocalScale: {x: 1.0000001, y: 1.0000001, z: 1.0000001}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 8653796464994950285}
+  m_Father: {fileID: 4541974030379814950}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0.0000000147754005, y: 0.000008402997, z: 8.7006104e-11}
+--- !u!1 &5330787702537192602
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 5691590709627906056}
+  m_Layer: 0
+  m_Name: Deer_r_Ear_01_03SHJnt_end_25
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &5691590709627906056
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5330787702537192602}
+  m_LocalRotation: {x: 4.5838533e-10, y: 0.00000074603304, z: 0.000000003652531, w: 1}
+  m_LocalPosition: {x: -0.0000000016577542, y: 0.00070000236, z: 5.0291415e-10}
+  m_LocalScale: {x: 1, y: 0.9999999, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 2431109612529444492}
+  m_Father: {fileID: 6429479437475624787}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0.000000058466973, y: 0.00008480335, z: 0.00000046588258}
+--- !u!1 &5511599410971363932
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1833058646971251462}
+  m_Layer: 0
+  m_Name: Deer_Spine_02SHJnt_36
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1833058646971251462
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5511599410971363932}
+  m_LocalRotation: {x: -0.00000054935055, y: -0.00000011235123, z: 0.0021867503, w: 0.9999976}
+  m_LocalPosition: {x: -0.000053928536, y: 0.0016009798, z: -2.443043e-11}
+  m_LocalScale: {x: 1.0000001, y: 0.9999999, z: 0.9999999}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 146607063684350979}
+  m_Father: {fileID: 3752727649044952569}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0.01559809, y: -0.0007764726, z: -1.9790001}
+--- !u!1 &5576920094451626574
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 8515568922736940670}
+  m_Layer: 0
+  m_Name: root
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &8515568922736940670
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5576920094451626574}
+  m_LocalRotation: {x: -7.1054265e-15, y: 0, z: -0, w: 1}
+  m_LocalPosition: {x: -0, y: 0, z: 0}
+  m_LocalScale: {x: 1.0000001, y: 1.0000001, z: 1.0000001}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 3285290753236012575}
+  m_Father: {fileID: 2585905635122362217}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &5583671706839847829
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 5464203129569578420}
+  m_Layer: 0
+  m_Name: Deer_l_FrontLeg_ToeSHJnt_3
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &5464203129569578420
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5583671706839847829}
+  m_LocalRotation: {x: -0.49999964, y: 0.50000036, z: 0.5000001, w: -0.49999988}
+  m_LocalPosition: {x: 3.885361e-11, y: 0.00057733484, z: -1.0492044e-10}
+  m_LocalScale: {x: 1.0000001, y: 1.0000001, z: 1.0000001}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 4702848564259064997}
+  m_Father: {fileID: 5121627643206878225}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: -0.00005391846, y: -90, z: -89.99997}
+--- !u!1 &5590348966520286993
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 815204870203600195}
+  m_Layer: 0
+  m_Name: Deer_r_FrontLeg_AnkleSHJnt_13
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &815204870203600195
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5590348966520286993}
+  m_LocalRotation: {x: 0.00000015878008, y: 0.00000052639473, z: -0.067502886, w: 0.9977191}
+  m_LocalPosition: {x: -2.732122e-10, y: 0.00030633566, z: 4.0454324e-11}
+  m_LocalScale: {x: 1.0000002, y: 1.0000004, z: 1.0000002}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 6984205973985103514}
+  m_Father: {fileID: 3923506821777358240}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0.0020296655, y: -0.000007960483, z: -8.555384}
+--- !u!1 &5817721652501922788
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 4290368542777571133}
+  m_Layer: 0
+  m_Name: Deer_female_rig.mo_58
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &4290368542777571133
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5817721652501922788}
+  m_LocalRotation: {x: 0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 4110063085218827398}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &5926734281374622414
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 6063715797570666679}
+  - component: {fileID: 7828977764094199930}
+  m_Layer: 0
+  m_Name: Object_7
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &6063715797570666679
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5926734281374622414}
+  m_LocalRotation: {x: -0.7071068, y: 0, z: -0, w: 0.7071067}
+  m_LocalPosition: {x: -0, y: 0, z: 0}
+  m_LocalScale: {x: 74.7746, y: 74.77461, z: 74.77461}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 5373936862636028548}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!137 &7828977764094199930
+SkinnedMeshRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5926734281374622414}
+  m_Enabled: 1
+  m_CastShadows: 1
+  m_ReceiveShadows: 1
+  m_DynamicOccludee: 1
+  m_StaticShadowCaster: 0
+  m_MotionVectors: 1
+  m_LightProbeUsage: 1
+  m_ReflectionProbeUsage: 1
+  m_RayTracingMode: 3
+  m_RayTraceProcedural: 0
+  m_RenderingLayerMask: 1
+  m_RendererPriority: 0
+  m_Materials:
+  - {fileID: -2840136634868304333, guid: 72c4ad1da2bdf974aa4449fab18e43c1, type: 3}
+  m_StaticBatchInfo:
+    firstSubMesh: 0
+    subMeshCount: 0
+  m_StaticBatchRoot: {fileID: 0}
+  m_ProbeAnchor: {fileID: 0}
+  m_LightProbeVolumeOverride: {fileID: 0}
+  m_ScaleInLightmap: 1
+  m_ReceiveGI: 1
+  m_PreserveUVs: 0
+  m_IgnoreNormalsForChartDetection: 0
+  m_ImportantGI: 0
+  m_StitchLightmapSeams: 1
+  m_SelectedEditorRenderState: 3
+  m_MinimumChartSize: 4
+  m_AutoUVMaxDistance: 0.5
+  m_AutoUVMaxAngle: 89
+  m_LightmapParameters: {fileID: 0}
+  m_SortingLayerID: 0
+  m_SortingLayer: 0
+  m_SortingOrder: 0
+  serializedVersion: 2
+  m_Quality: 0
+  m_UpdateWhenOffscreen: 0
+  m_SkinnedMotionVectors: 1
+  m_Mesh: {fileID: -4294552576481311072, guid: 72c4ad1da2bdf974aa4449fab18e43c1, type: 3}
+  m_Bones:
+  - {fileID: 6232846278371586793}
+  - {fileID: 1080883847712289402}
+  - {fileID: 4746378395543817783}
+  - {fileID: 3752727649044952569}
+  - {fileID: 1833058646971251462}
+  - {fileID: 146607063684350979}
+  - {fileID: 9182668455388457541}
+  - {fileID: 2289030666015369565}
+  - {fileID: 74007398444555667}
+  - {fileID: 4698033464056787408}
+  - {fileID: 2051129528919820422}
+  - {fileID: 8513435640839399968}
+  - {fileID: 4983575190589957928}
+  - {fileID: 5121627643206878225}
+  - {fileID: 5464203129569578420}
+  - {fileID: 4702848564259064997}
+  - {fileID: 4626454417832733910}
+  - {fileID: 7105214271302058214}
+  - {fileID: 4098060166965701215}
+  - {fileID: 3923506821777358240}
+  - {fileID: 815204870203600195}
+  - {fileID: 6984205973985103514}
+  - {fileID: 1157272459479345653}
+  - {fileID: 5721120822036310458}
+  - {fileID: 7192126812024109631}
+  - {fileID: 8364200762996408695}
+  - {fileID: 8590446390618279312}
+  - {fileID: 4634832252785237198}
+  - {fileID: 9193458178216886062}
+  - {fileID: 8495988363363905050}
+  - {fileID: 6697104721767126990}
+  - {fileID: 2100929709256477587}
+  - {fileID: 7660460740314086291}
+  - {fileID: 3543067039650960768}
+  - {fileID: 8661041282522692370}
+  - {fileID: 2302931357917497485}
+  - {fileID: 8508144061772140146}
+  - {fileID: 6429479437475624787}
+  - {fileID: 5691590709627906056}
+  - {fileID: 4943557521026353440}
+  - {fileID: 8606891201012509913}
+  - {fileID: 1789016849053838633}
+  - {fileID: 911844808784930916}
+  - {fileID: 2818622924485944003}
+  - {fileID: 8478153184713679157}
+  - {fileID: 3691351990020500383}
+  - {fileID: 3933306554076368563}
+  - {fileID: 3720312945271452043}
+  - {fileID: 684420167285876090}
+  - {fileID: 339930555311702759}
+  - {fileID: 1533433972462033863}
+  - {fileID: 4541974030379814950}
+  - {fileID: 4070316720109008472}
+  - {fileID: 8652742170582551011}
+  - {fileID: 3975961250660965340}
+  - {fileID: 5438892413353631202}
+  - {fileID: 6838684190032141587}
+  m_BlendShapeWeights: []
+  m_RootBone: {fileID: 6232846278371586793}
+  m_AABB:
+    m_Center: {x: -0.0000043070177, y: -0.0021210122, z: 0.007641322}
+    m_Extent: {x: 0.0028348924, y: 0.00892196, z: 0.007877651}
+  m_DirtyAABB: 0
+--- !u!1 &6366805128099747407
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2431109612529444492}
+  m_Layer: 0
+  m_Name: Deer_r_Ear_01_03SHJnt_end_25_end
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &2431109612529444492
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6366805128099747407}
+  m_LocalRotation: {x: 0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -0, y: 0.00070000096, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 5691590709627906056}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &6370776607597887136
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2302931357917497485}
+  m_Layer: 0
+  m_Name: Deer_r_Ear_01_01SHJnt_28
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &2302931357917497485
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6370776607597887136}
+  m_LocalRotation: {x: 0.8994488, y: 0.4363339, z: -0.024517413, w: 0.0018552348}
+  m_LocalPosition: {x: 0.0007959124, y: 0.00058521016, z: 0.00027648726}
+  m_LocalScale: {x: 1.0000001, y: 1.0000005, z: 0.99999994}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 8508144061772140146}
+  m_Father: {fileID: 6697104721767126990}
+  m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: -3.9768143, y: -171.38152, z: 128.6126}
+--- !u!1 &6622803323261286747
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 4626454417832733910}
+  m_Layer: 0
+  m_Name: Deer_r_Clavicle_01_01SHJnt_17
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &4626454417832733910
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6622803323261286747}
+  m_LocalRotation: {x: 0.50000036, y: -0.49999967, z: -0.50000006, w: -0.49999994}
+  m_LocalPosition: {x: -9.017512e-10, y: -2.5963792e-10, z: 0.0008670311}
+  m_LocalScale: {x: 0.99999994, y: 0.9999996, z: 0.99999976}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 7105214271302058214}
+  m_Father: {fileID: 2289030666015369565}
+  m_RootOrder: 2
+  m_LocalEulerAnglesHint: {x: -90, y: 89.99996, z: 0}
+--- !u!1 &6837374360332397227
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 4110063085218827398}
+  m_Layer: 0
+  m_Name: GLTF_created_0
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &4110063085218827398
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6837374360332397227}
+  m_LocalRotation: {x: 0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 4290368542777571133}
+  - {fileID: 6232846278371586793}
+  m_Father: {fileID: 4087163642963576516}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &6878151448782882894
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 8444401564175486750}
+  m_Layer: 0
+  m_Name: Deer_l_HindLeg_ToeSHJnt_end_38_end
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &8444401564175486750
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6878151448782882894}
+  m_LocalRotation: {x: 0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -0, y: 0.0006999999, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 3691351990020500383}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &6992832894460238877
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1080883847712289402}
+  m_Layer: 0
+  m_Name: Deer_MAINSHJnt_57
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1080883847712289402
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6992832894460238877}
+  m_LocalRotation: {x: 0.7071067, y: -0.0000000048703326, z: -0.0000000048703295,
+    w: 0.7071068}
+  m_LocalPosition: {x: -0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 4746378395543817783}
+  m_Father: {fileID: 6232846278371586793}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 89.98021, y: -0.000000878529, z: 0}
+--- !u!1 &7165049562545370551
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2100929709256477587}
+  m_Layer: 0
+  m_Name: Deer_l_Ear_01_01SHJnt_24
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &2100929709256477587
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7165049562545370551}
+  m_LocalRotation: {x: 0.8994804, y: -0.436336, z: 0.023330059, w: 0.0012776228}
+  m_LocalPosition: {x: -0.0007959127, y: 0.0005852126, z: 0.0002764867}
+  m_LocalScale: {x: 0.9999998, y: 0.9999998, z: 0.99999994}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 7660460740314086291}
+  m_Father: {fileID: 6697104721767126990}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: -2.5554361, y: 172.93243, z: -128.34193}
+--- !u!1 &7173289199886751144
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 6429479437475624787}
+  m_Layer: 0
+  m_Name: Deer_r_Ear_01_03SHJnt_26
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &6429479437475624787
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7173289199886751144}
+  m_LocalRotation: {x: 0.50000846, y: 0.49999106, z: 0.49999088, w: 0.5000096}
+  m_LocalPosition: {x: 0.0000000064261254, y: 0.0009974582, z: -5.2095855e-10}
+  m_LocalScale: {x: 0.9999999, y: 1.0000002, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 5691590709627906056}
+  m_Father: {fileID: 8508144061772140146}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0.0020689087, y: 89.99995, z: 89.99992}
+--- !u!1 &7185762847743158409
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 6838684190032141587}
+  m_Layer: 0
+  m_Name: Deer_Tail_01_03SHJnt_end_52
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &6838684190032141587
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7185762847743158409}
+  m_LocalRotation: {x: -0.000000014630019, y: 0.000000011279781, z: -0.000000004655666,
+    w: 1}
+  m_LocalPosition: {x: 3.471881e-10, y: 0.0007, z: -1.0913936e-13}
+  m_LocalScale: {x: 1.0000001, y: 1, z: 0.99999994}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 2932744915875340116}
+  m_Father: {fileID: 5438892413353631202}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: -0.0000018660679, y: 0.0000014387426, z: -0.00000059383314}
+--- !u!1 &7349028539654033406
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 9193458178216886062}
+  m_Layer: 0
+  m_Name: Deer_Head_JawEndSHJnt_19
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &9193458178216886062
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7349028539654033406}
+  m_LocalRotation: {x: 0.22319506, y: -0.00000025330493, z: 0.000000071810774, w: 0.9747738}
+  m_LocalPosition: {x: -2.3428584e-11, y: 0.0011787518, z: 0.00028670512}
+  m_LocalScale: {x: 1.0000004, y: 1, z: 1.0000001}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 8495988363363905050}
+  - {fileID: 8855262895079077412}
+  m_Father: {fileID: 4634832252785237198}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 25.793528, y: -0.000029257424, z: 0.0000019072141}
+--- !u!1 &7589585252148622203
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 3752727649044952569}
+  m_Layer: 0
+  m_Name: Deer_Spine_01SHJnt_37
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &3752727649044952569
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7589585252148622203}
+  m_LocalRotation: {x: -0.48262948, y: -0.516787, z: 0.4816722, w: 0.51767933}
+  m_LocalPosition: {x: -2.1879516e-10, y: 0.000054667325, z: -0.0015961844}
+  m_LocalScale: {x: 1, y: 1, z: 0.9999998}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 1833058646971251462}
+  - {fileID: 8855262896726986894}
+  - {fileID: 8166564851492200193}
+  m_Father: {fileID: 4746378395543817783}
+  m_RootOrder: 2
+  m_LocalEulerAnglesHint: {x: 0.10248961, y: -89.999985, z: 88.85457}
+--- !u!1 &7694324602435387217
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 5121627643206878225}
+  m_Layer: 0
+  m_Name: Deer_l_FrontLeg_BallSHJnt_4
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &5121627643206878225
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7694324602435387217}
+  m_LocalRotation: {x: -0.00000015264655, y: 0.00000041976548, z: 0.70580894, w: 0.7084023}
+  m_LocalPosition: {x: -0.00048022892, y: 0.000675293, z: 1.7677053e-10}
+  m_LocalScale: {x: 0.99999994, y: 0.9999998, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 5464203129569578420}
+  m_Father: {fileID: 4983575190589957928}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: -0.00009881692, y: -0.0000069806338, z: 89.51773}
+--- !u!1 &7729961232957792484
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1789016849053838633}
+  m_Layer: 0
+  m_Name: Deer_l_HindLeg_Knee2SHJnt_42
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1789016849053838633
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7729961232957792484}
+  m_LocalRotation: {x: -0.00004945544, y: -0.0001885852, z: 0.11892401, w: 0.99290335}
+  m_LocalPosition: {x: 5.0407833e-10, y: 0.0031094041, z: -0.0000000012145028}
+  m_LocalScale: {x: 1, y: 1, z: 1.0000001}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 911844808784930916}
+  m_Father: {fileID: 8606891201012509913}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: -0.0030575686, y: -0.02213151, z: 13.660016}
+--- !u!1 &7977530850982125226
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 4702848564259064997}
+  m_Layer: 0
+  m_Name: Deer_l_FrontLeg_ToeSHJnt_end_2
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &4702848564259064997
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7977530850982125226}
+  m_LocalRotation: {x: 2.575007e-11, y: -0.0000000056797953, z: -2.1145755e-11, w: 1}
+  m_LocalPosition: {x: -8.9768487e-10, y: 0.0007000017, z: 2.6193446e-12}
+  m_LocalScale: {x: 0.99999994, y: 0.99999994, z: 0.99999994}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 2217894482944595161}
+  m_Father: {fileID: 5464203129569578420}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0.000000003284437, y: -0.00000072446113, z: -0.000000002697154}
+--- !u!1 &8109458841652545531
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 3933306554076368563}
+  m_Layer: 0
+  m_Name: Deer_r_HindLeg_HipSHJnt_51
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &3933306554076368563
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8109458841652545531}
+  m_LocalRotation: {x: 0.07265887, y: -0.70370966, z: -0.05212481, w: 0.70483786}
+  m_LocalPosition: {x: 0.0011914257, y: 0.0008962555, z: 2.4945804e-10}
+  m_LocalScale: {x: 1, y: 1.0000004, z: 0.99999994}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 3720312945271452043}
+  m_Father: {fileID: 4746378395543817783}
+  m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: 1.6810575, y: -90.006874, z: -8.639035}
+--- !u!1 &8164092149852582417
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2585905635122362217}
+  - component: {fileID: 2585905635122362222}
+  m_Layer: 0
+  m_Name: Sketchfab_model
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &2585905635122362217
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8164092149852582417}
+  m_LocalRotation: {x: 1, y: 0, z: -0, w: 0.0000000754979}
+  m_LocalPosition: {x: -0, y: 0, z: 0}
+  m_LocalScale: {x: 74.7746, y: 74.774605, z: 74.774605}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 8515568922736940670}
+  m_Father: {fileID: 5373936862636028548}
+  m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &2585905635122362222
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8164092149852582417}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b2d8418b0b9634b1892b0268dd9c2743, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  boneShape: 1
+  drawBones: 1
+  drawTripods: 0
+  boneSize: 1
+  tripodSize: 1
+  boneColor: {r: 0, g: 0, b: 1, a: 0.5}
+  m_Transforms:
+  - {fileID: 2585905635122362217}
+  - {fileID: 8515568922736940670}
+  - {fileID: 3285290753236012575}
+  - {fileID: 4087163642963576516}
+  - {fileID: 4110063085218827398}
+  - {fileID: 4290368542777571133}
+  - {fileID: 6232846278371586793}
+  - {fileID: 1080883847712289402}
+  - {fileID: 4746378395543817783}
+  - {fileID: 4943557521026353440}
+  - {fileID: 8606891201012509913}
+  - {fileID: 1789016849053838633}
+  - {fileID: 911844808784930916}
+  - {fileID: 2818622924485944003}
+  - {fileID: 8478153184713679157}
+  - {fileID: 3691351990020500383}
+  - {fileID: 8444401564175486750}
+  - {fileID: 3933306554076368563}
+  - {fileID: 3720312945271452043}
+  - {fileID: 684420167285876090}
+  - {fileID: 339930555311702759}
+  - {fileID: 1533433972462033863}
+  - {fileID: 4541974030379814950}
+  - {fileID: 4070316720109008472}
+  - {fileID: 8653796464994950285}
+  - {fileID: 3752727649044952569}
+  - {fileID: 1833058646971251462}
+  - {fileID: 146607063684350979}
+  - {fileID: 9182668455388457541}
+  - {fileID: 2289030666015369565}
+  - {fileID: 74007398444555667}
+  - {fileID: 4698033464056787408}
+  - {fileID: 2051129528919820422}
+  - {fileID: 8513435640839399968}
+  - {fileID: 4983575190589957928}
+  - {fileID: 5121627643206878225}
+  - {fileID: 5464203129569578420}
+  - {fileID: 4702848564259064997}
+  - {fileID: 2217894482944595161}
+  - {fileID: 7192126812024109631}
+  - {fileID: 8364200762996408695}
+  - {fileID: 8590446390618279312}
+  - {fileID: 4634832252785237198}
+  - {fileID: 9193458178216886062}
+  - {fileID: 8495988363363905050}
+  - {fileID: 1144847426067235545}
+  - {fileID: 8855262896122983330}
+  - {fileID: 6697104721767126990}
+  - {fileID: 2100929709256477587}
+  - {fileID: 7660460740314086291}
+  - {fileID: 3543067039650960768}
+  - {fileID: 8661041282522692370}
+  - {fileID: 2798404607703703559}
+  - {fileID: 2302931357917497485}
+  - {fileID: 8508144061772140146}
+  - {fileID: 6429479437475624787}
+  - {fileID: 5691590709627906056}
+  - {fileID: 2431109612529444492}
+  - {fileID: 4626454417832733910}
+  - {fileID: 7105214271302058214}
+  - {fileID: 4098060166965701215}
+  - {fileID: 3923506821777358240}
+  - {fileID: 815204870203600195}
+  - {fileID: 6984205973985103514}
+  - {fileID: 1157272459479345653}
+  - {fileID: 5721120822036310458}
+  - {fileID: 6915737802541918170}
+  - {fileID: 8652742170582551011}
+  - {fileID: 3975961250660965340}
+  - {fileID: 5438892413353631202}
+  - {fileID: 6838684190032141587}
+  - {fileID: 2932744915875340116}
+--- !u!1 &8177532783883672827
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 8478153184713679157}
+  m_Layer: 0
+  m_Name: Deer_l_HindLeg_ToeSHJnt_39
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &8478153184713679157
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8177532783883672827}
+  m_LocalRotation: {x: 0.5000001, y: -0.49999997, z: -0.50000006, w: 0.49999988}
+  m_LocalPosition: {x: -1.2732926e-13, y: 0.00073380454, z: 9.65527e-11}
+  m_LocalScale: {x: 1, y: 0.9999999, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 3691351990020500383}
+  m_Father: {fileID: 2818622924485944003}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: -90.00001, z: -90.00001}
+--- !u!1 &8240879368429858873
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 8590446390618279312}
+  m_Layer: 0
+  m_Name: Deer_Neck_TopSHJnt_30
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &8590446390618279312
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8240879368429858873}
+  m_LocalRotation: {x: 0.000060629045, y: 0.000058002748, z: -0.04253055, w: 0.9990952}
+  m_LocalPosition: {x: -0.0002090154, y: 0.0013850986, z: -0.000001116778}
+  m_LocalScale: {x: 0.99999976, y: 0.99999976, z: 0.9999999}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 4634832252785237198}
+  - {fileID: 6697104721767126990}
+  m_Father: {fileID: 8364200762996408695}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: -0.39699912, y: -1.472712, z: -9.950228}
+--- !u!1 &8369895490014029947
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 911844808784930916}
+  m_Layer: 0
+  m_Name: Deer_l_HindLeg_AnkleSHJnt_41
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &911844808784930916
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8369895490014029947}
+  m_LocalRotation: {x: 0.01537878, y: -0.002704122, z: -0.15549597, w: 0.9877131}
+  m_LocalPosition: {x: -5.5879353e-11, y: 0.00049264845, z: 5.3842086e-10}
+  m_LocalScale: {x: 0.99999976, y: 1.0000001, z: 0.99999976}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 2818622924485944003}
+  m_Father: {fileID: 1789016849053838633}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 1.692688, y: -0.5803526, z: -17.901896}
+--- !u!1 &8436426736627663698
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 5721120822036310458}
+  m_Layer: 0
+  m_Name: Deer_r_FrontLeg_ToeSHJnt_end_10
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &5721120822036310458
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8436426736627663698}
+  m_LocalRotation: {x: -3.3054448e-11, y: -0.000000052883966, z: -3.4106057e-13, w: 1}
+  m_LocalPosition: {x: -0.0000000012885035, y: 0.0007000015, z: 7.2759575e-14}
+  m_LocalScale: {x: 0.99999994, y: 0.99999994, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 6915737802541918170}
+  m_Father: {fileID: 1157272459479345653}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: -0.000000004216115, y: -0.0000067453807, z: -4.3502257e-11}
+--- !u!1 &8596370711536705589
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 6697104721767126990}
+  m_Layer: 0
+  m_Name: Deer_Head_TopSHJnt_29
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &6697104721767126990
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8596370711536705589}
+  m_LocalRotation: {x: 0.69663674, y: -0.121232554, z: 0.6966366, w: 0.12123257}
+  m_LocalPosition: {x: 0.000120872064, y: 0.0028468661, z: 1.3562385e-10}
+  m_LocalScale: {x: 0.99999857, y: 0.9999994, z: 0.9999996}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 2100929709256477587}
+  - {fileID: 2302931357917497485}
+  m_Father: {fileID: 8590446390618279312}
+  m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: 19.744127, y: 90.00001, z: 180}
+--- !u!1 &8621444426873513337
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 7105214271302058214}
+  m_Layer: 0
+  m_Name: Deer_r_FrontLeg_HipSHJnt_16
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &7105214271302058214
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8621444426873513337}
+  m_LocalRotation: {x: 0.007747134, y: 0.70692176, z: 0.007750335, w: 0.70720685}
+  m_LocalPosition: {x: -0.0003164968, y: 0.0008962566, z: 2.8063472e-11}
+  m_LocalScale: {x: 1, y: 1, z: 0.9999999}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 4098060166965701215}
+  m_Father: {fileID: 4626454417832733910}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0.15831745, y: 88.92894, z: 11.812387}
+--- !u!1 &8646045863802566906
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 5438892413353631202}
+  m_Layer: 0
+  m_Name: Deer_Tail_01_03SHJnt_53
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &5438892413353631202
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8646045863802566906}
+  m_LocalRotation: {x: 0.36800805, y: -0.60379654, z: -0.36800796, w: 0.6037963}
+  m_LocalPosition: {x: -1.542503e-10, y: 0.0008438518, z: -0.0004590821}
+  m_LocalScale: {x: 0.9999999, y: 0.9999997, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 6838684190032141587}
+  m_Father: {fileID: 3975961250660965340}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: -0.000005701956, y: -90.000015, z: -62.72379}
+--- !u!1 &8709061633319506613
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 3543067039650960768}
+  m_Layer: 0
+  m_Name: Deer_l_Ear_01_03SHJnt_22
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &3543067039650960768
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8709061633319506613}
+  m_LocalRotation: {x: -0.4999881, y: 0.5000124, z: 0.5000125, w: -0.499987}
+  m_LocalPosition: {x: 0.00000007122755, y: 0.0009974597, z: 0.0000000015948899}
+  m_LocalScale: {x: 0.9999998, y: 0.99999994, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 8661041282522692370}
+  m_Father: {fileID: 7660460740314086291}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: -0.002853302, y: -90.00005, z: -90.00007}
+--- !u!1 &8721642046352033204
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 7660460740314086291}
+  m_Layer: 0
+  m_Name: Deer_l_Ear_01_02SHJnt_23
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &7660460740314086291
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8721642046352033204}
+  m_LocalRotation: {x: -0.00000040684156, y: 0.00000020596244, z: -0.086970404, w: 0.99621093}
+  m_LocalPosition: {x: 0.000000017657875, y: 0.0008658466, z: 7.566996e-10}
+  m_LocalScale: {x: 0.9999999, y: 0.99999994, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 3543067039650960768}
+  m_Father: {fileID: 2100929709256477587}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 5.9849434, y: -1.059502, z: -10.02001}
+--- !u!1 &8726801790025899813
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 4087163642963576516}
+  m_Layer: 0
+  m_Name: Deer Female_59
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &4087163642963576516
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8726801790025899813}
+  m_LocalRotation: {x: 0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 4110063085218827398}
+  m_Father: {fileID: 3285290753236012575}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &8748717075851439241
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 8364200762996408695}
+  m_Layer: 0
+  m_Name: Deer_Neck_02SHJnt_31
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &8364200762996408695
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8748717075851439241}
+  m_LocalRotation: {x: 0.00008126149, y: 0.00010957423, z: -0.11981581, w: 0.9927961}
+  m_LocalPosition: {x: -0.000034294437, y: 0.0013993002, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 8590446390618279312}
+  m_Father: {fileID: 7192126812024109631}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: -0.48741448, y: -2.2563472, z: 0.49735212}
+--- !u!1 &8855262895079077415
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 8855262895079077412}
+  m_Layer: 0
+  m_Name: RayPos
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &8855262895079077412
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8855262895079077415}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 9193458178216886062}
+  m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &8855262895292032337
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 8855262895292032340}
+  - component: {fileID: 8855262895292032343}
+  - component: {fileID: 8855262895292032342}
+  m_Layer: 0
+  m_Name: seach
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &8855262895292032340
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8855262895292032337}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 5373936862636028548}
+  m_RootOrder: 2
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!135 &8855262895292032343
+SphereCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8855262895292032337}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 10
+  m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &8855262895292032342
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8855262895292032337}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 660772cc242956a46956ed6740de5104, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _maskTag: Player
+  _targetCheckerType: 1
+--- !u!1 &8855262895447835496
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 8855262895447835497}
+  - component: {fileID: 8855262895447835503}
+  - component: {fileID: 8855262895447835502}
+  m_Layer: 0
+  m_Name: neck
+  m_TagString: Enemy
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &8855262895447835497
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8855262895447835496}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 3.7107e-10, y: -0.00013005, z: -0.00035}
+  m_LocalScale: {x: 1, y: 1.1522, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 7192126812024109631}
+  m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!136 &8855262895447835503
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8855262895447835496}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  m_Radius: 0.0011899575
+  m_Height: 0.0054950393
+  m_Direction: 1
+  m_Center: {x: -0.00032642635, y: 0.0008544736, z: 0.00037683803}
+--- !u!114 &8855262895447835502
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8855262895447835496}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 853b72c4f12c21b4fb9a006ef27bd23f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _partType: 2
+--- !u!1 &8855262896122983261
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 8855262896122983330}
+  - component: {fileID: 8855262896122983328}
+  - component: {fileID: 8855262896122983331}
+  m_Layer: 0
+  m_Name: Head
+  m_TagString: Enemy
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &8855262896122983330
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8855262896122983261}
+  m_LocalRotation: {x: 0.14392443, y: 0, z: 0, w: 0.9895887}
+  m_LocalPosition: {x: -0, y: -0.00013, z: 0.00036}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 4634832252785237198}
+  m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: 16.55, y: 0, z: 0}
+--- !u!136 &8855262896122983328
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8855262896122983261}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  m_Radius: 0.0013564685
+  m_Height: 0.0041896366
+  m_Direction: 1
+  m_Center: {x: -0.000044730237, y: -0.0009292965, z: -0.0008408782}
+--- !u!114 &8855262896122983331
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8855262896122983261}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 853b72c4f12c21b4fb9a006ef27bd23f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _partType: 1
+--- !u!1 &8855262896726986889
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 8855262896726986894}
+  - component: {fileID: 8855262896726986892}
+  - component: {fileID: 8855262896726986895}
+  m_Layer: 0
+  m_Name: body
+  m_TagString: Enemy
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &8855262896726986894
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8855262896726986889}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -0, y: 0.00261, z: -0}
+  m_LocalScale: {x: 2.01, y: 1.27, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 3752727649044952569}
+  m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!136 &8855262896726986892
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8855262896726986889}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  m_Radius: 0.0011374179
+  m_Height: 0.009406322
+  m_Direction: 1
+  m_Center: {x: 0.00013741774, y: -0.00009252258, z: -3.7725205e-11}
+--- !u!114 &8855262896726986895
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8855262896726986889}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 853b72c4f12c21b4fb9a006ef27bd23f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _partType: 2
+--- !u!1 &8884992037986284367
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1533433972462033863}
+  m_Layer: 0
+  m_Name: Deer_r_HindLeg_BallSHJnt_47
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1533433972462033863
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8884992037986284367}
+  m_LocalRotation: {x: -0.00000009200826, y: 0.00000015658213, z: 0.707104, w: 0.7071096}
+  m_LocalPosition: {x: -0.00023065534, y: 0.00060050614, z: -2.386306e-10}
+  m_LocalScale: {x: 1.0000002, y: 0.99999994, z: 0.9999999}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 4541974030379814950}
+  m_Father: {fileID: 339930555311702759}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: -0.000020695214, y: 0.000005824128, z: 89.99955}
+--- !u!1 &9160569745314903859
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 3691351990020500383}
+  m_Layer: 0
+  m_Name: Deer_l_HindLeg_ToeSHJnt_end_38
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &3691351990020500383
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9160569745314903859}
+  m_LocalRotation: {x: 2.8195777e-11, y: -0.00000008827301, z: -5.471179e-13, w: 1}
+  m_LocalPosition: {x: -1.3599682e-10, y: 0.00070000073, z: 7.2759575e-14}
+  m_LocalScale: {x: 1, y: 1.0000001, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 8444401564175486750}
+  m_Father: {fileID: 8478153184713679157}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0.0000000035963885, y: -0.000009533674, z: -6.9785545e-11}

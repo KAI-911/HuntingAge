@@ -54,13 +54,14 @@ public class UIQuestResult : UIBase
             var gm = GameManager.Instance;
             foreach (var reward in gm.Quest.QuestData.QuestRewardDatas)
             {
-                if (reward.probability > Random.Range(0, 100)) continue;
+                int random = Random.Range(0, 100);
+                if (reward.probability < random)continue;
                 MaterialData data;
-                if(gm.MaterialDataList.Keys.Contains(reward.name))
+                if (gm.MaterialDataList.Keys.Contains(reward.name))
                 {
                     data = gm.MaterialDataList.Dictionary[reward.name];
                 }
-                else if(gm.ItemDataList.Keys.Contains(reward.name))
+                else if (gm.ItemDataList.Keys.Contains(reward.name))
                 {
                     data = gm.ItemDataList.Dictionary[reward.name].baseData;
                 }
@@ -83,13 +84,15 @@ public class UIQuestResult : UIBase
             //全て受け取る
             _decisionIcon.CreateButton();
             _decisionIcon.SetButtonText(0, "全て受け取って終了");
-            _decisionIcon.SetButtonOnClick(0, () => {
+            _decisionIcon.SetButtonOnClick(0, () =>
+            {
                 owner.GetComponent<UIQuestResult>().AllItemToBox(owner);
                 GameManager.Instance.SceneChange(GameManager.Instance.VillageScene);
                 owner.ChangeState<UIStateBase>();
             });
             _decisionIcon.SetButtonText(1, "全て破棄して終了");
-            _decisionIcon.SetButtonOnClick(1, () => {
+            _decisionIcon.SetButtonOnClick(1, () =>
+            {
                 GameManager.Instance.SceneChange(GameManager.Instance.VillageScene);
                 owner.ChangeState<UIStateBase>();
             });
@@ -170,15 +173,15 @@ public class UIQuestResult : UIBase
             b.onClick.Invoke();
         }
     }
-    void ItemToBox(string _ID,int _num, UIBase owner)
+    void ItemToBox(string _ID, int _num, UIBase owner)
     {
         var gm = GameManager.Instance;
         int index = 0;
         if (gm.MaterialDataList.Keys.Contains(_ID))
         {
             //UIの番号の設定
-            if (gm.MaterialDataList.Dictionary[_ID].BoxHoldNumber<=0)
-            {        
+            if (gm.MaterialDataList.Dictionary[_ID].BoxHoldNumber <= 0)
+            {
                 int num = owner.ItemIconList[(int)current.item].GetSize;
                 List<int> vs = new List<int>();
                 for (int i = 0; i < num; i++) vs.Add(i);

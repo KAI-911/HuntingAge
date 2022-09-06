@@ -5,6 +5,7 @@ using UnityEngine.UI;
 using UnityEngine.InputSystem;
 using System;
 using UnityEngine.EventSystems;
+
 public class QuestReception : UIBase
 {
     ///表示するテキスト
@@ -231,10 +232,34 @@ public class QuestReception : UIBase
     private class GoQuest : UIStateBase
     {
         ItemIcon itemIcon;
+        GameObject backimage;
+        GameObject text;
+
         public override void OnEnter(UIBase owner, UIStateBase prevState)
         {
             UISoundManager.Instance._player.IsAction = true;
             itemIcon = owner.ItemIconList[(int)IconType.Confirmation];
+
+            backimage = Instantiate(Resources.Load("UI/Image")) as GameObject;
+            text = Instantiate(Resources.Load("UI/Text")) as GameObject;
+
+            backimage.transform.SetParent(GameManager.Instance.ItemCanvas.Canvas.transform);
+            text.transform.SetParent(GameManager.Instance.ItemCanvas.Canvas.transform);
+            var imageRect = backimage.GetComponent<RectTransform>();
+            var textRect = text.GetComponent<RectTransform>();
+            imageRect.sizeDelta = new Vector2(300, 100);
+            textRect.sizeDelta = new Vector2(300, 100);
+            var textText = text.GetComponent<Text>();
+            textText.text = GameManager.Instance.Quest.QuestData.Name;
+            textText.alignment = TextAnchor.MiddleLeft;
+            textText.resizeTextForBestFit = true;
+            imageRect.anchoredPosition = new Vector2(-Data.SCR.Width / 2 + Data.SCR.Padding, Data.SCR.Height / 2 - Data.SCR.Padding);
+            textRect.anchoredPosition = new Vector2(-Data.SCR.Width / 2 + Data.SCR.Padding, Data.SCR.Height / 2 - Data.SCR.Padding);
+        }
+        public override void OnExit(UIBase owner, UIStateBase nextState)
+        {
+            Destroy(backimage);
+            Destroy(text);
         }
         public override void OnUpdate(UIBase owner)
         {
@@ -243,7 +268,6 @@ public class QuestReception : UIBase
             {
                 itemIcon.Select(UISoundManager.Instance.InputSelection.ReadValue<Vector2>());
             }
-
         }
         public override void OnProceed(UIBase owner)
         {
