@@ -44,12 +44,12 @@ public class kichen : UIBase
     {
         public override void OnEnter(UIBase owner, UIStateBase prevState)
         {
-            Debug.Log("Blacksmith_close_OnEnter");
+            Debug.Log("kichen_close_OnEnter");
             UISoundManager.Instance._player.IsAction = true;
         }
         public override void OnProceed(UIBase owner)
         {
-            Debug.Log("Blacksmith_close_OnProceed");
+            Debug.Log("kichen_close_OnProceed");
             //近くに来ている && 決定ボタンを押している && キャンバスがactiveでない
             if (owner.GetComponent<kichen>()._kichenChecker.TriggerHit && UISoundManager.Instance._player.IsAction)
             {
