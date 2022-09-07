@@ -20,6 +20,7 @@ MonoBehaviour:
   - Quest005
   - Quest006
   - Quest007
+  - Quest008
   values:
   - ID: Quest001
     Name: Quest001
@@ -125,7 +126,34 @@ MonoBehaviour:
     OtherName:
     - name: Dodo
       number: 10
-    QuestRewardDatas: []
+    QuestRewardDatas:
+    - name: Material005
+      number: 3
+      probability: 100
+    - name: Material005
+      number: 2
+      probability: 98
+    - name: Material005
+      number: 1
+      probability: 80
+    - name: Material003
+      number: 5
+      probability: 70
+    - name: Material003
+      number: 3
+      probability: 90
+    - name: Material003
+      number: 2
+      probability: 90
+    - name: Material000
+      number: 1
+      probability: 100
+    - name: Material000
+      number: 3
+      probability: 100
+    - name: Material000
+      number: 2
+      probability: 80
   - ID: Quest005
     Name: Quest005
     Clear: 1
@@ -135,7 +163,34 @@ MonoBehaviour:
     - name: Material003
       number: 1
     OtherName: []
-    QuestRewardDatas: []
+    QuestRewardDatas:
+    - name: Material005
+      number: 3
+      probability: 100
+    - name: Material005
+      number: 2
+      probability: 98
+    - name: Material005
+      number: 1
+      probability: 80
+    - name: Material003
+      number: 5
+      probability: 70
+    - name: Material003
+      number: 3
+      probability: 90
+    - name: Material003
+      number: 2
+      probability: 90
+    - name: Material000
+      number: 1
+      probability: 100
+    - name: Material000
+      number: 3
+      probability: 100
+    - name: Material000
+      number: 2
+      probability: 80
   - ID: Quest006
     Name: Quest006
     Clear: 0
@@ -147,7 +202,34 @@ MonoBehaviour:
     OtherName:
     - name: Deer
       number: 9
-    QuestRewardDatas: []
+    QuestRewardDatas:
+    - name: Material005
+      number: 3
+      probability: 100
+    - name: Material005
+      number: 2
+      probability: 98
+    - name: Material005
+      number: 1
+      probability: 80
+    - name: Material003
+      number: 5
+      probability: 70
+    - name: Material003
+      number: 3
+      probability: 90
+    - name: Material003
+      number: 2
+      probability: 90
+    - name: Material000
+      number: 1
+      probability: 100
+    - name: Material000
+      number: 3
+      probability: 100
+    - name: Material000
+      number: 2
+      probability: 80
   - ID: Quest007
     Name: Quest007
     Clear: 0
@@ -157,4 +239,86 @@ MonoBehaviour:
     - name: Rhino
       number: 1
     OtherName: []
-    QuestRewardDatas: []
+    QuestRewardDatas:
+    - name: Material005
+      number: 3
+      probability: 100
+    - name: Material005
+      number: 2
+      probability: 98
+    - name: Material005
+      number: 1
+      probability: 80
+    - name: Material003
+      number: 5
+      probability: 70
+    - name: Material003
+      number: 3
+      probability: 90
+    - name: Material003
+      number: 2
+      probability: 90
+    - name: Material000
+      number: 1
+      probability: 100
+    - name: Material000
+      number: 3
+      probability: 100
+    - name: Material000
+      number: 2
+      probability: 80
+  - ID: Quest008
+    Name: "\u30AA\u30FC\u30EB\u30B9\u30BF\u30FC\u30BA"
+    Clear: 0
+    Failure: 0
+    Field: 1
+    TargetName:
+    - name: T-rex
+      number: 1
+    - name: Wolf
+      number: 1
+    - name: Dodo
+      number: 1
+    - name: Deer
+      number: 1
+    - name: Rhino
+      number: 1
+    OtherName:
+    - name: T-rex
+      number: 1
+    - name: Wolf
+      number: 4
+    - name: Dodo
+      number: 4
+    - name: Deer
+      number: 4
+    - name: Rhino
+      number: 4
+    QuestRewardDatas:
+    - name: Material005
+      number: 3
+      probability: 100
+    - name: Material005
+      number: 2
+      probability: 98
+    - name: Material005
+      number: 1
+      probability: 80
+    - name: Material003
+      number: 5
+      probability: 70
+    - name: Material003
+      number: 3
+      probability: 90
+    - name: Material003
+      number: 2
+      probability: 90
+    - name: Material000
+      number: 1
+      probability: 100
+    - name: Material000
+      number: 3
+      probability: 100
+    - name: Material000
+      number: 2
+      probability: 80

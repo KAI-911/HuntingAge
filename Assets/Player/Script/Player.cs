@@ -84,6 +84,7 @@ public partial class Player : Singleton<Player>
         _inputMove = new InputControls();
         _currentState = new LocomotionState();
         _currentState.OnEnter(this, null);
+        _weaponID = _statusData.Wepon;
         base.Awake();
     }
     private void OnEnable()
@@ -365,6 +366,11 @@ public partial class Player : Singleton<Player>
         else if(_weaponID.Contains("weapon2"))
         {
             _animator.SetFloat("wepon", 1);
+        }
+        if(weponID!= _statusData.Wepon)
+        {
+            _statusData.Wepon = weponID;
+            _statusData.DesrializeDictionary();
         }
     }
     public void DeleteWepon()
