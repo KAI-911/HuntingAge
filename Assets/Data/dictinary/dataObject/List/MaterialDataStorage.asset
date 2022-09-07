@@ -26,26 +26,26 @@ MonoBehaviour:
     Name: "\u5CA9"
     IconName: Icon/Stone_UI
     BoxStackNumber: 9999
-    BoxUINumber: 7
-    BoxHoldNumber: 9973
+    BoxUINumber: 4
+    BoxHoldNumber: 106
     PoachStackNumber: 99
-    PoachUINumber: 0
+    PoachUINumber: 1
     PoachHoldNumber: 0
   - ID: Material001
     Name: "\u6728"
     IconName: Icon/Wood_UI
     BoxStackNumber: 9999
-    BoxUINumber: 5
-    BoxHoldNumber: 9949
+    BoxUINumber: 0
+    BoxHoldNumber: 103
     PoachStackNumber: 99
-    PoachUINumber: 3
+    PoachUINumber: 4
     PoachHoldNumber: 0
   - ID: Material002
     Name: "\u7E4A\u7DAD"
     IconName: Icon/Fiber_UI
     BoxStackNumber: 9999
-    BoxUINumber: 2
-    BoxHoldNumber: 9999
+    BoxUINumber: 1
+    BoxHoldNumber: 100
     PoachStackNumber: 99
     PoachUINumber: 0
     PoachHoldNumber: 0
@@ -54,25 +54,25 @@ MonoBehaviour:
     IconName: Icon/Bone_UI
     BoxStackNumber: 9999
     BoxUINumber: 6
-    BoxHoldNumber: 9999
+    BoxHoldNumber: 111
     PoachStackNumber: 99
-    PoachUINumber: 3
+    PoachUINumber: 4
     PoachHoldNumber: 0
   - ID: Material004
     Name: "\u690D\u7269"
     IconName: Icon/Botanical_UI
     BoxStackNumber: 9999
-    BoxUINumber: 4
+    BoxUINumber: 2
     BoxHoldNumber: 9999
-    PoachStackNumber: 99
-    PoachUINumber: 0
+    PoachStackNumber: 100
+    PoachUINumber: 1
     PoachHoldNumber: 0
   - ID: Material005
     Name: "\u8089"
     IconName: Icon/Meat_UI
     BoxStackNumber: 9999
-    BoxUINumber: 0
-    BoxHoldNumber: 9999
+    BoxUINumber: 3
+    BoxHoldNumber: 136
     PoachStackNumber: 99
     PoachUINumber: 3
     PoachHoldNumber: 0
@@ -80,17 +80,17 @@ MonoBehaviour:
     Name: "\u30C4\u30BF"
     IconName: Icon/Vine_UI
     BoxStackNumber: 9999
-    BoxUINumber: 3
-    BoxHoldNumber: 9999
+    BoxUINumber: 5
+    BoxHoldNumber: 100
     PoachStackNumber: 99
-    PoachUINumber: 0
+    PoachUINumber: 1
     PoachHoldNumber: 0
   - ID: Material007
     Name: "\u76AE"
     IconName: Icon/Fur_UI
     BoxStackNumber: 9999
-    BoxUINumber: 1
-    BoxHoldNumber: 9999
+    BoxUINumber: 7
+    BoxHoldNumber: 103
     PoachStackNumber: 99
-    PoachUINumber: 1
+    PoachUINumber: 3
     PoachHoldNumber: 0

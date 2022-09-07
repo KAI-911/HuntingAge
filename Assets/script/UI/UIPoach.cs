@@ -186,6 +186,7 @@ public class UIPoach : UIBase
             itemIcon = owner.ItemIconList[(int)IconType.Confirmation];
             addNum = owner.GetComponent<UIPoach>()._addNumber;
             addID = owner.GetComponent<UIPoach>()._addItemID;
+            Debug.Log(addID + "    addID");
             time = 1;
             var data = itemIcon.IconData;
             Debug.Log(addNum);

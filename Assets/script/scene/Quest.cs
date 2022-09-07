@@ -370,18 +370,26 @@ public class Quest : MonoBehaviour
             textRect.sizeDelta = new Vector2(300, 100);
             var textText = text.GetComponent<Text>();
             textText.text = "あと" + time + "秒で村に戻ります";
-            imageRect.anchoredPosition = new Vector2(-150, -50);
-            textRect.anchoredPosition = new Vector2(-150, -50);
+            imageRect.anchoredPosition = new Vector2(-150, 50);
+            textRect.anchoredPosition = new Vector2(-150, 50);
 
             once_1 = new RunOnce();
             once_2 = new RunOnce();
 
+        }
+        public override void OnExit(Quest owner, QuestState nextState)
+        {
+            Destroy(failureimage);
         }
 
         public override void OnUpdate(Quest owner)
         {
             Debug.Log("失敗しました");
 
+
+
+            time -= Time.deltaTime;
+            //何秒で戻るを消す
             if (time < (owner._sceneChengeTime / 2) - 2)
             {
                 once_1.Run(() =>
@@ -391,6 +399,7 @@ public class Quest : MonoBehaviour
                 });
             }
 
+            //quest終了時にマークの表示
             if (time < 3)
             {
                 once_2.Run(() =>
@@ -406,38 +415,6 @@ public class Quest : MonoBehaviour
                     var clearRect = failureimage.GetComponent<RectTransform>();
                     clearRect.sizeDelta = new Vector2(600, 250);
                     clearRect.anchoredPosition = new Vector2(-clearRect.sizeDelta.x / 2, clearRect.sizeDelta.y / 2);
-                });
-                //徐々に見えるようにする
-                var s = failureimage.GetComponent<Image>();
-                var color = s.color;
-                color.a += owner.imageAlpahSpeed;
-                color.a = Mathf.Clamp(color.a, 0, 1);
-                s.color = color;
-
-            }
-
-            time -= Time.deltaTime;
-            //何秒で戻るを消す
-            if (time < owner._sceneChengeTime - 2)
-            {
-                once_1.Run(() =>
-                {
-                    Destroy(backimage);
-                    Destroy(text);
-                });
-            }
-            //quest終了時にマークの表示
-            if (time < 3)
-            {
-                once_2.Run(() =>
-                {
-                    failureimage = Instantiate(Resources.Load("UI/Image")) as GameObject;
-                    failureimage.transform.SetParent(GameManager.Instance.ItemCanvas.Canvas.transform);
-                    var s = failureimage.GetComponent<Image>();
-                    s.sprite = Resources.Load<Sprite>("Icon/questclear");
-                    var color = s.color;
-                    color.a = 0;
-                    s.color = color;
                 });
                 //徐々に見えるようにする
                 var s = failureimage.GetComponent<Image>();
@@ -470,6 +447,19 @@ public class Quest : MonoBehaviour
             //UIのセット
             owner._result = Instantiate(Resources.Load("UI/QuestResult")) as GameObject;
             _questResult = owner._result.GetComponent<UIQuestResult>();
+
+
+            //ポーチにある素材アイテムをボックスに送る
+            var dataList = GameManager.Instance.MaterialDataList;
+            for (int i = 0; i < dataList.Dictionary.Count; i++)
+            {
+                var d= dataList.Values[i];
+                d.BoxHoldNumber += d.PoachHoldNumber;
+                d.PoachHoldNumber = 0;
+                d.BoxHoldNumber = Mathf.Clamp(d.BoxHoldNumber, 0, d.BoxStackNumber);
+                dataList.Values[i] = d;
+            }
+            dataList.DesrializeDictionary();
         }
         public override void OnExit(Quest owner, QuestState nextState)
         {
