@@ -36,7 +36,7 @@ MonoBehaviour:
     IconName: Icon/Wood_UI
     BoxStackNumber: 9999
     BoxUINumber: 0
-    BoxHoldNumber: 103
+    BoxHoldNumber: 5000
     PoachStackNumber: 99
     PoachUINumber: 4
     PoachHoldNumber: 0

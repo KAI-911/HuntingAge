@@ -27,6 +27,9 @@ namespace Data
                     case '/':
                         _re += "Å^";
                         break;
+                    case '0':
+                        _re += "ÇO";
+                        break;
                     case '1':
                         _re += "ÇP";
                         break;

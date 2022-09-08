@@ -216,10 +216,9 @@ public class Blacksmith : UIBase
             {
                 owner.ItemIconList[(int)IconType.TypeSelect].Select(UISoundManager.Instance.InputSelection.ReadValue<Vector2>());
                 int buttonCount = owner.ItemIconList[(int)IconType.TypeSelect].CurrentNunber;
-                //if (currentNunber > 0)
                 var ListUI = owner.ItemIconList[(int)IconType.MaterialList];
                 var data = _CreatableWeapon[buttonCount].ProductionNeedMaterialLst;
-                ListUI.SetText("ïKóvëfçﬁ/ëfçﬁèäéùêî");
+                ListUI.SetText("ïKóvëfçﬁÅ^ëfçﬁèäéùêî");
                 ListUI.SetTable(new Vector2(data.Count, 1));
                 ListUI.SetLeftTopPos(new Vector2(100, 200));
                 ListUI.CreateButton();
@@ -227,16 +226,11 @@ public class Blacksmith : UIBase
                 {
                     var materialID = data[i].materialID;
                     var material = GameManager.Instance.MaterialDataList.Dictionary[materialID];
-                    //string text1 = string.Format("{0,4:d}", data[i].requiredCount);
-                    string text1;
-                    if (data[i].requiredCount >= 10) text1 = data[i].requiredCount.ToString();
-                    else text1 = "  " + data[i].requiredCount.ToString();
-
-                    string text2 = (material.BoxHoldNumber + material.PoachHoldNumber).ToString();
-
-                    
-
-                    ListUI.SetButtonText(i,"Å@Å@Å@" + material.Name + text1 + "/" + text2, TextAnchor.MiddleLeft);
+                    string text1 = string.Format("{0,3:d}", data[i].requiredCount.ToString());
+                    string text2 = string.Format("{0,4:d}",(material.BoxHoldNumber + material.PoachHoldNumber).ToString());
+                    Debug.Log(text1);
+                    Debug.Log(text2);
+                    ListUI.SetButtonText(i,"Å@Å@" + material.Name + Data.Convert.HanToZenConvert(text1 + "/" + text2), TextAnchor.MiddleLeft);
                 }
             }
         }
@@ -260,6 +254,7 @@ public class Blacksmith : UIBase
 
     public class EnhancementSelectMode : UIStateBase
     {
+        List<WeaponData> _TmpWeapon = new List<WeaponData>();
         public override void OnEnter(UIBase owner, UIStateBase prevState)
         {
             //É{É^ÉìÇÃí«â¡
@@ -267,7 +262,6 @@ public class Blacksmith : UIBase
             UI.SetText("ïêäÌã≠âªêÊ");
 
             var Weapon = GameManager.Instance.WeaponDataList.Dictionary;
-            List<WeaponData> _TmpWeapon = new List<WeaponData>();
             foreach (var item in Weapon)
             {
                 if (item.Value.BoxPossession
@@ -292,6 +286,23 @@ public class Blacksmith : UIBase
         public override void OnExit(UIBase owner, UIStateBase nextState)
         {
             owner.ItemIconList[(int)IconType.TypeSelect].DeleteButton();
+            int buttonCount = owner.ItemIconList[(int)IconType.TypeSelect].CurrentNunber;
+            var ListUI = owner.ItemIconList[(int)IconType.MaterialList];
+            var data = _TmpWeapon[buttonCount].ProductionNeedMaterialLst;
+            ListUI.SetText("ïKóvëfçﬁÅ^ëfçﬁèäéùêî");
+            ListUI.SetTable(new Vector2(data.Count, 1));
+            ListUI.SetLeftTopPos(new Vector2(100, 200));
+            ListUI.CreateButton();
+            for (int i = 0; i < data.Count; i++)
+            {
+                var materialID = data[i].materialID;
+                var material = GameManager.Instance.MaterialDataList.Dictionary[materialID];
+                string text1 = string.Format("{0,3:d}", data[i].requiredCount.ToString());
+                string text2 = string.Format("{0,4:d}", (material.BoxHoldNumber + material.PoachHoldNumber).ToString());
+                Debug.Log(text1);
+                Debug.Log(text2);
+                ListUI.SetButtonText(i, "Å@Å@" + material.Name + Data.Convert.HanToZenConvert(text1 + "/" + text2), TextAnchor.MiddleLeft);
+            }
         }
         public override void OnUpdate(UIBase owner)
         {
