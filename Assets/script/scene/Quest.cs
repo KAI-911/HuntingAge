@@ -278,12 +278,12 @@ public class Quest : MonoBehaviour
             text.transform.SetParent(GameManager.Instance.ItemCanvas.Canvas.transform);
             var imageRect = backimage.GetComponent<RectTransform>();
             var textRect = text.GetComponent<RectTransform>();
-            imageRect.sizeDelta = new Vector2(300, 100);
-            textRect.sizeDelta = new Vector2(300, 100);
+            imageRect.sizeDelta = new Vector2(300, 50);
+            textRect.sizeDelta = new Vector2(300, 50);
             var textText = text.GetComponent<Text>();
             textText.text = "‚ ‚Æ" + time + "•b‚Å‘º‚É–ß‚è‚Ü‚·";
-            imageRect.anchoredPosition = new Vector2(-150, -50);
-            textRect.anchoredPosition = new Vector2(-150, -50);
+            imageRect.anchoredPosition = new Vector2(-150, 25);
+            textRect.anchoredPosition = new Vector2(-150, 25);
 
             once_1 = new RunOnce();
             once_2 = new RunOnce();
@@ -322,7 +322,7 @@ public class Quest : MonoBehaviour
                     s.color = color;
 
                     var clearRect = clearimage.GetComponent<RectTransform>();
-                    clearRect.sizeDelta = new Vector2(600,250);
+                    clearRect.sizeDelta = new Vector2(600, 250);
                     clearRect.anchoredPosition = new Vector2(-clearRect.sizeDelta.x / 2, clearRect.sizeDelta.y / 2);
 
                 });
@@ -366,12 +366,12 @@ public class Quest : MonoBehaviour
             text.transform.SetParent(GameManager.Instance.ItemCanvas.Canvas.transform);
             var imageRect = backimage.GetComponent<RectTransform>();
             var textRect = text.GetComponent<RectTransform>();
-            imageRect.sizeDelta = new Vector2(300, 100);
-            textRect.sizeDelta = new Vector2(300, 100);
+            imageRect.sizeDelta = new Vector2(300, 50);
+            textRect.sizeDelta = new Vector2(300, 50);
             var textText = text.GetComponent<Text>();
             textText.text = "‚ ‚Æ" + time + "•b‚Å‘º‚É–ß‚è‚Ü‚·";
-            imageRect.anchoredPosition = new Vector2(-150, 50);
-            textRect.anchoredPosition = new Vector2(-150, 50);
+            imageRect.anchoredPosition = new Vector2(-150, 25);
+            textRect.anchoredPosition = new Vector2(-150, 25);
 
             once_1 = new RunOnce();
             once_2 = new RunOnce();
@@ -453,7 +453,7 @@ public class Quest : MonoBehaviour
             var dataList = GameManager.Instance.MaterialDataList;
             for (int i = 0; i < dataList.Dictionary.Count; i++)
             {
-                var d= dataList.Values[i];
+                var d = dataList.Values[i];
                 d.BoxHoldNumber += d.PoachHoldNumber;
                 d.PoachHoldNumber = 0;
                 d.BoxHoldNumber = Mathf.Clamp(d.BoxHoldNumber, 0, d.BoxStackNumber);
