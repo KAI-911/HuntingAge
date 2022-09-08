@@ -50,6 +50,7 @@ public class Blacksmith : UIBase
             //近くに来ている && 決定ボタンを押している && キャンバスがactiveでない
             if (owner.GetComponent<Blacksmith>()._blacksmithChecker.TriggerHit && UISoundManager.Instance._player.IsAction)
             {
+                UISoundManager.Instance._player.IsAction = false;
                 owner.ChangeState<TypeSelectMode>();
             }
         }
@@ -88,6 +89,7 @@ public class Blacksmith : UIBase
         public override void OnBack(UIBase owner)
         {
             Debug.Log("modoru");
+            UISoundManager.Instance._player.IsAction = true;
             owner.ChangeState<Close>();
         }
     }
@@ -217,14 +219,24 @@ public class Blacksmith : UIBase
                 //if (currentNunber > 0)
                 var ListUI = owner.ItemIconList[(int)IconType.MaterialList];
                 var data = _CreatableWeapon[buttonCount].ProductionNeedMaterialLst;
-                ListUI.SetText("必要素材");
+                ListUI.SetText("必要素材/素材所持数");
                 ListUI.SetTable(new Vector2(data.Count, 1));
                 ListUI.SetLeftTopPos(new Vector2(100, 200));
                 ListUI.CreateButton();
                 for (int i = 0; i < data.Count; i++)
                 {
                     var materialID = data[i].materialID;
-                    ListUI.SetButtonText(i, GameManager.Instance.MaterialDataList.Dictionary[materialID].Name + "×" + data[i].requiredCount);
+                    var material = GameManager.Instance.MaterialDataList.Dictionary[materialID];
+                    //string text1 = string.Format("{0,4:d}", data[i].requiredCount);
+                    string text1;
+                    if (data[i].requiredCount >= 10) text1 = data[i].requiredCount.ToString();
+                    else text1 = "  " + data[i].requiredCount.ToString();
+
+                    string text2 = (material.BoxHoldNumber + material.PoachHoldNumber).ToString();
+
+                    
+
+                    ListUI.SetButtonText(i,"　　　" + material.Name + text1 + "/" + text2, TextAnchor.MiddleLeft);
                 }
             }
         }
