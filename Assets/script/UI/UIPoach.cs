@@ -186,6 +186,8 @@ public class UIPoach : UIBase
             itemIcon = owner.ItemIconList[(int)IconType.Confirmation];
             addNum = owner.GetComponent<UIPoach>()._addNumber;
             addID = owner.GetComponent<UIPoach>()._addItemID;
+            Debug.Log(owner.GetComponent<UIPoach>()._addItemID + "    _addItemID");
+            if (addID == null) return;
             time = 1;
             var data = itemIcon.IconData;
             Debug.Log(addNum);
@@ -414,12 +416,13 @@ public class UIPoach : UIBase
         {
             if (materialdata.Dictionary[ID].PoachHoldNumber > 0)
             {
-                //è„å¿Ç‹Ç≈éùÇ¡ÇƒÇ¢ÇÈ
+                //è„å¿Ç‹Ç≈éùÇ¡ÇƒÇ¢ÇÈ 
                 if (materialdata.Dictionary[ID].PoachHoldNumber == materialdata.Dictionary[ID].PoachStackNumber)
                 {
                     returnValue = -3;
                     _addNumber = returnValue;
-                    Debug.Log(_addNumber);
+                    Debug.Log(_addNumber+"   "+ID);
+                    _addItemID = ID;
                     ChangeState<AddItem>();
                     return returnValue;
                 }

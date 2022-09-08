@@ -167,7 +167,7 @@ public partial class Player : Singleton<Player>
             _collectionScript = other.GetComponent<CollectionScript>();
             _collectionScript.CreateImage();
         }
-        if (other.CompareTag("PopImage"))
+        else if (other.CompareTag("PopImage"))
         {
             if (_popImage != null)
             {
@@ -363,11 +363,11 @@ public partial class Player : Singleton<Player>
         {
             _animator.SetFloat("wepon", 0);
         }
-        else if(_weaponID.Contains("weapon2"))
+        else if (_weaponID.Contains("weapon2"))
         {
             _animator.SetFloat("wepon", 1);
         }
-        if(weponID!= _statusData.Wepon)
+        if (weponID != _statusData.Wepon)
         {
             _statusData.Wepon = weponID;
             _statusData.DesrializeDictionary();
