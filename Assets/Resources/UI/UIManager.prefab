@@ -53,6 +53,7 @@ MonoBehaviour:
   - Confirmation
   - BlacksmithButton
   - IB_SubMenu
+  - MaterialList
   values:
   - _leftTopPos: {x: -600, y: 300}
     _padding: 10
@@ -114,13 +115,13 @@ MonoBehaviour:
       hight: 30
       margin: 10
       textAnchor: 4
-  - _leftTopPos: {x: -205, y: 100}
+  - _leftTopPos: {x: -300, y: -150}
     _padding: 10
     _tableSize: {x: 1, y: 2}
     _canBeChanged: 0
     _buttonBack: 1
     _textFlg: 1
-    _buttonPrefab: {fileID: 1403004829627007043, guid: 446577f06a189c14488ef6b7845ad21c,
+    _buttonPrefab: {fileID: 1403004829627007043, guid: ac45662ca2cc1624f925db70b55c9b3e,
       type: 3}
     _buttonBackPrefab: {fileID: 4567105175149944347, guid: f7ce8ff705927a7488534fa792a126fe,
       type: 3}
@@ -172,6 +173,26 @@ MonoBehaviour:
       text: "\u30B5\u30D6\u30E1\u30CB\u30E5\u30FC"
       color: {r: 1, g: 0, b: 0.91832733, a: 1}
       hight: 30
+      margin: 10
+      textAnchor: 4
+  - _leftTopPos: {x: 100, y: 200}
+    _padding: 10
+    _tableSize: {x: 1, y: 1}
+    _canBeChanged: 0
+    _buttonBack: 1
+    _textFlg: 1
+    _buttonPrefab: {fileID: 1403004829627007043, guid: ac45662ca2cc1624f925db70b55c9b3e,
+      type: 3}
+    _buttonBackPrefab: {fileID: 4567105175149944347, guid: f7ce8ff705927a7488534fa792a126fe,
+      type: 3}
+    _textPrefab: {fileID: 9123999925664973099, guid: 7e845aabbef9588409138ba440dc835e,
+      type: 3}
+    _textData:
+      fontSize: 15
+      autoFontSize: 1
+      text: 
+      color: {r: 0, g: 0, b: 0, a: 1}
+      hight: 60
       margin: 10
       textAnchor: 4
   modifyValues: 0

@@ -34,7 +34,7 @@ public class Wandering_Deer : StateBase_Deer
         if (owner.ReceivedAttackCheck()) return;
         if (owner.Search())
         {
-            owner.ChangeState<Move_Deer>();
+            owner.ChangeState<Escape_Deer>();
             return;
         }
         var vec = target - owner.transform.position;

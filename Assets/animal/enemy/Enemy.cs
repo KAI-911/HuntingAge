@@ -266,6 +266,6 @@ public enum TargetCheckerType
     Tail,   //尻尾
     Stomp,  //踏みつけ
     tackle, //タックル
-    Gore    //角で突く
-
+    Gore,   //角で突く
+    Rush,   //突進
 }
