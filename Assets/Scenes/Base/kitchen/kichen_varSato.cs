@@ -14,6 +14,10 @@ public class kichen_varSato : UIBase
     [SerializeField] string _cleateItemID;
     [SerializeField] GameObject _materialIDandNumber;
 
+
+    [SerializeField] UIPresetDataList _uIPresetDataList;
+    [SerializeField] Color _cantColor;
+
     //ボックスかポーチどっちに送るか
     [SerializeField] bool _toPouch;
     //何個作るか
@@ -66,6 +70,8 @@ public class kichen_varSato : UIBase
     {
         public override void OnEnter(UIBase owner, UIStateBase prevState)
         {
+            UISoundManager.Instance._player.IsAction = false;
+
             var UI = owner.ItemIconList[(int)IconType.Select];
             UI.SetText("アイテムをどこに送りますか？");
             UI.SetTable(new Vector2(2, 1));
@@ -129,14 +135,43 @@ public class kichen_varSato : UIBase
                     UI.SetButtonOnClick(numi, () =>
                     {
                         //もし一つ以上制作できるなら個数選択に移行
-                        if (owner.GetComponent<kichen_varSato>()._count.Check(owner)) owner.ChangeState<CountMode>();
+                        if (owner.GetComponent<kichen_varSato>()._count.Check(owner, owner.GetComponent<kichen_varSato>()._toPouch))
+                        {
+                            owner.ChangeState<CountMode>();
+                        }
                     });
+                    if (!owner.GetComponent<kichen_varSato>()._count.Check(owner, owner.GetComponent<kichen_varSato>()._toPouch, _createItem[numi].baseData.ID))
+                    {
+                        var image = UI.Buttons[numi].GetComponent<Image>();
+                        image.color = owner.GetComponent<kichen_varSato>()._cantColor;
+                    }
                 }
             }
-
+            else if (prevState.GetType() == typeof(CleateMode))
+            {
+                var UI = owner.ItemIconList[(int)IconType.Select];
+                foreach (var item in UI.Buttons)
+                {
+                    var text = item.GetComponentInChildren<Text>();
+                    foreach (var data in GameManager.Instance.ItemDataList.Values)
+                    {
+                        if (!owner.GetComponent<kichen_varSato>()._count.Check(owner, owner.GetComponent<kichen_varSato>()._toPouch, data.baseData.ID))
+                        {
+                            var image = item.GetComponent<Image>();
+                            image.color = owner.GetComponent<kichen_varSato>()._cantColor;
+                        }
+                    }
+                }
+            }
+            else if (prevState.GetType() == typeof(CountMode))
+            {
+                owner.GetComponent<kichen_varSato>()._count.Delete();
+            }
         }
         public override void OnUpdate(UIBase owner)
         {
+            Debug.Log("アイテム選択モード");
+
             var current = owner.ItemIconList[(int)IconType.Select].Select(UISoundManager.Instance.InputSelection.ReadValue<Vector2>());
             //カレントナンバーが更新されたら_cleateItemIDも更新する
             if (_memoryNum != current)
@@ -198,7 +233,7 @@ public class kichen_varSato : UIBase
                 string needNum = string.Format("{0,3:d}", _itemDataDic[id].NeedMaterialLst[i].requiredCount);
                 string holdNum = string.Format("{0,4:d}", GameManager.Instance.MaterialDataList.Dictionary[materialID].PoachHoldNumber + GameManager.Instance.MaterialDataList.Dictionary[materialID].BoxHoldNumber);
 
-                list.SetButtonText(i,"　"+ name + Data.Convert.HanToZenConvert(needNum + "/" + holdNum));
+                list.SetButtonText(i, "　" + name + Data.Convert.HanToZenConvert(needNum + "/" + holdNum));
             }
         }
     }
@@ -207,10 +242,15 @@ public class kichen_varSato : UIBase
 
         public override void OnEnter(UIBase owner, UIStateBase prevState)
         {
-            owner.GetComponent<kichen_varSato>()._count.Init(owner);
+            owner.GetComponent<kichen_varSato>()._count.Init(owner, owner.GetComponent<kichen_varSato>()._toPouch);
         }
         public override void OnUpdate(UIBase owner)
         {
+            Debug.Log("個数選択モード");
+            if(owner.GetComponent<kichen_varSato>()._count.CountObject==null)
+            {
+                owner.ChangeState<SelectMode>();
+            }
             owner.GetComponent<kichen_varSato>()._count.Select(UISoundManager.Instance.InputSelection.ReadValue<Vector2>());
             //必要素材の個数の更新
             UpdateNeedMatrialText(owner);
@@ -227,7 +267,7 @@ public class kichen_varSato : UIBase
         {
             owner.ChangeState<SelectMode>();
         }
-        private void UpdateNeedMatrialText(UIBase owner, int _namespace = 4)
+        private void UpdateNeedMatrialText(UIBase owner, int _namespace = 3)
         {
             //必要素材のリストを作成ーーーーーーーーーーーーー
             var list = owner.ItemIconList[(int)IconType.Needmaterial];
@@ -385,14 +425,15 @@ public class kichen_varSato : UIBase
         public int Min { get => min; }
         public int Max { get => max; }
         public int Now { get => now; }
+        public GameObject CountObject { get => countObject;}
 
         /// <summary>
         /// カウント用のUIを作成から最大値の設定も行う
         /// </summary>
         /// <param name="owner"></param>
-        public void Init(UIBase owner)
+        public void Init(UIBase owner, bool toPoach)
         {
-            if (!Check(owner))
+            if (!Check(owner, toPoach))
             {
                 Debug.LogError("必要個数が足りない");
                 return;
@@ -406,6 +447,14 @@ public class kichen_varSato : UIBase
             string id = owner.GetComponent<kichen_varSato>()._cleateItemID;
             var _ItemDic = GameManager.Instance.ItemDataList.Dictionary;
             var _materialDataDic = GameManager.Instance.MaterialDataList.Dictionary;
+            if (toPoach)
+            {
+                max = _ItemDic[id].baseData.PoachStackNumber - _ItemDic[id].baseData.PoachHoldNumber;
+            }
+            else
+            {
+                max = _ItemDic[id].baseData.BoxStackNumber - _ItemDic[id].baseData.BoxHoldNumber;
+            }
             foreach (var item in _ItemDic[id].NeedMaterialLst)
             {
                 var materialNum = _materialDataDic[item.materialID].BoxHoldNumber + _materialDataDic[item.materialID].PoachHoldNumber;
@@ -415,16 +464,21 @@ public class kichen_varSato : UIBase
                     max = materialNum / item.requiredCount;
                 }
             }
+
             //カウント用のUIを制作、位置設定
-            countObject = Instantiate(Resources.Load("UI/Count"), GameManager.Instance.ItemCanvas.Canvas.transform) as GameObject;
-            owner.ItemIconList[(int)IconType.Select].AdjustmentImage(countObject.GetComponent<RectTransform>());
+            if (countObject == null)
+            {
+                countObject = Instantiate(Resources.Load("UI/Count"), GameManager.Instance.ItemCanvas.Canvas.transform) as GameObject;
+                owner.ItemIconList[(int)IconType.Select].AdjustmentImage(countObject.GetComponent<RectTransform>());
+            }
         }
         /// <summary>
         /// カウント用のUIを削除
         /// </summary>
         public void Delete()
         {
-            Destroy(countObject);
+            if (countObject == null) return;
+                Destroy(countObject);
         }
         /// <summary>
         /// カウントアップダウン
@@ -432,6 +486,8 @@ public class kichen_varSato : UIBase
         /// <param name="vec"></param>
         public void Select(Vector2 vec)
         {
+            if (countObject == null) return;
+
             if (vec.sqrMagnitude > 0)
             {
                 if (lockflg == false)
@@ -450,23 +506,85 @@ public class kichen_varSato : UIBase
             }
 
         }
+
         /// <summary>
         /// 制作可能ならtureを返す
         /// </summary>
         /// <param name="owner"></param>
+        /// <param name="toPoach"></param>
+        /// <param name="id">特に指定しない場合は現在選択しているボタンのアイテムのIDを使う</param>
         /// <returns></returns>
-        public bool Check(UIBase owner)
+        public bool Check(UIBase owner, bool toPoach, string id = " ")
         {
             //最大値の設定
-            string id = owner.GetComponent<kichen_varSato>()._cleateItemID;
+            if (id == " ")
+            {
+                id = owner.GetComponent<kichen_varSato>()._cleateItemID;
+            }
             var _ItemDic = GameManager.Instance.ItemDataList.Dictionary;
             var _materialDataDic = GameManager.Instance.MaterialDataList.Dictionary;
+            //必要素材が足りているか確認
             foreach (var item in _ItemDic[id].NeedMaterialLst)
             {
                 var materialNum = _materialDataDic[item.materialID].BoxHoldNumber + _materialDataDic[item.materialID].PoachHoldNumber;
                 if (item.requiredCount <= 0) Debug.LogError("必要数が0以下です。");
                 //制作出来ない
                 if ((materialNum / item.requiredCount) <= 0) return false;
+            }
+            //制作したアイテムがもてるかの確認
+            if (toPoach)
+            {
+                if (_ItemDic[id].baseData.PoachHoldNumber <= 0)
+                {
+                    //未使用の枠があるか確認----------------------------------------------
+                    List<int> vs = new List<int>();
+                    var table = owner.GetComponent<kichen_varSato>()._uIPresetDataList.Dictionary["IP_ItemSelect"]._tableSize;
+                    //全ての枠を確認
+                    for (int i = 0; i < table.x * table.y; i++) vs.Add(i);
+                    //使用している枠を削除していく
+                    foreach (var item in GameManager.Instance.ItemDataList.Values)
+                    {
+                        if (vs.Contains(item.baseData.PoachUINumber)) vs.Remove(item.baseData.PoachUINumber);
+                    }
+                    foreach (var item in GameManager.Instance.MaterialDataList.Values)
+                    {
+                        if (vs.Contains(item.PoachUINumber)) vs.Remove(item.PoachUINumber);
+                    }
+                    if (vs.Count <= 0) return false;
+                }
+                else if (_ItemDic[id].baseData.PoachHoldNumber == _ItemDic[id].baseData.PoachStackNumber)
+                {
+                    //最大まで持っているので生産できない
+                    return false;
+                }
+
+            }
+            else
+            {
+                if (_ItemDic[id].baseData.BoxHoldNumber <= 0)
+                {
+                    //未使用の枠があるか確認----------------------------------------------
+                    List<int> vs = new List<int>();
+                    var table = owner.GetComponent<kichen_varSato>()._uIPresetDataList.Dictionary["IB_ItemSelect"]._tableSize;
+                    //全ての枠を確認
+                    for (int i = 0; i < table.x * table.y; i++) vs.Add(i);
+                    //使用している枠を削除していく
+                    foreach (var item in GameManager.Instance.ItemDataList.Values)
+                    {
+                        if (vs.Contains(item.baseData.PoachUINumber)) vs.Remove(item.baseData.PoachUINumber);
+                    }
+                    foreach (var item in GameManager.Instance.MaterialDataList.Values)
+                    {
+                        if (vs.Contains(item.PoachUINumber)) vs.Remove(item.PoachUINumber);
+                    }
+                    if (vs.Count <= 0) return false;
+                }
+                else if (_ItemDic[id].baseData.BoxHoldNumber == _ItemDic[id].baseData.BoxStackNumber)
+                {
+                    //最大まで持っているので生産できない
+                    return false;
+                }
+
             }
             return true;
         }
