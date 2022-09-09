@@ -253,8 +253,8 @@ public class QuestReception : UIBase
             textText.text = GameManager.Instance.Quest.QuestData.Name;
             textText.alignment = TextAnchor.MiddleLeft;
             textText.resizeTextForBestFit = true;
-            imageRect.anchoredPosition = new Vector2(-Data.SCR.Width / 2 + Data.SCR.Padding, Data.SCR.Height / 2 - Data.SCR.Padding);
-            textRect.anchoredPosition = new Vector2(-Data.SCR.Width / 2 + Data.SCR.Padding, Data.SCR.Height / 2 - Data.SCR.Padding);
+            imageRect.anchoredPosition = new Vector2(-Screen.width / 2 + Data.SCR.Padding, Screen.height / 2 - Data.SCR.Padding);
+            textRect.anchoredPosition = new Vector2(-Screen.width / 2 + Data.SCR.Padding, Screen.height / 2 - Data.SCR.Padding);
         }
         public override void OnExit(UIBase owner, UIStateBase nextState)
         {

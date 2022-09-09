@@ -8,8 +8,8 @@ namespace Data
 {
     public static class SCR
     {
-        public const int Width = 1280;
-        public const int Height = 720;
+        public const float _basewidth = 1280;
+        public const float _baseheight = 720;
         public const int Padding = 30;
     }
     public class Convert
@@ -23,7 +23,7 @@ namespace Data
                 {
                     case ' ':
                         _re += "Å@";
-                    break;
+                        break;
                     case '/':
                         _re += "Å^";
                         break;
@@ -63,10 +63,23 @@ namespace Data
             }
             return _re;
         }
+
+
+
+
+        public static void Correction(RectTransform _rectTransform)
+        {
+            Vector2 _magnification;
+            _magnification.x = Screen.width / SCR._basewidth;
+            _magnification.y = Screen.height / SCR._baseheight;
+            Vector3 scale;
+            scale.x = _rectTransform.localScale.x * _magnification.x;
+            scale.y = _rectTransform.localScale.y * _magnification.y;
+            scale.z = _rectTransform.localScale.z;
+            _rectTransform.localScale = scale;
+        }
     }
-
 }
-
 [Serializable]
 public class Position
 {

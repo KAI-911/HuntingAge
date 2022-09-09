@@ -306,7 +306,7 @@ public class UIItemView : UIBase
         if (objects[(int)position.center] != null) return;
         var rectSize = _itemViewPrefab.GetComponent<RectTransform>().sizeDelta;
         _sideLength = rectSize.x * _sideScaleSize;
-        var rect = new Vector2(SCR.Width / 2 - rectSize.x - _sideLength - (_padding * 2), -SCR.Height / 2 + rectSize.y + _padding);
+        var rect = new Vector2(Screen.width / 2 - rectSize.x - _sideLength - (_padding * 2), -Screen.height / 2 + rectSize.y + _padding);
         objects[(int)position.center] = Instantiate(_itemViewPrefab);
         objects[(int)position.center].transform.SetParent(GameManager.Instance.ItemCanvas.Canvas.transform);
         objects[(int)position.center].GetComponent<RectTransform>().anchoredPosition = rect;

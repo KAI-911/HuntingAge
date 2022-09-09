@@ -175,13 +175,13 @@ public class Quest : MonoBehaviour
             hp.SetMaxSlider(owner._player.Status.MaxHP);
             hp.SetSlisder(owner._player.Status.MaxHP);
             hp.SetFillColor(new Color(0, 1, 0, 1));
-            hp.SetRectTransform(new Vector2(-Data.SCR.Width / 2 + Data.SCR.Padding, Data.SCR.Height / 2 - Data.SCR.Padding));
+            hp.SetRectTransform(new Vector2(-Screen.width / 2 + Data.SCR.Padding, Screen.height / 2 - Data.SCR.Padding));
             //スタミナバー
             var sp = owner._SPBar.GetComponent<BarScript>();
             sp.SetMaxSlider(owner._player.Status.MaxSP);
             sp.SetSlisder(owner._player.Status.MaxSP);
             sp.SetFillColor(new Color(1, 1, 0, 1));
-            sp.SetRectTransform(new Vector2(-Data.SCR.Width / 2 + Data.SCR.Padding, hp.GetRectTransform().y - hp.GetRectTransformSize().y - Data.SCR.Padding));
+            sp.SetRectTransform(new Vector2(-Screen.width / 2 + Data.SCR.Padding, hp.GetRectTransform().y - hp.GetRectTransformSize().y - Data.SCR.Padding));
             //プレイヤーのクエスト開始時
             GameManager.Instance.Player.Revival();
             //アイテムの使用状況のリセット
@@ -324,7 +324,7 @@ public class Quest : MonoBehaviour
                     var clearRect = clearimage.GetComponent<RectTransform>();
                     clearRect.sizeDelta = new Vector2(600, 250);
                     clearRect.anchoredPosition = new Vector2(-clearRect.sizeDelta.x / 2, clearRect.sizeDelta.y / 2);
-
+                    Data.Convert.Correction(clearRect);
                 });
                 //徐々に見えるようにする
                 var s = clearimage.GetComponent<Image>();
@@ -412,9 +412,10 @@ public class Quest : MonoBehaviour
                     color.a = 0;
                     s.color = color;
 
-                    var clearRect = failureimage.GetComponent<RectTransform>();
-                    clearRect.sizeDelta = new Vector2(600, 250);
-                    clearRect.anchoredPosition = new Vector2(-clearRect.sizeDelta.x / 2, clearRect.sizeDelta.y / 2);
+                    var failureRect = failureimage.GetComponent<RectTransform>();
+                    failureRect.sizeDelta = new Vector2(600, 250);
+                    failureRect.anchoredPosition = new Vector2(-failureRect.sizeDelta.x / 2, failureRect.sizeDelta.y / 2);
+                    Data.Convert.Correction(failureRect);
                 });
                 //徐々に見えるようにする
                 var s = failureimage.GetComponent<Image>();

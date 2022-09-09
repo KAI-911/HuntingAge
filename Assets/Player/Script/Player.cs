@@ -342,6 +342,11 @@ public partial class Player : Singleton<Player>
         }
         var pos = StartPos.Find(n => n.scene == GameManager.Instance.NowScene);
         transform.position = pos.pos[0];
+        if(GameManager.Instance.NowScene==Scene.Base)
+        {
+            Debug.Log("‚±‚±‚±‚±‚±‚±‚±‚±‚±‚±‚±‚±‚±‚±‚±‚±");
+            transform.position = Vector3.zero;
+        }
     }
     private void ChangeWepon(string weponID)
     {
