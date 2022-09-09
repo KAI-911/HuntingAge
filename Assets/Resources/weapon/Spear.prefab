@@ -146,6 +146,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _attackPart: 6
   _mask: 
+  _se: {fileID: 8504682689478910861, guid: cc192e3440c088e45b2eae0fab5d3cac, type: 3}
 --- !u!136 &8234535907319354368
 CapsuleCollider:
   m_ObjectHideFlags: 0

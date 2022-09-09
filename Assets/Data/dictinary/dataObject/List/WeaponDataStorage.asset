@@ -26,13 +26,12 @@ MonoBehaviour:
   - ID: weapon101
     EnhancementID: weapon102
     Name: "\u6728\u306E\u65A7"
-    weaponPath: weapon/Axe
-    IconPass: Icon/Axe_UI
-    IconName: 
+    weaponPath: weapon/Axe_wood
+    IconPass: Icon/Axe_wood_UI
     BoxUINumber: 0
     CreatableLevel: 1
     BoxPossession: 1
-    AttackPoint: 100
+    AttackPoint: 50
     WeaponType: 0
     ProductionNeedMaterialLst:
     - materialID: Material001
@@ -43,11 +42,10 @@ MonoBehaviour:
     Name: "\u77F3\u306E\u65A7"
     weaponPath: weapon/Axe
     IconPass: Icon/Axe_UI
-    IconName: 
-    BoxUINumber: 0
+    BoxUINumber: 1
     CreatableLevel: 2
     BoxPossession: 1
-    AttackPoint: 120
+    AttackPoint: 100
     WeaponType: 0
     ProductionNeedMaterialLst:
     - materialID: Material001
@@ -64,11 +62,10 @@ MonoBehaviour:
     Name: "\u9AA8\u65A7"
     weaponPath: weapon/Axe
     IconPass: Icon/Axe_UI
-    IconName: 
-    BoxUINumber: 0
+    BoxUINumber: 2
     CreatableLevel: 5
     BoxPossession: 0
-    AttackPoint: 200
+    AttackPoint: 150
     WeaponType: 0
     ProductionNeedMaterialLst:
     - materialID: Material001
@@ -83,13 +80,12 @@ MonoBehaviour:
   - ID: weapon201
     EnhancementID: weapon202
     Name: "\u6728\u306E\u69CD"
-    weaponPath: weapon/Spear
-    IconPass: Icon/Spear_UI
-    IconName: 
-    BoxUINumber: 0
+    weaponPath: weapon/Spear_wood
+    IconPass: Icon/Spear_wood_UI
+    BoxUINumber: 3
     CreatableLevel: 3
-    BoxPossession: 0
-    AttackPoint: 80
+    BoxPossession: 1
+    AttackPoint: 50
     WeaponType: 1
     ProductionNeedMaterialLst:
     - materialID: Material001
@@ -110,11 +106,10 @@ MonoBehaviour:
     Name: "\u77F3\u306E\u69CD"
     weaponPath: weapon/Spear
     IconPass: Icon/Spear_UI
-    IconName: 
-    BoxUINumber: 0
+    BoxUINumber: 4
     CreatableLevel: 3
-    BoxPossession: 0
-    AttackPoint: 120
+    BoxPossession: 1
+    AttackPoint: 100
     WeaponType: 1
     ProductionNeedMaterialLst:
     - materialID: Material001
@@ -131,11 +126,10 @@ MonoBehaviour:
     Name: "\u9AA8\u69CD"
     weaponPath: weapon/Spear
     IconPass: Icon/Spear_UI
-    IconName: 
-    BoxUINumber: 0
+    BoxUINumber: 5
     CreatableLevel: 6
     BoxPossession: 0
-    AttackPoint: 160
+    AttackPoint: 150
     WeaponType: 1
     ProductionNeedMaterialLst:
     - materialID: Material001
@@ -151,12 +145,11 @@ MonoBehaviour:
     EnhancementID: weapon302
     Name: "\u5F13"
     weaponPath: weapon/Spear
-    IconPass: 
-    IconName: 
+    IconPass: 6
     BoxUINumber: 0
     CreatableLevel: 1
     BoxPossession: 0
-    AttackPoint: 50
+    AttackPoint: 0
     WeaponType: 2
     ProductionNeedMaterialLst:
     - materialID: Material001
@@ -177,11 +170,10 @@ MonoBehaviour:
     Name: "\u8D85\u5F13"
     weaponPath: weapon/Spear
     IconPass: 
-    IconName: 
-    BoxUINumber: 0
+    BoxUINumber: 7
     CreatableLevel: 4
     BoxPossession: 0
-    AttackPoint: 75
+    AttackPoint: 0
     WeaponType: 2
     ProductionNeedMaterialLst: []
     EnhancementNeedMaterialLst: []
@@ -190,11 +182,10 @@ MonoBehaviour:
     Name: "\u7D76\u5F13"
     weaponPath: weapon/Spear
     IconPass: 
-    IconName: 
-    BoxUINumber: 0
+    BoxUINumber: 8
     CreatableLevel: 7
     BoxPossession: 0
-    AttackPoint: 100
+    AttackPoint: 0
     WeaponType: 2
     ProductionNeedMaterialLst: []
     EnhancementNeedMaterialLst: []

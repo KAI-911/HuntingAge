@@ -420,6 +420,15 @@ public partial class @InputControls : IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Title"",
+                    ""type"": ""Button"",
+                    ""id"": ""fdc81dd0-4893-4eee-a14e-4fbd3f0d5164"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -697,6 +706,61 @@ public partial class @InputControls : IInputActionCollection2, IDisposable
                     ""action"": ""trianglebutton"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""20800eac-8cca-4806-863c-37f18bf28756"",
+                    ""path"": ""<Gamepad>/buttonNorth"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Title"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""d409295d-ab39-44be-b327-8f2f1390c464"",
+                    ""path"": ""<Gamepad>/buttonEast"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Title"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""8b3823f6-b938-42bf-8b97-0c83020e132a"",
+                    ""path"": ""<Gamepad>/buttonSouth"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Title"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""632e4da6-064b-4b0b-aef3-62d2c91cc9e1"",
+                    ""path"": ""<Gamepad>/buttonWest"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Title"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""1bfba79c-bafe-4ea9-bcf4-b318145f04ea"",
+                    ""path"": ""<Keyboard>/anyKey"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Title"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -723,6 +787,7 @@ public partial class @InputControls : IInputActionCollection2, IDisposable
         m_UI_UseItemSelect = m_UI.FindAction("UseItemSelect", throwIfNotFound: true);
         m_UI_boxbutton = m_UI.FindAction("boxbutton", throwIfNotFound: true);
         m_UI_trianglebutton = m_UI.FindAction("trianglebutton", throwIfNotFound: true);
+        m_UI_Title = m_UI.FindAction("Title", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -872,6 +937,7 @@ public partial class @InputControls : IInputActionCollection2, IDisposable
     private readonly InputAction m_UI_UseItemSelect;
     private readonly InputAction m_UI_boxbutton;
     private readonly InputAction m_UI_trianglebutton;
+    private readonly InputAction m_UI_Title;
     public struct UIActions
     {
         private @InputControls m_Wrapper;
@@ -885,6 +951,7 @@ public partial class @InputControls : IInputActionCollection2, IDisposable
         public InputAction @UseItemSelect => m_Wrapper.m_UI_UseItemSelect;
         public InputAction @boxbutton => m_Wrapper.m_UI_boxbutton;
         public InputAction @trianglebutton => m_Wrapper.m_UI_trianglebutton;
+        public InputAction @Title => m_Wrapper.m_UI_Title;
         public InputActionMap Get() { return m_Wrapper.m_UI; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -921,6 +988,9 @@ public partial class @InputControls : IInputActionCollection2, IDisposable
                 @trianglebutton.started -= m_Wrapper.m_UIActionsCallbackInterface.OnTrianglebutton;
                 @trianglebutton.performed -= m_Wrapper.m_UIActionsCallbackInterface.OnTrianglebutton;
                 @trianglebutton.canceled -= m_Wrapper.m_UIActionsCallbackInterface.OnTrianglebutton;
+                @Title.started -= m_Wrapper.m_UIActionsCallbackInterface.OnTitle;
+                @Title.performed -= m_Wrapper.m_UIActionsCallbackInterface.OnTitle;
+                @Title.canceled -= m_Wrapper.m_UIActionsCallbackInterface.OnTitle;
             }
             m_Wrapper.m_UIActionsCallbackInterface = instance;
             if (instance != null)
@@ -952,6 +1022,9 @@ public partial class @InputControls : IInputActionCollection2, IDisposable
                 @trianglebutton.started += instance.OnTrianglebutton;
                 @trianglebutton.performed += instance.OnTrianglebutton;
                 @trianglebutton.canceled += instance.OnTrianglebutton;
+                @Title.started += instance.OnTitle;
+                @Title.performed += instance.OnTitle;
+                @Title.canceled += instance.OnTitle;
             }
         }
     }
@@ -977,5 +1050,6 @@ public partial class @InputControls : IInputActionCollection2, IDisposable
         void OnUseItemSelect(InputAction.CallbackContext context);
         void OnBoxbutton(InputAction.CallbackContext context);
         void OnTrianglebutton(InputAction.CallbackContext context);
+        void OnTitle(InputAction.CallbackContext context);
     }
 }

@@ -32,7 +32,11 @@ public class Move_Wolf : SatetBase_Wolf
             owner.ChangeState<Idle_Wolf>();
         }
 
-
+        if (owner.Search() == false)
+        {
+            owner.ChangeState<Wandering_Wolf>();
+            return;
+        }
     }
     public override void OnFixedUpdate(Wolf owner)
     {

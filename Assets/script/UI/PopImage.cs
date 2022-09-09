@@ -6,8 +6,8 @@ using UnityEngine.UI;
 public class PopImage : MonoBehaviour
 {
     [SerializeField] protected GameObject _imagePrefab;
-    protected TargetChecker _targetChecker;
-    protected GameObject _image;
+    [SerializeField] protected TargetChecker _targetChecker;
+    [SerializeField] protected GameObject _image;
     [SerializeField] Sprite _spritePrefab;
     [SerializeField] string _text;
 
@@ -17,11 +17,11 @@ public class PopImage : MonoBehaviour
     {
         _targetChecker = GetComponentInChildren<TargetChecker>();
     }
-    public void Update()
+    public virtual void Update()
     {
         if (_image != null)
         {
-            if (!UIManager.Instance._player.IsAction)
+            if (!UISoundManager.Instance._player.IsAction)
             {
                 _image.SetActive(false);
             }
@@ -37,9 +37,9 @@ public class PopImage : MonoBehaviour
         {
             Destroy(_image);
         }
-        if (UIManager.Instance != null && UIManager.Instance._player.CollectionScript == this)
+        if (UISoundManager.Instance != null && UISoundManager.Instance._player.CollectionScript == this)
         {
-            UIManager.Instance._player.CollectionScript = null;
+            UISoundManager.Instance._player.CollectionScript = null;
         }
     }
     public void OnDestroy()

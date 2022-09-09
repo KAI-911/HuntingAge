@@ -17,6 +17,13 @@ public class GatheringCount
             Debug.Log("追加");
             _countList[_id] += add;
         }
+        Debug.Log("ーーーーーーーーーーーーーーーーーーーーーー");
+        foreach (var item in _countList)
+        {
+            Debug.Log(item.Key+"  "+item.Value);
+        }
+        Debug.Log("ーーーーーーーーーーーーーーーーーーーーーー");
+
     }
     public void Entry(string _id, int _number = 0)
     {

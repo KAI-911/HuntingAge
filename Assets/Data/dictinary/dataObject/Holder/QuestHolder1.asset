@@ -19,6 +19,7 @@ MonoBehaviour:
   - QuestHolder4
   - QuestHolder5
   - QuestHolder6
+  - QuestHolder7
   values:
   - Quests:
     - Quest001
@@ -26,6 +27,9 @@ MonoBehaviour:
     - Quest003
     - Quest004
     - Quest005
+    - Quest006
+    - Quest007
+    - Quest008
   - Quests:
     - Quest001
     - Quest002

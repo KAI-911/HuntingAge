@@ -18,6 +18,9 @@ MonoBehaviour:
   - Quest003
   - Quest004
   - Quest005
+  - Quest006
+  - Quest007
+  - Quest008
   values:
   - ID: Quest001
     Name: Quest001
@@ -33,27 +36,33 @@ MonoBehaviour:
     - name: Dodo
       number: 1
     QuestRewardDatas:
-    - name: Material000
-      number: 10
-      probability: 10
-    - name: Material001
-      number: 1
-      probability: 1
-    - name: Material002
-      number: 5
-      probability: 5
-    - name: Material003
-      number: 70
-      probability: 70
-    - name: Material004
-      number: 99
-      probability: 99
     - name: Material005
-      number: 50
-      probability: 50
-    - name: Material006
+      number: 3
+      probability: 100
+    - name: Material005
+      number: 2
+      probability: 98
+    - name: Material005
       number: 1
-      probability: 1
+      probability: 80
+    - name: Material003
+      number: 5
+      probability: 70
+    - name: Material003
+      number: 3
+      probability: 90
+    - name: Material003
+      number: 2
+      probability: 90
+    - name: Material000
+      number: 1
+      probability: 100
+    - name: Material000
+      number: 3
+      probability: 100
+    - name: Material000
+      number: 2
+      probability: 80
   - ID: Quest002
     Name: Quest002
     Clear: 0
@@ -66,27 +75,21 @@ MonoBehaviour:
     - name: Wolf
       number: 10
     QuestRewardDatas:
-    - name: Material000
-      number: 3
-      probability: 100
-    - name: Material001
-      number: 3
-      probability: 100
     - name: Material002
       number: 3
       probability: 100
-    - name: Material003
-      number: 3
-      probability: 100
-    - name: Material004
-      number: 3
-      probability: 100
     - name: Material005
+      number: 5
+      probability: 95
+    - name: Material001
+      number: 10
+      probability: 95
+    - name: Material000
       number: 3
-      probability: 100
-    - name: Material006
-      number: 3
-      probability: 100
+      probability: 70
+    - name: Material002
+      number: 6
+      probability: 90
   - ID: Quest003
     Name: Quest003
     Clear: 0
@@ -97,27 +100,21 @@ MonoBehaviour:
       number: 3
     OtherName: []
     QuestRewardDatas:
-    - name: Material000
-      number: 3
-      probability: 100
-    - name: Material001
-      number: 3
-      probability: 100
-    - name: Material002
-      number: 3
-      probability: 100
-    - name: Material003
-      number: 3
-      probability: 100
-    - name: Material004
-      number: 3
-      probability: 100
-    - name: Material005
-      number: 3
+    - name: Material006
+      number: 10
       probability: 100
     - name: Material006
-      number: 3
+      number: 10
       probability: 100
+    - name: Item000
+      number: 1
+      probability: 70
+    - name: Item001
+      number: 1
+      probability: 70
+    - name: Item002
+      number: 1
+      probability: 70
   - ID: Quest004
     Name: Quest004
     Clear: 1
@@ -130,27 +127,33 @@ MonoBehaviour:
     - name: Dodo
       number: 10
     QuestRewardDatas:
-    - name: Material000
-      number: 3
-      probability: 100
-    - name: Material001
-      number: 3
-      probability: 100
-    - name: Material002
-      number: 3
-      probability: 100
-    - name: Material003
-      number: 3
-      probability: 100
-    - name: Material004
-      number: 3
-      probability: 100
     - name: Material005
       number: 3
       probability: 100
-    - name: Material006
+    - name: Material005
+      number: 2
+      probability: 98
+    - name: Material005
+      number: 1
+      probability: 80
+    - name: Material003
+      number: 5
+      probability: 70
+    - name: Material003
+      number: 3
+      probability: 90
+    - name: Material003
+      number: 2
+      probability: 90
+    - name: Material000
+      number: 1
+      probability: 100
+    - name: Material000
       number: 3
       probability: 100
+    - name: Material000
+      number: 2
+      probability: 80
   - ID: Quest005
     Name: Quest005
     Clear: 1
@@ -161,24 +164,161 @@ MonoBehaviour:
       number: 1
     OtherName: []
     QuestRewardDatas:
-    - name: Material000
-      number: 3
-      probability: 100
-    - name: Material001
-      number: 3
-      probability: 100
-    - name: Material002
-      number: 3
-      probability: 100
-    - name: Material003
-      number: 3
-      probability: 100
-    - name: Material004
-      number: 3
-      probability: 100
     - name: Material005
       number: 3
       probability: 100
-    - name: Material006
+    - name: Material005
+      number: 2
+      probability: 98
+    - name: Material005
+      number: 1
+      probability: 80
+    - name: Material003
+      number: 5
+      probability: 70
+    - name: Material003
+      number: 3
+      probability: 90
+    - name: Material003
+      number: 2
+      probability: 90
+    - name: Material000
+      number: 1
+      probability: 100
+    - name: Material000
       number: 3
       probability: 100
+    - name: Material000
+      number: 2
+      probability: 80
+  - ID: Quest006
+    Name: Quest006
+    Clear: 0
+    Failure: 4
+    Field: 2
+    TargetName:
+    - name: Deer
+      number: 1
+    OtherName:
+    - name: Deer
+      number: 9
+    QuestRewardDatas:
+    - name: Material005
+      number: 3
+      probability: 100
+    - name: Material005
+      number: 2
+      probability: 98
+    - name: Material005
+      number: 1
+      probability: 80
+    - name: Material003
+      number: 5
+      probability: 70
+    - name: Material003
+      number: 3
+      probability: 90
+    - name: Material003
+      number: 2
+      probability: 90
+    - name: Material000
+      number: 1
+      probability: 100
+    - name: Material000
+      number: 3
+      probability: 100
+    - name: Material000
+      number: 2
+      probability: 80
+  - ID: Quest007
+    Name: Quest007
+    Clear: 0
+    Failure: 4
+    Field: 2
+    TargetName:
+    - name: Rhino
+      number: 1
+    OtherName: []
+    QuestRewardDatas:
+    - name: Material005
+      number: 3
+      probability: 100
+    - name: Material005
+      number: 2
+      probability: 98
+    - name: Material005
+      number: 1
+      probability: 80
+    - name: Material003
+      number: 5
+      probability: 70
+    - name: Material003
+      number: 3
+      probability: 90
+    - name: Material003
+      number: 2
+      probability: 90
+    - name: Material000
+      number: 1
+      probability: 100
+    - name: Material000
+      number: 3
+      probability: 100
+    - name: Material000
+      number: 2
+      probability: 80
+  - ID: Quest008
+    Name: "\u30AA\u30FC\u30EB\u30B9\u30BF\u30FC\u30BA"
+    Clear: 0
+    Failure: 0
+    Field: 1
+    TargetName:
+    - name: T-rex
+      number: 1
+    - name: Wolf
+      number: 1
+    - name: Dodo
+      number: 1
+    - name: Deer
+      number: 1
+    - name: Rhino
+      number: 1
+    OtherName:
+    - name: T-rex
+      number: 1
+    - name: Wolf
+      number: 4
+    - name: Dodo
+      number: 4
+    - name: Deer
+      number: 4
+    - name: Rhino
+      number: 4
+    QuestRewardDatas:
+    - name: Material005
+      number: 3
+      probability: 100
+    - name: Material005
+      number: 2
+      probability: 98
+    - name: Material005
+      number: 1
+      probability: 80
+    - name: Material003
+      number: 5
+      probability: 70
+    - name: Material003
+      number: 3
+      probability: 90
+    - name: Material003
+      number: 2
+      probability: 90
+    - name: Material000
+      number: 1
+      probability: 100
+    - name: Material000
+      number: 3
+      probability: 100
+    - name: Material000
+      number: 2
+      probability: 80

@@ -9,9 +9,9 @@ public class UIPoach : UIBase
     private int _addNumber;
     private void Start()
     {
-        ItemIconList[(int)IconType.TypeSelect].SetIcondata(UIManager.Instance.UIPresetData.Dictionary["IP_TypeSelect"]);
-        ItemIconList[(int)IconType.ItemSelect].SetIcondata(UIManager.Instance.UIPresetData.Dictionary["IP_ItemSelect"]);
-        ItemIconList[(int)IconType.Confirmation].SetIcondata(UIManager.Instance.UIPresetData.Dictionary["Confirmation"]);
+        ItemIconList[(int)IconType.TypeSelect].SetIcondata(UISoundManager.Instance.UIPresetData.Dictionary["IP_TypeSelect"]);
+        ItemIconList[(int)IconType.ItemSelect].SetIcondata(UISoundManager.Instance.UIPresetData.Dictionary["IP_ItemSelect"]);
+        ItemIconList[(int)IconType.Confirmation].SetIcondata(UISoundManager.Instance.UIPresetData.Dictionary["Confirmation"]);
         _currentState = new Close();
         _currentState.OnEnter(this, null);
     }
@@ -20,13 +20,13 @@ public class UIPoach : UIBase
 
         public override void OnEnter(UIBase owner, UIStateBase prevState)
         {
-            UIManager.Instance._player.IsAction = true;
+            UISoundManager.Instance._player.IsAction = true;
         }
         public override void OnMenu(UIBase owner)
         {
-            if (!UIManager.Instance._player.IsAction) return;
-            UIManager.Instance._player.IsAction = false;
-            UIManager.Instance.PlayDecisionSE();
+            if (!UISoundManager.Instance._player.IsAction) return;
+            UISoundManager.Instance._player.IsAction = false;
+            UISoundManager.Instance.PlayDecisionSE();
             owner.ChangeState<FirstSlect>();
         }
     }
@@ -52,7 +52,7 @@ public class UIPoach : UIBase
         }
         public override void OnProceed(UIBase owner)
         {
-            UIManager.Instance.PlayDecisionSE();
+            UISoundManager.Instance.PlayDecisionSE();
             owner.ItemIconList[(int)IconType.TypeSelect].Buttons[owner.ItemIconList[(int)IconType.TypeSelect].CurrentNunber].GetComponent<Button>().onClick.Invoke();
         }
         public override void OnBack(UIBase owner)
@@ -61,7 +61,7 @@ public class UIPoach : UIBase
         }
         public override void OnUpdate(UIBase owner)
         {
-            owner.ItemIconList[(int)IconType.TypeSelect].Select(UIManager.Instance.InputSelection.ReadValue<Vector2>());
+            owner.ItemIconList[(int)IconType.TypeSelect].Select(UISoundManager.Instance.InputSelection.ReadValue<Vector2>());
             Debug.Log("UIStateBase_FirstSlect");
         }
     }
@@ -83,12 +83,12 @@ public class UIPoach : UIBase
         }
         public override void OnUpdate(UIBase owner)
         {
-            owner.ItemIconList[(int)IconType.ItemSelect].Select(UIManager.Instance.InputSelection.ReadValue<Vector2>());
+            owner.ItemIconList[(int)IconType.ItemSelect].Select(UISoundManager.Instance.InputSelection.ReadValue<Vector2>());
             Debug.Log("ItemSlect_SecondSelect");
         }
         public override void OnProceed(UIBase owner)
         {
-            UIManager.Instance.PlayDecisionSE();
+            UISoundManager.Instance.PlayDecisionSE();
             owner.ChangeState<UIChange>();
         }
         public override void OnBack(UIBase owner)
@@ -110,7 +110,7 @@ public class UIPoach : UIBase
         public override void OnUpdate(UIBase owner)
         {
             Debug.Log("UI変更ステート");
-            _itemIcon.Select(UIManager.Instance.InputSelection.ReadValue<Vector2>());
+            _itemIcon.Select(UISoundManager.Instance.InputSelection.ReadValue<Vector2>());
 
         }
         public override void OnBack(UIBase owner)
@@ -120,7 +120,7 @@ public class UIPoach : UIBase
         }
         public override void OnProceed(UIBase owner)
         {
-            UIManager.Instance.PlayDecisionSE();
+            UISoundManager.Instance.PlayDecisionSE();
             //お互いのUI座標を入れ替える
             var selectButton = _itemIcon.Buttons[_selectionNumber].GetComponent<ItemButton>();
             var currentButton = _itemIcon.Buttons[_itemIcon.CurrentNunber].GetComponent<ItemButton>();
@@ -186,6 +186,8 @@ public class UIPoach : UIBase
             itemIcon = owner.ItemIconList[(int)IconType.Confirmation];
             addNum = owner.GetComponent<UIPoach>()._addNumber;
             addID = owner.GetComponent<UIPoach>()._addItemID;
+            Debug.Log(owner.GetComponent<UIPoach>()._addItemID + "    _addItemID");
+            if (addID == null) return;
             time = 1;
             var data = itemIcon.IconData;
             Debug.Log(addNum);
@@ -246,14 +248,14 @@ public class UIPoach : UIBase
         {
             if (itemIcon.Buttons.Count > 0)
             {
-                itemIcon.Select(UIManager.Instance.InputSelection.ReadValue<Vector2>());
+                itemIcon.Select(UISoundManager.Instance.InputSelection.ReadValue<Vector2>());
             }
         }
         public override void OnProceed(UIBase owner)
         {
             if (itemIcon.Buttons.Count > 0)
             {
-                UIManager.Instance.PlayDecisionSE();
+                UISoundManager.Instance.PlayDecisionSE();
                 itemIcon.Buttons[itemIcon.CurrentNunber].GetComponent<Button>().onClick.Invoke();
             }
         }
@@ -269,7 +271,7 @@ public class UIPoach : UIBase
         public override void OnEnter(UIBase owner, UIStateBase prevState)
         {
             itemIcon = owner.ItemIconList[(int)IconType.ItemSelect];
-            UIManager.Instance._player.IsAction = false;
+            UISoundManager.Instance._player.IsAction = false;
             var list = itemIcon.CreateButton();
             foreach (var item in GameManager.Instance.MaterialDataList.Dictionary)
             {
@@ -287,16 +289,16 @@ public class UIPoach : UIBase
         }
         public override void OnExit(UIBase owner, UIStateBase nextState)
         {
-            UIManager.Instance._player.IsAction = true;
+            UISoundManager.Instance._player.IsAction = true;
             itemIcon.DeleteButton();
         }
         public override void OnUpdate(UIBase owner)
         {
-            itemIcon.Select(UIManager.Instance.InputSelection.ReadValue<Vector2>());
+            itemIcon.Select(UISoundManager.Instance.InputSelection.ReadValue<Vector2>());
         }
         public override void OnProceed(UIBase owner)
         {
-            UIManager.Instance.PlayDecisionSE();
+            UISoundManager.Instance.PlayDecisionSE();
             var OWNER = owner.GetComponent<UIPoach>();
             var icon = itemIcon.Buttons[itemIcon.CurrentNunber].GetComponent<ItemButton>();
             MaterialDataList materialList = GameManager.Instance.MaterialDataList;
@@ -414,12 +416,13 @@ public class UIPoach : UIBase
         {
             if (materialdata.Dictionary[ID].PoachHoldNumber > 0)
             {
-                //上限まで持っている
+                //上限まで持っている 
                 if (materialdata.Dictionary[ID].PoachHoldNumber == materialdata.Dictionary[ID].PoachStackNumber)
                 {
                     returnValue = -3;
                     _addNumber = returnValue;
-                    Debug.Log(_addNumber);
+                    Debug.Log(_addNumber+"   "+ID);
+                    _addItemID = ID;
                     ChangeState<AddItem>();
                     return returnValue;
                 }

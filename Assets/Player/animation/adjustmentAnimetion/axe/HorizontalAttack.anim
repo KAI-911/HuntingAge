@@ -49576,6 +49576,14 @@ AnimationClip:
     floatParameter: 0
     intParameter: 6
     messageOptions: 0
+  - time: 0.4
+    functionName: OnPlaySE
+    data: 
+    objectReferenceParameter: {fileID: 8504682689478910861, guid: eb53638e986fba34183f515464d80ff0,
+      type: 3}
+    floatParameter: 0
+    intParameter: 0
+    messageOptions: 0
   - time: 0.6
     functionName: OnAnimationEvent
     data: Change
