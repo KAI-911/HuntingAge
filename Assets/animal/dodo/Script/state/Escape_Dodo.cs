@@ -7,9 +7,15 @@ public class Escape_Dodo : StateBase_Dodo
     private Vector3 _escapePos;
     private RunOnce _runOnce;
     float _time;
-    
+    float speed = 2.5f;
+    float defaultSpeed;
+
     public override void OnEnter(Dodo owner, StateBase_Dodo prevState)
     {
+        defaultSpeed = owner.NavMeshAgent.speed;
+        //ì¶Ç∞ÇÈë¨ìxÇ…ïœçX
+        owner.NavMeshAgent.speed = speed;
+
         owner.Animator.SetInteger("AniState", (int)State.Escape);
         owner.Animator.Play("escape", 0, Random.Range(0f, 1f));
         float nearDis = float.MaxValue;

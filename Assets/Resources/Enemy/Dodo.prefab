@@ -1188,7 +1188,7 @@ NavMeshAgent:
   m_Enabled: 1
   m_AgentTypeID: 0
   m_Radius: 1
-  m_Speed: 2
+  m_Speed: 0.8
   m_Acceleration: 8
   avoidancePriority: 50
   m_AngularSpeed: 120
@@ -2388,10 +2388,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _imagePrefab: {fileID: 0}
+  _targetChecker: {fileID: 0}
+  _image: {fileID: 0}
   _spritePrefab: {fileID: 0}
   _text: 
   _itemHolder: {fileID: 1022126596806457431}
   _getItemNumber: 2
+  _collectableTimes: 3
+  _repopTime: 20
   _ID: Meet
 --- !u!114 &1022126596806457431
 MonoBehaviour:
@@ -2414,6 +2418,7 @@ MonoBehaviour:
   - Meet
   - Stone
   - Vine
+  - Fur
   values:
   - _imagePrefab: {fileID: 5541608107631814696, guid: 242c96c79d9b830449b003f68433f768,
       type: 3}
@@ -2443,6 +2448,10 @@ MonoBehaviour:
       type: 3}
     ID: Material006
     Icon: {fileID: 21300000, guid: 9f48cad1bf3b45a42b3508943181ebe1, type: 3}
+  - _imagePrefab: {fileID: 5541608107631814696, guid: 242c96c79d9b830449b003f68433f768,
+      type: 3}
+    ID: Material007
+    Icon: {fileID: 21300000, guid: d0e00c93c80e5bc46a5516f604666827, type: 3}
   modifyValues: 0
 --- !u!1 &6229864441927216852
 GameObject:

@@ -7,8 +7,14 @@ public class Wandering_Rhino : StateBase_Rhino
     private Vector3 target;
     private RunOnce once = new RunOnce();
     int waitTime;
+    float speed = 1.5f;
+    float defaultSpeed;
+
     public override void OnEnter(Rhino owner, StateBase_Rhino prevState)
     {
+        defaultSpeed = owner.NavMeshAgent.speed;
+        owner.NavMeshAgent.speed = speed;
+
         owner.Animator.SetInteger("AniState", (int)State.Wandering);
         while (true)//•Ê‚ÌêŠ‚ÖˆÚ“®
         {
@@ -34,6 +40,7 @@ public class Wandering_Rhino : StateBase_Rhino
         if (owner.ReceivedAttackCheck()) return;
         if (owner.Search())
         {
+            owner.NavMeshAgent.speed = defaultSpeed;
             owner.ChangeState<Move_Rhino>();
             return;
         }
