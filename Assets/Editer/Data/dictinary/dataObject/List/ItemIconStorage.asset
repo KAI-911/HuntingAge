@@ -1,0 +1,163 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: adaf2a536f985c34da66e3cf8429ebc3, type: 3}
+  m_Name: ItemIconStorage
+  m_EditorClassIdentifier: 
+  keys:
+  - IP_TypeSelect
+  - IP_ItemSelect
+  - IB_ItemSelect
+  - Confirmation
+  - BlacksmithButton
+  - IB_SubMenu
+  - MaterialList
+  values:
+  - _leftTopPos: {x: -600, y: 300}
+    _padding: 10
+    _tableSize: {x: 1, y: 1}
+    _canBeChanged: 1
+    _buttonBack: 1
+    _textFlg: 0
+    _buttonPrefab: {fileID: 1403004829627007043, guid: 446577f06a189c14488ef6b7845ad21c,
+      type: 3}
+    _buttonBackPrefab: {fileID: 4567105175149944347, guid: f7ce8ff705927a7488534fa792a126fe,
+      type: 3}
+    _textPrefab: {fileID: 9123999925664973099, guid: 7e845aabbef9588409138ba440dc835e,
+      type: 3}
+    _textData:
+      fontSize: 15
+      autoFontSize: 1
+      text: "\u30E1\u30CB\u30E5\u30FC"
+      color: {r: 1, g: 1, b: 1, a: 1}
+      hight: 30
+      margin: 10
+      textAnchor: 4
+  - _leftTopPos: {x: -600, y: 300}
+    _padding: 10
+    _tableSize: {x: 1, y: 5}
+    _canBeChanged: 0
+    _buttonBack: 1
+    _textFlg: 0
+    _buttonPrefab: {fileID: 2147113997115738069, guid: e0bb1dc90176c9c488618f85bd968cfa,
+      type: 3}
+    _buttonBackPrefab: {fileID: 4567105175149944347, guid: f7ce8ff705927a7488534fa792a126fe,
+      type: 3}
+    _textPrefab: {fileID: 9123999925664973099, guid: 7e845aabbef9588409138ba440dc835e,
+      type: 3}
+    _textData:
+      fontSize: 15
+      autoFontSize: 1
+      text: "\u30A2\u30A4\u30C6\u30E0\u30DD\u30FC\u30C1"
+      color: {r: 0.9622642, g: 0.9622642, b: 0.9622642, a: 1}
+      hight: 30
+      margin: 10
+      textAnchor: 4
+  - _leftTopPos: {x: 50, y: 300}
+    _padding: 10
+    _tableSize: {x: 5, y: 5}
+    _canBeChanged: 1
+    _buttonBack: 1
+    _textFlg: 0
+    _buttonPrefab: {fileID: 2147113997115738069, guid: e0bb1dc90176c9c488618f85bd968cfa,
+      type: 3}
+    _buttonBackPrefab: {fileID: 4567105175149944347, guid: f7ce8ff705927a7488534fa792a126fe,
+      type: 3}
+    _textPrefab: {fileID: 9123999925664973099, guid: 7e845aabbef9588409138ba440dc835e,
+      type: 3}
+    _textData:
+      fontSize: 15
+      autoFontSize: 1
+      text: "\u30A2\u30A4\u30C6\u30E0\u30DC\u30C3\u30AF\u30B9"
+      color: {r: 1, g: 1, b: 1, a: 1}
+      hight: 30
+      margin: 10
+      textAnchor: 4
+  - _leftTopPos: {x: -205, y: 100}
+    _padding: 10
+    _tableSize: {x: 1, y: 2}
+    _canBeChanged: 0
+    _buttonBack: 1
+    _textFlg: 1
+    _buttonPrefab: {fileID: 1403004829627007043, guid: 446577f06a189c14488ef6b7845ad21c,
+      type: 3}
+    _buttonBackPrefab: {fileID: 4567105175149944347, guid: f7ce8ff705927a7488534fa792a126fe,
+      type: 3}
+    _textPrefab: {fileID: 9123999925664973099, guid: 7e845aabbef9588409138ba440dc835e,
+      type: 3}
+    _textData:
+      fontSize: 15
+      autoFontSize: 1
+      text: "\u78BA\u8A8D"
+      color: {r: 1, g: 1, b: 1, a: 1}
+      hight: 60
+      margin: 10
+      textAnchor: 4
+  - _leftTopPos: {x: -600, y: 280}
+    _padding: 10
+    _tableSize: {x: 2, y: 1}
+    _canBeChanged: 0
+    _buttonBack: 1
+    _textFlg: 1
+    _buttonPrefab: {fileID: 1403004829627007043, guid: ac45662ca2cc1624f925db70b55c9b3e,
+      type: 3}
+    _buttonBackPrefab: {fileID: 4567105175149944347, guid: f7ce8ff705927a7488534fa792a126fe,
+      type: 3}
+    _textPrefab: {fileID: 9123999925664973099, guid: 7e845aabbef9588409138ba440dc835e,
+      type: 3}
+    _textData:
+      fontSize: 15
+      autoFontSize: 1
+      text: 
+      color: {r: 1, g: 1, b: 1, a: 1}
+      hight: 60
+      margin: 10
+      textAnchor: 4
+  - _leftTopPos: {x: 0, y: 0}
+    _padding: 10
+    _tableSize: {x: 2, y: 1}
+    _canBeChanged: 0
+    _buttonBack: 1
+    _textFlg: 0
+    _buttonPrefab: {fileID: 1403004829627007043, guid: 446577f06a189c14488ef6b7845ad21c,
+      type: 3}
+    _buttonBackPrefab: {fileID: 4567105175149944347, guid: f7ce8ff705927a7488534fa792a126fe,
+      type: 3}
+    _textPrefab: {fileID: 9123999925664973099, guid: 7e845aabbef9588409138ba440dc835e,
+      type: 3}
+    _textData:
+      fontSize: 15
+      autoFontSize: 0
+      text: "\u30B5\u30D6\u30E1\u30CB\u30E5\u30FC"
+      color: {r: 1, g: 1, b: 1, a: 1}
+      hight: 30
+      margin: 10
+      textAnchor: 4
+  - _leftTopPos: {x: 100, y: 200}
+    _padding: 10
+    _tableSize: {x: 1, y: 1}
+    _canBeChanged: 0
+    _buttonBack: 1
+    _textFlg: 1
+    _buttonPrefab: {fileID: 1403004829627007043, guid: ac45662ca2cc1624f925db70b55c9b3e,
+      type: 3}
+    _buttonBackPrefab: {fileID: 4567105175149944347, guid: f7ce8ff705927a7488534fa792a126fe,
+      type: 3}
+    _textPrefab: {fileID: 9123999925664973099, guid: 7e845aabbef9588409138ba440dc835e,
+      type: 3}
+    _textData:
+      fontSize: 15
+      autoFontSize: 1
+      text: 
+      color: {r: 1, g: 1, b: 1, a: 1}
+      hight: 60
+      margin: 10
+      textAnchor: 4

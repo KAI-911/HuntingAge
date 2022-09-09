@@ -134,7 +134,7 @@ public class UIItemView : UIBase
                             {
                                 if (!data.Use) return;
                                 data.Use = false;
-                                status.Attack -= (int)data.UpValue;
+                                status.Attack =UISoundManager.Instance._player.StatusData.Attack;
                                 GameManager.Instance.Player.Status = status;
                                 GameManager.Instance.ItemDataList.Values[index] = data;
                                 GameManager.Instance.ItemDataList.DesrializeDictionary();
