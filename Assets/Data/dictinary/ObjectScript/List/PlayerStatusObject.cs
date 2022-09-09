@@ -9,4 +9,5 @@ public class PlayerStatusObject : ScriptableObject
     public int MaxSP;
     public int Attack;
     public int Defense;
+    public string Wepon;
 }

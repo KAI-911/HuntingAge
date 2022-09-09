@@ -6,8 +6,8 @@ using UnityEngine.UI;
 public class PopImage : MonoBehaviour
 {
     [SerializeField] protected GameObject _imagePrefab;
-    protected TargetChecker _targetChecker;
-    protected GameObject _image;
+    [SerializeField] protected TargetChecker _targetChecker;
+    [SerializeField] protected GameObject _image;
     [SerializeField] Sprite _spritePrefab;
     [SerializeField] string _text;
 

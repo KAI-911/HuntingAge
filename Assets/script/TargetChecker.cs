@@ -26,6 +26,7 @@ public class TargetChecker : MonoBehaviour
     {
         if (other.gameObject.tag == _maskTag)
         {
+            Debug.Log("in");
             _triggerHit = true;
             _collider = other;
         }

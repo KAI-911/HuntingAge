@@ -84,6 +84,7 @@ public partial class Player : Singleton<Player>
         _inputMove = new InputControls();
         _currentState = new LocomotionState();
         _currentState.OnEnter(this, null);
+        _weaponID = _statusData.Wepon;
         base.Awake();
     }
     private void OnEnable()
@@ -121,6 +122,7 @@ public partial class Player : Singleton<Player>
 
     void Update()
     {
+        Debug.Log(_currentState.GetType());
         _currentState.OnUpdate(this);
         _animator.SetBool("IsGround", _groundChecker.IsGround());
         _animator.SetInteger("HP", _status.HP);
@@ -165,7 +167,7 @@ public partial class Player : Singleton<Player>
             _collectionScript = other.GetComponent<CollectionScript>();
             _collectionScript.CreateImage();
         }
-        if (other.CompareTag("PopImage"))
+        else if (other.CompareTag("PopImage"))
         {
             if (_popImage != null)
             {
@@ -356,13 +358,19 @@ public partial class Player : Singleton<Player>
         _weapon = Instantiate(Resources.Load(path), _weaponParent.transform.position, _weaponParent.transform.rotation) as GameObject;
         _weapon.transform.SetParent(_weaponParent.transform);
         _weapon.transform.localScale = new Vector3(1, 1, 1);
+        _status.Attack = GameManager.Instance.WeaponDataList.Dictionary[weponID].AttackPoint;
         if (_weaponID.Contains("weapon1"))
         {
             _animator.SetFloat("wepon", 0);
         }
-        else if(_weaponID.Contains("weapon2"))
+        else if (_weaponID.Contains("weapon2"))
         {
             _animator.SetFloat("wepon", 1);
+        }
+        if (weponID != _statusData.Wepon)
+        {
+            _statusData.Wepon = weponID;
+            _statusData.DesrializeDictionary();
         }
     }
     public void DeleteWepon()

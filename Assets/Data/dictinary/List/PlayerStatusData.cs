@@ -9,12 +9,14 @@ public class PlayerStatusData : MonoBehaviour, ISerializationCallbackReceiver
     [SerializeField] int _maxSP;
     [SerializeField] int _attack;
     [SerializeField] int _defense;
+    [SerializeField] string _wepon;
     public bool modifyValues;
 
     public int MaxHP { get => _maxHP; }
     public int MaxSP { get => _maxSP; }
     public int Attack { get => _attack;}
     public int Defense { get => _defense;  }
+    public string Wepon { get => _wepon; set => _wepon = value; }
 
     private void Awake()
     {
@@ -22,6 +24,7 @@ public class PlayerStatusData : MonoBehaviour, ISerializationCallbackReceiver
         _maxSP = DictionaryData.MaxSP;
         _attack = DictionaryData.Attack;
         _defense = DictionaryData.Defense;
+        _wepon = DictionaryData.Wepon;
     }
     public void OnBeforeSerialize()
     {
@@ -31,6 +34,8 @@ public class PlayerStatusData : MonoBehaviour, ISerializationCallbackReceiver
             _maxSP = DictionaryData.MaxSP;
             _attack = DictionaryData.Attack;
             _defense = DictionaryData.Defense;
+            _wepon = DictionaryData.Wepon;
+
         }
     }
 
@@ -45,6 +50,7 @@ public class PlayerStatusData : MonoBehaviour, ISerializationCallbackReceiver
         DictionaryData.MaxSP = _maxSP;
         DictionaryData.Attack = _attack;
         DictionaryData.Defense = _defense;
+        DictionaryData.Wepon = _wepon;
 
         modifyValues = false;
     }
@@ -57,5 +63,6 @@ public class PlayerStatusData : MonoBehaviour, ISerializationCallbackReceiver
         Debug.Log(_maxSP);
         Debug.Log(_attack);
         Debug.Log(_defense);
+        Debug.Log(_wepon);
     }
 }

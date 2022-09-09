@@ -26,17 +26,21 @@ public class FallState : PlayerStateBase
 
             if (owner.GroundChecker.IsGround())
             {
-                _lockFlg = true;
-                float _fallLength = _fallStartPosY - owner.transform.position.y;
-                Debug.Log(_fallLength);
-                if (_fallLength > owner.FallLength)
-                {
-                    owner.Animator.SetInteger("AniState", (int)PlayerAnimationState.Landing);
-                }
-                else
-                {
-                    owner.ChangeState<LocomotionState>();
-                }
+                owner.ChangeState<LocomotionState>();
+                return;
+                //_lockFlg = true;
+                //float _fallLength = _fallStartPosY - owner.transform.position.y;
+                //Debug.Log(_fallLength);
+                //if (_fallLength > owner.FallLength)
+                //{
+                //    Debug.Log("着地");
+                //    owner.Animator.SetInteger("AniState", (int)PlayerAnimationState.Landing);
+                //}
+                //else
+                //{
+                //    Debug.Log("すぐに移動できる");
+                //    owner.ChangeState<LocomotionState>();
+                //}
             }
             owner.LookAt();
         }
@@ -44,10 +48,11 @@ public class FallState : PlayerStateBase
 
     public override void OnAnimationEvent(Player owner, AnimationEvent animationEvent)
     {
-        if (animationEvent.stringParameter == "End")
-        {
-            owner.ChangeState<LocomotionState>();
-        }
+        //if (animationEvent.stringParameter == "End")
+        //{
+        //    Debug.Log("ディレイが終わってlocomotionにいどう");
+        //    owner.ChangeState<LocomotionState>();
+        //}
     }
 
 }

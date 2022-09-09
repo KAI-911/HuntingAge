@@ -278,6 +278,9 @@ public struct ItemData
     /// ¶Y‚É•K—v‚È‘fŞ
     /// </summary>
     public List<ItemNeedMaterial> NeedMaterialLst;
+
+    //Œø‰Ê‚Ìà–¾•¶
+    public string FlavorText;
 }
 
 public enum ItemType
