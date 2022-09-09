@@ -93,6 +93,7 @@ public class UIItemBox : UIBase
                 owner.GetComponent<UIItemBox>().UISet();
             }
 
+
         }
         public override void OnExit(UIBase owner, UIStateBase nextState)
         {
