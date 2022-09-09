@@ -20,7 +20,7 @@ public class Idle_Deer : StateBase_Deer
 
         if (owner.Search())
         {
-            owner.ChangeState<Move_Deer>();
+            owner.ChangeState<Escape_Deer>();
             return;
         }
 

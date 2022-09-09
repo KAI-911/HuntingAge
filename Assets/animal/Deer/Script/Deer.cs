@@ -14,6 +14,7 @@ public class Deer : Enemy
     }
     void Update()
     {
+        Debug.Log(_currentState.GetType());
         Animator.SetInteger("HP", Status.HP);
         _currentState.OnUpdate(this);
 

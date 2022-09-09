@@ -30,7 +30,7 @@ public class Move_Trex : StateBase_Trex
             owner.ChangeState<Idle_Trex>();
         }
 
-        if (owner.Search() == false)
+        if (owner.TargetChecker(TargetCheckerType.Search) == false)
         {
             owner.ChangeState<Wandering_Trex>();
             return;

@@ -144,9 +144,7 @@ MonoBehaviour:
     TargetName:
     - name: Deer
       number: 1
-    OtherName:
-    - name: Deer
-      number: 9
+    OtherName: []
     QuestRewardDatas: []
   - ID: Quest007
     Name: Quest007

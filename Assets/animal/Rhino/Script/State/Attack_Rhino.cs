@@ -4,11 +4,22 @@ using UnityEngine;
 
 public class Attack_Rhino : StateBase_Rhino
 {
+    TargetCheckerType type = TargetCheckerType.Non;
+
+    float speed;
+    float defaultSpeed;
+
     public override void OnEnter(Rhino owner, StateBase_Rhino prevState)
     {
         owner.Animator.SetInteger("AniState", (int)State.Attack);
 
-        TargetCheckerType type = TargetCheckerType.Non;
+        defaultSpeed = owner.NavMeshAgent.speed;
+
+        Debug.Log("çUåÇîªíË");
+        foreach (var item in owner.TargetChecker())
+        {
+            Debug.Log(item);
+        }
         foreach (var item in owner.TargetChecker())
         {
             if (item == TargetCheckerType.Search) continue;
@@ -21,12 +32,13 @@ public class Attack_Rhino : StateBase_Rhino
             case TargetCheckerType.Gore:
                 owner.HitReceiver.HitReaction = HitReaction.middleReaction;
                 break;
+            case TargetCheckerType.Rush:
+                owner.HitReceiver.HitReaction = HitReaction.middleReaction;
+                break;
             default:
                 owner.HitReceiver.HitReaction = HitReaction.nonReaction;
                 break;
         }
-
-
     }
     public override void OnExit(Rhino owner, StateBase_Rhino nextState)
     {
@@ -34,7 +46,21 @@ public class Attack_Rhino : StateBase_Rhino
     }
     public override void OnUpdate(Rhino owner)
     {
-        owner.NavMeshAgent.destination = owner.transform.position;
+        if (type == TargetCheckerType.Rush)
+        {
+            if ((owner.NavMeshAgent.destination - owner.transform.position).sqrMagnitude <= (owner.NavMeshAgent.stoppingDistance * owner.NavMeshAgent.stoppingDistance))
+            {
+                owner.HitReceiver.ChangeAttackFlg(PartType.head);
+                owner.Animator.SetInteger("AttackType", (int)TargetCheckerType.Gore);
+                type = TargetCheckerType.Gore;
+                owner.NavMeshAgent.speed = defaultSpeed;
+            }
+        }
+        else
+        {
+            Debug.Log("âøílè„Ç∞");
+            owner.NavMeshAgent.destination = owner.transform.position;
+        }
         owner.LookToTarget((int)(owner.RotationAngle * Time.deltaTime));
 
     }
@@ -52,6 +78,16 @@ public class Attack_Rhino : StateBase_Rhino
         if (animationEvent.stringParameter == "End")
         {
             owner.ChangeState<Move_Rhino>();
+        }
+
+        if (animationEvent.stringParameter == "Ready")
+        {
+            var pos = UISoundManager.Instance._player.transform.position;
+            pos += (pos - owner.transform.position).normalized * owner.NavMeshAgent.stoppingDistance * 3.0f;
+            owner.NavMeshAgent.destination = pos;
+
+            speed = 10.0f;
+            owner.NavMeshAgent.speed = speed;
         }
     }
     public override void OnCollisionStay(Rhino owner, Collision collision)

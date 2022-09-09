@@ -30,7 +30,7 @@ public class Move_Deer : StateBase_Deer
             owner.ChangeState<Idle_Deer>();
         }
 
-        if (owner.Search() == false)
+        if (owner.TargetChecker(TargetCheckerType.Search) == false)
         {
             owner.ChangeState<Wandering_Deer>();
             return;

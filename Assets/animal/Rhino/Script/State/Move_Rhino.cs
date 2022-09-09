@@ -30,7 +30,7 @@ public class Move_Rhino : StateBase_Rhino
             owner.ChangeState<Idle_Rhino>();
         }
 
-        if (owner.Search() == false)
+        if (owner.TargetChecker(TargetCheckerType.Search) == false)
         {
             owner.ChangeState<Wandering_Rhino>();
             return;
