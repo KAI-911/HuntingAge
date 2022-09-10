@@ -27,7 +27,7 @@ MonoBehaviour:
     IconName: Icon/Stone_UI
     BoxStackNumber: 9999
     BoxUINumber: 8
-    BoxHoldNumber: 1012
+    BoxHoldNumber: 3
     PoachStackNumber: 99
     PoachUINumber: 0
     PoachHoldNumber: 0
@@ -36,7 +36,7 @@ MonoBehaviour:
     IconName: Icon/Wood_UI
     BoxStackNumber: 9999
     BoxUINumber: 5
-    BoxHoldNumber: 1000
+    BoxHoldNumber: 956
     PoachStackNumber: 99
     PoachUINumber: 2
     PoachHoldNumber: 0
@@ -54,7 +54,7 @@ MonoBehaviour:
     IconName: Icon/Bone_UI
     BoxStackNumber: 9999
     BoxUINumber: 1
-    BoxHoldNumber: 1023
+    BoxHoldNumber: 1020
     PoachStackNumber: 99
     PoachUINumber: 4
     PoachHoldNumber: 0
@@ -72,7 +72,7 @@ MonoBehaviour:
     IconName: Icon/Meat_UI
     BoxStackNumber: 9999
     BoxUINumber: 3
-    BoxHoldNumber: 29
+    BoxHoldNumber: 5
     PoachStackNumber: 99
     PoachUINumber: 3
     PoachHoldNumber: 0

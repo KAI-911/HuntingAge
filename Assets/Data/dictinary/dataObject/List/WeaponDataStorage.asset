@@ -48,7 +48,7 @@ MonoBehaviour:
     IconPass: Icon/Axe_UI
     BoxUINumber: 1
     CreatableLevel: 2
-    BoxPossession: 0
+    BoxPossession: 1
     AttackPoint: 100
     WeaponType: 0
     ProductionNeedMaterialLst:
@@ -88,7 +88,7 @@ MonoBehaviour:
     IconPass: Icon/Spear_wood_UI
     BoxUINumber: 3
     CreatableLevel: 3
-    BoxPossession: 0
+    BoxPossession: 1
     AttackPoint: 50
     WeaponType: 1
     ProductionNeedMaterialLst:
@@ -97,7 +97,7 @@ MonoBehaviour:
     EnhancementNeedMaterialLst:
     - materialID: Material001
       requiredCount: 3
-    - materialID: Material001
+    - materialID: Material000
       requiredCount: 2
   - ID: weapon202
     EnhancementID: weapon203
