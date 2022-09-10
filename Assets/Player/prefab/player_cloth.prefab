@@ -3500,7 +3500,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_BindingMode: 4
-  m_FollowOffset: {x: 0, y: 0.82, z: -6.95}
+  m_FollowOffset: {x: 0, y: 4.82, z: -9.42}
   m_XDamping: 1
   m_YDamping: 10
   m_ZDamping: 1
@@ -3520,7 +3520,7 @@ MonoBehaviour:
     m_LegacyHeadingDefinition: -1
     m_LegacyVelocityFilterStrength: -1
   m_XAxis:
-    Value: -141.73721
+    Value: -141.73723
     m_SpeedMode: 0
     m_MaxSpeed: 300
     m_AccelTime: 0.1
@@ -3627,7 +3627,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_BindingMode: 4
-  m_FollowOffset: {x: 0, y: 0.82, z: -6.95}
+  m_FollowOffset: {x: 0, y: 4.82, z: -9.42}
   m_XDamping: 1
   m_YDamping: 1
   m_ZDamping: 1
@@ -3647,7 +3647,7 @@ MonoBehaviour:
     m_LegacyHeadingDefinition: -1
     m_LegacyVelocityFilterStrength: -1
   m_XAxis:
-    Value: -141.73721
+    Value: -141.73723
     m_SpeedMode: 0
     m_MaxSpeed: 300
     m_AccelTime: 0.1
@@ -3799,7 +3799,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_BindingMode: 4
-  m_FollowOffset: {x: 0, y: 0.82, z: -6.95}
+  m_FollowOffset: {x: 0, y: 4.82, z: -9.42}
   m_XDamping: 1
   m_YDamping: 1
   m_ZDamping: 1
@@ -3819,7 +3819,7 @@ MonoBehaviour:
     m_LegacyHeadingDefinition: -1
     m_LegacyVelocityFilterStrength: -1
   m_XAxis:
-    Value: -141.73721
+    Value: -141.73723
     m_SpeedMode: 0
     m_MaxSpeed: 300
     m_AccelTime: 0.1
@@ -3891,8 +3891,8 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4833442073512086890}
-  m_LocalRotation: {x: 0.036324956, y: 0.000000059604645, z: 0.000000007450581, w: 0.99934006}
-  m_LocalPosition: {x: -0.0000014173938, y: -0.0000005340733, z: 0.00000171594}
+  m_LocalRotation: {x: 0.0181895, y: -0.000000059604645, z: -0.0000000037252903, w: 0.9998346}
+  m_LocalPosition: {x: -1.4210855e-14, y: -0.00000036470666, z: 0.00000011184011}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -4014,8 +4014,8 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4833442073679365379}
-  m_LocalRotation: {x: -0, y: 0.000000029802322, z: 0.000000011175871, w: 1}
-  m_LocalPosition: {x: -0.00000047246462, y: -0.00000017802442, z: 0.00000057198}
+  m_LocalRotation: {x: -0.018141486, y: -0, z: -0.000000014901161, w: 0.9998355}
+  m_LocalPosition: {x: -1.4210855e-14, y: -0.00000036470666, z: 0.00000011184011}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -4228,8 +4228,9 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4833442074418402083}
-  m_LocalRotation: {x: 0.01814146, y: 0.000000029802322, z: -0, w: 0.99983543}
-  m_LocalPosition: {x: -0.00000047246462, y: -0.00000017802442, z: 0.00000057198}
+  m_LocalRotation: {x: -0.000000016763806, y: -0.000000029802322, z: 0.0000000037252903,
+    w: 1}
+  m_LocalPosition: {x: 0.7367342, y: -0.48789045, z: -1.590874}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -4342,8 +4343,8 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4833442074856232027}
-  m_LocalRotation: {x: 0.04925787, y: 0.93403774, z: 0.14199668, w: -0.32401255}
-  m_LocalPosition: {x: 28.692778, y: 5.466666, z: 36.379944}
+  m_LocalRotation: {x: -0.05672448, y: 0.9136739, z: -0.13694534, w: -0.37845534}
+  m_LocalPosition: {x: 32.33332, y: 32.133682, z: 32.333424}
   m_LocalScale: {x: 10, y: 10, z: 10}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -4477,7 +4478,7 @@ MonoBehaviour:
         m_Calls: []
   m_LegacyBlendHint: 0
   m_YAxis:
-    Value: 0
+    Value: 0.5
     m_SpeedMode: 0
     m_MaxSpeed: 3
     m_AccelTime: 0.2
@@ -4501,7 +4502,7 @@ MonoBehaviour:
     m_LegacyHeadingDefinition: -1
     m_LegacyVelocityFilterStrength: -1
   m_XAxis:
-    Value: -141.73721
+    Value: -141.73723
     m_SpeedMode: 0
     m_MaxSpeed: 300
     m_AccelTime: 0.1
@@ -4879,7 +4880,7 @@ MonoBehaviour:
   _weaponID: weapon202
   _weaponParent: {fileID: 4833442074735011460}
   _startPos:
-  - scene: 0
+  - scene: 6
     pos:
     - {x: 10, y: 0, z: 0}
   - scene: 1
@@ -4891,7 +4892,7 @@ MonoBehaviour:
   - scene: 3
     pos:
     - {x: 10, y: 0, z: 0}
-  - scene: 6
+  - scene: 0
     pos:
     - {x: -50, y: 0, z: 50}
 --- !u!114 &1331165932923879210

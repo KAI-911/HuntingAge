@@ -37,9 +37,10 @@ public class kichen_varSato : UIBase
     void Start()
     {
         _count = new Count();
+        _itemExplanation = new ItemExplanation();
         ItemIconList[(int)IconType.Select].SetIcondata(UISoundManager.Instance.UIPresetData.Dictionary["BlacksmithButton"]);
+        ItemIconList[(int)IconType.Select].SetLeftTopPos(new Vector2(-600, 200));
         ItemIconList[(int)IconType.Confirmation].SetIcondata(UISoundManager.Instance.UIPresetData.Dictionary["Confirmation"]);
-        //↓要調整!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
         ItemIconList[(int)IconType.Needmaterial].SetIcondata(UISoundManager.Instance.UIPresetData.Dictionary["BlacksmithButton"]);
         ItemIconList[(int)IconType.Needmaterial].SetLeftTopPos(new Vector2(100, 200));
 
@@ -71,7 +72,7 @@ public class kichen_varSato : UIBase
         public override void OnEnter(UIBase owner, UIStateBase prevState)
         {
             UISoundManager.Instance._player.IsAction = false;
-
+            owner.GetComponent<kichen_varSato>()._itemExplanation.Delete();
             var UI = owner.ItemIconList[(int)IconType.Select];
             UI.SetText("アイテムをどこに送りますか？");
             UI.SetTable(new Vector2(2, 1));
@@ -182,6 +183,8 @@ public class kichen_varSato : UIBase
                 {
                     if (item.baseData.Name != name.text) continue;
                     owner.GetComponent<kichen_varSato>()._cleateItemID = item.baseData.ID;
+                    owner.GetComponent<kichen_varSato>()._itemExplanation.Set(item, owner);
+
                 }
                 ChangeNeedMatrialButtons(owner);
             }
@@ -247,7 +250,7 @@ public class kichen_varSato : UIBase
         public override void OnUpdate(UIBase owner)
         {
             Debug.Log("個数選択モード");
-            if(owner.GetComponent<kichen_varSato>()._count.CountObject==null)
+            if (owner.GetComponent<kichen_varSato>()._count.CountObject == null)
             {
                 owner.ChangeState<SelectMode>();
             }
@@ -425,7 +428,7 @@ public class kichen_varSato : UIBase
         public int Min { get => min; }
         public int Max { get => max; }
         public int Now { get => now; }
-        public GameObject CountObject { get => countObject;}
+        public GameObject CountObject { get => countObject; }
 
         /// <summary>
         /// カウント用のUIを作成から最大値の設定も行う
@@ -478,7 +481,7 @@ public class kichen_varSato : UIBase
         public void Delete()
         {
             if (countObject == null) return;
-                Destroy(countObject);
+            Destroy(countObject);
         }
         /// <summary>
         /// カウントアップダウン
@@ -534,7 +537,7 @@ public class kichen_varSato : UIBase
             //制作したアイテムがもてるかの確認
             if (toPoach)
             {
-                if (_ItemDic[id].baseData.PoachHoldNumber <= 0)
+                if (_ItemDic[id].baseData.PoachHoldNumber < 0)
                 {
                     //未使用の枠があるか確認----------------------------------------------
                     List<int> vs = new List<int>();
@@ -593,36 +596,60 @@ public class kichen_varSato : UIBase
     //アイコンや名前、効果（フレーバーテキスト）を管理するクラス
     public class ItemExplanation
     {
+        private GameObject Back;
         private GameObject Icon;
         private GameObject name;
         private GameObject effect;
-
+        private Vector2 _base;
         public void Set(ItemData itemData, UIBase owner)
         {
+            _base = new Vector2(150, -100);
+
+            if (Back == null) Back = Instantiate(Resources.Load("UI/Image3"), GameManager.Instance.ItemCanvas.Canvas.transform) as GameObject;
             //アイコン
             if (Icon == null) Icon = Instantiate(Resources.Load("UI/Image3"), GameManager.Instance.ItemCanvas.Canvas.transform) as GameObject;
-            //要位置調整!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-            Icon.GetComponent<RectTransform>().anchoredPosition = new Vector2(0, 0);
+            //名前
+            if (name == null) name = Instantiate(Resources.Load("UI/Text"), GameManager.Instance.ItemCanvas.Canvas.transform) as GameObject;
+            //説明文
+            if (effect == null) effect = Instantiate(Resources.Load("UI/Text"), GameManager.Instance.ItemCanvas.Canvas.transform) as GameObject;
+
+            Vector2 iconsize = new Vector2(100, 100);
+
+            float padding = 10;
+            //背景
+            var BackRet = Back.GetComponent<RectTransform>();
+            BackRet.pivot = new Vector2(0, 1);
+            BackRet.sizeDelta = new Vector2(400 + padding, 100 + padding);
+            BackRet.anchoredPosition = _base - new Vector2(iconsize.x, -iconsize.y) / 2;
+
+            //アイコン
+            var IconRet = Icon.GetComponent<RectTransform>();
+            IconRet.pivot = new Vector2(0.5f, 0.5f);
+            IconRet.anchoredPosition = _base - new Vector2(-padding / 2, padding / 2);
             Icon.GetComponent<Image>().sprite = Resources.Load<Sprite>(itemData.baseData.IconName);
 
             //名前
-            if (name == null) name = Instantiate(Resources.Load("UI/Image3"), GameManager.Instance.ItemCanvas.Canvas.transform) as GameObject;
-            //要位置調整!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-            name.GetComponent<RectTransform>().anchoredPosition = new Vector2(-50, 50);
-            //name.GetComponent<Image>().sprite = Resources.Load<Sprite>("背景を変えたければここにパスを書く");
-            name.GetComponentInChildren<Text>().text = itemData.baseData.Name;
+            var NameRet = name.GetComponent<RectTransform>();
+            NameRet.pivot = new Vector2(0, 0);
+            NameRet.sizeDelta = new Vector2(300, 50);
+            NameRet.anchoredPosition = _base + new Vector2((iconsize.x + padding) / 2, padding / 2);
+            name.GetComponent<Text>().text = itemData.baseData.Name;
+            name.GetComponent<Text>().color = new Color(1, 1, 1);
 
             //説明文
-            if (effect == null) effect = Instantiate(Resources.Load("UI/Image3"), GameManager.Instance.ItemCanvas.Canvas.transform) as GameObject;
-            //要位置調整!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-            effect.GetComponent<RectTransform>().anchoredPosition = new Vector2(-50, 100);
-            //name.GetComponent<Image>().sprite = Resources.Load<Sprite>("背景を変えたければここにパスを書く");
-            effect.GetComponentInChildren<Text>().text = itemData.FlavorText;
+            var EffectRet = effect.GetComponent<RectTransform>();
+            EffectRet.pivot = new Vector2(0, 1);
+            EffectRet.sizeDelta = new Vector2(300, 50);
+            EffectRet.anchoredPosition = _base + new Vector2((iconsize.x+padding) / 2, padding / 2);
+            effect.GetComponent<Text>().text = itemData.FlavorText;
+            effect.GetComponent<Text>().color = new Color(1, 1, 1);
 
         }
 
         public void Delete()
         {
+            //背景
+            if (Back != null) Destroy(Back);
             //アイコン
             if (Icon != null) Destroy(Icon);
             //名前
