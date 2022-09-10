@@ -10,8 +10,11 @@ public class Blacksmith : UIBase
 {
     //プレイヤーが近くまで来たか判断
     [SerializeField] TargetChecker _blacksmithChecker;
+    //ボタンの色設定
+    [SerializeField] Color _cantColor;
     //強化する武器のID
     string _createWeaponID;
+    //武器を製造するか強化するか
     enum Mode { create, Enhancement }
     enum IconType
     {
@@ -177,8 +180,13 @@ public class Blacksmith : UIBase
 
             for (int i = 0; i < _CreatableWeapon.Count; i++)
             {
-                ButtonUI.SetButtonText(i, _CreatableWeapon[i].Name);
                 int num = i;
+                ButtonUI.SetButtonText(i, _CreatableWeapon[i].Name);
+                if (GameManager.Instance.WeaponDataList.Production(_CreatableWeapon[num].Name, false) == 0)
+                {
+                    var image = ButtonUI.Buttons[num].GetComponent<Image>();
+                    image.color = owner.GetComponent<Blacksmith>()._cantColor;
+                }
                 ButtonUI.SetButtonOnClick(i, () =>
                 {
                     owner.GetComponent<Blacksmith>()._createWeaponID = _CreatableWeapon[num].ID;
@@ -257,10 +265,6 @@ public class Blacksmith : UIBase
                 });
             }
         }
-        public override void OnExit(UIBase owner, UIStateBase nextState)
-        {
-            //owner.ItemIconList[(int)IconType.TypeSelect].DeleteButton();
-        }
         public override void OnUpdate(UIBase owner)
         {
             owner.ItemIconList[(int)IconType.TypeSelect].Select(UISoundManager.Instance.InputSelection.ReadValue<Vector2>());
@@ -319,8 +323,8 @@ public class Blacksmith : UIBase
              {
                  UI.DeleteButton();
                  int count = -1;
-                 if (prevState.GetType() == typeof(EnhancementSelect)) count = GameManager.Instance.WeaponDataList.Enhancement(WeaponName);
-                 else if (prevState.GetType() == typeof(ProductionWeapon)) count = GameManager.Instance.WeaponDataList.Production(WeaponName);
+                 if (prevState.GetType() == typeof(EnhancementSelect)) count = GameManager.Instance.WeaponDataList.Enhancement(WeaponName,true);
+                 else if (prevState.GetType() == typeof(ProductionWeapon)) count = GameManager.Instance.WeaponDataList.Production(WeaponName, true);
 
                  var confUI = owner.ItemIconList[(int)IconType.Confirmation];
                  confUI.SetTable(new Vector2(1, 1));

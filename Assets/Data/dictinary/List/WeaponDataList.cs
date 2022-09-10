@@ -70,12 +70,11 @@ public class WeaponDataList : MonoBehaviour, ISerializationCallbackReceiver
     }
 
     [ContextMenu("Production")]
-    public int Production(string _ID)
+    public int Production(string _ID, bool _confirmation)
     {
         int index = keys.FindIndex(n => n.StartsWith(_ID));
         //Debug.Log(index);
         var data = values[index];
-        if (data.BoxPossession) return 1;
 
         int count = data.ProductionNeedMaterialLst.Count;
         string[] needID; needID = new string[count];
@@ -92,6 +91,8 @@ public class WeaponDataList : MonoBehaviour, ISerializationCallbackReceiver
             if (_num < needRequiredCount[i]) return 0;
         }
 
+        if (!_confirmation) return 1;
+        if (data.BoxPossession) return 1;
         ItemsConsumption(_ID, true);
 
         data.BoxPossession = true;
@@ -100,7 +101,7 @@ public class WeaponDataList : MonoBehaviour, ISerializationCallbackReceiver
         return 2;
     }
 
-    public int Enhancement(string _ID)
+    public int Enhancement(string _ID, bool _confirmation)
     {
         Debug.Log("DataListmadekiteTukuretayo");
         int index = keys.FindIndex(n => n.StartsWith(_ID));
@@ -124,6 +125,7 @@ public class WeaponDataList : MonoBehaviour, ISerializationCallbackReceiver
         }
 
 
+        if (!_confirmation) return 1;
         Debug.Log("kakuninnmadesitayo");
 
         ItemsConsumption(_ID, false);
@@ -139,6 +141,7 @@ public class WeaponDataList : MonoBehaviour, ISerializationCallbackReceiver
         return 2;
     }
 
+    //アイテムデータをいじるのはここから
     public void ItemsConsumption(string _ID, bool _production)
     {
         int index = keys.FindIndex(n => n.StartsWith(_ID));
