@@ -71,6 +71,7 @@ public partial class Player : Singleton<Player>
     //採取用
     private CollectionScript _collectionScript;
     public CollectionScript CollectionScript { get => _collectionScript; set => _collectionScript = value; }
+    public PlayerStatusData StatusData { get => _statusData; }
 
     //ポップアップ
     private PopImage _popImage;
@@ -341,6 +342,11 @@ public partial class Player : Singleton<Player>
         }
         var pos = StartPos.Find(n => n.scene == GameManager.Instance.NowScene);
         transform.position = pos.pos[0];
+        if(GameManager.Instance.NowScene==Scene.Base)
+        {
+            Debug.Log("ここここここここここここここここ");
+            transform.position = Vector3.zero;
+        }
     }
     private void ChangeWepon(string weponID)
     {

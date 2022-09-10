@@ -6,7 +6,7 @@ public class Attack_Rhino : StateBase_Rhino
 {
     TargetCheckerType type = TargetCheckerType.Non;
 
-    float speed;
+    float speed = 10.0f;
     float defaultSpeed;
 
     public override void OnEnter(Rhino owner, StateBase_Rhino prevState)
@@ -86,7 +86,7 @@ public class Attack_Rhino : StateBase_Rhino
             pos += (pos - owner.transform.position).normalized * owner.NavMeshAgent.stoppingDistance * 3.0f;
             owner.NavMeshAgent.destination = pos;
 
-            speed = 10.0f;
+            //ìÀêiÇÃë¨ìxÇ…Ç∑ÇÈ
             owner.NavMeshAgent.speed = speed;
         }
     }

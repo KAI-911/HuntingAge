@@ -37,7 +37,7 @@ MonoBehaviour:
       fontSize: 15
       autoFontSize: 1
       text: "\u30E1\u30CB\u30E5\u30FC"
-      color: {r: 0, g: 0, b: 0, a: 1}
+      color: {r: 1, g: 1, b: 1, a: 1}
       hight: 30
       margin: 10
       textAnchor: 4
@@ -57,7 +57,7 @@ MonoBehaviour:
       fontSize: 15
       autoFontSize: 1
       text: "\u30A2\u30A4\u30C6\u30E0\u30DD\u30FC\u30C1"
-      color: {r: 0.09151816, g: 1, b: 0, a: 1}
+      color: {r: 0.9622642, g: 0.9622642, b: 0.9622642, a: 1}
       hight: 30
       margin: 10
       textAnchor: 4
@@ -77,7 +77,7 @@ MonoBehaviour:
       fontSize: 15
       autoFontSize: 1
       text: "\u30A2\u30A4\u30C6\u30E0\u30DC\u30C3\u30AF\u30B9"
-      color: {r: 1, g: 0, b: 0, a: 1}
+      color: {r: 1, g: 1, b: 1, a: 1}
       hight: 30
       margin: 10
       textAnchor: 4
@@ -97,7 +97,7 @@ MonoBehaviour:
       fontSize: 15
       autoFontSize: 1
       text: "\u78BA\u8A8D"
-      color: {r: 0, g: 0, b: 0, a: 1}
+      color: {r: 1, g: 1, b: 1, a: 1}
       hight: 60
       margin: 10
       textAnchor: 4
@@ -117,7 +117,7 @@ MonoBehaviour:
       fontSize: 15
       autoFontSize: 1
       text: 
-      color: {r: 0, g: 0, b: 0, a: 1}
+      color: {r: 1, g: 1, b: 1, a: 1}
       hight: 60
       margin: 10
       textAnchor: 4
@@ -137,7 +137,7 @@ MonoBehaviour:
       fontSize: 15
       autoFontSize: 0
       text: "\u30B5\u30D6\u30E1\u30CB\u30E5\u30FC"
-      color: {r: 1, g: 0, b: 0.91832733, a: 1}
+      color: {r: 1, g: 1, b: 1, a: 1}
       hight: 30
       margin: 10
       textAnchor: 4
@@ -157,7 +157,7 @@ MonoBehaviour:
       fontSize: 15
       autoFontSize: 1
       text: 
-      color: {r: 0, g: 0, b: 0, a: 1}
+      color: {r: 1, g: 1, b: 1, a: 1}
       hight: 60
       margin: 10
       textAnchor: 4

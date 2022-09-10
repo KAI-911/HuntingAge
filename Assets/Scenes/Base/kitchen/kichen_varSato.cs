@@ -230,7 +230,7 @@ public class kichen_varSato : UIBase
                 //数値の始まりを同じにするために_namespace分に文字数をそろえる
                 for (int j = name.Length; j < _namespace; j++) name += "　";
 
-                string needNum = string.Format("{0,3:d}", _itemDataDic[id].NeedMaterialLst[i].requiredCount);
+                string needNum = string.Format("{0,2:d}", _itemDataDic[id].NeedMaterialLst[i].requiredCount);
                 string holdNum = string.Format("{0,4:d}", GameManager.Instance.MaterialDataList.Dictionary[materialID].PoachHoldNumber + GameManager.Instance.MaterialDataList.Dictionary[materialID].BoxHoldNumber);
 
                 list.SetButtonText(i, "　" + name + Data.Convert.HanToZenConvert(needNum + "/" + holdNum));
@@ -282,7 +282,7 @@ public class kichen_varSato : UIBase
                 //数値の始まりを同じにするために_namespace分に文字数をそろえる
                 for (int j = name.Length; j < _namespace; j++) name += "　";
 
-                string needNum = string.Format("{0,3:d}", _itemDataDic[id].NeedMaterialLst[i].requiredCount * owner.GetComponent<kichen_varSato>()._count.Now);
+                string needNum = string.Format("{0,2:d}", _itemDataDic[id].NeedMaterialLst[i].requiredCount * owner.GetComponent<kichen_varSato>()._count.Now);
                 string holdNum = string.Format("{0,4:d}", GameManager.Instance.MaterialDataList.Dictionary[materialID].PoachHoldNumber + GameManager.Instance.MaterialDataList.Dictionary[materialID].BoxHoldNumber);
 
                 list.SetButtonText(i, "　" + name + Data.Convert.HanToZenConvert(needNum + "/" + holdNum));
