@@ -181,13 +181,13 @@ public class Blacksmith : UIBase
             for (int i = 0; i < _CreatableWeapon.Count; i++)
             {
                 int num = i;
-                ButtonUI.SetButtonText(i, _CreatableWeapon[i].Name);
-                if (GameManager.Instance.WeaponDataList.Production(_CreatableWeapon[num].Name, false) == 0)
-                {
-                    var image = ButtonUI.Buttons[num].GetComponent<Image>();
-                    image.color = owner.GetComponent<Blacksmith>()._cantColor;
-                }
-                ButtonUI.SetButtonOnClick(i, () =>
+                ButtonUI.SetButtonText(num, _CreatableWeapon[num].Name);
+                //if (GameManager.Instance.WeaponDataList.Production(_CreatableWeapon[num].Name, false) == 0)
+                //{
+                //    var image = ButtonUI.Buttons[num].GetComponent<Image>();
+                //    image.color = owner.GetComponent<Blacksmith>()._cantColor;
+                //}
+                ButtonUI.SetButtonOnClick(num, () =>
                 {
                     owner.GetComponent<Blacksmith>()._createWeaponID = _CreatableWeapon[num].ID;
                     owner.ChangeState<Confirmation>();
