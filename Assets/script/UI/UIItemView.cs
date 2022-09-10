@@ -390,7 +390,7 @@ public class UIItemView : UIBase
         if (objects[(int)position.right] == null) return;
         //_currentIDの一つ次のアイテムを表示
         int index = _itemIDList.IndexOf(_currentID);
-        index++;        
+        index++;
         //_currentIDが先頭の場合一番先頭のアイテムを表示
         if (index >= _itemIDList.Count) index = 0;
         var images = objects[(int)position.right].GetComponentsInChildren<Image>();
@@ -441,7 +441,7 @@ public class UIItemView : UIBase
                 text.text = "";
             }
             //後ろのアイテムがある場合はそのアイテムを表示
-            else if(_itemIDList.Count > index)
+            else if (_itemIDList.Count > index)
             {
                 _currentID = _itemIDList[index];
                 var nextData = GameManager.Instance.ItemDataList.Dictionary[_currentID].baseData;
@@ -452,11 +452,15 @@ public class UIItemView : UIBase
             else if (_itemIDList.Count <= index)
             {
                 _currentID = _itemIDList[0];
-                var nextData= GameManager.Instance.ItemDataList.Dictionary[_currentID].baseData;
+                var nextData = GameManager.Instance.ItemDataList.Dictionary[_currentID].baseData;
                 images[1].sprite = Resources.Load<Sprite>(nextData.IconName);
                 text.text = nextData.PoachHoldNumber.ToString();
             }
-
+        }
+        else
+        {
+            images[1].sprite = Resources.Load<Sprite>(data.IconName);
+            text.text = data.PoachHoldNumber.ToString();
         }
 
 
