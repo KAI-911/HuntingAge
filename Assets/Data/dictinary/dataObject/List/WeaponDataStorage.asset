@@ -30,13 +30,17 @@ MonoBehaviour:
     IconPass: Icon/Axe_wood_UI
     BoxUINumber: 0
     CreatableLevel: 1
-    BoxPossession: 1
+    BoxPossession: 0
     AttackPoint: 50
     WeaponType: 0
     ProductionNeedMaterialLst:
     - materialID: Material001
       requiredCount: 5
-    EnhancementNeedMaterialLst: []
+    EnhancementNeedMaterialLst:
+    - materialID: Material001
+      requiredCount: 3
+    - materialID: Material000
+      requiredCount: 2
   - ID: weapon102
     EnhancementID: weapon103
     Name: "\u77F3\u306E\u65A7"
@@ -44,7 +48,7 @@ MonoBehaviour:
     IconPass: Icon/Axe_UI
     BoxUINumber: 1
     CreatableLevel: 2
-    BoxPossession: 1
+    BoxPossession: 0
     AttackPoint: 100
     WeaponType: 0
     ProductionNeedMaterialLst:
@@ -54,8 +58,10 @@ MonoBehaviour:
       requiredCount: 5
     EnhancementNeedMaterialLst:
     - materialID: Material001
-      requiredCount: 3
+      requiredCount: 7
     - materialID: Material000
+      requiredCount: 3
+    - materialID: Material003
       requiredCount: 2
   - ID: weapon103
     EnhancementID: empty
@@ -72,11 +78,9 @@ MonoBehaviour:
       requiredCount: 10
     - materialID: Material000
       requiredCount: 5
-    EnhancementNeedMaterialLst:
-    - materialID: Material001
-      requiredCount: 3
-    - materialID: Material000
-      requiredCount: 2
+    - materialID: Material003
+      requiredCount: 5
+    EnhancementNeedMaterialLst: []
   - ID: weapon201
     EnhancementID: weapon202
     Name: "\u6728\u306E\u69CD"
@@ -84,23 +88,17 @@ MonoBehaviour:
     IconPass: Icon/Spear_wood_UI
     BoxUINumber: 3
     CreatableLevel: 3
-    BoxPossession: 1
+    BoxPossession: 0
     AttackPoint: 50
     WeaponType: 1
     ProductionNeedMaterialLst:
     - materialID: Material001
-      requiredCount: 20
-    - materialID: Material000
-      requiredCount: 15
-    - materialID: Material003
       requiredCount: 5
     EnhancementNeedMaterialLst:
     - materialID: Material001
-      requiredCount: 5
-    - materialID: Material000
-      requiredCount: 5
-    - materialID: Material003
       requiredCount: 3
+    - materialID: Material001
+      requiredCount: 2
   - ID: weapon202
     EnhancementID: weapon203
     Name: "\u77F3\u306E\u69CD"
@@ -108,7 +106,7 @@ MonoBehaviour:
     IconPass: Icon/Spear_UI
     BoxUINumber: 4
     CreatableLevel: 3
-    BoxPossession: 1
+    BoxPossession: 0
     AttackPoint: 100
     WeaponType: 1
     ProductionNeedMaterialLst:
@@ -118,8 +116,10 @@ MonoBehaviour:
       requiredCount: 5
     EnhancementNeedMaterialLst:
     - materialID: Material001
-      requiredCount: 3
+      requiredCount: 7
     - materialID: Material000
+      requiredCount: 3
+    - materialID: Material003
       requiredCount: 2
   - ID: weapon203
     EnhancementID: empty
@@ -136,13 +136,11 @@ MonoBehaviour:
       requiredCount: 10
     - materialID: Material000
       requiredCount: 5
-    EnhancementNeedMaterialLst:
-    - materialID: Material001
-      requiredCount: 3
     - materialID: Material000
-      requiredCount: 2
+      requiredCount: 5
+    EnhancementNeedMaterialLst: []
   - ID: weapon301
-    EnhancementID: weapon302
+    EnhancementID: empty
     Name: "\u5F13"
     weaponPath: weapon/Spear
     IconPass: 6
@@ -153,18 +151,10 @@ MonoBehaviour:
     WeaponType: 2
     ProductionNeedMaterialLst:
     - materialID: Material001
-      requiredCount: 20
-    - materialID: Material000
-      requiredCount: 15
-    - materialID: Material003
       requiredCount: 5
-    EnhancementNeedMaterialLst:
-    - materialID: Material001
-      requiredCount: 5
-    - materialID: Material000
-      requiredCount: 5
-    - materialID: Material003
+    - materialID: Material002
       requiredCount: 3
+    EnhancementNeedMaterialLst: []
   - ID: weapon302
     EnhancementID: weapon303
     Name: "\u8D85\u5F13"
