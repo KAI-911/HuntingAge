@@ -323,7 +323,8 @@ public class Quest : MonoBehaviour
 
                     var clearRect = clearimage.GetComponent<RectTransform>();
                     clearRect.sizeDelta = new Vector2(600, 250);
-                    clearRect.anchoredPosition = new Vector2(-clearRect.sizeDelta.x / 2, clearRect.sizeDelta.y / 2);
+                    clearRect.pivot = new Vector2(0.5f, 0.5f);
+                    clearRect.anchoredPosition = new Vector2(0, clearRect.sizeDelta.y / 2);
                     Data.Convert.Correction(clearRect);
                 });
                 //èôÅXÇ…å©Ç¶ÇÈÇÊÇ§Ç…Ç∑ÇÈ
@@ -414,7 +415,8 @@ public class Quest : MonoBehaviour
 
                     var failureRect = failureimage.GetComponent<RectTransform>();
                     failureRect.sizeDelta = new Vector2(600, 250);
-                    failureRect.anchoredPosition = new Vector2(-failureRect.sizeDelta.x / 2, failureRect.sizeDelta.y / 2);
+                    failureRect.pivot = new Vector2(0.5f, 0.5f);
+                    failureRect.anchoredPosition = new Vector2(0, failureRect.sizeDelta.y / 2);
                     Data.Convert.Correction(failureRect);
                 });
                 //èôÅXÇ…å©Ç¶ÇÈÇÊÇ§Ç…Ç∑ÇÈ
