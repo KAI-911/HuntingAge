@@ -9,8 +9,10 @@ public class UIItemView : UIBase
     [SerializeField] GameObject _itemViewPrefab;
     [SerializeField] GameObject _maruButtonPrefab;
     [SerializeField] GameObject _shikakuButtonPrefab;
+
     [SerializeField, Range(0.1f, 1.0f)] float _sideScaleSize;
     [SerializeField] float _padding;
+
     private GameObject[] objects = new GameObject[3];
     private GameObject _maruButton;
     private GameObject _shikakuButton;
@@ -56,7 +58,10 @@ public class UIItemView : UIBase
         public override void OnExit(UIBase owner, UIStateBase nextState)
         {
             owner.GetComponent<UIItemView>().SetItemID();
-            owner.GetComponent<UIItemView>()._currentID = owner.GetComponent<UIItemView>()._itemIDList[0];
+            if (owner.GetComponent<UIItemView>()._itemIDList.Count != 0)
+            {
+                owner.GetComponent<UIItemView>()._currentID = owner.GetComponent<UIItemView>()._itemIDList[0];
+            }
         }
         public override void OnSceneChenge(UIBase owner)
         {
@@ -68,7 +73,7 @@ public class UIItemView : UIBase
         public override void OnEnter(UIBase owner, UIStateBase prevState)
         {
             var OWNER = owner.GetComponent<UIItemView>();
-            OWNER.SetCenterUI();
+            OWNER.CreateCenterUI();
             OWNER.SetCenterImage();
             OWNER.CreateLightButton();
         }
@@ -134,7 +139,7 @@ public class UIItemView : UIBase
                             {
                                 if (!data.Use) return;
                                 data.Use = false;
-                                status.Attack =UISoundManager.Instance._player.StatusData.Attack;
+                                status.Attack = UISoundManager.Instance._player.StatusData.Attack;
                                 GameManager.Instance.Player.Status = status;
                                 GameManager.Instance.ItemDataList.Values[index] = data;
                                 GameManager.Instance.ItemDataList.DesrializeDictionary();
@@ -195,10 +200,10 @@ public class UIItemView : UIBase
         {
             var OWNER = owner.GetComponent<UIItemView>();
 
-            OWNER.SetRightUI();
+            OWNER.CreateRightUI();
             OWNER.SetRightImage();
 
-            OWNER.SetLeftUI();
+            OWNER.CreateLeftUI();
             OWNER.SetLeftImage();
             OWNER.CreateLightButton();
             OWNER.CreateRightButton();
@@ -301,7 +306,7 @@ public class UIItemView : UIBase
         _shikakuButton = null;
     }
 
-    public void SetCenterUI()
+    public void CreateCenterUI()
     {
         if (objects[(int)position.center] != null) return;
         var rectSize = _itemViewPrefab.GetComponent<RectTransform>().sizeDelta;
@@ -315,7 +320,7 @@ public class UIItemView : UIBase
     /// 中心のUIが無ければ表示しない
     /// </summary>
     /// <returns></returns>
-    public bool SetRightUI()
+    public bool CreateRightUI()
     {
         if (objects[(int)position.center] == null) return false;
         var centerRect = objects[(int)position.center].GetComponent<RectTransform>();
@@ -331,7 +336,7 @@ public class UIItemView : UIBase
     /// 中心のUIが無ければ表示しない
     /// </summary>
     /// <returns></returns>
-    public bool SetLeftUI()
+    public bool CreateLeftUI()
     {
         if (objects[(int)position.center] == null) return false;
         var centerRect = objects[(int)position.center].GetComponent<RectTransform>();
@@ -383,8 +388,10 @@ public class UIItemView : UIBase
     {
         if (_itemIDList.Count == 0) return;
         if (objects[(int)position.right] == null) return;
+        //_currentIDの一つ次のアイテムを表示
         int index = _itemIDList.IndexOf(_currentID);
         index++;
+        //_currentIDが先頭の場合一番先頭のアイテムを表示
         if (index >= _itemIDList.Count) index = 0;
         var images = objects[(int)position.right].GetComponentsInChildren<Image>();
         var iconname = GameManager.Instance.ItemDataList.Dictionary[_itemIDList[index]].baseData.IconName;
@@ -398,10 +405,12 @@ public class UIItemView : UIBase
     {
         if (_itemIDList.Count == 0) return;
         if (objects[(int)position.left] == null) return;
-
+        //_currentIDの一つ手前のアイテムを表示
         int index = _itemIDList.IndexOf(_currentID);
         index--;
+        //_currentIDが先頭の場合一番後ろのアイテムを表示
         if (index < 0) index = _itemIDList.Count - 1;
+
         var images = objects[(int)position.left].GetComponentsInChildren<Image>();
         var iconname = GameManager.Instance.ItemDataList.Dictionary[_itemIDList[index]].baseData.IconName;
         images[1].sprite = Resources.Load<Sprite>(iconname);
@@ -412,21 +421,65 @@ public class UIItemView : UIBase
     //アイコンの設定
     public void SetCenterImage()
     {
-        if (_itemIDList.Count == 0) return;
+        if (!_itemIDList.Contains(_currentID)) return;
         if (objects[(int)position.center] == null) return;
-
-        var images = objects[(int)position.center].GetComponentsInChildren<Image>();
+        //既にリスト内に登録されている、オブジェクトがある
         var data = GameManager.Instance.ItemDataList.Dictionary[_currentID].baseData;
-        if (data.PoachHoldNumber == 0)
+        var images = objects[(int)position.center].GetComponentsInChildren<Image>();
+        var text = objects[(int)position.center].GetComponentInChildren<Text>();
+        //もっていない場合は次のアイテムを表示させる
+        if (data.PoachHoldNumber <= 0)
         {
-            images[1].sprite = Resources.Load<Sprite>("Icon/alpha");
+            //一つももっていない場合は削除
+            int index = _itemIDList.IndexOf(_currentID);
+            _itemIDList.Remove(_currentID);
+
+            //全てのアイテムを使っていたら
+            if (_itemIDList.Count == 0)
+            {
+                images[1].sprite = Resources.Load<Sprite>("Icon/alpha");
+                text.text = "";
+            }
+            //後ろのアイテムがある場合はそのアイテムを表示
+            else if (_itemIDList.Count > index)
+            {
+                _currentID = _itemIDList[index];
+                var nextData = GameManager.Instance.ItemDataList.Dictionary[_currentID].baseData;
+                images[1].sprite = Resources.Load<Sprite>(nextData.IconName);
+                text.text = nextData.PoachHoldNumber.ToString();
+            }
+            //もし、リストの範囲外になっていたら_itemIDListの先頭アイテムを表示
+            else if (_itemIDList.Count <= index)
+            {
+                _currentID = _itemIDList[0];
+                var nextData = GameManager.Instance.ItemDataList.Dictionary[_currentID].baseData;
+                images[1].sprite = Resources.Load<Sprite>(nextData.IconName);
+                text.text = nextData.PoachHoldNumber.ToString();
+            }
         }
         else
         {
             images[1].sprite = Resources.Load<Sprite>(data.IconName);
+            text.text = data.PoachHoldNumber.ToString();
         }
-        var text = objects[(int)position.center].GetComponentInChildren<Text>();
-        text.text = data.PoachHoldNumber.ToString();
+
+
+
+        //if (_itemIDList.Count == 0) return;
+        //if (objects[(int)position.center] == null) return;
+
+        //var images = objects[(int)position.center].GetComponentsInChildren<Image>();
+        //var data = GameManager.Instance.ItemDataList.Dictionary[_currentID].baseData;
+        //if (data.PoachHoldNumber == 0)
+        //{
+        //    images[1].sprite = Resources.Load<Sprite>("Icon/alpha");
+        //}
+        //else
+        //{
+        //    images[1].sprite = Resources.Load<Sprite>(data.IconName);
+        //}
+        //var text = objects[(int)position.center].GetComponentInChildren<Text>();
+        //text.text = data.PoachHoldNumber.ToString();
     }
     /// <summary>
     /// 永続効果のアイテムの効果を削除
@@ -467,7 +520,7 @@ public class UIItemView : UIBase
     }
     public bool IsSelect()
     {
-        if(this._currentState.GetType()==typeof(WaitItem)) return false;
+        if (this._currentState.GetType() == typeof(WaitItem)) return false;
         return true;
     }
 }

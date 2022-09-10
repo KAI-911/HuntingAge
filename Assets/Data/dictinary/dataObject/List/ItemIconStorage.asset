@@ -43,7 +43,7 @@ MonoBehaviour:
       textAnchor: 4
   - _leftTopPos: {x: -600, y: 300}
     _padding: 10
-    _tableSize: {x: 1, y: 5}
+    _tableSize: {x: 3, y: 5}
     _canBeChanged: 0
     _buttonBack: 1
     _textFlg: 0
