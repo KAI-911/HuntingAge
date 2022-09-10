@@ -154,19 +154,12 @@ public class Blacksmith : UIBase
 
     public class ProductionWeapon : UIStateBase
     {
-        private bool ConfirmationSelect;
-        private State _state;
         List<WeaponData> _CreatableWeapon = new List<WeaponData>();
         public override void OnEnter(UIBase owner, UIStateBase prevState)
         {
             Debug.Log("Blacksmith_ProductionWeaponMode_OnEnter");
 
-            //private;
-
-
-            ConfirmationSelect = false;
             var ButtonUI = owner.ItemIconList[(int)IconType.TypeSelect];
-            var confUI = owner.ItemIconList[(int)IconType.Confirmation];
 
             var Weapon = GameManager.Instance.WeaponDataList.Dictionary;
             foreach (var item in Weapon)
@@ -188,42 +181,15 @@ public class Blacksmith : UIBase
                 int num = i;
                 ButtonUI.SetButtonOnClick(i, () =>
                 {
-                    int count = GameManager.Instance.WeaponDataList.Production(_CreatableWeapon[num].ID);
-                    ConfirmationSelect = true;
-
-                    confUI.SetLeftTopPos(new Vector2(-300, -150));
-                    confUI.SetTable(new Vector2(1, 1));
-                    switch (count)
-                    {
-                        case 0:
-                            confUI.SetText("Ç∑Ç≈Ç…èäéùÇµÇƒÇ¢Ç‹Ç∑");
-                            break;
-                        case 1:
-                            confUI.SetText("êªë¢äÆóπ");
-                            break;
-                        case 2:
-                            confUI.SetText("ëfçﬁÇ™ë´ÇËÇ‹ÇπÇÒ");
-                            break;
-                        default:
-                            break;
-                    }
-                    confUI.CreateButton();
-                    confUI.SetButtonText(0, "OK");
-
-                    confUI.SetButtonOnClick(0, () => owner.ChangeState<ProductionSelect>());
+                    owner.GetComponent<Blacksmith>()._createWeaponID = _CreatableWeapon[num].ID;
+                    owner.ChangeState<Confirmation>();
                 });
             }
         }
         public override void OnUpdate(UIBase owner)
         {
-            if (ConfirmationSelect) owner.ItemIconList[(int)IconType.Confirmation].Select(UISoundManager.Instance.InputSelection.ReadValue<Vector2>());
-            else
-            {
-                owner.ItemIconList[(int)IconType.TypeSelect].Select(UISoundManager.Instance.InputSelection.ReadValue<Vector2>());
-            }
+            owner.ItemIconList[(int)IconType.TypeSelect].Select(UISoundManager.Instance.InputSelection.ReadValue<Vector2>());
             int buttonCount = owner.ItemIconList[(int)IconType.TypeSelect].CurrentNunber;
-
-            //owner.GetComponent<Blacksmith>()._materialList.CreateList(owner, _CreatableWeapon, buttonCount);
 
             var ListUI = owner.ItemIconList[(int)IconType.MaterialList];
             var data = _CreatableWeapon[buttonCount].ProductionNeedMaterialLst;
@@ -245,22 +211,21 @@ public class Blacksmith : UIBase
         }
         public override void OnExit(UIBase owner, UIStateBase nextState)
         {
-            owner.ItemIconList[(int)IconType.TypeSelect].DeleteButton();
-            owner.ItemIconList[(int)IconType.Confirmation].DeleteButton();
-            owner.ItemIconList[(int)IconType.MaterialList].DeleteButton();
+            //owner.ItemIconList[(int)IconType.TypeSelect].DeleteButton();
+            //owner.ItemIconList[(int)IconType.MaterialList].DeleteButton();
         }
         public override void OnProceed(UIBase owner)
         {
-            if (ConfirmationSelect) owner.ItemIconList[(int)IconType.Confirmation].CurrentButtonInvoke();
-            else owner.ItemIconList[(int)IconType.TypeSelect].CurrentButtonInvoke();
+            owner.ItemIconList[(int)IconType.TypeSelect].CurrentButtonInvoke();
         }
         public override void OnBack(UIBase owner)
         {
+            owner.ItemIconList[(int)IconType.MaterialList].DeleteButton();
+            owner.ItemIconList[(int)IconType.TypeSelect].DeleteButton();
             Debug.Log("modoru");
             owner.ChangeState<ProductionSelect>();
         }
     }
-
     public class EnhancementSelect : UIStateBase
     {
         List<WeaponData> _TmpWeapon = new List<WeaponData>();
@@ -294,7 +259,11 @@ public class Blacksmith : UIBase
         }
         public override void OnExit(UIBase owner, UIStateBase nextState)
         {
-            owner.ItemIconList[(int)IconType.TypeSelect].DeleteButton();
+            //owner.ItemIconList[(int)IconType.TypeSelect].DeleteButton();
+        }
+        public override void OnUpdate(UIBase owner)
+        {
+            owner.ItemIconList[(int)IconType.TypeSelect].Select(UISoundManager.Instance.InputSelection.ReadValue<Vector2>());
             int buttonCount = owner.ItemIconList[(int)IconType.TypeSelect].CurrentNunber;
             var ListUI = owner.ItemIconList[(int)IconType.MaterialList];
             var data = _TmpWeapon[buttonCount].EnhancementNeedMaterialLst;
@@ -313,16 +282,14 @@ public class Blacksmith : UIBase
                 ListUI.SetButtonText(i, "Å@Å@" + material.Name + Data.Convert.HanToZenConvert(text1 + "/" + text2), TextAnchor.MiddleLeft);
             }
         }
-        public override void OnUpdate(UIBase owner)
-        {
-            owner.ItemIconList[(int)IconType.TypeSelect].Select(UISoundManager.Instance.InputSelection.ReadValue<Vector2>());
-        }
         public override void OnProceed(UIBase owner)
         {
             owner.ItemIconList[(int)IconType.TypeSelect].Buttons[owner.ItemIconList[(int)IconType.TypeSelect].CurrentNunber].GetComponent<Button>().onClick.Invoke();
         }
         public override void OnBack(UIBase owner)
         {
+            owner.ItemIconList[(int)IconType.MaterialList].DeleteButton();
+            owner.ItemIconList[(int)IconType.TypeSelect].DeleteButton();
             Debug.Log("modoru");
             owner.ChangeState<ChoiceMode>();
         }
@@ -330,16 +297,21 @@ public class Blacksmith : UIBase
 
     public class Confirmation : UIStateBase
     {
+        private UIStateBase _prevState;
         public override void OnEnter(UIBase owner, UIStateBase prevState)
         {
-            Debug.Log("kyoukakakuninndayo");
+            Debug.Log(1111);
             //ÉÇÅ[ÉhëIëâÊñ 
+            _prevState = prevState;
             var Weapon = GameManager.Instance.WeaponDataList.Dictionary;
             string WeaponName = Weapon[owner.GetComponent<Blacksmith>()._createWeaponID].ID;
             var UI = owner.ItemIconList[(int)IconType.Confirmation];
 
+            Debug.Log(11111);
             if (prevState.GetType() == typeof(EnhancementSelect)) UI.SetText("ëfçﬁÇè¡îÔÇµÇƒïêäÌÇã≠âªÇµÇ‹Ç∑Ç©ÅH");
-            else if(prevState.GetType() == typeof(ProductionSelect)) UI.SetText("ëfçﬁÇè¡îÔÇµÇƒïêäÌÇêªë¢ÇµÇ‹Ç∑Ç©ÅH");
+            else if(prevState.GetType() == typeof(ProductionWeapon)) UI.SetText("ëfçﬁÇè¡îÔÇµÇƒïêäÌÇêªë¢ÇµÇ‹Ç∑Ç©ÅH");
+
+            Debug.Log(111111);
             UI.SetTable(new Vector2(1, 2));
             UI.CreateButton();
             UI.SetButtonText(0, "ÇÕÇ¢");
@@ -348,24 +320,21 @@ public class Blacksmith : UIBase
                  UI.DeleteButton();
                  int count = -1;
                  if (prevState.GetType() == typeof(EnhancementSelect)) count = GameManager.Instance.WeaponDataList.Enhancement(WeaponName);
-                 else if (prevState.GetType() == typeof(ProductionSelect)) count = GameManager.Instance.WeaponDataList.Production(WeaponName);
+                 else if (prevState.GetType() == typeof(ProductionWeapon)) count = GameManager.Instance.WeaponDataList.Production(WeaponName);
 
                  var confUI = owner.ItemIconList[(int)IconType.Confirmation];
                  confUI.SetTable(new Vector2(1, 1));
 
                  switch (count)
                  {
-                     case 0:
+                     case 1:
                          Debug.Log("syozidayo");
                          confUI.SetText("Ç∑Ç≈Ç…èäéùÇµÇƒÇ¢Ç‹Ç∑");
                          break;
-                     case 1:
-                         Debug.Log("kyoukadayo");
-                         confUI.SetText("ã≠âªäÆóπ");
-                         break;
                      case 2:
-                         Debug.Log("tarinaiyo");
-                         confUI.SetText("ëfçﬁÇ™ë´ÇËÇ‹ÇπÇÒ");
+                         Debug.Log("kyoukadayo");
+                         if (prevState.GetType() == typeof(EnhancementSelect)) confUI.SetText("ã≠âªäÆóπ");
+                         else if (prevState.GetType() == typeof(ProductionWeapon)) confUI.SetText("êªë¢äÆóπ");
                          break;
                      default:
                          break;
@@ -378,19 +347,19 @@ public class Blacksmith : UIBase
                      case 0:
                          {
                              confUI.SetButtonText(0, "OK");
-                             confUI.SetButtonOnClick(0, () => { owner.ChangeState<EnhancementSelect>(); owner.ItemIconList[(int)IconType.Confirmation].DeleteButton(); });
+                             confUI.SetButtonOnClick(0, () => { owner.ChangeState<ChoiceMode>(); owner.ItemIconList[(int)IconType.Confirmation].DeleteButton(); });
                          }
                          break;
                      case 1:
                          {
                              confUI.SetButtonText(0, "OK");
-                             confUI.SetButtonOnClick(0, () => { owner.ChangeState<EnhancementSelect>(); owner.ItemIconList[(int)IconType.Confirmation].DeleteButton(); });
+                             confUI.SetButtonOnClick(0, () => { owner.ChangeState<ChoiceMode>(); owner.ItemIconList[(int)IconType.Confirmation].DeleteButton(); });
                          }
                          break;
                      case 2:
                          {
                              confUI.SetButtonText(0, "OK");
-                             confUI.SetButtonOnClick(0, () => { owner.ChangeState<EnhancementSelect>(); owner.ItemIconList[(int)IconType.Confirmation].DeleteButton(); });
+                             confUI.SetButtonOnClick(0, () => { owner.ChangeState<ChoiceMode>(); owner.ItemIconList[(int)IconType.Confirmation].DeleteButton(); });
                          }
                          break;
                      default:
@@ -399,7 +368,7 @@ public class Blacksmith : UIBase
              });
 
             UI.SetButtonText(1, "Ç¢Ç¢Ç¶");
-            UI.SetButtonOnClick(1, () => { owner.ChangeState<EnhancementSelect>(); owner.ItemIconList[(int)IconType.Confirmation].DeleteButton(); });
+            UI.SetButtonOnClick(1, () => { owner.ChangeState<ChoiceMode>(); owner.ItemIconList[(int)IconType.Confirmation].DeleteButton(); });
         }
         public override void OnUpdate(UIBase owner)
         {
@@ -407,6 +376,8 @@ public class Blacksmith : UIBase
         }
         public override void OnExit(UIBase owner, UIStateBase nextState)
         {
+            owner.ItemIconList[(int)IconType.MaterialList].DeleteButton();
+            owner.ItemIconList[(int)IconType.TypeSelect].DeleteButton();
             owner.ItemIconList[(int)IconType.Confirmation].DeleteButton();
         }
         public override void OnProceed(UIBase owner)
@@ -416,7 +387,7 @@ public class Blacksmith : UIBase
         public override void OnBack(UIBase owner)
         {
             Debug.Log("modoru");
-            owner.ChangeState<EnhancementSelect>();
+            owner.ChangeState<ChoiceMode>();
         }
     }
 }
