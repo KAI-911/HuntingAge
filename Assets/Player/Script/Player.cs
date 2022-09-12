@@ -40,6 +40,10 @@ public partial class Player : Singleton<Player>
     [SerializeField] float _collectionTime;
     public float CollectionTime { get => _collectionTime; }
 
+    [SerializeField] int _sprecovery;
+    float time = 0.1f;
+    float timeCount = 0;
+
     //インプットシステム
     private InputControls _inputMove;
     private InputAction _inputMoveAction;
@@ -60,6 +64,7 @@ public partial class Player : Singleton<Player>
     //武器切り替え
     [SerializeField] string _weaponID;
     [SerializeField] GameObject _weaponParent;
+    [SerializeField] GameObject _weaponParent_village;
     private GameObject _weapon;
     public string WeaponID { get => _weaponID; set => _weaponID = value; }
 
@@ -83,7 +88,7 @@ public partial class Player : Singleton<Player>
         _statusData = GetComponent<PlayerStatusData>();
         _targetRotation = transform.rotation;
         _inputMove = new InputControls();
-        _currentState = new LocomotionState();
+        _currentState = new VillageState();
         _currentState.OnEnter(this, null);
         _weaponID = _statusData.Wepon;
         base.Awake();
@@ -130,17 +135,29 @@ public partial class Player : Singleton<Player>
         if (_status.HitReaction != HitReaction.nonReaction &&
             _currentState.GetType() != typeof(HitReactionState) &&
             _currentState.GetType() != typeof(DeathState) &&
-            _currentState.GetType() != typeof(VillageAction))
+            _currentState.GetType() != typeof(VillageState))
         {
             ChangeState<HitReactionState>();
         }
         if (_status.HP == 0 &&
             _currentState.GetType() != typeof(DeathState) &&
-            _currentState.GetType() != typeof(VillageAction))
+            _currentState.GetType() != typeof(VillageState))
         {
             ChangeState<DeathState>();
         }
-
+        if (_status.SP != _status.MaxSP)
+        {
+            timeCount += Time.deltaTime;
+            if (time < timeCount)
+            {
+                timeCount = 0;
+                _status.SP += _sprecovery;
+                if (_status.SP >= _status.MaxSP)
+                {
+                    _status.SP = _status.MaxSP;
+                }
+            }
+        }
     }
 
     private void FixedUpdate()
@@ -311,8 +328,14 @@ public partial class Player : Singleton<Player>
         _animator.SetInteger("HP", _status.HP);
         _status.HitReaction = HitReaction.nonReaction;
         _status.InvincibleFlg = false;
-        ChangeState<LocomotionState>();
-
+        if (GameManager.Instance.Quest.QuestData.Field == Scene.Base)
+        {
+            ChangeState<VillageState>();
+        }
+        else
+        {
+            ChangeState<LocomotionState>();
+        }
 
         Debug.Log("Revival");
     }
@@ -320,7 +343,7 @@ public partial class Player : Singleton<Player>
     {
         if (GameManager.Instance.Quest.IsQuest)
         {
-            ChangeWepon(_weaponID);
+            //ChangeWepon(_weaponID);
             _status.MaxHP = _statusData.MaxHP;
             _status.MaxSP = _statusData.MaxSP;
             _status.Attack = _statusData.Attack;
@@ -331,24 +354,26 @@ public partial class Player : Singleton<Player>
         }
         else
         {
-            DeleteWepon();
+            //DeleteWepon();
             _status.MaxHP = _statusData.MaxHP;
             _status.MaxSP = _statusData.MaxSP;
             _status.Attack = _statusData.Attack;
             _status.Defense = _statusData.Defense;
             _status.HP = _status.MaxHP;
             _status.SP = _status.MaxSP;
-            ChangeState<VillageAction>();
+            ChangeState<VillageState>();
         }
+        ChangeWepon(_weaponID);
+
         var pos = StartPos.Find(n => n.scene == GameManager.Instance.NowScene);
         transform.position = pos.pos[0];
-        if(GameManager.Instance.NowScene==Scene.Base)
+        if (GameManager.Instance.NowScene == Scene.Base)
         {
             Debug.Log("ここここここここここここここここ");
             transform.position = Vector3.zero;
         }
     }
-    private void ChangeWepon(string weponID)
+    public void ChangeWepon(string weponID)
     {
         if (!GameManager.Instance.WeaponDataList.Dictionary.ContainsKey(weponID)) return;
         _weaponID = weponID;
@@ -361,8 +386,17 @@ public partial class Player : Singleton<Player>
         }
         //インスタンス化
         var path = GameManager.Instance.WeaponDataList.Dictionary[weponID].weaponPath;
-        _weapon = Instantiate(Resources.Load(path), _weaponParent.transform.position, _weaponParent.transform.rotation) as GameObject;
-        _weapon.transform.SetParent(_weaponParent.transform);
+        if (GameManager.Instance.NowScene == Scene.Base)
+        {
+            _weapon = Instantiate(Resources.Load(path), _weaponParent_village.transform.position, _weaponParent_village.transform.rotation) as GameObject;
+            _weapon.transform.SetParent(_weaponParent_village.transform);
+        }
+        else
+        {
+            _weapon = Instantiate(Resources.Load(path), _weaponParent.transform.position, _weaponParent.transform.rotation) as GameObject;
+            _weapon.transform.SetParent(_weaponParent.transform);
+
+        }
         _weapon.transform.localScale = new Vector3(1, 1, 1);
         _status.Attack = GameManager.Instance.WeaponDataList.Dictionary[weponID].AttackPoint;
         if (_weaponID.Contains("weapon1"))

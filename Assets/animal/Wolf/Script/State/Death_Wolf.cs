@@ -31,8 +31,11 @@ public class Death_Wolf : SatetBase_Wolf
         if (myMat.HasProperty("_Dissolve"))
         {
             myMat.SetFloat("_Dissolve", owner.DissoveCurve.Evaluate(rate));
-            if (owner.DissoveCurve.Evaluate(rate) > 0) owner.CollectionScript.gameObject.SetActive(false);
-
+            if (owner.DissoveCurve.Evaluate(rate) > 0)
+            {
+                owner.CollectionScript.gameObject.SetActive(false);
+                owner.SkinnedMeshRenderer.shadowCastingMode = UnityEngine.Rendering.ShadowCastingMode.Off;
+            }
         }
 
 
@@ -55,7 +58,6 @@ public class Death_Wolf : SatetBase_Wolf
             {
                 item.enabled = false;
             }
-            owner.SkinnedMeshRenderer.shadowCastingMode = UnityEngine.Rendering.ShadowCastingMode.Off;
             owner.CollectionScript.gameObject.SetActive(true);
 
         }

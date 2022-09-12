@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class VillageAction : PlayerStateBase
+public class VillageState : PlayerStateBase
 {
     float nowSpeed;
     public override void OnEnter(Player owner, PlayerStateBase prevState)
@@ -10,6 +10,11 @@ public class VillageAction : PlayerStateBase
         nowSpeed = owner.MaxSpeed;
         owner.Animator.SetInteger("AniState", (int)PlayerAnimationState.Locomotion);
         owner.Animator.SetTrigger("Change");
+        //if(GameManager.Instance.WeaponDataList.Keys.Contains(owner.WeaponID))
+        //{
+        //    Debug.Log("ïêäÌÇéùÇ¬");
+        //    owner.ChangeWepon(owner.WeaponID);
+        //}
     }
     public override void OnExit(Player owner, PlayerStateBase nextState)
     {
