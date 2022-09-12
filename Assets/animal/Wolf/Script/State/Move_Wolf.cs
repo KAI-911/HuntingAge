@@ -32,7 +32,7 @@ public class Move_Wolf : SatetBase_Wolf
             owner.ChangeState<Idle_Wolf>();
         }
 
-        if (owner.Search() == false)
+        if (owner.TargetChecker(TargetCheckerType.Search) == false)
         {
             owner.ChangeState<Wandering_Wolf>();
             return;

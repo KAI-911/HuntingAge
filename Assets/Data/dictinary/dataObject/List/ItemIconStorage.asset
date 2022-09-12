@@ -37,13 +37,13 @@ MonoBehaviour:
       fontSize: 15
       autoFontSize: 1
       text: "\u30E1\u30CB\u30E5\u30FC"
-      color: {r: 0, g: 0, b: 0, a: 1}
+      color: {r: 1, g: 1, b: 1, a: 1}
       hight: 30
       margin: 10
       textAnchor: 4
   - _leftTopPos: {x: -600, y: 300}
     _padding: 10
-    _tableSize: {x: 1, y: 5}
+    _tableSize: {x: 3, y: 5}
     _canBeChanged: 0
     _buttonBack: 1
     _textFlg: 0
@@ -57,7 +57,7 @@ MonoBehaviour:
       fontSize: 15
       autoFontSize: 1
       text: "\u30A2\u30A4\u30C6\u30E0\u30DD\u30FC\u30C1"
-      color: {r: 0.09151816, g: 1, b: 0, a: 1}
+      color: {r: 0.9622642, g: 0.9622642, b: 0.9622642, a: 1}
       hight: 30
       margin: 10
       textAnchor: 4
@@ -77,17 +77,17 @@ MonoBehaviour:
       fontSize: 15
       autoFontSize: 1
       text: "\u30A2\u30A4\u30C6\u30E0\u30DC\u30C3\u30AF\u30B9"
-      color: {r: 1, g: 0, b: 0, a: 1}
+      color: {r: 1, g: 1, b: 1, a: 1}
       hight: 30
       margin: 10
       textAnchor: 4
-  - _leftTopPos: {x: -205, y: 100}
+  - _leftTopPos: {x: -500, y: -100}
     _padding: 10
     _tableSize: {x: 1, y: 2}
     _canBeChanged: 0
     _buttonBack: 1
     _textFlg: 1
-    _buttonPrefab: {fileID: 1403004829627007043, guid: 446577f06a189c14488ef6b7845ad21c,
+    _buttonPrefab: {fileID: 1403004829627007043, guid: ac45662ca2cc1624f925db70b55c9b3e,
       type: 3}
     _buttonBackPrefab: {fileID: 4567105175149944347, guid: f7ce8ff705927a7488534fa792a126fe,
       type: 3}
@@ -97,11 +97,11 @@ MonoBehaviour:
       fontSize: 15
       autoFontSize: 1
       text: "\u78BA\u8A8D"
-      color: {r: 0, g: 0, b: 0, a: 1}
+      color: {r: 1, g: 1, b: 1, a: 1}
       hight: 60
       margin: 10
       textAnchor: 4
-  - _leftTopPos: {x: -600, y: 280}
+  - _leftTopPos: {x: -600, y: 200}
     _padding: 10
     _tableSize: {x: 2, y: 1}
     _canBeChanged: 0
@@ -117,7 +117,7 @@ MonoBehaviour:
       fontSize: 15
       autoFontSize: 1
       text: 
-      color: {r: 0, g: 0, b: 0, a: 1}
+      color: {r: 1, g: 1, b: 1, a: 1}
       hight: 60
       margin: 10
       textAnchor: 4
@@ -137,7 +137,7 @@ MonoBehaviour:
       fontSize: 15
       autoFontSize: 0
       text: "\u30B5\u30D6\u30E1\u30CB\u30E5\u30FC"
-      color: {r: 1, g: 0, b: 0.91832733, a: 1}
+      color: {r: 1, g: 1, b: 1, a: 1}
       hight: 30
       margin: 10
       textAnchor: 4
@@ -157,7 +157,7 @@ MonoBehaviour:
       fontSize: 15
       autoFontSize: 1
       text: 
-      color: {r: 0, g: 0, b: 0, a: 1}
+      color: {r: 1, g: 1, b: 1, a: 1}
       hight: 60
       margin: 10
       textAnchor: 4

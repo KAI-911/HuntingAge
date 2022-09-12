@@ -16,3 +16,4 @@ MonoBehaviour:
   MaxSP: 100
   Attack: 50
   Defense: 50
+  Wepon: weapon202

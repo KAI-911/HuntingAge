@@ -23,10 +23,10 @@ MonoBehaviour:
       IconName: Icon/Soup_UI
       BoxStackNumber: 9999
       BoxUINumber: 15
-      BoxHoldNumber: 3000
+      BoxHoldNumber: 3054
       PoachStackNumber: 10
       PoachUINumber: 0
-      PoachHoldNumber: 0
+      PoachHoldNumber: 8
     Use: 0
     Permanent: 0
     Time: 0
@@ -38,17 +38,17 @@ MonoBehaviour:
       requiredCount: 2
     - materialID: Material005
       requiredCount: 2
-    FlavorText: 
+    FlavorText: "\u98DF\u3079\u308B\u3068\u4F53\u529B\u3092\u56DE\u5FA9\u3055\u305B\u308B\u30B9\u30FC\u30D7\u3002"
   - baseData:
       ID: Item001
       Name: "\u3053\u3093\u304C\u308A\u8089"
       IconName: Icon/GrilledMeat_UI
       BoxStackNumber: 9999
       BoxUINumber: 17
-      BoxHoldNumber: 3010
+      BoxHoldNumber: 3022
       PoachStackNumber: 10
       PoachUINumber: 2
-      PoachHoldNumber: 0
+      PoachHoldNumber: 9
     Use: 0
     Permanent: 0
     Time: 120
@@ -58,17 +58,17 @@ MonoBehaviour:
     NeedMaterialLst:
     - materialID: Material005
       requiredCount: 3
-    FlavorText: 
+    FlavorText: "\u98DF\u3079\u308B\u3068\u653B\u6483\u529B\u3092\u4E0A\u3052\u308B\u3053\u3068\u304C\u3067\u304D\u308B\u304A\u8089\u3002"
   - baseData:
       ID: Item002
       Name: "\u308A\u3093\u3054"
       IconName: Icon/Fruit_UI
       BoxStackNumber: 9999
       BoxUINumber: 16
-      BoxHoldNumber: 3000
+      BoxHoldNumber: 2994
       PoachStackNumber: 10
-      PoachUINumber: 0
-      PoachHoldNumber: 0
+      PoachUINumber: 1
+      PoachHoldNumber: 7
     Use: 0
     Permanent: 0
     Time: 120
@@ -79,5 +79,5 @@ MonoBehaviour:
     - materialID: Material001
       requiredCount: 3
     - materialID: Material005
-      requiredCount: 1
-    FlavorText: 
+      requiredCount: 6
+    FlavorText: "\u98DF\u3079\u308B\u3068\u4E00\u5B9A\u81EA\u6642\u9593\u9632\u5FA1\u529B\u3092\u9AD8\u3081\u308B\u3053\u3068\u304C\u3067\u304D\u308B\u30EA\u30F3\u30B4\u3002"

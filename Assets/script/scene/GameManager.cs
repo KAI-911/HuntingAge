@@ -88,11 +88,11 @@ public class GameManager : Singleton<GameManager>
 }
 public enum Scene
 {
-    Base,
+    Title,
     Forest,
     Animal,
     Sato,
     Hama,
     Shimi,
-    Title
+    Base
 }

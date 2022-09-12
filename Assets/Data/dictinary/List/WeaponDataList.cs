@@ -68,67 +68,31 @@ public class WeaponDataList : MonoBehaviour, ISerializationCallbackReceiver
             Debug.Log("Key: " + weapon.Key + " Value: " + weapon.Value);
         }
     }
-
     [ContextMenu("Production")]
-    public int Production(string _ID)
+    public bool Production(string _ID, bool _confirmation)
     {
         int index = keys.FindIndex(n => n.StartsWith(_ID));
-        //Debug.Log(index);
         var data = values[index];
-        if (data.BoxPossession) return 0;
 
-        int count = data.ProductionNeedMaterialLst.Count;
-        string[] needID; needID = new string[count];
-        int[] needRequiredCount; needRequiredCount = new int[count];
-
-        for (int i = 0; i < count; i++)
-        {
-            needID[i] = data.ProductionNeedMaterialLst[i].materialID;
-            needRequiredCount[i] = data.ProductionNeedMaterialLst[i].requiredCount;
-
-            var _material = GameManager.Instance.MaterialDataList;
-            if (!(_material.Dictionary.ContainsKey(needID[i]))) return 2;
-            int _num = _material.Dictionary[needID[i]].BoxHoldNumber + _material.Dictionary[needID[i]].PoachHoldNumber;
-            if (_num < needRequiredCount[i]) return 2;
-        }
-
+        if (data.BoxPossession) return false;
         ItemsConsumption(_ID, true);
 
         data.BoxPossession = true;
         values[index] = data;
         DesrializeDictionary();
-        return 1;
+        return true;
     }
 
-    public int Enhancement(string _ID)
+    public bool Enhancement(string _ID, bool _confirmation)
     {
-        Debug.Log("DataListmadekiteTukuretayo");
         int index = keys.FindIndex(n => n.StartsWith(_ID));
         var data = values[index];
         int enhIndex = keys.FindIndex(n => n.StartsWith(data.EnhancementID));
         var enhdata = values[enhIndex];
-        if (enhdata.BoxPossession) return 0;
-
-        Debug.Log(data.ID);
-        Debug.Log(enhdata.ID);
-
-        for (int i = 0; i < enhdata.ProductionNeedMaterialLst.Count; i++)
-        {
-            string needID = enhdata.EnhancementNeedMaterialLst[i].materialID;
-            int needRequiredCount = enhdata.EnhancementNeedMaterialLst[i].requiredCount;
-
-            var _material = GameManager.Instance.MaterialDataList;
-            if (!(_material.Dictionary.ContainsKey(needID))) return 2;
-            int _num = _material.Dictionary[needID].BoxHoldNumber + _material.Dictionary[needID].PoachHoldNumber;
-            if (_num < needRequiredCount) return 2;
-        }
-
-
-        Debug.Log("kakuninnmadesitayo");
+        if (enhdata.BoxPossession) return false;
 
         ItemsConsumption(_ID, false);
 
-        Debug.Log("syouhimadesitayo");
         enhdata.BoxPossession = true;
         values[enhIndex] = enhdata;
         data.BoxPossession = false;
@@ -136,9 +100,10 @@ public class WeaponDataList : MonoBehaviour, ISerializationCallbackReceiver
         Debug.Log("dataList" + values[index].BoxPossession + "kakuninndayo");
         DesrializeDictionary();
 
-        return 1;
+        return true;
     }
 
+    //アイテムデータをいじるのはここから
     public void ItemsConsumption(string _ID, bool _production)
     {
         int index = keys.FindIndex(n => n.StartsWith(_ID));

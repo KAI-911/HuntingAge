@@ -225,7 +225,7 @@ public class kichen : UIBase
             confimationIcon.SetButtonText(0, "ÇÕÇ¢");
             confimationIcon.SetButtonOnClick(0, () =>
             {
-                GameManager.Instance.WeaponDataList.Enhancement(owner.GetComponent<kichen>()._cleateItemID);
+                GameManager.Instance.WeaponDataList.Enhancement(owner.GetComponent<kichen>()._cleateItemID,false);
                 ConfirmationSelect = true;
                 var UI = confimationIcon;
                 UI.SetText("í≤óùäÆóπ");

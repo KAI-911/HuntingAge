@@ -7,8 +7,14 @@ public class Wandering_Deer : StateBase_Deer
     private Vector3 target;
     private RunOnce once = new RunOnce();
     int waitTime;
+    float speed = 1.5f;
+    float defaultSpeed;
+
     public override void OnEnter(Deer owner, StateBase_Deer prevState)
-    {
+    { 
+        defaultSpeed = owner.NavMeshAgent.speed;
+        //•à‚­‘¬“x‚É•Ï‚¦‚é
+        owner.NavMeshAgent.speed = speed;
         owner.Animator.SetInteger("AniState", (int)State.Wandering);
         while (true)//•Ê‚ÌêŠ‚ÖˆÚ“®
         {
@@ -34,7 +40,8 @@ public class Wandering_Deer : StateBase_Deer
         if (owner.ReceivedAttackCheck()) return;
         if (owner.Search())
         {
-            owner.ChangeState<Move_Deer>();
+            owner.NavMeshAgent.speed = defaultSpeed;
+            owner.ChangeState<Escape_Deer>();
             return;
         }
         var vec = target - owner.transform.position;
