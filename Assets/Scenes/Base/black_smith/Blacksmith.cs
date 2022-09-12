@@ -74,9 +74,6 @@ public class Blacksmith : UIBase
         return true;
     }
 
-
-
-
     [Serializable]
     public class Close : UIStateBase
     {
@@ -227,10 +224,10 @@ public class Blacksmith : UIBase
                 else
                 {
                     ButtonUI.SetButtonOnClick(i, () =>
-                                    {
-                                        owner.GetComponent<Blacksmith>()._createWeaponID = _CreatableWeapon[num].ID;
-                                        owner.ChangeState<Confirmation>();
-                                    });
+                    {
+                        owner.GetComponent<Blacksmith>()._createWeaponID = _CreatableWeapon[num].ID;
+                        owner.ChangeState<Confirmation>();
+                    });
                 }
 
             }
