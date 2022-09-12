@@ -545,6 +545,7 @@ public class UIItemBox : UIBase
             var weaponID = itemIcon.Buttons[itemIcon.CurrentNunber].GetComponent<ItemButton>().ID;
             UISoundManager.Instance._player.WeaponID = weaponID;
             owner.GetComponent<UIItemBox>().WeaponUISet();
+            UISoundManager.Instance._player.ChangeWepon(weaponID);
         }
         public override void OnBack(UIBase owner)
         {

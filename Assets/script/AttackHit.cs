@@ -28,8 +28,11 @@ public class AttackHit : MonoBehaviour
     }
     private void OnDestroy()
     {
-        int num = _hitReceiver.Hits.IndexOf(this);
-        _hitReceiver.Hits.RemoveAt(num);
+        if (_hitReceiver.Hits.Contains(this))
+        {
+            int num = _hitReceiver.Hits.IndexOf(this);
+            _hitReceiver.Hits.RemoveAt(num);
+        }
 
     }
 

@@ -64,6 +64,7 @@ public partial class Player : Singleton<Player>
     //武器切り替え
     [SerializeField] string _weaponID;
     [SerializeField] GameObject _weaponParent;
+    [SerializeField] GameObject _weaponParent_village;
     private GameObject _weapon;
     public string WeaponID { get => _weaponID; set => _weaponID = value; }
 
@@ -342,7 +343,7 @@ public partial class Player : Singleton<Player>
     {
         if (GameManager.Instance.Quest.IsQuest)
         {
-            ChangeWepon(_weaponID);
+            //ChangeWepon(_weaponID);
             _status.MaxHP = _statusData.MaxHP;
             _status.MaxSP = _statusData.MaxSP;
             _status.Attack = _statusData.Attack;
@@ -353,7 +354,7 @@ public partial class Player : Singleton<Player>
         }
         else
         {
-            DeleteWepon();
+            //DeleteWepon();
             _status.MaxHP = _statusData.MaxHP;
             _status.MaxSP = _statusData.MaxSP;
             _status.Attack = _statusData.Attack;
@@ -362,6 +363,8 @@ public partial class Player : Singleton<Player>
             _status.SP = _status.MaxSP;
             ChangeState<VillageState>();
         }
+        ChangeWepon(_weaponID);
+
         var pos = StartPos.Find(n => n.scene == GameManager.Instance.NowScene);
         transform.position = pos.pos[0];
         if (GameManager.Instance.NowScene == Scene.Base)
@@ -370,7 +373,7 @@ public partial class Player : Singleton<Player>
             transform.position = Vector3.zero;
         }
     }
-    private void ChangeWepon(string weponID)
+    public void ChangeWepon(string weponID)
     {
         if (!GameManager.Instance.WeaponDataList.Dictionary.ContainsKey(weponID)) return;
         _weaponID = weponID;
@@ -383,8 +386,17 @@ public partial class Player : Singleton<Player>
         }
         //インスタンス化
         var path = GameManager.Instance.WeaponDataList.Dictionary[weponID].weaponPath;
-        _weapon = Instantiate(Resources.Load(path), _weaponParent.transform.position, _weaponParent.transform.rotation) as GameObject;
-        _weapon.transform.SetParent(_weaponParent.transform);
+        if (GameManager.Instance.NowScene == Scene.Base)
+        {
+            _weapon = Instantiate(Resources.Load(path), _weaponParent_village.transform.position, _weaponParent_village.transform.rotation) as GameObject;
+            _weapon.transform.SetParent(_weaponParent_village.transform);
+        }
+        else
+        {
+            _weapon = Instantiate(Resources.Load(path), _weaponParent.transform.position, _weaponParent.transform.rotation) as GameObject;
+            _weapon.transform.SetParent(_weaponParent.transform);
+
+        }
         _weapon.transform.localScale = new Vector3(1, 1, 1);
         _status.Attack = GameManager.Instance.WeaponDataList.Dictionary[weponID].AttackPoint;
         if (_weaponID.Contains("weapon1"))

@@ -10,6 +10,11 @@ public class VillageState : PlayerStateBase
         nowSpeed = owner.MaxSpeed;
         owner.Animator.SetInteger("AniState", (int)PlayerAnimationState.Locomotion);
         owner.Animator.SetTrigger("Change");
+        //if(GameManager.Instance.WeaponDataList.Keys.Contains(owner.WeaponID))
+        //{
+        //    Debug.Log("•Ší‚ğ‚Â");
+        //    owner.ChangeWepon(owner.WeaponID);
+        //}
     }
     public override void OnExit(Player owner, PlayerStateBase nextState)
     {
