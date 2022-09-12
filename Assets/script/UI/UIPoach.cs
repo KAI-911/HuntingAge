@@ -37,14 +37,24 @@ public class UIPoach : UIBase
     {
         public override void OnEnter(UIBase owner, UIStateBase prevState)
         {
-            var size = owner.ItemIconList[(int)IconType.TypeSelect].IconData;
-            size._tableSize = new Vector2(1, 1);
-            owner.ItemIconList[(int)IconType.TypeSelect].SetIcondata(size);
             var list = owner.ItemIconList[(int)IconType.TypeSelect].CreateButton();
+            Debug.Log(owner.ItemIconList[(int)IconType.TypeSelect].TableSize);
             var button0 = list[0].GetComponent<Button>();
             button0.onClick.AddListener(() => owner.ChangeState<ItemSlect>());
             var button0Text = list[0].GetComponentInChildren<Text>();
             button0Text.text = "アイテム選択";
+
+            var button1 = list[1].GetComponent<Button>();
+            button1.onClick.AddListener(() =>
+            {
+                if (GameManager.Instance.Quest.QuestData.ID != "")
+                {
+                    owner.ChangeState<QuestView>();
+                }
+            });
+            var button1Text = list[1].GetComponentInChildren<Text>();
+            button1Text.text = "クエスト確認";
+
         }
         public override void OnExit(UIBase owner, UIStateBase nextState)
         {
@@ -95,6 +105,75 @@ public class UIPoach : UIBase
         {
             owner.ChangeState<FirstSlect>();
         }
+    }
+    private class QuestView : UIStateBase
+    {
+        GameObject questBord;
+        public override void OnEnter(UIBase owner, UIStateBase prevState)
+        {
+            questBord = Instantiate(Resources.Load("UI/QuestMenu"), GameManager.Instance.ItemCanvas.Canvas.transform) as GameObject;
+
+            QuestData data = GameManager.Instance.Quest.QuestData;
+
+            string str = "";
+            switch (data.Clear)
+            {
+                case ClearConditions.TargetSubjugation:
+
+
+                    str += "クリア条件: ";
+                    foreach (var item in data.TargetName)
+                    {
+                        var tmp = GameManager.Instance.EnemyDataList.Dictionary[item.name];
+
+                        str += tmp.DisplayName + "を" + item.number + "体討伐する\n";
+                    }
+                    break;
+                case ClearConditions.Gathering:
+                    str += "クリア条件: ";
+                    foreach (var item in data.TargetName)
+                    {
+                        var tmp = GameManager.Instance.MaterialDataList.Dictionary[item.name];
+
+                        str += tmp.Name + "を" + item.number + "個採取する\n";
+                    }
+                    break;
+                default:
+                    break;
+            }
+            str += "失敗条件: " + (int)(data.Failure + 1) + "回力尽きる\n";
+            switch (data.Field)
+            {
+                case Scene.Forest:
+                    str += "狩場: 森林";
+                    break;
+                case Scene.Animal:
+                    str += "狩場: 実験用";
+                    break;
+                default:
+                    break;
+            }
+            var texts = questBord.GetComponentsInChildren<Text>();
+            texts[0].text = data.Name;
+            texts[1].text = str;
+
+        }
+        public override void OnExit(UIBase owner, UIStateBase nextState)
+        {
+            Destroy(questBord);
+        }
+        public override void OnUpdate(UIBase owner)
+        {
+        }
+        public override void OnProceed(UIBase owner)
+        {
+        }
+        public override void OnBack(UIBase owner)
+        {
+            UISoundManager.Instance.PlayDecisionSE();
+            owner.ChangeState<FirstSlect>();
+        }
+
     }
     private class UIChange : UIStateBase
     {
@@ -421,7 +500,7 @@ public class UIPoach : UIBase
                 {
                     returnValue = -3;
                     _addNumber = returnValue;
-                    Debug.Log(_addNumber+"   "+ID);
+                    Debug.Log(_addNumber + "   " + ID);
                     _addItemID = ID;
                     ChangeState<AddItem>();
                     return returnValue;

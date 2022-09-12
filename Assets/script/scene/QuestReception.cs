@@ -61,7 +61,12 @@ public class QuestReception : UIBase
     {
         ItemIcon itemIcon;
         public override void OnEnter(UIBase owner, UIStateBase prevState)
-        {
+        {                            
+            //Žó‚¯‚Ä‚¢‚È‚¢Žž‚ÍID‚ð‹ó”’‚É‚·‚é
+            var data = GameManager.Instance.Quest.QuestData;
+            data.ID = "";
+            GameManager.Instance.Quest.QuestData = data;
+
             itemIcon = owner.ItemIconList[(int)IconType.LevelSelect];
             ItemIconData itemIconData = itemIcon.IconData;
             itemIconData._tableSize = new Vector2(GameManager.Instance.VillageData.VillageLevel, 1);
@@ -338,6 +343,10 @@ public class QuestReception : UIBase
                             owner.ChangeState<Close>();
                             UISoundManager.Instance._player.IsAction = true;
                             itemIcon.DeleteButton();
+                            //Žó‚¯‚Ä‚¢‚È‚¢Žž‚ÍID‚ð‹ó”’‚É‚·‚é
+                            var data= GameManager.Instance.Quest.QuestData;
+                            data.ID = "";
+                            GameManager.Instance.Quest.QuestData = data;
                         });
                     }
                     else
@@ -368,6 +377,7 @@ public class QuestReception : UIBase
 
     public void SelectQuest_Rec(string QuestID)
     {
+        if (!_questDataList.Dictionary.ContainsKey(QuestID)) return;
         QuestData data = _questDataList.Dictionary[QuestID];
         GameManager.Instance.Quest.QuestData = data;
         string str = "";

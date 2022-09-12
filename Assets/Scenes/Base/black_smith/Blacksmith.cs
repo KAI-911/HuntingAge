@@ -123,6 +123,7 @@ public class Blacksmith : UIBase
         }
         public override void OnProceed(UIBase owner)
         {
+            UISoundManager.Instance.PlayDecisionSE();
             owner.ItemIconList[(int)IconType.TypeSelect].CurrentButtonInvoke();
         }
         public override void OnBack(UIBase owner)
@@ -182,6 +183,7 @@ public class Blacksmith : UIBase
         }
         public override void OnProceed(UIBase owner)
         {
+            UISoundManager.Instance.PlayDecisionSE();
             owner.ItemIconList[(int)IconType.TypeSelect].CurrentButtonInvoke();
         }
         public override void OnBack(UIBase owner)
@@ -265,6 +267,7 @@ public class Blacksmith : UIBase
         }
         public override void OnProceed(UIBase owner)
         {
+            UISoundManager.Instance.PlayDecisionSE();
             owner.ItemIconList[(int)IconType.TypeSelect].CurrentButtonInvoke();
         }
         public override void OnBack(UIBase owner)
@@ -370,6 +373,7 @@ public class Blacksmith : UIBase
         {
             if (_TmpWeapon.Count > 0) owner.ItemIconList[(int)IconType.TypeSelect].CurrentButtonInvoke();
             else owner.ItemIconList[(int)IconType.Confirmation].CurrentButtonInvoke();
+            UISoundManager.Instance.PlayDecisionSE();
         }
         public override void OnBack(UIBase owner)
         {
@@ -438,6 +442,7 @@ public class Blacksmith : UIBase
         }
         public override void OnProceed(UIBase owner)
         {
+            UISoundManager.Instance.PlayDecisionSE();
             owner.ItemIconList[(int)IconType.Confirmation].CurrentButtonInvoke();
         }
         public override void OnBack(UIBase owner)

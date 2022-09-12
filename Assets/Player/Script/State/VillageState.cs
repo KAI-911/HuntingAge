@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class VillageAction : PlayerStateBase
+public class VillageState : PlayerStateBase
 {
     float nowSpeed;
     public override void OnEnter(Player owner, PlayerStateBase prevState)

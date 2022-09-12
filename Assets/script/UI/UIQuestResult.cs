@@ -7,12 +7,20 @@ public class UIQuestResult : UIBase
 {
     private current currentNum;
 
-    private void Start()
+    public override void Awake()
     {
+        base.Awake();
         _currentState = new Select();
         _currentState.OnEnter(this, null);
         currentNum = current.item;
+
     }
+    //private void Start()
+    //{
+    //    _currentState = new Select();
+    //    _currentState.OnEnter(this, null);
+    //    currentNum = current.item;
+    //}
 
     private class Select : UIStateBase
     {
@@ -51,35 +59,8 @@ public class UIQuestResult : UIBase
             _itemIcon.CreateButton();
             //ここでクエストの報酬のアイテムを設定する
             //クエストデータにクリア報酬を追加するのが良さそう
-            var gm = GameManager.Instance;
-            foreach (var reward in gm.Quest.QuestData.QuestRewardDatas)
-            {
-                int random = Random.Range(0, 100);
-                if (reward.probability < random)continue;
-                MaterialData data;
-                if (gm.MaterialDataList.Keys.Contains(reward.name))
-                {
-                    data = gm.MaterialDataList.Dictionary[reward.name];
-                }
-                else if (gm.ItemDataList.Keys.Contains(reward.name))
-                {
-                    data = gm.ItemDataList.Dictionary[reward.name].baseData;
-                }
-                else
-                {
-                    continue;
-                }
-                var index = _itemIcon.FirstNotSetNumber();
-                if (index == -1) break;
-                var ibutton = _itemIcon.Buttons[index].GetComponent<ItemButton>();
-                ibutton.SetData(reward.name, reward.number.ToString(), Resources.Load<Sprite>(data.IconName));
-                _itemIcon.SetButtonOnClick(index, () =>
-                {
-                    owner.GetComponent<UIQuestResult>().ItemToBox(reward.name, reward.number, owner);
-                    ibutton.clear();
-                    _itemIcon.Buttons[index].GetComponent<Button>().onClick.RemoveAllListeners();
-                });
-            }
+
+
 
             //全て受け取る
             _decisionIcon.CreateButton();
@@ -238,5 +219,37 @@ public class UIQuestResult : UIBase
             gm.ItemDataList.GetToBox(_ID, _num, index);
         }
     }
+    public void SetReward()
+    {
+        var gm = GameManager.Instance;
+        foreach (var reward in gm.Quest.QuestData.QuestRewardDatas)
+        {
+            int random = Random.Range(0, 100);
+            if (reward.probability < random) continue;
+            MaterialData data;
+            if (gm.MaterialDataList.Keys.Contains(reward.name))
+            {
+                data = gm.MaterialDataList.Dictionary[reward.name];
+            }
+            else if (gm.ItemDataList.Keys.Contains(reward.name))
+            {
+                data = gm.ItemDataList.Dictionary[reward.name].baseData;
+            }
+            else
+            {
+                continue;
+            }
+            var index = ItemIconList[(int)current.item].FirstNotSetNumber();
+            if (index == -1) break;
+            var ibutton = ItemIconList[(int)current.item].Buttons[index].GetComponent<ItemButton>();
+            ibutton.SetData(reward.name, reward.number.ToString(), Resources.Load<Sprite>(data.IconName));
+            ItemIconList[(int)current.item].SetButtonOnClick(index, () =>
+            {
+                ItemToBox(reward.name, reward.number, this);
+                ibutton.clear();
+                ItemIconList[(int)current.item].Buttons[index].GetComponent<Button>().onClick.RemoveAllListeners();
+            });
+        }
 
+    }
 }

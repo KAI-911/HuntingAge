@@ -658,7 +658,7 @@ MonoBehaviour:
   _text: 
   _itemHolder: {fileID: 6773398526993790654}
   _getItemNumber: 3
-  _collectableTimes: 3
+  _collectableTimes: 2
   _repopTime: 9999
   _ID: Fur
 --- !u!136 &1228840641483579741
@@ -4960,7 +4960,7 @@ MonoBehaviour:
       inWeight: 0
       outWeight: 0.33333334
     - serializedVersion: 3
-      time: 0.9
+      time: 0.99
       value: 0
       inSlope: 0
       outSlope: 0
@@ -4971,8 +4971,8 @@ MonoBehaviour:
     - serializedVersion: 3
       time: 1
       value: 1
-      inSlope: 9.999998
-      outSlope: 9.999998
+      inSlope: 100.0001
+      outSlope: 100.0001
       tangentMode: 34
       weightedMode: 0
       inWeight: 0.33333334

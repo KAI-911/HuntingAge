@@ -32,8 +32,11 @@ public class Death_Deer : StateBase_Deer
         if (myMat.HasProperty("_Threshold"))
         {
             myMat.SetFloat("_Threshold", owner.DissoveCurve.Evaluate(rate));
-            if (owner.DissoveCurve.Evaluate(rate) > 0) owner.CollectionScript.gameObject.SetActive(false);
-
+            if (owner.DissoveCurve.Evaluate(rate) > 0)
+            {
+                owner.CollectionScript.gameObject.SetActive(false);
+                owner.SkinnedMeshRenderer.shadowCastingMode = UnityEngine.Rendering.ShadowCastingMode.Off;
+            }
         }
 
         if (rate >= 1)
@@ -55,7 +58,6 @@ public class Death_Deer : StateBase_Deer
             {
                 item.enabled = false;
             }
-            owner.SkinnedMeshRenderer.shadowCastingMode = UnityEngine.Rendering.ShadowCastingMode.Off;
             owner.CollectionScript.gameObject.SetActive(true);
 
         }

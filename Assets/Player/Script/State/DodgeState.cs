@@ -11,7 +11,11 @@ public class DodgeState : PlayerStateBase
         owner.Animator.SetInteger("AniState", (int)PlayerAnimationState.Dodge);
         owner.Animator.SetTrigger("Change");
 
-
+        owner.Status.SP -= 15;
+        if(owner.Status.SP<=0)
+        {
+            owner.Status.SP = 0;
+        }
         //ˆê’èŽžŠÔŒo‰ß‚µ‚½‚ç–³“Gƒtƒ‰ƒO‚ð—Ž‚Æ‚·
         owner.Status.InvincibleFlg = true;
         _ = owner.WaitForAsync(_invincibleTime, () => owner.Status.InvincibleFlg = false);

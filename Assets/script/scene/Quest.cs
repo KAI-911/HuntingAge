@@ -440,7 +440,6 @@ public class Quest : MonoBehaviour
     }
     class QuestResult : QuestState
     {
-        UIQuestResult _questResult;
         public override void OnEnter(Quest owner, QuestState prevState)
         {
             if (owner._HPBar != null) Destroy(owner._HPBar);
@@ -449,8 +448,15 @@ public class Quest : MonoBehaviour
 
             //UIのセット
             owner._result = Instantiate(Resources.Load("UI/QuestResult")) as GameObject;
-            _questResult = owner._result.GetComponent<UIQuestResult>();
+            //questクリア時にのみ報酬がもらえる
+            if (prevState.GetType() == typeof(QuestClear))
+            {
+                owner._result.GetComponent<UIQuestResult>().SetReward();
+            }
 
+            var tmp = owner._questData;
+            tmp.Field = Scene.Base;
+            owner._questData = tmp;
 
             //ポーチにある素材アイテムをボックスに送る
             var dataList = GameManager.Instance.MaterialDataList;
@@ -465,7 +471,12 @@ public class Quest : MonoBehaviour
             dataList.DesrializeDictionary();
         }
         public override void OnExit(Quest owner, QuestState nextState)
-        {
+        {                            
+            //受けていない時はIDを空白にする
+            var data = owner.QuestData;
+            data.ID = "";
+            owner.QuestData = data;
+
             if (owner._result != null) Destroy(owner._result);
         }
         public override void OnActiveSceneChanged(Quest owner)

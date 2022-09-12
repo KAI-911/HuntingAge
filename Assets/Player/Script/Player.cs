@@ -40,6 +40,10 @@ public partial class Player : Singleton<Player>
     [SerializeField] float _collectionTime;
     public float CollectionTime { get => _collectionTime; }
 
+    [SerializeField] int _sprecovery;
+    float time = 0.1f;
+    float timeCount = 0;
+
     //インプットシステム
     private InputControls _inputMove;
     private InputAction _inputMoveAction;
@@ -83,7 +87,7 @@ public partial class Player : Singleton<Player>
         _statusData = GetComponent<PlayerStatusData>();
         _targetRotation = transform.rotation;
         _inputMove = new InputControls();
-        _currentState = new LocomotionState();
+        _currentState = new VillageState();
         _currentState.OnEnter(this, null);
         _weaponID = _statusData.Wepon;
         base.Awake();
@@ -130,17 +134,29 @@ public partial class Player : Singleton<Player>
         if (_status.HitReaction != HitReaction.nonReaction &&
             _currentState.GetType() != typeof(HitReactionState) &&
             _currentState.GetType() != typeof(DeathState) &&
-            _currentState.GetType() != typeof(VillageAction))
+            _currentState.GetType() != typeof(VillageState))
         {
             ChangeState<HitReactionState>();
         }
         if (_status.HP == 0 &&
             _currentState.GetType() != typeof(DeathState) &&
-            _currentState.GetType() != typeof(VillageAction))
+            _currentState.GetType() != typeof(VillageState))
         {
             ChangeState<DeathState>();
         }
-
+        if (_status.SP != _status.MaxSP)
+        {
+            timeCount += Time.deltaTime;
+            if (time < timeCount)
+            {
+                timeCount = 0;
+                _status.SP += _sprecovery;
+                if (_status.SP >= _status.MaxSP)
+                {
+                    _status.SP = _status.MaxSP;
+                }
+            }
+        }
     }
 
     private void FixedUpdate()
@@ -311,8 +327,14 @@ public partial class Player : Singleton<Player>
         _animator.SetInteger("HP", _status.HP);
         _status.HitReaction = HitReaction.nonReaction;
         _status.InvincibleFlg = false;
-        ChangeState<LocomotionState>();
-
+        if (GameManager.Instance.Quest.QuestData.Field == Scene.Base)
+        {
+            ChangeState<VillageState>();
+        }
+        else
+        {
+            ChangeState<LocomotionState>();
+        }
 
         Debug.Log("Revival");
     }
@@ -338,11 +360,11 @@ public partial class Player : Singleton<Player>
             _status.Defense = _statusData.Defense;
             _status.HP = _status.MaxHP;
             _status.SP = _status.MaxSP;
-            ChangeState<VillageAction>();
+            ChangeState<VillageState>();
         }
         var pos = StartPos.Find(n => n.scene == GameManager.Instance.NowScene);
         transform.position = pos.pos[0];
-        if(GameManager.Instance.NowScene==Scene.Base)
+        if (GameManager.Instance.NowScene == Scene.Base)
         {
             Debug.Log("ここここここここここここここここ");
             transform.position = Vector3.zero;

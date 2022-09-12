@@ -17,7 +17,7 @@ GameObject:
   - component: {fileID: 7160461107736146450}
   m_Layer: 0
   m_Name: UIBOX
-  m_TagString: Untagged
+  m_TagString: QuestSupport
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -288,6 +288,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _imagePrefab: {fileID: 5541608107631814696, guid: 242c96c79d9b830449b003f68433f768,
     type: 3}
+  _targetChecker: {fileID: 0}
+  _image: {fileID: 0}
   _spritePrefab: {fileID: 21300000, guid: 1f2eaae60ccd30149854468715b5cc49, type: 3}
   _text: "\u30A2\u30A4\u30C6\u30E0\u30DC\u30C3\u30AF\u30B9"
 --- !u!1001 &2948264592381293581
