@@ -93,6 +93,7 @@ public class kichen_varSato : UIBase
         }
         public override void OnProceed(UIBase owner)
         {
+            UISoundManager.Instance.PlayDecisionSE();
             owner.ItemIconList[(int)IconType.Select].CurrentButtonInvoke();
         }
         public override void OnBack(UIBase owner)
@@ -201,6 +202,7 @@ public class kichen_varSato : UIBase
         }
         public override void OnProceed(UIBase owner)
         {
+            UISoundManager.Instance.PlayDecisionSE();
             owner.ItemIconList[(int)IconType.Select].CurrentButtonInvoke();
         }
         public override void OnBack(UIBase owner)
@@ -264,6 +266,7 @@ public class kichen_varSato : UIBase
         }
         public override void OnProceed(UIBase owner)
         {
+            UISoundManager.Instance.PlayDecisionSE();
             owner.ChangeState<CleateMode>();
         }
         public override void OnBack(UIBase owner)
@@ -410,6 +413,7 @@ public class kichen_varSato : UIBase
         }
         public override void OnProceed(UIBase owner)
         {
+            UISoundManager.Instance.PlayDecisionSE();
             confimationIcon.CurrentButtonInvoke();
         }
         public override void OnBack(UIBase owner)
@@ -501,6 +505,7 @@ public class kichen_varSato : UIBase
                     lockflg = true;
 
                     countObject.GetComponentInChildren<Text>().text = now.ToString();
+                    UISoundManager.Instance.PlayCursorSE();
                 }
             }
             else

@@ -508,11 +508,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _imagePrefab: {fileID: 0}
+  _targetChecker: {fileID: 0}
+  _image: {fileID: 0}
   _spritePrefab: {fileID: 0}
   _text: 
   _itemHolder: {fileID: 5451584329905617759}
   _getItemNumber: 15
-  _collectableTimes: 3
+  _collectableTimes: 2
   _repopTime: 20
   _ID: Meet
 --- !u!114 &5451584329905617759
@@ -1229,7 +1231,7 @@ MonoBehaviour:
       inWeight: 0
       outWeight: 0.33333334
     - serializedVersion: 3
-      time: 0.9
+      time: 0.99
       value: 0
       inSlope: 0
       outSlope: 0
@@ -1240,8 +1242,8 @@ MonoBehaviour:
     - serializedVersion: 3
       time: 1
       value: 1
-      inSlope: 9.999998
-      outSlope: 9.999998
+      inSlope: 100.0001
+      outSlope: 100.0001
       tangentMode: 34
       weightedMode: 0
       inWeight: 0.33333334

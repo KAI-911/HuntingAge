@@ -23,7 +23,7 @@ MonoBehaviour:
   values:
   - _leftTopPos: {x: -600, y: 300}
     _padding: 10
-    _tableSize: {x: 1, y: 1}
+    _tableSize: {x: 2, y: 1}
     _canBeChanged: 1
     _buttonBack: 1
     _textFlg: 0
