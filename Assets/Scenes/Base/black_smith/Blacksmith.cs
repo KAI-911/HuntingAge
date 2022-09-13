@@ -18,7 +18,9 @@ public class Blacksmith : UIBase
     enum Mode { create, Enhancement }
     enum IconType
     {
+        ModeSelect,
         TypeSelect,
+        ProductSelect,
         Confirmation,
         MaterialList
     }
@@ -32,8 +34,9 @@ public class Blacksmith : UIBase
     }
     void Start()
     {
-        //_materialList = new MaterialList();
+        ItemIconList[(int)IconType.ModeSelect].SetIcondata(UISoundManager.Instance.UIPresetData.Dictionary["BlacksmithButton"]);
         ItemIconList[(int)IconType.TypeSelect].SetIcondata(UISoundManager.Instance.UIPresetData.Dictionary["BlacksmithButton"]);
+        ItemIconList[(int)IconType.ProductSelect].SetIcondata(UISoundManager.Instance.UIPresetData.Dictionary["BlacksmithButton"]);
         ItemIconList[(int)IconType.Confirmation].SetIcondata(UISoundManager.Instance.UIPresetData.Dictionary["Confirmation"]);
         ItemIconList[(int)IconType.MaterialList].SetIcondata(UISoundManager.Instance.UIPresetData.Dictionary["BlacksmithButton"]);
         _currentState = new Close();
@@ -98,11 +101,17 @@ public class Blacksmith : UIBase
     {
         public override void OnEnter(UIBase owner, UIStateBase prevState)
         {
+            owner.ItemIconList[(int)IconType.TypeSelect].DeleteButton();
+            owner.ItemIconList[(int)IconType.ProductSelect].DeleteButton();
+            owner.ItemIconList[(int)IconType.Confirmation].DeleteButton();
+            owner.ItemIconList[(int)IconType.MaterialList].DeleteButton();
+
             Debug.Log("Blacksmith_TypeSelectMode_OnEnter");
-            var UI = owner.ItemIconList[(int)IconType.TypeSelect];
+            var UI = owner.ItemIconList[(int)IconType.ModeSelect];
             UI.SetText("íbñËèÍÅFïêäÌ");
+            UI.SetLeftTopPos(new Vector2(-600, 200));
             UI.SetTable(new Vector2(2, 1));
-            var list = UI.CreateButton();
+            UI.CreateButton();
 
             UI.SetButtonText(0, "êªë¢");
             UI.SetButtonOnClick(0, () => owner.ChangeState<ProductionSelect>());
@@ -112,20 +121,19 @@ public class Blacksmith : UIBase
         }
         public override void OnExit(UIBase owner, UIStateBase nextState)
         {
-            owner.ItemIconList[(int)IconType.TypeSelect].DeleteButton();
         }
         public override void OnUpdate(UIBase owner)
         {
-            owner.ItemIconList[(int)IconType.TypeSelect].Select(UISoundManager.Instance.InputSelection.ReadValue<Vector2>());
+            owner.ItemIconList[(int)IconType.ModeSelect].Select(UISoundManager.Instance.InputSelection.ReadValue<Vector2>());
         }
         public override void OnProceed(UIBase owner)
         {
             UISoundManager.Instance.PlayDecisionSE();
-            owner.ItemIconList[(int)IconType.TypeSelect].CurrentButtonInvoke();
+            owner.ItemIconList[(int)IconType.ModeSelect].CurrentButtonInvoke();
         }
         public override void OnBack(UIBase owner)
         {
-            Debug.Log("modoru");
+            owner.ItemIconList[(int)IconType.ModeSelect].DeleteButton();
             UISoundManager.Instance._player.IsAction = true;
             owner.ChangeState<Close>();
         }
@@ -136,7 +144,8 @@ public class Blacksmith : UIBase
         public override void OnEnter(UIBase owner, UIStateBase prevState)
         {
             var UI = owner.ItemIconList[(int)IconType.TypeSelect];
-            UI.SetText("ïêäÌêªë¢");
+            UI.SetText("ïêäÌéÌëIë");
+            UI.SetLeftTopPos(new Vector2(-550,140));
             UI.SetTable(new Vector2(3, 1));
             var list = UI.CreateButton();
             for (int i = 0; i < 3/*ïÄÅEëÑÅEã|*/; i++)
@@ -172,7 +181,6 @@ public class Blacksmith : UIBase
         }
         public override void OnExit(UIBase owner, UIStateBase nextState)
         {
-            owner.ItemIconList[(int)IconType.TypeSelect].DeleteButton();
         }
         public override void OnUpdate(UIBase owner)
         {
@@ -186,6 +194,7 @@ public class Blacksmith : UIBase
         public override void OnBack(UIBase owner)
         {
             Debug.Log("modoru");
+            owner.ItemIconList[(int)IconType.TypeSelect].DeleteButton();
             owner.ChangeState<ChoiceMode>();
         }
     }
@@ -197,7 +206,7 @@ public class Blacksmith : UIBase
         {
             Debug.Log("Blacksmith_ProductionWeaponMode_OnEnter");
 
-            var ButtonUI = owner.ItemIconList[(int)IconType.TypeSelect];
+            var ButtonUI = owner.ItemIconList[(int)IconType.ProductSelect];
 
             var Weapon = GameManager.Instance.WeaponDataList.Dictionary;
             foreach (var item in Weapon)
@@ -210,6 +219,7 @@ public class Blacksmith : UIBase
             }
 
             ButtonUI.SetText("ïêäÌêªë¢");
+            ButtonUI.SetLeftTopPos(new Vector2(-500, 80));
             ButtonUI.SetTable(new Vector2(_CreatableWeapon.Count, 1));
             ButtonUI.CreateButton();
 
@@ -236,8 +246,8 @@ public class Blacksmith : UIBase
         }
         public override void OnUpdate(UIBase owner)
         {
-            owner.ItemIconList[(int)IconType.TypeSelect].Select(UISoundManager.Instance.InputSelection.ReadValue<Vector2>());
-            int buttonCount = owner.ItemIconList[(int)IconType.TypeSelect].CurrentNunber;
+            owner.ItemIconList[(int)IconType.ProductSelect].Select(UISoundManager.Instance.InputSelection.ReadValue<Vector2>());
+            int buttonCount = owner.ItemIconList[(int)IconType.ProductSelect].CurrentNunber;
 
             var ListUI = owner.ItemIconList[(int)IconType.MaterialList];
             var data = _CreatableWeapon[buttonCount].ProductionNeedMaterialLst;
@@ -259,18 +269,16 @@ public class Blacksmith : UIBase
         }
         public override void OnExit(UIBase owner, UIStateBase nextState)
         {
-            //owner.ItemIconList[(int)IconType.TypeSelect].DeleteButton();
-            //owner.ItemIconList[(int)IconType.MaterialList].DeleteButton();
         }
         public override void OnProceed(UIBase owner)
         {
             UISoundManager.Instance.PlayDecisionSE();
-            owner.ItemIconList[(int)IconType.TypeSelect].CurrentButtonInvoke();
+            owner.ItemIconList[(int)IconType.ProductSelect].CurrentButtonInvoke();
         }
         public override void OnBack(UIBase owner)
         {
             owner.ItemIconList[(int)IconType.MaterialList].DeleteButton();
-            owner.ItemIconList[(int)IconType.TypeSelect].DeleteButton();
+            owner.ItemIconList[(int)IconType.ProductSelect].DeleteButton();
             Debug.Log("modoru");
             owner.ChangeState<ProductionSelect>();
         }
@@ -292,6 +300,7 @@ public class Blacksmith : UIBase
             }
 
             UI.SetTable(new Vector2(_TmpWeapon.Count, 1));
+            UI.SetLeftTopPos(new Vector2(-550, 140));
             UI.CreateButton();
 
             if (_TmpWeapon.Count <= 0)
@@ -313,15 +322,11 @@ public class Blacksmith : UIBase
                 {
                     int num = i;
                     string enhancementID = _TmpWeapon[num].EnhancementID;
-                    Debug.Log("11111111");
                     var name = GameManager.Instance.WeaponDataList; int index = name.Keys.FindIndex(n => n.StartsWith(enhancementID));
-                    Debug.Log("22222222");
                     Debug.Log(name.Values[index].Name);
                     UI.SetButtonText(i, name.Values[index].Name);
-                    Debug.Log("44444444");
                     if (!owner.GetComponent<Blacksmith>().Check(name.Values[index], false))
                     {
-                        Debug.Log("333333");
                         var image = UI.Buttons[num].GetComponent<Image>();
                         image.color = owner.GetComponent<Blacksmith>()._cantColor;
                         UI.SetButtonOnClick(i, () => { });
@@ -433,9 +438,10 @@ public class Blacksmith : UIBase
         }
         public override void OnExit(UIBase owner, UIStateBase nextState)
         {
-            owner.ItemIconList[(int)IconType.MaterialList].DeleteButton();
             owner.ItemIconList[(int)IconType.TypeSelect].DeleteButton();
+            owner.ItemIconList[(int)IconType.ProductSelect].DeleteButton();
             owner.ItemIconList[(int)IconType.Confirmation].DeleteButton();
+            owner.ItemIconList[(int)IconType.MaterialList].DeleteButton();
         }
         public override void OnProceed(UIBase owner)
         {

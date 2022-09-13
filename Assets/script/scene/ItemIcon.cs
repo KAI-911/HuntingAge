@@ -204,7 +204,7 @@ public class ItemIcon : MonoBehaviour
         }
         return -1;
     }
-
+    //ˆø”‚Ìbool‚Í‰¼’Ç‰Á‚»‚ê‚É”º‚¤deleteButton‚Ì•Ï‰»
     [ContextMenu("CreateButton")]
     public List<GameObject> CreateButton(int currentNum = 0)
     {
