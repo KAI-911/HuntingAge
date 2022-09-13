@@ -17,6 +17,11 @@ public class UISoundManager : Singleton<UISoundManager>
     [SerializeField] GameObject _kickSwingSE;
     [SerializeField] GameObject _swordAttackSE;
     [SerializeField] GameObject _swordSwingSE;
+    [SerializeField] float _BGMVolume;
+    [SerializeField] float _SEVolume;
+
+
+
     private InputAction _inputSelection;
     private InputAction _inputCurrentChange;
     public Player _player;
@@ -30,6 +35,8 @@ public class UISoundManager : Singleton<UISoundManager>
     public GameObject KickSwingSE { get => _kickSwingSE; }
     public GameObject SwordAttackSE { get => _swordAttackSE; }
     public GameObject SwordSwingSE { get => _swordSwingSE; }
+    public float BGMVolume { get => _BGMVolume; set => _BGMVolume = value; }
+    public float SEVolume { get => _SEVolume; set => _SEVolume = value; }
 
     protected override void Awake()
     {

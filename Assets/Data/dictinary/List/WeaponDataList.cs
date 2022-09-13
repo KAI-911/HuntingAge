@@ -97,6 +97,9 @@ public class WeaponDataList : MonoBehaviour, ISerializationCallbackReceiver
         values[enhIndex] = enhdata;
         data.BoxPossession = false;
         values[index] = data;
+
+        GameManager.Instance.Player.ChangeWepon(enhdata.ID);
+
         Debug.Log("dataList" + values[index].BoxPossession + "kakuninndayo");
         DesrializeDictionary();
 

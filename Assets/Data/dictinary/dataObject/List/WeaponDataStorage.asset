@@ -88,7 +88,7 @@ MonoBehaviour:
     IconPass: Icon/Spear_wood_UI
     BoxUINumber: 3
     CreatableLevel: 3
-    BoxPossession: 1
+    BoxPossession: 0
     AttackPoint: 50
     WeaponType: 1
     ProductionNeedMaterialLst:

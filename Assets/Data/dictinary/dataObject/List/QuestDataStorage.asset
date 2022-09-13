@@ -23,10 +23,10 @@ MonoBehaviour:
   - Quest008
   values:
   - ID: Quest001
-    Name: Quest001
+    Name: "\u30AF\u30A8\u30B9\u30C8\uFF11"
     Clear: 0
     Failure: 1
-    Field: 2
+    Field: 1
     TargetName:
     - name: T-rex
       number: 1
@@ -64,7 +64,7 @@ MonoBehaviour:
       number: 2
       probability: 80
   - ID: Quest002
-    Name: Quest002
+    Name: "\u30AF\u30A8\u30B9\u30C8\uFF12"
     Clear: 0
     Failure: 2
     Field: 1
@@ -91,7 +91,7 @@ MonoBehaviour:
       number: 6
       probability: 90
   - ID: Quest003
-    Name: Quest003
+    Name: "\u30AF\u30A8\u30B9\u30C8\uFF13"
     Clear: 0
     Failure: 2
     Field: 2
@@ -116,10 +116,10 @@ MonoBehaviour:
       number: 1
       probability: 70
   - ID: Quest004
-    Name: Quest004
+    Name: "\u30AF\u30A8\u30B9\u30C8\uFF14"
     Clear: 1
     Failure: 2
-    Field: 2
+    Field: 1
     TargetName:
     - name: Material003
       number: 10
@@ -155,12 +155,12 @@ MonoBehaviour:
       number: 2
       probability: 80
   - ID: Quest005
-    Name: Quest005
+    Name: "\u30AF\u30A8\u30B9\u30C8\uFF15"
     Clear: 1
     Failure: 2
     Field: 1
     TargetName:
-    - name: Material003
+    - name: Material001
       number: 1
     OtherName: []
     QuestRewardDatas:
@@ -192,10 +192,10 @@ MonoBehaviour:
       number: 2
       probability: 80
   - ID: Quest006
-    Name: Quest006
+    Name: "\u30AF\u30A8\u30B9\u30C8\uFF16"
     Clear: 0
     Failure: 4
-    Field: 2
+    Field: 1
     TargetName:
     - name: Deer
       number: 1
@@ -231,10 +231,10 @@ MonoBehaviour:
       number: 2
       probability: 80
   - ID: Quest007
-    Name: Quest007
+    Name: "\u30AF\u30A8\u30B9\u30C8\uFF17"
     Clear: 0
     Failure: 4
-    Field: 2
+    Field: 1
     TargetName:
     - name: Rhino
       number: 1
