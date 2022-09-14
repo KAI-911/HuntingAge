@@ -444,6 +444,7 @@ public class Quest : MonoBehaviour
         {
             if (owner._HPBar != null) Destroy(owner._HPBar);
             if (owner._SPBar != null) Destroy(owner._SPBar);
+            
             GameManager.Instance.UIItemView.ChangeNotQuestState();
 
             //UI‚ÌƒZƒbƒg

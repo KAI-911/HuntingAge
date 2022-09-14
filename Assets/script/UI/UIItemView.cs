@@ -47,7 +47,8 @@ public class UIItemView : UIBase
     }
     public void ChangeNotQuestState()
     {
-        GetComponent<UIBase>().ChangeState<NotQuest>();
+        UIDelete();
+        ChangeState<NotQuest>();
     }
     private class NotQuest : UIStateBase
     {
@@ -110,7 +111,11 @@ public class UIItemView : UIBase
                 OWNER.DeleteCenterUI();
                 OWNER.DeleteRightUI();
                 OWNER.DeleteLeftUI();
+                Destroy(OWNER._attackUpEffect);
+                Destroy(OWNER._defenseUpEffect);
+                Destroy(OWNER._hpUpEffect);
                 owner.ChangeState<NotQuest>();
+
             }
         }
     }
@@ -295,6 +300,16 @@ public class UIItemView : UIBase
         }
     }
 
+    public void UIDelete()
+    {
+        DeleteCenterUI();
+        DeleteRightUI();
+        DeleteLeftUI();
+        Destroy(_attackUpEffect);
+        Destroy(_defenseUpEffect);
+        Destroy(_hpUpEffect);
+        ChangeState<NotQuest>();
+    }
     public void CreateLightButton()
     {
         if (_maruButton != null) return;

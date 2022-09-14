@@ -407,16 +407,16 @@ MonoBehaviour:
     Name: "\u6728"
     IconName: Icon/Wood_UI
     BoxStackNumber: 9999
-    BoxUINumber: 0
-    BoxHoldNumber: 933
+    BoxUINumber: 5
+    BoxHoldNumber: 938
     PoachStackNumber: 99
-    PoachUINumber: 4
-    PoachHoldNumber: 1
+    PoachUINumber: 2
+    PoachHoldNumber: 0
   - ID: Material002
     Name: "\u30C4\u30BF"
     IconName: Icon/Vine_UI
     BoxStackNumber: 9999
-    BoxUINumber: 5
+    BoxUINumber: 0
     BoxHoldNumber: 1000
     PoachStackNumber: 99
     PoachUINumber: 1
@@ -428,8 +428,8 @@ MonoBehaviour:
     BoxUINumber: 1
     BoxHoldNumber: 1018
     PoachStackNumber: 99
-    PoachUINumber: 3
-    PoachHoldNumber: 3
+    PoachUINumber: 4
+    PoachHoldNumber: 0
   - ID: Material004
     Name: "\u690D\u7269"
     IconName: Icon/Botanical_UI
@@ -455,7 +455,7 @@ MonoBehaviour:
     BoxUINumber: 6
     BoxHoldNumber: 1000
     PoachStackNumber: 99
-    PoachUINumber: 3
+    PoachUINumber: 4
     PoachHoldNumber: 0
   - ID: Material007
     Name: "\u76AE"
@@ -678,7 +678,7 @@ MonoBehaviour:
     IconPass: Icon/Axe_wood_UI
     BoxUINumber: 0
     CreatableLevel: 1
-    BoxPossession: 1
+    BoxPossession: 0
     AttackPoint: 50
     WeaponType: 0
     ProductionNeedMaterialLst:
@@ -852,13 +852,13 @@ MonoBehaviour:
       IconName: Icon/Soup_UI
       BoxStackNumber: 9999
       BoxUINumber: 15
-      BoxHoldNumber: 3051
+      BoxHoldNumber: 3050
       PoachStackNumber: 10
       PoachUINumber: 0
-      PoachHoldNumber: 9
+      PoachHoldNumber: 4
     Use: 0
     Permanent: 0
-    Time: 0
+    Time: 10
     UpValue: 50
     ItemType: 0
     CreatableLevel: 1
@@ -874,12 +874,12 @@ MonoBehaviour:
       IconName: Icon/GrilledMeat_UI
       BoxStackNumber: 9999
       BoxUINumber: 17
-      BoxHoldNumber: 3021
+      BoxHoldNumber: 3018
       PoachStackNumber: 10
       PoachUINumber: 2
-      PoachHoldNumber: 10
+      PoachHoldNumber: 8
     Use: 0
-    Permanent: 0
+    Permanent: 1
     Time: 120
     UpValue: 50
     ItemType: 1
@@ -894,10 +894,10 @@ MonoBehaviour:
       IconName: Icon/Fruit_UI
       BoxStackNumber: 9999
       BoxUINumber: 16
-      BoxHoldNumber: 2991
+      BoxHoldNumber: 2989
       PoachStackNumber: 10
       PoachUINumber: 1
-      PoachHoldNumber: 10
+      PoachHoldNumber: 9
     Use: 0
     Permanent: 0
     Time: 120
@@ -932,6 +932,12 @@ MonoBehaviour:
     type: 3}
   _sideScaleSize: 0.7
   _padding: 20
+  _attackUpprefab: {fileID: 2258946460151890, guid: b9025af6f39bf0a4b9955edd11b0cb40,
+    type: 3}
+  _defenseUpprefab: {fileID: 433190895988374884, guid: 3d663aef4c4987743a7171c4b99888b8,
+    type: 3}
+  _hpUpprefab: {fileID: 433190895988374884, guid: 5e0e4755294790d4cb5b56016458d4f1,
+    type: 3}
 --- !u!114 &134231313382430172
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -945,8 +951,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   DictionaryData: {fileID: 11400000, guid: 019398f9683afc248a45a060c81d272d, type: 2}
-  BGMVolume: 0.5
-  SEVolume: 0.5
+  _BGMVolume: 0.110000655
+  _SEVolume: 0.18000068
+  _UIVolume: 0.12
   modifyValues: 0
 --- !u!1 &8863779222303211788
 GameObject:
