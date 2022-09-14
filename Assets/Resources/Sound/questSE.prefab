@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8504682689478910851}
   - component: {fileID: 8504682689478910850}
-  - component: {fileID: 4872969855691625433}
+  - component: {fileID: 1441781715006428995}
   m_Layer: 0
   m_Name: questSE
   m_TagString: Untagged
@@ -129,7 +129,7 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
---- !u!114 &4872969855691625433
+--- !u!114 &1441781715006428995
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -138,7 +138,8 @@ MonoBehaviour:
   m_GameObject: {fileID: 8504682689478910861}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 588677e03451b93489cccbd869b7f2f0, type: 3}
+  m_Script: {fileID: 11500000, guid: ff8b2a5bc34335d4d8bc3d8f705ae1b8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  deleteTime: 3
+  _audio: {fileID: 8504682689478910850}
+  _sound: 0

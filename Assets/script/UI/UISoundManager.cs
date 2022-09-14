@@ -17,9 +17,6 @@ public class UISoundManager : Singleton<UISoundManager>
     [SerializeField] GameObject _kickSwingSE;
     [SerializeField] GameObject _swordAttackSE;
     [SerializeField] GameObject _swordSwingSE;
-    [SerializeField] float _BGMVolume;
-    [SerializeField] float _SEVolume;
-
 
 
     private InputAction _inputSelection;
@@ -37,8 +34,6 @@ public class UISoundManager : Singleton<UISoundManager>
     public GameObject KickSwingSE { get => _kickSwingSE; }
     public GameObject SwordAttackSE { get => _swordAttackSE; }
     public GameObject SwordSwingSE { get => _swordSwingSE; }
-    public float BGMVolume { get => _BGMVolume; set => _BGMVolume = value; }
-    public float SEVolume { get => _SEVolume; set => _SEVolume = value; }
 
     protected override void Awake()
     {
@@ -92,8 +87,11 @@ public class UISoundManager : Singleton<UISoundManager>
         _inputCurrentChange = _input.UI.CurrentChange;
         _inputItemView = _input.UI.UIItemView;
         _input.UI.Enable();
+        //決定、進む
         _input.UI.Proceed.started += UIProceed;
+        //否定、戻る
         _input.UI.Back.started += UIBack;
+        //メニューを開く
         _input.UI.Menu.started += UIMenu;
         _input.UI.SubMenu.started += UISubMenu;
         _input.UI.UseItemSelect.started += UIUseItemSelectStart;

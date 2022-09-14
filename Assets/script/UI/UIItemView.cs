@@ -26,7 +26,13 @@ public class UIItemView : UIBase
         right,
         left
     }
+    [SerializeField] GameObject _attackUpprefab;
+    [SerializeField] GameObject _defenseUpprefab;
+    [SerializeField] GameObject _hpUpprefab;
 
+    GameObject _attackUpEffect;
+    GameObject _defenseUpEffect;
+    GameObject _hpUpEffect;
     private void Start()
     {
         _currentState = new NotQuest();
@@ -53,7 +59,6 @@ public class UIItemView : UIBase
         }
         public override void OnUpdate(UIBase owner)
         {
-            Debug.Log(GetType().Name);
         }
         public override void OnExit(UIBase owner, UIStateBase nextState)
         {
@@ -130,6 +135,8 @@ public class UIItemView : UIBase
                         {
                             status.HP = status.MaxHP;
                         }
+                        OWNER._hpUpEffect = Instantiate(OWNER._hpUpprefab, UISoundManager.Instance._player.transform) as GameObject;
+                        Destroy(OWNER._hpUpEffect, 3);
                         break;
                     case ItemType.AttackUp:
                         if (data.Use) return;
@@ -143,11 +150,13 @@ public class UIItemView : UIBase
                                 GameManager.Instance.Player.Status = status;
                                 GameManager.Instance.ItemDataList.Values[index] = data;
                                 GameManager.Instance.ItemDataList.DesrializeDictionary();
+                                if (OWNER._attackUpEffect != null) Destroy(OWNER._attackUpEffect);
                             });
                         }
                         data.Use = true;
                         data.baseData.PoachHoldNumber--;
                         status.Attack += (int)data.UpValue;
+                        OWNER._attackUpEffect = Instantiate(OWNER._attackUpprefab, UISoundManager.Instance._player.transform) as GameObject;
                         break;
                     case ItemType.DefenseUp:
                         if (data.Use) return;
@@ -157,15 +166,16 @@ public class UIItemView : UIBase
                             {
                                 if (!data.Use) return;
                                 data.Use = false;
-                                status.Defense -= (int)data.UpValue;
-                                GameManager.Instance.Player.Status = status;
+                                GameManager.Instance.Player.Status.Defense = GameManager.Instance.Player.StatusData.Defense;
                                 GameManager.Instance.ItemDataList.Values[index] = data;
                                 GameManager.Instance.ItemDataList.DesrializeDictionary();
+                                if (OWNER._defenseUpEffect != null) Destroy(OWNER._defenseUpEffect);
                             });
                         }
                         data.Use = true;
                         data.baseData.PoachHoldNumber--;
                         status.Defense += (int)data.UpValue;
+                        OWNER._defenseUpEffect = Instantiate(OWNER._defenseUpprefab, UISoundManager.Instance._player.transform) as GameObject;
 
                         break;
                     default:

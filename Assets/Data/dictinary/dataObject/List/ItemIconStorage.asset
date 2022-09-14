@@ -164,11 +164,11 @@ MonoBehaviour:
       textAnchor: 4
   - _leftTopPos: {x: -500, y: -100}
     _padding: 10
-    _tableSize: {x: 2, y: 1}
+    _tableSize: {x: 3, y: 1}
     _canBeChanged: 0
     _buttonBack: 1
-    _textFlg: 0
-    _buttonPrefab: {fileID: 1403004829627007043, guid: ac45662ca2cc1624f925db70b55c9b3e,
+    _textFlg: 1
+    _buttonPrefab: {fileID: 1403004829627007043, guid: 446577f06a189c14488ef6b7845ad21c,
       type: 3}
     _buttonBackPrefab: {fileID: 4567105175149944347, guid: f7ce8ff705927a7488534fa792a126fe,
       type: 3}
@@ -177,7 +177,7 @@ MonoBehaviour:
     _textData:
       fontSize: 15
       autoFontSize: 1
-      text: "\u78BA\u8A8D"
+      text: "\u97F3\u91CF"
       color: {r: 1, g: 1, b: 1, a: 1}
       hight: 60
       margin: 10
