@@ -196,6 +196,7 @@ public class UIItemView : UIBase
     }
     private class SelectItem : UIStateBase
     {
+        bool lockflg;
         public override void OnEnter(UIBase owner, UIStateBase prevState)
         {
             var OWNER = owner.GetComponent<UIItemView>();
@@ -207,7 +208,7 @@ public class UIItemView : UIBase
             OWNER.SetLeftImage();
             OWNER.CreateLightButton();
             OWNER.CreateRightButton();
-
+            lockflg = false;
         }
         public override void OnExit(UIBase owner, UIStateBase nextState)
         {
@@ -225,32 +226,30 @@ public class UIItemView : UIBase
         public override void OnUpdate(UIBase owner)
         {
             Debug.Log(GetType().Name);
-        }
-        public override void OnProceed(UIBase owner)
-        {
+
             var OWNER = owner.GetComponent<UIItemView>();
-            if (OWNER._itemIDList.Count == 0) return;
-            int index = OWNER._itemIDList.IndexOf(OWNER._currentID);
-            index++;
-            if (index >= OWNER._itemIDList.Count) index = 0;
-            OWNER._currentID = OWNER._itemIDList[index];
-            OWNER.SetCenterImage();
-            OWNER.SetRightImage();
-            OWNER.SetLeftImage();
+            var inputVec = UISoundManager.Instance.InputItemView.ReadValue<float>();
+            if (inputVec > 0)
+            {
+                if (lockflg) return;
+                if (OWNER._itemIDList.Count == 0) return;
+                LeftToRighet(OWNER);
+                lockflg = true;
+            }
+            else if (inputVec < 0)
+            {
+                if (lockflg) return;
+                if (OWNER._itemIDList.Count == 0) return;
+                RighetToLeft(OWNER);
+                lockflg = true;
+            }
+            else
+            {
+                lockflg = false;
+            }
 
         }
-        public override void OnPushBoxButton(UIBase owner)
-        {
-            var OWNER = owner.GetComponent<UIItemView>();
-            if (OWNER._itemIDList.Count == 0) return;
-            int index = OWNER._itemIDList.IndexOf(OWNER._currentID);
-            index--;
-            if (index < 0) index = OWNER._itemIDList.Count - 1;
-            OWNER._currentID = OWNER._itemIDList[index];
-            OWNER.SetCenterImage();
-            OWNER.SetRightImage();
-            OWNER.SetLeftImage();
-        }
+
         public override void OnSceneChenge(UIBase owner)
         {
             if (!GameManager.Instance.Quest.IsQuest)
@@ -263,6 +262,27 @@ public class UIItemView : UIBase
             }
         }
 
+        private void LeftToRighet(UIItemView OWNER)
+        {
+            int index = OWNER._itemIDList.IndexOf(OWNER._currentID);
+            index++;
+            if (index >= OWNER._itemIDList.Count) index = 0;
+            OWNER._currentID = OWNER._itemIDList[index];
+            OWNER.SetCenterImage();
+            OWNER.SetRightImage();
+            OWNER.SetLeftImage();
+        }
+        private void RighetToLeft(UIItemView OWNER)
+        {
+            if (OWNER._itemIDList.Count == 0) return;
+            int index = OWNER._itemIDList.IndexOf(OWNER._currentID);
+            index--;
+            if (index < 0) index = OWNER._itemIDList.Count - 1;
+            OWNER._currentID = OWNER._itemIDList[index];
+            OWNER.SetCenterImage();
+            OWNER.SetRightImage();
+            OWNER.SetLeftImage();
+        }
     }
 
     public void CreateLightButton()

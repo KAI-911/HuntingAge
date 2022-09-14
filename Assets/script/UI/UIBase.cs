@@ -51,14 +51,6 @@ abstract public class UIBase : MonoBehaviour
     {
         _currentState.OnSelectItemEnd(this);
     }
-    public void PushBoxButton()
-    {
-        _currentState.OnPushBoxButton(this);
-    }
-    public void PushTriangleButton()
-    {
-        _currentState.OnPushTriangleButton(this);
-    }
     public void SceneChenge()
     {
         _currentState.OnSceneChenge(this);
@@ -82,8 +74,6 @@ abstract public class UIBase : MonoBehaviour
         public virtual void OnSubMenu(UIBase owner) { }
         public virtual void OnSelectItemStart(UIBase owner) { }
         public virtual void OnSelectItemEnd(UIBase owner) { }
-        public virtual void OnPushBoxButton(UIBase owner) { }
-        public virtual void OnPushTriangleButton(UIBase owner) { }
         public virtual void OnSceneChenge(UIBase owner) { }
 
     }
