@@ -17,16 +17,15 @@ public class UISoundManager : Singleton<UISoundManager>
     [SerializeField] GameObject _kickSwingSE;
     [SerializeField] GameObject _swordAttackSE;
     [SerializeField] GameObject _swordSwingSE;
-    [SerializeField] float _BGMVolume;
-    [SerializeField] float _SEVolume;
-
 
 
     private InputAction _inputSelection;
     private InputAction _inputCurrentChange;
+    private InputAction _inputItemView;
     public Player _player;
     public InputAction InputSelection { get => _inputSelection; }
     public InputAction InputCurrentChange { get => _inputCurrentChange; }
+    public InputAction InputItemView { get => _inputItemView; }
     public UIPresetDataList UIPresetData { get => _UIPresetData; set => _UIPresetData = value; }
     public GameObject CursorSE { get => _cursorSE; }
     public GameObject QuestSE { get => _questSE; }
@@ -35,8 +34,6 @@ public class UISoundManager : Singleton<UISoundManager>
     public GameObject KickSwingSE { get => _kickSwingSE; }
     public GameObject SwordAttackSE { get => _swordAttackSE; }
     public GameObject SwordSwingSE { get => _swordSwingSE; }
-    public float BGMVolume { get => _BGMVolume; set => _BGMVolume = value; }
-    public float SEVolume { get => _SEVolume; set => _SEVolume = value; }
 
     protected override void Awake()
     {
@@ -88,15 +85,17 @@ public class UISoundManager : Singleton<UISoundManager>
     {
         _inputSelection = _input.UI.Selection;
         _inputCurrentChange = _input.UI.CurrentChange;
+        _inputItemView = _input.UI.UIItemView;
+        _input.UI.Enable();
+        //決定、進む
         _input.UI.Proceed.started += UIProceed;
+        //否定、戻る
         _input.UI.Back.started += UIBack;
+        //メニューを開く
         _input.UI.Menu.started += UIMenu;
         _input.UI.SubMenu.started += UISubMenu;
-        _input.UI.Enable();
         _input.UI.UseItemSelect.started += UIUseItemSelectStart;
         _input.UI.UseItemSelect.canceled += UIUseItemSelectEnd;
-        _input.UI.boxbutton.started += UIBoxPush;
-        _input.UI.trianglebutton.started += UITrianglePush;
         _input.UI.Title.started += NextVillage;
         SceneManager.sceneLoaded += OnSceneLoaded;
 
@@ -112,8 +111,6 @@ public class UISoundManager : Singleton<UISoundManager>
         _input.UI.Disable();
         _input.UI.UseItemSelect.started -= UIUseItemSelectStart;
         _input.UI.UseItemSelect.canceled -= UIUseItemSelectEnd;
-        _input.UI.boxbutton.started -= UIBoxPush;
-        _input.UI.trianglebutton.started -= UITrianglePush;
         _input.UI.Title.started -= NextVillage;
 
         SceneManager.sceneLoaded -= OnSceneLoaded;
@@ -163,25 +160,12 @@ public class UISoundManager : Singleton<UISoundManager>
             ui.UseItemSelectEnd();
         }
     }
-    private void UITrianglePush(InputAction.CallbackContext obj)
-    {
-        foreach (var ui in _UIList)
-        {
-            ui.PushTriangleButton();
-        }
-    }
+
     private void NextVillage(InputAction.CallbackContext obj)
     {
         GameManager.Instance.GoToVillage();
     }
 
-    private void UIBoxPush(InputAction.CallbackContext obj)
-    {
-        foreach (var ui in _UIList)
-        {
-            ui.PushBoxButton();
-        }
-    }
     private void OnSceneLoaded(UnityEngine.SceneManagement.Scene arg0, LoadSceneMode arg1)
     {
         foreach (var ui in _UIList)

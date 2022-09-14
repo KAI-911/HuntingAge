@@ -9,27 +9,44 @@ public class SoundDelete : MonoBehaviour
     [SerializeField] Sound _sound;
     void Start()
     {
-        DontDestroyOnLoad(this);
         switch (_sound)
         {
             case Sound.SE:
-                _audio.volume = UISoundManager.Instance.SEVolume;
+                _audio.volume = GameManager.Instance.SettingDataList.SEVolume;
+                DontDestroyOnLoad(this);
                 break;
             case Sound.BGM:
-                _audio.volume = UISoundManager.Instance.BGMVolume;
+                _audio.volume = GameManager.Instance.SettingDataList.BGMVolume;
                 break;
+            case Sound.UI:
+                _audio.volume = GameManager.Instance.SettingDataList.UIVolume;
+                break;
+
         }
-        
-        Destroy(gameObject, _audio.clip.length);
+        if (!_audio.loop) Destroy(gameObject, _audio.clip.length);
     }
     private void Update()
     {
-        
+        switch (_sound)
+        {
+            case Sound.SE:
+                _audio.volume = GameManager.Instance.SettingDataList.SEVolume;
+                break;
+            case Sound.BGM:
+                _audio.volume = GameManager.Instance.SettingDataList.BGMVolume;
+                break;
+            case Sound.UI:
+                _audio.volume = GameManager.Instance.SettingDataList.UIVolume;
+                break;
+
+        }
+
     }
-    enum  Sound
+    enum Sound
     {
         SE,
-        BGM
+        BGM,
+        UI
     }
 
 }

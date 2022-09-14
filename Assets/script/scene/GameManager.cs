@@ -20,9 +20,10 @@ public class GameManager : Singleton<GameManager>
     private UIPoach _UIPoachList;
     private WeaponDataList _weaponDataList;
     private EnemyDataList _enemyDataList;
+    private SettingDataList _settingDataList;
     private VillageData _villageData;
     private FadeManager _fadeManager;
-    private UIItemView _iItemView;
+    private UIItemView _uiItemView;
     private Player _player;
     public Scene VillageScene { get => _villageScene; }
     public Scene NowScene { get => _nowScene; set => _nowScene = value; }
@@ -34,10 +35,10 @@ public class GameManager : Singleton<GameManager>
     public VillageData VillageData { get => _villageData; }
     public ItemCanvas ItemCanvas { get => _itemCanvas; }
     public UIPoach UIPoachList { get => _UIPoachList; }
-    public UIItemView UIItemView { get => _iItemView; }
+    public UIItemView UIItemView { get => _uiItemView; }
     public Player Player { get => _player; }
     public FadeManager FadeManager { get => _fadeManager; }
-
+    public SettingDataList SettingDataList { get => _settingDataList;}
 
     protected override void Awake()
     {
@@ -48,9 +49,10 @@ public class GameManager : Singleton<GameManager>
         _UIPoachList = GetComponentInChildren<UIPoach>();
         _weaponDataList = GetComponent<WeaponDataList>();
         _enemyDataList = GetComponent<EnemyDataList>();
+        _settingDataList = GetComponent<SettingDataList>();
         _villageData = GetComponent<VillageData>();
         _fadeManager = GetComponentInChildren<FadeManager>();
-        _iItemView = GetComponentInChildren<UIItemView>();
+        _uiItemView = GetComponentInChildren<UIItemView>();
         base.Awake();
     }
     public void GoToVillage()

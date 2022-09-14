@@ -260,7 +260,7 @@ public partial class @InputControls : IInputActionCollection2, IDisposable
                 {
                     ""name"": """",
                     ""id"": ""bc27bf84-88c7-4d09-ac79-684de1074d07"",
-                    ""path"": ""<Keyboard>/c"",
+                    ""path"": ""<Keyboard>/shift"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
@@ -327,6 +327,17 @@ public partial class @InputControls : IInputActionCollection2, IDisposable
                     ""name"": """",
                     ""id"": ""9b9f1ca5-8ae8-4032-a5f1-8a745a798580"",
                     ""path"": ""<Gamepad>/buttonWest"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Collection"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""f05186fa-c045-42b0-b7d4-c0f8e36beb8d"",
+                    ""path"": ""<Keyboard>/e"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
@@ -404,24 +415,6 @@ public partial class @InputControls : IInputActionCollection2, IDisposable
                     ""initialStateCheck"": false
                 },
                 {
-                    ""name"": ""boxbutton"",
-                    ""type"": ""Button"",
-                    ""id"": ""b76234a1-6f0d-4876-9959-13066fabd243"",
-                    ""expectedControlType"": ""Button"",
-                    ""processors"": """",
-                    ""interactions"": """",
-                    ""initialStateCheck"": false
-                },
-                {
-                    ""name"": ""trianglebutton"",
-                    ""type"": ""Button"",
-                    ""id"": ""eaf5339a-b722-4534-8b10-a77d4e8ea3c9"",
-                    ""expectedControlType"": ""Button"",
-                    ""processors"": """",
-                    ""interactions"": """",
-                    ""initialStateCheck"": false
-                },
-                {
                     ""name"": ""Title"",
                     ""type"": ""Button"",
                     ""id"": ""fdc81dd0-4893-4eee-a14e-4fbd3f0d5164"",
@@ -429,6 +422,15 @@ public partial class @InputControls : IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""UIItemView"",
+                    ""type"": ""Value"",
+                    ""id"": ""94e546bd-875d-41c2-951c-72cc599f65cf"",
+                    ""expectedControlType"": ""Axis"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": true
                 }
             ],
             ""bindings"": [
@@ -442,6 +444,61 @@ public partial class @InputControls : IInputActionCollection2, IDisposable
                     ""action"": ""Selection"",
                     ""isComposite"": true,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": ""key2"",
+                    ""id"": ""816fab94-9ac8-42bf-ab79-4d85530a86e3"",
+                    ""path"": ""2DVector"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Selection"",
+                    ""isComposite"": true,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": ""up"",
+                    ""id"": ""f7e30f3c-38af-49ed-87aa-d5cbbc03ffd0"",
+                    ""path"": ""<Keyboard>/w"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Selection"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""down"",
+                    ""id"": ""2d5cf93a-e6f9-4acc-bc0a-91bc4eee3ab5"",
+                    ""path"": ""<Keyboard>/s"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Selection"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""left"",
+                    ""id"": ""5c08a23c-0408-4599-b5d0-08c28a2e9f75"",
+                    ""path"": ""<Keyboard>/a"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Selection"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""right"",
+                    ""id"": ""8911adf6-d206-4caf-a865-da36b2e63504"",
+                    ""path"": ""<Keyboard>/d"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Selection"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
                 },
                 {
                     ""name"": ""up"",
@@ -664,9 +721,75 @@ public partial class @InputControls : IInputActionCollection2, IDisposable
                     ""isPartOfComposite"": true
                 },
                 {
+                    ""name"": ""key"",
+                    ""id"": ""87b121d6-2617-4e44-9854-341f25554e5d"",
+                    ""path"": ""2DVector"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""CurrentChange"",
+                    ""isComposite"": true,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": ""up"",
+                    ""id"": ""87699aae-0afd-408c-8499-7a77a34d3604"",
+                    ""path"": """",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""CurrentChange"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""down"",
+                    ""id"": ""15e1f172-a70f-4988-a328-cbf62cb5a6ce"",
+                    ""path"": """",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""CurrentChange"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""left"",
+                    ""id"": ""ba4fbcc7-a0cb-48f6-8000-5d1cc5fe2a6c"",
+                    ""path"": ""<Keyboard>/q"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""CurrentChange"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""right"",
+                    ""id"": ""cc76f892-1563-4dc7-a937-abc9368f4fb2"",
+                    ""path"": ""<Keyboard>/e"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""CurrentChange"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
                     ""name"": """",
                     ""id"": ""fb964ca3-43a4-41a1-a7a1-14efded8a639"",
                     ""path"": ""<Gamepad>/buttonWest"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""SubMenu"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""be09146f-e6c8-438c-a7a6-2ce8eae776ea"",
+                    ""path"": ""<Keyboard>/tab"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
@@ -687,23 +810,12 @@ public partial class @InputControls : IInputActionCollection2, IDisposable
                 },
                 {
                     ""name"": """",
-                    ""id"": ""53e63788-2c12-4a74-ab42-b8c15309e05a"",
-                    ""path"": ""<Gamepad>/buttonWest"",
+                    ""id"": ""ed090bab-ddcb-4710-ac67-93a96efd06a6"",
+                    ""path"": ""<Keyboard>/tab"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
-                    ""action"": ""boxbutton"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
-                    ""id"": ""abe34d42-981d-4bce-bc6b-d80f756b51a9"",
-                    ""path"": ""<Gamepad>/buttonNorth"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""trianglebutton"",
+                    ""action"": ""UseItemSelect"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 },
@@ -871,6 +983,72 @@ public partial class @InputControls : IInputActionCollection2, IDisposable
                     ""action"": ""Title"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": ""key"",
+                    ""id"": ""9c821c15-4f89-4cd3-a040-c4a1e3eb6a60"",
+                    ""path"": ""1DAxis"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""UIItemView"",
+                    ""isComposite"": true,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": ""negative"",
+                    ""id"": ""9706b6f9-d0da-44b7-80c7-c542c0113a21"",
+                    ""path"": ""<Mouse>/leftButton"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""UIItemView"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""positive"",
+                    ""id"": ""46edc3f0-8f5f-4039-b020-0a6972441830"",
+                    ""path"": ""<Mouse>/rightButton"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""UIItemView"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""controller"",
+                    ""id"": ""a9959fec-e7f9-43a3-8543-617260b61140"",
+                    ""path"": ""1DAxis"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""UIItemView"",
+                    ""isComposite"": true,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": ""negative"",
+                    ""id"": ""9cb4fe1f-c0c4-4900-93d1-1b6585738d45"",
+                    ""path"": ""<Gamepad>/buttonWest"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""UIItemView"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""positive"",
+                    ""id"": ""d0d68d76-f8cd-4c8a-9548-84248d6a178c"",
+                    ""path"": ""<Gamepad>/buttonEast"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""UIItemView"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
                 }
             ]
         }
@@ -895,9 +1073,8 @@ public partial class @InputControls : IInputActionCollection2, IDisposable
         m_UI_CurrentChange = m_UI.FindAction("CurrentChange", throwIfNotFound: true);
         m_UI_SubMenu = m_UI.FindAction("SubMenu", throwIfNotFound: true);
         m_UI_UseItemSelect = m_UI.FindAction("UseItemSelect", throwIfNotFound: true);
-        m_UI_boxbutton = m_UI.FindAction("boxbutton", throwIfNotFound: true);
-        m_UI_trianglebutton = m_UI.FindAction("trianglebutton", throwIfNotFound: true);
         m_UI_Title = m_UI.FindAction("Title", throwIfNotFound: true);
+        m_UI_UIItemView = m_UI.FindAction("UIItemView", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -1045,9 +1222,8 @@ public partial class @InputControls : IInputActionCollection2, IDisposable
     private readonly InputAction m_UI_CurrentChange;
     private readonly InputAction m_UI_SubMenu;
     private readonly InputAction m_UI_UseItemSelect;
-    private readonly InputAction m_UI_boxbutton;
-    private readonly InputAction m_UI_trianglebutton;
     private readonly InputAction m_UI_Title;
+    private readonly InputAction m_UI_UIItemView;
     public struct UIActions
     {
         private @InputControls m_Wrapper;
@@ -1059,9 +1235,8 @@ public partial class @InputControls : IInputActionCollection2, IDisposable
         public InputAction @CurrentChange => m_Wrapper.m_UI_CurrentChange;
         public InputAction @SubMenu => m_Wrapper.m_UI_SubMenu;
         public InputAction @UseItemSelect => m_Wrapper.m_UI_UseItemSelect;
-        public InputAction @boxbutton => m_Wrapper.m_UI_boxbutton;
-        public InputAction @trianglebutton => m_Wrapper.m_UI_trianglebutton;
         public InputAction @Title => m_Wrapper.m_UI_Title;
+        public InputAction @UIItemView => m_Wrapper.m_UI_UIItemView;
         public InputActionMap Get() { return m_Wrapper.m_UI; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -1092,15 +1267,12 @@ public partial class @InputControls : IInputActionCollection2, IDisposable
                 @UseItemSelect.started -= m_Wrapper.m_UIActionsCallbackInterface.OnUseItemSelect;
                 @UseItemSelect.performed -= m_Wrapper.m_UIActionsCallbackInterface.OnUseItemSelect;
                 @UseItemSelect.canceled -= m_Wrapper.m_UIActionsCallbackInterface.OnUseItemSelect;
-                @boxbutton.started -= m_Wrapper.m_UIActionsCallbackInterface.OnBoxbutton;
-                @boxbutton.performed -= m_Wrapper.m_UIActionsCallbackInterface.OnBoxbutton;
-                @boxbutton.canceled -= m_Wrapper.m_UIActionsCallbackInterface.OnBoxbutton;
-                @trianglebutton.started -= m_Wrapper.m_UIActionsCallbackInterface.OnTrianglebutton;
-                @trianglebutton.performed -= m_Wrapper.m_UIActionsCallbackInterface.OnTrianglebutton;
-                @trianglebutton.canceled -= m_Wrapper.m_UIActionsCallbackInterface.OnTrianglebutton;
                 @Title.started -= m_Wrapper.m_UIActionsCallbackInterface.OnTitle;
                 @Title.performed -= m_Wrapper.m_UIActionsCallbackInterface.OnTitle;
                 @Title.canceled -= m_Wrapper.m_UIActionsCallbackInterface.OnTitle;
+                @UIItemView.started -= m_Wrapper.m_UIActionsCallbackInterface.OnUIItemView;
+                @UIItemView.performed -= m_Wrapper.m_UIActionsCallbackInterface.OnUIItemView;
+                @UIItemView.canceled -= m_Wrapper.m_UIActionsCallbackInterface.OnUIItemView;
             }
             m_Wrapper.m_UIActionsCallbackInterface = instance;
             if (instance != null)
@@ -1126,15 +1298,12 @@ public partial class @InputControls : IInputActionCollection2, IDisposable
                 @UseItemSelect.started += instance.OnUseItemSelect;
                 @UseItemSelect.performed += instance.OnUseItemSelect;
                 @UseItemSelect.canceled += instance.OnUseItemSelect;
-                @boxbutton.started += instance.OnBoxbutton;
-                @boxbutton.performed += instance.OnBoxbutton;
-                @boxbutton.canceled += instance.OnBoxbutton;
-                @trianglebutton.started += instance.OnTrianglebutton;
-                @trianglebutton.performed += instance.OnTrianglebutton;
-                @trianglebutton.canceled += instance.OnTrianglebutton;
                 @Title.started += instance.OnTitle;
                 @Title.performed += instance.OnTitle;
                 @Title.canceled += instance.OnTitle;
+                @UIItemView.started += instance.OnUIItemView;
+                @UIItemView.performed += instance.OnUIItemView;
+                @UIItemView.canceled += instance.OnUIItemView;
             }
         }
     }
@@ -1158,8 +1327,7 @@ public partial class @InputControls : IInputActionCollection2, IDisposable
         void OnCurrentChange(InputAction.CallbackContext context);
         void OnSubMenu(InputAction.CallbackContext context);
         void OnUseItemSelect(InputAction.CallbackContext context);
-        void OnBoxbutton(InputAction.CallbackContext context);
-        void OnTrianglebutton(InputAction.CallbackContext context);
         void OnTitle(InputAction.CallbackContext context);
+        void OnUIItemView(InputAction.CallbackContext context);
     }
 }

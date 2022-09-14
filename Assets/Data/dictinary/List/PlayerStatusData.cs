@@ -14,8 +14,8 @@ public class PlayerStatusData : MonoBehaviour, ISerializationCallbackReceiver
 
     public int MaxHP { get => _maxHP; }
     public int MaxSP { get => _maxSP; }
-    public int Attack { get => _attack;}
-    public int Defense { get => _defense;  }
+    public int Attack { get => _attack; set => _attack = value; }
+    public int Defense { get => _defense; set => _defense = value; }
     public string Wepon { get => _wepon; set => _wepon = value; }
 
     private void Awake()
