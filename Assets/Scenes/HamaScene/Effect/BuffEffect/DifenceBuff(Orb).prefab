@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 189601949153022414}
   - component: {fileID: 189601949153022415}
   m_Layer: 0
-  m_Name: DifenceBuff
+  m_Name: DifenceBuff(Orb)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
