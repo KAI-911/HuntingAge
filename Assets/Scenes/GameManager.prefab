@@ -302,6 +302,7 @@ GameObject:
   - component: {fileID: 3791656093424632239}
   - component: {fileID: 5748028480126708164}
   - component: {fileID: 6736416230661207585}
+  - component: {fileID: 134231313382430172}
   m_Layer: 0
   m_Name: GameManager
   m_TagString: Untagged
@@ -398,7 +399,7 @@ MonoBehaviour:
     IconName: Icon/Stone_UI
     BoxStackNumber: 9999
     BoxUINumber: 8
-    BoxHoldNumber: 13
+    BoxHoldNumber: 6
     PoachStackNumber: 99
     PoachUINumber: 0
     PoachHoldNumber: 0
@@ -406,16 +407,16 @@ MonoBehaviour:
     Name: "\u6728"
     IconName: Icon/Wood_UI
     BoxStackNumber: 9999
-    BoxUINumber: 5
-    BoxHoldNumber: 958
+    BoxUINumber: 0
+    BoxHoldNumber: 933
     PoachStackNumber: 99
-    PoachUINumber: 3
-    PoachHoldNumber: 0
+    PoachUINumber: 4
+    PoachHoldNumber: 1
   - ID: Material002
     Name: "\u30C4\u30BF"
     IconName: Icon/Vine_UI
     BoxStackNumber: 9999
-    BoxUINumber: 0
+    BoxUINumber: 5
     BoxHoldNumber: 1000
     PoachStackNumber: 99
     PoachUINumber: 1
@@ -425,10 +426,10 @@ MonoBehaviour:
     IconName: Icon/Bone_UI
     BoxStackNumber: 9999
     BoxUINumber: 1
-    BoxHoldNumber: 1040
+    BoxHoldNumber: 1018
     PoachStackNumber: 99
-    PoachUINumber: 4
-    PoachHoldNumber: 0
+    PoachUINumber: 3
+    PoachHoldNumber: 3
   - ID: Material004
     Name: "\u690D\u7269"
     IconName: Icon/Botanical_UI
@@ -443,7 +444,7 @@ MonoBehaviour:
     IconName: Icon/Meat_UI
     BoxStackNumber: 9999
     BoxUINumber: 3
-    BoxHoldNumber: 67
+    BoxHoldNumber: 5
     PoachStackNumber: 99
     PoachUINumber: 3
     PoachHoldNumber: 0
@@ -454,7 +455,7 @@ MonoBehaviour:
     BoxUINumber: 6
     BoxHoldNumber: 1000
     PoachStackNumber: 99
-    PoachUINumber: 4
+    PoachUINumber: 3
     PoachHoldNumber: 0
   - ID: Material007
     Name: "\u76AE"
@@ -463,7 +464,7 @@ MonoBehaviour:
     BoxUINumber: 7
     BoxHoldNumber: 1000
     PoachStackNumber: 99
-    PoachUINumber: 3
+    PoachUINumber: 0
     PoachHoldNumber: 0
   modifyValues: 0
 --- !u!114 &8863779223932431587
@@ -489,7 +490,7 @@ MonoBehaviour:
   - ID: T-rex
     DisplayName: "\u30C6\u30A3\u30E9\u30CE\u30B5\u30A6\u30EB\u30B9"
     InstanceName: Enemy/T-rex
-    DeathCount: 4
+    DeathCount: 3
     EnemyPos:
     - scene: 2
       pos:
@@ -677,7 +678,7 @@ MonoBehaviour:
     IconPass: Icon/Axe_wood_UI
     BoxUINumber: 0
     CreatableLevel: 1
-    BoxPossession: 0
+    BoxPossession: 1
     AttackPoint: 50
     WeaponType: 0
     ProductionNeedMaterialLst:
@@ -753,7 +754,7 @@ MonoBehaviour:
     IconPass: Icon/Spear_UI
     BoxUINumber: 4
     CreatableLevel: 3
-    BoxPossession: 1
+    BoxPossession: 0
     AttackPoint: 100
     WeaponType: 1
     ProductionNeedMaterialLst:
@@ -851,10 +852,10 @@ MonoBehaviour:
       IconName: Icon/Soup_UI
       BoxStackNumber: 9999
       BoxUINumber: 15
-      BoxHoldNumber: 3052
+      BoxHoldNumber: 3051
       PoachStackNumber: 10
       PoachUINumber: 0
-      PoachHoldNumber: 10
+      PoachHoldNumber: 9
     Use: 0
     Permanent: 0
     Time: 0
@@ -873,7 +874,7 @@ MonoBehaviour:
       IconName: Icon/GrilledMeat_UI
       BoxStackNumber: 9999
       BoxUINumber: 17
-      BoxHoldNumber: 3020
+      BoxHoldNumber: 3021
       PoachStackNumber: 10
       PoachUINumber: 2
       PoachHoldNumber: 10
@@ -931,6 +932,22 @@ MonoBehaviour:
     type: 3}
   _sideScaleSize: 0.7
   _padding: 20
+--- !u!114 &134231313382430172
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8541005799369741361}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d27a8818af7d94c40af53c4edf3c367b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  DictionaryData: {fileID: 11400000, guid: 019398f9683afc248a45a060c81d272d, type: 2}
+  BGMVolume: 0.5
+  SEVolume: 0.5
+  modifyValues: 0
 --- !u!1 &8863779222303211788
 GameObject:
   m_ObjectHideFlags: 0

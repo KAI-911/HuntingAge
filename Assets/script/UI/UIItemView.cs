@@ -53,7 +53,6 @@ public class UIItemView : UIBase
         }
         public override void OnUpdate(UIBase owner)
         {
-            Debug.Log(GetType().Name);
         }
         public override void OnExit(UIBase owner, UIStateBase nextState)
         {
@@ -157,8 +156,7 @@ public class UIItemView : UIBase
                             {
                                 if (!data.Use) return;
                                 data.Use = false;
-                                status.Defense -= (int)data.UpValue;
-                                GameManager.Instance.Player.Status = status;
+                                GameManager.Instance.Player.Status.Defense = GameManager.Instance.Player.StatusData.Defense;
                                 GameManager.Instance.ItemDataList.Values[index] = data;
                                 GameManager.Instance.ItemDataList.DesrializeDictionary();
                             });

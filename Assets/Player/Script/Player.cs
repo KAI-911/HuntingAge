@@ -128,7 +128,6 @@ public partial class Player : Singleton<Player>
 
     void Update()
     {
-        Debug.Log(_currentState.GetType());
         _currentState.OnUpdate(this);
         _animator.SetBool("IsGround", _groundChecker.IsGround());
         _animator.SetInteger("HP", _status.HP);
@@ -410,8 +409,12 @@ public partial class Player : Singleton<Player>
         if (weponID != _statusData.Wepon)
         {
             _statusData.Wepon = weponID;
+            _statusData.Attack = GameManager.Instance.WeaponDataList.Dictionary[weponID].AttackPoint;
             _statusData.DesrializeDictionary();
         }
+
+
+
     }
     public void DeleteWepon()
     {
