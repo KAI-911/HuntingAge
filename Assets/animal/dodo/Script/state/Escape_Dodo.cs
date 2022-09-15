@@ -7,7 +7,7 @@ public class Escape_Dodo : StateBase_Dodo
     private Vector3 _escapePos;
     private RunOnce _runOnce;
     float _time;
-    float speed = 2.5f;
+    float speed = 4.0f;
     float defaultSpeed;
 
     public override void OnEnter(Dodo owner, StateBase_Dodo prevState)

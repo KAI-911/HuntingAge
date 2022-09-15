@@ -26,7 +26,13 @@ public class UIItemView : UIBase
         right,
         left
     }
+    [SerializeField] GameObject _attackUpprefab;
+    [SerializeField] GameObject _defenseUpprefab;
+    [SerializeField] GameObject _hpUpprefab;
 
+    GameObject _attackUpEffect;
+    GameObject _defenseUpEffect;
+    GameObject _hpUpEffect;
     private void Start()
     {
         _currentState = new NotQuest();
@@ -41,7 +47,8 @@ public class UIItemView : UIBase
     }
     public void ChangeNotQuestState()
     {
-        GetComponent<UIBase>().ChangeState<NotQuest>();
+        UIDelete();
+        ChangeState<NotQuest>();
     }
     private class NotQuest : UIStateBase
     {
@@ -53,7 +60,6 @@ public class UIItemView : UIBase
         }
         public override void OnUpdate(UIBase owner)
         {
-            Debug.Log(GetType().Name);
         }
         public override void OnExit(UIBase owner, UIStateBase nextState)
         {
@@ -105,7 +111,11 @@ public class UIItemView : UIBase
                 OWNER.DeleteCenterUI();
                 OWNER.DeleteRightUI();
                 OWNER.DeleteLeftUI();
+                Destroy(OWNER._attackUpEffect);
+                Destroy(OWNER._defenseUpEffect);
+                Destroy(OWNER._hpUpEffect);
                 owner.ChangeState<NotQuest>();
+
             }
         }
     }
@@ -130,6 +140,8 @@ public class UIItemView : UIBase
                         {
                             status.HP = status.MaxHP;
                         }
+                        OWNER._hpUpEffect = Instantiate(OWNER._hpUpprefab, UISoundManager.Instance._player.transform) as GameObject;
+                        Destroy(OWNER._hpUpEffect, 3);
                         break;
                     case ItemType.AttackUp:
                         if (data.Use) return;
@@ -143,11 +155,13 @@ public class UIItemView : UIBase
                                 GameManager.Instance.Player.Status = status;
                                 GameManager.Instance.ItemDataList.Values[index] = data;
                                 GameManager.Instance.ItemDataList.DesrializeDictionary();
+                                if (OWNER._attackUpEffect != null) Destroy(OWNER._attackUpEffect);
                             });
                         }
                         data.Use = true;
                         data.baseData.PoachHoldNumber--;
                         status.Attack += (int)data.UpValue;
+                        OWNER._attackUpEffect = Instantiate(OWNER._attackUpprefab, UISoundManager.Instance._player.transform) as GameObject;
                         break;
                     case ItemType.DefenseUp:
                         if (data.Use) return;
@@ -157,15 +171,16 @@ public class UIItemView : UIBase
                             {
                                 if (!data.Use) return;
                                 data.Use = false;
-                                status.Defense -= (int)data.UpValue;
-                                GameManager.Instance.Player.Status = status;
+                                GameManager.Instance.Player.Status.Defense = GameManager.Instance.Player.StatusData.Defense;
                                 GameManager.Instance.ItemDataList.Values[index] = data;
                                 GameManager.Instance.ItemDataList.DesrializeDictionary();
+                                if (OWNER._defenseUpEffect != null) Destroy(OWNER._defenseUpEffect);
                             });
                         }
                         data.Use = true;
                         data.baseData.PoachHoldNumber--;
                         status.Defense += (int)data.UpValue;
+                        OWNER._defenseUpEffect = Instantiate(OWNER._defenseUpprefab, UISoundManager.Instance._player.transform) as GameObject;
 
                         break;
                     default:
@@ -196,6 +211,7 @@ public class UIItemView : UIBase
     }
     private class SelectItem : UIStateBase
     {
+        bool lockflg;
         public override void OnEnter(UIBase owner, UIStateBase prevState)
         {
             var OWNER = owner.GetComponent<UIItemView>();
@@ -207,7 +223,7 @@ public class UIItemView : UIBase
             OWNER.SetLeftImage();
             OWNER.CreateLightButton();
             OWNER.CreateRightButton();
-
+            lockflg = false;
         }
         public override void OnExit(UIBase owner, UIStateBase nextState)
         {
@@ -225,32 +241,30 @@ public class UIItemView : UIBase
         public override void OnUpdate(UIBase owner)
         {
             Debug.Log(GetType().Name);
-        }
-        public override void OnProceed(UIBase owner)
-        {
+
             var OWNER = owner.GetComponent<UIItemView>();
-            if (OWNER._itemIDList.Count == 0) return;
-            int index = OWNER._itemIDList.IndexOf(OWNER._currentID);
-            index++;
-            if (index >= OWNER._itemIDList.Count) index = 0;
-            OWNER._currentID = OWNER._itemIDList[index];
-            OWNER.SetCenterImage();
-            OWNER.SetRightImage();
-            OWNER.SetLeftImage();
+            var inputVec = UISoundManager.Instance.InputItemView.ReadValue<float>();
+            if (inputVec > 0)
+            {
+                if (lockflg) return;
+                if (OWNER._itemIDList.Count == 0) return;
+                LeftToRighet(OWNER);
+                lockflg = true;
+            }
+            else if (inputVec < 0)
+            {
+                if (lockflg) return;
+                if (OWNER._itemIDList.Count == 0) return;
+                RighetToLeft(OWNER);
+                lockflg = true;
+            }
+            else
+            {
+                lockflg = false;
+            }
 
         }
-        public override void OnPushBoxButton(UIBase owner)
-        {
-            var OWNER = owner.GetComponent<UIItemView>();
-            if (OWNER._itemIDList.Count == 0) return;
-            int index = OWNER._itemIDList.IndexOf(OWNER._currentID);
-            index--;
-            if (index < 0) index = OWNER._itemIDList.Count - 1;
-            OWNER._currentID = OWNER._itemIDList[index];
-            OWNER.SetCenterImage();
-            OWNER.SetRightImage();
-            OWNER.SetLeftImage();
-        }
+
         public override void OnSceneChenge(UIBase owner)
         {
             if (!GameManager.Instance.Quest.IsQuest)
@@ -263,8 +277,39 @@ public class UIItemView : UIBase
             }
         }
 
+        private void LeftToRighet(UIItemView OWNER)
+        {
+            int index = OWNER._itemIDList.IndexOf(OWNER._currentID);
+            index++;
+            if (index >= OWNER._itemIDList.Count) index = 0;
+            OWNER._currentID = OWNER._itemIDList[index];
+            OWNER.SetCenterImage();
+            OWNER.SetRightImage();
+            OWNER.SetLeftImage();
+        }
+        private void RighetToLeft(UIItemView OWNER)
+        {
+            if (OWNER._itemIDList.Count == 0) return;
+            int index = OWNER._itemIDList.IndexOf(OWNER._currentID);
+            index--;
+            if (index < 0) index = OWNER._itemIDList.Count - 1;
+            OWNER._currentID = OWNER._itemIDList[index];
+            OWNER.SetCenterImage();
+            OWNER.SetRightImage();
+            OWNER.SetLeftImage();
+        }
     }
 
+    public void UIDelete()
+    {
+        DeleteCenterUI();
+        DeleteRightUI();
+        DeleteLeftUI();
+        Destroy(_attackUpEffect);
+        Destroy(_defenseUpEffect);
+        Destroy(_hpUpEffect);
+        ChangeState<NotQuest>();
+    }
     public void CreateLightButton()
     {
         if (_maruButton != null) return;

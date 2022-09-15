@@ -12,6 +12,7 @@ public class UIPoach : UIBase
         ItemIconList[(int)IconType.TypeSelect].SetIcondata(UISoundManager.Instance.UIPresetData.Dictionary["IP_TypeSelect"]);
         ItemIconList[(int)IconType.ItemSelect].SetIcondata(UISoundManager.Instance.UIPresetData.Dictionary["IP_ItemSelect"]);
         ItemIconList[(int)IconType.Confirmation].SetIcondata(UISoundManager.Instance.UIPresetData.Dictionary["Confirmation"]);
+        ItemIconList[(int)IconType.Setting].SetIcondata(UISoundManager.Instance.UIPresetData.Dictionary["Setting"]);
         _currentState = new Close();
         _currentState.OnEnter(this, null);
     }
@@ -39,6 +40,7 @@ public class UIPoach : UIBase
         {
             var list = owner.ItemIconList[(int)IconType.TypeSelect].CreateButton();
             Debug.Log(owner.ItemIconList[(int)IconType.TypeSelect].TableSize);
+
             var button0 = list[0].GetComponent<Button>();
             button0.onClick.AddListener(() => owner.ChangeState<ItemSlect>());
             var button0Text = list[0].GetComponentInChildren<Text>();
@@ -55,6 +57,16 @@ public class UIPoach : UIBase
             var button1Text = list[1].GetComponentInChildren<Text>();
             button1Text.text = "クエスト確認";
 
+            var button2 = list[2].GetComponent<Button>();
+            button2.onClick.AddListener(() => owner.ChangeState<GameEnd>());
+            var button2Text = list[2].GetComponentInChildren<Text>();
+            button2Text.text = "ゲーム終了";
+
+            var button3 = list[3].GetComponent<Button>();
+            button3.onClick.AddListener(() => owner.ChangeState<Setting>());
+            var button3Text = list[3].GetComponentInChildren<Text>();
+            button3Text.text = "設定";
+
         }
         public override void OnExit(UIBase owner, UIStateBase nextState)
         {
@@ -63,7 +75,7 @@ public class UIPoach : UIBase
         public override void OnProceed(UIBase owner)
         {
             UISoundManager.Instance.PlayDecisionSE();
-            owner.ItemIconList[(int)IconType.TypeSelect].Buttons[owner.ItemIconList[(int)IconType.TypeSelect].CurrentNunber].GetComponent<Button>().onClick.Invoke();
+            owner.ItemIconList[(int)IconType.TypeSelect].CurrentButtonInvoke();
         }
         public override void OnBack(UIBase owner)
         {
@@ -105,75 +117,6 @@ public class UIPoach : UIBase
         {
             owner.ChangeState<FirstSlect>();
         }
-    }
-    private class QuestView : UIStateBase
-    {
-        GameObject questBord;
-        public override void OnEnter(UIBase owner, UIStateBase prevState)
-        {
-            questBord = Instantiate(Resources.Load("UI/QuestMenu"), GameManager.Instance.ItemCanvas.Canvas.transform) as GameObject;
-
-            QuestData data = GameManager.Instance.Quest.QuestData;
-
-            string str = "";
-            switch (data.Clear)
-            {
-                case ClearConditions.TargetSubjugation:
-
-
-                    str += "クリア条件: ";
-                    foreach (var item in data.TargetName)
-                    {
-                        var tmp = GameManager.Instance.EnemyDataList.Dictionary[item.name];
-
-                        str += tmp.DisplayName + "を" + item.number + "体討伐する\n";
-                    }
-                    break;
-                case ClearConditions.Gathering:
-                    str += "クリア条件: ";
-                    foreach (var item in data.TargetName)
-                    {
-                        var tmp = GameManager.Instance.MaterialDataList.Dictionary[item.name];
-
-                        str += tmp.Name + "を" + item.number + "個採取する\n";
-                    }
-                    break;
-                default:
-                    break;
-            }
-            str += "失敗条件: " + (int)(data.Failure + 1) + "回力尽きる\n";
-            switch (data.Field)
-            {
-                case Scene.Forest:
-                    str += "狩場: 森林";
-                    break;
-                case Scene.Animal:
-                    str += "狩場: 実験用";
-                    break;
-                default:
-                    break;
-            }
-            var texts = questBord.GetComponentsInChildren<Text>();
-            texts[0].text = data.Name;
-            texts[1].text = str;
-
-        }
-        public override void OnExit(UIBase owner, UIStateBase nextState)
-        {
-            Destroy(questBord);
-        }
-        public override void OnUpdate(UIBase owner)
-        {
-        }
-        public override void OnProceed(UIBase owner)
-        {
-        }
-        public override void OnBack(UIBase owner)
-        {
-            UISoundManager.Instance.PlayDecisionSE();
-            owner.ChangeState<FirstSlect>();
-        }
-
     }
     private class UIChange : UIStateBase
     {
@@ -252,7 +195,282 @@ public class UIPoach : UIBase
 
         }
     }
+    private class QuestView : UIStateBase
+    {
+        GameObject questBord;
+        public override void OnEnter(UIBase owner, UIStateBase prevState)
+        {
+            questBord = Instantiate(Resources.Load("UI/QuestMenu"), GameManager.Instance.ItemCanvas.Canvas.transform) as GameObject;
 
+            QuestData data = GameManager.Instance.Quest.QuestData;
+
+            string str = "";
+            switch (data.Clear)
+            {
+                case ClearConditions.TargetSubjugation:
+
+
+                    str += "クリア条件: ";
+                    foreach (var item in data.TargetName)
+                    {
+                        var tmp = GameManager.Instance.EnemyDataList.Dictionary[item.name];
+
+                        str += tmp.DisplayName + "を" + item.number + "体討伐する\n";
+                    }
+                    break;
+                case ClearConditions.Gathering:
+                    str += "クリア条件: ";
+                    foreach (var item in data.TargetName)
+                    {
+                        var tmp = GameManager.Instance.MaterialDataList.Dictionary[item.name];
+
+                        str += tmp.Name + "を" + item.number + "個採取する\n";
+                    }
+                    break;
+                default:
+                    break;
+            }
+            str += "失敗条件: " + (int)(data.Failure + 1) + "回力尽きる\n";
+            switch (data.Field)
+            {
+                case Scene.Forest:
+                    str += "狩場: 森林";
+                    break;
+                case Scene.Animal:
+                    str += "狩場: 実験用";
+                    break;
+                default:
+                    break;
+            }
+            var texts = questBord.GetComponentsInChildren<Text>();
+            texts[0].text = data.Name;
+            texts[1].text = str;
+
+        }
+        public override void OnExit(UIBase owner, UIStateBase nextState)
+        {
+            Destroy(questBord);
+        }
+        public override void OnUpdate(UIBase owner)
+        {
+        }
+        public override void OnProceed(UIBase owner)
+        {
+        }
+        public override void OnBack(UIBase owner)
+        {
+            UISoundManager.Instance.PlayDecisionSE();
+            owner.ChangeState<FirstSlect>();
+        }
+
+    }
+    private class GameEnd : UIStateBase
+    {
+        public override void OnEnter(UIBase owner, UIStateBase prevState)
+        {
+            owner.ItemIconList[(int)IconType.Confirmation].SetText("ゲームを終了しますか");
+
+            var buttons = owner.ItemIconList[(int)IconType.Confirmation].CreateButton();
+            buttons[0].GetComponent<Button>().onClick.AddListener(() =>
+            {
+                var data = UISoundManager.Instance._player.StatusData;
+                data.Wepon = UISoundManager.Instance._player.WeaponID;
+                data.DesrializeDictionary();
+#if UNITY_EDITOR
+                UnityEditor.EditorApplication.isPlaying = false;//ゲームプレイ終了
+#else
+    Application.Quit();//ゲームプレイ終了
+#endif
+            });
+            buttons[0].GetComponentInChildren<Text>().text = "はい";
+
+            buttons[1].GetComponent<Button>().onClick.AddListener(() =>
+            {
+                owner.ChangeState<FirstSlect>();
+            });
+            buttons[1].GetComponentInChildren<Text>().text = "いいえ";
+
+        }
+        public override void OnExit(UIBase owner, UIStateBase nextState)
+        {
+            owner.ItemIconList[(int)IconType.Confirmation].DeleteButton();
+        }
+        public override void OnUpdate(UIBase owner)
+        {
+            owner.ItemIconList[(int)IconType.Confirmation].Select(UISoundManager.Instance.InputSelection.ReadValue<Vector2>());
+        }
+        public override void OnProceed(UIBase owner)
+        {
+            UISoundManager.Instance.PlayDecisionSE();
+            owner.ItemIconList[(int)IconType.Confirmation].CurrentButtonInvoke();
+
+        }
+        public override void OnBack(UIBase owner)
+        {
+            owner.ChangeState<FirstSlect>();
+        }
+
+    }
+    private class Setting : UIStateBase
+    {
+        GameObject _bgmObj;
+        GameObject _seObj;
+        GameObject _uiObj;
+        Slider slider_bgm;
+        Slider slider_se;
+        Slider slider_ui;
+        SettingDataList dataList;
+        enum now
+        {
+            select,
+            bgm,
+            se,
+            ui
+        }
+        now nowState;
+        bool ret;
+        public override void OnEnter(UIBase owner, UIStateBase prevState)
+        {
+            ret = false;
+            nowState = now.select;
+            dataList = GameManager.Instance.SettingDataList;
+            var buttons = owner.ItemIconList[(int)IconType.Setting].CreateButton();
+            //BGMボタンの設定
+            buttons[0].GetComponent<Button>().onClick.AddListener(() =>
+            {
+                nowState = now.bgm;
+                slider_bgm.interactable = true;
+            });
+            buttons[0].GetComponentInChildren<Text>().text = "BGM";
+            //BGMスライダーの設定
+            _bgmObj = Instantiate(Resources.Load("UI/Slider"), GameManager.Instance.ItemCanvas.Canvas.transform) as GameObject;
+            slider_bgm = _bgmObj.GetComponent<Slider>();
+            owner.ItemIconList[(int)IconType.Setting].AdjustmentImage(_bgmObj.GetComponent<RectTransform>(), 0);
+            
+            //SEボタンの設定
+            buttons[1].GetComponent<Button>().onClick.AddListener(() =>
+            {
+                nowState = now.se;
+                slider_se.interactable = true;
+            });
+            buttons[1].GetComponentInChildren<Text>().text = "SE";
+            //SEスライダーの設定
+            _seObj = Instantiate(Resources.Load("UI/Slider"), GameManager.Instance.ItemCanvas.Canvas.transform) as GameObject;
+            slider_se = _seObj.GetComponent<Slider>();
+            owner.ItemIconList[(int)IconType.Setting].AdjustmentImage(_seObj.GetComponent<RectTransform>(), 1);
+            
+            //UIボタンの設定
+            buttons[2].GetComponent<Button>().onClick.AddListener(() =>
+            {
+                nowState = now.ui;
+                slider_ui.interactable = true;
+            });
+            buttons[2].GetComponentInChildren<Text>().text = "UI";
+            //UIスライダーの設定
+            _uiObj = Instantiate(Resources.Load("UI/Slider"), GameManager.Instance.ItemCanvas.Canvas.transform) as GameObject;
+            slider_ui = _uiObj.GetComponent<Slider>();
+            owner.ItemIconList[(int)IconType.Setting].AdjustmentImage(_uiObj.GetComponent<RectTransform>(), 2);
+
+            //背景画像とテキストの調整
+            var backrect = owner.ItemIconList[(int)IconType.Setting].ButtonBackObj.GetComponent<RectTransform>();
+            var sliderRect = _bgmObj.GetComponent<RectTransform>().sizeDelta;
+            backrect.sizeDelta = backrect.sizeDelta + new Vector2(sliderRect.x + owner.ItemIconList[(int)IconType.Setting].IconData._padding, 0);
+            var textRect = owner.ItemIconList[(int)IconType.Setting].TextObj.GetComponent<RectTransform>();
+            textRect.sizeDelta = new Vector2(backrect.sizeDelta.x, textRect.sizeDelta.y);
+
+            slider_bgm.value = dataList.BGMVolume;
+            slider_se.value = dataList.SEVolume;
+            slider_ui.value = dataList.UIVolume;
+        }
+        public override void OnExit(UIBase owner, UIStateBase nextState)
+        {
+            owner.ItemIconList[(int)IconType.Setting].DeleteButton();
+            Destroy(_bgmObj);
+            Destroy(_seObj);
+            Destroy(_uiObj);
+        }
+        public override void OnUpdate(UIBase owner)
+        {
+            if (ret)
+            {
+                nowState = now.select;
+                slider_bgm.interactable = false;
+                slider_se.interactable = false;
+                slider_ui.interactable = false;
+                ret = false;
+            }
+            switch (nowState)
+            {
+                case now.select:
+                    Debug.Log("select");
+                    owner.ItemIconList[(int)IconType.Setting].Select(UISoundManager.Instance.InputSelection.ReadValue<Vector2>());
+                    break;
+                case now.bgm:
+                    Debug.Log("bgm");
+                    slider_bgm.value += Mathf.Clamp(UISoundManager.Instance.InputSelection.ReadValue<Vector2>().x, -0.01f, 0.01f); ;
+                    break;
+                case now.se:
+                    Debug.Log("se");
+                    slider_se.value += Mathf.Clamp(UISoundManager.Instance.InputSelection.ReadValue<Vector2>().x, -0.01f, 0.01f); ;
+                    break;
+                case now.ui:
+                    Debug.Log("ui");
+                    slider_ui.value += Mathf.Clamp(UISoundManager.Instance.InputSelection.ReadValue<Vector2>().x, -0.01f, 0.01f); ;
+                    break;
+                default:
+                    break;
+            }
+            dataList.BGMVolume = slider_bgm.value;
+            dataList.SEVolume = slider_se.value;
+            dataList.UIVolume = slider_ui.value;
+            dataList.DesrializeDictionary();
+
+
+        }
+        public override void OnProceed(UIBase owner)
+        {
+            Debug.Log("OnProceedIn");
+            switch (nowState)
+            {
+                case now.select:
+                    UISoundManager.Instance.PlayDecisionSE();
+                    owner.ItemIconList[(int)IconType.Setting].CurrentButtonInvoke();
+                    break;
+                case now.bgm:
+                    break;
+                case now.se:
+                    break;
+                case now.ui:
+                    break;
+                default:
+                    break;
+            }
+        }
+        public override void OnBack(UIBase owner)
+        {
+            Debug.Log("OnBackIn");
+            switch (nowState)
+            {
+                case now.select:
+                    Debug.Log("now.select");
+                    owner.ChangeState<FirstSlect>();
+                    break;
+                case now.bgm:
+                case now.se:
+                case now.ui:
+                default:
+                    Debug.Log("default");
+                    nowState = now.select;
+                    ret = true;
+                    slider_bgm.interactable = false;
+                    slider_se.interactable = false;
+                    break;
+            }
+
+        }
+
+
+    }
     private class AddItem : UIStateBase
     {
         ItemIcon itemIcon;
@@ -592,7 +810,8 @@ public class UIPoach : UIBase
     {
         TypeSelect,
         ItemSelect,
-        Confirmation
+        Confirmation,
+        Setting
     }
 
 }

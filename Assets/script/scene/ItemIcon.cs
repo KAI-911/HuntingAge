@@ -42,7 +42,8 @@ public class ItemIcon : MonoBehaviour
 
     public void SetText(string _text)
     {
-        this._iconData._textData.text = _text;
+        _iconData._textFlg = true;
+        _iconData._textData.text = _text;
     }
     public void SetTable(Vector2 _table)
     {

@@ -71,8 +71,8 @@ public class LocomotionState : PlayerStateBase
 
     public override void OnJump(Player owner)
     {
-        if (!owner.GroundChecker.IsGround()) return;
-        owner.ChangeState<JumpState>();
+        //if (!owner.GroundChecker.IsGround()) return;
+        //owner.ChangeState<JumpState>();
 
     }
     public override void OnStrongAttack(Player owner)
