@@ -14,8 +14,8 @@ public class UIItemView : UIBase
     [SerializeField] float _padding;
 
     private GameObject[] objects = new GameObject[3];
-    private GameObject _maruButton;
-    private GameObject _shikakuButton;
+    private GameObject _rightButton;
+    private GameObject _leftButton;
 
     private float _sideLength;
     private List<string> _itemIDList = new List<string>();
@@ -312,12 +312,12 @@ public class UIItemView : UIBase
     }
     public void CreateLightButton()
     {
-        if (_maruButton != null) return;
+        if (_rightButton != null) return;
         if (objects[(int)position.center] == null) return;
         Debug.Log("Light");
-        _maruButton = Instantiate(_maruButtonPrefab);
-        _maruButton.transform.SetParent(GameManager.Instance.ItemCanvas.Canvas.transform);
-        var rect = _maruButton.GetComponent<RectTransform>();
+        _rightButton = Instantiate(_maruButtonPrefab);
+        _rightButton.transform.SetParent(GameManager.Instance.ItemCanvas.Canvas.transform);
+        var rect = _rightButton.GetComponent<RectTransform>();
         var centerRect = objects[(int)position.center].GetComponent<RectTransform>();
         var pos = centerRect.anchoredPosition;
         pos.x -= rect.sizeDelta.x / 2;
@@ -326,12 +326,12 @@ public class UIItemView : UIBase
     }
     public void CreateRightButton()
     {
-        if (_shikakuButton != null) return;
+        if (_leftButton != null) return;
         if (objects[(int)position.center] == null) return;
         Debug.Log("Right");
-        _shikakuButton = Instantiate(_shikakuButtonPrefab);
-        _shikakuButton.transform.SetParent(GameManager.Instance.ItemCanvas.Canvas.transform);
-        var rect = _shikakuButton.GetComponent<RectTransform>();
+        _leftButton = Instantiate(_shikakuButtonPrefab);
+        _leftButton.transform.SetParent(GameManager.Instance.ItemCanvas.Canvas.transform);
+        var rect = _leftButton.GetComponent<RectTransform>();
         var centerRect = objects[(int)position.center].GetComponent<RectTransform>();
         var pos = centerRect.anchoredPosition;
         pos.x += centerRect.sizeDelta.x - rect.sizeDelta.x / 2;
@@ -340,15 +340,15 @@ public class UIItemView : UIBase
     }
     public void DeleteLightButton()
     {
-        if (_maruButton == null) return;
-        Destroy(_maruButton);
-        _maruButton = null;
+        if (_rightButton == null) return;
+        Destroy(_rightButton);
+        _rightButton = null;
     }
     public void DeleteRightButton()
     {
-        if (_shikakuButton == null) return;
-        Destroy(_shikakuButton);
-        _shikakuButton = null;
+        if (_leftButton == null) return;
+        Destroy(_leftButton);
+        _leftButton = null;
     }
 
     public void CreateCenterUI()

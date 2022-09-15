@@ -23,7 +23,7 @@ public class GameManager : Singleton<GameManager>
     private SettingDataList _settingDataList;
     private VillageData _villageData;
     private FadeManager _fadeManager;
-    private UIItemView _uiItemView;
+    private UIItemView_new _uiItemView;
     private Player _player;
     public Scene VillageScene { get => _villageScene; }
     public Scene NowScene { get => _nowScene; set => _nowScene = value; }
@@ -35,7 +35,7 @@ public class GameManager : Singleton<GameManager>
     public VillageData VillageData { get => _villageData; }
     public ItemCanvas ItemCanvas { get => _itemCanvas; }
     public UIPoach UIPoachList { get => _UIPoachList; }
-    public UIItemView UIItemView { get => _uiItemView; }
+    public UIItemView_new UIItemView { get => _uiItemView; }
     public Player Player { get => _player; }
     public FadeManager FadeManager { get => _fadeManager; }
     public SettingDataList SettingDataList { get => _settingDataList;}
@@ -52,7 +52,7 @@ public class GameManager : Singleton<GameManager>
         _settingDataList = GetComponent<SettingDataList>();
         _villageData = GetComponent<VillageData>();
         _fadeManager = GetComponentInChildren<FadeManager>();
-        _uiItemView = GetComponentInChildren<UIItemView>();
+        _uiItemView = GetComponentInChildren<UIItemView_new>();
         base.Awake();
     }
     public void GoToVillage()
