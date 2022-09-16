@@ -10,7 +10,8 @@ public class QuestDataList : MonoBehaviour, ISerializationCallbackReceiver
     [SerializeField] Dictionary<string, QuestData> dictionary = new Dictionary<string, QuestData>();
     public bool modifyValues;
     public Dictionary<string, QuestData> Dictionary { get => dictionary; }
-
+    public List<string> Keys { get => keys; set => keys = value; }
+    public List<QuestData> Values { get => values; set => values = value; }
 
     private void Awake()
     {
@@ -75,6 +76,8 @@ public struct QuestData
     /// </summary>
     public string ID;
     public string Name;
+    public bool ClearedFlg;
+    public bool KeyQuestFlg;
     public ClearConditions Clear;
     public FailureConditions Failure;
     public Scene Field;

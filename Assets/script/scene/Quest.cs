@@ -287,6 +287,38 @@ public class Quest : MonoBehaviour
 
             once_1 = new RunOnce();
             once_2 = new RunOnce();
+
+            //クエストクリアフラグを立てる
+            var index = GameManager.Instance.QuestDataList.Keys.IndexOf(owner.QuestData.ID);
+            var data = GameManager.Instance.QuestDataList.Values[index];
+            data.ClearedFlg = true;
+            GameManager.Instance.QuestDataList.Values[index] = data;
+            GameManager.Instance.QuestDataList.DesrializeDictionary();
+
+            //キークエストを全てクリアしたら村レベルを上げる
+            int level = GameManager.Instance.VillageData.VillageLevel;
+            List<QuestData> questDatas = new List<QuestData>();
+            bool levelup = true;
+            var holdData = GameManager.Instance.QuestHolderData;
+           // for (int i = 0; i < holdData.Quests[level-1].Length; i++)
+            for (int i = 0; i < holdData.Values[level - 1].Quests.Count; i++)
+            {
+                var tmpQuestData = GameManager.Instance.QuestDataList.Dictionary[holdData.Values[level - 1].Quests[i]];
+                if (tmpQuestData.KeyQuestFlg && !tmpQuestData.ClearedFlg)
+                {
+                    levelup = false;
+                    break;
+                }
+            }
+            if(levelup)
+            {
+                GameManager.Instance.VillageData.VillageLevel++;
+                GameManager.Instance.VillageData.DesrializeDictionary();
+                Debug.Log("レベルが上がりました");
+
+
+            }
+
         }
         public override void OnExit(Quest owner, QuestState nextState)
         {
@@ -348,34 +380,28 @@ public class Quest : MonoBehaviour
     }
     class QuestFailure : QuestState
     {
-        GameObject backimage;
-        GameObject text;
-        RunOnce once_1;
-        RunOnce once_2;
         GameObject failureimage;
-
         float time;
         public override void OnEnter(Quest owner, QuestState prevState)
         {
-            time = owner._sceneChengeTime / 2;
+            time = 3;
             owner._isQuest = false;
             owner._player.Status.InvincibleFlg = true;
 
-            backimage = Instantiate(Resources.Load("UI/Image")) as GameObject;
-            text = Instantiate(Resources.Load("UI/Text")) as GameObject;
-            backimage.transform.SetParent(GameManager.Instance.ItemCanvas.Canvas.transform);
-            text.transform.SetParent(GameManager.Instance.ItemCanvas.Canvas.transform);
-            var imageRect = backimage.GetComponent<RectTransform>();
-            var textRect = text.GetComponent<RectTransform>();
-            imageRect.sizeDelta = new Vector2(300, 50);
-            textRect.sizeDelta = new Vector2(300, 50);
-            var textText = text.GetComponent<Text>();
-            textText.text = "あと" + time + "秒で村に戻ります";
-            imageRect.anchoredPosition = new Vector2(-150, 25);
-            textRect.anchoredPosition = new Vector2(-150, 25);
+            failureimage = Instantiate(Resources.Load("UI/Image3")) as GameObject;
+            failureimage.transform.SetParent(GameManager.Instance.ItemCanvas.Canvas.transform);
+            var s = failureimage.GetComponent<Image>();
+            s.sprite = Resources.Load<Sprite>("Icon/questfailure");
+            var color = s.color;
+            color.a = 0;
+            s.color = color;
 
-            once_1 = new RunOnce();
-            once_2 = new RunOnce();
+            var failureRect = failureimage.GetComponent<RectTransform>();
+            failureRect.sizeDelta = new Vector2(600, 250);
+            failureRect.pivot = new Vector2(0.5f, 0.5f);
+            failureRect.anchoredPosition = new Vector2(0, failureRect.sizeDelta.y / 2);
+            Data.Convert.Correction(failureRect);
+
 
         }
         public override void OnExit(Quest owner, QuestState nextState)
@@ -386,47 +412,14 @@ public class Quest : MonoBehaviour
         public override void OnUpdate(Quest owner)
         {
             Debug.Log("失敗しました");
-
-
-
             time -= Time.deltaTime;
-            //何秒で戻るを消す
-            if (time < (owner._sceneChengeTime / 2) - 2)
-            {
-                once_1.Run(() =>
-                {
-                    Destroy(backimage);
-                    Destroy(text);
-                });
-            }
 
-            //quest終了時にマークの表示
-            if (time < 3)
-            {
-                once_2.Run(() =>
-                {
-                    failureimage = Instantiate(Resources.Load("UI/Image3")) as GameObject;
-                    failureimage.transform.SetParent(GameManager.Instance.ItemCanvas.Canvas.transform);
-                    var s = failureimage.GetComponent<Image>();
-                    s.sprite = Resources.Load<Sprite>("Icon/questfailure");
-                    var color = s.color;
-                    color.a = 0;
-                    s.color = color;
-
-                    var failureRect = failureimage.GetComponent<RectTransform>();
-                    failureRect.sizeDelta = new Vector2(600, 250);
-                    failureRect.pivot = new Vector2(0.5f, 0.5f);
-                    failureRect.anchoredPosition = new Vector2(0, failureRect.sizeDelta.y / 2);
-                    Data.Convert.Correction(failureRect);
-                });
-                //徐々に見えるようにする
-                var s = failureimage.GetComponent<Image>();
-                var color = s.color;
-                color.a += owner.imageAlpahSpeed;
-                color.a = Mathf.Clamp(color.a, 0, 1);
-                s.color = color;
-
-            }
+            //徐々に見えるようにする
+            var s = failureimage.GetComponent<Image>();
+            var color = s.color;
+            color.a += owner.imageAlpahSpeed;
+            color.a = Mathf.Clamp(color.a, 0, 1);
+            s.color = color;
 
             if (time < 0)
             {
@@ -444,7 +437,7 @@ public class Quest : MonoBehaviour
         {
             if (owner._HPBar != null) Destroy(owner._HPBar);
             if (owner._SPBar != null) Destroy(owner._SPBar);
-            
+
             GameManager.Instance.UIItemView.ChangeNotQuestState();
 
             //UIのセット
@@ -472,7 +465,7 @@ public class Quest : MonoBehaviour
             dataList.DesrializeDictionary();
         }
         public override void OnExit(Quest owner, QuestState nextState)
-        {                            
+        {
             //受けていない時はIDを空白にする
             var data = owner.QuestData;
             data.ID = "";

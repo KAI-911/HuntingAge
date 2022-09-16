@@ -303,6 +303,9 @@ GameObject:
   - component: {fileID: 5748028480126708164}
   - component: {fileID: 6736416230661207585}
   - component: {fileID: 134231313382430172}
+  - component: {fileID: 7904424780519165244}
+  - component: {fileID: 6523444124006974837}
+  - component: {fileID: 6871984960919312386}
   m_Layer: 0
   m_Name: GameManager
   m_TagString: Untagged
@@ -358,6 +361,7 @@ MonoBehaviour:
   _questData:
     ID: 
     Name: 
+    ClearedFlg: 0
     Clear: 0
     Failure: 0
     Field: 0
@@ -399,7 +403,7 @@ MonoBehaviour:
     IconName: Icon/Stone_UI
     BoxStackNumber: 9999
     BoxUINumber: 8
-    BoxHoldNumber: 6
+    BoxHoldNumber: 4
     PoachStackNumber: 99
     PoachUINumber: 0
     PoachHoldNumber: 0
@@ -408,7 +412,7 @@ MonoBehaviour:
     IconName: Icon/Wood_UI
     BoxStackNumber: 9999
     BoxUINumber: 5
-    BoxHoldNumber: 938
+    BoxHoldNumber: 900
     PoachStackNumber: 99
     PoachUINumber: 2
     PoachHoldNumber: 0
@@ -419,7 +423,7 @@ MonoBehaviour:
     BoxUINumber: 0
     BoxHoldNumber: 1000
     PoachStackNumber: 99
-    PoachUINumber: 1
+    PoachUINumber: 3
     PoachHoldNumber: 0
   - ID: Material003
     Name: "\u9AA8"
@@ -435,7 +439,7 @@ MonoBehaviour:
     IconName: Icon/Botanical_UI
     BoxStackNumber: 9999
     BoxUINumber: 2
-    BoxHoldNumber: 920
+    BoxHoldNumber: 910
     PoachStackNumber: 100
     PoachUINumber: 0
     PoachHoldNumber: 0
@@ -444,7 +448,7 @@ MonoBehaviour:
     IconName: Icon/Meat_UI
     BoxStackNumber: 9999
     BoxUINumber: 3
-    BoxHoldNumber: 5
+    BoxHoldNumber: 512
     PoachStackNumber: 99
     PoachUINumber: 3
     PoachHoldNumber: 0
@@ -453,7 +457,7 @@ MonoBehaviour:
     IconName: Icon/Fiber_UI
     BoxStackNumber: 9999
     BoxUINumber: 6
-    BoxHoldNumber: 1000
+    BoxHoldNumber: 1240
     PoachStackNumber: 99
     PoachUINumber: 4
     PoachHoldNumber: 0
@@ -535,7 +539,7 @@ MonoBehaviour:
   - ID: Dodo
     DisplayName: "\u30C9\u30FC\u30C9\u30FC"
     InstanceName: Enemy/Dodo
-    DeathCount: 3
+    DeathCount: 18
     EnemyPos:
     - scene: 2
       pos:
@@ -678,7 +682,7 @@ MonoBehaviour:
     IconPass: Icon/Axe_wood_UI
     BoxUINumber: 0
     CreatableLevel: 1
-    BoxPossession: 0
+    BoxPossession: 1
     AttackPoint: 50
     WeaponType: 0
     ProductionNeedMaterialLst:
@@ -852,10 +856,10 @@ MonoBehaviour:
       IconName: Icon/Soup_UI
       BoxStackNumber: 9999
       BoxUINumber: 15
-      BoxHoldNumber: 3050
+      BoxHoldNumber: 3057
       PoachStackNumber: 10
       PoachUINumber: 0
-      PoachHoldNumber: 4
+      PoachHoldNumber: 10
     Use: 0
     Permanent: 0
     Time: 10
@@ -874,10 +878,10 @@ MonoBehaviour:
       IconName: Icon/GrilledMeat_UI
       BoxStackNumber: 9999
       BoxUINumber: 17
-      BoxHoldNumber: 3018
+      BoxHoldNumber: 3022
       PoachStackNumber: 10
       PoachUINumber: 2
-      PoachHoldNumber: 8
+      PoachHoldNumber: 10
     Use: 0
     Permanent: 1
     Time: 120
@@ -894,10 +898,10 @@ MonoBehaviour:
       IconName: Icon/Fruit_UI
       BoxStackNumber: 9999
       BoxUINumber: 16
-      BoxHoldNumber: 2989
+      BoxHoldNumber: 2994
       PoachStackNumber: 10
       PoachUINumber: 1
-      PoachHoldNumber: 9
+      PoachHoldNumber: 10
     Use: 0
     Permanent: 0
     Time: 120
@@ -918,7 +922,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8541005799369741361}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 165858387f38aa2439b15c3ea5ac3601, type: 3}
   m_Name: 
@@ -951,9 +955,424 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   DictionaryData: {fileID: 11400000, guid: 019398f9683afc248a45a060c81d272d, type: 2}
-  _BGMVolume: 0.110000655
-  _SEVolume: 0.18000068
-  _UIVolume: 0.12
+  _BGMVolume: 0.4700005
+  _SEVolume: 0.17000067
+  _UIVolume: 1
+  modifyValues: 0
+--- !u!114 &7904424780519165244
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8541005799369741361}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 22a72e902578b4d4ea4b7ea864801279, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _itemIconList: []
+  _itemViewPrefab: {fileID: 5273894871995613753, guid: 30c25ace95c31284091c3d95dcf2a8d3,
+    type: 3}
+  _rightButtonPrefab: {fileID: 5041044212195448251, guid: 4f86c72dc71acb74a92ae821e4aa64fb,
+    type: 3}
+  _leftButtonPrefab: {fileID: 2068567506703123245, guid: 5a409c2019c56134888f30e04ed53116,
+    type: 3}
+  _sideScaleSize: 0.6
+  _padding: 20
+  _attackUpprefab: {fileID: 2258946460151890, guid: b9025af6f39bf0a4b9955edd11b0cb40,
+    type: 3}
+  _defenseUpprefab: {fileID: 433190895988374884, guid: 3d663aef4c4987743a7171c4b99888b8,
+    type: 3}
+  _hpUpprefab: {fileID: 433190895988374884, guid: 5e0e4755294790d4cb5b56016458d4f1,
+    type: 3}
+--- !u!114 &6523444124006974837
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8541005799369741361}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8d473cdf783ca2148b8e0d5f7ef1fa51, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  DictionaryData: {fileID: 11400000, guid: 8b360b659d88f3c4395a3e0f665d9de9, type: 2}
+  keys:
+  - Quest001
+  - Quest002
+  - Quest003
+  - Quest004
+  - Quest005
+  - Quest006
+  - Quest007
+  - Quest008
+  values:
+  - ID: Quest001
+    Name: "\u30AF\u30A8\u30B9\u30C8\uFF11"
+    ClearedFlg: 0
+    Clear: 0
+    Failure: 1
+    Field: 1
+    TargetName:
+    - name: T-rex
+      number: 1
+    OtherName:
+    - name: Wolf
+      number: 1
+    - name: Dodo
+      number: 1
+    QuestRewardDatas:
+    - name: Material005
+      number: 3
+      probability: 100
+    - name: Material005
+      number: 2
+      probability: 98
+    - name: Material005
+      number: 1
+      probability: 80
+    - name: Material003
+      number: 5
+      probability: 70
+    - name: Material003
+      number: 3
+      probability: 90
+    - name: Material003
+      number: 2
+      probability: 90
+    - name: Material000
+      number: 1
+      probability: 100
+    - name: Material000
+      number: 3
+      probability: 100
+    - name: Material000
+      number: 2
+      probability: 80
+  - ID: Quest002
+    Name: "\u30AF\u30A8\u30B9\u30C8\uFF12"
+    ClearedFlg: 0
+    Clear: 0
+    Failure: 2
+    Field: 1
+    TargetName:
+    - name: Wolf
+      number: 5
+    OtherName:
+    - name: Wolf
+      number: 10
+    QuestRewardDatas:
+    - name: Material002
+      number: 3
+      probability: 100
+    - name: Material005
+      number: 5
+      probability: 95
+    - name: Material001
+      number: 10
+      probability: 95
+    - name: Material000
+      number: 3
+      probability: 70
+    - name: Material002
+      number: 6
+      probability: 90
+  - ID: Quest003
+    Name: "\u30AF\u30A8\u30B9\u30C8\uFF13"
+    ClearedFlg: 1
+    Clear: 0
+    Failure: 2
+    Field: 2
+    TargetName:
+    - name: Dodo
+      number: 3
+    OtherName: []
+    QuestRewardDatas:
+    - name: Material006
+      number: 10
+      probability: 100
+    - name: Material006
+      number: 10
+      probability: 100
+    - name: Item000
+      number: 1
+      probability: 70
+    - name: Item001
+      number: 1
+      probability: 70
+    - name: Item002
+      number: 1
+      probability: 70
+  - ID: Quest004
+    Name: "\u30AF\u30A8\u30B9\u30C8\uFF14"
+    ClearedFlg: 0
+    Clear: 1
+    Failure: 2
+    Field: 1
+    TargetName:
+    - name: Material003
+      number: 10
+    OtherName:
+    - name: Dodo
+      number: 10
+    QuestRewardDatas:
+    - name: Material005
+      number: 3
+      probability: 100
+    - name: Material005
+      number: 2
+      probability: 98
+    - name: Material005
+      number: 1
+      probability: 80
+    - name: Material003
+      number: 5
+      probability: 70
+    - name: Material003
+      number: 3
+      probability: 90
+    - name: Material003
+      number: 2
+      probability: 90
+    - name: Material000
+      number: 1
+      probability: 100
+    - name: Material000
+      number: 3
+      probability: 100
+    - name: Material000
+      number: 2
+      probability: 80
+  - ID: Quest005
+    Name: "\u30AF\u30A8\u30B9\u30C8\uFF15"
+    ClearedFlg: 0
+    Clear: 1
+    Failure: 2
+    Field: 1
+    TargetName:
+    - name: Material001
+      number: 1
+    OtherName: []
+    QuestRewardDatas:
+    - name: Material005
+      number: 3
+      probability: 100
+    - name: Material005
+      number: 2
+      probability: 98
+    - name: Material005
+      number: 1
+      probability: 80
+    - name: Material003
+      number: 5
+      probability: 70
+    - name: Material003
+      number: 3
+      probability: 90
+    - name: Material003
+      number: 2
+      probability: 90
+    - name: Material000
+      number: 1
+      probability: 100
+    - name: Material000
+      number: 3
+      probability: 100
+    - name: Material000
+      number: 2
+      probability: 80
+  - ID: Quest006
+    Name: "\u30AF\u30A8\u30B9\u30C8\uFF16"
+    ClearedFlg: 0
+    Clear: 0
+    Failure: 4
+    Field: 1
+    TargetName:
+    - name: Deer
+      number: 1
+    OtherName:
+    - name: Deer
+      number: 9
+    QuestRewardDatas:
+    - name: Material005
+      number: 3
+      probability: 100
+    - name: Material005
+      number: 2
+      probability: 98
+    - name: Material005
+      number: 1
+      probability: 80
+    - name: Material003
+      number: 5
+      probability: 70
+    - name: Material003
+      number: 3
+      probability: 90
+    - name: Material003
+      number: 2
+      probability: 90
+    - name: Material000
+      number: 1
+      probability: 100
+    - name: Material000
+      number: 3
+      probability: 100
+    - name: Material000
+      number: 2
+      probability: 80
+  - ID: Quest007
+    Name: "\u30AF\u30A8\u30B9\u30C8\uFF17"
+    ClearedFlg: 0
+    Clear: 0
+    Failure: 4
+    Field: 1
+    TargetName:
+    - name: Rhino
+      number: 1
+    OtherName: []
+    QuestRewardDatas:
+    - name: Material005
+      number: 3
+      probability: 100
+    - name: Material005
+      number: 2
+      probability: 98
+    - name: Material005
+      number: 1
+      probability: 80
+    - name: Material003
+      number: 5
+      probability: 70
+    - name: Material003
+      number: 3
+      probability: 90
+    - name: Material003
+      number: 2
+      probability: 90
+    - name: Material000
+      number: 1
+      probability: 100
+    - name: Material000
+      number: 3
+      probability: 100
+    - name: Material000
+      number: 2
+      probability: 80
+  - ID: Quest008
+    Name: "\u30AA\u30FC\u30EB\u30B9\u30BF\u30FC\u30BA"
+    ClearedFlg: 1
+    Clear: 0
+    Failure: 0
+    Field: 1
+    TargetName:
+    - name: T-rex
+      number: 1
+    - name: Wolf
+      number: 1
+    - name: Dodo
+      number: 1
+    - name: Deer
+      number: 1
+    - name: Rhino
+      number: 1
+    OtherName:
+    - name: T-rex
+      number: 1
+    - name: Wolf
+      number: 4
+    - name: Dodo
+      number: 4
+    - name: Deer
+      number: 4
+    - name: Rhino
+      number: 4
+    QuestRewardDatas:
+    - name: Material005
+      number: 3
+      probability: 100
+    - name: Material005
+      number: 2
+      probability: 98
+    - name: Material005
+      number: 1
+      probability: 80
+    - name: Material003
+      number: 5
+      probability: 70
+    - name: Material003
+      number: 3
+      probability: 90
+    - name: Material003
+      number: 2
+      probability: 90
+    - name: Material000
+      number: 1
+      probability: 100
+    - name: Material000
+      number: 3
+      probability: 100
+    - name: Material000
+      number: 2
+      probability: 80
+  modifyValues: 0
+--- !u!114 &6871984960919312386
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8541005799369741361}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 98e71b45002552144bf2c1cdd7701826, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  DictionaryData: {fileID: 11400000, guid: 6ca2612ffef562e44955b17e54da47bc, type: 2}
+  keys:
+  - QuestHolder1
+  - QuestHolder2
+  - QuestHolder3
+  - QuestHolder4
+  - QuestHolder5
+  - QuestHolder6
+  values:
+  - Quests:
+    - Quest001
+    - Quest002
+    - Quest003
+    - Quest004
+    - Quest005
+    - Quest006
+    - Quest007
+    - Quest008
+  - Quests:
+    - Quest001
+    - Quest002
+    - Quest003
+    - Quest004
+  - Quests:
+    - Quest001
+    - Quest002
+    - Quest003
+    - Quest004
+  - Quests:
+    - Quest001
+    - Quest002
+    - Quest003
+    - Quest004
+  - Quests:
+    - Quest001
+    - Quest002
+    - Quest003
+    - Quest004
+  - Quests:
+    - Quest001
+    - Quest002
+    - Quest003
+    - Quest004
   modifyValues: 0
 --- !u!1 &8863779222303211788
 GameObject:
