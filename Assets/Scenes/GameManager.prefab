@@ -303,6 +303,7 @@ GameObject:
   - component: {fileID: 5748028480126708164}
   - component: {fileID: 6736416230661207585}
   - component: {fileID: 134231313382430172}
+  - component: {fileID: 7904424780519165244}
   m_Layer: 0
   m_Name: GameManager
   m_TagString: Untagged
@@ -407,16 +408,16 @@ MonoBehaviour:
     Name: "\u6728"
     IconName: Icon/Wood_UI
     BoxStackNumber: 9999
-    BoxUINumber: 0
-    BoxHoldNumber: 933
+    BoxUINumber: 5
+    BoxHoldNumber: 938
     PoachStackNumber: 99
-    PoachUINumber: 4
-    PoachHoldNumber: 1
+    PoachUINumber: 2
+    PoachHoldNumber: 0
   - ID: Material002
     Name: "\u30C4\u30BF"
     IconName: Icon/Vine_UI
     BoxStackNumber: 9999
-    BoxUINumber: 5
+    BoxUINumber: 0
     BoxHoldNumber: 1000
     PoachStackNumber: 99
     PoachUINumber: 1
@@ -428,8 +429,8 @@ MonoBehaviour:
     BoxUINumber: 1
     BoxHoldNumber: 1018
     PoachStackNumber: 99
-    PoachUINumber: 3
-    PoachHoldNumber: 3
+    PoachUINumber: 4
+    PoachHoldNumber: 0
   - ID: Material004
     Name: "\u690D\u7269"
     IconName: Icon/Botanical_UI
@@ -444,7 +445,7 @@ MonoBehaviour:
     IconName: Icon/Meat_UI
     BoxStackNumber: 9999
     BoxUINumber: 3
-    BoxHoldNumber: 5
+    BoxHoldNumber: 13
     PoachStackNumber: 99
     PoachUINumber: 3
     PoachHoldNumber: 0
@@ -453,9 +454,9 @@ MonoBehaviour:
     IconName: Icon/Fiber_UI
     BoxStackNumber: 9999
     BoxUINumber: 6
-    BoxHoldNumber: 1000
+    BoxHoldNumber: 1100
     PoachStackNumber: 99
-    PoachUINumber: 3
+    PoachUINumber: 4
     PoachHoldNumber: 0
   - ID: Material007
     Name: "\u76AE"
@@ -535,7 +536,7 @@ MonoBehaviour:
   - ID: Dodo
     DisplayName: "\u30C9\u30FC\u30C9\u30FC"
     InstanceName: Enemy/Dodo
-    DeathCount: 3
+    DeathCount: 18
     EnemyPos:
     - scene: 2
       pos:
@@ -678,7 +679,7 @@ MonoBehaviour:
     IconPass: Icon/Axe_wood_UI
     BoxUINumber: 0
     CreatableLevel: 1
-    BoxPossession: 1
+    BoxPossession: 0
     AttackPoint: 50
     WeaponType: 0
     ProductionNeedMaterialLst:
@@ -852,13 +853,13 @@ MonoBehaviour:
       IconName: Icon/Soup_UI
       BoxStackNumber: 9999
       BoxUINumber: 15
-      BoxHoldNumber: 3051
+      BoxHoldNumber: 3056
       PoachStackNumber: 10
       PoachUINumber: 0
       PoachHoldNumber: 9
     Use: 0
     Permanent: 0
-    Time: 0
+    Time: 10
     UpValue: 50
     ItemType: 0
     CreatableLevel: 1
@@ -874,12 +875,12 @@ MonoBehaviour:
       IconName: Icon/GrilledMeat_UI
       BoxStackNumber: 9999
       BoxUINumber: 17
-      BoxHoldNumber: 3021
+      BoxHoldNumber: 3025
       PoachStackNumber: 10
       PoachUINumber: 2
-      PoachHoldNumber: 10
+      PoachHoldNumber: 6
     Use: 0
-    Permanent: 0
+    Permanent: 1
     Time: 120
     UpValue: 50
     ItemType: 1
@@ -894,10 +895,10 @@ MonoBehaviour:
       IconName: Icon/Fruit_UI
       BoxStackNumber: 9999
       BoxUINumber: 16
-      BoxHoldNumber: 2991
+      BoxHoldNumber: 2994
       PoachStackNumber: 10
       PoachUINumber: 1
-      PoachHoldNumber: 10
+      PoachHoldNumber: 9
     Use: 0
     Permanent: 0
     Time: 120
@@ -918,7 +919,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8541005799369741361}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 165858387f38aa2439b15c3ea5ac3601, type: 3}
   m_Name: 
@@ -932,6 +933,12 @@ MonoBehaviour:
     type: 3}
   _sideScaleSize: 0.7
   _padding: 20
+  _attackUpprefab: {fileID: 2258946460151890, guid: b9025af6f39bf0a4b9955edd11b0cb40,
+    type: 3}
+  _defenseUpprefab: {fileID: 433190895988374884, guid: 3d663aef4c4987743a7171c4b99888b8,
+    type: 3}
+  _hpUpprefab: {fileID: 433190895988374884, guid: 5e0e4755294790d4cb5b56016458d4f1,
+    type: 3}
 --- !u!114 &134231313382430172
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -945,9 +952,37 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   DictionaryData: {fileID: 11400000, guid: 019398f9683afc248a45a060c81d272d, type: 2}
-  BGMVolume: 0.5
-  SEVolume: 0.5
+  _BGMVolume: 0.16
+  _SEVolume: 0.19000068
+  _UIVolume: 0.11
   modifyValues: 0
+--- !u!114 &7904424780519165244
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8541005799369741361}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 22a72e902578b4d4ea4b7ea864801279, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _itemIconList: []
+  _itemViewPrefab: {fileID: 5273894871995613753, guid: 30c25ace95c31284091c3d95dcf2a8d3,
+    type: 3}
+  _rightButtonPrefab: {fileID: 5041044212195448251, guid: 4f86c72dc71acb74a92ae821e4aa64fb,
+    type: 3}
+  _leftButtonPrefab: {fileID: 2068567506703123245, guid: 5a409c2019c56134888f30e04ed53116,
+    type: 3}
+  _sideScaleSize: 0.6
+  _padding: 20
+  _attackUpprefab: {fileID: 2258946460151890, guid: b9025af6f39bf0a4b9955edd11b0cb40,
+    type: 3}
+  _defenseUpprefab: {fileID: 433190895988374884, guid: 3d663aef4c4987743a7171c4b99888b8,
+    type: 3}
+  _hpUpprefab: {fileID: 433190895988374884, guid: 5e0e4755294790d4cb5b56016458d4f1,
+    type: 3}
 --- !u!1 &8863779222303211788
 GameObject:
   m_ObjectHideFlags: 0

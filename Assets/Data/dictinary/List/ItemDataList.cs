@@ -244,6 +244,53 @@ public class ItemDataList : MonoBehaviour, ISerializationCallbackReceiver
         DesrializeDictionary();
         return 1;
     }
+
+    public void ItemsConsumption(string _ID, int _num, bool _toPouch)
+    {
+        int index = keys.FindIndex(n => n.StartsWith(_ID));
+        //Debug.Log(index);
+        var data = values[index];
+        int listCount;
+
+        listCount = data.NeedMaterialLst.Count;
+
+        List<string> needID = new List<string>();
+        List<int> needRequired = new List<int>();
+
+        for (int i = 0; i < listCount; i++)
+        {
+            int count = i;
+            needID.Add(data.NeedMaterialLst[count].materialID);
+            needRequired.Add(data.NeedMaterialLst[count].requiredCount);
+            needRequired[i] *= _num;
+        }
+
+
+
+        for (int i = 0; i < listCount; i++)
+        {
+            int count = i;
+            var _material = GameManager.Instance.MaterialDataList;
+            int tmp = _material.Keys.IndexOf(needID[count]);
+            if (_material.Values[tmp].PoachHoldNumber < needRequired[count])
+            {
+                needRequired[count] -= _material.Values[tmp].PoachHoldNumber;
+                var data1 = _material.Values[tmp];
+                data1.PoachHoldNumber = 0;
+                _material.Values[tmp] = data1;
+
+                data1.BoxHoldNumber -= needRequired[count];
+                _material.Values[tmp] = data1;
+            }
+            else
+            {
+                var data1 = _material.Values[tmp];
+                data1.PoachHoldNumber -= needRequired[count];
+                _material.Values[tmp] = data1;
+            }
+        }
+        GameManager.Instance.MaterialDataList.DesrializeDictionary();
+    }
 }
 
 [System.Serializable]
