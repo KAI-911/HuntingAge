@@ -287,6 +287,38 @@ public class Quest : MonoBehaviour
 
             once_1 = new RunOnce();
             once_2 = new RunOnce();
+
+            //クエストクリアフラグを立てる
+            var index = GameManager.Instance.QuestDataList.Keys.IndexOf(owner.QuestData.ID);
+            var data = GameManager.Instance.QuestDataList.Values[index];
+            data.ClearedFlg = true;
+            GameManager.Instance.QuestDataList.Values[index] = data;
+            GameManager.Instance.QuestDataList.DesrializeDictionary();
+
+            //キークエストを全てクリアしたら村レベルを上げる
+            int level = GameManager.Instance.VillageData.VillageLevel;
+            List<QuestData> questDatas = new List<QuestData>();
+            bool levelup = true;
+            var holdData = GameManager.Instance.QuestHolderData;
+           // for (int i = 0; i < holdData.Quests[level-1].Length; i++)
+            for (int i = 0; i < holdData.Values[level - 1].Quests.Count; i++)
+            {
+                var tmpQuestData = GameManager.Instance.QuestDataList.Dictionary[holdData.Values[level - 1].Quests[i]];
+                if (tmpQuestData.KeyQuestFlg && !tmpQuestData.ClearedFlg)
+                {
+                    levelup = false;
+                    break;
+                }
+            }
+            if(levelup)
+            {
+                GameManager.Instance.VillageData.VillageLevel++;
+                GameManager.Instance.VillageData.DesrializeDictionary();
+                Debug.Log("レベルが上がりました");
+
+
+            }
+
         }
         public override void OnExit(Quest owner, QuestState nextState)
         {
@@ -370,6 +402,7 @@ public class Quest : MonoBehaviour
             failureRect.anchoredPosition = new Vector2(0, failureRect.sizeDelta.y / 2);
             Data.Convert.Correction(failureRect);
 
+
         }
         public override void OnExit(Quest owner, QuestState nextState)
         {
@@ -404,7 +437,7 @@ public class Quest : MonoBehaviour
         {
             if (owner._HPBar != null) Destroy(owner._HPBar);
             if (owner._SPBar != null) Destroy(owner._SPBar);
-            
+
             GameManager.Instance.UIItemView.ChangeNotQuestState();
 
             //UIのセット
@@ -432,7 +465,7 @@ public class Quest : MonoBehaviour
             dataList.DesrializeDictionary();
         }
         public override void OnExit(Quest owner, QuestState nextState)
-        {                            
+        {
             //受けていない時はIDを空白にする
             var data = owner.QuestData;
             data.ID = "";

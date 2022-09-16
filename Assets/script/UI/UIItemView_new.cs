@@ -257,22 +257,6 @@ public class UIItemView_new : UIBase
             owner.ChangeState<WaitItem>();
         }
 
-        private void LeftToRight(UIItemView_new OWNER)
-        {
-            int index = OWNER.GetIndex(1);
-            OWNER._currentID = OWNER._itemIDList[index];
-            OWNER.SetIcon(position.center);
-            OWNER.SetIcon(position.left);
-            OWNER.SetIcon(position.right);
-        }
-        private void RightToLeft(UIItemView_new OWNER)
-        {
-            int index = OWNER.GetIndex(-1);
-            OWNER._currentID = OWNER._itemIDList[index];
-            OWNER.SetIcon(position.center);
-            OWNER.SetIcon(position.left);
-            OWNER.SetIcon(position.right);
-        }
 
         private void MoveIcon(position _from, position _to)
         {

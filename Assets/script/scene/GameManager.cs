@@ -20,6 +20,8 @@ public class GameManager : Singleton<GameManager>
     private UIPoach _UIPoachList;
     private WeaponDataList _weaponDataList;
     private EnemyDataList _enemyDataList;
+    private QuestDataList _questDataList;
+    private QuestHolder _questHolderData;
     private SettingDataList _settingDataList;
     private VillageData _villageData;
     private FadeManager _fadeManager;
@@ -38,7 +40,9 @@ public class GameManager : Singleton<GameManager>
     public UIItemView_new UIItemView { get => _uiItemView; }
     public Player Player { get => _player; }
     public FadeManager FadeManager { get => _fadeManager; }
-    public SettingDataList SettingDataList { get => _settingDataList;}
+    public SettingDataList SettingDataList { get => _settingDataList; }
+    public QuestDataList QuestDataList { get => _questDataList; }
+    public QuestHolder QuestHolderData { get => _questHolderData; }
 
     protected override void Awake()
     {
@@ -49,6 +53,8 @@ public class GameManager : Singleton<GameManager>
         _UIPoachList = GetComponentInChildren<UIPoach>();
         _weaponDataList = GetComponent<WeaponDataList>();
         _enemyDataList = GetComponent<EnemyDataList>();
+        _questDataList = GetComponent<QuestDataList>();
+        _questHolderData = GetComponent<QuestHolder>();
         _settingDataList = GetComponent<SettingDataList>();
         _villageData = GetComponent<VillageData>();
         _fadeManager = GetComponentInChildren<FadeManager>();

@@ -21,12 +21,14 @@ public class QuestReception : UIBase
 
     [SerializeField] QuestHolderData _questHolderData;
 
-
+    List<GameObject> checkObjects;
     private void Start()
     {
-        ItemIconList[(int)IconType.LevelSelect].SetIcondata(UISoundManager.Instance.UIPresetData.Dictionary["IP_TypeSelect"]);
-        ItemIconList[(int)IconType.QuestSelect].SetIcondata(UISoundManager.Instance.UIPresetData.Dictionary["IP_TypeSelect"]);
+        checkObjects = new List<GameObject>();
+        ItemIconList[(int)IconType.LevelSelect].SetIcondata(UISoundManager.Instance.UIPresetData.Dictionary["QuestSelect"]);
+        ItemIconList[(int)IconType.QuestSelect].SetIcondata(UISoundManager.Instance.UIPresetData.Dictionary["QuestSelect"]);
         ItemIconList[(int)IconType.Confirmation].SetIcondata(UISoundManager.Instance.UIPresetData.Dictionary["Confirmation"]);
+
 
         //‰¼‚Åƒ{ƒ^ƒ“‚Ì‘å‚«‚³‚ðIP_TypeSelect‚É‡‚í‚¹‚Ä‚¢‚é
         ItemIconData itemIconData = ItemIconList[(int)IconType.Confirmation].IconData;
@@ -61,7 +63,7 @@ public class QuestReception : UIBase
     {
         ItemIcon itemIcon;
         public override void OnEnter(UIBase owner, UIStateBase prevState)
-        {                            
+        {
             //Žó‚¯‚Ä‚¢‚È‚¢Žž‚ÍID‚ð‹ó”’‚É‚·‚é
             var data = GameManager.Instance.Quest.QuestData;
             data.ID = "";
@@ -137,13 +139,32 @@ public class QuestReception : UIBase
                 itemIcon.SetButtonText(i, data.Name);
                 itemIcon.SetButtonOnClick(i, () =>
                 {
-                    //GameManager.Instance.Quest.QuestData = data;
                     owner.ChangeState<QuestConfirmation>();
                 });
+                //
+                if (data.ClearedFlg)
+                {
+                    var obj = Instantiate(Resources.Load("UI/Image3"), GameManager.Instance.ItemCanvas.Canvas.transform) as GameObject;
+                    var image = obj.GetComponent<Image>();
+                    image.sprite = Resources.Load<Sprite>("Icon/check");
+                    image.color = new Color(1, 0, 0, 1);
+                    var rect = obj.GetComponent<RectTransform>();
+                    var buttonRect = objList[i].GetComponent<RectTransform>();
+                    rect.sizeDelta = new Vector2(60, 60);
+                    rect.anchoredPosition = buttonRect.anchoredPosition + new Vector2(40, 0);
+                    owner.GetComponent<QuestReception>().checkObjects.Add(obj);
+                }
             }
         }
         public override void OnExit(UIBase owner, UIStateBase nextState)
         {
+            var OWNER = owner.GetComponent<QuestReception>();
+            for (int i = 0; i < OWNER.checkObjects.Count; i++)
+            {
+                Destroy(OWNER.checkObjects[i]);
+            }
+            OWNER.checkObjects.Clear();
+
             if (nextState.GetType() != typeof(QuestConfirmation))
             {
                 itemIcon.DeleteButton();
@@ -256,7 +277,7 @@ public class QuestReception : UIBase
             textRect.sizeDelta = new Vector2(300, 100);
             var textText = text.GetComponent<Text>();
             textText.text = GameManager.Instance.Quest.QuestData.Name;
-            textText.alignment = TextAnchor.MiddleLeft;
+            textText.alignment = TextAnchor.MiddleCenter;
             textText.resizeTextForBestFit = true;
             imageRect.anchoredPosition = new Vector2(-Screen.width / 2 + Data.SCR.Padding, Screen.height / 2 - Data.SCR.Padding);
             textRect.anchoredPosition = new Vector2(-Screen.width / 2 + Data.SCR.Padding, Screen.height / 2 - Data.SCR.Padding);
@@ -344,7 +365,7 @@ public class QuestReception : UIBase
                             UISoundManager.Instance._player.IsAction = true;
                             itemIcon.DeleteButton();
                             //Žó‚¯‚Ä‚¢‚È‚¢Žž‚ÍID‚ð‹ó”’‚É‚·‚é
-                            var data= GameManager.Instance.Quest.QuestData;
+                            var data = GameManager.Instance.Quest.QuestData;
                             data.ID = "";
                             GameManager.Instance.Quest.QuestData = data;
                         });
