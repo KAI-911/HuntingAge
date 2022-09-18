@@ -60,7 +60,14 @@ public class UIPoach : UIBase
             var button2 = list[2].GetComponent<Button>();
             button2.onClick.AddListener(() => owner.ChangeState<GameEnd>());
             var button2Text = list[2].GetComponentInChildren<Text>();
-            button2Text.text = "ゲーム終了";
+            if (GameManager.Instance.Quest.IsQuest)
+            {
+                button2Text.text = "クエストリタイア";
+            }
+            else
+            {
+                button2Text.text = "ゲーム終了";
+            }
 
             var button3 = list[3].GetComponent<Button>();
             button3.onClick.AddListener(() => owner.ChangeState<Setting>());
@@ -268,26 +275,50 @@ public class UIPoach : UIBase
     {
         public override void OnEnter(UIBase owner, UIStateBase prevState)
         {
-            owner.ItemIconList[(int)IconType.Confirmation].SetText("ゲームを終了しますか");
-
-            var buttons = owner.ItemIconList[(int)IconType.Confirmation].CreateButton();
-            buttons[0].GetComponent<Button>().onClick.AddListener(() =>
+            if (GameManager.Instance.Quest.IsQuest)
             {
-                var data = UISoundManager.Instance._player.StatusData;
-                data.Wepon = UISoundManager.Instance._player.WeaponID;
-                data.DesrializeDictionary();
+                owner.ItemIconList[(int)IconType.Confirmation].SetText("クエストをリタイアしますか");
+
+            }
+            else
+            {
+                owner.ItemIconList[(int)IconType.Confirmation].SetText("ゲームを終了しますか");
+            }
+            var buttons = owner.ItemIconList[(int)IconType.Confirmation].CreateButton();
+            if (GameManager.Instance.Quest.IsQuest)
+            {
+                buttons[0].GetComponent<Button>().onClick.AddListener(() =>
+                {
+                    GameManager.Instance.Quest.QuestRetire();
+                    owner.ChangeState<Close>();
+                });
+            }
+            else
+            {
+                buttons[0].GetComponent<Button>().onClick.AddListener(() =>
+                {
+                    var data = UISoundManager.Instance._player.StatusData;
+                    data.Wepon = UISoundManager.Instance._player.WeaponID;
+                    data.DesrializeDictionary();
 #if UNITY_EDITOR
-                UnityEditor.EditorApplication.isPlaying = false;//ゲームプレイ終了
+                    Cursor.visible = true;
+                    Cursor.lockState = CursorLockMode.None;
+                    UnityEditor.EditorApplication.isPlaying = false;//ゲームプレイ終了
 #else
-    Application.Quit();//ゲームプレイ終了
+                    Cursor.visible = true;
+                    Cursor.lockState = CursorLockMode.None;
+                    Application.Quit();//ゲームプレイ終了
 #endif
-            });
-            buttons[0].GetComponentInChildren<Text>().text = "はい";
+                    owner.ChangeState<Close>();
+                });
+            }
 
             buttons[1].GetComponent<Button>().onClick.AddListener(() =>
             {
                 owner.ChangeState<FirstSlect>();
             });
+
+            buttons[0].GetComponentInChildren<Text>().text = "はい";
             buttons[1].GetComponentInChildren<Text>().text = "いいえ";
 
         }
@@ -346,7 +377,7 @@ public class UIPoach : UIBase
             _bgmObj = Instantiate(Resources.Load("UI/Slider"), GameManager.Instance.ItemCanvas.Canvas.transform) as GameObject;
             slider_bgm = _bgmObj.GetComponent<Slider>();
             owner.ItemIconList[(int)IconType.Setting].AdjustmentImage(_bgmObj.GetComponent<RectTransform>(), 0);
-            
+
             //SEボタンの設定
             buttons[1].GetComponent<Button>().onClick.AddListener(() =>
             {
@@ -358,7 +389,7 @@ public class UIPoach : UIBase
             _seObj = Instantiate(Resources.Load("UI/Slider"), GameManager.Instance.ItemCanvas.Canvas.transform) as GameObject;
             slider_se = _seObj.GetComponent<Slider>();
             owner.ItemIconList[(int)IconType.Setting].AdjustmentImage(_seObj.GetComponent<RectTransform>(), 1);
-            
+
             //UIボタンの設定
             buttons[2].GetComponent<Button>().onClick.AddListener(() =>
             {

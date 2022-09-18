@@ -306,6 +306,7 @@ GameObject:
   - component: {fileID: 7904424780519165244}
   - component: {fileID: 6523444124006974837}
   - component: {fileID: 6871984960919312386}
+  - component: {fileID: 7256111841853537872}
   m_Layer: 0
   m_Name: GameManager
   m_TagString: Untagged
@@ -362,6 +363,7 @@ MonoBehaviour:
     ID: 
     Name: 
     ClearedFlg: 0
+    KeyQuestFlg: 0
     Clear: 0
     Failure: 0
     Field: 0
@@ -403,7 +405,7 @@ MonoBehaviour:
     IconName: Icon/Stone_UI
     BoxStackNumber: 9999
     BoxUINumber: 8
-    BoxHoldNumber: 4
+    BoxHoldNumber: 16
     PoachStackNumber: 99
     PoachUINumber: 0
     PoachHoldNumber: 0
@@ -412,16 +414,16 @@ MonoBehaviour:
     IconName: Icon/Wood_UI
     BoxStackNumber: 9999
     BoxUINumber: 5
-    BoxHoldNumber: 900
+    BoxHoldNumber: 926
     PoachStackNumber: 99
-    PoachUINumber: 2
+    PoachUINumber: 4
     PoachHoldNumber: 0
   - ID: Material002
     Name: "\u30C4\u30BF"
     IconName: Icon/Vine_UI
     BoxStackNumber: 9999
     BoxUINumber: 0
-    BoxHoldNumber: 1000
+    BoxHoldNumber: 1018
     PoachStackNumber: 99
     PoachUINumber: 3
     PoachHoldNumber: 0
@@ -430,25 +432,25 @@ MonoBehaviour:
     IconName: Icon/Bone_UI
     BoxStackNumber: 9999
     BoxUINumber: 1
-    BoxHoldNumber: 1018
+    BoxHoldNumber: 1037
     PoachStackNumber: 99
-    PoachUINumber: 4
+    PoachUINumber: 3
     PoachHoldNumber: 0
   - ID: Material004
     Name: "\u690D\u7269"
     IconName: Icon/Botanical_UI
     BoxStackNumber: 9999
     BoxUINumber: 2
-    BoxHoldNumber: 910
+    BoxHoldNumber: 913
     PoachStackNumber: 100
-    PoachUINumber: 0
+    PoachUINumber: 5
     PoachHoldNumber: 0
   - ID: Material005
     Name: "\u8089"
     IconName: Icon/Meat_UI
     BoxStackNumber: 9999
     BoxUINumber: 3
-    BoxHoldNumber: 512
+    BoxHoldNumber: 577
     PoachStackNumber: 99
     PoachUINumber: 3
     PoachHoldNumber: 0
@@ -457,7 +459,7 @@ MonoBehaviour:
     IconName: Icon/Fiber_UI
     BoxStackNumber: 9999
     BoxUINumber: 6
-    BoxHoldNumber: 1240
+    BoxHoldNumber: 1340
     PoachStackNumber: 99
     PoachUINumber: 4
     PoachHoldNumber: 0
@@ -519,7 +521,7 @@ MonoBehaviour:
   - ID: Wolf
     DisplayName: "\u72FC"
     InstanceName: Enemy/Wolf
-    DeathCount: 6
+    DeathCount: 16
     EnemyPos:
     - scene: 2
       pos:
@@ -539,7 +541,7 @@ MonoBehaviour:
   - ID: Dodo
     DisplayName: "\u30C9\u30FC\u30C9\u30FC"
     InstanceName: Enemy/Dodo
-    DeathCount: 18
+    DeathCount: 33
     EnemyPos:
     - scene: 2
       pos:
@@ -634,9 +636,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   DictionaryData: {fileID: 11400000, guid: ba2168d9003022341a89bc2a440aba61, type: 2}
-  villageLevel: 6
-  blacksmithLevel: 3
-  kitchenLevel: 3
+  villageLevel: 1
+  blacksmithLevel: 1
+  kitchenLevel: 1
   modifyValues: 0
 --- !u!114 &6145394531166785598
 MonoBehaviour:
@@ -739,7 +741,7 @@ MonoBehaviour:
     weaponPath: weapon/Spear_wood
     IconPass: Icon/Spear_wood_UI
     BoxUINumber: 3
-    CreatableLevel: 3
+    CreatableLevel: 1
     BoxPossession: 0
     AttackPoint: 50
     WeaponType: 1
@@ -856,9 +858,9 @@ MonoBehaviour:
       IconName: Icon/Soup_UI
       BoxStackNumber: 9999
       BoxUINumber: 15
-      BoxHoldNumber: 3057
+      BoxHoldNumber: 3022
       PoachStackNumber: 10
-      PoachUINumber: 0
+      PoachUINumber: 2
       PoachHoldNumber: 10
     Use: 0
     Permanent: 0
@@ -878,9 +880,9 @@ MonoBehaviour:
       IconName: Icon/GrilledMeat_UI
       BoxStackNumber: 9999
       BoxUINumber: 17
-      BoxHoldNumber: 3022
+      BoxHoldNumber: 3023
       PoachStackNumber: 10
-      PoachUINumber: 2
+      PoachUINumber: 1
       PoachHoldNumber: 10
     Use: 0
     Permanent: 1
@@ -898,9 +900,9 @@ MonoBehaviour:
       IconName: Icon/Fruit_UI
       BoxStackNumber: 9999
       BoxUINumber: 16
-      BoxHoldNumber: 2994
+      BoxHoldNumber: 2987
       PoachStackNumber: 10
-      PoachUINumber: 1
+      PoachUINumber: 0
       PoachHoldNumber: 10
     Use: 0
     Permanent: 0
@@ -955,8 +957,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   DictionaryData: {fileID: 11400000, guid: 019398f9683afc248a45a060c81d272d, type: 2}
-  _BGMVolume: 0.4700005
-  _SEVolume: 0.17000067
+  _BGMVolume: 1
+  _SEVolume: 1
   _UIVolume: 1
   modifyValues: 0
 --- !u!114 &7904424780519165244
@@ -1012,6 +1014,7 @@ MonoBehaviour:
   - ID: Quest001
     Name: "\u30AF\u30A8\u30B9\u30C8\uFF11"
     ClearedFlg: 0
+    KeyQuestFlg: 0
     Clear: 0
     Failure: 1
     Field: 1
@@ -1054,6 +1057,7 @@ MonoBehaviour:
   - ID: Quest002
     Name: "\u30AF\u30A8\u30B9\u30C8\uFF12"
     ClearedFlg: 0
+    KeyQuestFlg: 0
     Clear: 0
     Failure: 2
     Field: 1
@@ -1081,7 +1085,8 @@ MonoBehaviour:
       probability: 90
   - ID: Quest003
     Name: "\u30AF\u30A8\u30B9\u30C8\uFF13"
-    ClearedFlg: 1
+    ClearedFlg: 0
+    KeyQuestFlg: 0
     Clear: 0
     Failure: 2
     Field: 2
@@ -1108,6 +1113,7 @@ MonoBehaviour:
   - ID: Quest004
     Name: "\u30AF\u30A8\u30B9\u30C8\uFF14"
     ClearedFlg: 0
+    KeyQuestFlg: 0
     Clear: 1
     Failure: 2
     Field: 1
@@ -1148,6 +1154,7 @@ MonoBehaviour:
   - ID: Quest005
     Name: "\u30AF\u30A8\u30B9\u30C8\uFF15"
     ClearedFlg: 0
+    KeyQuestFlg: 0
     Clear: 1
     Failure: 2
     Field: 1
@@ -1186,6 +1193,7 @@ MonoBehaviour:
   - ID: Quest006
     Name: "\u30AF\u30A8\u30B9\u30C8\uFF16"
     ClearedFlg: 0
+    KeyQuestFlg: 0
     Clear: 0
     Failure: 4
     Field: 1
@@ -1226,6 +1234,7 @@ MonoBehaviour:
   - ID: Quest007
     Name: "\u30AF\u30A8\u30B9\u30C8\uFF17"
     ClearedFlg: 0
+    KeyQuestFlg: 0
     Clear: 0
     Failure: 4
     Field: 1
@@ -1263,7 +1272,8 @@ MonoBehaviour:
       probability: 80
   - ID: Quest008
     Name: "\u30AA\u30FC\u30EB\u30B9\u30BF\u30FC\u30BA"
-    ClearedFlg: 1
+    ClearedFlg: 0
+    KeyQuestFlg: 0
     Clear: 0
     Failure: 0
     Field: 1
@@ -1343,37 +1353,32 @@ MonoBehaviour:
     - Quest001
     - Quest002
     - Quest003
+  - Quests:
     - Quest004
+  - Quests:
     - Quest005
+  - Quests:
     - Quest006
+  - Quests:
     - Quest007
+  - Quests:
     - Quest008
-  - Quests:
-    - Quest001
-    - Quest002
-    - Quest003
-    - Quest004
-  - Quests:
-    - Quest001
-    - Quest002
-    - Quest003
-    - Quest004
-  - Quests:
-    - Quest001
-    - Quest002
-    - Quest003
-    - Quest004
-  - Quests:
-    - Quest001
-    - Quest002
-    - Quest003
-    - Quest004
-  - Quests:
-    - Quest001
-    - Quest002
-    - Quest003
-    - Quest004
   modifyValues: 0
+--- !u!114 &7256111841853537872
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8541005799369741361}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8e10379b6e3ff484e8a676a517bf4b29, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _itemIconList: []
+  ImagePrefab: {fileID: 0}
+  TextPrefab: {fileID: 0}
 --- !u!1 &8863779222303211788
 GameObject:
   m_ObjectHideFlags: 0

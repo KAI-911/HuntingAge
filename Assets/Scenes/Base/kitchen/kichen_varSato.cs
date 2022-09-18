@@ -116,7 +116,7 @@ public class kichen_varSato : UIBase
                 List<ItemData> _createItem = new List<ItemData>();
                 foreach (var item in GameManager.Instance.ItemDataList.Dictionary)
                 {
-                    if (item.Value.CreatableLevel < GameManager.Instance.VillageData.KitchenLevel)
+                    if (item.Value.CreatableLevel <= GameManager.Instance.VillageData.KitchenLevel)
                     {
                         for (int i = 0; i < item.Value.NeedMaterialLst.Count; i++)
                         {
