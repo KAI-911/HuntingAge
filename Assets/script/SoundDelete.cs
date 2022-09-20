@@ -7,13 +7,19 @@ public class SoundDelete : MonoBehaviour
 {
     [SerializeField] AudioSource _audio;
     [SerializeField] Sound _sound;
+    [SerializeField]bool _remainSound;
+
     void Start()
     {
         switch (_sound)
         {
             case Sound.SE:
                 _audio.volume = GameManager.Instance.SettingDataList.SEVolume;
-                DontDestroyOnLoad(this);
+               
+                if (_remainSound == true)
+                {
+                    DontDestroyOnLoad(this);
+                }
                 break;
             case Sound.BGM:
                 _audio.volume = GameManager.Instance.SettingDataList.BGMVolume;
