@@ -47,13 +47,13 @@ AudioSource:
   m_PlayOnAwake: 1
   m_Volume: 1
   m_Pitch: 1
-  Loop: 0
+  Loop: 1
   Mute: 0
   Spatialize: 0
   SpatializePostEffects: 0
   Priority: 128
   DopplerLevel: 1
-  MinDistance: 64.35644
+  MinDistance: 60
   MaxDistance: 65
   Pan2D: 0
   rolloffMode: 1
@@ -143,3 +143,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _audio: {fileID: -7236145168758477099}
   _sound: 0
+  _remainSound: 0
