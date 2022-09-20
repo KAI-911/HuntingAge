@@ -400,6 +400,7 @@ public class Blacksmith : UIBase
 
             UI.SetTable(new Vector2(1, 2));
             UI.CreateButton();
+            UI.SetLeftTopPos(new Vector2(-500, -100));
             UI.SetButtonText(0, "‚Í‚¢");
             UI.SetButtonOnClick(0, () =>
              {
