@@ -300,7 +300,6 @@ public class Quest : MonoBehaviour
             List<QuestData> questDatas = new List<QuestData>();
             bool levelup = true;
             var holdData = GameManager.Instance.QuestHolderData;
-           // for (int i = 0; i < holdData.Quests[level-1].Length; i++)
             for (int i = 0; i < holdData.Values[level - 1].Quests.Count; i++)
             {
                 var tmpQuestData = GameManager.Instance.QuestDataList.Dictionary[holdData.Values[level - 1].Quests[i]];
@@ -310,12 +309,14 @@ public class Quest : MonoBehaviour
                     break;
                 }
             }
-            if(levelup)
+            if (levelup && GameManager.Instance.VillageData.VillageLevel < 6)
             {
                 GameManager.Instance.VillageData.VillageLevel++;
+                GameManager.Instance.VillageData.KitchenLevel = GameManager.Instance.VillageData.VillageLevel;
+                GameManager.Instance.VillageData.BlacksmithLevel = GameManager.Instance.VillageData.VillageLevel;
                 GameManager.Instance.VillageData.DesrializeDictionary();
                 Debug.Log("ƒŒƒxƒ‹‚ªã‚ª‚è‚Ü‚µ‚½");
-
+                GameManager.Instance.LevelUp = true;
 
             }
 
@@ -478,7 +479,10 @@ public class Quest : MonoBehaviour
             owner.ChangeState<Standby>();
         }
     }
-
+    public void QuestRetire()
+    {
+        ChangeState<QuestFailure>();
+    }
 
     private bool CheckPlayerDown()
     {

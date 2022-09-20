@@ -27,6 +27,9 @@ public class GameManager : Singleton<GameManager>
     private FadeManager _fadeManager;
     private UIItemView_new _uiItemView;
     private Player _player;
+    [SerializeField] private LookAtCamera _lookAtCamera;
+    private bool _levelUp;
+    private Report _report;
     public Scene VillageScene { get => _villageScene; }
     public Scene NowScene { get => _nowScene; set => _nowScene = value; }
     public Quest Quest { get => _quest; set => _quest = value; }
@@ -43,6 +46,9 @@ public class GameManager : Singleton<GameManager>
     public SettingDataList SettingDataList { get => _settingDataList; }
     public QuestDataList QuestDataList { get => _questDataList; }
     public QuestHolder QuestHolderData { get => _questHolderData; }
+    public bool LevelUp { get => _levelUp; set => _levelUp = value; }
+    public Report Report { get => _report; }
+    public LookAtCamera LookAtCamera { get => _lookAtCamera; }
 
     protected override void Awake()
     {
@@ -59,8 +65,19 @@ public class GameManager : Singleton<GameManager>
         _villageData = GetComponent<VillageData>();
         _fadeManager = GetComponentInChildren<FadeManager>();
         _uiItemView = GetComponentInChildren<UIItemView_new>();
+        _report = GetComponentInChildren<Report>();
+        SceneManager.sceneLoaded += OnSceneLoaded;
+
+        Cursor.visible = false;
+        Cursor.lockState = CursorLockMode.Locked;
         base.Awake();
     }
+    private void OnDestroy()
+    {
+        SceneManager.sceneLoaded -= OnSceneLoaded;
+
+    }
+
     public void GoToVillage()
     {
         if (_nowScene == Scene.Title)
@@ -74,7 +91,6 @@ public class GameManager : Singleton<GameManager>
                 _quest.QuestReset();
                 _player.ChangeState<VillageState>();
             });
-
         }
     }
 
@@ -89,6 +105,14 @@ public class GameManager : Singleton<GameManager>
     {
         _nowScene = scene;
         _fadeManager.FadeOutStart(() => SceneManager.LoadScene((int)scene));
+    }
+    private void OnSceneLoaded(UnityEngine.SceneManagement.Scene arg0, LoadSceneMode arg1)
+    {
+        var obj = GameObject.FindGameObjectWithTag("LookTarget");
+        if (obj != null)
+        {
+            LookAtCamera.LookAtTarget(obj.transform.position);
+        }
     }
 
 

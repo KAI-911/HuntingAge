@@ -248,7 +248,6 @@ public class ItemDataList : MonoBehaviour, ISerializationCallbackReceiver
     public void ItemsConsumption(string _ID, int _num, bool _toPouch)
     {
         int index = keys.FindIndex(n => n.StartsWith(_ID));
-        //Debug.Log(index);
         var data = values[index];
         int listCount;
 
@@ -289,6 +288,69 @@ public class ItemDataList : MonoBehaviour, ISerializationCallbackReceiver
                 _material.Values[tmp] = data1;
             }
         }
+
+        int _UINum = 0;
+
+        if (_toPouch)
+        {
+            if (data.baseData.PoachHoldNumber == 0)
+            { //未使用の枠があるか確認----------------------------------------------
+                List<int> vs = new List<int>();
+                var table = UISoundManager.Instance.UIPresetData.Dictionary["IP_ItemSelect"]._tableSize;
+                //全ての枠を確認
+                for (int i = 0; i < table.x * table.y; i++) vs.Add(i);
+                Debug.Log(vs.Count);
+                foreach (var item in vs)
+                {
+                    Debug.Log(item);
+                }
+                //使用している枠を削除していく
+                foreach (var item in GameManager.Instance.ItemDataList.Values)
+                {
+                    if (item.baseData.PoachUINumber > 0) continue;
+                    if (vs.Contains(item.baseData.PoachUINumber)) vs.Remove(item.baseData.PoachUINumber);
+                }
+                foreach (var item in GameManager.Instance.MaterialDataList.Values)
+                {
+                    if (item.PoachUINumber > 0) continue;
+                    if (vs.Contains(item.PoachUINumber)) vs.Remove(item.PoachUINumber);
+                }
+                Debug.Log(vs.Count);
+                foreach (var item in vs)
+                {
+                    Debug.Log(item);
+                }
+                if (vs.Count > 0) _UINum = vs[0];
+            }
+        }
+        else
+        {
+            if (data.baseData.BoxHoldNumber == 0)
+            { //未使用の枠があるか確認----------------------------------------------
+                List<int> vs = new List<int>();
+                var table = UISoundManager.Instance.UIPresetData.Dictionary["IB_ItemSelect"]._tableSize;
+                //全ての枠を確認
+                for (int i = 0; i < table.x * table.y; i++) vs.Add(i);
+                //使用している枠を削除していく
+                foreach (var item in GameManager.Instance.ItemDataList.Values)
+                {
+                    if (item.baseData.BoxUINumber > 0) continue;
+                    if (vs.Contains(item.baseData.BoxUINumber)) vs.Remove(item.baseData.BoxUINumber);
+                }
+                foreach (var item in GameManager.Instance.MaterialDataList.Values)
+                {
+                    if (item.BoxUINumber > 0) continue;
+                    if (vs.Contains(item.BoxUINumber)) vs.Remove(item.BoxUINumber);
+                }
+                if (vs.Count > 0) _UINum = vs[0];
+            }
+        }
+
+
+
+        if (_toPouch) GameManager.Instance.ItemDataList.GetToPoach(_ID, _num, _UINum);
+        else GameManager.Instance.ItemDataList.GetToBox(_ID, _num, _UINum);
+
         GameManager.Instance.MaterialDataList.DesrializeDictionary();
     }
 }

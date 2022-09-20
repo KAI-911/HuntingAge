@@ -12,6 +12,7 @@ TagManager:
   - Ground
   - PopImage
   - QuestSupport
+  - LookTarget
   layers:
   - Default
   - TransparentFX
