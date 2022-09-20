@@ -10,11 +10,6 @@ public class VillageState : PlayerStateBase
         nowSpeed = owner.MaxSpeed;
         owner.Animator.SetInteger("AniState", (int)PlayerAnimationState.Locomotion);
         owner.Animator.SetTrigger("Change");
-        //if(GameManager.Instance.WeaponDataList.Keys.Contains(owner.WeaponID))
-        //{
-        //    Debug.Log("ïêäÌÇéùÇ¬");
-        //    owner.ChangeWepon(owner.WeaponID);
-        //}
     }
     public override void OnExit(Player owner, PlayerStateBase nextState)
     {
@@ -22,6 +17,12 @@ public class VillageState : PlayerStateBase
     }
     public override void OnUpdate(Player owner)
     {
+        if (GameManager.Instance.LevelUp)
+        {
+            GameManager.Instance.Report.ReportView();
+            return;
+        }
+
         owner.MoveDirection = Vector3.zero;
         if (owner.IsAction)
         {
@@ -40,20 +41,4 @@ public class VillageState : PlayerStateBase
     }
 
 
-    public override void OnDodge(Player owner)
-    {
-
-    }
-    public override void OnJump(Player owner)
-    {
-
-    }
-    public override void OnStrongAttack(Player owner)
-    {
-
-    }
-    public override void OnWeakAttack(Player owner)
-    {
-
-    }
 }

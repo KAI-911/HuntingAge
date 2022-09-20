@@ -24,6 +24,8 @@ MonoBehaviour:
   values:
   - ID: Quest001
     Name: "\u30AF\u30A8\u30B9\u30C8\uFF11"
+    ClearedFlg: 1
+    KeyQuestFlg: 0
     Clear: 0
     Failure: 1
     Field: 1
@@ -65,6 +67,8 @@ MonoBehaviour:
       probability: 80
   - ID: Quest002
     Name: "\u30AF\u30A8\u30B9\u30C8\uFF12"
+    ClearedFlg: 1
+    KeyQuestFlg: 0
     Clear: 0
     Failure: 2
     Field: 1
@@ -92,6 +96,8 @@ MonoBehaviour:
       probability: 90
   - ID: Quest003
     Name: "\u30AF\u30A8\u30B9\u30C8\uFF13"
+    ClearedFlg: 1
+    KeyQuestFlg: 0
     Clear: 0
     Failure: 2
     Field: 2
@@ -117,6 +123,8 @@ MonoBehaviour:
       probability: 70
   - ID: Quest004
     Name: "\u30AF\u30A8\u30B9\u30C8\uFF14"
+    ClearedFlg: 0
+    KeyQuestFlg: 0
     Clear: 1
     Failure: 2
     Field: 1
@@ -156,6 +164,8 @@ MonoBehaviour:
       probability: 80
   - ID: Quest005
     Name: "\u30AF\u30A8\u30B9\u30C8\uFF15"
+    ClearedFlg: 1
+    KeyQuestFlg: 0
     Clear: 1
     Failure: 2
     Field: 1
@@ -193,6 +203,8 @@ MonoBehaviour:
       probability: 80
   - ID: Quest006
     Name: "\u30AF\u30A8\u30B9\u30C8\uFF16"
+    ClearedFlg: 1
+    KeyQuestFlg: 0
     Clear: 0
     Failure: 4
     Field: 1
@@ -232,6 +244,8 @@ MonoBehaviour:
       probability: 80
   - ID: Quest007
     Name: "\u30AF\u30A8\u30B9\u30C8\uFF17"
+    ClearedFlg: 1
+    KeyQuestFlg: 0
     Clear: 0
     Failure: 4
     Field: 1
@@ -269,6 +283,8 @@ MonoBehaviour:
       probability: 80
   - ID: Quest008
     Name: "\u30AA\u30FC\u30EB\u30B9\u30BF\u30FC\u30BA"
+    ClearedFlg: 1
+    KeyQuestFlg: 0
     Clear: 0
     Failure: 0
     Field: 1

@@ -80,7 +80,11 @@ public class UIItemView_new : UIBase
     {
         base.OnDestroy();
     }
-
+    public override void Update()
+    {
+        base.Update();
+        Debug.Log("現在のアイテム使用 "+ _currentState);
+    }
     private class Village : UIStateBase
     {
         public override void OnEnter(UIBase owner, UIStateBase prevState)
@@ -112,6 +116,7 @@ public class UIItemView_new : UIBase
         public override void OnEnter(UIBase owner, UIStateBase prevState)
         {
             OWNER = owner.GetComponent<UIItemView_new>();
+            OWNER.CheckID();
             OWNER.SetIcon(position.center);
             OWNER.SetLeftButton();
         }
@@ -257,22 +262,6 @@ public class UIItemView_new : UIBase
             owner.ChangeState<WaitItem>();
         }
 
-        private void LeftToRight(UIItemView_new OWNER)
-        {
-            int index = OWNER.GetIndex(1);
-            OWNER._currentID = OWNER._itemIDList[index];
-            OWNER.SetIcon(position.center);
-            OWNER.SetIcon(position.left);
-            OWNER.SetIcon(position.right);
-        }
-        private void RightToLeft(UIItemView_new OWNER)
-        {
-            int index = OWNER.GetIndex(-1);
-            OWNER._currentID = OWNER._itemIDList[index];
-            OWNER.SetIcon(position.center);
-            OWNER.SetIcon(position.left);
-            OWNER.SetIcon(position.right);
-        }
 
         private void MoveIcon(position _from, position _to)
         {
@@ -381,6 +370,7 @@ public class UIItemView_new : UIBase
     {
         return !(this._currentState.GetType() == typeof(WaitItem));
     }
+
     /// <summary>
     /// 永続効果のアイテムの効果を削除
     /// </summary>
@@ -640,7 +630,27 @@ public class UIItemView_new : UIBase
         }
         return index;
     }
-
+    private void CheckID()
+    {
+        //所持数が0以下ならリストから削除
+        for (int i = 0; i < _itemIDList.Count; i++)
+        {
+            var data = GameManager.Instance.ItemDataList.Dictionary[_itemIDList[i]];
+            if (data.baseData.PoachHoldNumber > 0) continue;
+            _itemIDList.Remove(data.baseData.ID);
+        }
+        if (!_itemIDList.Contains(_currentID))
+        {
+            if (_itemIDList.Count > 0)
+            {
+                _currentID = _itemIDList[0];
+            }
+            else
+            {
+                _currentID = "";
+            }
+        }
+    }
     public void ChangeNotQuestState()
     {
         ChangeState<Village>();

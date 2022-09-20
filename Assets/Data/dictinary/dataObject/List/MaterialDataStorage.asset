@@ -36,7 +36,7 @@ MonoBehaviour:
     IconName: Icon/Wood_UI
     BoxStackNumber: 9999
     BoxUINumber: 5
-    BoxHoldNumber: 938
+    BoxHoldNumber: 920
     PoachStackNumber: 99
     PoachUINumber: 2
     PoachHoldNumber: 0
@@ -63,7 +63,7 @@ MonoBehaviour:
     IconName: Icon/Botanical_UI
     BoxStackNumber: 9999
     BoxUINumber: 2
-    BoxHoldNumber: 920
+    BoxHoldNumber: 886
     PoachStackNumber: 100
     PoachUINumber: 0
     PoachHoldNumber: 0
@@ -72,7 +72,7 @@ MonoBehaviour:
     IconName: Icon/Meat_UI
     BoxStackNumber: 9999
     BoxUINumber: 3
-    BoxHoldNumber: 5
+    BoxHoldNumber: 59
     PoachStackNumber: 99
     PoachUINumber: 3
     PoachHoldNumber: 0

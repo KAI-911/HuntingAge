@@ -11,9 +11,9 @@ public class VillageData : MonoBehaviour, ISerializationCallbackReceiver
 
     public bool modifyValues;
 
-    public int VillageLevel { get => villageLevel; }
-    public int BlacksmithLevel { get => blacksmithLevel; }
-    public int KitchenLevel { get => kitchenLevel; }
+    public int VillageLevel { get => villageLevel; set => villageLevel = value; }
+    public int BlacksmithLevel { get => blacksmithLevel; set => blacksmithLevel = value; }
+    public int KitchenLevel { get => kitchenLevel; set => kitchenLevel = value; }
 
     private void Awake()
     {
