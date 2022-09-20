@@ -144,9 +144,9 @@ public class Blacksmith : UIBase
             var UI = owner.ItemIconList[(int)IconType.TypeSelect];
             UI.SetText("ïêäÌéÌëIë");
             UI.SetLeftTopPos(new Vector2(-550,140));
-            UI.SetTable(new Vector2(3, 1));
+            UI.SetTable(new Vector2(2, 1));
             var list = UI.CreateButton();
-            for (int i = 0; i < 3/*ïÄÅEëÑÅEã|*/; i++)
+            for (int i = 0; i < 2/*ïÄÅEëÑÅEã|*/; i++)
             {
                 switch (i)
                 {
@@ -163,14 +163,6 @@ public class Blacksmith : UIBase
                         UI.SetButtonOnClick(i, () =>
                             {
                                 owner.GetComponent<Blacksmith>().productionWeaponType = 1;
-                                owner.ChangeState<ProductionWeapon>();
-                            });
-                        break;
-                    case 2:
-                        UI.SetButtonText(i, "ã|ånìù");
-                        UI.SetButtonOnClick(i, () =>
-                            {
-                                owner.GetComponent<Blacksmith>().productionWeaponType = 2;
                                 owner.ChangeState<ProductionWeapon>();
                             });
                         break;

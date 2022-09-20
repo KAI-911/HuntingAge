@@ -62,7 +62,7 @@ public class UIPoach : UIBase
             var button2Text = list[2].GetComponentInChildren<Text>();
             if (GameManager.Instance.Quest.IsQuest)
             {
-                button2Text.text = "クエストリタイア";
+                button2Text.text = "クエスト終了";
             }
             else
             {
@@ -300,6 +300,7 @@ public class UIPoach : UIBase
                     var data = UISoundManager.Instance._player.StatusData;
                     data.Wepon = UISoundManager.Instance._player.WeaponID;
                     data.DesrializeDictionary();
+                    owner.ChangeState<Close>();
 #if UNITY_EDITOR
                     Cursor.visible = true;
                     Cursor.lockState = CursorLockMode.None;
@@ -309,7 +310,7 @@ public class UIPoach : UIBase
                     Cursor.lockState = CursorLockMode.None;
                     Application.Quit();//ゲームプレイ終了
 #endif
-                    owner.ChangeState<Close>();
+                    
                 });
             }
 
@@ -347,16 +348,19 @@ public class UIPoach : UIBase
         GameObject _bgmObj;
         GameObject _seObj;
         GameObject _uiObj;
+        GameObject _cameraObj;
         Slider slider_bgm;
         Slider slider_se;
         Slider slider_ui;
+        Slider slider_camera;
         SettingDataList dataList;
         enum now
         {
             select,
             bgm,
             se,
-            ui
+            ui,
+            camera
         }
         now nowState;
         bool ret;
@@ -372,7 +376,7 @@ public class UIPoach : UIBase
                 nowState = now.bgm;
                 slider_bgm.interactable = true;
             });
-            buttons[0].GetComponentInChildren<Text>().text = "BGM";
+            buttons[0].GetComponentInChildren<Text>().text = "BGM音量";
             //BGMスライダーの設定
             _bgmObj = Instantiate(Resources.Load("UI/Slider"), GameManager.Instance.ItemCanvas.Canvas.transform) as GameObject;
             slider_bgm = _bgmObj.GetComponent<Slider>();
@@ -384,7 +388,7 @@ public class UIPoach : UIBase
                 nowState = now.se;
                 slider_se.interactable = true;
             });
-            buttons[1].GetComponentInChildren<Text>().text = "SE";
+            buttons[1].GetComponentInChildren<Text>().text = "SE音量";
             //SEスライダーの設定
             _seObj = Instantiate(Resources.Load("UI/Slider"), GameManager.Instance.ItemCanvas.Canvas.transform) as GameObject;
             slider_se = _seObj.GetComponent<Slider>();
@@ -396,22 +400,39 @@ public class UIPoach : UIBase
                 nowState = now.ui;
                 slider_ui.interactable = true;
             });
-            buttons[2].GetComponentInChildren<Text>().text = "UI";
+            buttons[2].GetComponentInChildren<Text>().text = "UI音量";
             //UIスライダーの設定
             _uiObj = Instantiate(Resources.Load("UI/Slider"), GameManager.Instance.ItemCanvas.Canvas.transform) as GameObject;
             slider_ui = _uiObj.GetComponent<Slider>();
             owner.ItemIconList[(int)IconType.Setting].AdjustmentImage(_uiObj.GetComponent<RectTransform>(), 2);
 
+            //カメラ感度ボタンの設定
+            buttons[3].GetComponent<Button>().onClick.AddListener(() =>
+            {
+                nowState = now.camera;
+                slider_camera.interactable = true;
+            });
+            buttons[3].GetComponentInChildren<Text>().text = "カメラ感度";
+            //カメラ感度スライダーの設定
+            _cameraObj = Instantiate(Resources.Load("UI/Slider"), GameManager.Instance.ItemCanvas.Canvas.transform) as GameObject;
+            slider_camera = _cameraObj.GetComponent<Slider>();
+            owner.ItemIconList[(int)IconType.Setting].AdjustmentImage(_cameraObj.GetComponent<RectTransform>(), 3);
             //背景画像とテキストの調整
             var backrect = owner.ItemIconList[(int)IconType.Setting].ButtonBackObj.GetComponent<RectTransform>();
             var sliderRect = _bgmObj.GetComponent<RectTransform>().sizeDelta;
             backrect.sizeDelta = backrect.sizeDelta + new Vector2(sliderRect.x + owner.ItemIconList[(int)IconType.Setting].IconData._padding, 0);
-            var textRect = owner.ItemIconList[(int)IconType.Setting].TextObj.GetComponent<RectTransform>();
-            textRect.sizeDelta = new Vector2(backrect.sizeDelta.x, textRect.sizeDelta.y);
+            //var textRect = owner.ItemIconList[(int)IconType.Setting].TextObj.GetComponent<RectTransform>();
+            //textRect.sizeDelta = new Vector2(backrect.sizeDelta.x, textRect.sizeDelta.y);
+
+
 
             slider_bgm.value = dataList.BGMVolume;
             slider_se.value = dataList.SEVolume;
             slider_ui.value = dataList.UIVolume;
+            slider_camera.minValue = dataList.CameraMinVolume;
+            slider_camera.maxValue = dataList.CameraMaxVolume;
+            slider_camera.value = dataList.CameraVolume;
+            GameManager.Instance.LookAtCamera.SetSensitivity(slider_camera.value);
         }
         public override void OnExit(UIBase owner, UIStateBase nextState)
         {
@@ -419,6 +440,7 @@ public class UIPoach : UIBase
             Destroy(_bgmObj);
             Destroy(_seObj);
             Destroy(_uiObj);
+            Destroy(_cameraObj);
         }
         public override void OnUpdate(UIBase owner)
         {
@@ -428,6 +450,7 @@ public class UIPoach : UIBase
                 slider_bgm.interactable = false;
                 slider_se.interactable = false;
                 slider_ui.interactable = false;
+                slider_camera.interactable = false;
                 ret = false;
             }
             switch (nowState)
@@ -448,13 +471,20 @@ public class UIPoach : UIBase
                     Debug.Log("ui");
                     slider_ui.value += Mathf.Clamp(UISoundManager.Instance.InputSelection.ReadValue<Vector2>().x, -0.01f, 0.01f); ;
                     break;
+                case now.camera:
+                    Debug.Log("camera");
+                    slider_camera.value += Mathf.Clamp(UISoundManager.Instance.InputSelection.ReadValue<Vector2>().x, -5.0f, 5.0f); ;
+                    break;
                 default:
                     break;
             }
             dataList.BGMVolume = slider_bgm.value;
             dataList.SEVolume = slider_se.value;
             dataList.UIVolume = slider_ui.value;
-            dataList.DesrializeDictionary();
+            dataList.CameraVolume = slider_camera.value;
+            dataList.DesrializeDictionary(); 
+            GameManager.Instance.LookAtCamera.SetSensitivity(slider_camera.value);
+
 
 
         }
@@ -489,12 +519,15 @@ public class UIPoach : UIBase
                 case now.bgm:
                 case now.se:
                 case now.ui:
+                case now.camera:
                 default:
                     Debug.Log("default");
                     nowState = now.select;
                     ret = true;
                     slider_bgm.interactable = false;
                     slider_se.interactable = false;
+                    slider_ui.interactable = false;
+                    slider_camera.interactable = false;
                     break;
             }
 

@@ -12,6 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6a20bb5e46451a54a9f8d7e489ad5f4b, type: 3}
   m_Name: SettingDataStorage
   m_EditorClassIdentifier: 
-  BGMVolume: 0.34999996
-  SEVolume: 0.02000067
-  UIVolume: 0.11
+  BGMVolume: 0.1
+  SEVolume: 0.24000071
+  UIVolume: 0.09000066
+  CameraVolume: 365
+  CameraMaxVolume: 600
+  CameraMinVolume: 100
