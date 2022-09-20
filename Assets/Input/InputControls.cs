@@ -431,6 +431,15 @@ public partial class @InputControls : IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": true
+                },
+                {
+                    ""name"": ""ESC"",
+                    ""type"": ""Button"",
+                    ""id"": ""d8a2ea34-fa07-4f71-8a53-6ee772253827"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -1049,6 +1058,17 @@ public partial class @InputControls : IInputActionCollection2, IDisposable
                     ""action"": ""UIItemView"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""27fda2a4-7b1b-46f1-af6e-ec79486a2103"",
+                    ""path"": ""<Keyboard>/escape"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""ESC"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -1075,6 +1095,7 @@ public partial class @InputControls : IInputActionCollection2, IDisposable
         m_UI_UseItemSelect = m_UI.FindAction("UseItemSelect", throwIfNotFound: true);
         m_UI_Title = m_UI.FindAction("Title", throwIfNotFound: true);
         m_UI_UIItemView = m_UI.FindAction("UIItemView", throwIfNotFound: true);
+        m_UI_ESC = m_UI.FindAction("ESC", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -1224,6 +1245,7 @@ public partial class @InputControls : IInputActionCollection2, IDisposable
     private readonly InputAction m_UI_UseItemSelect;
     private readonly InputAction m_UI_Title;
     private readonly InputAction m_UI_UIItemView;
+    private readonly InputAction m_UI_ESC;
     public struct UIActions
     {
         private @InputControls m_Wrapper;
@@ -1237,6 +1259,7 @@ public partial class @InputControls : IInputActionCollection2, IDisposable
         public InputAction @UseItemSelect => m_Wrapper.m_UI_UseItemSelect;
         public InputAction @Title => m_Wrapper.m_UI_Title;
         public InputAction @UIItemView => m_Wrapper.m_UI_UIItemView;
+        public InputAction @ESC => m_Wrapper.m_UI_ESC;
         public InputActionMap Get() { return m_Wrapper.m_UI; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -1273,6 +1296,9 @@ public partial class @InputControls : IInputActionCollection2, IDisposable
                 @UIItemView.started -= m_Wrapper.m_UIActionsCallbackInterface.OnUIItemView;
                 @UIItemView.performed -= m_Wrapper.m_UIActionsCallbackInterface.OnUIItemView;
                 @UIItemView.canceled -= m_Wrapper.m_UIActionsCallbackInterface.OnUIItemView;
+                @ESC.started -= m_Wrapper.m_UIActionsCallbackInterface.OnESC;
+                @ESC.performed -= m_Wrapper.m_UIActionsCallbackInterface.OnESC;
+                @ESC.canceled -= m_Wrapper.m_UIActionsCallbackInterface.OnESC;
             }
             m_Wrapper.m_UIActionsCallbackInterface = instance;
             if (instance != null)
@@ -1304,6 +1330,9 @@ public partial class @InputControls : IInputActionCollection2, IDisposable
                 @UIItemView.started += instance.OnUIItemView;
                 @UIItemView.performed += instance.OnUIItemView;
                 @UIItemView.canceled += instance.OnUIItemView;
+                @ESC.started += instance.OnESC;
+                @ESC.performed += instance.OnESC;
+                @ESC.canceled += instance.OnESC;
             }
         }
     }
@@ -1329,5 +1358,6 @@ public partial class @InputControls : IInputActionCollection2, IDisposable
         void OnUseItemSelect(InputAction.CallbackContext context);
         void OnTitle(InputAction.CallbackContext context);
         void OnUIItemView(InputAction.CallbackContext context);
+        void OnESC(InputAction.CallbackContext context);
     }
 }

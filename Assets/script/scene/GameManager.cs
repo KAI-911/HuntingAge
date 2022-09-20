@@ -27,6 +27,8 @@ public class GameManager : Singleton<GameManager>
     private FadeManager _fadeManager;
     private UIItemView_new _uiItemView;
     private Player _player;
+    private bool _levelUp;
+    private Report _report;
     public Scene VillageScene { get => _villageScene; }
     public Scene NowScene { get => _nowScene; set => _nowScene = value; }
     public Quest Quest { get => _quest; set => _quest = value; }
@@ -43,6 +45,8 @@ public class GameManager : Singleton<GameManager>
     public SettingDataList SettingDataList { get => _settingDataList; }
     public QuestDataList QuestDataList { get => _questDataList; }
     public QuestHolder QuestHolderData { get => _questHolderData; }
+    public bool LevelUp { get => _levelUp; set => _levelUp = value; }
+    public Report Report { get => _report; }
 
     protected override void Awake()
     {
@@ -59,6 +63,9 @@ public class GameManager : Singleton<GameManager>
         _villageData = GetComponent<VillageData>();
         _fadeManager = GetComponentInChildren<FadeManager>();
         _uiItemView = GetComponentInChildren<UIItemView_new>();
+        _report = GetComponentInChildren<Report>();
+        Cursor.visible = false;
+        Cursor.lockState = CursorLockMode.Locked;
         base.Awake();
     }
     public void GoToVillage()
@@ -74,7 +81,6 @@ public class GameManager : Singleton<GameManager>
                 _quest.QuestReset();
                 _player.ChangeState<VillageState>();
             });
-
         }
     }
 
