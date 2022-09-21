@@ -3520,7 +3520,7 @@ MonoBehaviour:
     m_LegacyHeadingDefinition: -1
     m_LegacyVelocityFilterStrength: -1
   m_XAxis:
-    Value: -141.73721
+    Value: 0.50006855
     m_SpeedMode: 0
     m_MaxSpeed: 300
     m_AccelTime: 0.1
@@ -3647,7 +3647,7 @@ MonoBehaviour:
     m_LegacyHeadingDefinition: -1
     m_LegacyVelocityFilterStrength: -1
   m_XAxis:
-    Value: -141.73721
+    Value: 0.50006855
     m_SpeedMode: 0
     m_MaxSpeed: 300
     m_AccelTime: 0.1
@@ -3819,7 +3819,7 @@ MonoBehaviour:
     m_LegacyHeadingDefinition: -1
     m_LegacyVelocityFilterStrength: -1
   m_XAxis:
-    Value: -141.73721
+    Value: 0.50006855
     m_SpeedMode: 0
     m_MaxSpeed: 300
     m_AccelTime: 0.1
@@ -3891,9 +3891,8 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4833442073512086890}
-  m_LocalRotation: {x: 0.018189501, y: -0.000000059604645, z: -0.000000007450581,
-    w: 0.9998346}
-  m_LocalPosition: {x: -1.9895196e-14, y: -0.00000036470666, z: 0.00000011184011}
+  m_LocalRotation: {x: 0.01818943, y: -0.00000002142042, z: 0.000000009662472, w: 0.9998346}
+  m_LocalPosition: {x: 0.051633805, y: -1.2411679, z: -2.7816432}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -4015,8 +4014,9 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4833442073679365379}
-  m_LocalRotation: {x: -0.018141447, y: -0.00000008940696, z: -0, w: 0.99983543}
-  m_LocalPosition: {x: -1.9895196e-14, y: -0.00000036470666, z: 0.00000011184011}
+  m_LocalRotation: {x: -0.018141508, y: -0.000000013969839, z: 0.0000000062864274,
+    w: 0.9998355}
+  m_LocalPosition: {x: 0.051633853, y: -1.2411679, z: -2.7816432}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -4229,9 +4229,9 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4833442074418402083}
-  m_LocalRotation: {x: -0.000000013038516, y: -0.000000029802322, z: -0.0000000037252903,
+  m_LocalRotation: {x: -0.000000074505806, y: -0.000000033527613, z: 0.000000013853423,
     w: 1}
-  m_LocalPosition: {x: -1.9895196e-14, y: -0.00000036470666, z: 0.00000011184011}
+  m_LocalPosition: {x: 0.051633853, y: -1.2411679, z: -2.7816432}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -4345,8 +4345,8 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4833442074856232027}
-  m_LocalRotation: {x: -0.056724492, y: 0.9136739, z: -0.1369453, w: -0.37845534}
-  m_LocalPosition: {x: 32.33332, y: 32.133682, z: 32.333424}
+  m_LocalRotation: {x: 0.20829682, y: 0.008288894, z: -0.001765336, w: 0.97802895}
+  m_LocalPosition: {x: -0.54809564, y: 32.13355, z: -32.333347}
   m_LocalScale: {x: 10, y: 10, z: 10}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -4406,7 +4406,7 @@ AudioListener:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4833442074856232027}
-  m_Enabled: 1
+  m_Enabled: 0
 --- !u!114 &4833442074856232359
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4504,7 +4504,7 @@ MonoBehaviour:
     m_LegacyHeadingDefinition: -1
     m_LegacyVelocityFilterStrength: -1
   m_XAxis:
-    Value: -141.73721
+    Value: 0.50006855
     m_SpeedMode: 0
     m_MaxSpeed: 300
     m_AccelTime: 0.1
@@ -4602,7 +4602,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 39834fdbdd8a4944d8cc84dec83e0515, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _target: {fileID: 4833442073825595619}
 --- !u!1 &4833442075126969391
 GameObject:
   m_ObjectHideFlags: 0
@@ -4826,6 +4825,7 @@ GameObject:
   - component: {fileID: 1842739017157591613}
   - component: {fileID: 1331165932923879222}
   - component: {fileID: 5246227396808778926}
+  - component: {fileID: 4251369887862181071}
   m_Layer: 6
   m_Name: player_cloth
   m_TagString: Player
@@ -5027,6 +5027,14 @@ MonoBehaviour:
   _defense: 50
   _wepon: weapon202
   modifyValues: 0
+--- !u!81 &4251369887862181071
+AudioListener:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5751866540782452716}
+  m_Enabled: 1
 --- !u!1 &5874563852639974736
 GameObject:
   m_ObjectHideFlags: 0
