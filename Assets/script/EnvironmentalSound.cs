@@ -29,7 +29,7 @@ public class EnvironmentalSound : MonoBehaviour
 
         if(intervalTime < 0 && target.TriggerHit)
         {
-            audio.volume = GameManager.Instance.SettingDataList.BGMVolume;
+            audio.volume = GameManager.Instance.SettingDataList.SEVolume;
             audio.Play();
             intervalTime = keepIntervalTime;
         }

@@ -307,12 +307,12 @@ public class ItemDataList : MonoBehaviour, ISerializationCallbackReceiver
                 //Žg—p‚µ‚Ä‚¢‚é˜g‚ðíœ‚µ‚Ä‚¢‚­
                 foreach (var item in GameManager.Instance.ItemDataList.Values)
                 {
-                    if (item.baseData.PoachUINumber > 0) continue;
+                    if (item.baseData.PoachHoldNumber <= 0) continue;
                     if (vs.Contains(item.baseData.PoachUINumber)) vs.Remove(item.baseData.PoachUINumber);
                 }
                 foreach (var item in GameManager.Instance.MaterialDataList.Values)
                 {
-                    if (item.PoachUINumber > 0) continue;
+                    if (item.PoachHoldNumber <= 0) continue;
                     if (vs.Contains(item.PoachUINumber)) vs.Remove(item.PoachUINumber);
                 }
                 Debug.Log(vs.Count);
@@ -334,12 +334,12 @@ public class ItemDataList : MonoBehaviour, ISerializationCallbackReceiver
                 //Žg—p‚µ‚Ä‚¢‚é˜g‚ðíœ‚µ‚Ä‚¢‚­
                 foreach (var item in GameManager.Instance.ItemDataList.Values)
                 {
-                    if (item.baseData.BoxUINumber > 0) continue;
+                    if (item.baseData.BoxHoldNumber <= 0) continue;
                     if (vs.Contains(item.baseData.BoxUINumber)) vs.Remove(item.baseData.BoxUINumber);
                 }
                 foreach (var item in GameManager.Instance.MaterialDataList.Values)
                 {
-                    if (item.BoxUINumber > 0) continue;
+                    if (item.BoxHoldNumber <= 0) continue;
                     if (vs.Contains(item.BoxUINumber)) vs.Remove(item.BoxUINumber);
                 }
                 if (vs.Count > 0) _UINum = vs[0];

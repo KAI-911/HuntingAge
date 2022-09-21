@@ -347,6 +347,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _villageScene: 3
   _nowScene: 3
+  _lookAtCamera: {fileID: 0}
 --- !u!114 &6145394531166785594
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -405,7 +406,7 @@ MonoBehaviour:
     IconName: Icon/Stone_UI
     BoxStackNumber: 9999
     BoxUINumber: 8
-    BoxHoldNumber: 16
+    BoxHoldNumber: 6
     PoachStackNumber: 99
     PoachUINumber: 0
     PoachHoldNumber: 0
@@ -414,43 +415,43 @@ MonoBehaviour:
     IconName: Icon/Wood_UI
     BoxStackNumber: 9999
     BoxUINumber: 5
-    BoxHoldNumber: 926
+    BoxHoldNumber: 920
     PoachStackNumber: 99
-    PoachUINumber: 4
+    PoachUINumber: 2
     PoachHoldNumber: 0
   - ID: Material002
     Name: "\u30C4\u30BF"
     IconName: Icon/Vine_UI
     BoxStackNumber: 9999
     BoxUINumber: 0
-    BoxHoldNumber: 1018
+    BoxHoldNumber: 1000
     PoachStackNumber: 99
-    PoachUINumber: 3
+    PoachUINumber: 1
     PoachHoldNumber: 0
   - ID: Material003
     Name: "\u9AA8"
     IconName: Icon/Bone_UI
     BoxStackNumber: 9999
     BoxUINumber: 1
-    BoxHoldNumber: 1037
+    BoxHoldNumber: 1018
     PoachStackNumber: 99
-    PoachUINumber: 3
+    PoachUINumber: 4
     PoachHoldNumber: 0
   - ID: Material004
     Name: "\u690D\u7269"
     IconName: Icon/Botanical_UI
     BoxStackNumber: 9999
     BoxUINumber: 2
-    BoxHoldNumber: 913
+    BoxHoldNumber: 886
     PoachStackNumber: 100
-    PoachUINumber: 5
+    PoachUINumber: 0
     PoachHoldNumber: 0
   - ID: Material005
     Name: "\u8089"
     IconName: Icon/Meat_UI
     BoxStackNumber: 9999
     BoxUINumber: 3
-    BoxHoldNumber: 577
+    BoxHoldNumber: 59
     PoachStackNumber: 99
     PoachUINumber: 3
     PoachHoldNumber: 0
@@ -459,7 +460,7 @@ MonoBehaviour:
     IconName: Icon/Fiber_UI
     BoxStackNumber: 9999
     BoxUINumber: 6
-    BoxHoldNumber: 1340
+    BoxHoldNumber: 1000
     PoachStackNumber: 99
     PoachUINumber: 4
     PoachHoldNumber: 0
@@ -521,7 +522,7 @@ MonoBehaviour:
   - ID: Wolf
     DisplayName: "\u72FC"
     InstanceName: Enemy/Wolf
-    DeathCount: 16
+    DeathCount: 6
     EnemyPos:
     - scene: 2
       pos:
@@ -541,7 +542,7 @@ MonoBehaviour:
   - ID: Dodo
     DisplayName: "\u30C9\u30FC\u30C9\u30FC"
     InstanceName: Enemy/Dodo
-    DeathCount: 33
+    DeathCount: 3
     EnemyPos:
     - scene: 2
       pos:
@@ -636,7 +637,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   DictionaryData: {fileID: 11400000, guid: ba2168d9003022341a89bc2a440aba61, type: 2}
-  villageLevel: 1
+  villageLevel: 2
   blacksmithLevel: 1
   kitchenLevel: 1
   modifyValues: 0
@@ -858,9 +859,9 @@ MonoBehaviour:
       IconName: Icon/Soup_UI
       BoxStackNumber: 9999
       BoxUINumber: 15
-      BoxHoldNumber: 3022
+      BoxHoldNumber: 3042
       PoachStackNumber: 10
-      PoachUINumber: 2
+      PoachUINumber: 0
       PoachHoldNumber: 10
     Use: 0
     Permanent: 0
@@ -880,9 +881,9 @@ MonoBehaviour:
       IconName: Icon/GrilledMeat_UI
       BoxStackNumber: 9999
       BoxUINumber: 17
-      BoxHoldNumber: 3023
+      BoxHoldNumber: 3021
       PoachStackNumber: 10
-      PoachUINumber: 1
+      PoachUINumber: 2
       PoachHoldNumber: 10
     Use: 0
     Permanent: 1
@@ -900,9 +901,9 @@ MonoBehaviour:
       IconName: Icon/Fruit_UI
       BoxStackNumber: 9999
       BoxUINumber: 16
-      BoxHoldNumber: 2987
+      BoxHoldNumber: 2986
       PoachStackNumber: 10
-      PoachUINumber: 0
+      PoachUINumber: 1
       PoachHoldNumber: 10
     Use: 0
     Permanent: 0
@@ -957,9 +958,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   DictionaryData: {fileID: 11400000, guid: 019398f9683afc248a45a060c81d272d, type: 2}
-  _BGMVolume: 1
-  _SEVolume: 1
-  _UIVolume: 1
+  _BGMVolume: 0.34999996
+  _SEVolume: 0.02000067
+  _UIVolume: 0.11
   modifyValues: 0
 --- !u!114 &7904424780519165244
 MonoBehaviour:
@@ -1085,7 +1086,7 @@ MonoBehaviour:
       probability: 90
   - ID: Quest003
     Name: "\u30AF\u30A8\u30B9\u30C8\uFF13"
-    ClearedFlg: 0
+    ClearedFlg: 1
     KeyQuestFlg: 0
     Clear: 0
     Failure: 2
@@ -1377,8 +1378,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _itemIconList: []
-  ImagePrefab: {fileID: 0}
-  TextPrefab: {fileID: 0}
+  ImagePrefab: {fileID: 4567105175149944347, guid: f7ce8ff705927a7488534fa792a126fe,
+    type: 3}
+  TextPrefab: {fileID: 9123999925664973099, guid: 7e845aabbef9588409138ba440dc835e,
+    type: 3}
 --- !u!1 &8863779222303211788
 GameObject:
   m_ObjectHideFlags: 0

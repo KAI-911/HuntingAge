@@ -66,11 +66,11 @@ MonoBehaviour:
   - ID: weapon103
     EnhancementID: empty
     Name: "\u9AA8\u65A7"
-    weaponPath: weapon/Axe
+    weaponPath: weapon/Axe_bone
     IconPass: Icon/Axe_UI
     BoxUINumber: 2
     CreatableLevel: 5
-    BoxPossession: 0
+    BoxPossession: 1
     AttackPoint: 150
     WeaponType: 0
     ProductionNeedMaterialLst:
@@ -88,7 +88,7 @@ MonoBehaviour:
     IconPass: Icon/Spear_wood_UI
     BoxUINumber: 3
     CreatableLevel: 1
-    BoxPossession: 0
+    BoxPossession: 1
     AttackPoint: 50
     WeaponType: 1
     ProductionNeedMaterialLst:
@@ -106,7 +106,7 @@ MonoBehaviour:
     IconPass: Icon/Spear_UI
     BoxUINumber: 4
     CreatableLevel: 3
-    BoxPossession: 0
+    BoxPossession: 1
     AttackPoint: 100
     WeaponType: 1
     ProductionNeedMaterialLst:
@@ -124,11 +124,11 @@ MonoBehaviour:
   - ID: weapon203
     EnhancementID: empty
     Name: "\u9AA8\u69CD"
-    weaponPath: weapon/Spear
+    weaponPath: weapon/Spear_bone
     IconPass: Icon/Spear_UI
     BoxUINumber: 5
     CreatableLevel: 6
-    BoxPossession: 0
+    BoxPossession: 1
     AttackPoint: 150
     WeaponType: 1
     ProductionNeedMaterialLst:
