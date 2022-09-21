@@ -26,7 +26,7 @@ MonoBehaviour:
       BoxHoldNumber: 3052
       PoachStackNumber: 10
       PoachUINumber: 0
-      PoachHoldNumber: 10
+      PoachHoldNumber: 0
     Use: 0
     Permanent: 0
     Time: 10
@@ -48,7 +48,7 @@ MonoBehaviour:
       BoxHoldNumber: 3021
       PoachStackNumber: 10
       PoachUINumber: 2
-      PoachHoldNumber: 8
+      PoachHoldNumber: 10
     Use: 0
     Permanent: 1
     Time: 120
@@ -68,7 +68,7 @@ MonoBehaviour:
       BoxHoldNumber: 2991
       PoachStackNumber: 10
       PoachUINumber: 1
-      PoachHoldNumber: 9
+      PoachHoldNumber: 5
     Use: 0
     Permanent: 0
     Time: 120

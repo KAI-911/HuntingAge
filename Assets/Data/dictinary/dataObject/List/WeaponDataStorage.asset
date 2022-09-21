@@ -30,7 +30,7 @@ MonoBehaviour:
     IconPass: Icon/Axe_wood_UI
     BoxUINumber: 0
     CreatableLevel: 1
-    BoxPossession: 0
+    BoxPossession: 1
     AttackPoint: 50
     WeaponType: 0
     ProductionNeedMaterialLst:
@@ -87,7 +87,7 @@ MonoBehaviour:
     weaponPath: weapon/Spear_wood
     IconPass: Icon/Spear_wood_UI
     BoxUINumber: 3
-    CreatableLevel: 3
+    CreatableLevel: 1
     BoxPossession: 0
     AttackPoint: 50
     WeaponType: 1

@@ -128,6 +128,7 @@ public partial class Player : Singleton<Player>
 
     void Update()
     {
+        Debug.Log("プレイヤーステート" + CurrentState);
         _currentState.OnUpdate(this);
         _animator.SetBool("IsGround", _groundChecker.IsGround());
         _animator.SetInteger("HP", _status.HP);
@@ -368,7 +369,6 @@ public partial class Player : Singleton<Player>
         transform.position = pos.pos[0];
         if (GameManager.Instance.NowScene == Scene.Base)
         {
-            Debug.Log("ここここここここここここここここ");
             transform.position = Vector3.zero;
         }
     }

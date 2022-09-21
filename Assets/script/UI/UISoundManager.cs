@@ -97,6 +97,7 @@ public class UISoundManager : Singleton<UISoundManager>
         _input.UI.UseItemSelect.started += UIUseItemSelectStart;
         _input.UI.UseItemSelect.canceled += UIUseItemSelectEnd;
         _input.UI.Title.started += NextVillage;
+        _input.UI.ESC.started += ESC;
         SceneManager.sceneLoaded += OnSceneLoaded;
 
     }
@@ -112,6 +113,7 @@ public class UISoundManager : Singleton<UISoundManager>
         _input.UI.UseItemSelect.started -= UIUseItemSelectStart;
         _input.UI.UseItemSelect.canceled -= UIUseItemSelectEnd;
         _input.UI.Title.started -= NextVillage;
+        _input.UI.ESC.started -= ESC;
 
         SceneManager.sceneLoaded -= OnSceneLoaded;
 
@@ -171,6 +173,19 @@ public class UISoundManager : Singleton<UISoundManager>
         foreach (var ui in _UIList)
         {
             ui.SceneChenge();
+        }
+    }
+    private void ESC(InputAction.CallbackContext obj)
+    {
+        if (Cursor.visible)
+        {
+            Cursor.visible = false;
+            Cursor.lockState = CursorLockMode.Locked;
+        }
+        else
+        {
+            Cursor.visible = true;
+            Cursor.lockState = CursorLockMode.None;
         }
     }
 

@@ -14,6 +14,11 @@ namespace Data
     }
     public class Convert
     {
+        /// <summary>
+        /// 半角の' ','/','0','1','2','3','4','5','6','7','8','9'を全角に変換する
+        /// </summary>
+        /// <param name="_sauce">変換する半角文字列</param>
+        /// <returns>変換後の全角文字列</returns>
         public static string HanToZenConvert(string _sauce)
         {
             string _re = "";
@@ -66,7 +71,10 @@ namespace Data
 
 
 
-
+        /// <summary>
+        /// UI座標（RectTransform）を画面サイズに合わせて拡縮する
+        /// </summary>
+        /// <param name="_rectTransform"></param>
         public static void Correction(RectTransform _rectTransform)
         {
             Vector2 _magnification;
@@ -79,6 +87,8 @@ namespace Data
             _rectTransform.localScale = scale;
         }
     }
+
+
 }
 [Serializable]
 public class Position

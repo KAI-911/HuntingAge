@@ -8,4 +8,8 @@ public class SettingDataObject : ScriptableObject
     public float BGMVolume;
     public float SEVolume;
     public float UIVolume;
+    public float CameraVolume;
+    public float CameraMaxVolume;
+    public float CameraMinVolume;
+
 }

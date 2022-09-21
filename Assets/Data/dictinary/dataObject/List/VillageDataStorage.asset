@@ -13,5 +13,5 @@ MonoBehaviour:
   m_Name: VillageDataStorage
   m_EditorClassIdentifier: 
   VillageLevel: 6
-  BlacksmithLevel: 3
-  KitchenLevel: 3
+  BlacksmithLevel: 6
+  KitchenLevel: 6

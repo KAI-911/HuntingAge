@@ -21,17 +21,13 @@ public class QuestReception : UIBase
 
     [SerializeField] QuestHolderData _questHolderData;
 
-
+    List<GameObject> checkObjects;
     private void Start()
     {
-        ItemIconList[(int)IconType.LevelSelect].SetIcondata(UISoundManager.Instance.UIPresetData.Dictionary["IP_TypeSelect"]);
-        ItemIconList[(int)IconType.QuestSelect].SetIcondata(UISoundManager.Instance.UIPresetData.Dictionary["IP_TypeSelect"]);
+        checkObjects = new List<GameObject>();
+        ItemIconList[(int)IconType.LevelSelect].SetIcondata(UISoundManager.Instance.UIPresetData.Dictionary["QuestSelect"]);
+        ItemIconList[(int)IconType.QuestSelect].SetIcondata(UISoundManager.Instance.UIPresetData.Dictionary["QuestSelect"]);
         ItemIconList[(int)IconType.Confirmation].SetIcondata(UISoundManager.Instance.UIPresetData.Dictionary["Confirmation"]);
-
-        //仮でボタンの大きさをIP_TypeSelectに合わせている
-        ItemIconData itemIconData = ItemIconList[(int)IconType.Confirmation].IconData;
-        itemIconData._buttonPrefab = ItemIconList[(int)IconType.LevelSelect].IconData._buttonPrefab;
-        ItemIconList[(int)IconType.Confirmation].SetIcondata(itemIconData);
 
         _currentState = new Close();
         _currentState.OnEnter(this, null);
@@ -61,7 +57,7 @@ public class QuestReception : UIBase
     {
         ItemIcon itemIcon;
         public override void OnEnter(UIBase owner, UIStateBase prevState)
-        {                            
+        {
             //受けていない時はIDを空白にする
             var data = GameManager.Instance.Quest.QuestData;
             data.ID = "";
@@ -91,11 +87,56 @@ public class QuestReception : UIBase
                     owner.ChangeState<QuestSelect>();
                 });
             }
+            //クエストをクリアしているマークを消す
+            if (prevState.GetType() == typeof(QuestSelect))
+            {
+                var OWNER = owner.GetComponent<QuestReception>();
+                for (int i = 0; i < OWNER.checkObjects.Count; i++)
+                {
+                    Destroy(OWNER.checkObjects[i]);
+                }
+                OWNER.checkObjects.Clear();
+            }
+            //そのレベルのクエストを全てクリアしていたらクリアマークを付ける
+            var questHolder = GameManager.Instance.QuestHolderData;
+            var quest = GameManager.Instance.QuestDataList;
+            for (int i = 0; i < objList.Count; i++)
+            {
+                //クエストホルダーのリストからデータを確認する
+                var holderData = questHolder.Values[i];
+                bool cleared = true;
+                foreach (var item in holderData.Quests)
+                {
+                    var questData = quest.Dictionary[item];
+                    if (questData.ClearedFlg) continue;
+                    cleared = false;
+                    break;
+                }
+                if (!cleared) continue;
+                //クリアマークを制作
+                var obj = Instantiate(Resources.Load("UI/Image3"), GameManager.Instance.ItemCanvas.Canvas.transform) as GameObject;
+                var image = obj.GetComponent<Image>();
+                image.sprite = Resources.Load<Sprite>("Icon/check");
+                image.color = new Color(1, 0, 0, 1);
+                var rect = obj.GetComponent<RectTransform>();
+                var buttonRect = objList[i].GetComponent<RectTransform>();
+                rect.sizeDelta = new Vector2(60, 60);
+                rect.anchoredPosition = buttonRect.anchoredPosition + new Vector2(40, 0);
+                owner.GetComponent<QuestReception>().checkObjects.Add(obj);
 
+            }
 
         }
         public override void OnExit(UIBase owner, UIStateBase nextState)
         {
+            //クエストをクリアしているマークを消す
+            var OWNER = owner.GetComponent<QuestReception>();
+            for (int i = 0; i < OWNER.checkObjects.Count; i++)
+            {
+                Destroy(OWNER.checkObjects[i]);
+            }
+            OWNER.checkObjects.Clear();
+
             itemIcon.DeleteButton();
         }
         public override void OnUpdate(UIBase owner)
@@ -122,7 +163,6 @@ public class QuestReception : UIBase
         {
             itemIcon = owner.ItemIconList[(int)IconType.QuestSelect];
             if (prevState.GetType() == typeof(QuestConfirmation)) return;
-            Debug.Log(prevState.GetType());
             owner.GetComponent<QuestReception>()._questMenu = Instantiate(owner.GetComponent<QuestReception>()._questMenuPrefab, GameManager.Instance.ItemCanvas.Canvas.transform);
             //ボタンの数を調整
             ItemIconData itemIconData = itemIcon.IconData;
@@ -134,16 +174,29 @@ public class QuestReception : UIBase
             for (int i = 0; i < objList.Count; i++)
             {
                 var data = owner.GetComponent<QuestReception>()._questDataList.Dictionary[owner.GetComponent<QuestReception>()._questHolderData.Quests[i]];
-                itemIcon.SetButtonText(i, data.Name);
+                itemIcon.SetButtonText(i, data.Name, TextAnchor.MiddleLeft);
                 itemIcon.SetButtonOnClick(i, () =>
                 {
-                    //GameManager.Instance.Quest.QuestData = data;
                     owner.ChangeState<QuestConfirmation>();
                 });
+                //
+                if (data.ClearedFlg)
+                {
+                    var obj = Instantiate(Resources.Load("UI/Image3"), GameManager.Instance.ItemCanvas.Canvas.transform) as GameObject;
+                    var image = obj.GetComponent<Image>();
+                    image.sprite = Resources.Load<Sprite>("Icon/check");
+                    image.color = new Color(1, 0, 0, 1);
+                    var rect = obj.GetComponent<RectTransform>();
+                    var buttonRect = objList[i].GetComponent<RectTransform>();
+                    rect.sizeDelta = new Vector2(60, 60);
+                    rect.anchoredPosition = buttonRect.anchoredPosition + new Vector2(40, 0);
+                    owner.GetComponent<QuestReception>().checkObjects.Add(obj);
+                }
             }
         }
         public override void OnExit(UIBase owner, UIStateBase nextState)
         {
+
             if (nextState.GetType() != typeof(QuestConfirmation))
             {
                 itemIcon.DeleteButton();
@@ -184,12 +237,12 @@ public class QuestReception : UIBase
             var objList = itemIcon.CreateButton();
             for (int i = 0; i < objList.Count; i++)
             {
-                var data = owner.GetComponent<QuestReception>()._questDataList.Dictionary[owner.GetComponent<QuestReception>()._questHolderData.Quests[i]];
                 var t = objList[i].GetComponentInChildren<Text>();
                 var b = objList[i].GetComponentInChildren<Button>();
                 if (i == 0)
                 {
                     t.text = "はい";
+                    t.alignment = TextAnchor.MiddleCenter;
                     b.onClick.AddListener(() =>
                     {
                         UISoundManager.Instance.PlayDecisionSE();
@@ -200,6 +253,7 @@ public class QuestReception : UIBase
                 else
                 {
                     t.text = "いいえ";
+                    t.alignment = TextAnchor.MiddleCenter;
                     b.onClick.AddListener(() =>
                     {
                         UISoundManager.Instance.PlayDecisionSE();
@@ -216,6 +270,12 @@ public class QuestReception : UIBase
             {
                 owner.ItemIconList[(int)IconType.QuestSelect].DeleteButton();
                 Destroy(owner.GetComponent<QuestReception>()._questMenu);
+                var OWNER = owner.GetComponent<QuestReception>();
+                for (int i = 0; i < OWNER.checkObjects.Count; i++)
+                {
+                    Destroy(OWNER.checkObjects[i]);
+                }
+                OWNER.checkObjects.Clear();
             }
             itemIcon.DeleteButton();
         }
@@ -256,7 +316,7 @@ public class QuestReception : UIBase
             textRect.sizeDelta = new Vector2(300, 100);
             var textText = text.GetComponent<Text>();
             textText.text = GameManager.Instance.Quest.QuestData.Name;
-            textText.alignment = TextAnchor.MiddleLeft;
+            textText.alignment = TextAnchor.MiddleCenter;
             textText.resizeTextForBestFit = true;
             imageRect.anchoredPosition = new Vector2(-Screen.width / 2 + Data.SCR.Padding, Screen.height / 2 - Data.SCR.Padding);
             textRect.anchoredPosition = new Vector2(-Screen.width / 2 + Data.SCR.Padding, Screen.height / 2 - Data.SCR.Padding);
@@ -344,7 +404,7 @@ public class QuestReception : UIBase
                             UISoundManager.Instance._player.IsAction = true;
                             itemIcon.DeleteButton();
                             //受けていない時はIDを空白にする
-                            var data= GameManager.Instance.Quest.QuestData;
+                            var data = GameManager.Instance.Quest.QuestData;
                             data.ID = "";
                             GameManager.Instance.Quest.QuestData = data;
                         });
