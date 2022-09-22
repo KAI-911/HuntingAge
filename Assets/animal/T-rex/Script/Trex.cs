@@ -48,4 +48,11 @@ public class Trex : Enemy
         _currentState = nextState;
     }
 
+    void CreateSound(AnimationEvent Sound)
+    {   
+        var obj = Instantiate(Sound.objectReferenceParameter)as GameObject;
+        obj.transform.position = transform.position;
+        obj.GetComponent<AudioSource>().Play();
+    }
+
 }
