@@ -27,7 +27,7 @@ MonoBehaviour:
     IconName: Icon/Stone_UI
     BoxStackNumber: 9999
     BoxUINumber: 8
-    BoxHoldNumber: 18
+    BoxHoldNumber: 100
     PoachStackNumber: 99
     PoachUINumber: 13
     PoachHoldNumber: 0
@@ -36,52 +36,52 @@ MonoBehaviour:
     IconName: Icon/Wood_UI
     BoxStackNumber: 9999
     BoxUINumber: 5
-    BoxHoldNumber: 915
+    BoxHoldNumber: 100
     PoachStackNumber: 99
-    PoachUINumber: 11
+    PoachUINumber: 3
     PoachHoldNumber: 0
   - ID: Material002
     Name: "\u30C4\u30BF"
     IconName: Icon/Vine_UI
     BoxStackNumber: 9999
     BoxUINumber: 0
-    BoxHoldNumber: 1009
+    BoxHoldNumber: 100
     PoachStackNumber: 99
-    PoachUINumber: 0
+    PoachUINumber: 3
     PoachHoldNumber: 0
   - ID: Material003
     Name: "\u9AA8"
     IconName: Icon/Bone_UI
     BoxStackNumber: 9999
     BoxUINumber: 1
-    BoxHoldNumber: 1051
+    BoxHoldNumber: 100
     PoachStackNumber: 99
-    PoachUINumber: 1
+    PoachUINumber: 4
     PoachHoldNumber: 0
   - ID: Material004
     Name: "\u690D\u7269"
     IconName: Icon/Botanical_UI
     BoxStackNumber: 9999
     BoxUINumber: 2
-    BoxHoldNumber: 874
+    BoxHoldNumber: 100
     PoachStackNumber: 100
-    PoachUINumber: 2
+    PoachUINumber: 5
     PoachHoldNumber: 0
   - ID: Material005
     Name: "\u8089"
     IconName: Icon/Meat_UI
     BoxStackNumber: 9999
     BoxUINumber: 3
-    BoxHoldNumber: 996
+    BoxHoldNumber: 100
     PoachStackNumber: 99
-    PoachUINumber: 0
+    PoachUINumber: 4
     PoachHoldNumber: 0
   - ID: Material006
     Name: "\u7E4A\u7DAD"
     IconName: Icon/Fiber_UI
     BoxStackNumber: 9999
     BoxUINumber: 6
-    BoxHoldNumber: 1000
+    BoxHoldNumber: 100
     PoachStackNumber: 99
     PoachUINumber: 5
     PoachHoldNumber: 0
@@ -90,7 +90,7 @@ MonoBehaviour:
     IconName: Icon/Fur_UI
     BoxStackNumber: 9999
     BoxUINumber: 7
-    BoxHoldNumber: 1000
+    BoxHoldNumber: 100
     PoachStackNumber: 99
     PoachUINumber: 3
     PoachHoldNumber: 0

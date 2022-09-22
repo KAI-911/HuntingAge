@@ -83,7 +83,6 @@ public class UIItemView_new : UIBase
     public override void Update()
     {
         base.Update();
-        Debug.Log("現在のアイテム使用 "+ _currentState);
     }
     private class Village : UIStateBase
     {

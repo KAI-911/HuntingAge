@@ -25,7 +25,7 @@ MonoBehaviour:
     DisplayName: "\u30C6\u30A3\u30E9\u30CE\u30B5\u30A6\u30EB\u30B9"
     InstanceName: Enemy/T-rex
     IconName: Icon/T-Rex_Icon
-    DeathCount: 4
+    DeathCount: 0
     EnemyPos:
     - scene: 2
       pos:
@@ -51,7 +51,7 @@ MonoBehaviour:
     DisplayName: "\u72FC"
     InstanceName: Enemy/Wolf
     IconName: Icon/Wolf_Icon
-    DeathCount: 6
+    DeathCount: 0
     EnemyPos:
     - scene: 2
       pos:
@@ -72,7 +72,7 @@ MonoBehaviour:
     DisplayName: "\u30C9\u30FC\u30C9\u30FC"
     InstanceName: Enemy/Dodo
     IconName: Icon/Dodo_Icon
-    DeathCount: 15
+    DeathCount: 0
     EnemyPos:
     - scene: 2
       pos:
@@ -109,7 +109,7 @@ MonoBehaviour:
     DisplayName: "\u30B7\u30AB"
     InstanceName: Enemy/Deer
     IconName: Icon/Deer
-    DeathCount: 4
+    DeathCount: 0
     EnemyPos:
     - scene: 2
       pos:
@@ -138,7 +138,7 @@ MonoBehaviour:
     DisplayName: "\u30B5\u30A4"
     InstanceName: Enemy/Rhino
     IconName: Icon/Rhino
-    DeathCount: 4
+    DeathCount: 0
     EnemyPos:
     - scene: 2
       pos:
@@ -159,7 +159,7 @@ MonoBehaviour:
     DisplayName: "\u30C6\u30A3\u30E9\u30CE\u30B5\u30A6\u30EB\u30B9"
     InstanceName: Enemy/BEGT-rex
     IconName: Icon/T-Rex_Icon
-    DeathCount: 4
+    DeathCount: 0
     EnemyPos:
     - scene: 2
       pos:
@@ -169,23 +169,25 @@ MonoBehaviour:
       - {x: -10, y: 0, z: -10}
     - scene: 1
       pos:
-      - {x: -120.370026, y: 90.00183, z: 68.61693}
-      - {x: -158.25299, y: 95.51475, z: -47.13568}
-      - {x: -125.450966, y: 99.896706, z: -71.147064}
-      - {x: -133.97627, y: 90.00183, z: 137.22893}
-      - {x: -209.91899, y: 90.00183, z: 180.46848}
-      - {x: -148.05386, y: 90.00185, z: 180.87662}
-      - {x: -102.51396, y: 90.00183, z: 89.62355}
-      - {x: -214.8851, y: 90.001816, z: 92.731415}
-      - {x: -167.38919, y: 100, z: -143.5618}
-      - {x: -123.64716, y: 100.000015, z: -168.68233}
-      - {x: -136.5088, y: 100, z: -260.17465}
-      - {x: -165.5284, y: 100, z: -234.96106}
+      - {x: -50.52426, y: 99.99999, z: -97.76355}
+      - {x: -135.76709, y: 99.999985, z: -110.859825}
+      - {x: -244.40968, y: 99.99999, z: -118.52948}
+      - {x: -144.74881, y: 100, z: -136.18365}
+      - {x: -124.25145, y: 99.99999, z: -164.23564}
+      - {x: -188.7076, y: 100, z: -179.18713}
+      - {x: -168.48102, y: 100, z: -203.50473}
+      - {x: -133.4254, y: 100, z: -208.51352}
+      - {x: -113.718376, y: 100, z: -230.259}
+      - {x: -155.50241, y: 100, z: -240.03719}
+      - {x: -103.577545, y: 100, z: -241.82947}
+      - {x: -130.2387, y: 100.00001, z: -260.53198}
+      - {x: -145.97498, y: 100, z: -265.394}
+      - {x: -111.66462, y: 100, z: -270.5174}
   - ID: BEGRhino
     DisplayName: "\u30B5\u30A4"
     InstanceName: Enemy/BEGRhino
     IconName: Icon/Rhino
-    DeathCount: 4
+    DeathCount: 0
     EnemyPos:
     - scene: 2
       pos:
@@ -195,10 +197,19 @@ MonoBehaviour:
       - {x: -10, y: 0, z: -10}
     - scene: 1
       pos:
-      - {x: 178.4873, y: 9.998169, z: -131.02905}
-      - {x: 175.88242, y: 9.998169, z: -216.1225}
-      - {x: 195.90569, y: 9.998184, z: -175.48701}
-      - {x: 232.77245, y: 9.998169, z: -193.28}
-      - {x: 219.50482, y: 9.998177, z: -132.98254}
-      - {x: 191.42845, y: 9.998169, z: -236.61649}
-      - {x: 153.47264, y: 9.998215, z: -196.00914}
+      - {x: -192.46094, y: 90.00183, z: 149.46101}
+      - {x: -178.21191, y: 90.00185, z: 113.22269}
+      - {x: -167.85713, y: 90.00182, z: 149.5953}
+      - {x: -154.76239, y: 89.93108, z: 24.693747}
+      - {x: -114.41537, y: 90.00183, z: 104.02315}
+      - {x: -74.465126, y: 90.00183, z: 92.18056}
+      - {x: -212.43762, y: 90.00182, z: 87.82808}
+      - {x: -247.38625, y: 90.00183, z: 66.45642}
+      - {x: -187.70955, y: 90.00185, z: 208.81502}
+      - {x: -240.80759, y: 90.00183, z: 116.11919}
+      - {x: -146.2487, y: 90.00185, z: 85.06423}
+      - {x: -230.52274, y: 90.00183, z: 129.91852}
+      - {x: -245.22673, y: 90.00183, z: 177.12398}
+      - {x: -219.14198, y: 90.00183, z: 229.85126}
+      - {x: -188.84155, y: 90.001816, z: 256.17664}
+      - {x: -147.68164, y: 90.00185, z: 215.08179}

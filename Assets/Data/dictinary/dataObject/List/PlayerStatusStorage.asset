@@ -14,6 +14,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   MaxHP: 100
   MaxSP: 100
-  Attack: 50
-  Defense: 50
-  Wepon: weapon202
+  Attack: 100
+  Defense: 100
+  Wepon: weapon101

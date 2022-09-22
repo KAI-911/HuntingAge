@@ -48,7 +48,7 @@ MonoBehaviour:
     IconPass: Icon/Axe_UI
     BoxUINumber: 1
     CreatableLevel: 2
-    BoxPossession: 1
+    BoxPossession: 0
     AttackPoint: 100
     WeaponType: 0
     ProductionNeedMaterialLst:
@@ -69,8 +69,8 @@ MonoBehaviour:
     weaponPath: weapon/Axe_bone
     IconPass: Icon/Axe_UI
     BoxUINumber: 2
-    CreatableLevel: 5
-    BoxPossession: 1
+    CreatableLevel: 3
+    BoxPossession: 0
     AttackPoint: 150
     WeaponType: 0
     ProductionNeedMaterialLst:
@@ -105,8 +105,8 @@ MonoBehaviour:
     weaponPath: weapon/Spear
     IconPass: Icon/Spear_UI
     BoxUINumber: 4
-    CreatableLevel: 3
-    BoxPossession: 1
+    CreatableLevel: 2
+    BoxPossession: 0
     AttackPoint: 100
     WeaponType: 1
     ProductionNeedMaterialLst:
@@ -127,8 +127,8 @@ MonoBehaviour:
     weaponPath: weapon/Spear_bone
     IconPass: Icon/Spear_UI
     BoxUINumber: 5
-    CreatableLevel: 6
-    BoxPossession: 1
+    CreatableLevel: 3
+    BoxPossession: 0
     AttackPoint: 150
     WeaponType: 1
     ProductionNeedMaterialLst:

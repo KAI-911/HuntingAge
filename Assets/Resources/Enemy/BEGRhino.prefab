@@ -2816,7 +2816,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5678624885332144556}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.09, y: 0.55, z: 1.4}
+  m_LocalPosition: {x: -0.09, y: 0.55, z: 1.3}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -2864,7 +2864,7 @@ SphereCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Radius: 0.47608766
+  m_Radius: 0.96
   m_Center: {x: 0.08772286, y: -0.02999998, z: -0.14999999}
 --- !u!1 &5678624885342483068
 GameObject:
@@ -2986,8 +2986,8 @@ CapsuleCollider:
   m_Material: {fileID: 0}
   m_IsTrigger: 1
   m_Enabled: 1
-  m_Radius: 1.6184157
-  m_Height: 4.6711416
+  m_Radius: 2.63
+  m_Height: 5.69
   m_Direction: 1
   m_Center: {x: 0.013069196, y: 0.85217506, z: 0.85215104}
 --- !u!114 &5678624885590679354
@@ -4103,7 +4103,7 @@ CapsuleCollider:
   m_Material: {fileID: 0}
   m_IsTrigger: 1
   m_Enabled: 1
-  m_Radius: 1
+  m_Radius: 2
   m_Height: 6.3303747
   m_Direction: 1
   m_Center: {x: -0.5916955, y: -0.6675104, z: -0.39767838}
@@ -4890,7 +4890,7 @@ NavMeshAgent:
   m_Enabled: 1
   m_AgentTypeID: 0
   m_Radius: 0.4
-  m_Speed: 4
+  m_Speed: 5
   m_Acceleration: 8
   avoidancePriority: 50
   m_AngularSpeed: 120
@@ -4994,12 +4994,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1c6b5257da867774697dc6db14bc1969, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _maxHp: 50
-  _hp: 50
-  _maxSp: 50
-  _sp: 50
-  _attack: 50
-  _defense: 50
+  _maxHp: 10000
+  _hp: 10000
+  _maxSp: 100
+  _sp: 100
+  _attack: 120
+  _defense: 80
   _invincibleFlg: 0
   _downFlg: 0
   _ignoreDefense: 0

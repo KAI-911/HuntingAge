@@ -2841,6 +2841,7 @@ Transform:
   - {fileID: 39747833093205572}
   - {fileID: 7806976793578882841}
   - {fileID: 7806976793094672601}
+  - {fileID: 7806976793865198193}
   - {fileID: 7806976793903401065}
   m_Father: {fileID: 0}
   m_RootOrder: 0
@@ -2963,15 +2964,15 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _partDatas:
   - _partType: 1
-    _maxEnduranceValue: 500
+    _maxEnduranceValue: 1500
   - _partType: 2
-    _maxEnduranceValue: 100
+    _maxEnduranceValue: 1500
   - _partType: 3
-    _maxEnduranceValue: 100
+    _maxEnduranceValue: 1000
   - _partType: 4
-    _maxEnduranceValue: 100
+    _maxEnduranceValue: 1000
   - _partType: 5
-    _maxEnduranceValue: 50
+    _maxEnduranceValue: 800
 --- !u!195 &4547490786413605334
 NavMeshAgent:
   m_ObjectHideFlags: 0
@@ -4009,7 +4010,7 @@ SphereCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Radius: 0.32
+  m_Radius: 0.44
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!54 &7806976793094672602
 Rigidbody:
@@ -4313,12 +4314,12 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7806976793865198190}
   m_LocalRotation: {x: -0, y: -0, z: -0.14254251, w: 0.9897887}
-  m_LocalPosition: {x: 0.252, y: 0.41299996, z: 0.9109999}
-  m_LocalScale: {x: 1.2828, y: 1.2828, z: 1.2828}
+  m_LocalPosition: {x: 0.142, y: 0.453, z: 1.4509567}
+  m_LocalScale: {x: 1.4981819, y: 1.4981819, z: 1.4981819}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 7806976793903401065}
-  m_RootOrder: 0
+  m_Father: {fileID: 7636910976959687593}
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: -16.39}
 --- !u!114 &7806976793865198195
 MonoBehaviour:
@@ -4344,7 +4345,7 @@ CapsuleCollider:
   m_Material: {fileID: 0}
   m_IsTrigger: 1
   m_Enabled: 1
-  m_Radius: 0.1929867
+  m_Radius: 0.25
   m_Height: 1.3294768
   m_Direction: 0
   m_Center: {x: -0.16473843, y: -0.12643948, z: -0.33319774}
@@ -4391,13 +4392,12 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7806976793903401062}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.252, y: 0, z: 0.387}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1.1679, y: 1.1679, z: 1.1679}
   m_ConstrainProportionsScale: 0
-  m_Children:
-  - {fileID: 7806976793865198193}
+  m_Children: []
   m_Father: {fileID: 7636910976959687593}
-  m_RootOrder: 4
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &7806976793903401067
 MonoBehaviour:
@@ -4424,7 +4424,7 @@ SphereCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Radius: 0.32
+  m_Radius: 0.59
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!54 &7806976793903401066
 Rigidbody:

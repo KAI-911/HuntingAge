@@ -105,7 +105,6 @@ public class Blacksmith : UIBase
             owner.ItemIconList[(int)IconType.Confirmation].DeleteButton();
             owner.ItemIconList[(int)IconType.MaterialList].DeleteButton();
 
-            Debug.Log("Blacksmith_TypeSelectMode_OnEnter");
             var UI = owner.ItemIconList[(int)IconType.ModeSelect];
             UI.SetText("íbñËèÍÅFïêäÌ");
             UI.SetLeftTopPos(new Vector2(-600, 200));
@@ -193,7 +192,6 @@ public class Blacksmith : UIBase
         List<WeaponData> _CreatableWeapon = new List<WeaponData>();
         public override void OnEnter(UIBase owner, UIStateBase prevState)
         {
-            Debug.Log("Blacksmith_ProductionWeaponMode_OnEnter");
 
             var ButtonUI = owner.ItemIconList[(int)IconType.ProductSelect];
 

@@ -37,6 +37,7 @@ public class FadeManager : MonoBehaviour
         _isFinish = false;
         _fadeInaction = action;
         _fadeInactionFlg = true;
+        
     }
 
     public void FadeOutStart(Action action)
@@ -45,6 +46,7 @@ public class FadeManager : MonoBehaviour
         _isFadeOut = true;
         _isFinish = false;
         _fadeOutaction = action;
+        UISoundManager.Instance._player.IsAction = false;
     }
 
     private void Awake()
@@ -95,6 +97,7 @@ public class FadeManager : MonoBehaviour
                 _canvas.enabled = false;
                 _color.a = 0.0f;
                 if (_fadeInactionFlg) _fadeInaction.Invoke();
+                UISoundManager.Instance._player.IsAction = true;
             }
             panel.color = _color;
         }

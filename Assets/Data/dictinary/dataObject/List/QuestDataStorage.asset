@@ -205,7 +205,7 @@ MonoBehaviour:
   - ID: Quest007
     Name: "\u9E7F\u3068\u30B5\u30A4\u306E\u8A0E\u4F10"
     ClearedFlg: 0
-    KeyQuestFlg: 1
+    KeyQuestFlg: 0
     Clear: 0
     Failure: 2
     Field: 1
@@ -238,7 +238,7 @@ MonoBehaviour:
   - ID: Quest008
     Name: "\u4E0D\u7A4F\u306A\u5F71"
     ClearedFlg: 0
-    KeyQuestFlg: 0
+    KeyQuestFlg: 1
     Clear: 0
     Failure: 2
     Field: 1
@@ -324,7 +324,28 @@ MonoBehaviour:
     - name: T-rex
       number: 2
     OtherName: []
-    QuestRewardDatas: []
+    QuestRewardDatas:
+    - name: Material003
+      number: 2
+      probability: 100
+    - name: Material003
+      number: 5
+      probability: 70
+    - name: Material002
+      number: 3
+      probability: 100
+    - name: Material002
+      number: 9
+      probability: 40
+    - name: Material005
+      number: 9
+      probability: 100
+    - name: Material000
+      number: 9
+      probability: 70
+    - name: Material000
+      number: 5
+      probability: 70
   - ID: Quest011
     Name: "\u7A81\u9032\u5730\u7344"
     ClearedFlg: 0

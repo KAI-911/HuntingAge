@@ -196,7 +196,7 @@ public class kichen : UIBase
         {   //作れるアイテムのリストを生成
             foreach (var item in GameManager.Instance.ItemDataList.Dictionary)
             {
-                if (item.Value.CreatableLevel < GameManager.Instance.VillageData.KitchenLevel)
+                if (item.Value.CreatableLevel <= GameManager.Instance.VillageData.KitchenLevel)
                 {
                     for (int i = 0; i < item.Value.NeedMaterialLst.Count; i++)
                     {

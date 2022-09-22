@@ -15,7 +15,6 @@ public class Attack_Rhino : StateBase_Rhino
 
         defaultSpeed = owner.NavMeshAgent.speed;
 
-        Debug.Log("çUåÇîªíË");
         foreach (var item in owner.TargetChecker())
         {
             Debug.Log(item);
@@ -58,7 +57,6 @@ public class Attack_Rhino : StateBase_Rhino
         }
         else
         {
-            Debug.Log("âøílè„Ç∞");
             owner.NavMeshAgent.destination = owner.transform.position;
         }
         owner.LookToTarget((int)(owner.RotationAngle * Time.deltaTime));

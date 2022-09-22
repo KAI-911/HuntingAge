@@ -23,10 +23,10 @@ MonoBehaviour:
       IconName: Icon/Soup_UI
       BoxStackNumber: 9999
       BoxUINumber: 15
-      BoxHoldNumber: 3052
+      BoxHoldNumber: 100
       PoachStackNumber: 10
       PoachUINumber: 0
-      PoachHoldNumber: 0
+      PoachHoldNumber: 10
     Use: 0
     Permanent: 0
     Time: 10
@@ -45,7 +45,7 @@ MonoBehaviour:
       IconName: Icon/GrilledMeat_UI
       BoxStackNumber: 9999
       BoxUINumber: 17
-      BoxHoldNumber: 3021
+      BoxHoldNumber: 100
       PoachStackNumber: 10
       PoachUINumber: 2
       PoachHoldNumber: 10
@@ -65,16 +65,16 @@ MonoBehaviour:
       IconName: Icon/Fruit_UI
       BoxStackNumber: 9999
       BoxUINumber: 16
-      BoxHoldNumber: 2991
+      BoxHoldNumber: 100
       PoachStackNumber: 10
       PoachUINumber: 1
-      PoachHoldNumber: 5
+      PoachHoldNumber: 10
     Use: 0
     Permanent: 0
     Time: 120
     UpValue: 50
     ItemType: 2
-    CreatableLevel: 2
+    CreatableLevel: 3
     NeedMaterialLst:
     - materialID: Material001
       requiredCount: 3
