@@ -77,6 +77,7 @@ public class EnemyData
     public string ID;
     public string DisplayName;
     public string InstanceName;
+    public string IconName;
     public int DeathCount;
     public List<Position> EnemyPos;
     public Position EnemyPosition(Scene scene)
