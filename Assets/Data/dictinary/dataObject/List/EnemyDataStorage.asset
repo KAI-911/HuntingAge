@@ -18,11 +18,14 @@ MonoBehaviour:
   - Dodo
   - Deer
   - Rhino
+  - BEGRhino
+  - BEGT-rex
   values:
   - ID: T-rex
     DisplayName: "\u30C6\u30A3\u30E9\u30CE\u30B5\u30A6\u30EB\u30B9"
     InstanceName: Enemy/T-rex
-    DeathCount: 3
+    IconName: Icon/T-Rex_Icon
+    DeathCount: 4
     EnemyPos:
     - scene: 2
       pos:
@@ -47,6 +50,7 @@ MonoBehaviour:
   - ID: Wolf
     DisplayName: "\u72FC"
     InstanceName: Enemy/Wolf
+    IconName: Icon/Wolf_Icon
     DeathCount: 6
     EnemyPos:
     - scene: 2
@@ -67,7 +71,8 @@ MonoBehaviour:
   - ID: Dodo
     DisplayName: "\u30C9\u30FC\u30C9\u30FC"
     InstanceName: Enemy/Dodo
-    DeathCount: 3
+    IconName: Icon/Dodo_Icon
+    DeathCount: 15
     EnemyPos:
     - scene: 2
       pos:
@@ -103,6 +108,7 @@ MonoBehaviour:
   - ID: Deer
     DisplayName: "\u30B7\u30AB"
     InstanceName: Enemy/Deer
+    IconName: Icon/Deer
     DeathCount: 4
     EnemyPos:
     - scene: 2
@@ -131,6 +137,54 @@ MonoBehaviour:
   - ID: Rhino
     DisplayName: "\u30B5\u30A4"
     InstanceName: Enemy/Rhino
+    IconName: Icon/Rhino
+    DeathCount: 4
+    EnemyPos:
+    - scene: 2
+      pos:
+      - {x: 10, y: 0, z: 10}
+      - {x: 10, y: 0, z: -10}
+      - {x: -10, y: 0, z: 10}
+      - {x: -10, y: 0, z: -10}
+    - scene: 1
+      pos:
+      - {x: 178.4873, y: 9.998169, z: -131.02905}
+      - {x: 175.88242, y: 9.998169, z: -216.1225}
+      - {x: 195.90569, y: 9.998184, z: -175.48701}
+      - {x: 232.77245, y: 9.998169, z: -193.28}
+      - {x: 219.50482, y: 9.998177, z: -132.98254}
+      - {x: 191.42845, y: 9.998169, z: -236.61649}
+      - {x: 153.47264, y: 9.998215, z: -196.00914}
+  - ID: BEGT-rex
+    DisplayName: "\u30C6\u30A3\u30E9\u30CE\u30B5\u30A6\u30EB\u30B9"
+    InstanceName: Enemy/BEGT-rex
+    IconName: Icon/T-Rex_Icon
+    DeathCount: 4
+    EnemyPos:
+    - scene: 2
+      pos:
+      - {x: 10, y: 0, z: 10}
+      - {x: 10, y: 0, z: -10}
+      - {x: -10, y: 0, z: 10}
+      - {x: -10, y: 0, z: -10}
+    - scene: 1
+      pos:
+      - {x: -120.370026, y: 90.00183, z: 68.61693}
+      - {x: -158.25299, y: 95.51475, z: -47.13568}
+      - {x: -125.450966, y: 99.896706, z: -71.147064}
+      - {x: -133.97627, y: 90.00183, z: 137.22893}
+      - {x: -209.91899, y: 90.00183, z: 180.46848}
+      - {x: -148.05386, y: 90.00185, z: 180.87662}
+      - {x: -102.51396, y: 90.00183, z: 89.62355}
+      - {x: -214.8851, y: 90.001816, z: 92.731415}
+      - {x: -167.38919, y: 100, z: -143.5618}
+      - {x: -123.64716, y: 100.000015, z: -168.68233}
+      - {x: -136.5088, y: 100, z: -260.17465}
+      - {x: -165.5284, y: 100, z: -234.96106}
+  - ID: BEGRhino
+    DisplayName: "\u30B5\u30A4"
+    InstanceName: Enemy/BEGRhino
+    IconName: Icon/Rhino
     DeathCount: 4
     EnemyPos:
     - scene: 2
