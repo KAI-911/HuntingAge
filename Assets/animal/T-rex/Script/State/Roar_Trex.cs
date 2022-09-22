@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -32,6 +33,7 @@ public class Roar_Trex : StateBase_Trex
             owner.ChangeState<Move_Trex>();
         }
     }
+
     public override void OnCollisionStay(Trex owner, Collision collision)
     {
 

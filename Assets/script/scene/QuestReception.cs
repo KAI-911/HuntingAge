@@ -203,6 +203,13 @@ public class QuestReception : UIBase
                 itemIcon.DeleteButton();
                 Destroy(owner.GetComponent<QuestReception>()._questMenu);
             }
+            if (nextState.GetType() == typeof(QuestLevelSelect))
+            {
+                if (owner.GetComponent<QuestReception>().Icon != null)
+                {
+                    Destroy(owner.GetComponent<QuestReception>().Icon);
+                }
+            }
         }
         public override void OnUpdate(UIBase owner)
         {
@@ -456,7 +463,8 @@ public class QuestReception : UIBase
                     IconSet(tmp.IconName, );
                 }*/
                 for (int i = 0; i < data.TargetName.Count; i++)
-                { int _numi = i;
+                {
+                    int _numi = i;
                     var tmp = GameManager.Instance.EnemyDataList.Dictionary[data.TargetName[_numi].name];
                     str += tmp.DisplayName + "‚ð" + data.TargetName[_numi].number + "‘Ì“¢”°‚·‚é\n";
                     IconSet(tmp.IconName, _numi);
@@ -497,6 +505,7 @@ public class QuestReception : UIBase
         //ƒgƒEƒ}C³
         void IconSet(string _iconName, int _iconNum)
         {
+            if(Icon!=null)Destroy(Icon);//Sato
             Vector2 _base;
             _base = new Vector2(_iconNum * 40, 30 - data.TargetName.Count * 40);
             Icon = Instantiate(Resources.Load("UI/Image3"), GameManager.Instance.ItemCanvas.Canvas.transform) as GameObject;
