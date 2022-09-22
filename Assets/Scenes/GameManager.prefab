@@ -345,8 +345,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c4abf15b51754414c8ad15f0332aa024, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _villageScene: 3
-  _nowScene: 3
+  _villageScene: 6
+  _nowScene: 0
   _lookAtCamera: {fileID: 0}
 --- !u!114 &6145394531166785594
 MonoBehaviour:
@@ -367,14 +367,14 @@ MonoBehaviour:
     KeyQuestFlg: 0
     Clear: 0
     Failure: 0
-    Field: 0
+    Field: 6
     TargetName: []
     OtherName: []
     QuestRewardDatas: []
-  _isQuest: 1
+  _isQuest: 0
   _questTime: 0
   _enemyList: []
-  imageAlpahSpeed: 0
+  imageAlpahSpeed: 0.05
   _sceneChengeTime: 30
   _deathCount: 0
   _delayTime: 2
@@ -406,9 +406,9 @@ MonoBehaviour:
     IconName: Icon/Stone_UI
     BoxStackNumber: 9999
     BoxUINumber: 8
-    BoxHoldNumber: 6
+    BoxHoldNumber: 24
     PoachStackNumber: 99
-    PoachUINumber: 0
+    PoachUINumber: 13
     PoachHoldNumber: 0
   - ID: Material001
     Name: "\u6728"
@@ -417,23 +417,23 @@ MonoBehaviour:
     BoxUINumber: 5
     BoxHoldNumber: 920
     PoachStackNumber: 99
-    PoachUINumber: 2
+    PoachUINumber: 5
     PoachHoldNumber: 0
   - ID: Material002
     Name: "\u30C4\u30BF"
     IconName: Icon/Vine_UI
     BoxStackNumber: 9999
     BoxUINumber: 0
-    BoxHoldNumber: 1000
+    BoxHoldNumber: 1009
     PoachStackNumber: 99
-    PoachUINumber: 1
+    PoachUINumber: 0
     PoachHoldNumber: 0
   - ID: Material003
     Name: "\u9AA8"
     IconName: Icon/Bone_UI
     BoxStackNumber: 9999
     BoxUINumber: 1
-    BoxHoldNumber: 1018
+    BoxHoldNumber: 1067
     PoachStackNumber: 99
     PoachUINumber: 4
     PoachHoldNumber: 0
@@ -442,16 +442,16 @@ MonoBehaviour:
     IconName: Icon/Botanical_UI
     BoxStackNumber: 9999
     BoxUINumber: 2
-    BoxHoldNumber: 886
+    BoxHoldNumber: 874
     PoachStackNumber: 100
-    PoachUINumber: 0
+    PoachUINumber: 2
     PoachHoldNumber: 0
   - ID: Material005
     Name: "\u8089"
     IconName: Icon/Meat_UI
     BoxStackNumber: 9999
     BoxUINumber: 3
-    BoxHoldNumber: 59
+    BoxHoldNumber: 1089
     PoachStackNumber: 99
     PoachUINumber: 3
     PoachHoldNumber: 0
@@ -460,9 +460,9 @@ MonoBehaviour:
     IconName: Icon/Fiber_UI
     BoxStackNumber: 9999
     BoxUINumber: 6
-    BoxHoldNumber: 1000
+    BoxHoldNumber: 1040
     PoachStackNumber: 99
-    PoachUINumber: 4
+    PoachUINumber: 5
     PoachHoldNumber: 0
   - ID: Material007
     Name: "\u76AE"
@@ -471,7 +471,7 @@ MonoBehaviour:
     BoxUINumber: 7
     BoxHoldNumber: 1000
     PoachStackNumber: 99
-    PoachUINumber: 0
+    PoachUINumber: 3
     PoachHoldNumber: 0
   modifyValues: 0
 --- !u!114 &8863779223932431587
@@ -497,7 +497,8 @@ MonoBehaviour:
   - ID: T-rex
     DisplayName: "\u30C6\u30A3\u30E9\u30CE\u30B5\u30A6\u30EB\u30B9"
     InstanceName: Enemy/T-rex
-    DeathCount: 3
+    IconName: 
+    DeathCount: 4
     EnemyPos:
     - scene: 2
       pos:
@@ -522,6 +523,7 @@ MonoBehaviour:
   - ID: Wolf
     DisplayName: "\u72FC"
     InstanceName: Enemy/Wolf
+    IconName: 
     DeathCount: 6
     EnemyPos:
     - scene: 2
@@ -542,7 +544,8 @@ MonoBehaviour:
   - ID: Dodo
     DisplayName: "\u30C9\u30FC\u30C9\u30FC"
     InstanceName: Enemy/Dodo
-    DeathCount: 3
+    IconName: 
+    DeathCount: 9
     EnemyPos:
     - scene: 2
       pos:
@@ -578,6 +581,7 @@ MonoBehaviour:
   - ID: Deer
     DisplayName: "\u30B7\u30AB"
     InstanceName: Enemy/Deer
+    IconName: 
     DeathCount: 4
     EnemyPos:
     - scene: 2
@@ -606,6 +610,7 @@ MonoBehaviour:
   - ID: Rhino
     DisplayName: "\u30B5\u30A4"
     InstanceName: Enemy/Rhino
+    IconName: 
     DeathCount: 4
     EnemyPos:
     - scene: 2
@@ -637,9 +642,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   DictionaryData: {fileID: 11400000, guid: ba2168d9003022341a89bc2a440aba61, type: 2}
-  villageLevel: 2
-  blacksmithLevel: 1
-  kitchenLevel: 1
+  villageLevel: 6
+  blacksmithLevel: 6
+  kitchenLevel: 6
   modifyValues: 0
 --- !u!114 &6145394531166785598
 MonoBehaviour:
@@ -721,11 +726,11 @@ MonoBehaviour:
   - ID: weapon103
     EnhancementID: empty
     Name: "\u9AA8\u65A7"
-    weaponPath: weapon/Axe
+    weaponPath: weapon/Axe_bone
     IconPass: Icon/Axe_UI
     BoxUINumber: 2
     CreatableLevel: 5
-    BoxPossession: 0
+    BoxPossession: 1
     AttackPoint: 150
     WeaponType: 0
     ProductionNeedMaterialLst:
@@ -743,7 +748,7 @@ MonoBehaviour:
     IconPass: Icon/Spear_wood_UI
     BoxUINumber: 3
     CreatableLevel: 1
-    BoxPossession: 0
+    BoxPossession: 1
     AttackPoint: 50
     WeaponType: 1
     ProductionNeedMaterialLst:
@@ -761,7 +766,7 @@ MonoBehaviour:
     IconPass: Icon/Spear_UI
     BoxUINumber: 4
     CreatableLevel: 3
-    BoxPossession: 0
+    BoxPossession: 1
     AttackPoint: 100
     WeaponType: 1
     ProductionNeedMaterialLst:
@@ -779,11 +784,11 @@ MonoBehaviour:
   - ID: weapon203
     EnhancementID: empty
     Name: "\u9AA8\u69CD"
-    weaponPath: weapon/Spear
+    weaponPath: weapon/Spear_bone
     IconPass: Icon/Spear_UI
     BoxUINumber: 5
     CreatableLevel: 6
-    BoxPossession: 0
+    BoxPossession: 1
     AttackPoint: 150
     WeaponType: 1
     ProductionNeedMaterialLst:
@@ -859,7 +864,7 @@ MonoBehaviour:
       IconName: Icon/Soup_UI
       BoxStackNumber: 9999
       BoxUINumber: 15
-      BoxHoldNumber: 3042
+      BoxHoldNumber: 3043
       PoachStackNumber: 10
       PoachUINumber: 0
       PoachHoldNumber: 10
@@ -881,7 +886,7 @@ MonoBehaviour:
       IconName: Icon/GrilledMeat_UI
       BoxStackNumber: 9999
       BoxUINumber: 17
-      BoxHoldNumber: 3021
+      BoxHoldNumber: 3022
       PoachStackNumber: 10
       PoachUINumber: 2
       PoachHoldNumber: 10
@@ -901,7 +906,7 @@ MonoBehaviour:
       IconName: Icon/Fruit_UI
       BoxStackNumber: 9999
       BoxUINumber: 16
-      BoxHoldNumber: 2986
+      BoxHoldNumber: 2988
       PoachStackNumber: 10
       PoachUINumber: 1
       PoachHoldNumber: 10
@@ -958,9 +963,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   DictionaryData: {fileID: 11400000, guid: 019398f9683afc248a45a060c81d272d, type: 2}
-  _BGMVolume: 0.34999996
-  _SEVolume: 0.02000067
-  _UIVolume: 0.11
+  _BGMVolume: 0.02
+  _SEVolume: 0.04
+  _UIVolume: 0.04
+  _CameraVolume: 254
+  _CameraMaxVolume: 600
+  _CameraMinVolume: 100
   modifyValues: 0
 --- !u!114 &7904424780519165244
 MonoBehaviour:
@@ -977,9 +985,9 @@ MonoBehaviour:
   _itemIconList: []
   _itemViewPrefab: {fileID: 5273894871995613753, guid: 30c25ace95c31284091c3d95dcf2a8d3,
     type: 3}
-  _rightButtonPrefab: {fileID: 5041044212195448251, guid: 4f86c72dc71acb74a92ae821e4aa64fb,
+  _rightButtonPrefab: {fileID: 2068567506703123245, guid: 5a409c2019c56134888f30e04ed53116,
     type: 3}
-  _leftButtonPrefab: {fileID: 2068567506703123245, guid: 5a409c2019c56134888f30e04ed53116,
+  _leftButtonPrefab: {fileID: 5041044212195448251, guid: 4f86c72dc71acb74a92ae821e4aa64fb,
     type: 3}
   _sideScaleSize: 0.6
   _padding: 20
@@ -987,7 +995,7 @@ MonoBehaviour:
     type: 3}
   _defenseUpprefab: {fileID: 433190895988374884, guid: 3d663aef4c4987743a7171c4b99888b8,
     type: 3}
-  _hpUpprefab: {fileID: 433190895988374884, guid: 5e0e4755294790d4cb5b56016458d4f1,
+  _hpUpprefab: {fileID: 5547036121050078955, guid: 790c56171f6942e43b724de40cc12883,
     type: 3}
 --- !u!114 &6523444124006974837
 MonoBehaviour:
@@ -1014,7 +1022,7 @@ MonoBehaviour:
   values:
   - ID: Quest001
     Name: "\u30AF\u30A8\u30B9\u30C8\uFF11"
-    ClearedFlg: 0
+    ClearedFlg: 1
     KeyQuestFlg: 0
     Clear: 0
     Failure: 1
@@ -1057,7 +1065,7 @@ MonoBehaviour:
       probability: 80
   - ID: Quest002
     Name: "\u30AF\u30A8\u30B9\u30C8\uFF12"
-    ClearedFlg: 0
+    ClearedFlg: 1
     KeyQuestFlg: 0
     Clear: 0
     Failure: 2
@@ -1154,7 +1162,7 @@ MonoBehaviour:
       probability: 80
   - ID: Quest005
     Name: "\u30AF\u30A8\u30B9\u30C8\uFF15"
-    ClearedFlg: 0
+    ClearedFlg: 1
     KeyQuestFlg: 0
     Clear: 1
     Failure: 2
@@ -1193,7 +1201,7 @@ MonoBehaviour:
       probability: 80
   - ID: Quest006
     Name: "\u30AF\u30A8\u30B9\u30C8\uFF16"
-    ClearedFlg: 0
+    ClearedFlg: 1
     KeyQuestFlg: 0
     Clear: 0
     Failure: 4
@@ -1234,7 +1242,7 @@ MonoBehaviour:
       probability: 80
   - ID: Quest007
     Name: "\u30AF\u30A8\u30B9\u30C8\uFF17"
-    ClearedFlg: 0
+    ClearedFlg: 1
     KeyQuestFlg: 0
     Clear: 0
     Failure: 4
@@ -1273,7 +1281,7 @@ MonoBehaviour:
       probability: 80
   - ID: Quest008
     Name: "\u30AA\u30FC\u30EB\u30B9\u30BF\u30FC\u30BA"
-    ClearedFlg: 0
+    ClearedFlg: 1
     KeyQuestFlg: 0
     Clear: 0
     Failure: 0
@@ -1378,7 +1386,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _itemIconList: []
-  ImagePrefab: {fileID: 4567105175149944347, guid: f7ce8ff705927a7488534fa792a126fe,
+  ImagePrefab: {fileID: 4567105175149944347, guid: 609e2229ec91edb4a8dc47d61e800851,
     type: 3}
   TextPrefab: {fileID: 9123999925664973099, guid: 7e845aabbef9588409138ba440dc835e,
     type: 3}

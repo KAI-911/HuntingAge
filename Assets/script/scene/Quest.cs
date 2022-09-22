@@ -262,8 +262,6 @@ public class Quest : MonoBehaviour
     {
         GameObject backimage;
         GameObject text;
-        RunOnce once_1;
-        RunOnce once_2;
         GameObject clearimage;
         float time;
         public override void OnEnter(Quest owner, QuestState prevState)
@@ -285,9 +283,67 @@ public class Quest : MonoBehaviour
             imageRect.anchoredPosition = new Vector2(-150, 25);
             textRect.anchoredPosition = new Vector2(-150, 25);
 
-            once_1 = new RunOnce();
-            once_2 = new RunOnce();
 
+            //クリア画像を表示
+            clearimage = Instantiate(Resources.Load("UI/Image3")) as GameObject;
+            clearimage.transform.SetParent(GameManager.Instance.ItemCanvas.Canvas.transform);
+            var s = clearimage.GetComponent<Image>();
+            s.sprite = Resources.Load<Sprite>("Icon/questclear");
+            var color = s.color;
+            color.a = 0;
+            s.color = color;
+            var clearRect = clearimage.GetComponent<RectTransform>();
+            clearRect.sizeDelta = new Vector2(600, 250);
+            clearRect.pivot = new Vector2(0.5f, 0.5f);
+            clearRect.anchoredPosition = new Vector2(0, clearRect.sizeDelta.y / 2);
+            Data.Convert.Correction(clearRect);
+
+            clearcheck(owner);
+
+        }
+        public override void OnExit(Quest owner, QuestState nextState)
+        {
+
+        }
+
+        public override void OnUpdate(Quest owner)
+        {
+            Debug.Log("クリアしました");
+
+            time -= Time.deltaTime;
+
+            //quest終了時にマークの表示
+            //徐々に見えるようにする
+            var s = clearimage.GetComponent<Image>();
+            var color = s.color;
+            color.a += owner.imageAlpahSpeed;
+            color.a = Mathf.Clamp(color.a, 0, 1);
+            s.color = color;
+
+            if (text != null)
+            {
+                int t = (int)(time / 10) * 10 + 10;
+                var textText = text.GetComponent<Text>();
+                textText.text = "あと" + t + "秒で村に戻ります";
+            }
+
+            if (time < 0)
+            {
+                GameManager.Instance.FadeManager.FadeOutStart(() =>
+                {
+                    Destroy(backimage);
+                    Destroy(text);
+                    Destroy(clearimage);
+                    owner.ChangeState<QuestResult>();
+                    GameManager.Instance.FadeManager.FadeInStart();
+                });
+            }
+
+        }
+
+
+        void clearcheck(Quest owner)
+        {
             //クエストクリアフラグを立てる
             var index = GameManager.Instance.QuestDataList.Keys.IndexOf(owner.QuestData.ID);
             var data = GameManager.Instance.QuestDataList.Values[index];
@@ -318,63 +374,6 @@ public class Quest : MonoBehaviour
                 Debug.Log("レベルが上がりました");
                 GameManager.Instance.LevelUp = true;
 
-            }
-
-        }
-        public override void OnExit(Quest owner, QuestState nextState)
-        {
-            Destroy(clearimage);
-        }
-
-        public override void OnUpdate(Quest owner)
-        {
-            Debug.Log("クリアしました");
-
-            time -= Time.deltaTime;
-            //何秒で戻るを消す
-            if (time < owner._sceneChengeTime - 2)
-            {
-                once_1.Run(() =>
-                {
-                    Destroy(backimage);
-                    Destroy(text);
-                });
-            }
-
-            //quest終了時にマークの表示
-            if (time < 3)
-            {
-                once_2.Run(() =>
-                {
-                    clearimage = Instantiate(Resources.Load("UI/Image3")) as GameObject;
-                    clearimage.transform.SetParent(GameManager.Instance.ItemCanvas.Canvas.transform);
-                    var s = clearimage.GetComponent<Image>();
-                    s.sprite = Resources.Load<Sprite>("Icon/questclear");
-                    var color = s.color;
-                    color.a = 0;
-                    s.color = color;
-
-                    var clearRect = clearimage.GetComponent<RectTransform>();
-                    clearRect.sizeDelta = new Vector2(600, 250);
-                    clearRect.pivot = new Vector2(0.5f, 0.5f);
-                    clearRect.anchoredPosition = new Vector2(0, clearRect.sizeDelta.y / 2);
-                    Data.Convert.Correction(clearRect);
-                });
-                //徐々に見えるようにする
-                var s = clearimage.GetComponent<Image>();
-                var color = s.color;
-                color.a += owner.imageAlpahSpeed;
-                color.a = Mathf.Clamp(color.a, 0, 1);
-                s.color = color;
-
-            }
-            if (time < 0)
-            {
-                GameManager.Instance.FadeManager.FadeOutStart(() =>
-                {
-                    owner.ChangeState<QuestResult>();
-                    GameManager.Instance.FadeManager.FadeInStart();
-                });
             }
 
         }
