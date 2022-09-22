@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: -5754084199372789682}
   - component: {fileID: -7511558181221131132}
   m_Layer: 0
-  m_Name: rock]
+  m_Name: rock
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -61,7 +61,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 10303, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: af4d4f414b48f6a45bb76541da037248, type: 2}
   - {fileID: 2100000, guid: af4d4f414b48f6a45bb76541da037248, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
