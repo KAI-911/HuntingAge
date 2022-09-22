@@ -22,6 +22,7 @@ public class QuestReception : UIBase
     [SerializeField] QuestHolderData _questHolderData;
 
     List<GameObject> checkObjects;
+    GameObject Icon;
     private void Start()
     {
         checkObjects = new List<GameObject>();
@@ -266,6 +267,7 @@ public class QuestReception : UIBase
         }
         public override void OnExit(UIBase owner, UIStateBase nextState)
         {
+            if (owner.GetComponent<QuestReception>().Icon != null) Destroy(owner.GetComponent<QuestReception>().Icon);
             if (nextState.GetType() != typeof(QuestSelect))
             {
                 owner.ItemIconList[(int)IconType.QuestSelect].DeleteButton();
@@ -441,32 +443,46 @@ public class QuestReception : UIBase
         QuestData data = _questDataList.Dictionary[QuestID];
         GameManager.Instance.Quest.QuestData = data;
         string str = "";
+        if (Icon != null) Destroy(Icon);
         switch (data.Clear)
         {
             case ClearConditions.TargetSubjugation:
-
-
-                str += "クリア条件: ";
-                foreach (var item in data.TargetName)
+                str += "クリア条件: \n";
+                /*foreach (var item in data.TargetName)
                 {
                     var tmp = GameManager.Instance.EnemyDataList.Dictionary[item.name];
 
                     str += tmp.DisplayName + "を" + item.number + "体討伐する\n";
+                    IconSet(tmp.IconName, );
+                }*/
+                for (int i = 0; i < data.TargetName.Count; i++)
+                { int _numi = i;
+                    var tmp = GameManager.Instance.EnemyDataList.Dictionary[data.TargetName[_numi].name];
+                    str += tmp.DisplayName + "を" + data.TargetName[_numi].number + "体討伐する\n";
+                    IconSet(tmp.IconName, _numi);
                 }
                 break;
             case ClearConditions.Gathering:
-                str += "クリア条件: ";
-                foreach (var item in data.TargetName)
+                str += "クリア条件: \n";
+                /*foreach (var item in data.TargetName)
                 {
                     var tmp = GameManager.Instance.MaterialDataList.Dictionary[item.name];
 
                     str += tmp.Name + "を" + item.number + "個採取する\n";
+                    IconSet(tmp.IconName,);
+                }*/
+                for (int i = 0; i < data.TargetName.Count; i++)
+                {
+                    int _numi = i;
+                    var tmp = GameManager.Instance.MaterialDataList.Dictionary[data.TargetName[_numi].name];
+                    str += tmp.Name + "を" + data.TargetName[_numi].number + "体討伐する\n";
+                    IconSet(tmp.IconName, _numi);
                 }
                 break;
             default:
                 break;
         }
-        str += "失敗条件: " + (int)(data.Failure + 1) + "回力尽きる\n";
+        str += "\n\n失敗条件: " + (int)(data.Failure + 1) + "回力尽きる\n";
         switch (data.Field)
         {
             case Scene.Forest:
@@ -478,6 +494,21 @@ public class QuestReception : UIBase
             default:
                 break;
         }
+        //トウマ修正＝＝＝＝＝
+        void IconSet(string _iconName, int _iconNum)
+        {
+            Vector2 _base;
+            _base = new Vector2(_iconNum * 40, 30 - data.TargetName.Count * 40);
+            Icon = Instantiate(Resources.Load("UI/Image3"), GameManager.Instance.ItemCanvas.Canvas.transform) as GameObject;
+            float padding = 10;
+            var IconRet = Icon.GetComponent<RectTransform>();
+            IconRet.pivot = new Vector2(0.5f, 0.5f);
+            IconRet.anchoredPosition = _base - new Vector2(-padding / 2, padding / 2);
+            Icon.GetComponent<Image>().sprite = Resources.Load<Sprite>(_iconName);
+            Icon.GetComponent<Image>().color = new Color(1, 1, 1, 1);
+        }
+        //ここまで＝＝＝＝＝
+
         if (_questMenu != null)
         {
             var texts = _questMenu.GetComponentsInChildren<Text>();
