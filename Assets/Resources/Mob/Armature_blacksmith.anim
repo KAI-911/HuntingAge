@@ -35988,7 +35988,8 @@ AnimationClip:
   - time: 0.3
     functionName: AnimationEvent
     data: hit
-    objectReferenceParameter: {fileID: 0}
+    objectReferenceParameter: {fileID: 7884877989303784467, guid: 18f280985a0e77444a05f5a2ffb2290b,
+      type: 3}
     floatParameter: 0
     intParameter: 0
     messageOptions: 0
