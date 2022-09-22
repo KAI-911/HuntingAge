@@ -22,6 +22,7 @@ MonoBehaviour:
   - ID: T-rex
     DisplayName: "\u30C6\u30A3\u30E9\u30CE\u30B5\u30A6\u30EB\u30B9"
     InstanceName: Enemy/T-rex
+    IconName: Icon/T-Rex_Icon
     DeathCount: 3
     EnemyPos:
     - scene: 2
@@ -47,7 +48,8 @@ MonoBehaviour:
   - ID: Wolf
     DisplayName: "\u72FC"
     InstanceName: Enemy/Wolf
-    DeathCount: 6
+    IconName: Icon/Wolf_Icon
+    DeathCount: 16
     EnemyPos:
     - scene: 2
       pos:
@@ -67,6 +69,7 @@ MonoBehaviour:
   - ID: Dodo
     DisplayName: "\u30C9\u30FC\u30C9\u30FC"
     InstanceName: Enemy/Dodo
+    IconName: Icon/Dodo_Icon
     DeathCount: 3
     EnemyPos:
     - scene: 2
@@ -103,6 +106,7 @@ MonoBehaviour:
   - ID: Deer
     DisplayName: "\u30B7\u30AB"
     InstanceName: Enemy/Deer
+    IconName: 
     DeathCount: 4
     EnemyPos:
     - scene: 2
@@ -131,6 +135,7 @@ MonoBehaviour:
   - ID: Rhino
     DisplayName: "\u30B5\u30A4"
     InstanceName: Enemy/Rhino
+    IconName: 
     DeathCount: 4
     EnemyPos:
     - scene: 2
