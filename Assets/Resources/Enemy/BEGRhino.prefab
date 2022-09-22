@@ -4980,7 +4980,7 @@ MonoBehaviour:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
-  _enemyID: Rhino
+  _enemyID: BEGRhino
   DebugSetPosObj: []
 --- !u!114 &8523611218087518339
 MonoBehaviour:
@@ -5002,6 +5002,8 @@ MonoBehaviour:
   _defense: 50
   _invincibleFlg: 0
   _downFlg: 0
+  _ignoreDefense: 0
+  _magnificationAttack: 1
 --- !u!114 &8523611218087518340
 MonoBehaviour:
   m_ObjectHideFlags: 0

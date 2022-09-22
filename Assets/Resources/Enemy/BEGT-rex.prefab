@@ -2806,7 +2806,7 @@ MonoBehaviour:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
-  _enemyID: T-rex
+  _enemyID: BEGT-rex
   DebugSetPosObj: []
 --- !u!114 &4547490786413605333
 MonoBehaviour:
@@ -2828,6 +2828,8 @@ MonoBehaviour:
   _defense: 70
   _invincibleFlg: 0
   _downFlg: 0
+  _ignoreDefense: 1
+  _magnificationAttack: 1
 --- !u!114 &4547490786413605332
 MonoBehaviour:
   m_ObjectHideFlags: 0

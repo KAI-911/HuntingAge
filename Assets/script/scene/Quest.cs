@@ -365,7 +365,7 @@ public class Quest : MonoBehaviour
                     break;
                 }
             }
-            if (levelup && GameManager.Instance.VillageData.VillageLevel < 6)
+            if (levelup && GameManager.Instance.VillageData.VillageLevel < 3)
             {
                 GameManager.Instance.VillageData.VillageLevel++;
                 GameManager.Instance.VillageData.KitchenLevel = GameManager.Instance.VillageData.VillageLevel;
