@@ -22,10 +22,11 @@ public class QuestReception : UIBase
     [SerializeField] QuestHolderData _questHolderData;
 
     List<GameObject> checkObjects;
-    GameObject Icon;
+    List<GameObject> Icon;
     private void Start()
     {
         checkObjects = new List<GameObject>();
+        Icon = new List<GameObject>();
         ItemIconList[(int)IconType.LevelSelect].SetIcondata(UISoundManager.Instance.UIPresetData.Dictionary["QuestSelect"]);
         ItemIconList[(int)IconType.QuestSelect].SetIcondata(UISoundManager.Instance.UIPresetData.Dictionary["QuestSelect"]);
         ItemIconList[(int)IconType.Confirmation].SetIcondata(UISoundManager.Instance.UIPresetData.Dictionary["Confirmation"]);
@@ -207,7 +208,7 @@ public class QuestReception : UIBase
             {
                 if (owner.GetComponent<QuestReception>().Icon != null)
                 {
-                    Destroy(owner.GetComponent<QuestReception>().Icon);
+                    owner.GetComponent<QuestReception>().IconDelete();
                 }
             }
         }
@@ -274,7 +275,7 @@ public class QuestReception : UIBase
         }
         public override void OnExit(UIBase owner, UIStateBase nextState)
         {
-            if (owner.GetComponent<QuestReception>().Icon != null) Destroy(owner.GetComponent<QuestReception>().Icon);
+            if (owner.GetComponent<QuestReception>().Icon != null) owner.GetComponent<QuestReception>().IconDelete();
             if (nextState.GetType() != typeof(QuestSelect))
             {
                 owner.ItemIconList[(int)IconType.QuestSelect].DeleteButton();
@@ -450,7 +451,7 @@ public class QuestReception : UIBase
         QuestData data = _questDataList.Dictionary[QuestID];
         GameManager.Instance.Quest.QuestData = data;
         string str = "";
-        if (Icon != null) Destroy(Icon);
+        IconDelete();
         switch (data.Clear)
         {
             case ClearConditions.TargetSubjugation:
@@ -505,16 +506,17 @@ public class QuestReception : UIBase
         //ÉgÉEÉ}èCê≥ÅÅÅÅÅÅÅÅÅÅ
         void IconSet(string _iconName, int _iconNum)
         {
-            if(Icon!=null)Destroy(Icon);//Sato
+            GameObject tmpObj;
+            tmpObj = Instantiate(Resources.Load("UI/Image3"), GameManager.Instance.ItemCanvas.Canvas.transform) as GameObject;
             Vector2 _base;
-            _base = new Vector2(_iconNum * 40, 30 - data.TargetName.Count * 40);
-            Icon = Instantiate(Resources.Load("UI/Image3"), GameManager.Instance.ItemCanvas.Canvas.transform) as GameObject;
+            _base = new Vector2(_iconNum * 100, 30 - data.TargetName.Count * 45);
             float padding = 10;
-            var IconRet = Icon.GetComponent<RectTransform>();
+            var IconRet = tmpObj.GetComponent<RectTransform>();
             IconRet.pivot = new Vector2(0.5f, 0.5f);
             IconRet.anchoredPosition = _base - new Vector2(-padding / 2, padding / 2);
-            Icon.GetComponent<Image>().sprite = Resources.Load<Sprite>(_iconName);
-            Icon.GetComponent<Image>().color = new Color(1, 1, 1, 1);
+            tmpObj.GetComponent<Image>().sprite = Resources.Load<Sprite>(_iconName);
+            tmpObj.GetComponent<Image>().color = new Color(1, 1, 1, 1);
+            Icon.Add(tmpObj);
         }
         //Ç±Ç±Ç‹Ç≈ÅÅÅÅÅÅÅÅÅÅ
 
@@ -523,6 +525,15 @@ public class QuestReception : UIBase
             var texts = _questMenu.GetComponentsInChildren<Text>();
             texts[0].text = data.Name;
             texts[1].text = str;
+        }
+    }
+
+    void IconDelete()
+    {
+        for (int i = 0; i < Icon.Count; i++)
+        {
+            int _numi = i;
+            if (Icon[_numi] != null) Destroy(Icon[_numi]);
         }
     }
 
