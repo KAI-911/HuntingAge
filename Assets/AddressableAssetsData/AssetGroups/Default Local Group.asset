@@ -33,6 +33,10 @@ MonoBehaviour:
     m_Address: Assets/Scenes/HamaScene/material/Tent 1.mat
     m_ReadOnly: 0
     m_SerializedLabels: []
+  - m_GUID: d1fcc4b3f4bd0924e89e5b1db3095093
+    m_Address: Assets/Scenes/HamaScene/material/Bone/Bone.mat
+    m_ReadOnly: 0
+    m_SerializedLabels: []
   m_ReadOnly: 0
   m_Settings: {fileID: 11400000, guid: 08bfeac5929041f46a6b0b948edd9db1, type: 2}
   m_SchemaSet:

@@ -282,13 +282,19 @@ public class UIPoach : UIBase
             var data = owner.ItemIconList[(int)IconType.Confirmation].IconData;
             data._tableSize = new Vector2(1, 2);
             owner.ItemIconList[(int)IconType.Confirmation].SetIcondata(data);
-
+            if (GameManager.Instance.Quest.IsQuest)
+            {
+                owner.ItemIconList[(int)IconType.Confirmation].SetText("クエストをリタイアしますか");
+            }
+            else
+            {
+                owner.ItemIconList[(int)IconType.Confirmation].SetText("ゲームを終了しますか");
+            }
             var buttons = owner.ItemIconList[(int)IconType.Confirmation].CreateButton();
             Debug.Log(buttons.Count);
 
             if (GameManager.Instance.Quest.IsQuest)
             {
-                owner.ItemIconList[(int)IconType.Confirmation].SetText("クエストをリタイアしますか");
                 buttons[0].GetComponent<Button>().onClick.AddListener(() =>
                 {
                     GameManager.Instance.Quest.QuestRetire();
@@ -297,7 +303,6 @@ public class UIPoach : UIBase
             }
             else
             {
-                owner.ItemIconList[(int)IconType.Confirmation].SetText("ゲームを終了しますか");
                 buttons[0].GetComponent<Button>().onClick.AddListener(() =>
                 {
                     var data = UISoundManager.Instance._player.StatusData;
