@@ -20,7 +20,7 @@ public class Idle_Trex : StateBase_Trex
 
         if (owner.Search())
         {
-            owner.ChangeState<Move_Trex>();
+            owner.ChangeState<Roar_Trex>();
             return;
         }
 

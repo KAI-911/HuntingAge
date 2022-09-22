@@ -34,7 +34,7 @@ public class Wandering_Trex : StateBase_Trex
         if (owner.ReceivedAttackCheck()) return;
         if (owner.Search())
         {
-            owner.ChangeState<Move_Trex>();
+            owner.ChangeState<Roar_Trex>();
             return;
         }
         var vec = target - owner.transform.position;
