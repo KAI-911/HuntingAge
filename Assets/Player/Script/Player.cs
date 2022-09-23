@@ -7,7 +7,6 @@ using UnityEngine.SceneManagement;
 using System.Text.RegularExpressions;
 public partial class Player : Singleton<Player>
 {
-    private PlayerStatusData _statusData;
     //リジッドボディー
     private Rigidbody _rigidbody;
     public Rigidbody Rigidbody { get => _rigidbody; set => _rigidbody = value; }
@@ -76,7 +75,6 @@ public partial class Player : Singleton<Player>
     //採取用
     private CollectionScript _collectionScript;
     public CollectionScript CollectionScript { get => _collectionScript; set => _collectionScript = value; }
-    public PlayerStatusData StatusData { get => _statusData; }
 
     //ポップアップ
     private PopImage _popImage;
@@ -85,13 +83,13 @@ public partial class Player : Singleton<Player>
         _rigidbody = GetComponent<Rigidbody>();
         _animator = GetComponent<Animator>();
         _status = GetComponent<Status>();
-        _statusData = GetComponent<PlayerStatusData>();
         _targetRotation = transform.rotation;
         _inputMove = new InputControls();
         _currentState = new VillageState();
         _currentState.OnEnter(this, null);
-        _weaponID = _statusData.Wepon;
         base.Awake();
+        var tmp = JsonDataManager.Load<PlayerSaveData>(GameManager.Instance.PlayerDataPath);
+        _weaponID = tmp.Wepon;
     }
     private void OnEnable()
     {
@@ -315,13 +313,15 @@ public partial class Player : Singleton<Player>
     public void Revival()
     {
         GameManager.Instance.UIItemView.ClearPermanentBuff();
-        _status.MaxHP = _statusData.MaxHP;
-        _status.MaxSP = _statusData.MaxSP;
-        _status.Attack = _statusData.Attack;
-        _status.Defense = _statusData.Defense;
+        _status.MaxHP = GameManager.Instance.StatusData.PlayerSaveData.MaxHP;
+        _status.MaxSP = GameManager.Instance.StatusData.PlayerSaveData.MaxSP;
+        _status.Attack = GameManager.Instance.StatusData.PlayerSaveData.Attack;
+        _status.Defense = GameManager.Instance.StatusData.PlayerSaveData.Defense;
         _status.HP = _status.MaxHP;
         _status.SP = _status.MaxSP;
-
+        Debug.Log("_weaponID" + _weaponID);
+        Debug.Log("PlayerSaveData.Wepon" + GameManager.Instance.StatusData.PlayerSaveData.Wepon);
+        _weaponID = GameManager.Instance.StatusData.PlayerSaveData.Wepon;
         var pos = StartPos.Find(n => n.scene == GameManager.Instance.Quest.QuestData.Field);
         transform.position = pos.pos[0];
         _animator.SetInteger("HP", _status.HP);
@@ -343,10 +343,10 @@ public partial class Player : Singleton<Player>
         if (GameManager.Instance.Quest.IsQuest)
         {
             //ChangeWepon(_weaponID);
-            _status.MaxHP = _statusData.MaxHP;
-            _status.MaxSP = _statusData.MaxSP;
-            _status.Attack = _statusData.Attack;
-            _status.Defense = _statusData.Defense;
+            _status.MaxHP = GameManager.Instance.StatusData.PlayerSaveData.MaxHP;
+            _status.MaxSP = GameManager.Instance.StatusData.PlayerSaveData.MaxSP;
+            _status.Attack = GameManager.Instance.StatusData.PlayerSaveData.Attack;
+            _status.Defense = GameManager.Instance.StatusData.PlayerSaveData.Defense;
             _status.HP = _status.MaxHP;
             _status.SP = _status.MaxSP;
             ChangeState<LocomotionState>();
@@ -354,10 +354,10 @@ public partial class Player : Singleton<Player>
         else
         {
             //DeleteWepon();
-            _status.MaxHP = _statusData.MaxHP;
-            _status.MaxSP = _statusData.MaxSP;
-            _status.Attack = _statusData.Attack;
-            _status.Defense = _statusData.Defense;
+            _status.MaxHP = GameManager.Instance.StatusData.PlayerSaveData.MaxHP;
+            _status.MaxSP = GameManager.Instance.StatusData.PlayerSaveData.MaxSP;
+            _status.Attack = GameManager.Instance.StatusData.PlayerSaveData.Attack;
+            _status.Defense = GameManager.Instance.StatusData.PlayerSaveData.Defense;
             _status.HP = _status.MaxHP;
             _status.SP = _status.MaxSP;
             ChangeState<VillageState>();
@@ -373,8 +373,9 @@ public partial class Player : Singleton<Player>
     }
     public void ChangeWepon(string weponID)
     {
-        if (!GameManager.Instance.WeaponDataList.Dictionary.ContainsKey(weponID)) return;
+        if (!GameManager.Instance.WeaponDataList._weponSaveData.Dictionary.ContainsKey(weponID)) return;
         _weaponID = weponID;
+        GameManager.Instance.StatusData.PlayerSaveData.Wepon = _weaponID;
         //既に武器を持っていたらそれと削除
         if (_weapon != null)
         {
@@ -383,7 +384,8 @@ public partial class Player : Singleton<Player>
             Resources.UnloadUnusedAssets();
         }
         //インスタンス化
-        var path = GameManager.Instance.WeaponDataList.Dictionary[weponID].weaponPath;
+        var path = GameManager.Instance.WeaponDataList._weponSaveData.Dictionary[weponID].weaponPath;
+        Debug.Log(path);
         if (GameManager.Instance.NowScene == Scene.Base)
         {
             _weapon = Instantiate(Resources.Load(path), _weaponParent_village.transform.position, _weaponParent_village.transform.rotation) as GameObject;
@@ -396,7 +398,7 @@ public partial class Player : Singleton<Player>
 
         }
         _weapon.transform.localScale = new Vector3(1, 1, 1);
-        _status.Attack = GameManager.Instance.WeaponDataList.Dictionary[weponID].AttackPoint;
+        _status.Attack = GameManager.Instance.WeaponDataList._weponSaveData.Dictionary[weponID].AttackPoint;
         if (_weaponID.Contains("weapon1"))
         {
             _animator.SetFloat("wepon", 0);
@@ -405,11 +407,10 @@ public partial class Player : Singleton<Player>
         {
             _animator.SetFloat("wepon", 1);
         }
-        if (weponID != _statusData.Wepon)
+        if (weponID != GameManager.Instance.StatusData.PlayerSaveData.Wepon)
         {
-            _statusData.Wepon = weponID;
-            _statusData.Attack = GameManager.Instance.WeaponDataList.Dictionary[weponID].AttackPoint;
-            _statusData.DesrializeDictionary();
+            GameManager.Instance.StatusData.PlayerSaveData.Wepon = weponID;
+            GameManager.Instance.StatusData.PlayerSaveData.Attack = GameManager.Instance.WeaponDataList._weponSaveData.Dictionary[weponID].AttackPoint;
         }
 
 

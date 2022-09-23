@@ -3520,7 +3520,7 @@ MonoBehaviour:
     m_LegacyHeadingDefinition: -1
     m_LegacyVelocityFilterStrength: -1
   m_XAxis:
-    Value: 0.5
+    Value: 0.50006855
     m_SpeedMode: 0
     m_MaxSpeed: 300
     m_AccelTime: 0.1
@@ -3647,7 +3647,7 @@ MonoBehaviour:
     m_LegacyHeadingDefinition: -1
     m_LegacyVelocityFilterStrength: -1
   m_XAxis:
-    Value: 0.5
+    Value: 0.50006855
     m_SpeedMode: 0
     m_MaxSpeed: 300
     m_AccelTime: 0.1
@@ -3819,7 +3819,7 @@ MonoBehaviour:
     m_LegacyHeadingDefinition: -1
     m_LegacyVelocityFilterStrength: -1
   m_XAxis:
-    Value: 0.5
+    Value: 0.50006855
     m_SpeedMode: 0
     m_MaxSpeed: 300
     m_AccelTime: 0.1
@@ -3891,8 +3891,9 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4833442073512086890}
-  m_LocalRotation: {x: 0.018189445, y: 0.000000020489097, z: -0.000000010011718, w: 0.9998346}
-  m_LocalPosition: {x: -7.1054275e-16, y: -0.0000006967305, z: 0.00000031087487}
+  m_LocalRotation: {x: 0.01818943, y: 0.0000000055879354, z: -0.0000000027939677,
+    w: 0.9998346}
+  m_LocalPosition: {x: -7.993606e-16, y: -0.0000010450958, z: 0.00000046631231}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -4014,9 +4015,9 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4833442073679365379}
-  m_LocalRotation: {x: -0.018141508, y: 0.000000030733645, z: -0.000000013387762,
+  m_LocalRotation: {x: -0.018141508, y: 0.000000035390258, z: -0.000000015716068,
     w: 0.9998355}
-  m_LocalPosition: {x: -7.1054275e-16, y: -0.0000006967305, z: 0.00000031087487}
+  m_LocalPosition: {x: -5.3290707e-16, y: -0.0000006967305, z: 0.00000031087487}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -4229,9 +4230,9 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4833442074418402083}
-  m_LocalRotation: {x: -0.000000029802326, y: 0.000000027008356, z: -0.000000011874364,
+  m_LocalRotation: {x: -0.000000059604645, y: -0.0000000018626451, z: 1.1641532e-10,
     w: 1}
-  m_LocalPosition: {x: -7.1054275e-16, y: -0.0000006967305, z: 0.00000031087487}
+  m_LocalPosition: {x: -5.3290707e-16, y: -0.0000006967305, z: 0.00000031087487}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -4345,8 +4346,8 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4833442074856232027}
-  m_LocalRotation: {x: 0.20829682, y: 0.00828775, z: -0.0017650924, w: 0.97802895}
-  m_LocalPosition: {x: -0.54801935, y: 32.13355, z: -32.333347}
+  m_LocalRotation: {x: 0.20829682, y: 0.008288864, z: -0.0017653297, w: 0.97802895}
+  m_LocalPosition: {x: -0.54809564, y: 32.13355, z: -32.333347}
   m_LocalScale: {x: 10, y: 10, z: 10}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -4504,7 +4505,7 @@ MonoBehaviour:
     m_LegacyHeadingDefinition: -1
     m_LegacyVelocityFilterStrength: -1
   m_XAxis:
-    Value: 0.5
+    Value: 0.50006855
     m_SpeedMode: 0
     m_MaxSpeed: 300
     m_AccelTime: 0.2
@@ -4824,7 +4825,6 @@ GameObject:
   - component: {fileID: 1331165932923879208}
   - component: {fileID: 1842739017157591613}
   - component: {fileID: 1331165932923879222}
-  - component: {fileID: 5246227396808778926}
   - component: {fileID: 4251369887862181071}
   m_Layer: 6
   m_Name: player_cloth
@@ -5010,25 +5010,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _partType: 2
---- !u!114 &5246227396808778926
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5751866540782452716}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 20fdb7ab447456a43b15ddefb8f5d346, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  DictionaryData: {fileID: 11400000, guid: 749bd347cb326b94688c74026ae97f31, type: 2}
-  _maxHP: 100
-  _maxSP: 100
-  _attack: 100
-  _defense: 100
-  _wepon: weapon101
-  modifyValues: 0
 --- !u!81 &4251369887862181071
 AudioListener:
   m_ObjectHideFlags: 0

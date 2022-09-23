@@ -20,6 +20,7 @@ public class GameManager : Singleton<GameManager>
     private UIPoach _UIPoachList;
     private WeaponDataList _weaponDataList;
     private EnemyDataList _enemyDataList;
+    private PlayerStatusData _playerStatusData;
     private QuestDataList _questDataList;
     private QuestHolder _questHolderData;
     private SettingDataList _settingDataList;
@@ -30,6 +31,7 @@ public class GameManager : Singleton<GameManager>
     [SerializeField] private LookAtCamera _lookAtCamera;
     private bool _levelUp;
     private Report _report;
+    private InitData _initData;
     public Scene VillageScene { get => _villageScene; }
     public Scene NowScene { get => _nowScene; set => _nowScene = value; }
     public Quest Quest { get => _quest; set => _quest = value; }
@@ -46,12 +48,35 @@ public class GameManager : Singleton<GameManager>
     public SettingDataList SettingDataList { get => _settingDataList; }
     public QuestDataList QuestDataList { get => _questDataList; }
     public QuestHolder QuestHolderData { get => _questHolderData; }
+    public PlayerStatusData StatusData { get => _playerStatusData; }
+
     public bool LevelUp { get => _levelUp; set => _levelUp = value; }
     public Report Report { get => _report; }
     public LookAtCamera LookAtCamera { get => _lookAtCamera; }
+    public string VillageDataPath { get => _villageDataPath; }
+    public string SettingDataPath { get => _settingDataPath; }
+    public string MaterialDataPath { get => _materialDataPath; }
+    public string ItemDataPath { get => _itemDataPath; }
+    public string QuestDataPath { get => _questDataPath; }
+    public string WeponDataPath { get => _weponDataPath; }
+    public string PlayerDataPath { get => _playerDataPath; }
 
+    private string _villageDataPath;
+    private string _settingDataPath;
+    private string _materialDataPath;
+    private string _itemDataPath;
+    private string _questDataPath;
+    private string _weponDataPath;
+    private string _playerDataPath;
     protected override void Awake()
     {
+        _villageDataPath = Application.persistentDataPath + "/villageData.json";
+        _settingDataPath = Application.persistentDataPath + "/settingData.json";
+        _materialDataPath = Application.persistentDataPath + "/materialData.json";
+        _itemDataPath = Application.persistentDataPath + "/itemData.json";
+        _questDataPath = Application.persistentDataPath + "/questData.json";
+        _weponDataPath = Application.persistentDataPath + "/weponData.json";
+        _playerDataPath = Application.persistentDataPath + "/playerData.json";
         _quest = GetComponent<Quest>();
         _itemCanvas = GetComponent<ItemCanvas>();
         _MaterialDataList = GetComponent<MaterialDataList>();
@@ -62,16 +87,23 @@ public class GameManager : Singleton<GameManager>
         _questDataList = GetComponent<QuestDataList>();
         _questHolderData = GetComponent<QuestHolder>();
         _settingDataList = GetComponent<SettingDataList>();
+        _playerStatusData = GetComponent<PlayerStatusData>();
         _villageData = GetComponent<VillageData>();
         _fadeManager = GetComponentInChildren<FadeManager>();
         _uiItemView = GetComponentInChildren<UIItemView_new>();
         _report = GetComponentInChildren<Report>();
+        _initData = GetComponent<InitData>();
         SceneManager.sceneLoaded += OnSceneLoaded;
+
 
         Cursor.visible = false;
         Cursor.lockState = CursorLockMode.Locked;
         base.Awake();
+        _initData.InitSaveDataLoad();
+        Load();
+
     }
+
     private void OnDestroy()
     {
         SceneManager.sceneLoaded -= OnSceneLoaded;
@@ -98,6 +130,10 @@ public class GameManager : Singleton<GameManager>
     {
         _itemCanvas = GetComponent<ItemCanvas>();
         _player = GameObject.FindWithTag("Player").GetComponent<Player>();
+        Debug.Log("player"+Player.WeaponID);
+        Debug.Log("saveplyer"+StatusData.PlayerSaveData.Wepon);
+        Player.WeaponID = StatusData.PlayerSaveData.Wepon;
+
     }
 
 
@@ -114,8 +150,52 @@ public class GameManager : Singleton<GameManager>
             LookAtCamera.LookAtTarget(obj.transform.position);
         }
     }
+    public void Save()
+    {
+        JsonDataManager.Save(_villageData._saveData, _villageDataPath);
 
+        JsonDataManager.Save(_settingDataList._saveData, _settingDataPath);
 
+        JsonDataManager.Save(_playerStatusData.PlayerSaveData, _playerDataPath);
+
+        _MaterialDataList._materialSaveData.SaveBefore();
+        JsonDataManager.Save(_MaterialDataList._materialSaveData, _materialDataPath);
+
+        ItemDataList._itemSaveData.SaveBefore();
+        JsonDataManager.Save(ItemDataList._itemSaveData, _itemDataPath);
+
+        QuestDataList._saveData.SaveBefore();
+        JsonDataManager.Save(QuestDataList._saveData, _questDataPath);
+
+        _weaponDataList._weponSaveData.SaveBefore();
+        JsonDataManager.Save(_weaponDataList._weponSaveData, _weponDataPath);
+
+    }
+    public void Load()
+    {
+        Debug.Log(StatusData.PlayerSaveData.Wepon);
+
+        //ÉfÅ[É^ì«Ç›çûÇ›
+        _villageData._saveData = JsonDataManager.Load<VillageSaveData>(_villageDataPath);
+
+        _settingDataList._saveData = JsonDataManager.Load<SettingSaveData>(_settingDataPath);
+
+        _playerStatusData.PlayerSaveData = JsonDataManager.Load<PlayerSaveData>(_playerDataPath);
+
+        _MaterialDataList._materialSaveData = JsonDataManager.Load<MaterialSaveData>(_materialDataPath);
+        _MaterialDataList._materialSaveData.LoadAfter();
+
+        ItemDataList._itemSaveData = JsonDataManager.Load<ItemSaveData>(_itemDataPath);
+        ItemDataList._itemSaveData.LoadAfter();
+
+        QuestDataList._saveData = JsonDataManager.Load<QuestSaveData>(_questDataPath);
+        QuestDataList._saveData.LoadAfter();
+
+        _weaponDataList._weponSaveData = JsonDataManager.Load<WeponSaveData>(_weponDataPath);
+        _weaponDataList._weponSaveData.LoadAfter();
+        Debug.Log(StatusData.PlayerSaveData.Wepon);
+
+    }
 
 }
 public enum Scene

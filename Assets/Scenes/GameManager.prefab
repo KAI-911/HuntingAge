@@ -297,7 +297,6 @@ GameObject:
   - component: {fileID: 6145394531166785594}
   - component: {fileID: 6145394531166785595}
   - component: {fileID: 8863779223932431587}
-  - component: {fileID: 7272472733072996591}
   - component: {fileID: 6145394531166785598}
   - component: {fileID: 3791656093424632239}
   - component: {fileID: 5748028480126708164}
@@ -307,6 +306,9 @@ GameObject:
   - component: {fileID: 6523444124006974837}
   - component: {fileID: 6871984960919312386}
   - component: {fileID: 7256111841853537872}
+  - component: {fileID: 3889044858792920726}
+  - component: {fileID: 7791177159754423843}
+  - component: {fileID: 2798414002053050422}
   m_Layer: 0
   m_Name: GameManager
   m_TagString: Untagged
@@ -390,90 +392,89 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9259a729160daf14e90efbeae19f87d6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  DictionaryData: {fileID: 11400000, guid: 35f7a00bd15737e4eb41c6b57643190f, type: 2}
-  keys:
-  - Material000
-  - Material001
-  - Material002
-  - Material003
-  - Material004
-  - Material005
-  - Material006
-  - Material007
-  values:
-  - ID: Material000
-    Name: "\u77F3"
-    IconName: Icon/Stone_UI
-    BoxStackNumber: 9999
-    BoxUINumber: 8
-    BoxHoldNumber: 24
-    PoachStackNumber: 99
-    PoachUINumber: 13
-    PoachHoldNumber: 0
-  - ID: Material001
-    Name: "\u6728"
-    IconName: Icon/Wood_UI
-    BoxStackNumber: 9999
-    BoxUINumber: 5
-    BoxHoldNumber: 920
-    PoachStackNumber: 99
-    PoachUINumber: 5
-    PoachHoldNumber: 0
-  - ID: Material002
-    Name: "\u30C4\u30BF"
-    IconName: Icon/Vine_UI
-    BoxStackNumber: 9999
-    BoxUINumber: 0
-    BoxHoldNumber: 1009
-    PoachStackNumber: 99
-    PoachUINumber: 0
-    PoachHoldNumber: 0
-  - ID: Material003
-    Name: "\u9AA8"
-    IconName: Icon/Bone_UI
-    BoxStackNumber: 9999
-    BoxUINumber: 1
-    BoxHoldNumber: 1067
-    PoachStackNumber: 99
-    PoachUINumber: 4
-    PoachHoldNumber: 0
-  - ID: Material004
-    Name: "\u690D\u7269"
-    IconName: Icon/Botanical_UI
-    BoxStackNumber: 9999
-    BoxUINumber: 2
-    BoxHoldNumber: 874
-    PoachStackNumber: 100
-    PoachUINumber: 2
-    PoachHoldNumber: 0
-  - ID: Material005
-    Name: "\u8089"
-    IconName: Icon/Meat_UI
-    BoxStackNumber: 9999
-    BoxUINumber: 3
-    BoxHoldNumber: 1089
-    PoachStackNumber: 99
-    PoachUINumber: 3
-    PoachHoldNumber: 0
-  - ID: Material006
-    Name: "\u7E4A\u7DAD"
-    IconName: Icon/Fiber_UI
-    BoxStackNumber: 9999
-    BoxUINumber: 6
-    BoxHoldNumber: 1040
-    PoachStackNumber: 99
-    PoachUINumber: 5
-    PoachHoldNumber: 0
-  - ID: Material007
-    Name: "\u76AE"
-    IconName: Icon/Fur_UI
-    BoxStackNumber: 9999
-    BoxUINumber: 7
-    BoxHoldNumber: 1000
-    PoachStackNumber: 99
-    PoachUINumber: 3
-    PoachHoldNumber: 0
-  modifyValues: 0
+  _materialSaveData:
+    _keys:
+    - Material000
+    - Material001
+    - Material002
+    - Material003
+    - Material004
+    - Material005
+    - Material006
+    - Material007
+    _value:
+    - ID: Material000
+      Name: "\u77F3"
+      IconName: Icon/Stone_UI
+      BoxStackNumber: 9999
+      BoxUINumber: 8
+      BoxHoldNumber: 100
+      PoachStackNumber: 99
+      PoachUINumber: 13
+      PoachHoldNumber: 0
+    - ID: Material001
+      Name: "\u6728"
+      IconName: Icon/Wood_UI
+      BoxStackNumber: 9999
+      BoxUINumber: 5
+      BoxHoldNumber: 100
+      PoachStackNumber: 99
+      PoachUINumber: 3
+      PoachHoldNumber: 0
+    - ID: Material002
+      Name: "\u30C4\u30BF"
+      IconName: Icon/Vine_UI
+      BoxStackNumber: 9999
+      BoxUINumber: 0
+      BoxHoldNumber: 100
+      PoachStackNumber: 99
+      PoachUINumber: 3
+      PoachHoldNumber: 0
+    - ID: Material003
+      Name: "\u9AA8"
+      IconName: Icon/Bone_UI
+      BoxStackNumber: 9999
+      BoxUINumber: 1
+      BoxHoldNumber: 100
+      PoachStackNumber: 99
+      PoachUINumber: 4
+      PoachHoldNumber: 0
+    - ID: Material004
+      Name: "\u690D\u7269"
+      IconName: Icon/Botanical_UI
+      BoxStackNumber: 9999
+      BoxUINumber: 2
+      BoxHoldNumber: 100
+      PoachStackNumber: 100
+      PoachUINumber: 5
+      PoachHoldNumber: 0
+    - ID: Material005
+      Name: "\u8089"
+      IconName: Icon/Meat_UI
+      BoxStackNumber: 9999
+      BoxUINumber: 3
+      BoxHoldNumber: 100
+      PoachStackNumber: 99
+      PoachUINumber: 4
+      PoachHoldNumber: 0
+    - ID: Material006
+      Name: "\u7E4A\u7DAD"
+      IconName: Icon/Fiber_UI
+      BoxStackNumber: 9999
+      BoxUINumber: 6
+      BoxHoldNumber: 100
+      PoachStackNumber: 99
+      PoachUINumber: 5
+      PoachHoldNumber: 0
+    - ID: Material007
+      Name: "\u76AE"
+      IconName: Icon/Fur_UI
+      BoxStackNumber: 9999
+      BoxUINumber: 7
+      BoxHoldNumber: 100
+      PoachStackNumber: 99
+      PoachUINumber: 3
+      PoachHoldNumber: 0
 --- !u!114 &8863779223932431587
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -493,12 +494,14 @@ MonoBehaviour:
   - Dodo
   - Deer
   - Rhino
+  - BEGRhino
+  - BEGT-rex
   values:
   - ID: T-rex
     DisplayName: "\u30C6\u30A3\u30E9\u30CE\u30B5\u30A6\u30EB\u30B9"
     InstanceName: Enemy/T-rex
-    IconName: 
-    DeathCount: 4
+    IconName: Icon/T-Rex_Icon
+    DeathCount: 0
     EnemyPos:
     - scene: 2
       pos:
@@ -523,8 +526,8 @@ MonoBehaviour:
   - ID: Wolf
     DisplayName: "\u72FC"
     InstanceName: Enemy/Wolf
-    IconName: 
-    DeathCount: 6
+    IconName: Icon/Wolf_Icon
+    DeathCount: 0
     EnemyPos:
     - scene: 2
       pos:
@@ -544,8 +547,8 @@ MonoBehaviour:
   - ID: Dodo
     DisplayName: "\u30C9\u30FC\u30C9\u30FC"
     InstanceName: Enemy/Dodo
-    IconName: 
-    DeathCount: 9
+    IconName: Icon/Dodo_Icon
+    DeathCount: 3
     EnemyPos:
     - scene: 2
       pos:
@@ -581,8 +584,8 @@ MonoBehaviour:
   - ID: Deer
     DisplayName: "\u30B7\u30AB"
     InstanceName: Enemy/Deer
-    IconName: 
-    DeathCount: 4
+    IconName: Icon/Deer
+    DeathCount: 0
     EnemyPos:
     - scene: 2
       pos:
@@ -610,8 +613,8 @@ MonoBehaviour:
   - ID: Rhino
     DisplayName: "\u30B5\u30A4"
     InstanceName: Enemy/Rhino
-    IconName: 
-    DeathCount: 4
+    IconName: Icon/Rhino
+    DeathCount: 5
     EnemyPos:
     - scene: 2
       pos:
@@ -628,23 +631,64 @@ MonoBehaviour:
       - {x: 219.50482, y: 9.998177, z: -132.98254}
       - {x: 191.42845, y: 9.998169, z: -236.61649}
       - {x: 153.47264, y: 9.998215, z: -196.00914}
-  modifyValues: 0
---- !u!114 &7272472733072996591
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8541005799369741361}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ed82f81f23381fc498ab528251eed0c4, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  DictionaryData: {fileID: 11400000, guid: ba2168d9003022341a89bc2a440aba61, type: 2}
-  villageLevel: 6
-  blacksmithLevel: 6
-  kitchenLevel: 6
+  - ID: BEGT-rex
+    DisplayName: "\u30C6\u30A3\u30E9\u30CE\u30B5\u30A6\u30EB\u30B9"
+    InstanceName: Enemy/BEGT-rex
+    IconName: Icon/T-Rex_Icon
+    DeathCount: 1
+    EnemyPos:
+    - scene: 2
+      pos:
+      - {x: 10, y: 0, z: 10}
+      - {x: 10, y: 0, z: -10}
+      - {x: -10, y: 0, z: 10}
+      - {x: -10, y: 0, z: -10}
+    - scene: 1
+      pos:
+      - {x: -50.52426, y: 99.99999, z: -97.76355}
+      - {x: -135.76709, y: 99.999985, z: -110.859825}
+      - {x: -244.40968, y: 99.99999, z: -118.52948}
+      - {x: -144.74881, y: 100, z: -136.18365}
+      - {x: -124.25145, y: 99.99999, z: -164.23564}
+      - {x: -188.7076, y: 100, z: -179.18713}
+      - {x: -168.48102, y: 100, z: -203.50473}
+      - {x: -133.4254, y: 100, z: -208.51352}
+      - {x: -113.718376, y: 100, z: -230.259}
+      - {x: -155.50241, y: 100, z: -240.03719}
+      - {x: -103.577545, y: 100, z: -241.82947}
+      - {x: -130.2387, y: 100.00001, z: -260.53198}
+      - {x: -145.97498, y: 100, z: -265.394}
+      - {x: -111.66462, y: 100, z: -270.5174}
+  - ID: BEGRhino
+    DisplayName: "\u30B5\u30A4"
+    InstanceName: Enemy/BEGRhino
+    IconName: Icon/Rhino
+    DeathCount: 1
+    EnemyPos:
+    - scene: 2
+      pos:
+      - {x: 10, y: 0, z: 10}
+      - {x: 10, y: 0, z: -10}
+      - {x: -10, y: 0, z: 10}
+      - {x: -10, y: 0, z: -10}
+    - scene: 1
+      pos:
+      - {x: -192.46094, y: 90.00183, z: 149.46101}
+      - {x: -178.21191, y: 90.00185, z: 113.22269}
+      - {x: -167.85713, y: 90.00182, z: 149.5953}
+      - {x: -154.76239, y: 89.93108, z: 24.693747}
+      - {x: -114.41537, y: 90.00183, z: 104.02315}
+      - {x: -74.465126, y: 90.00183, z: 92.18056}
+      - {x: -212.43762, y: 90.00182, z: 87.82808}
+      - {x: -247.38625, y: 90.00183, z: 66.45642}
+      - {x: -187.70955, y: 90.00185, z: 208.81502}
+      - {x: -240.80759, y: 90.00183, z: 116.11919}
+      - {x: -146.2487, y: 90.00185, z: 85.06423}
+      - {x: -230.52274, y: 90.00183, z: 129.91852}
+      - {x: -245.22673, y: 90.00183, z: 177.12398}
+      - {x: -219.14198, y: 90.00183, z: 229.85126}
+      - {x: -188.84155, y: 90.001816, z: 256.17664}
+      - {x: -147.68164, y: 90.00185, z: 215.08179}
   modifyValues: 0
 --- !u!114 &6145394531166785598
 MonoBehaviour:
@@ -671,175 +715,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2db3d693f1e97034a9708bcf32d36d80, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  DictionaryData: {fileID: 11400000, guid: ebdbcb9679cddaf4a8f582e945f5c242, type: 2}
-  keys:
-  - weapon101
-  - weapon102
-  - weapon103
-  - weapon201
-  - weapon202
-  - weapon203
-  - weapon301
-  - weapon302
-  - weapon303
-  values:
-  - ID: weapon101
-    EnhancementID: weapon102
-    Name: "\u6728\u306E\u65A7"
-    weaponPath: weapon/Axe_wood
-    IconPass: Icon/Axe_wood_UI
-    BoxUINumber: 0
-    CreatableLevel: 1
-    BoxPossession: 1
-    AttackPoint: 50
-    WeaponType: 0
-    ProductionNeedMaterialLst:
-    - materialID: Material001
-      requiredCount: 5
-    EnhancementNeedMaterialLst:
-    - materialID: Material001
-      requiredCount: 3
-    - materialID: Material000
-      requiredCount: 2
-  - ID: weapon102
-    EnhancementID: weapon103
-    Name: "\u77F3\u306E\u65A7"
-    weaponPath: weapon/Axe
-    IconPass: Icon/Axe_UI
-    BoxUINumber: 1
-    CreatableLevel: 2
-    BoxPossession: 1
-    AttackPoint: 100
-    WeaponType: 0
-    ProductionNeedMaterialLst:
-    - materialID: Material001
-      requiredCount: 10
-    - materialID: Material000
-      requiredCount: 5
-    EnhancementNeedMaterialLst:
-    - materialID: Material001
-      requiredCount: 7
-    - materialID: Material000
-      requiredCount: 3
-    - materialID: Material003
-      requiredCount: 2
-  - ID: weapon103
-    EnhancementID: empty
-    Name: "\u9AA8\u65A7"
-    weaponPath: weapon/Axe_bone
-    IconPass: Icon/Axe_UI
-    BoxUINumber: 2
-    CreatableLevel: 5
-    BoxPossession: 1
-    AttackPoint: 150
-    WeaponType: 0
-    ProductionNeedMaterialLst:
-    - materialID: Material001
-      requiredCount: 10
-    - materialID: Material000
-      requiredCount: 5
-    - materialID: Material003
-      requiredCount: 5
-    EnhancementNeedMaterialLst: []
-  - ID: weapon201
-    EnhancementID: weapon202
-    Name: "\u6728\u306E\u69CD"
-    weaponPath: weapon/Spear_wood
-    IconPass: Icon/Spear_wood_UI
-    BoxUINumber: 3
-    CreatableLevel: 1
-    BoxPossession: 1
-    AttackPoint: 50
-    WeaponType: 1
-    ProductionNeedMaterialLst:
-    - materialID: Material001
-      requiredCount: 5
-    EnhancementNeedMaterialLst:
-    - materialID: Material001
-      requiredCount: 3
-    - materialID: Material000
-      requiredCount: 2
-  - ID: weapon202
-    EnhancementID: weapon203
-    Name: "\u77F3\u306E\u69CD"
-    weaponPath: weapon/Spear
-    IconPass: Icon/Spear_UI
-    BoxUINumber: 4
-    CreatableLevel: 3
-    BoxPossession: 1
-    AttackPoint: 100
-    WeaponType: 1
-    ProductionNeedMaterialLst:
-    - materialID: Material001
-      requiredCount: 10
-    - materialID: Material000
-      requiredCount: 5
-    EnhancementNeedMaterialLst:
-    - materialID: Material001
-      requiredCount: 7
-    - materialID: Material000
-      requiredCount: 3
-    - materialID: Material003
-      requiredCount: 2
-  - ID: weapon203
-    EnhancementID: empty
-    Name: "\u9AA8\u69CD"
-    weaponPath: weapon/Spear_bone
-    IconPass: Icon/Spear_UI
-    BoxUINumber: 5
-    CreatableLevel: 6
-    BoxPossession: 1
-    AttackPoint: 150
-    WeaponType: 1
-    ProductionNeedMaterialLst:
-    - materialID: Material001
-      requiredCount: 10
-    - materialID: Material000
-      requiredCount: 5
-    - materialID: Material000
-      requiredCount: 5
-    EnhancementNeedMaterialLst: []
-  - ID: weapon301
-    EnhancementID: empty
-    Name: "\u5F13"
-    weaponPath: weapon/Spear
-    IconPass: 6
-    BoxUINumber: 0
-    CreatableLevel: 1
-    BoxPossession: 0
-    AttackPoint: 0
-    WeaponType: 2
-    ProductionNeedMaterialLst:
-    - materialID: Material001
-      requiredCount: 5
-    - materialID: Material002
-      requiredCount: 3
-    EnhancementNeedMaterialLst: []
-  - ID: weapon302
-    EnhancementID: weapon303
-    Name: "\u8D85\u5F13"
-    weaponPath: weapon/Spear
-    IconPass: 
-    BoxUINumber: 7
-    CreatableLevel: 4
-    BoxPossession: 0
-    AttackPoint: 0
-    WeaponType: 2
-    ProductionNeedMaterialLst: []
-    EnhancementNeedMaterialLst: []
-  - ID: weapon303
-    EnhancementID: empty
-    Name: "\u7D76\u5F13"
-    weaponPath: weapon/Spear
-    IconPass: 
-    BoxUINumber: 8
-    CreatableLevel: 7
-    BoxPossession: 0
-    AttackPoint: 0
-    WeaponType: 2
-    ProductionNeedMaterialLst: []
-    EnhancementNeedMaterialLst: []
-  modifyValues: 0
+  _weponSaveData:
+    keys: []
+    values: []
 --- !u!114 &5748028480126708164
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -852,77 +730,76 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4942ff73c6e7e374695e722c7b9c7df8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  DictionaryData: {fileID: 11400000, guid: 3eb9340a68e4a0c48a6dae4855fade1e, type: 2}
-  keys:
-  - Item000
-  - Item001
-  - Item002
-  values:
-  - baseData:
-      ID: Item000
-      Name: "\u30B9\u30FC\u30D7"
-      IconName: Icon/Soup_UI
-      BoxStackNumber: 9999
-      BoxUINumber: 15
-      BoxHoldNumber: 3043
-      PoachStackNumber: 10
-      PoachUINumber: 0
-      PoachHoldNumber: 10
-    Use: 0
-    Permanent: 0
-    Time: 10
-    UpValue: 50
-    ItemType: 0
-    CreatableLevel: 1
-    NeedMaterialLst:
-    - materialID: Material004
-      requiredCount: 2
-    - materialID: Material005
-      requiredCount: 2
-    FlavorText: "\u98DF\u3079\u308B\u3068\u4F53\u529B\u3092\u56DE\u5FA9\u3055\u305B\u308B\u30B9\u30FC\u30D7\u3002"
-  - baseData:
-      ID: Item001
-      Name: "\u3053\u3093\u304C\u308A\u8089"
-      IconName: Icon/GrilledMeat_UI
-      BoxStackNumber: 9999
-      BoxUINumber: 17
-      BoxHoldNumber: 3022
-      PoachStackNumber: 10
-      PoachUINumber: 2
-      PoachHoldNumber: 10
-    Use: 0
-    Permanent: 1
-    Time: 120
-    UpValue: 50
-    ItemType: 1
-    CreatableLevel: 2
-    NeedMaterialLst:
-    - materialID: Material005
-      requiredCount: 3
-    FlavorText: "\u98DF\u3079\u308B\u3068\u653B\u6483\u529B\u3092\u4E0A\u3052\u308B\u3053\u3068\u304C\u3067\u304D\u308B\u304A\u8089\u3002"
-  - baseData:
-      ID: Item002
-      Name: "\u308A\u3093\u3054"
-      IconName: Icon/Fruit_UI
-      BoxStackNumber: 9999
-      BoxUINumber: 16
-      BoxHoldNumber: 2988
-      PoachStackNumber: 10
-      PoachUINumber: 1
-      PoachHoldNumber: 10
-    Use: 0
-    Permanent: 0
-    Time: 120
-    UpValue: 50
-    ItemType: 2
-    CreatableLevel: 2
-    NeedMaterialLst:
-    - materialID: Material001
-      requiredCount: 3
-    - materialID: Material005
-      requiredCount: 6
-    FlavorText: "\u98DF\u3079\u308B\u3068\u4E00\u5B9A\u81EA\u6642\u9593\u9632\u5FA1\u529B\u3092\u9AD8\u3081\u308B\u3053\u3068\u304C\u3067\u304D\u308B\u30EA\u30F3\u30B4\u3002"
-  modifyValues: 0
+  _itemSaveData:
+    keys:
+    - Item000
+    - Item001
+    - Item002
+    values:
+    - baseData:
+        ID: Item000
+        Name: "\u30B9\u30FC\u30D7"
+        IconName: Icon/Soup_UI
+        BoxStackNumber: 9999
+        BoxUINumber: 15
+        BoxHoldNumber: 103
+        PoachStackNumber: 10
+        PoachUINumber: 0
+        PoachHoldNumber: 10
+      Use: 0
+      Permanent: 0
+      Time: 10
+      UpValue: 50
+      ItemType: 0
+      CreatableLevel: 1
+      NeedMaterialLst:
+      - materialID: Material004
+        requiredCount: 2
+      - materialID: Material005
+        requiredCount: 2
+      FlavorText: "\u98DF\u3079\u308B\u3068\u4F53\u529B\u3092\u56DE\u5FA9\u3055\u305B\u308B\u30B9\u30FC\u30D7\u3002"
+    - baseData:
+        ID: Item001
+        Name: "\u3053\u3093\u304C\u308A\u8089"
+        IconName: Icon/GrilledMeat_UI
+        BoxStackNumber: 9999
+        BoxUINumber: 17
+        BoxHoldNumber: 102
+        PoachStackNumber: 10
+        PoachUINumber: 2
+        PoachHoldNumber: 10
+      Use: 0
+      Permanent: 1
+      Time: 120
+      UpValue: 50
+      ItemType: 1
+      CreatableLevel: 2
+      NeedMaterialLst:
+      - materialID: Material005
+        requiredCount: 3
+      FlavorText: "\u98DF\u3079\u308B\u3068\u653B\u6483\u529B\u3092\u4E0A\u3052\u308B\u3053\u3068\u304C\u3067\u304D\u308B\u304A\u8089\u3002"
+    - baseData:
+        ID: Item002
+        Name: "\u308A\u3093\u3054"
+        IconName: Icon/Fruit_UI
+        BoxStackNumber: 9999
+        BoxUINumber: 16
+        BoxHoldNumber: 100
+        PoachStackNumber: 10
+        PoachUINumber: 1
+        PoachHoldNumber: 10
+      Use: 0
+      Permanent: 0
+      Time: 120
+      UpValue: 50
+      ItemType: 2
+      CreatableLevel: 3
+      NeedMaterialLst:
+      - materialID: Material001
+        requiredCount: 3
+      - materialID: Material005
+        requiredCount: 6
+      FlavorText: "\u98DF\u3079\u308B\u3068\u4E00\u5B9A\u81EA\u6642\u9593\u9632\u5FA1\u529B\u3092\u9AD8\u3081\u308B\u3053\u3068\u304C\u3067\u304D\u308B\u30EA\u30F3\u30B4\u3002"
 --- !u!114 &6736416230661207585
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -962,14 +839,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d27a8818af7d94c40af53c4edf3c367b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  DictionaryData: {fileID: 11400000, guid: 019398f9683afc248a45a060c81d272d, type: 2}
-  _BGMVolume: 0.02
-  _SEVolume: 0.04
-  _UIVolume: 0.04
-  _CameraVolume: 254
-  _CameraMaxVolume: 600
-  _CameraMinVolume: 100
-  modifyValues: 0
+  _saveData:
+    BGMVolume: 0.1
+    SEVolume: 0.1
+    UIVolume: 0.1
+    CameraVolume: 150
+    CameraMaxVolume: 900
+    CameraMinVolume: 100
 --- !u!114 &7904424780519165244
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1009,334 +885,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8d473cdf783ca2148b8e0d5f7ef1fa51, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  DictionaryData: {fileID: 11400000, guid: 8b360b659d88f3c4395a3e0f665d9de9, type: 2}
-  keys:
-  - Quest001
-  - Quest002
-  - Quest003
-  - Quest004
-  - Quest005
-  - Quest006
-  - Quest007
-  - Quest008
-  values:
-  - ID: Quest001
-    Name: "\u30AF\u30A8\u30B9\u30C8\uFF11"
-    ClearedFlg: 1
-    KeyQuestFlg: 0
-    Clear: 0
-    Failure: 1
-    Field: 1
-    TargetName:
-    - name: T-rex
-      number: 1
-    OtherName:
-    - name: Wolf
-      number: 1
-    - name: Dodo
-      number: 1
-    QuestRewardDatas:
-    - name: Material005
-      number: 3
-      probability: 100
-    - name: Material005
-      number: 2
-      probability: 98
-    - name: Material005
-      number: 1
-      probability: 80
-    - name: Material003
-      number: 5
-      probability: 70
-    - name: Material003
-      number: 3
-      probability: 90
-    - name: Material003
-      number: 2
-      probability: 90
-    - name: Material000
-      number: 1
-      probability: 100
-    - name: Material000
-      number: 3
-      probability: 100
-    - name: Material000
-      number: 2
-      probability: 80
-  - ID: Quest002
-    Name: "\u30AF\u30A8\u30B9\u30C8\uFF12"
-    ClearedFlg: 1
-    KeyQuestFlg: 0
-    Clear: 0
-    Failure: 2
-    Field: 1
-    TargetName:
-    - name: Wolf
-      number: 5
-    OtherName:
-    - name: Wolf
-      number: 10
-    QuestRewardDatas:
-    - name: Material002
-      number: 3
-      probability: 100
-    - name: Material005
-      number: 5
-      probability: 95
-    - name: Material001
-      number: 10
-      probability: 95
-    - name: Material000
-      number: 3
-      probability: 70
-    - name: Material002
-      number: 6
-      probability: 90
-  - ID: Quest003
-    Name: "\u30AF\u30A8\u30B9\u30C8\uFF13"
-    ClearedFlg: 1
-    KeyQuestFlg: 0
-    Clear: 0
-    Failure: 2
-    Field: 2
-    TargetName:
-    - name: Dodo
-      number: 3
-    OtherName: []
-    QuestRewardDatas:
-    - name: Material006
-      number: 10
-      probability: 100
-    - name: Material006
-      number: 10
-      probability: 100
-    - name: Item000
-      number: 1
-      probability: 70
-    - name: Item001
-      number: 1
-      probability: 70
-    - name: Item002
-      number: 1
-      probability: 70
-  - ID: Quest004
-    Name: "\u30AF\u30A8\u30B9\u30C8\uFF14"
-    ClearedFlg: 0
-    KeyQuestFlg: 0
-    Clear: 1
-    Failure: 2
-    Field: 1
-    TargetName:
-    - name: Material003
-      number: 10
-    OtherName:
-    - name: Dodo
-      number: 10
-    QuestRewardDatas:
-    - name: Material005
-      number: 3
-      probability: 100
-    - name: Material005
-      number: 2
-      probability: 98
-    - name: Material005
-      number: 1
-      probability: 80
-    - name: Material003
-      number: 5
-      probability: 70
-    - name: Material003
-      number: 3
-      probability: 90
-    - name: Material003
-      number: 2
-      probability: 90
-    - name: Material000
-      number: 1
-      probability: 100
-    - name: Material000
-      number: 3
-      probability: 100
-    - name: Material000
-      number: 2
-      probability: 80
-  - ID: Quest005
-    Name: "\u30AF\u30A8\u30B9\u30C8\uFF15"
-    ClearedFlg: 1
-    KeyQuestFlg: 0
-    Clear: 1
-    Failure: 2
-    Field: 1
-    TargetName:
-    - name: Material001
-      number: 1
-    OtherName: []
-    QuestRewardDatas:
-    - name: Material005
-      number: 3
-      probability: 100
-    - name: Material005
-      number: 2
-      probability: 98
-    - name: Material005
-      number: 1
-      probability: 80
-    - name: Material003
-      number: 5
-      probability: 70
-    - name: Material003
-      number: 3
-      probability: 90
-    - name: Material003
-      number: 2
-      probability: 90
-    - name: Material000
-      number: 1
-      probability: 100
-    - name: Material000
-      number: 3
-      probability: 100
-    - name: Material000
-      number: 2
-      probability: 80
-  - ID: Quest006
-    Name: "\u30AF\u30A8\u30B9\u30C8\uFF16"
-    ClearedFlg: 1
-    KeyQuestFlg: 0
-    Clear: 0
-    Failure: 4
-    Field: 1
-    TargetName:
-    - name: Deer
-      number: 1
-    OtherName:
-    - name: Deer
-      number: 9
-    QuestRewardDatas:
-    - name: Material005
-      number: 3
-      probability: 100
-    - name: Material005
-      number: 2
-      probability: 98
-    - name: Material005
-      number: 1
-      probability: 80
-    - name: Material003
-      number: 5
-      probability: 70
-    - name: Material003
-      number: 3
-      probability: 90
-    - name: Material003
-      number: 2
-      probability: 90
-    - name: Material000
-      number: 1
-      probability: 100
-    - name: Material000
-      number: 3
-      probability: 100
-    - name: Material000
-      number: 2
-      probability: 80
-  - ID: Quest007
-    Name: "\u30AF\u30A8\u30B9\u30C8\uFF17"
-    ClearedFlg: 1
-    KeyQuestFlg: 0
-    Clear: 0
-    Failure: 4
-    Field: 1
-    TargetName:
-    - name: Rhino
-      number: 1
-    OtherName: []
-    QuestRewardDatas:
-    - name: Material005
-      number: 3
-      probability: 100
-    - name: Material005
-      number: 2
-      probability: 98
-    - name: Material005
-      number: 1
-      probability: 80
-    - name: Material003
-      number: 5
-      probability: 70
-    - name: Material003
-      number: 3
-      probability: 90
-    - name: Material003
-      number: 2
-      probability: 90
-    - name: Material000
-      number: 1
-      probability: 100
-    - name: Material000
-      number: 3
-      probability: 100
-    - name: Material000
-      number: 2
-      probability: 80
-  - ID: Quest008
-    Name: "\u30AA\u30FC\u30EB\u30B9\u30BF\u30FC\u30BA"
-    ClearedFlg: 1
-    KeyQuestFlg: 0
-    Clear: 0
-    Failure: 0
-    Field: 1
-    TargetName:
-    - name: T-rex
-      number: 1
-    - name: Wolf
-      number: 1
-    - name: Dodo
-      number: 1
-    - name: Deer
-      number: 1
-    - name: Rhino
-      number: 1
-    OtherName:
-    - name: T-rex
-      number: 1
-    - name: Wolf
-      number: 4
-    - name: Dodo
-      number: 4
-    - name: Deer
-      number: 4
-    - name: Rhino
-      number: 4
-    QuestRewardDatas:
-    - name: Material005
-      number: 3
-      probability: 100
-    - name: Material005
-      number: 2
-      probability: 98
-    - name: Material005
-      number: 1
-      probability: 80
-    - name: Material003
-      number: 5
-      probability: 70
-    - name: Material003
-      number: 3
-      probability: 90
-    - name: Material003
-      number: 2
-      probability: 90
-    - name: Material000
-      number: 1
-      probability: 100
-    - name: Material000
-      number: 3
-      probability: 100
-    - name: Material000
-      number: 2
-      probability: 80
-  modifyValues: 0
+  _saveData:
+    keys: []
+    values: []
 --- !u!114 &6871984960919312386
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1354,24 +905,22 @@ MonoBehaviour:
   - QuestHolder1
   - QuestHolder2
   - QuestHolder3
-  - QuestHolder4
-  - QuestHolder5
-  - QuestHolder6
   values:
   - Quests:
     - Quest001
     - Quest002
     - Quest003
-  - Quests:
     - Quest004
   - Quests:
     - Quest005
-  - Quests:
     - Quest006
-  - Quests:
     - Quest007
-  - Quests:
     - Quest008
+  - Quests:
+    - Quest009
+    - Quest010
+    - Quest011
+    - Quest012
   modifyValues: 0
 --- !u!114 &7256111841853537872
 MonoBehaviour:
@@ -1390,6 +939,804 @@ MonoBehaviour:
     type: 3}
   TextPrefab: {fileID: 9123999925664973099, guid: 7e845aabbef9588409138ba440dc835e,
     type: 3}
+--- !u!114 &3889044858792920726
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8541005799369741361}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ed82f81f23381fc498ab528251eed0c4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _saveData:
+    VillageLevel: 0
+    BlacksmithLevel: 0
+    KitchenLevel: 0
+--- !u!114 &7791177159754423843
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8541005799369741361}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 20fdb7ab447456a43b15ddefb8f5d346, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _playerSaveData:
+    MaxHP: 100
+    MaxSP: 100
+    Attack: 100
+    Defense: 100
+    Wepon: weapon101
+--- !u!114 &2798414002053050422
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8541005799369741361}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1b2bce6ea283fed4f82e16b4d240837f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _villageSaveData_Init:
+    VillageLevel: 1
+    BlacksmithLevel: 1
+    KitchenLevel: 1
+  _settingSaveData_Init:
+    BGMVolume: 0.1
+    SEVolume: 0.1
+    UIVolume: 0.1
+    CameraVolume: 150
+    CameraMaxVolume: 900
+    CameraMinVolume: 100
+  _playerSaveData_Init:
+    MaxHP: 100
+    MaxSP: 100
+    Attack: 100
+    Defense: 100
+    Wepon: weapon101
+  _materialSaveData_Init:
+    _keys:
+    - Material000
+    - Material001
+    - Material002
+    - Material003
+    - Material004
+    - Material005
+    - Material006
+    - Material007
+    _value:
+    - ID: Material000
+      Name: "\u77F3"
+      IconName: Icon/Stone_UI
+      BoxStackNumber: 9999
+      BoxUINumber: 8
+      BoxHoldNumber: 50
+      PoachStackNumber: 99
+      PoachUINumber: 13
+      PoachHoldNumber: 0
+    - ID: Material001
+      Name: "\u6728"
+      IconName: Icon/Wood_UI
+      BoxStackNumber: 9999
+      BoxUINumber: 5
+      BoxHoldNumber: 50
+      PoachStackNumber: 99
+      PoachUINumber: 3
+      PoachHoldNumber: 0
+    - ID: Material002
+      Name: "\u30C4\u30BF"
+      IconName: Icon/Vine_UI
+      BoxStackNumber: 9999
+      BoxUINumber: 0
+      BoxHoldNumber: 50
+      PoachStackNumber: 99
+      PoachUINumber: 3
+      PoachHoldNumber: 0
+    - ID: Material003
+      Name: "\u9AA8"
+      IconName: Icon/Bone_UI
+      BoxStackNumber: 9999
+      BoxUINumber: 1
+      BoxHoldNumber: 50
+      PoachStackNumber: 99
+      PoachUINumber: 4
+      PoachHoldNumber: 0
+    - ID: Material004
+      Name: "\u690D\u7269"
+      IconName: Icon/Botanical_UI
+      BoxStackNumber: 9999
+      BoxUINumber: 2
+      BoxHoldNumber: 50
+      PoachStackNumber: 99
+      PoachUINumber: 5
+      PoachHoldNumber: 0
+    - ID: Material005
+      Name: "\u8089"
+      IconName: Icon/Meat_UI
+      BoxStackNumber: 9999
+      BoxUINumber: 3
+      BoxHoldNumber: 50
+      PoachStackNumber: 99
+      PoachUINumber: 4
+      PoachHoldNumber: 0
+    - ID: Material006
+      Name: "\u7E4A\u7DAD"
+      IconName: Icon/Fiber_UI
+      BoxStackNumber: 9999
+      BoxUINumber: 6
+      BoxHoldNumber: 50
+      PoachStackNumber: 99
+      PoachUINumber: 5
+      PoachHoldNumber: 0
+    - ID: Material007
+      Name: "\u76AE"
+      IconName: Icon/Fur_UI
+      BoxStackNumber: 9999
+      BoxUINumber: 7
+      BoxHoldNumber: 50
+      PoachStackNumber: 99
+      PoachUINumber: 3
+      PoachHoldNumber: 0
+  _itemSaveData_Init:
+    keys:
+    - Item000
+    - Item001
+    - Item002
+    values:
+    - baseData:
+        ID: Item000
+        Name: "\u30B9\u30FC\u30D7"
+        IconName: Icon/Soup_UI
+        BoxStackNumber: 9999
+        BoxUINumber: 15
+        BoxHoldNumber: 10
+        PoachStackNumber: 10
+        PoachUINumber: 0
+        PoachHoldNumber: 0
+      Use: 0
+      Permanent: 0
+      Time: 10
+      UpValue: 50
+      ItemType: 0
+      CreatableLevel: 1
+      NeedMaterialLst:
+      - materialID: Material004
+        requiredCount: 2
+      - materialID: Material005
+        requiredCount: 2
+      FlavorText: "\u98DF\u3079\u308B\u3068\u4F53\u529B\u3092\u56DE\u5FA9\u3055\u305B\u308B\u30B9\u30FC\u30D7\u3002"
+    - baseData:
+        ID: Item001
+        Name: "\u3053\u3093\u304C\u308A\u8089"
+        IconName: Icon/GrilledMeat_UI
+        BoxStackNumber: 9999
+        BoxUINumber: 17
+        BoxHoldNumber: 0
+        PoachStackNumber: 10
+        PoachUINumber: 2
+        PoachHoldNumber: 0
+      Use: 0
+      Permanent: 1
+      Time: 120
+      UpValue: 50
+      ItemType: 1
+      CreatableLevel: 2
+      NeedMaterialLst:
+      - materialID: Material005
+        requiredCount: 3
+      FlavorText: "\u98DF\u3079\u308B\u3068\u653B\u6483\u529B\u3092\u4E0A\u3052\u308B\u3053\u3068\u304C\u3067\u304D\u308B\u304A\u8089\u3002"
+    - baseData:
+        ID: Item002
+        Name: "\u308A\u3093\u3054"
+        IconName: Icon/Fruit_UI
+        BoxStackNumber: 9999
+        BoxUINumber: 16
+        BoxHoldNumber: 0
+        PoachStackNumber: 10
+        PoachUINumber: 1
+        PoachHoldNumber: 0
+      Use: 0
+      Permanent: 0
+      Time: 120
+      UpValue: 50
+      ItemType: 2
+      CreatableLevel: 3
+      NeedMaterialLst:
+      - materialID: Material001
+        requiredCount: 3
+      - materialID: Material005
+        requiredCount: 6
+      FlavorText: "\u98DF\u3079\u308B\u3068\u4E00\u5B9A\u81EA\u6642\u9593\u9632\u5FA1\u529B\u3092\u9AD8\u3081\u308B\u3053\u3068\u304C\u3067\u304D\u308B\u30EA\u30F3\u30B4\u3002"
+  _questSaveData:
+    keys:
+    - Quest001
+    - Quest002
+    - Quest003
+    - Quest004
+    - Quest005
+    - Quest006
+    - Quest007
+    - Quest008
+    - Quest009
+    - Quest010
+    - Quest011
+    - Quest012
+    values:
+    - ID: Quest001
+      Name: "\u3044\u3056\uFF01\u521D\u4ED5\u4E8B"
+      ClearedFlg: 0
+      KeyQuestFlg: 1
+      Clear: 1
+      Failure: 2
+      Field: 1
+      TargetName:
+      - name: Material001
+        number: 3
+      OtherName:
+      - name: Dodo
+        number: 5
+      - name: Deer
+        number: 3
+      QuestRewardDatas:
+      - name: Material001
+        number: 4
+        probability: 100
+      - name: Material001
+        number: 2
+        probability: 70
+      - name: Material002
+        number: 4
+        probability: 100
+      - name: Material002
+        number: 2
+        probability: 60
+    - ID: Quest002
+      Name: "\u85AC\u8349\u63A1\u53D6"
+      ClearedFlg: 0
+      KeyQuestFlg: 0
+      Clear: 1
+      Failure: 2
+      Field: 1
+      TargetName:
+      - name: Material004
+        number: 5
+      OtherName:
+      - name: Dodo
+        number: 5
+      - name: Deer
+        number: 3
+      - name: Wolf
+        number: 2
+      QuestRewardDatas:
+      - name: Material006
+        number: 5
+        probability: 100
+      - name: Material006
+        number: 3
+        probability: 70
+      - name: Material000
+        number: 6
+        probability: 100
+      - name: Material000
+        number: 8
+        probability: 60
+    - ID: Quest003
+      Name: "\u72FC\u9000\u6CBB"
+      ClearedFlg: 0
+      KeyQuestFlg: 1
+      Clear: 0
+      Failure: 2
+      Field: 1
+      TargetName:
+      - name: Wolf
+        number: 2
+      OtherName:
+      - name: Wolf
+        number: 4
+      QuestRewardDatas:
+      - name: Material005
+        number: 3
+        probability: 100
+      - name: Material005
+        number: 2
+        probability: 80
+      - name: Material003
+        number: 1
+        probability: 100
+      - name: Material003
+        number: 3
+        probability: 40
+    - ID: Quest004
+      Name: "\u30C9\u30FC\u30C9\u30FC\u9000\u6CBB"
+      ClearedFlg: 0
+      KeyQuestFlg: 0
+      Clear: 0
+      Failure: 2
+      Field: 1
+      TargetName:
+      - name: Dodo
+        number: 1
+      OtherName:
+      - name: Dodo
+        number: 9
+      QuestRewardDatas:
+      - name: Material005
+        number: 3
+        probability: 100
+      - name: Material005
+        number: 2
+        probability: 80
+      - name: Material003
+        number: 1
+        probability: 100
+      - name: Material003
+        number: 3
+        probability: 40
+      - name: Material003
+        number: 5
+        probability: 30
+    - ID: Quest005
+      Name: "\u732A\u7A81\u731B\u9032"
+      ClearedFlg: 0
+      KeyQuestFlg: 1
+      Clear: 0
+      Failure: 2
+      Field: 1
+      TargetName:
+      - name: Rhino
+        number: 5
+      OtherName:
+      - name: Rhino
+        number: 5
+      QuestRewardDatas:
+      - name: Material005
+        number: 5
+        probability: 100
+      - name: Material005
+        number: 4
+        probability: 90
+      - name: Material005
+        number: 9
+        probability: 50
+      - name: Material007
+        number: 2
+        probability: 100
+      - name: Material007
+        number: 5
+        probability: 40
+      - name: Material007
+        number: 10
+        probability: 10
+    - ID: Quest006
+      Name: "\u9E7F\u30FB\u3057\u304B\u30FB\u30B7\u30AB"
+      ClearedFlg: 0
+      KeyQuestFlg: 0
+      Clear: 0
+      Failure: 2
+      Field: 1
+      TargetName:
+      - name: Deer
+        number: 3
+      OtherName:
+      - name: Deer
+        number: 4
+      - name: Wolf
+        number: 6
+      QuestRewardDatas:
+      - name: Material003
+        number: 2
+        probability: 100
+      - name: Material003
+        number: 5
+        probability: 70
+      - name: Material002
+        number: 3
+        probability: 100
+      - name: Material002
+        number: 9
+        probability: 40
+      - name: Material005
+        number: 9
+        probability: 100
+    - ID: Quest007
+      Name: "\u9E7F\u3068\u30B5\u30A4\u306E\u8A0E\u4F10"
+      ClearedFlg: 0
+      KeyQuestFlg: 0
+      Clear: 0
+      Failure: 2
+      Field: 1
+      TargetName:
+      - name: Deer
+        number: 2
+      - name: Rhino
+        number: 2
+      OtherName:
+      - name: Deer
+        number: 3
+      - name: Rhino
+        number: 3
+      QuestRewardDatas:
+      - name: Material005
+        number: 1
+        probability: 100
+      - name: Material005
+        number: 5
+        probability: 70
+      - name: Material006
+        number: 5
+        probability: 100
+      - name: Material000
+        number: 5
+        probability: 100
+      - name: Material000
+        number: 5
+        probability: 70
+    - ID: Quest008
+      Name: "\u4E0D\u7A4F\u306A\u5F71"
+      ClearedFlg: 0
+      KeyQuestFlg: 1
+      Clear: 0
+      Failure: 2
+      Field: 1
+      TargetName:
+      - name: Dodo
+        number: 3
+      OtherName:
+      - name: Dodo
+        number: 10
+      - name: T-rex
+        number: 1
+      QuestRewardDatas:
+      - name: Material003
+        number: 2
+        probability: 100
+      - name: Material003
+        number: 5
+        probability: 70
+      - name: Material002
+        number: 3
+        probability: 100
+      - name: Material002
+        number: 9
+        probability: 40
+      - name: Material005
+        number: 9
+        probability: 100
+      - name: Material000
+        number: 9
+        probability: 70
+      - name: Material000
+        number: 5
+        probability: 70
+    - ID: Quest009
+      Name: "\u7D76\u5BFE\u738B\u8005"
+      ClearedFlg: 0
+      KeyQuestFlg: 0
+      Clear: 0
+      Failure: 2
+      Field: 1
+      TargetName:
+      - name: T-rex
+        number: 1
+      OtherName:
+      - name: Wolf
+        number: 5
+      - name: Dodo
+        number: 5
+      - name: Deer
+        number: 5
+      - name: Rhino
+        number: 5
+      QuestRewardDatas:
+      - name: Material003
+        number: 2
+        probability: 100
+      - name: Material003
+        number: 5
+        probability: 70
+      - name: Material002
+        number: 3
+        probability: 100
+      - name: Material002
+        number: 9
+        probability: 40
+      - name: Material005
+        number: 9
+        probability: 100
+      - name: Material000
+        number: 9
+        probability: 70
+      - name: Material000
+        number: 5
+        probability: 70
+    - ID: Quest010
+      Name: "\uFF12\u4F53\u306E\u5F37\u8005"
+      ClearedFlg: 0
+      KeyQuestFlg: 0
+      Clear: 0
+      Failure: 2
+      Field: 1
+      TargetName:
+      - name: T-rex
+        number: 2
+      OtherName: []
+      QuestRewardDatas:
+      - name: Material003
+        number: 2
+        probability: 100
+      - name: Material003
+        number: 5
+        probability: 70
+      - name: Material002
+        number: 3
+        probability: 100
+      - name: Material002
+        number: 9
+        probability: 40
+      - name: Material005
+        number: 9
+        probability: 100
+      - name: Material000
+        number: 9
+        probability: 70
+      - name: Material000
+        number: 5
+        probability: 70
+    - ID: Quest011
+      Name: "\u7A81\u9032\u5730\u7344"
+      ClearedFlg: 0
+      KeyQuestFlg: 0
+      Clear: 0
+      Failure: 2
+      Field: 1
+      TargetName:
+      - name: Rhino
+        number: 10
+      OtherName:
+      - name: Rhino
+        number: 5
+      QuestRewardDatas:
+      - name: Material003
+        number: 2
+        probability: 100
+      - name: Material003
+        number: 5
+        probability: 70
+      - name: Material002
+        number: 3
+        probability: 100
+      - name: Material002
+        number: 9
+        probability: 40
+      - name: Material005
+        number: 9
+        probability: 100
+      - name: Material000
+        number: 9
+        probability: 70
+      - name: Material000
+        number: 5
+        probability: 70
+    - ID: Quest012
+      Name: "\u5DE8\u5927\u306A\u6226\u3044"
+      ClearedFlg: 0
+      KeyQuestFlg: 0
+      Clear: 0
+      Failure: 1
+      Field: 1
+      TargetName:
+      - name: BEGRhino
+        number: 1
+      - name: BEGT-rex
+        number: 1
+      OtherName: []
+      QuestRewardDatas:
+      - name: Material003
+        number: 2
+        probability: 100
+      - name: Material003
+        number: 5
+        probability: 70
+      - name: Material002
+        number: 3
+        probability: 100
+      - name: Material002
+        number: 9
+        probability: 40
+      - name: Material005
+        number: 9
+        probability: 100
+      - name: Material000
+        number: 9
+        probability: 70
+      - name: Material000
+        number: 5
+        probability: 70
+      - name: Material001
+        number: 5
+        probability: 70
+      - name: Material007
+        number: 5
+        probability: 70
+      - name: Material007
+        number: 5
+        probability: 70
+  _weponSaveData:
+    keys:
+    - weapon101
+    - weapon102
+    - weapon103
+    - weapon201
+    - weapon202
+    - weapon203
+    - weapon301
+    - weapon302
+    - weapon303
+    values:
+    - ID: weapon101
+      EnhancementID: weapon102
+      Name: "\u6728\u306E\u65A7"
+      weaponPath: weapon/Axe_wood
+      IconPass: Icon/WoodAxe_Icon
+      BoxUINumber: 0
+      CreatableLevel: 1
+      BoxPossession: 1
+      AttackPoint: 50
+      WeaponType: 0
+      ProductionNeedMaterialLst:
+      - materialID: Material001
+        requiredCount: 5
+      EnhancementNeedMaterialLst:
+      - materialID: Material001
+        requiredCount: 3
+      - materialID: Material000
+        requiredCount: 2
+    - ID: weapon102
+      EnhancementID: weapon103
+      Name: "\u77F3\u306E\u65A7"
+      weaponPath: weapon/Axe
+      IconPass: Icon/Axe_UI
+      BoxUINumber: 1
+      CreatableLevel: 2
+      BoxPossession: 0
+      AttackPoint: 100
+      WeaponType: 0
+      ProductionNeedMaterialLst:
+      - materialID: Material001
+        requiredCount: 10
+      - materialID: Material000
+        requiredCount: 5
+      EnhancementNeedMaterialLst:
+      - materialID: Material001
+        requiredCount: 7
+      - materialID: Material000
+        requiredCount: 3
+      - materialID: Material003
+        requiredCount: 2
+    - ID: weapon103
+      EnhancementID: empty
+      Name: "\u9AA8\u65A7"
+      weaponPath: weapon/Axe_bone
+      IconPass: Icon/BoneAxe_Icon
+      BoxUINumber: 2
+      CreatableLevel: 3
+      BoxPossession: 0
+      AttackPoint: 150
+      WeaponType: 0
+      ProductionNeedMaterialLst:
+      - materialID: Material001
+        requiredCount: 10
+      - materialID: Material000
+        requiredCount: 5
+      - materialID: Material003
+        requiredCount: 5
+      EnhancementNeedMaterialLst: []
+    - ID: weapon201
+      EnhancementID: weapon202
+      Name: "\u6728\u306E\u69CD"
+      weaponPath: weapon/Spear_wood
+      IconPass: Icon/WoodSpear_Icon
+      BoxUINumber: 3
+      CreatableLevel: 1
+      BoxPossession: 1
+      AttackPoint: 50
+      WeaponType: 1
+      ProductionNeedMaterialLst:
+      - materialID: Material001
+        requiredCount: 5
+      EnhancementNeedMaterialLst:
+      - materialID: Material001
+        requiredCount: 3
+      - materialID: Material000
+        requiredCount: 2
+    - ID: weapon202
+      EnhancementID: weapon203
+      Name: "\u77F3\u306E\u69CD"
+      weaponPath: weapon/Spear
+      IconPass: Icon/Spear_UI
+      BoxUINumber: 4
+      CreatableLevel: 2
+      BoxPossession: 0
+      AttackPoint: 100
+      WeaponType: 1
+      ProductionNeedMaterialLst:
+      - materialID: Material001
+        requiredCount: 10
+      - materialID: Material000
+        requiredCount: 5
+      EnhancementNeedMaterialLst:
+      - materialID: Material001
+        requiredCount: 7
+      - materialID: Material000
+        requiredCount: 3
+      - materialID: Material003
+        requiredCount: 2
+    - ID: weapon203
+      EnhancementID: empty
+      Name: "\u9AA8\u69CD"
+      weaponPath: weapon/Spear_bone
+      IconPass: Icon/BoneSpear_Icon
+      BoxUINumber: 5
+      CreatableLevel: 3
+      BoxPossession: 0
+      AttackPoint: 150
+      WeaponType: 1
+      ProductionNeedMaterialLst:
+      - materialID: Material001
+        requiredCount: 10
+      - materialID: Material000
+        requiredCount: 5
+      - materialID: Material000
+        requiredCount: 5
+      EnhancementNeedMaterialLst: []
+    - ID: weapon301
+      EnhancementID: empty
+      Name: "\u5F13"
+      weaponPath: weapon/Spear
+      IconPass: 6
+      BoxUINumber: 0
+      CreatableLevel: 1
+      BoxPossession: 0
+      AttackPoint: 0
+      WeaponType: 2
+      ProductionNeedMaterialLst:
+      - materialID: Material001
+        requiredCount: 5
+      - materialID: Material002
+        requiredCount: 3
+      EnhancementNeedMaterialLst: []
+    - ID: weapon302
+      EnhancementID: weapon303
+      Name: "\u8D85\u5F13"
+      weaponPath: weapon/Spear
+      IconPass: 
+      BoxUINumber: 7
+      CreatableLevel: 4
+      BoxPossession: 0
+      AttackPoint: 0
+      WeaponType: 2
+      ProductionNeedMaterialLst: []
+      EnhancementNeedMaterialLst: []
+    - ID: weapon303
+      EnhancementID: empty
+      Name: "\u7D76\u5F13"
+      weaponPath: weapon/Spear
+      IconPass: 
+      BoxUINumber: 8
+      CreatableLevel: 7
+      BoxPossession: 0
+      AttackPoint: 0
+      WeaponType: 2
+      ProductionNeedMaterialLst: []
+      EnhancementNeedMaterialLst: []
 --- !u!1 &8863779222303211788
 GameObject:
   m_ObjectHideFlags: 0

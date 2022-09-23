@@ -22,11 +22,11 @@ public class ItemButton : MonoBehaviour
     }
     public void SetID(string id, ItemBoxOrPoach where)
     {
-        if (GameManager.Instance.MaterialDataList.Dictionary.ContainsKey(id))
+        if (GameManager.Instance.MaterialDataList._materialSaveData.dictionary.ContainsKey(id))
         {
             clear();
             _ID = id;
-            var data = GameManager.Instance.MaterialDataList.Dictionary[id];
+            var data = GameManager.Instance.MaterialDataList._materialSaveData.dictionary[id];
             if(where== ItemBoxOrPoach.box&& data.BoxHoldNumber <= 0)
             {
                 clear();
@@ -51,11 +51,11 @@ public class ItemButton : MonoBehaviour
                     break;
             }
         }
-        else if (GameManager.Instance.ItemDataList.Dictionary.ContainsKey(id))
+        else if (GameManager.Instance.ItemDataList._itemSaveData.Dictionary.ContainsKey(id))
         {
             clear();
             _ID = id;
-            var data = GameManager.Instance.ItemDataList.Dictionary[id];
+            var data = GameManager.Instance.ItemDataList._itemSaveData.Dictionary[id];
             if (where == ItemBoxOrPoach.box && data.baseData.BoxHoldNumber <= 0)
             {
                 clear();
@@ -84,10 +84,10 @@ public class ItemButton : MonoBehaviour
     }
     public void SetWeaponID(string id)
     {
-        if (!GameManager.Instance.WeaponDataList.Dictionary.ContainsKey(id)) return;
+        if (!GameManager.Instance.WeaponDataList._weponSaveData.Dictionary.ContainsKey(id)) return;
         clear();
         _ID = id;
-        var data = GameManager.Instance.WeaponDataList.Dictionary[id];
+        var data = GameManager.Instance.WeaponDataList._weponSaveData.Dictionary[id];
         _image.sprite = Resources.Load<Sprite>(data.IconPass);
         if (UISoundManager.Instance._player.WeaponID == data.ID)
         {

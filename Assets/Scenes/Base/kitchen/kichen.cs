@@ -49,8 +49,8 @@ public class kichen : UIBase
             int needRequiredCount = data.NeedMaterialLst[i].requiredCount;
 
             var _material = GameManager.Instance.MaterialDataList;
-            if (!(_material.Dictionary.ContainsKey(needID))) return false;
-            int _num = _material.Dictionary[needID].BoxHoldNumber + _material.Dictionary[needID].PoachHoldNumber;
+            if (!(_material._materialSaveData.dictionary.ContainsKey(needID))) return false;
+            int _num = _material._materialSaveData.dictionary[needID].BoxHoldNumber + _material._materialSaveData.dictionary[needID].PoachHoldNumber;
             if (_num < needRequiredCount) return false;
         }
         return true;
@@ -75,7 +75,7 @@ public class kichen : UIBase
             for (int i = 0; i < List.Count; i++)
             {
                 var materialID = List[i].materialID;
-                var material = GameManager.Instance.MaterialDataList.Dictionary[materialID];
+                var material = GameManager.Instance.MaterialDataList._materialSaveData.dictionary[materialID];
                 string text1 = string.Format("{0,3:d}", ((List[i].requiredCount) * _num).ToString());
                 string text2 = string.Format("{0,4:d}", (material.BoxHoldNumber + material.PoachHoldNumber).ToString());
                 Debug.Log(text1);
@@ -194,13 +194,13 @@ public class kichen : UIBase
         List<ItemData> _createItem = new List<ItemData>();
         public override void OnEnter(UIBase owner, UIStateBase prevState)
         {   //作れるアイテムのリストを生成
-            foreach (var item in GameManager.Instance.ItemDataList.Dictionary)
+            foreach (var item in GameManager.Instance.ItemDataList._itemSaveData.Dictionary)
             {
                 if (item.Value.CreatableLevel <= GameManager.Instance.VillageData.KitchenLevel)
                 {
                     for (int i = 0; i < item.Value.NeedMaterialLst.Count; i++)
                     {
-                        if (!GameManager.Instance.MaterialDataList.Dictionary.ContainsKey(item.Value.NeedMaterialLst[i].materialID)) continue;
+                        if (!GameManager.Instance.MaterialDataList._materialSaveData.dictionary.ContainsKey(item.Value.NeedMaterialLst[i].materialID)) continue;
                     }
                     _createItem.Add(item.Value);
                 }
@@ -298,14 +298,14 @@ public class kichen : UIBase
 
             now = 1; min = 1; max = 9999;
 
-            var _itemData = GameManager.Instance.ItemDataList.Dictionary[owner.GetComponent<kichen>()._cleateItemID];
+            var _itemData = GameManager.Instance.ItemDataList._itemSaveData.Dictionary[owner.GetComponent<kichen>()._cleateItemID];
             if (owner.GetComponent<kichen>()._toPouch)
             {
                 max = _itemData.baseData.PoachStackNumber - _itemData.baseData.PoachHoldNumber;
             }
 
             var _needMaterialList = _itemData.NeedMaterialLst;
-            var _needMaterialData = GameManager.Instance.MaterialDataList.Dictionary;
+            var _needMaterialData = GameManager.Instance.MaterialDataList._materialSaveData.dictionary;
             for (int i = 0; i < _needMaterialList.Count; i++)
             {
                 int needMaterialNum = _needMaterialList[i].requiredCount;
@@ -353,7 +353,7 @@ public class kichen : UIBase
             var UI = owner.ItemIconList[(int)IconType.Confirmation];
             if (prevState.GetType() != typeof(ItemSelectMode))
             {
-                var Item = GameManager.Instance.ItemDataList.Dictionary;
+                var Item = GameManager.Instance.ItemDataList._itemSaveData.Dictionary;
                 string ItemName = Item[owner.GetComponent<kichen>()._cleateItemID].baseData.ID;
 
                 UI.SetText("素材を消費してアイテムを生産しますか？");

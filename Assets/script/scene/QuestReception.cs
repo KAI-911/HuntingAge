@@ -17,7 +17,6 @@ public class QuestReception : UIBase
     [SerializeField] TargetChecker _gateChecker;
 
     [SerializeField] QuestHolder _questHolder;
-    [SerializeField] QuestDataList _questDataList;
 
     [SerializeField] QuestHolderData _questHolderData;
 
@@ -109,7 +108,7 @@ public class QuestReception : UIBase
                 bool cleared = true;
                 foreach (var item in holderData.Quests)
                 {
-                    var questData = quest.Dictionary[item];
+                    var questData = quest._saveData.Dictionary[item];
                     if (questData.ClearedFlg) continue;
                     cleared = false;
                     break;
@@ -175,7 +174,7 @@ public class QuestReception : UIBase
             var objList = itemIcon.CreateButton();
             for (int i = 0; i < objList.Count; i++)
             {
-                var data = owner.GetComponent<QuestReception>()._questDataList.Dictionary[owner.GetComponent<QuestReception>()._questHolderData.Quests[i]];
+                var data = GameManager.Instance.QuestDataList._saveData.Dictionary[owner.GetComponent<QuestReception>()._questHolderData.Quests[i]];
                 itemIcon.SetButtonText(i, data.Name, TextAnchor.MiddleLeft);
                 itemIcon.SetButtonOnClick(i, () =>
                 {
@@ -216,7 +215,7 @@ public class QuestReception : UIBase
         {
             Debug.Log(owner.GetType());
             itemIcon.Select(UISoundManager.Instance.InputSelection.ReadValue<Vector2>());
-            var id = owner.GetComponent<QuestReception>()._questDataList.Dictionary[owner.GetComponent<QuestReception>()._questHolderData.Quests[itemIcon.CurrentNunber]].ID;
+            var id = GameManager.Instance.QuestDataList._saveData.Dictionary[owner.GetComponent<QuestReception>()._questHolderData.Quests[itemIcon.CurrentNunber]].ID;
             owner.GetComponent<QuestReception>().SelectQuest_Rec(id);
         }
         public override void OnProceed(UIBase owner)
@@ -447,8 +446,8 @@ public class QuestReception : UIBase
 
     public void SelectQuest_Rec(string QuestID)
     {
-        if (!_questDataList.Dictionary.ContainsKey(QuestID)) return;
-        QuestData data = _questDataList.Dictionary[QuestID];
+        if (!GameManager.Instance.QuestDataList._saveData.Dictionary.ContainsKey(QuestID)) return;
+        QuestData data = GameManager.Instance.QuestDataList._saveData.Dictionary[QuestID];
         GameManager.Instance.Quest.QuestData = data;
         string str = "";
         IconDelete();
@@ -483,7 +482,7 @@ public class QuestReception : UIBase
                 for (int i = 0; i < data.TargetName.Count; i++)
                 {
                     int _numi = i;
-                    var tmp = GameManager.Instance.MaterialDataList.Dictionary[data.TargetName[_numi].name];
+                    var tmp = GameManager.Instance.MaterialDataList._materialSaveData.dictionary[data.TargetName[_numi].name];
                     str += tmp.Name + "‚ð" + data.TargetName[_numi].number + "‘Ì“¢”°‚·‚é\n";
                     IconSet(tmp.IconName, _numi);
                 }

@@ -114,13 +114,13 @@ public class kichen_varSato : UIBase
                 var UI = owner.ItemIconList[(int)IconType.Select];
                 UI.SetText("作るアイテム");
                 List<ItemData> _createItem = new List<ItemData>();
-                foreach (var item in GameManager.Instance.ItemDataList.Dictionary)
+                foreach (var item in GameManager.Instance.ItemDataList._itemSaveData.Dictionary)
                 {
                     if (item.Value.CreatableLevel <= GameManager.Instance.VillageData.KitchenLevel)
                     {
                         for (int i = 0; i < item.Value.NeedMaterialLst.Count; i++)
                         {
-                            if (!GameManager.Instance.MaterialDataList.Dictionary.ContainsKey(item.Value.NeedMaterialLst[i].materialID)) continue;
+                            if (!GameManager.Instance.MaterialDataList._materialSaveData.dictionary.ContainsKey(item.Value.NeedMaterialLst[i].materialID)) continue;
                         }
                         _createItem.Add(item.Value);
                     }
@@ -155,7 +155,7 @@ public class kichen_varSato : UIBase
                 foreach (var item in UI.Buttons)
                 {
                     var text = item.GetComponentInChildren<Text>();
-                    foreach (var data in GameManager.Instance.ItemDataList.Values)
+                    foreach (var data in GameManager.Instance.ItemDataList._itemSaveData.Dictionary.Values)
                     {
                         if (!owner.GetComponent<kichen_varSato>()._count.Check(owner, owner.GetComponent<kichen_varSato>()._toPouch, data.baseData.ID))
                         {
@@ -180,7 +180,7 @@ public class kichen_varSato : UIBase
             {
                 _memoryNum = current;
                 var name = owner.ItemIconList[(int)IconType.Select].Buttons[current].GetComponentInChildren<Text>();
-                foreach (var item in GameManager.Instance.ItemDataList.Dictionary.Values)
+                foreach (var item in GameManager.Instance.ItemDataList._itemSaveData.Dictionary.Values)
                 {
                     if (item.baseData.Name != name.text) continue;
                     owner.GetComponent<kichen_varSato>()._cleateItemID = item.baseData.ID;
@@ -224,19 +224,19 @@ public class kichen_varSato : UIBase
             list.SetText("素材名　　必要素材／素材所持数");
             //制作するアイテムに必要な素材を調べる
             string id = owner.GetComponent<kichen_varSato>()._cleateItemID;
-            var _itemDataDic = GameManager.Instance.ItemDataList.Dictionary;
+            var _itemDataDic = GameManager.Instance.ItemDataList._itemSaveData.Dictionary;
 
             list.SetTable(new Vector2(_itemDataDic[id].NeedMaterialLst.Count, 1));
             list.CreateButton();
             for (int i = 0; i < list.Buttons.Count; i++)
             {
                 string materialID = _itemDataDic[id].NeedMaterialLst[i].materialID;
-                string name = GameManager.Instance.MaterialDataList.Dictionary[materialID].Name;
+                string name = GameManager.Instance.MaterialDataList._materialSaveData.dictionary[materialID].Name;
                 //数値の始まりを同じにするために_namespace分に文字数をそろえる
                 for (int j = name.Length; j < _namespace; j++) name += "　";
 
                 string needNum = string.Format("{0,2:d}", _itemDataDic[id].NeedMaterialLst[i].requiredCount);
-                string holdNum = string.Format("{0,4:d}", GameManager.Instance.MaterialDataList.Dictionary[materialID].PoachHoldNumber + GameManager.Instance.MaterialDataList.Dictionary[materialID].BoxHoldNumber);
+                string holdNum = string.Format("{0,4:d}", GameManager.Instance.MaterialDataList._materialSaveData.dictionary[materialID].PoachHoldNumber + GameManager.Instance.MaterialDataList._materialSaveData.dictionary[materialID].BoxHoldNumber);
 
                 list.SetButtonText(i, "　" + name + Data.Convert.HanToZenConvert(needNum + "/" + holdNum));
             }
@@ -279,17 +279,17 @@ public class kichen_varSato : UIBase
             var list = owner.ItemIconList[(int)IconType.Needmaterial];
             //制作するアイテムに必要な素材を調べる
             string id = owner.GetComponent<kichen_varSato>()._cleateItemID;
-            var _itemDataDic = GameManager.Instance.ItemDataList.Dictionary;
+            var _itemDataDic = GameManager.Instance.ItemDataList._itemSaveData.Dictionary;
 
             for (int i = 0; i < list.Buttons.Count; i++)
             {
                 string materialID = _itemDataDic[id].NeedMaterialLst[i].materialID;
-                string name = GameManager.Instance.MaterialDataList.Dictionary[materialID].Name;
+                string name = GameManager.Instance.MaterialDataList._materialSaveData.dictionary[materialID].Name;
                 //数値の始まりを同じにするために_namespace分に文字数をそろえる
                 for (int j = name.Length; j < _namespace; j++) name += "　";
 
                 string needNum = string.Format("{0,2:d}", _itemDataDic[id].NeedMaterialLst[i].requiredCount * owner.GetComponent<kichen_varSato>()._count.Now);
-                string holdNum = string.Format("{0,4:d}", GameManager.Instance.MaterialDataList.Dictionary[materialID].PoachHoldNumber + GameManager.Instance.MaterialDataList.Dictionary[materialID].BoxHoldNumber);
+                string holdNum = string.Format("{0,4:d}", GameManager.Instance.MaterialDataList._materialSaveData.dictionary[materialID].PoachHoldNumber + GameManager.Instance.MaterialDataList._materialSaveData.dictionary[materialID].BoxHoldNumber);
 
                 list.SetButtonText(i, "　" + name + Data.Convert.HanToZenConvert(needNum + "/" + holdNum));
             }
@@ -319,14 +319,12 @@ public class kichen_varSato : UIBase
                 {
                     int number = owner.GetComponent<kichen_varSato>()._count.Now;
                     GameManager.Instance.ItemDataList.GetToPoach(createItemID, number, 0/*仮*/);
-                    var list = GameManager.Instance.ItemDataList.Dictionary[createItemID].NeedMaterialLst;
-                    var materialValues = GameManager.Instance.MaterialDataList.Values;
-                    var materialkeys = GameManager.Instance.MaterialDataList.Keys;
+                    var list = GameManager.Instance.ItemDataList._itemSaveData.Dictionary[createItemID].NeedMaterialLst;
+                    var material = GameManager.Instance.MaterialDataList._materialSaveData.dictionary;
                     foreach (var item in list)
                     {
                         int cost = item.requiredCount * number;
-                        int index = materialkeys.IndexOf(item.materialID);
-                        var data = materialValues[index];
+                        var data = material[item.materialID];
                         //先にポーチから必要数を消費する
                         if (data.PoachHoldNumber > 0)
                         {
@@ -343,10 +341,9 @@ public class kichen_varSato : UIBase
                         }
                         //ボックスから消費する
                         data.BoxHoldNumber -= cost;
-                        materialValues[index] = data;
-                        GameManager.Instance.MaterialDataList.DesrializeDictionary();
+                        material[item.materialID] = data;
                     }
-                    resultStr = GameManager.Instance.ItemDataList.Dictionary[createItemID].baseData.Name + "を"
+                    resultStr = GameManager.Instance.ItemDataList._itemSaveData.Dictionary[createItemID].baseData.Name + "を"
                                 + Data.Convert.HanToZenConvert(number.ToString()) + "個生産しました";
 
 
@@ -355,14 +352,12 @@ public class kichen_varSato : UIBase
                 {
                     int number = owner.GetComponent<kichen_varSato>()._count.Now;
                     GameManager.Instance.ItemDataList.GetToBox(createItemID, number, 0/*仮*/);
-                    var list = GameManager.Instance.ItemDataList.Dictionary[createItemID].NeedMaterialLst;
-                    var materialValues = GameManager.Instance.MaterialDataList.Values;
-                    var materialkeys = GameManager.Instance.MaterialDataList.Keys;
+                    var list = GameManager.Instance.ItemDataList._itemSaveData.Dictionary[createItemID].NeedMaterialLst;
+                    var material = GameManager.Instance.MaterialDataList._materialSaveData.dictionary;
                     foreach (var item in list)
                     {
                         int cost = item.requiredCount * number;
-                        int index = materialkeys.IndexOf(item.materialID);
-                        var data = materialValues[index];
+                        var data = material[item.materialID];
                         //先にポーチから必要数を消費する
                         if (data.PoachHoldNumber > 0)
                         {
@@ -379,10 +374,9 @@ public class kichen_varSato : UIBase
                         }
                         //ボックスから消費する
                         data.BoxHoldNumber -= cost;
-                        materialValues[index] = data;
-                        GameManager.Instance.MaterialDataList.DesrializeDictionary();
+                        material[item.materialID] = data;
                     }
-                    resultStr = GameManager.Instance.ItemDataList.Dictionary[createItemID].baseData.Name + "を"
+                    resultStr = GameManager.Instance.ItemDataList._itemSaveData.Dictionary[createItemID].baseData.Name + "を"
                                 + Data.Convert.HanToZenConvert(number.ToString()) + "個生産しました";
 
                 }
@@ -452,8 +446,8 @@ public class kichen_varSato : UIBase
             max = 9999;
             //最大値の設定
             string id = owner.GetComponent<kichen_varSato>()._cleateItemID;
-            var _ItemDic = GameManager.Instance.ItemDataList.Dictionary;
-            var _materialDataDic = GameManager.Instance.MaterialDataList.Dictionary;
+            var _ItemDic = GameManager.Instance.ItemDataList._itemSaveData.Dictionary;
+            var _materialDataDic = GameManager.Instance.MaterialDataList._materialSaveData.dictionary;
             if (toPoach)
             {
                 max = _ItemDic[id].baseData.PoachStackNumber - _ItemDic[id].baseData.PoachHoldNumber;
@@ -529,8 +523,8 @@ public class kichen_varSato : UIBase
             {
                 id = owner.GetComponent<kichen_varSato>()._cleateItemID;
             }
-            var _ItemDic = GameManager.Instance.ItemDataList.Dictionary;
-            var _materialDataDic = GameManager.Instance.MaterialDataList.Dictionary;
+            var _ItemDic = GameManager.Instance.ItemDataList._itemSaveData.Dictionary;
+            var _materialDataDic = GameManager.Instance.MaterialDataList._materialSaveData.dictionary;
             //必要素材が足りているか確認
             foreach (var item in _ItemDic[id].NeedMaterialLst)
             {
@@ -550,11 +544,11 @@ public class kichen_varSato : UIBase
                     //全ての枠を確認
                     for (int i = 0; i < table.x * table.y; i++) vs.Add(i);
                     //使用している枠を削除していく
-                    foreach (var item in GameManager.Instance.ItemDataList.Values)
+                    foreach (var item in GameManager.Instance.ItemDataList._itemSaveData.Dictionary.Values)
                     {
                         if (vs.Contains(item.baseData.PoachUINumber)) vs.Remove(item.baseData.PoachUINumber);
                     }
-                    foreach (var item in GameManager.Instance.MaterialDataList.Values)
+                    foreach (var item in GameManager.Instance.MaterialDataList._materialSaveData.dictionary.Values)
                     {
                         if (vs.Contains(item.PoachUINumber)) vs.Remove(item.PoachUINumber);
                     }
@@ -577,11 +571,11 @@ public class kichen_varSato : UIBase
                     //全ての枠を確認
                     for (int i = 0; i < table.x * table.y; i++) vs.Add(i);
                     //使用している枠を削除していく
-                    foreach (var item in GameManager.Instance.ItemDataList.Values)
+                    foreach (var item in GameManager.Instance.ItemDataList._itemSaveData.Dictionary.Values)
                     {
                         if (vs.Contains(item.baseData.PoachUINumber)) vs.Remove(item.baseData.PoachUINumber);
                     }
-                    foreach (var item in GameManager.Instance.MaterialDataList.Values)
+                    foreach (var item in GameManager.Instance.MaterialDataList._materialSaveData.dictionary.Values)
                     {
                         if (vs.Contains(item.PoachUINumber)) vs.Remove(item.PoachUINumber);
                     }

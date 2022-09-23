@@ -186,13 +186,18 @@ public class Quest : MonoBehaviour
             GameManager.Instance.Player.Revival();
             //アイテムの使用状況のリセット
             var itemDataList = GameManager.Instance.ItemDataList;
-            for (int i = 0; i < itemDataList.Values.Count; i++)
+            List<string> keys = new List<string>();
+            foreach (var item in itemDataList._itemSaveData.Dictionary.Keys)
             {
-                var data = itemDataList.Values[i];
-                data.Use = false;
-                itemDataList.Values[i] = data;
+                keys.Add(item);
             }
-            itemDataList.DesrializeDictionary();
+            for (int i = 0; i < keys.Count; i++)
+            {
+                var data = itemDataList._itemSaveData.Dictionary[keys[i]];
+                data.Use = false;
+                itemDataList._itemSaveData.Dictionary[keys[i]] = data;
+            }
+            
             switch (owner._questData.Clear)
             {
                 case ClearConditions.TargetSubjugation:
@@ -345,11 +350,9 @@ public class Quest : MonoBehaviour
         void clearcheck(Quest owner)
         {
             //クエストクリアフラグを立てる
-            var index = GameManager.Instance.QuestDataList.Keys.IndexOf(owner.QuestData.ID);
-            var data = GameManager.Instance.QuestDataList.Values[index];
+            var data = GameManager.Instance.QuestDataList._saveData.Dictionary[owner.QuestData.ID];
             data.ClearedFlg = true;
-            GameManager.Instance.QuestDataList.Values[index] = data;
-            GameManager.Instance.QuestDataList.DesrializeDictionary();
+            GameManager.Instance.QuestDataList._saveData.Dictionary[owner.QuestData.ID] = data;
 
             //キークエストを全てクリアしたら村レベルを上げる
             int level = GameManager.Instance.VillageData.VillageLevel;
@@ -358,7 +361,7 @@ public class Quest : MonoBehaviour
             var holdData = GameManager.Instance.QuestHolderData;
             for (int i = 0; i < holdData.Values[level - 1].Quests.Count; i++)
             {
-                var tmpQuestData = GameManager.Instance.QuestDataList.Dictionary[holdData.Values[level - 1].Quests[i]];
+                var tmpQuestData = GameManager.Instance.QuestDataList._saveData.Dictionary[holdData.Values[level - 1].Quests[i]];
                 if (tmpQuestData.KeyQuestFlg && !tmpQuestData.ClearedFlg)
                 {
                     levelup = false;
@@ -370,7 +373,6 @@ public class Quest : MonoBehaviour
                 GameManager.Instance.VillageData.VillageLevel++;
                 GameManager.Instance.VillageData.KitchenLevel = GameManager.Instance.VillageData.VillageLevel;
                 GameManager.Instance.VillageData.BlacksmithLevel = GameManager.Instance.VillageData.VillageLevel;
-                GameManager.Instance.VillageData.DesrializeDictionary();
                 Debug.Log("レベルが上がりました");
                 GameManager.Instance.LevelUp = true;
 
@@ -453,16 +455,18 @@ public class Quest : MonoBehaviour
             owner._questData = tmp;
 
             //ポーチにある素材アイテムをボックスに送る
-            var dataList = GameManager.Instance.MaterialDataList;
-            for (int i = 0; i < dataList.Dictionary.Count; i++)
+            var dataList = GameManager.Instance.MaterialDataList._materialSaveData.dictionary;
+
+            List<string> vs = new List<string>();
+            foreach (var item in dataList.Keys)vs.Add(item);
+            for (int i = 0; i < dataList.Count; i++)
             {
-                var d = dataList.Values[i];
+                var d = dataList[vs[i]];     
                 d.BoxHoldNumber += d.PoachHoldNumber;
                 d.PoachHoldNumber = 0;
                 d.BoxHoldNumber = Mathf.Clamp(d.BoxHoldNumber, 0, d.BoxStackNumber);
-                dataList.Values[i] = d;
+                dataList[vs[i]] = d;
             }
-            dataList.DesrializeDictionary();
         }
         public override void OnExit(Quest owner, QuestState nextState)
         {

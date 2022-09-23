@@ -12,6 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8a81e4b6844c1a74d86d0a0bcd1ad687, type: 3}
   m_Name: VillageDataStorage
   m_EditorClassIdentifier: 
-  VillageLevel: 1
-  BlacksmithLevel: 1
-  KitchenLevel: 1
+  VillageLevel: 3
+  BlacksmithLevel: 3
+  KitchenLevel: 3

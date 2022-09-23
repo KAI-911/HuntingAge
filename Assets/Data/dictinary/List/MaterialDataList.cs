@@ -1,68 +1,16 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
-public class MaterialDataList : MonoBehaviour, ISerializationCallbackReceiver
+using System;
+[Serializable]
+public class MaterialDataList : MonoBehaviour
 {
-    [SerializeField] MaterialListObject DictionaryData;
-    [SerializeField] List<string> keys = new List<string>();
-    [SerializeField] List<MaterialData> values = new List<MaterialData>();
-    [SerializeField] Dictionary<string, MaterialData> dictionary = new Dictionary<string, MaterialData>();
-    public bool modifyValues;
-    public Dictionary<string, MaterialData> Dictionary { get => dictionary; }
-    public List<string> Keys { get => keys; set => keys = value; }
-    public List<MaterialData> Values { get => values; set => values = value; }
-
-    private void Awake()
-    {
-        keys.Clear();
-        values.Clear();
-        PrintDictionary();
-        for (int i = 0; i < Mathf.Min(DictionaryData.Keys.Count, DictionaryData.Values.Count); i++)
-        {
-            keys.Add(DictionaryData.Keys[i]);
-            values.Add(DictionaryData.Values[i]);
-            Dictionary.Add(DictionaryData.Keys[i], DictionaryData.Values[i]);
-        }
-
-    }
-    public void OnBeforeSerialize()
-    {
-        if (!modifyValues)
-        {
-            keys.Clear();
-            values.Clear();
-            for (int i = 0; i < Mathf.Min(DictionaryData.Keys.Count, DictionaryData.Values.Count); i++)
-            {
-                keys.Add(DictionaryData.Keys[i]);
-                values.Add(DictionaryData.Values[i]);
-            }
-        }
-    }
-
-    public void OnAfterDeserialize()
-    {
-
-    }
-    public void DesrializeDictionary()
-    {
-        Debug.Log("DesrializeDictionary");
-        dictionary.Clear();
-        DictionaryData.Keys.Clear();
-        DictionaryData.Values.Clear();
-        for (int i = 0; i < Mathf.Min(keys.Count, values.Count); i++)
-        {
-            DictionaryData.Keys.Add(keys[i]);
-            DictionaryData.Values.Add(values[i]);
-            Dictionary.Add(keys[i], values[i]);
-        }
-        modifyValues = false;
-    }
+    public MaterialSaveData _materialSaveData;
 
     [ContextMenu("PrintDictionary")]
     public void PrintDictionary()
     {
-        foreach (var item in Dictionary)
+        foreach (var item in _materialSaveData.dictionary)
         {
             Debug.Log("Key: " + item.Key + " Value: " + item.Value);
         }
@@ -78,9 +26,8 @@ public class MaterialDataList : MonoBehaviour, ISerializationCallbackReceiver
     /// <param name="uinum">ポーチに移動させるアイテムがない場合に使用するUIの場所</param>
     public void BoxToPoach(string ID, int move, int uinum)
     {
-        if (!keys.Contains(ID)) return;
-        int index = keys.IndexOf(ID);
-        var data = values[index];
+        if (!_materialSaveData.dictionary.ContainsKey(ID)) return;
+        var data = _materialSaveData.dictionary[ID];
 
         int eraseNumber = move;
         //ボックスにアイテムが足りない
@@ -93,8 +40,7 @@ public class MaterialDataList : MonoBehaviour, ISerializationCallbackReceiver
 
         data.BoxHoldNumber -= eraseNumber;
         data.PoachHoldNumber += eraseNumber;
-        values[index] = data;
-        DesrializeDictionary();
+        _materialSaveData.dictionary[ID] = data;
     }
 
     /// <summary>
@@ -107,9 +53,8 @@ public class MaterialDataList : MonoBehaviour, ISerializationCallbackReceiver
     /// <param name="uinum">ボックスに移動させるアイテムがない場合に使用するUIの場所</param>
     public void PoachToBox(string ID, int move, int uinum)
     {
-        if (!keys.Contains(ID)) return;
-        int index = keys.IndexOf(ID);
-        var data = values[index];
+        if (!_materialSaveData.dictionary.ContainsKey(ID)) return;
+        var data = _materialSaveData.dictionary[ID];
 
         int eraseNumber = move;
         //ポーチにアイテムが足りない
@@ -122,8 +67,7 @@ public class MaterialDataList : MonoBehaviour, ISerializationCallbackReceiver
 
         data.PoachHoldNumber -= eraseNumber;
         data.BoxHoldNumber += eraseNumber;
-        values[index] = data;
-        DesrializeDictionary();
+        _materialSaveData.dictionary[ID] = data;
     }
 
     /// <summary>
@@ -138,9 +82,8 @@ public class MaterialDataList : MonoBehaviour, ISerializationCallbackReceiver
     /// </returns>
     public int GetToPoach(string ID, int move, int uinum)
     {
-        if (!keys.Contains(ID)) return -1;
-        int index = keys.IndexOf(ID);
-        var data = values[index];
+        if (!_materialSaveData.dictionary.ContainsKey(ID)) return -1;
+        var data = _materialSaveData.dictionary[ID];
 
         int addNumber = move;
         //ポーチに受け取る容量がない
@@ -150,8 +93,7 @@ public class MaterialDataList : MonoBehaviour, ISerializationCallbackReceiver
         if (data.PoachHoldNumber <= 0) data.PoachUINumber = uinum;
 
         data.PoachHoldNumber += addNumber;
-        values[index] = data;
-        DesrializeDictionary();
+        _materialSaveData.dictionary[ID] = data;
         return addNumber;
     }
 
@@ -166,9 +108,8 @@ public class MaterialDataList : MonoBehaviour, ISerializationCallbackReceiver
     /// <returns></returns>
     public int GetToBox(string ID, int move, int uinum)
     {
-        if (!keys.Contains(ID)) return -1;
-        int index = keys.IndexOf(ID);
-        var data = values[index];
+        if (!_materialSaveData.dictionary.ContainsKey(ID)) return -1;
+        var data = _materialSaveData.dictionary[ID];
 
         int addNumber = move;
         //ポーチに受け取る容量がない
@@ -178,8 +119,7 @@ public class MaterialDataList : MonoBehaviour, ISerializationCallbackReceiver
         if (data.BoxHoldNumber <= 0) data.BoxUINumber = uinum;
 
         data.BoxHoldNumber += addNumber;
-        values[index] = data;
-        DesrializeDictionary();
+        _materialSaveData.dictionary[ID] = data;
         return addNumber;
     }
 

@@ -1,69 +1,17 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
-[System.Serializable]
-public class WeaponDataList : MonoBehaviour, ISerializationCallbackReceiver
+using System;
+[Serializable]
+public class WeaponDataList : MonoBehaviour
 {
-    [SerializeField] WeaponListObject DictionaryData;
-    [SerializeField] List<string> keys = new List<string>();
-    [SerializeField] List<WeaponData> values = new List<WeaponData>();
-    [SerializeField] Dictionary<string, WeaponData> dictionary = new Dictionary<string, WeaponData>();
-    public bool modifyValues;
-    public Dictionary<string, WeaponData> Dictionary { get => dictionary; }
-    public List<string> Keys { get => keys; set => keys = value; }
-    public List<WeaponData> Values { get => values; set => values = value; }
-    // Start is called before the first frame update
-    private void Awake()
-    {
-        keys.Clear();
-        values.Clear();
-        for (int i = 0; i < Mathf.Min(DictionaryData.Keys.Count, DictionaryData.Values.Count); i++)
-        {
-            keys.Add(DictionaryData.Keys[i]);
-            values.Add(DictionaryData.Values[i]);
-            Dictionary.Add(DictionaryData.Keys[i], DictionaryData.Values[i]);
-        }
-
-    }
-    public void OnBeforeSerialize()
-    {
-        if (!modifyValues)
-        {
-            keys.Clear();
-            values.Clear();
-            for (int i = 0; i < Mathf.Min(DictionaryData.Keys.Count, DictionaryData.Values.Count); i++)
-            {
-                keys.Add(DictionaryData.Keys[i]);
-                values.Add(DictionaryData.Values[i]);
-            }
-        }
-    }
-
-    public void OnAfterDeserialize()
-    {
-
-    }
-    public void DesrializeDictionary()
-    {
-        Debug.Log("DesrializeDictionary");
-        dictionary.Clear();
-        DictionaryData.Keys.Clear();
-        DictionaryData.Values.Clear();
-        for (int i = 0; i < Mathf.Min(keys.Count, values.Count); i++)
-        {
-            DictionaryData.Keys.Add(keys[i]);
-            DictionaryData.Values.Add(values[i]);
-            Dictionary.Add(keys[i], values[i]);
-        }
-        modifyValues = false;
-    }
+    public WeponSaveData _weponSaveData;
 
     [ContextMenu("PrintDictionary")]
     public void PrintDictionary()
     {
         Debug.Log("Log");
-        foreach (var weapon in Dictionary)
+        foreach (var weapon in _weponSaveData.Dictionary)
         {
             Debug.Log("Key: " + weapon.Key + " Value: " + weapon.Value);
         }
@@ -71,37 +19,32 @@ public class WeaponDataList : MonoBehaviour, ISerializationCallbackReceiver
     [ContextMenu("Production")]
     public bool Production(string _ID, bool _confirmation)
     {
-        int index = keys.FindIndex(n => n.StartsWith(_ID));
-        var data = values[index];
+        var data = _weponSaveData.Dictionary[_ID];
 
         if (data.BoxPossession) return false;
         ItemsConsumption(_ID, true);
 
         data.BoxPossession = true;
-        values[index] = data;
-        DesrializeDictionary();
+        _weponSaveData.Dictionary[_ID] = data;
         return true;
     }
 
     public bool Enhancement(string _ID, bool _confirmation)
     {
-        int index = keys.FindIndex(n => n.StartsWith(_ID));
-        var data = values[index];
-        int enhIndex = keys.FindIndex(n => n.StartsWith(data.EnhancementID));
-        var enhdata = values[enhIndex];
+        var data = _weponSaveData.Dictionary[_ID];
+        var enhdata = _weponSaveData.Dictionary[data.EnhancementID];
+
         if (enhdata.BoxPossession) return false;
 
         ItemsConsumption(_ID, false);
 
         enhdata.BoxPossession = true;
-        values[enhIndex] = enhdata;
+        _weponSaveData.Dictionary[data.EnhancementID] = enhdata;
         data.BoxPossession = false;
-        values[index] = data;
+        _weponSaveData.Dictionary[_ID] = data;
 
         GameManager.Instance.Player.ChangeWepon(enhdata.ID);
 
-        Debug.Log("dataList" + values[index].BoxPossession + "kakuninndayo");
-        DesrializeDictionary();
 
         return true;
     }
@@ -109,9 +52,7 @@ public class WeaponDataList : MonoBehaviour, ISerializationCallbackReceiver
     //アイテムデータをいじるのはここから
     public void ItemsConsumption(string _ID, bool _production)
     {
-        int index = keys.FindIndex(n => n.StartsWith(_ID));
-        //Debug.Log(index);
-        var data = values[index];
+        var data = _weponSaveData.Dictionary[_ID];
         int listCount;
 
         if (_production) listCount = data.ProductionNeedMaterialLst.Count;
@@ -144,25 +85,23 @@ public class WeaponDataList : MonoBehaviour, ISerializationCallbackReceiver
         {
             int count = i;
             var _material = GameManager.Instance.MaterialDataList;
-            int tmp = _material.Keys.IndexOf(needID[count]);
-            if (_material.Values[tmp].PoachHoldNumber < needRequired[count])
+            var tmp = _material._materialSaveData.dictionary[needID[count]];//.Keys.IndexOf(needID[count]);
+            if (tmp.PoachHoldNumber < needRequired[count])
             {
-                needRequired[count] -= _material.Values[tmp].PoachHoldNumber;
-                var data1 = _material.Values[tmp];
+                needRequired[count] -= tmp.PoachHoldNumber;
+                var data1 = tmp;
                 data1.PoachHoldNumber = 0;
-                _material.Values[tmp] = data1;
-
                 data1.BoxHoldNumber -= needRequired[count];
-                _material.Values[tmp] = data1;
+                tmp = data1;
             }
             else
             {
-                var data1 = _material.Values[tmp];
+                var data1 = tmp;
                 data1.PoachHoldNumber -= needRequired[count];
-                _material.Values[tmp] = data1;
+                tmp = data1;
             }
+            _material._materialSaveData.dictionary[needID[count]] = tmp;
         }
-        GameManager.Instance.MaterialDataList.DesrializeDictionary();
     }
 }
 

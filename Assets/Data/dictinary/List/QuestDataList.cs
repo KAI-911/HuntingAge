@@ -1,74 +1,23 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
-public class QuestDataList : MonoBehaviour, ISerializationCallbackReceiver
+using System;
+[Serializable]
+public class QuestDataList : MonoBehaviour
 {
-    [SerializeField] QuestListObject DictionaryData;
-    [SerializeField] List<string> keys = new List<string>();
-    [SerializeField] List<QuestData> values = new List<QuestData>();
-    [SerializeField] Dictionary<string, QuestData> dictionary = new Dictionary<string, QuestData>();
-    public bool modifyValues;
-    public Dictionary<string, QuestData> Dictionary { get => dictionary; }
-    public List<string> Keys { get => keys; set => keys = value; }
-    public List<QuestData> Values { get => values; set => values = value; }
-
-    private void Awake()
-    {
-        keys.Clear();
-        values.Clear();
-        for (int i = 0; i < Mathf.Min(DictionaryData.Keys.Count, DictionaryData.Values.Count); i++)
-        {
-            keys.Add(DictionaryData.Keys[i]);
-            values.Add(DictionaryData.Values[i]);
-            Dictionary.Add(DictionaryData.Keys[i], DictionaryData.Values[i]);
-        }
-
-    }
-    public void OnBeforeSerialize()
-    {
-        if (!modifyValues)
-        {
-            keys.Clear();
-            values.Clear();
-            for (int i = 0; i < Mathf.Min(DictionaryData.Keys.Count, DictionaryData.Values.Count); i++)
-            {
-                keys.Add(DictionaryData.Keys[i]);
-                values.Add(DictionaryData.Values[i]);
-            }
-        }
-    }
-
-    public void OnAfterDeserialize()
-    {
-
-    }
-    public void DesrializeDictionary()
-    {
-        Debug.Log("DesrializeDictionary");
-        dictionary.Clear();
-        DictionaryData.Keys.Clear();
-        DictionaryData.Values.Clear();
-        for (int i = 0; i < Mathf.Min(keys.Count, values.Count); i++)
-        {
-            DictionaryData.Keys.Add(keys[i]);
-            DictionaryData.Values.Add(values[i]);
-            Dictionary.Add(keys[i], values[i]);
-        }
-        modifyValues = false;
-    }
+    public QuestSaveData _saveData;
 
     [ContextMenu("PrintDictionary")]
     public void PrintDictionary()
     {
         Debug.Log("Log");
-        foreach (var item in Dictionary)
+        foreach (var item in _saveData.Dictionary)
         {
             Debug.Log("Key: " + item.Key + " Value: " + item.Value);
         }
     }
 }
-[System.Serializable]
+[Serializable]
 public struct QuestData
 {
     /// <summary>
@@ -86,18 +35,18 @@ public struct QuestData
     public List<QuestRewardData> QuestRewardDatas;
 }
 
-[System.Serializable]
+[Serializable]
 public struct QuestHolderData
 {
     public List<string> Quests;
 }
-[System.Serializable] 
+[Serializable] 
 public struct STRINGINT
 {
     public string name;
     public int number;
 }
-[System.Serializable]
+[Serializable]
 public struct QuestRewardData
 {
     public string name;

@@ -1,55 +1,16 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
-public class VillageData : MonoBehaviour, ISerializationCallbackReceiver
+using System;
+[Serializable]
+public class VillageData : MonoBehaviour
 {
-    [SerializeField] VillageListObject DictionaryData;
-    [SerializeField] int villageLevel;
-    [SerializeField] int blacksmithLevel;
-    [SerializeField] int kitchenLevel;
-
-    public bool modifyValues;
-
-    public int VillageLevel { get => villageLevel; set => villageLevel = value; }
-    public int BlacksmithLevel { get => blacksmithLevel; set => blacksmithLevel = value; }
-    public int KitchenLevel { get => kitchenLevel; set => kitchenLevel = value; }
-
+    public VillageSaveData _saveData;
+    public int VillageLevel { get => _saveData.VillageLevel; set => _saveData.VillageLevel = value; }
+    public int BlacksmithLevel { get => _saveData.BlacksmithLevel; set => _saveData.BlacksmithLevel = value; }
+    public int KitchenLevel { get => _saveData.KitchenLevel; set => _saveData.KitchenLevel = value; }
     private void Awake()
     {
-        villageLevel = DictionaryData.VillageLevel;
-        blacksmithLevel = DictionaryData.BlacksmithLevel;
-        kitchenLevel = DictionaryData.KitchenLevel;
-    }
-    public void OnBeforeSerialize()
-    {
-        if (!modifyValues)
-        {
-            villageLevel = DictionaryData.VillageLevel;
-            blacksmithLevel = DictionaryData.BlacksmithLevel;
-            kitchenLevel = DictionaryData.KitchenLevel;
-        }
-    }
-
-    public void OnAfterDeserialize()
-    {
-
-    }
-    public void DesrializeDictionary()
-    {
-        Debug.Log("DesrializeDictionary");
-        DictionaryData.VillageLevel = villageLevel;
-        DictionaryData.BlacksmithLevel = blacksmithLevel;
-        DictionaryData.KitchenLevel = kitchenLevel;
-        modifyValues = false;
-    }
-
-    [ContextMenu("PrintDictionary")]
-    public void PrintDictionary()
-    {
-        Debug.Log("Log");
-        Debug.Log(villageLevel);
-        Debug.Log(blacksmithLevel);
-        Debug.Log(kitchenLevel);
+        _saveData = new VillageSaveData();
     }
 }

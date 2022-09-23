@@ -238,7 +238,7 @@ public class UIItemView_new : UIBase
             int tmp = OWNER.GetIndex(index);
             if (index < 0)
             {
-                var itemData = GameManager.Instance.ItemDataList.Dictionary[OWNER._itemIDList[tmp]];
+                var itemData = GameManager.Instance.ItemDataList._itemSaveData.Dictionary[OWNER._itemIDList[tmp]];
                 var image = OWNER.objects[(int)position.center].GetComponentsInChildren<Image>()[1];
                 image.sprite = Resources.Load<Sprite>(itemData.baseData.IconName);
                 OWNER._currentID = itemData.baseData.ID;
@@ -282,8 +282,8 @@ public class UIItemView_new : UIBase
             if (prevState.GetType() == typeof(WaitItem))
             {
 
-                int index = GameManager.Instance.ItemDataList.Keys.IndexOf(OWNER._currentID);
-                var data = GameManager.Instance.ItemDataList.Values[index];
+                var data = GameManager.Instance.ItemDataList._itemSaveData.Dictionary[OWNER._currentID];
+
                 Status status = GameManager.Instance.Player.Status;
                 switch (data.ItemType)
                 {
@@ -305,10 +305,9 @@ public class UIItemView_new : UIBase
                             {
                                 if (!data.Use) return;
                                 data.Use = false;
-                                status.Attack = UISoundManager.Instance._player.StatusData.Attack;
+                                status.Attack = GameManager.Instance.StatusData.PlayerSaveData.Attack;
                                 GameManager.Instance.Player.Status = status;
-                                GameManager.Instance.ItemDataList.Values[index] = data;
-                                GameManager.Instance.ItemDataList.DesrializeDictionary();
+                                GameManager.Instance.ItemDataList._itemSaveData.Dictionary[OWNER._currentID] = data;
                                 if (OWNER._attackUpEffect != null) Destroy(OWNER._attackUpEffect);
                             });
                         }
@@ -325,9 +324,8 @@ public class UIItemView_new : UIBase
                             {
                                 if (!data.Use) return;
                                 data.Use = false;
-                                GameManager.Instance.Player.Status.Defense = GameManager.Instance.Player.StatusData.Defense;
-                                GameManager.Instance.ItemDataList.Values[index] = data;
-                                GameManager.Instance.ItemDataList.DesrializeDictionary();
+                                GameManager.Instance.Player.Status.Defense = GameManager.Instance.StatusData.PlayerSaveData.Defense;
+                                GameManager.Instance.ItemDataList._itemSaveData.Dictionary[OWNER._currentID] = data;
                                 if (OWNER._defenseUpEffect != null) Destroy(OWNER._defenseUpEffect);
                             });
                         }
@@ -341,8 +339,7 @@ public class UIItemView_new : UIBase
                         break;
                 }
                 GameManager.Instance.Player.Status = status;
-                GameManager.Instance.ItemDataList.Values[index] = data;
-                GameManager.Instance.ItemDataList.DesrializeDictionary();
+                GameManager.Instance.ItemDataList._itemSaveData.Dictionary[OWNER._currentID] = data;
                 OWNER.SetIcon(position.center);
             }
         }
@@ -375,30 +372,28 @@ public class UIItemView_new : UIBase
     /// </summary>
     public void ClearPermanentBuff()
     {
-        var list = GameManager.Instance.ItemDataList;
-        foreach (var item in GameManager.Instance.ItemDataList.Dictionary)
+        var list = GameManager.Instance.ItemDataList._itemSaveData.Dictionary;
+        foreach (var item in list)
         {
             //永続効果でなければ戻る
             if (!item.Value.Permanent) continue;
             //使用していなかったら戻る
             if (!item.Value.Use) continue;
-            int index = list.Keys.IndexOf(item.Key);
-            var data = list.Values[index];
+            var data = list[item.Key];
             data.Use = false;
             switch (data.ItemType)
             {
                 case ItemType.AttackUp:
-                    GameManager.Instance.Player.Status.Attack = GameManager.Instance.Player.StatusData.Attack;
+                    GameManager.Instance.Player.Status.Attack = GameManager.Instance.StatusData.PlayerSaveData.Attack;
                     break;
                 case ItemType.DefenseUp:
-                    GameManager.Instance.Player.Status.Defense = GameManager.Instance.Player.StatusData.Defense;
+                    GameManager.Instance.Player.Status.Defense = GameManager.Instance.StatusData.PlayerSaveData.Defense;
                     break;
                 default:
                     break;
             }
-            list.Values[index] = data;
+            list[item.Key] = data;
         }
-        GameManager.Instance.ItemDataList.DesrializeDictionary();
     }
     private void AllDelete()
     {
@@ -431,14 +426,14 @@ public class UIItemView_new : UIBase
     }
     private void SetItemIDList()
     {
-        var data = GameManager.Instance.ItemDataList.Dictionary;
+        var data = GameManager.Instance.ItemDataList._itemSaveData.Dictionary;
         _itemIDList.Clear();
         foreach (var item in data)
         {
             if (item.Value.baseData.PoachHoldNumber <= 0) continue;
             _itemIDList.Add(item.Key);
         }
-        _itemIDList.Sort((a, b) => GameManager.Instance.ItemDataList.Dictionary[a].baseData.PoachUINumber - GameManager.Instance.ItemDataList.Dictionary[b].baseData.PoachUINumber);
+        _itemIDList.Sort((a, b) => GameManager.Instance.ItemDataList._itemSaveData.Dictionary[a].baseData.PoachUINumber - GameManager.Instance.ItemDataList._itemSaveData.Dictionary[b].baseData.PoachUINumber);
 
     }
     private void SetIcon(position _position)
@@ -516,12 +511,12 @@ public class UIItemView_new : UIBase
         }
         //画像設定ーーーーーーーーーーーーーーーーーーーーーーーーー
         image = icon.GetComponentsInChildren<Image>()[1];
-        if (index < 0 || !GameManager.Instance.ItemDataList.Dictionary.ContainsKey(_itemIDList[index]))
+        if (index < 0 || !GameManager.Instance.ItemDataList._itemSaveData.Dictionary.ContainsKey(_itemIDList[index]))
         {
             image.sprite = Resources.Load<Sprite>("Icon/alpha");
             return;
         }
-        itemData = GameManager.Instance.ItemDataList.Dictionary[_itemIDList[index]];
+        itemData = GameManager.Instance.ItemDataList._itemSaveData.Dictionary[_itemIDList[index]];
         image.sprite = Resources.Load<Sprite>(itemData.baseData.IconName);
         //文字設定ーーーーーーーーーーーーーーーーーーーーーーーーー
         text = icon.GetComponentInChildren<Text>();
@@ -634,7 +629,7 @@ public class UIItemView_new : UIBase
         //所持数が0以下ならリストから削除
         for (int i = 0; i < _itemIDList.Count; i++)
         {
-            var data = GameManager.Instance.ItemDataList.Dictionary[_itemIDList[i]];
+            var data = GameManager.Instance.ItemDataList._itemSaveData.Dictionary[_itemIDList[i]];
             if (data.baseData.PoachHoldNumber > 0) continue;
             _itemIDList.Remove(data.baseData.ID);
         }

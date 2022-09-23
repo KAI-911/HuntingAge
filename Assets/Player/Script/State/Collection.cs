@@ -21,7 +21,7 @@ public class Collection : PlayerStateBase
         collectionTime -= Time.deltaTime;
         if (collectionTime < 0)
         {
-            if(!GameManager.Instance.MaterialDataList.Dictionary.ContainsKey(_getItem))
+            if(!GameManager.Instance.MaterialDataList._materialSaveData.dictionary.ContainsKey(_getItem))
             {
                 Debug.Log("Žæ“¾ƒAƒCƒeƒ€‚ªŒ©‚Â‚©‚ç‚È‚¢‚Ì‚Å‰½‚à‚µ‚È‚¢");
                 owner.ChangeState<LocomotionState>();

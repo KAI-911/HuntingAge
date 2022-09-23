@@ -184,7 +184,7 @@ public class ItemBox : MonoBehaviour
             }
             foreach (var item in owner._itemHolder.Dictionary)
             {
-                var data = GameManager.Instance.MaterialDataList.Dictionary[item.Key];
+                var data = GameManager.Instance.MaterialDataList._materialSaveData.dictionary[item.Key];
                 if (data.BoxHoldNumber == 0) continue;
                 var ibutton = buttons[data.BoxUINumber].GetComponent<ItemButton>();
                 ibutton.SetID(data.ID, ItemBoxOrPoach.box);

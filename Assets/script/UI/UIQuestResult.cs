@@ -158,15 +158,15 @@ public class UIQuestResult : UIBase
     {
         var gm = GameManager.Instance;
         int index = 0;
-        if (gm.MaterialDataList.Keys.Contains(_ID))
+        if (gm.MaterialDataList._materialSaveData.dictionary.ContainsKey(_ID))
         {
             //UI‚Ì”Ô†‚Ìİ’è
-            if (gm.MaterialDataList.Dictionary[_ID].BoxHoldNumber <= 0)
+            if (gm.MaterialDataList._materialSaveData.dictionary[_ID].BoxHoldNumber <= 0)
             {
                 int num = owner.ItemIconList[(int)current.item].GetSize;
                 List<int> vs = new List<int>();
                 for (int i = 0; i < num; i++) vs.Add(i);
-                foreach (var item in gm.MaterialDataList.Values)
+                foreach (var item in gm.MaterialDataList._materialSaveData.dictionary.Values)
                 {
                     if (vs.Count == 0)
                     {
@@ -175,7 +175,7 @@ public class UIQuestResult : UIBase
                     if (item.BoxHoldNumber <= 0) continue;
                     vs.Remove(item.BoxUINumber);
                 }
-                foreach (var item in gm.ItemDataList.Values)
+                foreach (var item in gm.ItemDataList._itemSaveData.Dictionary.Values)
                 {
                     if (vs.Count == 0)
                     {
@@ -188,15 +188,15 @@ public class UIQuestResult : UIBase
             }
             gm.MaterialDataList.GetToBox(_ID, _num, index);
         }
-        else if (gm.ItemDataList.Keys.Contains(_ID))
+        else if (gm.ItemDataList._itemSaveData.Dictionary.ContainsKey(_ID))
         {
             //UI‚Ì”Ô†‚Ìİ’è
-            if (gm.ItemDataList.Dictionary[_ID].baseData.BoxHoldNumber <= 0)
+            if (gm.ItemDataList._itemSaveData.Dictionary[_ID].baseData.BoxHoldNumber <= 0)
             {
                 int num = owner.ItemIconList[(int)current.item].GetSize;
                 List<int> vs = new List<int>();
                 for (int i = 0; i < num; i++) vs.Add(i);
-                foreach (var item in gm.MaterialDataList.Values)
+                foreach (var item in gm.MaterialDataList._materialSaveData.dictionary.Values)
                 {
                     if (vs.Count == 0)
                     {
@@ -205,7 +205,7 @@ public class UIQuestResult : UIBase
                     if (item.BoxHoldNumber <= 0) continue;
                     vs.Remove(item.BoxUINumber);
                 }
-                foreach (var item in gm.ItemDataList.Values)
+                foreach (var item in gm.ItemDataList._itemSaveData.Dictionary.Values)
                 {
                     if (vs.Count == 0)
                     {
@@ -227,13 +227,13 @@ public class UIQuestResult : UIBase
             int random = Random.Range(0, 100);
             if (reward.probability < random) continue;
             MaterialData data;
-            if (gm.MaterialDataList.Keys.Contains(reward.name))
+            if (gm.MaterialDataList._materialSaveData.dictionary.ContainsKey(reward.name))
             {
-                data = gm.MaterialDataList.Dictionary[reward.name];
+                data = gm.MaterialDataList._materialSaveData.dictionary[reward.name];
             }
-            else if (gm.ItemDataList.Keys.Contains(reward.name))
+            else if (gm.ItemDataList._itemSaveData.Dictionary.ContainsKey(reward.name))
             {
-                data = gm.ItemDataList.Dictionary[reward.name].baseData;
+                data = gm.ItemDataList._itemSaveData.Dictionary[reward.name].baseData;
             }
             else
             {

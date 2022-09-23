@@ -55,8 +55,8 @@ public class Blacksmith : UIBase
                 int needRequiredCount = data.ProductionNeedMaterialLst[i].requiredCount;
 
                 var _material = GameManager.Instance.MaterialDataList;
-                if (!(_material.Dictionary.ContainsKey(needID))) return false;
-                int _num = _material.Dictionary[needID].BoxHoldNumber + _material.Dictionary[needID].PoachHoldNumber;
+                if (!(_material._materialSaveData.dictionary.ContainsKey(needID))) return false;
+                int _num = _material._materialSaveData.dictionary[needID].BoxHoldNumber + _material._materialSaveData.dictionary[needID].PoachHoldNumber;
                 if (_num < needRequiredCount) return false;
             }
         }
@@ -68,8 +68,8 @@ public class Blacksmith : UIBase
                 int needRequiredCount = data.EnhancementNeedMaterialLst[i].requiredCount;
 
                 var _material = GameManager.Instance.MaterialDataList;
-                if (!(_material.Dictionary.ContainsKey(needID))) return false;
-                int _num = _material.Dictionary[needID].BoxHoldNumber + _material.Dictionary[needID].PoachHoldNumber;
+                if (!(_material._materialSaveData.dictionary.ContainsKey(needID))) return false;
+                int _num = _material._materialSaveData.dictionary[needID].BoxHoldNumber + _material._materialSaveData.dictionary[needID].PoachHoldNumber;
                 if (_num < needRequiredCount) return false;
             }
         }
@@ -195,7 +195,7 @@ public class Blacksmith : UIBase
 
             var ButtonUI = owner.ItemIconList[(int)IconType.ProductSelect];
 
-            var Weapon = GameManager.Instance.WeaponDataList.Dictionary;
+            var Weapon = GameManager.Instance.WeaponDataList._weponSaveData.Dictionary;
             foreach (var item in Weapon)
             {
                 if ((item.Value.CreatableLevel <= GameManager.Instance.VillageData.BlacksmithLevel)
@@ -245,7 +245,7 @@ public class Blacksmith : UIBase
             for (int i = 0; i < data.Count; i++)
             {
                 var materialID = data[i].materialID;
-                var material = GameManager.Instance.MaterialDataList.Dictionary[materialID];
+                var material = GameManager.Instance.MaterialDataList._materialSaveData.dictionary[materialID];
                 string text1 = string.Format("{0,3:d}", data[i].requiredCount.ToString());
                 string text2 = string.Format("{0,4:d}", (material.BoxHoldNumber + material.PoachHoldNumber).ToString());
                 Debug.Log(text1);
@@ -279,7 +279,7 @@ public class Blacksmith : UIBase
             var UI = owner.ItemIconList[(int)IconType.TypeSelect];
             UI.SetText("•Ší‹­‰»æ");
 
-            var Weapon = GameManager.Instance.WeaponDataList.Dictionary;
+            var Weapon = GameManager.Instance.WeaponDataList._weponSaveData.Dictionary;
             foreach (var item in Weapon)
             {
                 if (item.Value.BoxPossession
@@ -309,10 +309,9 @@ public class Blacksmith : UIBase
                 {
                     int num = i;
                     string enhancementID = _TmpWeapon[num].EnhancementID;
-                    var name = GameManager.Instance.WeaponDataList; int index = name.Keys.FindIndex(n => n.StartsWith(enhancementID));
-                    Debug.Log(name.Values[index].Name);
-                    UI.SetButtonText(i, name.Values[index].Name);
-                    if (!owner.GetComponent<Blacksmith>().Check(name.Values[index], false))
+                    var data = GameManager.Instance.WeaponDataList._weponSaveData.Dictionary[enhancementID];
+                    UI.SetButtonText(i, data.Name);
+                    if (!owner.GetComponent<Blacksmith>().Check(data, false))
                     {
                         var image = UI.Buttons[num].GetComponent<Image>();
                         image.color = owner.GetComponent<Blacksmith>()._cantColor;
@@ -341,7 +340,7 @@ public class Blacksmith : UIBase
                 for (int i = 0; i < data.Count; i++)
                 {
                     var materialID = data[i].materialID;
-                    var material = GameManager.Instance.MaterialDataList.Dictionary[materialID];
+                    var material = GameManager.Instance.MaterialDataList._materialSaveData.dictionary[materialID];
                     string text1 = string.Format("{0,3:d}", data[i].requiredCount.ToString());
                     string text2 = string.Format("{0,4:d}", (material.BoxHoldNumber + material.PoachHoldNumber).ToString());
                     Debug.Log(text1);
@@ -381,7 +380,7 @@ public class Blacksmith : UIBase
             //ƒ‚[ƒh‘I‘ð‰æ–Ê
             if (prevState.GetType() == typeof(EnhancementSelect)) CameEnhancement = true;
             else CameEnhancement = false;
-            var Weapon = GameManager.Instance.WeaponDataList.Dictionary;
+            var Weapon = GameManager.Instance.WeaponDataList._weponSaveData.Dictionary;
             string WeaponName = Weapon[owner.GetComponent<Blacksmith>()._createWeaponID].ID;
             var UI = owner.ItemIconList[(int)IconType.Confirmation];
 
